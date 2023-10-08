@@ -1,20 +1,24 @@
 package athleticli;
 
 import athleticli.commands.Command;
+import athleticli.data.Data;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Parser;
+import athleticli.ui.Ui;
 
 /**
  * Defines the basic structure and the behavior of AthletiCLI.
  */
 public class AthletiCLI {
-    private athleticli.ui.Ui ui;
+    private Ui ui;
+    private Data data;
 
     /**
      * Constructs an <code>AthletiCLI</code> object.
      */
     public AthletiCLI() {
-        ui = new athleticli.ui.Ui();
+        ui = new Ui();
+        data = new Data();
     }
 
     /**
@@ -37,7 +41,7 @@ public class AthletiCLI {
             final String rawUserInput = ui.getUserCommand();
             try {
                 final Command command = Parser.parseCommand(rawUserInput);
-                final String[] feedback = command.execute();
+                final String[] feedback = command.execute(data);
                 ui.showMessages(feedback);
                 isExit = command.isExit();
             } catch (AthletiException e) {

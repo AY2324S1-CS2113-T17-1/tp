@@ -1,5 +1,6 @@
 package athleticli.commands;
 
+import athleticli.data.Data;
 import athleticli.ui.Message;
 
 public class ByeCommand extends Command {
@@ -18,7 +19,7 @@ public class ByeCommand extends Command {
      *
      * @return      The messages to be shown to the user.
      */
-    public String[] execute() {
+    public String[] execute(Data data) {
         return new String[] {Message.MESSAGE_BYE};
     }
 }
