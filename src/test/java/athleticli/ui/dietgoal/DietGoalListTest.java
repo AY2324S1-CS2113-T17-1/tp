@@ -1,10 +1,10 @@
-package goal.DietGoalList;
+package athleticli.ui.dietgoal;
 
-import Goal.DietGoal.DietGoal;
-import Goal.DietGoalList.DietGoalList;
+import athleticli.dietgoal.DietGoal;
+import athleticli.dietgoal.DietGoalList;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class DietGoalListTest {
 
@@ -18,13 +18,13 @@ class DietGoalListTest {
     }
 
     @Test
-    void getSize_initialiseArgs_ExpectZero() {
+    void getSize_initialiseArgs_expectZero() {
         DietGoalList dietGoals = new DietGoalList();
         assertEquals(0, dietGoals.getSize());
     }
 
     @Test
-    void getSize_addTenGoals_ExpectTen() {
+    void getSize_addTenGoals_expectTen() {
         DietGoalList dietGoals = new DietGoalList();
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         for (int i = 0; i < 10; i++) {

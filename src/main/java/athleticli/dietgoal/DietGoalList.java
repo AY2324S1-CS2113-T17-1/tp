@@ -1,6 +1,4 @@
-package Goal.DietGoalList;
-
-import Goal.DietGoal.DietGoal;
+package athleticli.dietgoal;
 
 import java.util.ArrayList;
 
@@ -20,3 +18,5 @@ public class DietGoalList {
     }
 
 }
+
+

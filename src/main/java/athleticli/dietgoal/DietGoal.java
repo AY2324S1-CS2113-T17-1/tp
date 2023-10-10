@@ -1,4 +1,4 @@
-package Goal.DietGoal;
+package athleticli.dietgoal;
 
 public class DietGoal {
     private String nutrients;
@@ -58,3 +58,5 @@ public class DietGoal {
                 + "/" + targetValue + ")\n";
     }
 }
+
+

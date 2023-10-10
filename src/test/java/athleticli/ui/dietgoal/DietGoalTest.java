@@ -1,6 +1,6 @@
-package goal.DietGoal;
+package athleticli.ui.dietgoal;
 
-import Goal.DietGoal.DietGoal;
+import athleticli.dietgoal.DietGoal;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
