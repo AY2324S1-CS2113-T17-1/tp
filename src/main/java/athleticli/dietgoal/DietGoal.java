@@ -6,13 +6,11 @@ public class DietGoal {
     private int currentValue;
     private boolean isGoalAchieved;
 
-
     public DietGoal(String nutrients, int targetValue) {
         this.nutrients = nutrients;
         this.targetValue = targetValue;
         currentValue = 0;
         isGoalAchieved = false;
-
     }
 
     public DietGoal(String nutrients, int targetValue, int currentValue) {
@@ -20,7 +18,6 @@ public class DietGoal {
         this.targetValue = targetValue;
         this.currentValue = currentValue;
         isGoalAchieved = currentValue >= targetValue;
-
     }
 
     public String getNutrients() {
@@ -58,5 +55,3 @@ public class DietGoal {
                 + "/" + targetValue + ")\n";
     }
 }
-
-

@@ -16,7 +16,5 @@ public class DietGoalList {
     public int getSize() {
         return dietGoals.size();
     }
-
 }
-
 

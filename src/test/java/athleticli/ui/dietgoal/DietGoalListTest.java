@@ -14,7 +14,6 @@ class DietGoalListTest {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         dietGoals.addGoal(proteinGoal);
         assertEquals(1, dietGoals.getSize());
-
     }
 
     @Test
@@ -32,5 +31,4 @@ class DietGoalListTest {
         }
         assertEquals(10, dietGoals.getSize());
     }
-
 }

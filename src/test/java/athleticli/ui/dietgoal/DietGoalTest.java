@@ -15,13 +15,11 @@ class DietGoalTest {
         assertEquals("protein", proteinGoal.getNutrients());
     }
 
-
     @Test
     void getTargetValue_initialiseCommonArgs_expectArgs() {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         assertEquals(10000, proteinGoal.getTargetValue());
     }
-
 
     @Test
     void getCurrentValue_initialiseCommonArgs_expectZero() {
@@ -61,6 +59,5 @@ class DietGoalTest {
     void testToString_initialiseCommonArgs_expectCorrectFormat() {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         assertEquals("protein intake progress: (0/10000)\n", proteinGoal.toString());
-
     }
 }
