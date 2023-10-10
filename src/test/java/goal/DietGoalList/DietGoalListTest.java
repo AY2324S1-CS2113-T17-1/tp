@@ -18,23 +18,6 @@ class DietGoalListTest {
     }
 
     @Test
-    void removeGoal_removeExistingGoal_expectSizeOne() {
-        DietGoalList dietGoals = new DietGoalList();
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
-        dietGoals.addGoal(proteinGoal);
-        dietGoals.removeGoal(0);
-        assertEquals(0, dietGoals.getSize());
-    }
-
-    @Test
-    void removeGoal_removeFromZeroGoals_expectIndexOutOfRangeError() {
-        DietGoalList dietGoals = new DietGoalList();
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            dietGoals.removeGoal(0);
-        });
-    }
-
-    @Test
     void getSize_initialiseArgs_ExpectZero() {
         DietGoalList dietGoals = new DietGoalList();
         assertEquals(0, dietGoals.getSize());

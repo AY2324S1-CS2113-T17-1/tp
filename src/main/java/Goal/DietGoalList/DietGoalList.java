@@ -15,10 +15,6 @@ public class DietGoalList {
         dietGoals.add(dietGoal);
     }
 
-    public void removeGoal(int index) {
-        dietGoals.remove(index);
-    }
-
     public int getSize() {
         return dietGoals.size();
     }
