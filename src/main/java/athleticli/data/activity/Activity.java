@@ -31,35 +31,11 @@ public class Activity {
         this.caption = caption;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public int getMovingTime() {
         return movingTime;
     }
 
-    public void setMovingTime(int movingTime) {
-        this.movingTime = movingTime;
-    }
-
     public int getDistance() {
         return distance;
-    }
-
-    public void setDistance(int distance) {
-        this.distance = distance;
-    }
-
-    public int getCalories() {
-        return calories;
-    }
-
-    public void setCalories(int calories) {
-        this.calories = calories;
     }
 }
