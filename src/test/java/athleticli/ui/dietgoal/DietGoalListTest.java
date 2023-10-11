@@ -5,6 +5,7 @@ import athleticli.dietgoal.DietGoalList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DietGoalListTest {
 
@@ -14,7 +15,23 @@ class DietGoalListTest {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         dietGoals.addGoal(proteinGoal);
         assertEquals(1, dietGoals.getSize());
+    }
 
+    @Test
+    void removeGoal_removeExistingGoal_expectSizeOne() {
+        DietGoalList dietGoals = new DietGoalList();
+        DietGoal proteinGoal = new DietGoal("protein", 10000);
+        dietGoals.addGoal(proteinGoal);
+        dietGoals.removeGoal(0);
+        assertEquals(0, dietGoals.getSize());
+    }
+
+    @Test
+    void removeGoal_removeFromZeroGoals_expectIndexOutOfRangeError() {
+        DietGoalList dietGoals = new DietGoalList();
+        assertThrows(IndexOutOfBoundsException.class, () -> {
+            dietGoals.removeGoal(0);
+        });
     }
 
     @Test
