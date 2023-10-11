@@ -32,5 +32,4 @@ class DietGoalListTest {
         }
         assertEquals(10, dietGoals.getSize());
     }
-
 }
