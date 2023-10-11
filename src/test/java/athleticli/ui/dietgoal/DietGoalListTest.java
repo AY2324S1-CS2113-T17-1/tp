@@ -57,4 +57,12 @@ class DietGoalListTest {
         }
         assertEquals(10, dietGoals.getSize());
     }
+
+    @Test
+    void testToString_oneExistingGoal_expectCorrectFormat() {
+        DietGoalList dietGoals = new DietGoalList();
+        DietGoal proteinGoal = new DietGoal("protein", 10000);
+        dietGoals.addGoal(proteinGoal);
+        assertEquals("1. protein intake progress: (0/10000)\n", dietGoals.toString());
+    }
 }
