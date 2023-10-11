@@ -33,7 +33,6 @@ class DietGoalTest {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         proteinGoal.setTargetValue(10);
         assertEquals(10, proteinGoal.getTargetValue());
-
     }
 
     @Test
