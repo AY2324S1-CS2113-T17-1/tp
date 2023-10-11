@@ -43,7 +43,7 @@ class DietGoalListTest {
     }
 
     @Test
-    void getSize_initialiseArgs_expectZero() {
+    void getSize_initializeArgs_expectZero() {
         DietGoalList dietGoals = new DietGoalList();
         assertEquals(0, dietGoals.getSize());
     }

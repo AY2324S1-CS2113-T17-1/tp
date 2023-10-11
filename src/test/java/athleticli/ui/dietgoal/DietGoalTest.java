@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DietGoalTest {
 
     @Test
-    void getNutrients_initialiseCommonArgs_expectArgs() {
+    void getNutrients_initializeCommonArgs_expectArgs() {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         assertEquals("protein", proteinGoal.getNutrients());
     }
@@ -23,13 +23,13 @@ class DietGoalTest {
     }
 
     @Test
-    void getTargetValue_initialiseCommonArgs_expectArgs() {
+    void getTargetValue_initializeCommonArgs_expectArgs() {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         assertEquals(10000, proteinGoal.getTargetValue());
     }
 
     @Test
-    void setTargetValue_initialiseCommonArgs_expectArgs() {
+    void setTargetValue_initializeCommonArgs_expectArgs() {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         proteinGoal.setTargetValue(10);
         assertEquals(10, proteinGoal.getTargetValue());
@@ -37,7 +37,7 @@ class DietGoalTest {
     }
 
     @Test
-    void getCurrentValue_initialiseCommonArgs_expectZero() {
+    void getCurrentValue_initializeCommonArgs_expectZero() {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         assertEquals(0, proteinGoal.getCurrentValue());
     }
@@ -71,7 +71,7 @@ class DietGoalTest {
     }
 
     @Test
-    void testToString_initialiseCommonArgs_expectCorrectFormat() {
+    void testToString_initializeCommonArgs_expectCorrectFormat() {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         assertEquals("protein intake progress: (0/10000)\n", proteinGoal.toString());
     }
