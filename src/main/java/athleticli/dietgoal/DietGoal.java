@@ -25,8 +25,21 @@ public class DietGoal {
         return nutrients;
     }
 
+    public void setNutrients(String nutrients) {
+        this.nutrients = nutrients;
+    }
+
     public int getTargetValue() {
         return targetValue;
+    }
+
+    public void setTargetValue(int targetValue) {
+        this.targetValue = targetValue;
+        if (!isGoalAchieved && currentValue >= targetValue) {
+            setIsGoalAchieved(true);
+        } else if (isGoalAchieved && currentValue < targetValue) {
+            setIsGoalAchieved(false);
+        }
     }
 
     public int getCurrentValue() {

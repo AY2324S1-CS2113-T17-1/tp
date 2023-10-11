@@ -35,6 +35,14 @@ class DietGoalListTest {
     }
 
     @Test
+    void getGoal_addOneGoal_expectGetSameGoal() {
+        DietGoalList dietGoals = new DietGoalList();
+        DietGoal proteinGoal = new DietGoal("protein", 10000);
+        dietGoals.addGoal(proteinGoal);
+        assertEquals(proteinGoal, dietGoals.getGoal(0));
+    }
+
+    @Test
     void getSize_initialiseArgs_expectZero() {
         DietGoalList dietGoals = new DietGoalList();
         assertEquals(0, dietGoals.getSize());

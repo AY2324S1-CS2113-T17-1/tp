@@ -16,9 +16,24 @@ class DietGoalTest {
     }
 
     @Test
+    void setNutrients_setCommonArgs_expectArgs() {
+        DietGoal proteinGoal = new DietGoal("protein", 10000);
+        proteinGoal.setNutrients("Advanced Protein");
+        assertEquals("Advanced Protein", proteinGoal.getNutrients());
+    }
+
+    @Test
     void getTargetValue_initialiseCommonArgs_expectArgs() {
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         assertEquals(10000, proteinGoal.getTargetValue());
+    }
+
+    @Test
+    void setTargetValue_initialiseCommonArgs_expectArgs() {
+        DietGoal proteinGoal = new DietGoal("protein", 10000);
+        proteinGoal.setTargetValue(10);
+        assertEquals(10, proteinGoal.getTargetValue());
+
     }
 
     @Test

@@ -13,6 +13,10 @@ public class DietGoalList {
         dietGoals.add(dietGoal);
     }
 
+    public DietGoal getGoal(int index) {
+        return dietGoals.get(index);
+    }
+
     public void removeGoal(int index) {
         dietGoals.remove(index);
     }
