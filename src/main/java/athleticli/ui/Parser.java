@@ -11,7 +11,6 @@ import athleticli.exceptions.UnknownCommandException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-import java.util.Locale;
 
 /**
  * Defines the basic methods for command parser.
@@ -120,7 +119,8 @@ public class Parser {
         return distanceParsed;
     }
 
-    public static void checkMissingActivityArguments(int durationIndex, int distanceIndex, int datetimeIndex) throws AthletiException {
+    public static void checkMissingActivityArguments(int durationIndex, int distanceIndex, int datetimeIndex)
+            throws AthletiException {
         if (durationIndex == -1) {
             throw new AthletiException(Message.MESSAGE_DURATION_MISSING);
         }
@@ -129,21 +129,6 @@ public class Parser {
         }
         if (datetimeIndex == -1) {
             throw new AthletiException(Message.MESSAGE_DATETIME_MISSING);
-        }
-    }
-
-    public static void checkEmptyActivityArguments(String caption, String duration, String distance, String datetime) throws AthletiException {
-        if (caption.isEmpty()) {
-            throw new AthletiException(Message.MESSAGE_CAPTION_EMPTY);
-        }
-        if (duration.isEmpty()) {
-            throw new AthletiException(Message.MESSAGE_DURATION_EMPTY);
-        }
-        if (distance.isEmpty()) {
-            throw new AthletiException(Message.MESSAGE_DISTANCE_EMPTY);
-        }
-        if (datetime.isEmpty()) {
-            throw new AthletiException(Message.MESSAGE_DATETIME_EMPTY);
         }
     }
 
@@ -188,7 +173,24 @@ public class Parser {
         return elevationParsed;
     }
 
-    public static void checkMissingRunCycleArguments(int durationIndex, int distanceIndex, int datetimeIndex, int elevationIndex) throws AthletiException {
+    public static void checkEmptyActivityArguments(String caption, String duration, String distance, String datetime)
+            throws AthletiException {
+        if (caption.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_CAPTION_EMPTY);
+        }
+        if (duration.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_DURATION_EMPTY);
+        }
+        if (distance.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_DISTANCE_EMPTY);
+        }
+        if (datetime.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_DATETIME_EMPTY);
+        }
+    }
+
+    public static void checkMissingRunCycleArguments(int durationIndex, int distanceIndex, int datetimeIndex,
+                                                     int elevationIndex) throws AthletiException {
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
         if (elevationIndex == -1) {
             throw new AthletiException(Message.MESSAGE_ELEVATION_MISSING);
@@ -203,14 +205,16 @@ public class Parser {
         }
     }
 
-    public static void checkEmptyActivityArguments(String caption, String duration, String distance, String datetime, String elevation) throws AthletiException {
+    public static void checkEmptyActivityArguments(String caption, String duration, String distance, String datetime,
+                                                   String elevation) throws AthletiException {
         checkEmptyActivityArguments(caption, duration, distance, datetime);
         if (elevation.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_ELEVATION_EMPTY);
         }
     }
 
-    public static void checkEmptyActivityArguments(String caption, String duration, String distance, String datetime, int swimmingStyleIndex) throws AthletiException {
+    public static void checkEmptyActivityArguments(String caption, String duration, String distance, String datetime,
+                                                   int swimmingStyleIndex) throws AthletiException {
         checkEmptyActivityArguments(caption, duration, distance, datetime);
         if (swimmingStyleIndex == -1) {
             throw new AthletiException(Message.MESSAGE_SWIMMINGSTYLE_MISSING);

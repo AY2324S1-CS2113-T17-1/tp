@@ -5,16 +5,16 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class RunTest {
 
-    private Run run;
     private static final String CAPTION = "Morning Run";
     private static final int DURATION = 80;
     private static final int DISTANCE = 18000;
     private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 10, 8, 0);
     private static final int ELEVATION = 60;
+    private Run run;
 
     @BeforeEach
     void setUp() {

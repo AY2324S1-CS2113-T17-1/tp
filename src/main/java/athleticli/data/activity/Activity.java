@@ -8,6 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Activity {
 
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MMM-dd-yyyy HH:mm");
     public enum ActivityType {
         ACTIVITY, RUN, SWIM, CYCLE
     }
@@ -18,7 +19,6 @@ public class Activity {
     private int distance;
     private int calories;
     private LocalDateTime startDateTime;
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MMM-dd-yyyy HH:mm");
 
     /**
      * Generates a new general sports activity with some basic stats.

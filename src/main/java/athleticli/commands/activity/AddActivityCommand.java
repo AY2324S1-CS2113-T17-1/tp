@@ -22,7 +22,7 @@ public class AddActivityCommand extends Command {
 
     /**
      * Updates the activity list.
-     * @param activities  The activity list to be updated.
+     * @param data        The current data containing the activity list.
      * @return            The message which will be shown to the user.
      */
     @Override
