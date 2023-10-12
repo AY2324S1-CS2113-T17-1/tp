@@ -9,7 +9,6 @@ import athleticli.ui.Ui;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AddActivityCommand {
 
@@ -35,26 +34,27 @@ public class AddActivityCommand {
         try {
             ActivityType activityType = getActivityType(command);
             switch(activityType) {
-            case RUN:
-                activityList = addRun();
-                break;
             case ACTIVITY:
                 activityList = addActivity();
                 break;
             case CYCLE:
-                activityList = addCycle();
-                break;
+            case RUN:
             case SWIM:
-                activityList = addSwim();
-                break;
+            default:
+                throw new UnknownCommandException();
             }
-            return activityList;
         } catch (UnknownCommandException | EmptyArgumentException e) {
             this.ui.showException(e);
         }
+        return activityList;
     }
 
-    public ActivityList addRun() throws UnknownCommandException {
+
+
+    public ActivityList addActivity() throws UnknownCommandException, EmptyArgumentException {
+        if (this.argument == null || this.argument.isEmpty()) {
+            throw new EmptyArgumentException();
+        }
         try {
             ArrayList<String> separators = new ArrayList<String>();
             separators.add(" duration/");
@@ -79,12 +79,6 @@ public class AddActivityCommand {
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException | NullPointerException |
                  DateTimeParseException e) {
             throw new UnknownCommandException();
-        }
-    }
-
-    public ActivityList addActivity() throws EmptyArgumentException {
-        if (this.argument == null || this.argument.isEmpty()) {
-            throw new EmptyArgumentException();
         }
     }
 
