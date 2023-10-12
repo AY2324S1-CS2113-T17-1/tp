@@ -8,6 +8,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class Activity {
 
+    public enum ActivityType {
+        ACTIVITY, RUN, SWIM, CYCLE
+    }
+
     private String description;
     private String caption;
     private int movingTime;

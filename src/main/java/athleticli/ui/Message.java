@@ -17,5 +17,13 @@ public class Message {
     public static final String MESSAGE_DATETIME_EMPTY = "The datetime of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_INVALID = "The duration of an activity must be a positive integer!";
     public static final String MESSAGE_DISTANCE_INVALID = "The distance of an activity must be a positive integer!";
-    public static final String MESSAGE_DATETIME_INVALID = "The datetime of an activity must be in the format \"yyyy-MM-dd HH:mm\"!";
+    public static final String MESSAGE_DATETIME_INVALID = "The datetime of an activity must be in the format " +
+            "\"yyyy-MM-dd HH:mm\"!";
+    public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
+    public static final String MESSAGE_ELEVATION_MISSING = "Please specify the elevation gain using \"elevation/\"!";
+    public static final String MESSAGE_ELEVATION_EMPTY = "The elevation gain of an activity cannot be empty!";
+    public static final String MESSAGE_ELEVATION_INVALID = "The elevation gain of an activity must be an integer!";
+    public static final String MESSAGE_SWIMMINGSTYLE_MISSING = "Please specify the swimming style using \"style/\"!";
+    public static final String MESSAGE_SWIMMINGSTYLE_INVALID = "The swimming style of an activity must be one of " +
+            "the following: \"butterfly\", \"backstroke\", \"breaststroke\", \"freestyle\"!";
 }
