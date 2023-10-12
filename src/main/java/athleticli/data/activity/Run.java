@@ -16,4 +16,10 @@ public class Run extends Activity{
         return this.getMovingTime() / (this.getDistance()/1000);
     }
 
+    public String convertAveragePaceToString() {
+        int minutes = this.averagePace / 60;
+        int seconds = this.averagePace % 60;
+        return String.format("%d:%02d", minutes, seconds);
+    }
+
 }
