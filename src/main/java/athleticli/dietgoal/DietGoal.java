@@ -35,11 +35,7 @@ public class DietGoal {
 
     public void setTargetValue(int targetValue) {
         this.targetValue = targetValue;
-        if (!isGoalAchieved && currentValue >= targetValue) {
-            setIsGoalAchieved(true);
-        } else if (isGoalAchieved && currentValue < targetValue) {
-            setIsGoalAchieved(false);
-        }
+        setIsGoalAchieved(currentValue >= targetValue);
     }
 
     public int getCurrentValue() {
