@@ -1,4 +1,32 @@
 package athleticli.commands.sleep;
 
-public class DeleteSleepCommand {
+import athleticli.commands.Command;
+import athleticli.data.Data;
+
+import athleticli.data.sleep.Sleep;
+import athleticli.data.sleep.SleepList;
+
+public class DeleteSleepCommand extends Command {
+
+    private int index;
+
+    public DeleteSleepCommand(int index) {
+        this.index = index;
+    }
+    
+    public String[] execute(Data data) {
+        SleepList sleepList = data.getSleeps();
+        Sleep oldSleep = sleepList.get(index-1);
+        sleepList.remove(index-1);
+        
+        return new String[] {
+            "Got it. I've deleted this sleep record at index " 
+            + index + ": " +  oldSleep.toString(),
+        };
+
+    }
+
+   
 }
+
+

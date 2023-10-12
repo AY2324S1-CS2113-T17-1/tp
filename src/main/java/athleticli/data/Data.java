@@ -29,4 +29,34 @@ public class Data {
         this.sleeps = new SleepList();
         this.sleepGoals = new SleepGoalList();
     }
+
+    /**
+     * Get all the objects
+     */
+
+    public ActivityList getActivities() {
+        return activities;
+    }
+
+    public ActivityGoalList getActivityGoals() {
+        return activityGoals;
+    }
+
+    public MealList getMeals() {
+        return meals;
+    }
+
+    public DietGoalList getDietGoals() {
+        return dietGoals;
+    }
+
+    public SleepList getSleeps() {
+        return sleeps;
+    }
+
+    public SleepGoalList getSleepGoals() {
+        return sleepGoals;
+    }
+
+    
 }
