@@ -10,6 +10,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 
+/**
+ * Executes the add activity commands provided by the user.
+ */
 public class AddActivityCommand {
 
     private String command;
@@ -22,6 +25,11 @@ public class AddActivityCommand {
         ACTIVITY, RUN, CYCLE, SWIM
     }
 
+    /**
+     * Constructor of Add Activity Command.
+     * @param command Command specifying the type of activity to be added.
+     * @param argument Arguments required for the specific command.
+     * */
     public AddActivityCommand(String command, String argument, ActivityList activityList, Ui ui) {
         ActivityType activityType = ActivityType.valueOf(command.toUpperCase());
         this.command = command;
@@ -30,6 +38,11 @@ public class AddActivityCommand {
         this.ui = ui;
     }
 
+    /**
+     * Executes the given command and updates the activity list.
+     * In case of formatting issues or invalid commands, user will be informed.
+     * @return ActivityList List of activities with the applied modifications.
+     */
     public ActivityList execute() {
         try {
             ActivityType activityType = getActivityType(command);
@@ -50,7 +63,12 @@ public class AddActivityCommand {
     }
 
 
-
+    /**
+     * Adds a general activity to the activity list.
+     * @return ActivityList List of activities with the added activity.
+     * @throws UnknownCommandException If the command is not valid.
+     * @throws EmptyArgumentException If the provided argument is empty.
+     * */
     public ActivityList addActivity() throws UnknownCommandException, EmptyArgumentException {
         if (this.argument == null || this.argument.isEmpty()) {
             throw new EmptyArgumentException();
@@ -82,6 +100,12 @@ public class AddActivityCommand {
         }
     }
 
+    /**
+     * Translates the raw command into a value of ActivityType enum.
+     * @param command
+     * @return command in the form of ActivityType enum.
+     * @throws UnknownCommandException If the command is not valid.
+     */
     public ActivityType getActivityType(String command) throws UnknownCommandException {
         try {
             return ActivityType.valueOf(command.toUpperCase());
