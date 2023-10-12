@@ -38,4 +38,12 @@ public class Activity {
     public int getDistance() {
         return distance;
     }
+
+    public String getCaption() {
+        return caption;
+    }
+
+    public LocalDateTime getStartDateTime() {
+        return startDateTime;
+    }
 }

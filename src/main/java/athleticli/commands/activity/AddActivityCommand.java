@@ -18,7 +18,6 @@ import java.util.Arrays;
  */
 public class AddActivityCommand {
 
-    private final String command;
     private String argument;
     private ActivityType activityType;
 
@@ -34,12 +33,15 @@ public class AddActivityCommand {
      * @param command Command specifying the type of activity to be added.
      * @param argument Arguments required for the specific command.
      * */
-    public AddActivityCommand(String command, String argument, ActivityList activityList, Ui ui) {
-        this.activityType = ActivityType.valueOf(command.toUpperCase());
-        this.command = command;
-        this.argument = argument;
-        this.activityList = activityList;
-        this.ui = ui;
+    public AddActivityCommand(String command, String argument, ActivityList activityList, Ui ui){
+        try {
+            this.activityType = ActivityType.valueOf(command.toUpperCase());
+            this.argument = argument;
+            this.activityList = activityList;
+            this.ui = ui;
+        } catch (IllegalArgumentException e) {
+            ui.showException(new UnknownCommandException());
+        }
     }
 
     /**
@@ -49,22 +51,18 @@ public class AddActivityCommand {
      */
     public ActivityList execute() {
         try {
-            if (this.argument == null || this.argument.isEmpty()) {
-                throw new EmptyArgumentException();
-            }
-
-            this.activityType = getActivityType(command);
+            checkEmptyArgument();
 
             switch(this.activityType) {
             case ACTIVITY:
-                activityList = addActivity();
+                addActivity();
                 break;
             case CYCLE:
             case RUN:
-                activityList = addRunCycle();
+                addRunCycle();
                 break;
             case SWIM:
-                activityList = addSwim();
+                addSwim();
                 break;
             default:
                 throw new UnknownCommandException();
@@ -179,6 +177,12 @@ public class AddActivityCommand {
         } catch (ArrayIndexOutOfBoundsException | NumberFormatException | NullPointerException |
                  DateTimeParseException e) {
             throw new UnknownCommandException();
+        }
+    }
+
+    private void checkEmptyArgument() throws EmptyArgumentException {
+        if (this.argument == null || this.argument.isEmpty()) {
+            throw new EmptyArgumentException();
         }
     }
 }

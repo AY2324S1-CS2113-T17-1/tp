@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
  */
 public class Run extends Activity{
     private int elevationGain;
-    private int averagePace;
+    private double averagePace;
 
     /**
      * Generates a new running activity with running specific stats.
@@ -29,8 +29,10 @@ public class Run extends Activity{
      * Calculates the average pace of the run in minutes per km.
      * @return average pace of the run in minutes per km
      */
-    public int calculateAveragePace() {
-        return this.getMovingTime() / (this.getDistance()/1000);
+    public double calculateAveragePace() {
+        double time = (double) this.getMovingTime();
+        double distance = (double) this.getDistance()/1000;
+        return time / distance;
     }
 
     /**
@@ -38,8 +40,8 @@ public class Run extends Activity{
      * @return average pace of run in mm:ss format
      */
     public String convertAveragePaceToString() {
-        int minutes = this.averagePace / 60;
-        int seconds = this.averagePace % 60;
+        int minutes = (int) (this.averagePace / 60);
+        int seconds = (int) (this.averagePace % 60);
         return String.format("%d:%02d", minutes, seconds);
     }
 

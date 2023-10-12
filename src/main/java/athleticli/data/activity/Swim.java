@@ -21,12 +21,25 @@ public class Swim extends Activity {
         this.averageLapTime = this.calculateAverageLapTime();
     }
 
+    /**
+     * Calculates the average lap time in seconds.
+     * @return average lap time in seconds
+     */
     public int calculateAverageLapTime() {
-        return this.getDistance() / this.getMovingTime();
+        int laps = this.calculateLaps();
+        return this.getMovingTime()*60 / laps;
     }
 
     public int calculateLaps() {
         return this.getDistance() / 50;
+    }
+
+    public int getLaps() {
+        return laps;
+    }
+
+    public int getAverageLapTime() {
+        return averageLapTime;
     }
 
 }

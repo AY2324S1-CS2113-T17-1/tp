@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 public class Cycle extends Activity {
 
     private int elevationGain;
-    private int averageSpeed;
+    private float averageSpeed;
 
     /**
      * Generates a new cycling activity with cycling specific stats.
@@ -30,7 +30,9 @@ public class Cycle extends Activity {
      * Calculates the average speed of the cycle in km/h.
      * @return average speed of the cycle in km/H
      */
-    public int calculateAverageSpeed() {
-        return (this.getDistance()/1000) / (this.getMovingTime()/60);
+    public float calculateAverageSpeed() {
+        float dist = (float) this.getDistance();
+        float time = (float) this.getMovingTime();
+        return (dist/1000) / (time/60);
     }
 }
