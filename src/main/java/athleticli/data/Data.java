@@ -13,7 +13,7 @@ import athleticli.data.sleep.SleepList;
 public class Data {
     private ActivityList activities;
     private ActivityGoalList activityGoals;
-    private DietList meals;
+    private DietList diets;
     private DietGoalList dietGoals;
     private SleepList sleeps;
     private SleepGoalList sleepGoals;
@@ -24,7 +24,7 @@ public class Data {
     public Data() {
         this.activities = new ActivityList();
         this.activityGoals = new ActivityGoalList();
-        this.meals = new DietList();
+        this.diets = new DietList();
         this.dietGoals = new DietGoalList();
         this.sleeps = new SleepList();
         this.sleepGoals = new SleepGoalList();
