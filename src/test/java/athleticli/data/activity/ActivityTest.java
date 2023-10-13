@@ -29,7 +29,7 @@ public class ActivityTest {
     }
 
     @Test
-    public void testToString_LongRun() {
+    public void testToString_longRun() {
         String expected = "[Activity] Sunday = Runday | Distance: 18.12 km | Time: 1h 24m | " +
                 "\"October" +
                 " " +

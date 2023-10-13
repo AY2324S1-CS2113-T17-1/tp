@@ -8,7 +8,8 @@ import java.time.format.DateTimeFormatter;
  */
 public class Activity {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("\"MMMM d, yyyy 'at' h:mm a\"");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("\"MMMM d, " +
+            "yyyy 'at' h:mm a\"");
 
     private String description;
     private String caption;
@@ -58,7 +59,8 @@ public class Activity {
         int movingTimeMinutes = movingTime % 60;
         double distanceInKm = distance / 1000.0;
         String movingTimeOutput = "Time: " + movingTimeHours + "h " + movingTimeMinutes + "m";
-        String distanceOutput = "Distance: " + String.format("%.2f", distanceInKm).replace(",", ".") + " km";
+        String distanceOutput = "Distance: " + String.format("%.2f", distanceInKm).replace(",", ".")
+                + " km";
         String startDateTimeOutput = startDateTime.format(DATE_TIME_FORMATTER);
         String result = "[Activity] " + caption + " | " + distanceOutput + " | " + movingTimeOutput + " | " +
                 startDateTimeOutput;
