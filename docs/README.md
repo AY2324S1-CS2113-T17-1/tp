@@ -4,16 +4,18 @@
 committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also covers dietary habits, sleep metrics, and more.
 
 ## Quick Start
-+ Ensure you have the required runtime environment installed on your computer. 
-+ Download the latest AthletiCLI from the official repository. 
-+ Copy the downloaded file to a folder you want to designate as the home for AthletiCLI. 
-+ Open a command terminal, cd into the folder where you copied the file, and run java -jar AthletiCLI.jar
+
+* Ensure you have the required runtime environment installed on your computer. 
+* Download the latest AthletiCLI from the official repository. 
+* Copy the downloaded file to a folder you want to designate as the home for AthletiCLI. 
+* Open a command terminal, cd into the folder where you copied the file, and run java -jar AthletiCLI.jar
 
 ## Features
+
 **Notes about Command Format**
-+ Words in UPPER_CASE are parameters provided by the user.
-+ Parameters can be in any order.
-+ Parameters enclosed in square brackets [] are optional.
+* Words in UPPER_CASE are parameters provided by the user.
+* Parameters can be in any order.
+* Parameters enclosed in square brackets [] are optional.
 
 ## Activity Management
 # Adding Activities:
