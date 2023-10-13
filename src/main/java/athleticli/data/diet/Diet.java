@@ -1,4 +1,4 @@
 package athleticli.data.diet;
 
-public class Meal {
+public class Diet {
 }
