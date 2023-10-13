@@ -15,6 +15,8 @@ public class DietGoalList extends ArrayList<DietGoal> {
 
     /**
      * Returns a string representation of the diet goal list.
+     *
+     * @return A string representation of the diet goal list.
      */
     @Override
     public String toString() {

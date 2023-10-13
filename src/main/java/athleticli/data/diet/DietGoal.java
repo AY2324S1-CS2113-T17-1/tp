@@ -35,9 +35,11 @@ public class DietGoal {
         this.currentValue = currentValue;
         isGoalAchieved = currentValue >= targetValue;
     }
-    
+
     /**
      * Returns the nutrients of the diet goal.
+     *
+     * @return The nutrients of the diet goal.
      */
     public String getNutrients() {
         return nutrients;
@@ -54,6 +56,8 @@ public class DietGoal {
 
     /**
      * Returns the target value of the diet goal.
+     *
+     * @return The target value of the diet goal.
      */
     public int getTargetValue() {
         return targetValue;
@@ -71,6 +75,8 @@ public class DietGoal {
 
     /**
      * Returns the current value of the diet goal.
+     *
+     * @return The current value of the diet goal.
      */
     public int getCurrentValue() {
         return currentValue;
@@ -92,6 +98,8 @@ public class DietGoal {
 
     /**
      * Returns whether the diet goal is achieved.
+     *
+     * @return Whether the diet goal is achieved.
      */
     public boolean getIsGoalAchieved() {
         return isGoalAchieved;
@@ -108,6 +116,8 @@ public class DietGoal {
 
     /**
      * Returns the string representation of the diet goal.
+     *
+     * @return The string representation of the diet goal.
      */
     @Override
     public String toString() {
