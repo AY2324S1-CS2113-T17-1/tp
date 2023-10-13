@@ -42,4 +42,13 @@ public class Swim extends Activity {
         return averageLapTime;
     }
 
+    @Override
+    public String toString() {
+        String result = super.toString();
+        result = result.replace("[Activity]", "[Swim]");
+        String averageLapTimeOutput = this.averageLapTime + "s";
+        result = result.replace("Time: ", "Avg Lap Time: " + averageLapTimeOutput + " | Time: ");
+        return result;
+    }
+
 }

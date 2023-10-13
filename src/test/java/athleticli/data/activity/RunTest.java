@@ -7,27 +7,37 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RunTest {
+public class RunTest {
 
-    private static final String CAPTION = "Morning Run";
-    private static final int DURATION = 80;
-    private static final int DISTANCE = 18000;
-    private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 10, 8, 0);
+    private static final String CAPTION = "Night Run";
+    private static final int DURATION = 85;
+    private static final int DISTANCE = 18120;
+    private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 10, 23, 21);
     private static final int ELEVATION = 60;
     private Run run;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         run = new Run(CAPTION, DURATION, DISTANCE, DATE, ELEVATION);
     }
 
     @Test
-    void calculateAveragePace() {
+    public void calculateAveragePace() {
         double averagePace = run.calculateAveragePace();
-        assertEquals(4.444444444444445, averagePace);
+        assertEquals(4.690949227373068, averagePace);
     }
 
     @Test
-    void convertAveragePaceToString() {
+    public void convertAveragePaceToString() {
+        String expected = "4:41";
+        String actual = run.convertAveragePaceToString();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testToString() {
+        String expected = "[Run] Night Run | Distance: 18.12 km | Pace: 4:41 /km | Time: 1h 25m | " +
+                "\"October 10, 2023 at 11:21 PM\"";
+        assertEquals(expected, run.toString());
     }
 }

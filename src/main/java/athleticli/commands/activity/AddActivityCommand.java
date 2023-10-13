@@ -29,7 +29,14 @@ public class AddActivityCommand extends Command {
     public String[] execute(Data data) {
         ActivityList activities = data.getActivities();
         activities.add(this.activity);
-        return new String[]{Message.MESSAGE_ACTIVITY_ADDED};
+        int size = activities.size();
+        String countMessage;
+        if (size > 1) {
+            countMessage = String.format(Message.MESSAGE_ACTIVITY_COUNT, size);
+        } else {
+            countMessage = String.format(Message.MESSAGE_ACTIVITY_FIRST, size);
+        }
+        return new String[]{Message.MESSAGE_ACTIVITY_ADDED, this.activity.toString(), countMessage};
     }
 
 }

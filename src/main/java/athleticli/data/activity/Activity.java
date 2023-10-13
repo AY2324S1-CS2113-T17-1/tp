@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Activity {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MMM-dd-yyyy HH:mm");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("\"MMMM d, yyyy 'at' h:mm a\"");
     public enum ActivityType {
         ACTIVITY, RUN, SWIM, CYCLE
     }
@@ -50,4 +50,22 @@ public class Activity {
     public LocalDateTime getStartDateTime() {
         return startDateTime;
     }
+
+    /**
+     * Returns a single line summary of the activity.
+     * @return a string representation of the activity
+     */
+    @Override
+    public String toString() {
+        int movingTimeHours = movingTime / 60;
+        int movingTimeMinutes = movingTime % 60;
+        double distanceInKm = distance / 1000.0;
+        String movingTimeOutput = "Time: " + movingTimeHours + "h " + movingTimeMinutes + "m";
+        String distanceOutput = "Distance: " + String.format("%.2f", distanceInKm).replace(",", ".") + " km";
+        String startDateTimeOutput = startDateTime.format(DATE_TIME_FORMATTER);
+        String result = "[Activity] " + caption + " | " + distanceOutput + " | " + movingTimeOutput + " | " +
+                startDateTimeOutput;
+        return result;
+    }
+
 }

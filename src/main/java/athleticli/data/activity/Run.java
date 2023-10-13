@@ -2,6 +2,8 @@ package athleticli.data.activity;
 
 import java.time.LocalDateTime;
 
+import static java.lang.Math.floor;
+
 /**
  * Represents a running activity consisting of relevant evaluation data.
  */
@@ -40,9 +42,23 @@ public class Run extends Activity{
      * @return average pace of run in mm:ss format
      */
     public String convertAveragePaceToString() {
-        int minutes = (int) (this.averagePace / 60);
-        int seconds = (int) (this.averagePace % 60);
+        int totalSeconds = (int) Math.round(this.averagePace*60);
+        int minutes = totalSeconds / 60;
+        int seconds = totalSeconds % 60;
         return String.format("%d:%02d", minutes, seconds);
+    }
+
+    /**
+     * Returns a single line summary of the running activity.
+     * @return a string representation of the run
+     */
+    @Override
+    public String toString() {
+        String result = super.toString();
+        result = result.replace("[Activity]", "[Run]");
+        String paceOutput = this.convertAveragePaceToString() + " /km";
+        result = result.replace("Time: ", "Pace: " + paceOutput + " | Time: ");
+        return result;
     }
 
 }

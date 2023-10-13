@@ -7,22 +7,31 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CycleTest {
+public class CycleTest {
 
-    private static final String CAPTION = "Cycling to work";
-    private static final int DURATION = 60;
-    private static final int DISTANCE = 30500;
-    private static final int ELEVATION = 100;
-    private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 10, 8, 0);
+    private static final String CAPTION = "Cycling in the afternoon";
+    private static final int DURATION = 133;
+    private static final int DISTANCE = 40460;
+    private static final int ELEVATION = 101;
+    private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 07, 14, 0);
     private Cycle cycle;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         cycle = new Cycle(CAPTION, DURATION, DISTANCE, DATE, ELEVATION);
     }
 
     @Test
-    void calculateAverageSpeed() {
-        assertEquals(30.5, cycle.calculateAverageSpeed());
+    public void calculateAverageSpeed() {
+        double expected = 18.25263157894737;
+        double actual = cycle.calculateAverageSpeed();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void testToString() {
+        String expected = "[Cycle] Cycling in the afternoon | Distance: 40.46 km | Speed: 18.25 km/h | Time: 2h 13m | " +
+                "\"October 7, 2023 at 2:00 PM\"";
+        assertEquals(expected, cycle.toString());
     }
 }

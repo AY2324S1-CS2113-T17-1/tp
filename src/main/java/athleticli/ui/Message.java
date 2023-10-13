@@ -26,4 +26,7 @@ public class Message {
     public static final String MESSAGE_SWIMMINGSTYLE_MISSING = "Please specify the swimming style using \"style/\"!";
     public static final String MESSAGE_SWIMMINGSTYLE_INVALID = "The swimming style of an activity must be one of " +
             "the following: \"butterfly\", \"backstroke\", \"breaststroke\", \"freestyle\"!";
+    public static final String MESSAGE_ACTIVITY_COUNT = "Now you have tracked a total of %d activities. Keep pushing!";
+    public static final String MESSAGE_ACTIVITY_FIRST = "Now you have tracked your first activity. This is just the " +
+            "beginning!";
 }
