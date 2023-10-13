@@ -31,8 +31,8 @@ public class Cycle extends Activity {
      * @return average speed of the cycle in km/h
      */
     public double calculateAverageSpeed() {
-        double dist = (float) this.getDistance();
-        double time = (float) this.getMovingTime();
+        double dist = (double) this.getDistance();
+        double time = (double) this.getMovingTime();
         return (dist/1000) / (time/60);
     }
 
