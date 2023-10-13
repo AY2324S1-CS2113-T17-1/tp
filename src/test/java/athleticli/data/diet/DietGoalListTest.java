@@ -1,7 +1,7 @@
-package athleticli.ui.dietgoal;
+package athleticli.data.diet;
 
-import athleticli.dietgoal.DietGoal;
-import athleticli.dietgoal.DietGoalList;
+import athleticli.data.diet.DietGoal;
+import athleticli.data.diet.DietGoalList;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -10,59 +10,59 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class DietGoalListTest {
 
     @Test
-    void addGoal_addOneGoal_expectSizeOne() {
+    void add_addOneGoal_expectSizeOne() {
         DietGoalList dietGoals = new DietGoalList();
         DietGoal proteinGoal = new DietGoal("protein", 10000);
-        dietGoals.addGoal(proteinGoal);
-        assertEquals(1, dietGoals.getSize());
+        dietGoals.add(proteinGoal);
+        assertEquals(1, dietGoals.size());
     }
 
     @Test
-    void removeGoal_removeExistingGoal_expectSizeOne() {
+    void remove_removeExistingGoal_expectSizeOne() {
         DietGoalList dietGoals = new DietGoalList();
         DietGoal proteinGoal = new DietGoal("protein", 10000);
-        dietGoals.addGoal(proteinGoal);
-        dietGoals.removeGoal(0);
-        assertEquals(0, dietGoals.getSize());
+        dietGoals.add(proteinGoal);
+        dietGoals.remove(0);
+        assertEquals(0, dietGoals.size());
     }
 
     @Test
-    void removeGoal_removeFromZeroGoals_expectIndexOutOfRangeError() {
+    void remove_removeFromZeroGoals_expectIndexOutOfRangeError() {
         DietGoalList dietGoals = new DietGoalList();
         assertThrows(IndexOutOfBoundsException.class, () -> {
-            dietGoals.removeGoal(0);
+            dietGoals.remove(0);
         });
     }
 
     @Test
-    void getGoal_addOneGoal_expectGetSameGoal() {
+    void get_addOneGoal_expectGetSameGoal() {
         DietGoalList dietGoals = new DietGoalList();
         DietGoal proteinGoal = new DietGoal("protein", 10000);
-        dietGoals.addGoal(proteinGoal);
-        assertEquals(proteinGoal, dietGoals.getGoal(0));
+        dietGoals.add(proteinGoal);
+        assertEquals(proteinGoal, dietGoals.get(0));
     }
 
     @Test
-    void getSize_initializeArgs_expectZero() {
+    void size_initializeArgs_expectZero() {
         DietGoalList dietGoals = new DietGoalList();
-        assertEquals(0, dietGoals.getSize());
+        assertEquals(0, dietGoals.size());
     }
 
     @Test
-    void getSize_addTenGoals_expectTen() {
+    void size_addTenGoals_expectTen() {
         DietGoalList dietGoals = new DietGoalList();
         DietGoal proteinGoal = new DietGoal("protein", 10000);
         for (int i = 0; i < 10; i++) {
-            dietGoals.addGoal(proteinGoal);
+            dietGoals.add(proteinGoal);
         }
-        assertEquals(10, dietGoals.getSize());
+        assertEquals(10, dietGoals.size());
     }
 
     @Test
     void testToString_oneExistingGoal_expectCorrectFormat() {
         DietGoalList dietGoals = new DietGoalList();
         DietGoal proteinGoal = new DietGoal("protein", 10000);
-        dietGoals.addGoal(proteinGoal);
+        dietGoals.add(proteinGoal);
         assertEquals("1. protein intake progress: (0/10000)\n", dietGoals.toString());
     }
 }
