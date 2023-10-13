@@ -2,33 +2,16 @@ package athleticli.data.diet;
 
 import java.util.ArrayList;
 
-public class DietGoalList {
-    ArrayList<DietGoal> dietGoals;
-
+public class DietGoalList extends ArrayList<DietGoal> {
     public DietGoalList() {
-        dietGoals = new ArrayList<DietGoal>();
+        super();
     }
-
-    public void addGoal(DietGoal dietGoal) {
-        dietGoals.add(dietGoal);
-    }
-
-    public DietGoal getGoal(int index) {
-        return dietGoals.get(index);
-    }
-
-    public void removeGoal(int index) {
-        dietGoals.remove(index);
-    }
-
-    public int getSize() {
-        return dietGoals.size();
-    }
-
+    
+    @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        for (int i = 0; i < dietGoals.size(); i++) {
-            result.append(i + 1).append(". ").append(dietGoals.get(i).toString());
+        for (int i = 0; i < size(); i++) {
+            result.append(i + 1).append(". ").append(get(i).toString());
         }
         return result.toString();
     }
