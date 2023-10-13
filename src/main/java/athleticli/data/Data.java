@@ -29,4 +29,8 @@ public class Data {
         this.sleeps = new SleepList();
         this.sleepGoals = new SleepGoalList();
     }
+
+    public ActivityList getActivities() {
+        return activities;
+    }
 }
