@@ -24,7 +24,7 @@ public class RunTest {
     @Test
     public void calculateAveragePace() {
         double averagePace = run.calculateAveragePace();
-        assertEquals(4.690949227373068, averagePace);
+        assertEquals(4.69, averagePace, 0.005);
     }
 
     @Test

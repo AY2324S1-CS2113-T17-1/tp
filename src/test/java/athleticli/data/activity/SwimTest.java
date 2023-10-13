@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class SwimTest {
+public class SwimTest {
 
     private static final String CAPTION = "Afternoon Swim";
     private static final int DURATION = 35;
@@ -17,17 +17,17 @@ class SwimTest {
     private Swim swim;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         swim = new Swim(CAPTION, DURATION, DISTANCE, DATE, STYLE);
     }
 
     @Test
-    void calculateAverageLapTime() {
+    public void calculateAverageLapTime() {
         assertEquals(105, swim.calculateAverageLapTime());
     }
 
     @Test
-    void calculateLaps() {
+    public void calculateLaps() {
         assertEquals(20, swim.calculateLaps());
     }
 

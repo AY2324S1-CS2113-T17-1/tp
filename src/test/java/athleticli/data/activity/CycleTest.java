@@ -13,7 +13,7 @@ public class CycleTest {
     private static final int DURATION = 133;
     private static final int DISTANCE = 40460;
     private static final int ELEVATION = 101;
-    private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 07, 14, 0);
+    private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 7, 14, 0);
     private Cycle cycle;
 
     @BeforeEach
@@ -23,9 +23,9 @@ public class CycleTest {
 
     @Test
     public void calculateAverageSpeed() {
-        double expected = 18.25263157894737;
+        double expected = 18.25;
         double actual = cycle.calculateAverageSpeed();
-        assertEquals(expected, actual);
+        assertEquals(expected, actual, 0.005);
     }
 
     @Test

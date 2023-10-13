@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class ActivityTest {
+public class ActivityTest {
 
     private static final String CAPTION = "Sunday = Runday";
     private static final int DURATION = 84;
@@ -16,7 +16,7 @@ class ActivityTest {
     private Activity activity;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         activity = new Activity(CAPTION, DURATION, DISTANCE, DATE);
     }
 

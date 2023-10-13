@@ -9,9 +9,6 @@ import java.time.format.DateTimeFormatter;
 public class Activity {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("\"MMMM d, yyyy 'at' h:mm a\"");
-    public enum ActivityType {
-        ACTIVITY, RUN, SWIM, CYCLE
-    }
 
     private String description;
     private String caption;

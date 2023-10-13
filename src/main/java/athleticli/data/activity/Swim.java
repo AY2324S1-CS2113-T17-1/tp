@@ -3,9 +3,9 @@ package athleticli.data.activity;
 import java.time.LocalDateTime;
 
 public class Swim extends Activity {
-    private int laps;
-    private SwimmingStyle style;
-    private int averageLapTime;
+    private final int laps;
+    private final SwimmingStyle style;
+    private final int averageLapTime;
 
     public enum SwimmingStyle {
         BUTTERFLY,
@@ -27,7 +27,7 @@ public class Swim extends Activity {
      */
     public int calculateAverageLapTime() {
         int laps = this.calculateLaps();
-        return this.getMovingTime()*60 / laps;
+        return this.getMovingTime() * 60 / laps;
     }
 
     public int calculateLaps() {

@@ -2,8 +2,6 @@ package athleticli.data.activity;
 
 import java.time.LocalDateTime;
 
-import static java.lang.Math.floor;
-
 /**
  * Represents a running activity consisting of relevant evaluation data.
  */
@@ -33,7 +31,7 @@ public class Run extends Activity{
      */
     public double calculateAveragePace() {
         double time = (double) this.getMovingTime();
-        double distance = (double) this.getDistance()/1000;
+        double distance = (double) this.getDistance() / 1000;
         return time / distance;
     }
 

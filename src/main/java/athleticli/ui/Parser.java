@@ -41,30 +41,25 @@ public class Parser {
         final String[] commandTypeAndParams = splitCommandWordAndArgs(rawUserInput);
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
-        try {
-            switch (commandType) {
-            case CommandName.COMMAND_BYE:
-                return new ByeCommand();
-            case CommandName.COMMAND_ACTIVITY:
-                return new AddActivityCommand(parseActivity(commandArgs));
-            case CommandName.COMMAND_CYCLE:
-                return new AddActivityCommand(parseRunCycle(commandArgs));
-            case CommandName.COMMAND_SWIM:
-                return new AddActivityCommand(parseSwim(commandArgs));
-            case CommandName.COMMAND_RUN:
-                return new AddActivityCommand(parseRunCycle(commandArgs));
-            default:
-                throw new UnknownCommandException();
-            }
-        } catch (AthletiException e) {
-            throw e;
+        switch (commandType) {
+        case CommandName.COMMAND_BYE:
+            return new ByeCommand();
+        case CommandName.COMMAND_ACTIVITY:
+            return new AddActivityCommand(parseActivity(commandArgs));
+        case CommandName.COMMAND_CYCLE:
+        case CommandName.COMMAND_RUN:
+            return new AddActivityCommand(parseRunCycle(commandArgs));
+        case CommandName.COMMAND_SWIM:
+            return new AddActivityCommand(parseSwim(commandArgs));
+        default:
+            throw new UnknownCommandException();
         }
     }
 
     /**
      * Parses the raw user input for an activity and returns the corresponding activity object.
      * @param arguments      The raw user input containing the arguments.
-     * @return activity      An object representing the activity.
+     * @return               An object representing the activity.
      * @throws AthletiException
      */
     public static Activity parseActivity(String arguments) throws AthletiException {
@@ -85,8 +80,7 @@ public class Parser {
         final int distanceParsed = parseDistance(distance);
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
 
-        Activity activity = new Activity(caption, durationParsed, distanceParsed, datetimeParsed);
-        return activity;
+        return new Activity(caption, durationParsed, distanceParsed, datetimeParsed);
     }
 
     public static int parseDuration(String duration) throws AthletiException {
@@ -135,7 +129,7 @@ public class Parser {
     /**
      * Parses the raw user input for a run or cycle and returns the corresponding activity object.
      * @param arguments      The raw user input containing the arguments.
-     * @return activity      An object representing the activity.
+     * @return               An object representing the activity.
      * @throws AthletiException
      */
     public static Activity parseRunCycle(String arguments) throws AthletiException {
@@ -159,8 +153,7 @@ public class Parser {
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
         final int elevationParsed = parseElevation(elevation);
 
-        Run run = new Run(caption, durationParsed, distanceParsed, datetimeParsed, elevationParsed);
-        return run;
+        return new Run(caption, durationParsed, distanceParsed, datetimeParsed, elevationParsed);
     }
 
     public static int parseElevation(String elevation) throws AthletiException {

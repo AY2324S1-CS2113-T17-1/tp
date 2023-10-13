@@ -1,7 +1,6 @@
 package athleticli.commands.activity;
 
 import athleticli.data.Data;
-import athleticli.data.activity.Activity;
 import athleticli.data.activity.Run;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -9,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.fail;
 
 class AddActivityCommandTest {
 
