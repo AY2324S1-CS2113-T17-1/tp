@@ -1,4 +1,4 @@
-package athleticli.ui.sleep;
+package athleticli.data.sleep;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
