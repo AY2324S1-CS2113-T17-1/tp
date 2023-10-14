@@ -30,7 +30,33 @@ public class Data {
         this.sleepGoals = new SleepGoalList();
     }
 
+    /**
+     * Get all the objects
+     */
+
     public ActivityList getActivities() {
         return activities;
     }
+
+    public ActivityGoalList getActivityGoals() {
+        return activityGoals;
+    }
+
+    public DietList getDiets() {
+        return diets;
+    }
+
+    public DietGoalList getDietGoals() {
+        return dietGoals;
+    }
+
+    public SleepList getSleeps() {
+        return sleeps;
+    }
+
+    public SleepGoalList getSleepGoals() {
+        return sleepGoals;
+    }
+
+    
 }
