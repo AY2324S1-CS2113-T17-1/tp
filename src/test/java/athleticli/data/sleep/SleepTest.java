@@ -4,10 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import athleticli.data.sleep.Sleep;
-
-
-
 public class SleepTest {
     @Test
     public void testSleepToString() {

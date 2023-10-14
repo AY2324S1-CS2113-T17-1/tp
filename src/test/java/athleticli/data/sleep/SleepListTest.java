@@ -1,12 +1,7 @@
 package athleticli.data.sleep;
 
-import athleticli.data.sleep.SleepList;
-import athleticli.data.sleep.Sleep;
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-
 
 public class SleepListTest {
     @Test

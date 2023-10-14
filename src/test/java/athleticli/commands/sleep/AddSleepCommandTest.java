@@ -1,7 +1,5 @@
 package athleticli.commands.sleep;
 
-
-import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.data.sleep.SleepList;
 import athleticli.data.sleep.Sleep;
 import athleticli.data.Data;
