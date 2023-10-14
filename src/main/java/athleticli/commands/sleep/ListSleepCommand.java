@@ -5,7 +5,6 @@ import athleticli.data.Data;
 
 import athleticli.data.sleep.SleepList;
 
-
 public class ListSleepCommand extends Command {
 
     public String[] execute (Data data) {
@@ -15,6 +14,4 @@ public class ListSleepCommand extends Command {
             sleepList.toString()
         };
     }
-
-
 }

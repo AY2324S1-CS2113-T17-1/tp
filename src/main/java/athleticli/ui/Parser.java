@@ -49,19 +49,14 @@ public class Parser {
         switch (commandType) {
         case CommandName.COMMAND_BYE:
             return new ByeCommand();
-
         case CommandName.COMMAND_SLEEP_ADD:
             return parseSleepAdd(commandArgs);
-
         case CommandName.COMMAND_SLEEP_LIST:
             return new ListSleepCommand();
-        
         case CommandName.COMMAND_SLEEP_EDIT:
             return parseSleepEdit(commandArgs);
-        
         case CommandName.COMMAND_SLEEP_DELETE:
             return parseSleepDelete(commandArgs);
-
         case CommandName.COMMAND_ACTIVITY:
             return new AddActivityCommand(parseActivity(commandArgs));
         case CommandName.COMMAND_CYCLE:

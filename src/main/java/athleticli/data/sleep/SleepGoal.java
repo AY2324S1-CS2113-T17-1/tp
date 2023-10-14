@@ -1,5 +1,5 @@
 /**
- * To be implemented in future version of AthleticLi.
+ * To be implemented in future version of AthletiCLI.
  */
 
 package athleticli.data.sleep;

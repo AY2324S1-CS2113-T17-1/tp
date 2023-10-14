@@ -10,7 +10,4 @@ public class SleepTest {
         Sleep sleep = new Sleep("10:00 PM", "6:00 AM");
         assertEquals("sleep from 10:00 PM to 6:00 AM", sleep.toString());
     }
-
-    
-
 }

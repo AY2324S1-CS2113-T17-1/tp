@@ -24,7 +24,6 @@ public class ListSleepCommandTest {
         // Create an ListSleepCommand and execute it
         ListSleepCommand command = new ListSleepCommand();
         String[] result = command.execute(data);
-        
 
         assertEquals("Here are the sleep records in your list:" + "\n", result[0]);
         assertEquals(sleepList.toString(), result[1]);

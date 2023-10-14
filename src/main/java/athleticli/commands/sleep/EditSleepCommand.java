@@ -20,9 +20,9 @@ public class EditSleepCommand extends Command {
     
     public String[] execute(Data data) {
         SleepList sleepList = data.getSleeps();
-        Sleep oldSleep = sleepList.get(index-1);
+        Sleep oldSleep = sleepList.get(index - 1);
         Sleep newSleep = new Sleep(from, to);
-        sleepList.set(index-1, newSleep);
+        sleepList.set(index - 1, newSleep);
         
         return new String[] {
             "Got it. I've changed this sleep record at index " + index + ":",
