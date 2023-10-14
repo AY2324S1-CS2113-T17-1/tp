@@ -1,4 +1,4 @@
-package athleticli.ui.sleep;
+package athleticli.data.sleep;
 
 import athleticli.data.sleep.SleepList;
 import athleticli.data.sleep.Sleep;

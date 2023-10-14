@@ -1,4 +1,4 @@
-package athleticli.ui.sleep;
+package athleticli.commands.sleep;
 
 
 import athleticli.commands.sleep.AddSleepCommand;
