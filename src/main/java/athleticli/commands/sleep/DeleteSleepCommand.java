@@ -21,8 +21,8 @@ public class DeleteSleepCommand extends Command {
                 "Invalid index. Please enter a valid index."
             };
         }
-        Sleep oldSleep = sleepList.get(index-1);
-        sleepList.remove(index-1);
+        Sleep oldSleep = sleepList.get(index - 1);
+        sleepList.remove(index - 1);
         
         return new String[] {
             "Got it. I've deleted this sleep record at index " + index + ": " +  oldSleep.toString()
