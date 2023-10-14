@@ -50,17 +50,17 @@ public class Parser {
         case CommandName.COMMAND_BYE:
             return new ByeCommand();
 
-            case CommandName.COMMAND_SLEEP_ADD:
-                return parseSleepAdd(commandArgs);
+        case CommandName.COMMAND_SLEEP_ADD:
+            return parseSleepAdd(commandArgs);
 
-            case CommandName.COMMAND_SLEEP_LIST:
-                return new ListSleepCommand();
-            
-            case CommandName.COMMAND_SLEEP_EDIT:
-                return parseSleepEdit(commandArgs);
-            
-            case CommandName.COMMAND_SLEEP_DELETE:
-                return parseSleepDelete(commandArgs);
+        case CommandName.COMMAND_SLEEP_LIST:
+            return new ListSleepCommand();
+        
+        case CommandName.COMMAND_SLEEP_EDIT:
+            return parseSleepEdit(commandArgs);
+        
+        case CommandName.COMMAND_SLEEP_DELETE:
+            return parseSleepDelete(commandArgs);
 
         case CommandName.COMMAND_ACTIVITY:
             return new AddActivityCommand(parseActivity(commandArgs));
@@ -274,11 +274,11 @@ public class Parser {
 
     public static AddSleepCommand parseSleepAdd(String commandArgs) throws AthletiException {
 
-        final String STARTMARKER = "/start";
-        final String ENDMARKER = "/end";
+        final String startMarkerConstant = "/start";
+        final String endMarkerConstant = "/end";
 
-        int startMarkerPos = commandArgs.indexOf(STARTMARKER);
-        int endMarkerPos = commandArgs.indexOf(ENDMARKER);
+        int startMarkerPos = commandArgs.indexOf(startMarkerConstant);
+        int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
 
         if (startMarkerPos == -1 || endMarkerPos == -1) {
             throw new AthletiException("Please specify both the start and end time of your sleep.");
@@ -288,8 +288,8 @@ public class Parser {
             throw new AthletiException("Please specify the start time of your sleep before the end time.");
         }
     
-        String startTime = commandArgs.substring(startMarkerPos + STARTMARKER.length(), endMarkerPos).trim();
-        String endTime = commandArgs.substring(endMarkerPos + ENDMARKER.length()).trim();
+        String startTime = commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
+        String endTime = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
         if(startTime.isEmpty() || endTime.isEmpty()) {
             throw new AthletiException("Please specify both the start and end time of your sleep.");
@@ -311,11 +311,11 @@ public class Parser {
     }
 
     public static EditSleepCommand parseSleepEdit(String commandArgs) throws AthletiException {
-        final String STARTMARKER = "/start";
-        final String ENDMARKER = "/end";
+        final String startMarkerConstant = "/start";
+        final String endMarkerConstant = "/end";
 
-        int startMarkerPos = commandArgs.indexOf(STARTMARKER);
-        int endMarkerPos = commandArgs.indexOf(ENDMARKER);
+        int startMarkerPos = commandArgs.indexOf(startMarkerConstant);
+        int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
 
         int index;
 
@@ -333,8 +333,8 @@ public class Parser {
             throw new AthletiException("Please specify the index of the sleep record you want to edit.");
         }
 
-        String startTime = commandArgs.substring(startMarkerPos + STARTMARKER.length(), endMarkerPos).trim();
-        String endTime = commandArgs.substring(endMarkerPos + ENDMARKER.length()).trim();
+        String startTime = commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
+        String endTime = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
         if (startTime.isEmpty() || endTime.isEmpty()) {
             throw new AthletiException("Please specify both the start and end time of your sleep.");

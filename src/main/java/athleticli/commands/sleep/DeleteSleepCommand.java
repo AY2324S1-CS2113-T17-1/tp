@@ -25,8 +25,7 @@ public class DeleteSleepCommand extends Command {
         sleepList.remove(index-1);
         
         return new String[] {
-            "Got it. I've deleted this sleep record at index " 
-            + index + ": " +  oldSleep.toString(),
+            "Got it. I've deleted this sleep record at index " + index + ": " +  oldSleep.toString()
         };
 
     }
