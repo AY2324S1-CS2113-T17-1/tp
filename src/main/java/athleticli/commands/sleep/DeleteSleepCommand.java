@@ -16,6 +16,11 @@ public class DeleteSleepCommand extends Command {
     
     public String[] execute(Data data) {
         SleepList sleepList = data.getSleeps();
+        if (index > sleepList.size() || index < 1) {
+            return new String[] {
+                "Invalid index. Please enter a valid index."
+            };
+        }
         Sleep oldSleep = sleepList.get(index-1);
         sleepList.remove(index-1);
         
