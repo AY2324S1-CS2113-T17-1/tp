@@ -3,20 +3,20 @@ package athleticli.data.diet;
 import java.util.ArrayList;
 
 /**
- * Represents a list of diet goals.
+ * Represents a list of diets.
  */
-public class DietGoalList extends ArrayList<DietGoal> {
+public class DietList extends ArrayList<Diet> {
     /**
-     * Constructs a diet goal list.
+     * Constructs a diet list.
      */
-    public DietGoalList() {
+    public DietList() {
         super();
     }
 
     /**
-     * Returns a string representation of the diet goal list.
+     * Returns a string representation of the diet list.
      *
-     * @return A string representation of the diet goal list.
+     * @return A string representation of the diet list.
      */
     @Override
     public String toString() {
