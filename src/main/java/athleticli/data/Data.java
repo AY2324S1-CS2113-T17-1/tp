@@ -42,8 +42,8 @@ public class Data {
         return activityGoals;
     }
 
-    public MealList getMeals() {
-        return meals;
+    public DietList getDiets() {
+        return diets;
     }
 
     public DietGoalList getDietGoals() {
