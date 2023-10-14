@@ -26,7 +26,6 @@ class DietGoalListTest {
     @Test
     void remove_removeExistingGoal_expectSizeOne() {
         dietGoals.add(proteinGoal);
-
         dietGoals.remove(0);
         assertEquals(0, dietGoals.size());
     }
@@ -41,7 +40,6 @@ class DietGoalListTest {
     @Test
     void get_addOneGoal_expectGetSameGoal() {
         dietGoals.add(proteinGoal);
-
         assertEquals(proteinGoal, dietGoals.get(0));
     }
 
@@ -61,7 +59,6 @@ class DietGoalListTest {
     @Test
     void testToString_oneExistingGoal_expectCorrectFormat() {
         dietGoals.add(proteinGoal);
-
         assertEquals("1. protein intake progress: (0/10000)\n", dietGoals.toString());
     }
 }
