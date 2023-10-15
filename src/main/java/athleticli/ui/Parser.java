@@ -82,7 +82,7 @@ public class Parser {
         case CommandName.COMMAND_DIET_GOAL_SET:
             return new SetDietGoalCommand(parseDietGoalSetEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_EDIT:
-            return new EditDietGoalCommand(parseDietGoalSetEdit(commandArgs));
+            return new EditDietGoalCommand();
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
