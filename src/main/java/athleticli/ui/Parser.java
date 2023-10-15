@@ -39,7 +39,7 @@ public class Parser {
      *
      * @param rawUserInput The raw user input.
      * @return A string array whose first element is the command type
-     * and the second element is the command arguments.
+     *     and the second element is the command arguments.
      */
     public static String[] splitCommandWordAndArgs(String rawUserInput) {
         final String[] split = rawUserInput.trim().split("\\s+", 2);
@@ -367,14 +367,18 @@ public class Parser {
     }
 
     /**
-     *
      * @param commandArgs User provided data to create goals for the nutrients defined.
      * @return a list of diet goals for further checking in the Set Diet Goal Command.
      * @throws AthletiException Invalid input by the user.
      */
     public static ArrayList<DietGoal> parseDietGoalSet(String commandArgs) throws AthletiException {
         try {
-            String[] nutrientAndTargetValues = commandArgs.split("\\s+");
+            String[] nutrientAndTargetValues;
+            if(commandArgs.contains(" ")) {
+                nutrientAndTargetValues = commandArgs.split("\\s+");
+            }else{
+                nutrientAndTargetValues = new String[]{commandArgs};
+            }
             String[] nutrientAndTargetValue;
             String nutrient;
             int targetValue;
@@ -384,8 +388,10 @@ public class Parser {
             for (int i = 0; i < nutrientAndTargetValues.length; i++) {
                 nutrientAndTargetValue = nutrientAndTargetValues[i].split("/");
                 nutrient = nutrientAndTargetValue[0];
-                targetValue = Integer.parseInt(nutrientAndTargetValues[1]);
-
+                targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
+//                targetValue = 1;
+                System.out.println(nutrient);
+                System.out.println(targetValue);
                 if (targetValue == 0) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
                 } else if (!verifyValidNutrients(nutrient)) {
@@ -404,12 +410,11 @@ public class Parser {
     }
 
     /**
-     *
      * @param nutrient The nutrient that is provided by the user.
      * @return boolean value depending on whether the nutrient is defined in our user guide.
-     * It returns true if the nutrient is supported by our app, false otherwise.
+     *     It returns true if the nutrient is supported by our app, false otherwise.
      */
-    private static boolean verifyValidNutrients(String nutrient) {
+    public static boolean verifyValidNutrients(String nutrient) {
         final String caloriesMarkerConstant = "calories";
         final String proteinMarkerConstant = "protein";
         final String carbMarkerConstant = "carb";
