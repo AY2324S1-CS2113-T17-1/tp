@@ -3,16 +3,19 @@ package athleticli.ui;
 import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
 import athleticli.commands.activity.AddActivityCommand;
+import athleticli.commands.diet.AddDietCommand;
+import athleticli.commands.diet.DeleteDietCommand;
+import athleticli.commands.diet.ListDietCommand;
+import athleticli.commands.sleep.AddSleepCommand;
+import athleticli.commands.sleep.DeleteSleepCommand;
+import athleticli.commands.sleep.EditSleepCommand;
+import athleticli.commands.sleep.ListSleepCommand;
 import athleticli.data.activity.Activity;
 import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
+import athleticli.data.diet.Diet;
 import athleticli.exceptions.AthletiException;
 import athleticli.exceptions.UnknownCommandException;
-
-import athleticli.commands.sleep.AddSleepCommand;
-import athleticli.commands.sleep.EditSleepCommand;
-import athleticli.commands.sleep.DeleteSleepCommand;
-import athleticli.commands.sleep.ListSleepCommand;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -22,24 +25,23 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
     /**
-     * Splits the raw user input into two parts, and then returns them.
-     * The first part is the command type, while the second part is the command arguments.
-     * The second part can be empty.
+     * Splits the raw user input into two parts, and then returns them. The first part is the command type,
+     * while the second part is the command arguments. The second part can be empty.
      *
-     * @param rawUserInput  The raw user input.
-     * @return              A string array whose first element is the command type
-     *                      and the second element is the command arguments.
+     * @param rawUserInput The raw user input.
+     * @return A string array whose first element is the command type and the second element is the command
+     *         arguments.
      */
     public static String[] splitCommandWordAndArgs(String rawUserInput) {
         final String[] split = rawUserInput.trim().split("\\s+", 2);
-        return split.length == 2 ? split : new String[] { split[0] , "" };
+        return split.length == 2 ? split : new String[]{split[0], ""};
     }
 
     /**
      * Parses the raw user input and returns the corresponding command object.
      *
-     * @param rawUserInput      The raw user input.
-     * @return                  An object representing the command.
+     * @param rawUserInput The raw user input.
+     * @return An object representing the command.
      * @throws AthletiException
      */
     public static Command parseCommand(String rawUserInput) throws AthletiException {
@@ -64,6 +66,12 @@ public class Parser {
             return new AddActivityCommand(parseRunCycle(commandArgs));
         case CommandName.COMMAND_SWIM:
             return new AddActivityCommand(parseSwim(commandArgs));
+        case CommandName.COMMAND_DIET_ADD:
+            return new AddDietCommand(parseDiet(commandArgs));
+        case CommandName.COMMAND_DIET_DELETE:
+            return new DeleteDietCommand(parseDietIndex(commandArgs));
+        case CommandName.COMMAND_DIET_LIST:
+            return new ListDietCommand();
         default:
             throw new UnknownCommandException();
         }
@@ -71,8 +79,9 @@ public class Parser {
 
     /**
      * Parses the raw user input for an activity and returns the corresponding activity object.
-     * @param arguments      The raw user input containing the arguments.
-     * @return               An object representing the activity.
+     *
+     * @param arguments The raw user input containing the arguments.
+     * @return An object representing the activity.
      * @throws AthletiException
      */
     public static Activity parseActivity(String arguments) throws AthletiException {
@@ -126,8 +135,8 @@ public class Parser {
         return distanceParsed;
     }
 
-    public static void checkMissingActivityArguments(int durationIndex, int distanceIndex, int datetimeIndex)
-            throws AthletiException {
+    public static void checkMissingActivityArguments(int durationIndex, int distanceIndex,
+                                                     int datetimeIndex) throws AthletiException {
         if (durationIndex == -1) {
             throw new AthletiException(Message.MESSAGE_DURATION_MISSING);
         }
@@ -141,8 +150,9 @@ public class Parser {
 
     /**
      * Parses the raw user input for a run or cycle and returns the corresponding activity object.
-     * @param arguments      The raw user input containing the arguments.
-     * @return               An object representing the activity.
+     *
+     * @param arguments The raw user input containing the arguments.
+     * @return An object representing the activity.
      * @throws AthletiException
      */
     public static Activity parseRunCycle(String arguments) throws AthletiException {
@@ -188,15 +198,15 @@ public class Parser {
     }
 
     public static void checkMissingSwimArguments(int durationIndex, int distanceIndex, int datetimeIndex,
-                                              int swimmingStyleIndex) throws AthletiException {
+                                                 int swimmingStyleIndex) throws AthletiException {
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
         if (swimmingStyleIndex == -1) {
             throw new AthletiException(Message.MESSAGE_SWIMMINGSTYLE_MISSING);
         }
     }
 
-    public static void checkEmptyActivityArguments(String caption, String duration, String distance, String datetime)
-            throws AthletiException {
+    public static void checkEmptyActivityArguments(String caption, String duration, String distance,
+                                                   String datetime) throws AthletiException {
         if (caption.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_CAPTION_EMPTY);
         }
@@ -211,7 +221,8 @@ public class Parser {
         }
     }
 
-    public static void checkEmptyActivityArguments(String caption, String duration, String distance, String datetime,
+    public static void checkEmptyActivityArguments(String caption, String duration, String distance,
+                                                   String datetime,
                                                    String elevation) throws AthletiException {
         checkEmptyActivityArguments(caption, duration, distance, datetime);
         if (elevation.isEmpty()) {
@@ -219,7 +230,8 @@ public class Parser {
         }
     }
 
-    public static void checkEmptyActivityArguments(String caption, String duration, String distance, String datetime,
+    public static void checkEmptyActivityArguments(String caption, String duration, String distance,
+                                                   String datetime,
                                                    int swimmingStyleIndex) throws AthletiException {
         checkEmptyActivityArguments(caption, duration, distance, datetime);
         if (swimmingStyleIndex == -1) {
@@ -229,7 +241,8 @@ public class Parser {
 
     /**
      * Parses the raw user input for a swim and returns the corresponding activity object.
-     * @param arguments      The raw user input containing the arguments.
+     *
+     * @param arguments The raw user input containing the arguments.
      * @return activity      An object representing the activity.
      * @throws AthletiException
      */
@@ -282,11 +295,12 @@ public class Parser {
         if (startMarkerPos > endMarkerPos) {
             throw new AthletiException("Please specify the start time of your sleep before the end time.");
         }
-    
-        String startTime = commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
+
+        String startTime =
+                commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
         String endTime = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
-        if(startTime.isEmpty() || endTime.isEmpty()) {
+        if (startTime.isEmpty() || endTime.isEmpty()) {
             throw new AthletiException("Please specify both the start and end time of your sleep.");
         }
 
@@ -328,7 +342,8 @@ public class Parser {
             throw new AthletiException("Please specify the index of the sleep record you want to edit.");
         }
 
-        String startTime = commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
+        String startTime =
+                commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
         String endTime = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
         if (startTime.isEmpty() || endTime.isEmpty()) {
@@ -338,4 +353,178 @@ public class Parser {
         return new EditSleepCommand(index, startTime, endTime);
     }
 
+    /**
+     * Parses the raw user input for a diet and returns the corresponding diet object.
+     *
+     * @param commandArgs The raw user input containing the arguments.
+     * @return An object representing the diet.
+     * @throws AthletiException
+     */
+    public static Diet parseDiet(String commandArgs) throws AthletiException {
+        final String caloriesMarkerConstant = "calories/";
+        final String proteinMarkerConstant = "protein/";
+        final String carbMarkerConstant = "carb/";
+        final String fatMarkerConstant = "fat/";
+
+        int caloriesMarkerPos = commandArgs.indexOf(caloriesMarkerConstant);
+        int proteinMarkerPos = commandArgs.indexOf(proteinMarkerConstant);
+        int carbMarkerPos = commandArgs.indexOf(carbMarkerConstant);
+        int fatMarkerPos = commandArgs.indexOf(fatMarkerConstant);
+
+        checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos, fatMarkerPos);
+
+        String calories =
+                commandArgs.substring(caloriesMarkerPos + caloriesMarkerConstant.length(), proteinMarkerPos)
+                        .trim();
+        String protein =
+                commandArgs.substring(proteinMarkerPos + proteinMarkerConstant.length(), carbMarkerPos)
+                        .trim();
+        String carb = commandArgs.substring(carbMarkerPos + carbMarkerConstant.length(), fatMarkerPos).trim();
+        String fat = commandArgs.substring(fatMarkerPos + fatMarkerConstant.length()).trim();
+
+        checkEmptyDietArguments(calories, protein, carb, fat);
+
+        int caloriesParsed = parseCalories(calories);
+        int proteinParsed = parseProtein(protein);
+        int carbParsed = parseCarb(carb);
+        int fatParsed = parseFat(fat);
+
+        return new Diet(caloriesParsed, proteinParsed, carbParsed, fatParsed);
+    }
+
+    /**
+     * Checks if the user input for a diet contains all the required arguments.
+     *
+     * @param caloriesMarkerPos The position of the calories marker.
+     * @param proteinMarkerPos  The position of the protein marker.
+     * @param carbMarkerPos     The position of the carb marker.
+     * @param fatMarkerPos      The position of the fat marker.
+     * @throws AthletiException
+     */
+    private static void checkMissingDietArguments(int caloriesMarkerPos, int proteinMarkerPos,
+                                                  int carbMarkerPos,
+                                                  int fatMarkerPos) throws AthletiException {
+        if (caloriesMarkerPos == -1) {
+            throw new AthletiException(Message.MESSAGE_CALORIES_MISSING);
+        }
+        if (proteinMarkerPos == -1) {
+            throw new AthletiException(Message.MESSAGE_PROTEIN_MISSING);
+        }
+        if (carbMarkerPos == -1) {
+            throw new AthletiException(Message.MESSAGE_CARB_MISSING);
+        }
+        if (fatMarkerPos == -1) {
+            throw new AthletiException(Message.MESSAGE_FAT_MISSING);
+        }
+    }
+
+    /**
+     * Checks if the user input for a diet is empty.
+     *
+     * @param calories The calories input.
+     * @param protein  The protein input.
+     * @param carb     The carb input.
+     * @param fat      The fat input.
+     * @throws AthletiException
+     */
+    private static void checkEmptyDietArguments(String calories, String protein, String carb,
+                                                String fat) throws AthletiException {
+        if (calories.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_CALORIES_EMPTY);
+        }
+        if (protein.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_PROTEIN_EMPTY);
+        }
+        if (carb.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_CARB_EMPTY);
+        }
+        if (fat.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_FAT_EMPTY);
+        }
+    }
+
+    /**
+     * Parses the calories input for a diet.
+     *
+     * @param calories The calories input.
+     * @return The parsed calories.
+     * @throws AthletiException
+     */
+    private static int parseCalories(String calories) throws AthletiException {
+        int caloriesParsed;
+        try {
+            caloriesParsed = Integer.parseInt(calories);
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_CALORIES_INVALID);
+        }
+        return caloriesParsed;
+    }
+
+    /**
+     * Parses the protein input for a diet.
+     *
+     * @param protein The protein input.
+     * @return The parsed protein.
+     * @throws AthletiException
+     */
+    public static int parseProtein(String protein) throws AthletiException {
+        int proteinParsed;
+        try {
+            proteinParsed = Integer.parseInt(protein);
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_PROTEIN_INVALID);
+        }
+        return proteinParsed;
+    }
+
+    /**
+     * Parses the carb input for a diet.
+     *
+     * @param carb The carb input.
+     * @return The parsed carb.
+     * @throws AthletiException
+     */
+    public static int parseCarb(String carb) throws AthletiException {
+        int carbParsed;
+        try {
+            carbParsed = Integer.parseInt(carb);
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_CARB_INVALID);
+        }
+        return carbParsed;
+    }
+
+    /**
+     * Parses the fat input for a diet.
+     *
+     * @param fat The fat input.
+     * @return The parsed fat.
+     * @throws AthletiException
+     */
+    public static int parseFat(String fat) throws AthletiException {
+        int fatParsed;
+        try {
+            fatParsed = Integer.parseInt(fat);
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_FAT_INVALID);
+        }
+        return fatParsed;
+    }
+
+    /**
+     * Parses the index of a diet.
+     *
+     * @param commandArgs The raw user input containing the index.
+     * @return The parsed index.
+     * @throws AthletiException
+     */
+    public static int parseDietIndex(String commandArgs) throws AthletiException {
+        int index;
+        try {
+            index = Integer.parseInt(commandArgs.trim());
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_DIET_INDEX_TYPE_INVALID);
+        }
+        return index;
+    }
 }
