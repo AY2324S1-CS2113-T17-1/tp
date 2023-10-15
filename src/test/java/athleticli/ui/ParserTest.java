@@ -14,11 +14,12 @@ import org.junit.jupiter.api.Test;
 
 import static athleticli.ui.Parser.parseCommand;
 import static athleticli.ui.Parser.splitCommandWordAndArgs;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 
 class ParserTest {
-
     @Test
     void splitCommandWordAndArgs_noArgs_expectTwoParts() {
         final String commandWithNoArgs = "bye";
@@ -85,87 +86,86 @@ class ParserTest {
         assertInstanceOf(ListDietCommand.class, parseCommand(listDietCommandString));
     }
 
-    // test exceptions for diet
     @Test
-    void parseCommand_addDietCommand_missingCalories_expectAthletiException() {
+    void parseCommand_addDietCommand_missingCaloriesExpectAthletiException() {
         final String addDietCommandString = "add-diet protein/2 carb/3 fat/4";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_missingProtein_expectAthletiException() {
+    void parseCommand_addDietCommand_missingProteinExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/1 carb/3 fat/4";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_missingCarb_expectAthletiException() {
+    void parseCommand_addDietCommand_missingCarbExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/1 protein/2 fat/4";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_missingFat_expectAthletiException() {
+    void parseCommand_addDietCommand_missingFatExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/1 protein/2 carb/3";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_emptyCalories_expectAthletiException() {
+    void parseCommand_addDietCommand_emptyCaloriesExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/ protein/2 carb/3 fat/4";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_emptyProtein_expectAthletiException() {
+    void parseCommand_addDietCommand_emptyProteinExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/1 protein/ carb/3 fat/4";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_emptyCarb_expectAthletiException() {
+    void parseCommand_addDietCommand_emptyCarbExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/1 protein/2 carb/ fat/4";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_emptyFat_expectAthletiException() {
+    void parseCommand_addDietCommand_emptyFatExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/1 protein/2 carb/3 fat/";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_invalidCalories_expectAthletiException() {
+    void parseCommand_addDietCommand_invalidCaloriesExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/abc protein/2 carb/3 fat/4";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_invalidProtein_expectAthletiException() {
+    void parseCommand_addDietCommand_invalidProteinExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/1 protein/abc carb/3 fat/4";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_invalidCarb_expectAthletiException() {
+    void parseCommand_addDietCommand_invalidCarbExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/1 protein/2 carb/abc fat/4";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_addDietCommand_invalidFat_expectAthletiException() {
+    void parseCommand_addDietCommand_invalidFatExpectAthletiException() {
         final String addDietCommandString = "add-diet calories/1 protein/2 carb/3 fat/abc";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
-    void parseCommand_deleteDietCommand_invalidIndex_expectAthletiException() {
+    void parseCommand_deleteDietCommand_invalidIndexExpectAthletiException() {
         final String deleteDietCommandString = "delete-diet abc";
         assertThrows(AthletiException.class, () -> parseCommand(deleteDietCommandString));
     }
 
     @Test
-    void parseCommand_deleteDietCommand_emptyIndex_expectAthletiException() {
+    void parseCommand_deleteDietCommand_emptyIndexExpectAthletiException() {
         final String deleteDietCommandString = "delete-diet";
         assertThrows(AthletiException.class, () -> parseCommand(deleteDietCommandString));
     }
