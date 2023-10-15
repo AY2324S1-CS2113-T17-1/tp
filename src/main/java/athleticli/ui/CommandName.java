@@ -15,6 +15,7 @@ public class CommandName {
     public static final String COMMAND_ACTIVITY = "activity";
     public static final String COMMAND_CYCLE = "cycle";
     public static final String COMMAND_SWIM = "swim";
+    public static final String COMMAND_ACTIVITY_DELETE = "delete-activity";
 
     public static final String COMMAND_DIET_ADD = "add-diet";
     public static final String COMMAND_DIET_DELETE = "delete-diet";

@@ -42,19 +42,23 @@ public class Message {
             "The carbohydrate intake must be a non-negative integer!";
     public static final String MESSAGE_FAT_INVALID = "The fat intake must be a non-negative integer!";
     public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
+    public static final String MESSAGE_ACTIVITY_DELETED = "Gotcha, I've deleted this activity:";
     public static final String MESSAGE_DIET_ADDED = "Well done! I've added this diet:";
     public static final String MESSAGE_ELEVATION_MISSING =
             "Please specify the elevation gain using \"elevation/\"!";
     public static final String MESSAGE_ELEVATION_EMPTY = "The elevation gain of an activity cannot be empty!";
     public static final String MESSAGE_ELEVATION_INVALID =
             "The elevation gain of an activity must be an integer!";
+    public static final String MESSAGE_ACTIVITY_INDEX_INVALID = "The activity index must be an integer!";
+    public static final String MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNCE = "The activity index does not exist, check your " +
+            "list for the correct index!";
     public static final String MESSAGE_SWIMMINGSTYLE_MISSING =
             "Please specify the swimming style using \"style/\"!";
     public static final String MESSAGE_SWIMMINGSTYLE_INVALID =
             "The swimming style of an activity must be one of " +
                     "the following: \"butterfly\", \"backstroke\", \"breaststroke\", \"freestyle\"!";
     public static final String MESSAGE_ACTIVITY_COUNT =
-            "Now you have tracked a total of %d activities. Keep pushing!";
+            "You have tracked a total of %d activities. Keep pushing!";
     public static final String MESSAGE_DIET_COUNT =
             "Now you have tracked a total of %d diets. Keep grinding!";
     public static final String MESSAGE_ACTIVITY_FIRST =

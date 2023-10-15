@@ -3,6 +3,7 @@ package athleticli.ui;
 import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
 import athleticli.commands.activity.AddActivityCommand;
+import athleticli.commands.activity.DeleteActivityCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.ListDietCommand;
@@ -66,6 +67,8 @@ public class Parser {
             return new AddActivityCommand(parseRunCycle(commandArgs));
         case CommandName.COMMAND_SWIM:
             return new AddActivityCommand(parseSwim(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_DELETE:
+            return new DeleteActivityCommand(parseActivityIndex(commandArgs));
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
@@ -75,6 +78,23 @@ public class Parser {
         default:
             throw new UnknownCommandException();
         }
+    }
+
+    /**
+     * Parses the index of an activity.
+     * @param commandArgs The raw user input containing the index.
+     * @return index                The parsed Integer index.
+     * @throws AthletiException     If the input is not an integer.
+     */
+    private static int parseActivityIndex(String commandArgs) throws AthletiException {
+        String commandArgsTrimmed = commandArgs.trim();
+        int index;
+        try {
+            index = Integer.parseInt(commandArgsTrimmed);
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_INVALID);
+        }
+        return index;
     }
 
     /**
