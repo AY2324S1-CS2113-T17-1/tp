@@ -3,9 +3,12 @@ package athleticli.ui;
 import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
 import athleticli.commands.activity.AddActivityCommand;
+import athleticli.commands.diet.EditDietGoalCommand;
+import athleticli.commands.diet.SetDietGoalCommand;
 import athleticli.data.activity.Activity;
 import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
+import athleticli.data.diet.DietGoal;
 import athleticli.exceptions.AthletiException;
 import athleticli.exceptions.UnknownCommandException;
 
@@ -16,6 +19,7 @@ import athleticli.commands.sleep.ListSleepCommand;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 /**
  * Defines the basic methods for command parser.
@@ -26,20 +30,20 @@ public class Parser {
      * The first part is the command type, while the second part is the command arguments.
      * The second part can be empty.
      *
-     * @param rawUserInput  The raw user input.
-     * @return              A string array whose first element is the command type
-     *                      and the second element is the command arguments.
+     * @param rawUserInput The raw user input.
+     * @return A string array whose first element is the command type
+     * and the second element is the command arguments.
      */
     public static String[] splitCommandWordAndArgs(String rawUserInput) {
         final String[] split = rawUserInput.trim().split("\\s+", 2);
-        return split.length == 2 ? split : new String[] { split[0] , "" };
+        return split.length == 2 ? split : new String[]{split[0], ""};
     }
 
     /**
      * Parses the raw user input and returns the corresponding command object.
      *
-     * @param rawUserInput      The raw user input.
-     * @return                  An object representing the command.
+     * @param rawUserInput The raw user input.
+     * @return An object representing the command.
      * @throws AthletiException
      */
     public static Command parseCommand(String rawUserInput) throws AthletiException {
@@ -64,6 +68,10 @@ public class Parser {
             return new AddActivityCommand(parseRunCycle(commandArgs));
         case CommandName.COMMAND_SWIM:
             return new AddActivityCommand(parseSwim(commandArgs));
+        case CommandName.COMMAND_DIET_GOAL_SET:
+            return new SetDietGoalCommand(parseDietGoalSet(commandArgs));
+        case CommandName.COMMAND_DIET_GOAL_EDIT:
+            return new EditDietGoalCommand();
         default:
             throw new UnknownCommandException();
         }
@@ -71,8 +79,9 @@ public class Parser {
 
     /**
      * Parses the raw user input for an activity and returns the corresponding activity object.
-     * @param arguments      The raw user input containing the arguments.
-     * @return               An object representing the activity.
+     *
+     * @param arguments The raw user input containing the arguments.
+     * @return An object representing the activity.
      * @throws AthletiException
      */
     public static Activity parseActivity(String arguments) throws AthletiException {
@@ -141,8 +150,9 @@ public class Parser {
 
     /**
      * Parses the raw user input for a run or cycle and returns the corresponding activity object.
-     * @param arguments      The raw user input containing the arguments.
-     * @return               An object representing the activity.
+     *
+     * @param arguments The raw user input containing the arguments.
+     * @return An object representing the activity.
      * @throws AthletiException
      */
     public static Activity parseRunCycle(String arguments) throws AthletiException {
@@ -188,7 +198,7 @@ public class Parser {
     }
 
     public static void checkMissingSwimArguments(int durationIndex, int distanceIndex, int datetimeIndex,
-                                              int swimmingStyleIndex) throws AthletiException {
+                                                 int swimmingStyleIndex) throws AthletiException {
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
         if (swimmingStyleIndex == -1) {
             throw new AthletiException(Message.MESSAGE_SWIMMINGSTYLE_MISSING);
@@ -229,7 +239,8 @@ public class Parser {
 
     /**
      * Parses the raw user input for a swim and returns the corresponding activity object.
-     * @param arguments      The raw user input containing the arguments.
+     *
+     * @param arguments The raw user input containing the arguments.
      * @return activity      An object representing the activity.
      * @throws AthletiException
      */
@@ -282,11 +293,11 @@ public class Parser {
         if (startMarkerPos > endMarkerPos) {
             throw new AthletiException("Please specify the start time of your sleep before the end time.");
         }
-    
+
         String startTime = commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
         String endTime = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
-        if(startTime.isEmpty() || endTime.isEmpty()) {
+        if (startTime.isEmpty() || endTime.isEmpty()) {
             throw new AthletiException("Please specify both the start and end time of your sleep.");
         }
 
@@ -336,6 +347,47 @@ public class Parser {
         }
 
         return new EditSleepCommand(index, startTime, endTime);
+    }
+
+    public static ArrayList<DietGoal> parseDietGoalSet(String commandArgs) throws AthletiException {
+        try {
+            String[] nutrientAndTargetValues = commandArgs.split("\\s+");
+            String[] nutrientAndTargetValue;
+            String nutrient;
+            int targetValue;
+
+            ArrayList<DietGoal> dietGoals = new ArrayList<>();
+
+            for (int i = 0; i < nutrientAndTargetValues.length; i++) {
+                nutrientAndTargetValue = nutrientAndTargetValues[i].split("/");
+                nutrient = nutrientAndTargetValue[0];
+                targetValue = Integer.parseInt(nutrientAndTargetValues[1]);
+
+                if (targetValue == 0) {
+                    throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
+                } else if (!verifyValidNutrients(nutrient)) {
+                    throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
+                } else {
+                    DietGoal dietGoal = new DietGoal(nutrient, targetValue);
+                    dietGoals.add(dietGoal);
+                }
+            }
+
+            return dietGoals;
+
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
+        }
+    }
+
+    private static boolean verifyValidNutrients(String nutrient) {
+        final String caloriesMarkerConstant = "calories";
+        final String proteinMarkerConstant = "protein";
+        final String carbMarkerConstant = "carb";
+        final String fatMarketConstant = "fat";
+        return nutrient.equals(caloriesMarkerConstant) || nutrient.equals(proteinMarkerConstant)
+                || nutrient.equals(carbMarkerConstant) || nutrient.equals(fatMarketConstant);
+
     }
 
 }

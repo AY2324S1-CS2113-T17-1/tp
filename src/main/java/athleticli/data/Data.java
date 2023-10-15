@@ -28,6 +28,7 @@ public class Data {
         this.dietGoals = new DietGoalList();
         this.sleeps = new SleepList();
         this.sleepGoals = new SleepGoalList();
+        this.dietGoals = new DietGoalList();
     }
 
     /**
@@ -57,6 +58,7 @@ public class Data {
     public SleepGoalList getSleepGoals() {
         return sleepGoals;
     }
+
 
     
 }

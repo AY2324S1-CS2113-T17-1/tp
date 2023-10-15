@@ -15,4 +15,7 @@ public class CommandName {
     public static final String COMMAND_ACTIVITY = "activity";
     public static final String COMMAND_CYCLE = "cycle";
     public static final String COMMAND_SWIM = "swim";
+
+    public static final String COMMAND_DIET_GOAL_SET = "set-diet-goal";
+    public static final String COMMAND_DIET_GOAL_EDIT = "edit-diet_goal";
 }

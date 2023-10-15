@@ -29,4 +29,10 @@ public class Message {
     public static final String MESSAGE_ACTIVITY_COUNT = "Now you have tracked a total of %d activities. Keep pushing!";
     public static final String MESSAGE_ACTIVITY_FIRST = "Now you have tracked your first activity. This is just the " +
             "beginning!";
+    public static final String MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
+            "must be a positive integer!";
+    public static final String MESSAGE_DIETGOAL_INVALID_NUTRIENT = "Key word to nutrients goals has to be one of the " +
+            "following: \"calories\", \"protein\", \"carb\", \"fats\"!";
+    public static final String MESSAGE_DIETGOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
+            "Please edit the goal instead!";
 }
