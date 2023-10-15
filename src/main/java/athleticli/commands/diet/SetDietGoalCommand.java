@@ -32,23 +32,27 @@ public class SetDietGoalCommand extends Command {
      * @return The message which will be shown to the user.
      */
     @Override
-    public String[] execute(Data data) throws AthletiException {
-        DietGoalList currentDietGoals = data.getDietGoals();
-        String userNewNutrient;
-        String currentDietGoalsNutrient;
-        for (int i = 0; i < userNewDietGoals.size(); i++) {
-            userNewNutrient = userNewDietGoals.get(i).getNutrients();
-            for (int j = 0; j < currentDietGoals.size(); j++) {
-                currentDietGoalsNutrient = currentDietGoals.get(j).getNutrients();
-                if (userNewNutrient.equals(currentDietGoalsNutrient)) {
-                    throw new AthletiException(String.format(
-                            Message.MESSAGE_DIETGOAL_ALREADY_EXISTED, userNewNutrient));
-                }
-            }
-        }
-        for (int k = 0; k < userNewDietGoals.size(); k++) {
-            currentDietGoals.add(userNewDietGoals.get(k));
-        }
-        return new String[]{"These are your goals:\n", currentDietGoals.toString()};
+   public String[] execute(Data data) throws AthletiException {
+    DietGoalList currentDietGoals = data.getDietGoals();
+    Set<String> currentDietGoalsNutrients = new HashSet<>();
+
+    // Populate the set with current diet goal nutrients
+    for (DietGoal dietGoal : currentDietGoals) {
+        currentDietGoalsNutrients.add(dietGoal.getNutrients());
     }
+
+    // Check against user new diet goals
+    for (DietGoal userDietGoal : userNewDietGoals) {
+        String userNewNutrient = userDietGoal.getNutrients();
+        if (currentDietGoalsNutrients.contains(userNewNutrient)) {
+            throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_ALREADY_EXISTED, userNewNutrient));
+        }
+    }
+
+    // Add new diet goals to current diet goals
+    currentDietGoals.addAll(userNewDietGoals);
+    
+    return new String[]{"These are your goals:\n", currentDietGoals.toString()};
+}
+
 }
