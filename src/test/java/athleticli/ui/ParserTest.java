@@ -187,23 +187,25 @@ class ParserTest {
     }
 
     @Test
-    void parseDietGoalSet_oneValidGoal_oneGoalInList() throws AthletiException {
+    void parseDietGoalSet_oneValidGoal_oneGoalInList() {
         String oneValidGoalString = "calories/60";
         assertDoesNotThrow(() -> parseDietGoalSetEdit(oneValidGoalString));
     }
 
     @Test
-    void parseDietGoalSet_oneValidOneInvalidGoal_throwAthletiException(){
+    void parseDietGoalSet_oneValidOneInvalidGoal_throwAthletiException() {
         String oneValidOneInvalidGoalString = "calories/60 protein/protine";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(oneValidOneInvalidGoalString));
     }
+
     @Test
-    void parseDietGoalSet_zeroTargetValue_throwAthletiException(){
+    void parseDietGoalSet_zeroTargetValue_throwAthletiException() {
         String zeroTargetValueGoalString = "calories/0";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(zeroTargetValueGoalString));
     }
+
     @Test
-    void parseDietGoalSet_oneInvalidGoal_throwAthlethiException(){
+    void parseDietGoalSet_oneInvalidGoal_throwAthlethiException() {
         String invalidGoalString = "calories/caloreis protein/protein";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
     }

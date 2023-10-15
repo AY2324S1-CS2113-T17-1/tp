@@ -33,7 +33,6 @@ public class SetDietGoalCommand extends Command {
      */
     @Override
     public String[] execute(Data data) throws AthletiException {
-
         DietGoalList currentDietGoals = data.getDietGoals();
         String userNewNutrient;
         String currentDietGoalsNutrient;
@@ -47,7 +46,7 @@ public class SetDietGoalCommand extends Command {
                 }
             }
         }
-        for (int k = 0; k < userNewDietGoals.size(); k++){
+        for (int k = 0; k < userNewDietGoals.size(); k++) {
             currentDietGoals.add(userNewDietGoals.get(k));
         }
         return new String[]{"These are your goals:\n", currentDietGoals.toString()};
