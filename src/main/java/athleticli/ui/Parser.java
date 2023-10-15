@@ -87,7 +87,7 @@ public class Parser {
      * @throws AthletiException     If the input is not an integer.
      */
     private static int parseActivityIndex(String commandArgs) throws AthletiException {
-        String commandArgsTrimmed = commandArgs.trim();
+        final String commandArgsTrimmed = commandArgs.trim();
         int index;
         try {
             index = Integer.parseInt(commandArgsTrimmed);
@@ -105,16 +105,19 @@ public class Parser {
      * @throws AthletiException
      */
     public static Activity parseActivity(String arguments) throws AthletiException {
-        final int durationIndex = arguments.indexOf("duration/");
-        final int distanceIndex = arguments.indexOf("distance/");
-        final int datetimeIndex = arguments.indexOf("datetime/");
+        final int durationIndex = arguments.indexOf(Parameter.durationSeparator);
+        final int distanceIndex = arguments.indexOf(Parameter.distanceSeparator);
+        final int datetimeIndex = arguments.indexOf(Parameter.datetimeSeparator);
 
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
 
         final String caption = arguments.substring(0, durationIndex).trim();
-        final String duration = arguments.substring(durationIndex + 9, distanceIndex).trim();
-        final String distance = arguments.substring(distanceIndex + 9, datetimeIndex).trim();
-        final String datetime = arguments.substring(datetimeIndex + 9).trim();
+        final String duration =
+                arguments.substring(durationIndex + Parameter.durationSeparator.length(), distanceIndex).trim();
+        final String distance =
+                arguments.substring(distanceIndex + Parameter.distanceSeparator.length(), datetimeIndex).trim();
+        final String datetime =
+                arguments.substring(datetimeIndex + Parameter.datetimeSeparator.length()).trim();
 
         checkEmptyActivityArguments(caption, duration, distance, datetime);
 
@@ -176,18 +179,22 @@ public class Parser {
      * @throws AthletiException
      */
     public static Activity parseRunCycle(String arguments) throws AthletiException {
-        final int durationIndex = arguments.indexOf("duration/");
-        final int distanceIndex = arguments.indexOf("distance/");
-        final int datetimeIndex = arguments.indexOf("datetime/");
-        final int elevationIndex = arguments.indexOf("elevation/");
+        final int durationIndex = arguments.indexOf(Parameter.durationSeparator);
+        final int distanceIndex = arguments.indexOf(Parameter.distanceSeparator);
+        final int datetimeIndex = arguments.indexOf(Parameter.datetimeSeparator);
+        final int elevationIndex = arguments.indexOf(Parameter.elevationSeparator);
 
         checkMissingRunCycleArguments(durationIndex, distanceIndex, datetimeIndex, elevationIndex);
 
         final String caption = arguments.substring(0, durationIndex).trim();
-        final String duration = arguments.substring(durationIndex + 9, distanceIndex).trim();
-        final String distance = arguments.substring(distanceIndex + 9, datetimeIndex).trim();
-        final String datetime = arguments.substring(datetimeIndex + 9, elevationIndex).trim();
-        final String elevation = arguments.substring(elevationIndex + 10).trim();
+        final String duration =
+                arguments.substring(durationIndex + Parameter.durationSeparator.length(), distanceIndex).trim();
+        final String distance =
+                arguments.substring(distanceIndex + Parameter.distanceSeparator.length(), datetimeIndex).trim();
+        final String datetime =
+                arguments.substring(datetimeIndex + Parameter.datetimeSeparator.length(), elevationIndex).trim();
+        final String elevation =
+                arguments.substring(elevationIndex + Parameter.elevationSeparator.length()).trim();
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, elevation);
 
@@ -267,18 +274,22 @@ public class Parser {
      * @throws AthletiException
      */
     public static Activity parseSwim(String arguments) throws AthletiException {
-        final int durationIndex = arguments.indexOf("duration/");
-        final int distanceIndex = arguments.indexOf("distance/");
-        final int datetimeIndex = arguments.indexOf("datetime/");
-        final int swimmingStyleIndex = arguments.indexOf("style/");
+        final int durationIndex = arguments.indexOf(Parameter.durationSeparator);
+        final int distanceIndex = arguments.indexOf(Parameter.distanceSeparator);
+        final int datetimeIndex = arguments.indexOf(Parameter.distanceSeparator);
+        final int swimmingStyleIndex = arguments.indexOf(Parameter.swimmingStyleSeparator);
 
         checkMissingSwimArguments(durationIndex, distanceIndex, datetimeIndex, swimmingStyleIndex);
 
         final String caption = arguments.substring(0, durationIndex).trim();
-        final String duration = arguments.substring(durationIndex + 9, distanceIndex).trim();
-        final String distance = arguments.substring(distanceIndex + 9, datetimeIndex).trim();
-        final String datetime = arguments.substring(datetimeIndex + 9, swimmingStyleIndex).trim();
-        final String swimmingStyle = arguments.substring(swimmingStyleIndex + 6).trim();
+        final String duration =
+                arguments.substring(durationIndex + Parameter.durationSeparator.length(), distanceIndex).trim();
+        final String distance =
+                arguments.substring(distanceIndex + Parameter.distanceSeparator.length(), datetimeIndex).trim();
+        final String datetime =
+                arguments.substring(datetimeIndex + Parameter.datetimeSeparator.length(), swimmingStyleIndex).trim();
+        final String swimmingStyle =
+                arguments.substring(swimmingStyleIndex + Parameter.swimmingStyleSeparator.length()).trim();
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, swimmingStyleIndex);
 
