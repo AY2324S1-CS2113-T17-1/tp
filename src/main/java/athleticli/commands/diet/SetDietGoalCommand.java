@@ -18,7 +18,8 @@ public class SetDietGoalCommand extends Command {
 
     /**
      * This is a constructor to set up the set diet goal command
-     * @param dietGoals This is a list consisting of new diet goals to be added to the list.
+     * @param dietGoals This is a list consisting of new diet goals
+     *                  to be added to the current goal list.
      */
     public SetDietGoalCommand(ArrayList<DietGoal> dietGoals) {
         userNewDietGoals = dietGoals;
@@ -41,11 +42,11 @@ public class SetDietGoalCommand extends Command {
             for (int j = 0; j < currentDietGoals.size(); j++) {
                 currentDietGoalsNutrient = currentDietGoals.get(j).getNutrients();
                 if (userNewNutrient.equals(currentDietGoalsNutrient)) {
-                    throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_ALREADY_EXISTED, userNewNutrient));
+                    throw new AthletiException(String.format(
+                            Message.MESSAGE_DIETGOAL_ALREADY_EXISTED, userNewNutrient));
                 }
             }
         }
-
         for (int k = 0; k < userNewDietGoals.size(); k++){
             currentDietGoals.add(userNewDietGoals.get(k));
         }

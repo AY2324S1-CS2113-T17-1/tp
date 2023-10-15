@@ -366,6 +366,12 @@ public class Parser {
         return new EditSleepCommand(index, startTime, endTime);
     }
 
+    /**
+     *
+     * @param commandArgs User provided data to create goals for the nutrients defined.
+     * @return a list of diet goals for further checking in the Set Diet Goal Command.
+     * @throws AthletiException Invalid input by the user.
+     */
     public static ArrayList<DietGoal> parseDietGoalSet(String commandArgs) throws AthletiException {
         try {
             String[] nutrientAndTargetValues = commandArgs.split("\\s+");
@@ -397,6 +403,12 @@ public class Parser {
         }
     }
 
+    /**
+     *
+     * @param nutrient The nutrient that is provided by the user.
+     * @return boolean value depending on whether the nutrient is defined in our user guide.
+     * It returns true if the nutrient is supported by our app, false otherwise.
+     */
     private static boolean verifyValidNutrients(String nutrient) {
         final String caloriesMarkerConstant = "calories";
         final String proteinMarkerConstant = "protein";
