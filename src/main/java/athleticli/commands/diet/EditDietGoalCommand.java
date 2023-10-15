@@ -16,7 +16,6 @@ public class EditDietGoalCommand extends Command {
      */
     @Override
     public String[] execute(Data data) throws AthletiException {
-
         return new String[0];
     }
 }

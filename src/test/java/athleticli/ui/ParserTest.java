@@ -186,7 +186,7 @@ class ParserTest {
     }
 
     @Test
-    void parseDietGoalSet_oneValidGoal_oneGoalInList(){
+    void parseDietGoalSet_oneValidGoal_oneGoalInList() {
         String oneValidGoalString = "calories/60";
         try {
             assertEquals(1, parseDietGoalSet(oneValidGoalString).size());

@@ -374,9 +374,9 @@ public class Parser {
     public static ArrayList<DietGoal> parseDietGoalSet(String commandArgs) throws AthletiException {
         try {
             String[] nutrientAndTargetValues;
-            if(commandArgs.contains(" ")) {
+            if (commandArgs.contains(" ")) {
                 nutrientAndTargetValues = commandArgs.split("\\s+");
-            }else{
+            } else {
                 nutrientAndTargetValues = new String[]{commandArgs};
             }
             String[] nutrientAndTargetValue;
@@ -420,7 +420,6 @@ public class Parser {
         final String fatMarketConstant = "fat";
         return nutrient.equals(caloriesMarkerConstant) || nutrient.equals(proteinMarkerConstant)
                 || nutrient.equals(carbMarkerConstant) || nutrient.equals(fatMarketConstant);
-
     }
 
     /**
