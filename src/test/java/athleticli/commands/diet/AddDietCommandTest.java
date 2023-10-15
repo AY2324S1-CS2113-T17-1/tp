@@ -30,7 +30,7 @@ public class AddDietCommandTest {
     @Test
     void execute() {
         String[] expected = {"Well done! I've added this diet:", diet.toString(),
-                "Now you have tracked your " + "first diet. This is just the beginning!"};
+                             "Now you have tracked your " + "first diet. This is just the beginning!"};
         String[] actual = addDietCommand.execute(data);
         for (int i = 0; i < actual.length; i++) {
             assertEquals(expected[i], actual[i]);

@@ -32,7 +32,7 @@ public class DeleteDietCommandTest {
     @Test
     void execute() throws AthletiException {
         String[] expected = {"Noted. I've removed this diet:", diet.toString(),
-                "Now you have tracked a total of 0 diets. Keep grinding!"};
+                             "Now you have tracked a total of 0 diets. Keep grinding!"};
         String[] actual = deleteDietCommand.execute(data);
         for (int i = 0; i < actual.length; i++) {
             assertEquals(expected[i], actual[i]);
