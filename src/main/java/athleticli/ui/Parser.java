@@ -33,10 +33,10 @@ import java.util.ArrayList;
  * Defines the basic methods for command parser.
  */
 public class Parser {
-    private static final String caloriesMarkerConstant = "calories";
-    private static final String proteinMarkerConstant = "protein";
-    private static final String carbMarkerConstant = "carb";
-    private static final String fatMarketConstant = "fat";
+    private static final String CALORIES_MARKER = "calories";
+    private static final String PROTEIN_MARKER = "protein";
+    private static final String CARB_MARKER = "carb";
+    private static final String FAT_MARKER = "fat";
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
      * while the second part is the command arguments. The second part can be empty.
@@ -395,11 +395,12 @@ public class Parser {
                 targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
                 if (targetValue == 0) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
-                } else if (!verifyValidNutrients(nutrient)) {
-                    throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
-                } else {
-                    DietGoal dietGoal = new DietGoal(nutrient, targetValue);
-                    dietGoals.add(dietGoal);
+                } 
+                if (!verifyValidNutrients(nutrient)) {
+                        throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
+                } 
+                DietGoal dietGoal = new DietGoal(nutrient, targetValue);
+                dietGoals.add(dietGoal);
                 }
             }
 
