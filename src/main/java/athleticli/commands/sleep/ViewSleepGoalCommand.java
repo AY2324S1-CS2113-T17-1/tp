@@ -4,5 +4,5 @@
 
 package athleticli.commands.sleep;
 
-public class SetSleepGoalCommand {
+public class ViewSleepGoalCommand {
 }
