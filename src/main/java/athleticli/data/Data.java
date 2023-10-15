@@ -3,7 +3,7 @@ package athleticli.data;
 import athleticli.data.activity.ActivityGoalList;
 import athleticli.data.activity.ActivityList;
 import athleticli.data.diet.DietGoalList;
-import athleticli.data.diet.MealList;
+import athleticli.data.diet.DietList;
 import athleticli.data.sleep.SleepGoalList;
 import athleticli.data.sleep.SleepList;
 
@@ -13,7 +13,7 @@ import athleticli.data.sleep.SleepList;
 public class Data {
     private ActivityList activities;
     private ActivityGoalList activityGoals;
-    private MealList meals;
+    private DietList diets;
     private DietGoalList dietGoals;
     private SleepList sleeps;
     private SleepGoalList sleepGoals;
@@ -24,9 +24,39 @@ public class Data {
     public Data() {
         this.activities = new ActivityList();
         this.activityGoals = new ActivityGoalList();
-        this.meals = new MealList();
+        this.diets = new DietList();
         this.dietGoals = new DietGoalList();
         this.sleeps = new SleepList();
         this.sleepGoals = new SleepGoalList();
     }
+
+    /**
+     * Get all the objects
+     */
+
+    public ActivityList getActivities() {
+        return activities;
+    }
+
+    public ActivityGoalList getActivityGoals() {
+        return activityGoals;
+    }
+
+    public DietList getDiets() {
+        return diets;
+    }
+
+    public DietGoalList getDietGoals() {
+        return dietGoals;
+    }
+
+    public SleepList getSleeps() {
+        return sleeps;
+    }
+
+    public SleepGoalList getSleepGoals() {
+        return sleepGoals;
+    }
+
+    
 }
