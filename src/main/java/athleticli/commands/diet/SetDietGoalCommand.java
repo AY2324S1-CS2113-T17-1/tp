@@ -8,6 +8,8 @@ import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Executes the set-diet-goal commands provided by the user.
@@ -18,6 +20,7 @@ public class SetDietGoalCommand extends Command {
 
     /**
      * This is a constructor to set up the set diet goal command
+     *
      * @param dietGoals This is a list consisting of new diet goals
      *                  to be added to the current goal list.
      */
@@ -32,27 +35,27 @@ public class SetDietGoalCommand extends Command {
      * @return The message which will be shown to the user.
      */
     @Override
-   public String[] execute(Data data) throws AthletiException {
-    DietGoalList currentDietGoals = data.getDietGoals();
-    Set<String> currentDietGoalsNutrients = new HashSet<>();
+    public String[] execute(Data data) throws AthletiException {
+        DietGoalList currentDietGoals = data.getDietGoals();
+        Set<String> currentDietGoalsNutrients = new HashSet<>();
 
-    // Populate the set with current diet goal nutrients
-    for (DietGoal dietGoal : currentDietGoals) {
-        currentDietGoalsNutrients.add(dietGoal.getNutrients());
-    }
-
-    // Check against user new diet goals
-    for (DietGoal userDietGoal : userNewDietGoals) {
-        String userNewNutrient = userDietGoal.getNutrients();
-        if (currentDietGoalsNutrients.contains(userNewNutrient)) {
-            throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_ALREADY_EXISTED, userNewNutrient));
+        // Populate the set with current diet goal nutrients
+        for (DietGoal dietGoal : currentDietGoals) {
+            currentDietGoalsNutrients.add(dietGoal.getNutrients());
         }
-    }
 
-    // Add new diet goals to current diet goals
-    currentDietGoals.addAll(userNewDietGoals);
-    
-    return new String[]{"These are your goals:\n", currentDietGoals.toString()};
-}
+        // Check against user new diet goals
+        for (DietGoal userDietGoal : userNewDietGoals) {
+            String userNewNutrient = userDietGoal.getNutrients();
+            if (currentDietGoalsNutrients.contains(userNewNutrient)) {
+                throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_ALREADY_EXISTED, userNewNutrient));
+            }
+        }
+
+        // Add new diet goals to current diet goals
+        currentDietGoals.addAll(userNewDietGoals);
+
+        return new String[]{"These are your goals:\n", currentDietGoals.toString()};
+    }
 
 }

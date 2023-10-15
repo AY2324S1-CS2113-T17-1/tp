@@ -397,11 +397,11 @@ public class Parser {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
                 } 
                 if (!verifyValidNutrients(nutrient)) {
-                        throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
+                    throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
                 } 
                 DietGoal dietGoal = new DietGoal(nutrient, targetValue);
                 dietGoals.add(dietGoal);
-                }
+
             }
 
             return dietGoals;
@@ -417,8 +417,8 @@ public class Parser {
      *     It returns true if the nutrient is supported by our app, false otherwise.
      */
     public static boolean verifyValidNutrients(String nutrient) {
-        return nutrient.equals(caloriesMarkerConstant) || nutrient.equals(proteinMarkerConstant)
-                || nutrient.equals(carbMarkerConstant) || nutrient.equals(fatMarketConstant);
+        return nutrient.equals(CALORIES_MARKER) || nutrient.equals(PROTEIN_MARKER)
+                || nutrient.equals(CARB_MARKER) || nutrient.equals(FAT_MARKER);
     }
 
     /**
