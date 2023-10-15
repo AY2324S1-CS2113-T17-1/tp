@@ -389,7 +389,6 @@ public class Parser {
                 nutrientAndTargetValue = nutrientAndTargetValues[i].split("/");
                 nutrient = nutrientAndTargetValue[0];
                 targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
-//                targetValue = 1;
                 System.out.println(nutrient);
                 System.out.println(targetValue);
                 if (targetValue == 0) {
