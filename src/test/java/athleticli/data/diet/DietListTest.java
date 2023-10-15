@@ -75,7 +75,7 @@ public class DietListTest {
         Diet diet2 = new Diet(CALORIES, PROTEIN, CARB, FAT);
         dietList.add(diet1);
         dietList.add(diet2);
-        assertEquals("1. " + diet1.toString() + "2. " + diet2.toString(), dietList.toString());
+        assertEquals("1. " + diet1.toString() + "\n2. " + diet2.toString(), dietList.toString());
     }
 
     @Test
@@ -91,7 +91,7 @@ public class DietListTest {
         dietList.add(diet1);
         dietList.add(diet2);
         dietList.add(diet3);
-        assertEquals("1. " + diet1.toString() + "2. " + diet2.toString() + "3. " + diet3.toString(),
+        assertEquals("1. " + diet1.toString() + "\n2. " + diet2.toString() + "\n3. " + diet3.toString(),
                 dietList.toString());
     }
 }
