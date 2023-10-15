@@ -13,10 +13,11 @@ import athleticli.exceptions.UnknownCommandException;
 import org.junit.jupiter.api.Test;
 
 import static athleticli.ui.Parser.parseCommand;
-import static athleticli.ui.Parser.parseDietGoalSet;
+import static athleticli.ui.Parser.parseDietGoalSetEdit;
 import static athleticli.ui.Parser.splitCommandWordAndArgs;
 import static athleticli.ui.Parser.verifyValidNutrients;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
@@ -186,28 +187,24 @@ class ParserTest {
     }
 
     @Test
-    void parseDietGoalSet_oneValidGoal_oneGoalInList(){
+    void parseDietGoalSet_oneValidGoal_oneGoalInList() throws AthletiException {
         String oneValidGoalString = "calories/60";
-        try {
-            assertEquals(1, parseDietGoalSet(oneValidGoalString).size());
-        } catch (AthletiException e){
-            assert(false);
-        }
+        assertDoesNotThrow(() -> parseDietGoalSetEdit(oneValidGoalString));
     }
 
     @Test
     void parseDietGoalSet_oneValidOneInvalidGoal_throwAthletiException(){
         String oneValidOneInvalidGoalString = "calories/60 protein/protine";
-        assertThrows(AthletiException.class, () -> parseDietGoalSet(oneValidOneInvalidGoalString));
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(oneValidOneInvalidGoalString));
     }
     @Test
     void parseDietGoalSet_zeroTargetValue_throwAthletiException(){
         String zeroTargetValueGoalString = "calories/0";
-        assertThrows(AthletiException.class, () -> parseDietGoalSet(zeroTargetValueGoalString));
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(zeroTargetValueGoalString));
     }
     @Test
     void parseDietGoalSet_oneInvalidGoal_throwAthlethiException(){
         String invalidGoalString = "calories/caloreis protein/protein";
-        assertThrows(AthletiException.class, () -> parseDietGoalSet(invalidGoalString));
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
     }
 }

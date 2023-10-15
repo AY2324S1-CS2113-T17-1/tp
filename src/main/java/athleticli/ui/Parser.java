@@ -33,6 +33,10 @@ import java.util.ArrayList;
  * Defines the basic methods for command parser.
  */
 public class Parser {
+    private static final String caloriesMarkerConstant = "calories";
+    private static final String proteinMarkerConstant = "protein";
+    private static final String carbMarkerConstant = "carb";
+    private static final String fatMarketConstant = "fat";
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
      * while the second part is the command arguments. The second part can be empty.
@@ -76,9 +80,9 @@ public class Parser {
         case CommandName.COMMAND_SWIM:
             return new AddActivityCommand(parseSwim(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_SET:
-            return new SetDietGoalCommand(parseDietGoalSet(commandArgs));
+            return new SetDietGoalCommand(parseDietGoalSetEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_EDIT:
-            return new EditDietGoalCommand();
+            return new EditDietGoalCommand(parseDietGoalSetEdit(commandArgs));
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
@@ -371,7 +375,7 @@ public class Parser {
      * @return a list of diet goals for further checking in the Set Diet Goal Command.
      * @throws AthletiException Invalid input by the user.
      */
-    public static ArrayList<DietGoal> parseDietGoalSet(String commandArgs) throws AthletiException {
+    public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
         try {
             String[] nutrientAndTargetValues;
             if(commandArgs.contains(" ")) {
@@ -389,8 +393,6 @@ public class Parser {
                 nutrientAndTargetValue = nutrientAndTargetValues[i].split("/");
                 nutrient = nutrientAndTargetValue[0];
                 targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
-                System.out.println(nutrient);
-                System.out.println(targetValue);
                 if (targetValue == 0) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
                 } else if (!verifyValidNutrients(nutrient)) {
@@ -414,10 +416,6 @@ public class Parser {
      *     It returns true if the nutrient is supported by our app, false otherwise.
      */
     public static boolean verifyValidNutrients(String nutrient) {
-        final String caloriesMarkerConstant = "calories";
-        final String proteinMarkerConstant = "protein";
-        final String carbMarkerConstant = "carb";
-        final String fatMarketConstant = "fat";
         return nutrient.equals(caloriesMarkerConstant) || nutrient.equals(proteinMarkerConstant)
                 || nutrient.equals(carbMarkerConstant) || nutrient.equals(fatMarketConstant);
 
