@@ -40,5 +40,3 @@ public class DeleteDietCommand extends Command {
                 String.format(Message.MESSAGE_DIET_COUNT, size - 1)};
     }
 }
-  
-  
