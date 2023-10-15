@@ -16,7 +16,7 @@ public class DeleteDietCommand extends Command {
     /**
      * Constructor for AddDietCommand.
      *
-     * @param diet Diet to be added.
+     * @param index Diet to be added.
      */
     public DeleteDietCommand(int index) {
         this.index = index;
@@ -29,11 +29,11 @@ public class DeleteDietCommand extends Command {
      * @return The message which will be shown to the user.
      */
     public String[] execute(Data data) throws AthletiException {
-        if (index > data.getDiets().size() || index < 1) {
-            throw new AthletiException(Message.MESSAGE_INVALID_DIET_INDEX);
-        }
         DietList dietList = data.getDiets();
         int size = dietList.size();
+        if (index > size || index < 1) {
+            throw new AthletiException(Message.MESSAGE_INVALID_DIET_INDEX);
+        }
         Diet oldDiet = dietList.get(index - 1);
         dietList.remove(index - 1);
         return new String[]{Message.MESSAGE_DIET_DELETED, oldDiet.toString(),
