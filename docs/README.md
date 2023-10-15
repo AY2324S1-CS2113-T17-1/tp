@@ -24,6 +24,7 @@ covers dietary habits, sleep metrics, and more.
 ### Adding Activities:
 
 `activity`, `run`, `swim`, `cycle`
+
 You can record your activities in AtheltiCLI by adding different activities including running, cycling, and swimming.
 
 **Syntax:**
@@ -44,6 +45,23 @@ You can record your activities in AtheltiCLI by adding different activities incl
 
 * `activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
 * `cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+
+### Deleting Activities:
+
+`delete-activity`
+
+Accidentally added an activity? You can quickly delete activities by using the following command.
+The index must be a positive number and is not larger than the number of activities recorded.
+
+**Syntax:** 
+* `delete-activity INDEX`
+
+**Parameters:**
+* INDEX: The index of the activity as shown in the displayed activity list.
+
+**Examples:** 
+* `delete-activity 2` deletes the second activity in the activity list.
+* `delete-activity 1` deletes the first activity in the activity list.
 
 ## Diet Management
 
