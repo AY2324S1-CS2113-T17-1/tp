@@ -25,13 +25,12 @@ import java.time.format.DateTimeParseException;
  */
 public class Parser {
     /**
-     * Splits the raw user input into two parts, and then returns them.
-     * The first part is the command type, while the second part is the command arguments.
-     * The second part can be empty.
+     * Splits the raw user input into two parts, and then returns them. The first part is the command type,
+     * while the second part is the command arguments. The second part can be empty.
      *
      * @param rawUserInput The raw user input.
-     * @return A string array whose first element is the command type
-     * and the second element is the command arguments.
+     * @return A string array whose first element is the command type and the second element is the command
+     *         arguments.
      */
     public static String[] splitCommandWordAndArgs(String rawUserInput) {
         final String[] split = rawUserInput.trim().split("\\s+", 2);
@@ -357,7 +356,7 @@ public class Parser {
     /**
      * Parses the raw user input for a diet and returns the corresponding diet object.
      *
-     * @param arguments The raw user input containing the arguments.
+     * @param commandArgs The raw user input containing the arguments.
      * @return An object representing the diet.
      * @throws AthletiException
      */
@@ -403,8 +402,8 @@ public class Parser {
      * @throws AthletiException
      */
     private static void checkMissingDietArguments(int caloriesMarkerPos, int proteinMarkerPos,
-                                                 int carbMarkerPos,
-                                                 int fatMarkerPos) throws AthletiException {
+                                                  int carbMarkerPos,
+                                                  int fatMarkerPos) throws AthletiException {
         if (caloriesMarkerPos == -1) {
             throw new AthletiException(Message.MESSAGE_CALORIES_MISSING);
         }
@@ -418,18 +417,18 @@ public class Parser {
             throw new AthletiException(Message.MESSAGE_FAT_MISSING);
         }
     }
-    
+
     /**
      * Checks if the user input for a diet is empty.
-     * 
+     *
      * @param calories The calories input.
-     * @param protein The protein input.
-     * @param carb The carb input.
-     * @param fat The fat input.
+     * @param protein  The protein input.
+     * @param carb     The carb input.
+     * @param fat      The fat input.
      * @throws AthletiException
      */
     private static void checkEmptyDietArguments(String calories, String protein, String carb,
-                                               String fat) throws AthletiException {
+                                                String fat) throws AthletiException {
         if (calories.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_CALORIES_EMPTY);
         }
@@ -443,10 +442,10 @@ public class Parser {
             throw new AthletiException(Message.MESSAGE_FAT_EMPTY);
         }
     }
-    
+
     /**
      * Parses the calories input for a diet.
-     * 
+     *
      * @param calories The calories input.
      * @return The parsed calories.
      * @throws AthletiException
