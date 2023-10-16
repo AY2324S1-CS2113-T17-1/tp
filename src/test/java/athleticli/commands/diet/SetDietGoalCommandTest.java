@@ -40,7 +40,7 @@ class SetDietGoalCommandTest {
     void execute_emptyInputList_expectCorrectMessage() {
         try {
             SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(emptyInputDietGoals);
-            String[] expectedString = {"These are your goals:\n", ""};
+            String[] expectedString = {"These are your goal(s):\n", "", "Now you have 0 diet goal(s)."};
             String[] actualString = setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, actualString);
         } catch (AthletiException e) {
@@ -58,7 +58,8 @@ class SetDietGoalCommandTest {
     void execute_oneNewInputDietGoal_expectCorrectMessage() {
         try {
             SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
-            String[] expectedString = {"These are your goals:\n", "1. fats intake progress: (0/10000)\n"};
+            String[] expectedString = {"These are your goal(s):\n", "1. fats intake progress: " +
+                    "(0/10000)\n", "Now you have 1 diet goal(s)."};
             String[] actualString = setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, actualString);
         } catch (AthletiException e) {

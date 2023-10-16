@@ -6,8 +6,10 @@ import athleticli.commands.activity.AddActivityCommand;
 
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
+import athleticli.commands.diet.EditDietGoalCommand;
 import athleticli.commands.diet.ListDietCommand;
-
+import athleticli.commands.diet.ListDietGoalCommand;
+import athleticli.commands.diet.SetDietGoalCommand;
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
@@ -17,8 +19,6 @@ import athleticli.data.activity.Activity;
 import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
 
-import athleticli.commands.diet.EditDietGoalCommand;
-import athleticli.commands.diet.SetDietGoalCommand;
 import athleticli.data.diet.DietGoal;
 import athleticli.data.diet.Diet;
 
@@ -37,13 +37,14 @@ public class Parser {
     private static final String PROTEIN_MARKER = "protein";
     private static final String CARB_MARKER = "carb";
     private static final String FAT_MARKER = "fat";
+
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
      * while the second part is the command arguments. The second part can be empty.
      *
      * @param rawUserInput The raw user input.
      * @return A string array whose first element is the command type
-     *     and the second element is the command arguments.
+     * and the second element is the command arguments.
      */
     public static String[] splitCommandWordAndArgs(String rawUserInput) {
         final String[] split = rawUserInput.trim().split("\\s+", 2);
@@ -83,6 +84,8 @@ public class Parser {
             return new SetDietGoalCommand(parseDietGoalSetEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_EDIT:
             return new EditDietGoalCommand(parseDietGoalSetEdit(commandArgs));
+        case CommandName.COMMAND_DIET_GOAL_LIST:
+            return new ListDietGoalCommand();
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
@@ -395,10 +398,10 @@ public class Parser {
                 targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
                 if (targetValue == 0) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
-                } 
+                }
                 if (!verifyValidNutrients(nutrient)) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
-                } 
+                }
                 DietGoal dietGoal = new DietGoal(nutrient, targetValue);
                 dietGoals.add(dietGoal);
 
@@ -414,7 +417,7 @@ public class Parser {
     /**
      * @param nutrient The nutrient that is provided by the user.
      * @return boolean value depending on whether the nutrient is defined in our user guide.
-     *     It returns true if the nutrient is supported by our app, false otherwise.
+     * It returns true if the nutrient is supported by our app, false otherwise.
      */
     public static boolean verifyValidNutrients(String nutrient) {
         return nutrient.equals(CALORIES_MARKER) || nutrient.equals(PROTEIN_MARKER)
