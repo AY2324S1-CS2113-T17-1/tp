@@ -1,36 +1,57 @@
 package athleticli.commands.sleep;
 
-import athleticli.data.sleep.SleepList;
-import athleticli.data.sleep.Sleep;
-import athleticli.data.Data;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import athleticli.data.Data;
+import athleticli.data.sleep.SleepList;
+
 public class AddSleepCommandTest {
+
+    private Data data;
+
+    @BeforeEach
+    public void setup() {
+        data = new Data();
+        data.setSleeps(new SleepList());
+    }
+
     @Test
-    public void testExecute() {
-        // Create a Data object with an empty SleepList
-        Data data = new Data();
-        SleepList sleepList = data.getSleeps();
-        assertEquals(0, sleepList.size());
-
-        // Create an AddSleepCommand and execute it
-        AddSleepCommand command = new AddSleepCommand("2021-01-01 23:00", "2021-01-02 07:00");
-        String[] result = command.execute(data);
-
-        // Check that the output is correct
+    public void testExecuteWithValidInput() {
+        LocalDateTime from = LocalDateTime.of(2023, 10, 17, 22, 0);
+        LocalDateTime to = LocalDateTime.of(2023, 10, 18, 6, 0);
+        AddSleepCommand command = new AddSleepCommand(from, to);
+        
         String[] expected = {
             "Got it. I've added this sleep record:",
-            "  2021-01-01 23:00 to 2021-01-02 07:00",
+            "  17-10-2023 22:00 to 18-10-2023 06:00",
             "Now you have 1 sleep records in the list."
         };
-        for (int i = 0; i < expected.length; i++) {
-            assertEquals(expected[i], result[i]);
-        }
+        
+        assertArrayEquals(expected, command.execute(data));
+    }
 
-        // Check that the SleepList now contains the new Sleep object
-        assertEquals(1, sleepList.size());
-        Sleep newSleep = sleepList.get(0);
-        assertEquals("sleep from 2021-01-01 23:00 to 2021-01-02 07:00", newSleep.toString());
+    @Test
+    public void testExecuteCountingSleepRecords() {
+        LocalDateTime from1 = LocalDateTime.of(2023, 10, 17, 22, 0);
+        LocalDateTime to1 = LocalDateTime.of(2023, 10, 18, 6, 0);
+        AddSleepCommand command1 = new AddSleepCommand(from1, to1);
+        command1.execute(data); // Add first sleep record
+
+        LocalDateTime from2 = LocalDateTime.of(2023, 10, 18, 22, 0);
+        LocalDateTime to2 = LocalDateTime.of(2023, 10, 19, 6, 0);
+        AddSleepCommand command2 = new AddSleepCommand(from2, to2);
+
+        String[] expected = {
+            "Got it. I've added this sleep record:",
+            "  18-10-2023 22:00 to 19-10-2023 06:00",
+            "Now you have 2 sleep records in the list."
+        };
+        
+        assertArrayEquals(expected, command2.execute(data));
     }
 }

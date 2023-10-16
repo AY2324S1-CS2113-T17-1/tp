@@ -1,31 +1,55 @@
 package athleticli.commands.sleep;
 
-import athleticli.data.sleep.SleepList;
-import athleticli.data.sleep.Sleep;
-import athleticli.data.Data;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+import athleticli.data.Data;
+import athleticli.data.sleep.Sleep;
+import athleticli.data.sleep.SleepList;
 
 public class ListSleepCommandTest {
-    @Test
-    public void testExecute() {
-        // Create a Data object with an empty SleepList
-        Data data = new Data();
-        SleepList sleepList = data.getSleeps();
-        assertEquals(0, sleepList.size());
 
-        sleepList.add(new Sleep("10:00 PM", "6:00 AM"));
-        sleepList.add(new Sleep("11:00 PM", "7:00 AM"));
-        sleepList.add(new Sleep("12:00 PM", "8:00 AM"));
+    private Data data;
+    private Sleep sleep1, sleep2;
 
-        // Create an ListSleepCommand and execute it
-        ListSleepCommand command = new ListSleepCommand();
-        String[] result = command.execute(data);
-
-        assertEquals("Here are the sleep records in your list:" + "\n", result[0]);
-        assertEquals(sleepList.toString(), result[1]);
+    @BeforeEach
+    public void setup() {
+        data = new Data();
+        SleepList sleepList = new SleepList();
+        sleep1 = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0), 
+                          LocalDateTime.of(2023, 10, 18, 6, 0));
+        sleep2 = new Sleep(LocalDateTime.of(2023, 10, 18, 22, 0), 
+                          LocalDateTime.of(2023, 10, 19, 6, 0));
+        sleepList.add(sleep1);
+        sleepList.add(sleep2);
+        data.setSleeps(sleepList);
     }
+
+    @Test
+    public void testExecuteWithRecords() {
+        ListSleepCommand command = new ListSleepCommand();
+        String expectedList = "1. sleep record from 17-10-2023 22:00 to 18-10-2023 06:00\n" +
+                              "2. sleep record from 18-10-2023 22:00 to 19-10-2023 06:00\n";
+        String[] expected = {
+            "Here are the sleep records in your list:\n",
+            expectedList
+        };
+        assertArrayEquals(expected, command.execute(data));
+    }
+
+    @Test
+    public void testExecuteWithEmptyList() {
+        data.setSleeps(new SleepList()); // Empty list
+        ListSleepCommand command = new ListSleepCommand();
+        String[] expected = {
+            "Here are the sleep records in your list:\n",
+            ""
+        };
+        assertArrayEquals(expected, command.execute(data));
+    }
+
 }
