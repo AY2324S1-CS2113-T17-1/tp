@@ -50,7 +50,7 @@ class EditDietGoalCommandTest {
             String[] actualString = editDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, actualString);
         } catch (AthletiException e) {
-            fail (e);
+            fail(e);
         }
     }
 
@@ -68,7 +68,7 @@ class EditDietGoalCommandTest {
         try {
             setDietGoalCommand.execute(data);
         } catch (AthletiException e) {
-            fail (e);
+            fail(e);
         }
         assertDoesNotThrow(() -> editDietGoalCommand.execute(data));
     }
@@ -83,7 +83,7 @@ class EditDietGoalCommandTest {
             setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, editDietGoalCommand.execute(data));
         } catch (AthletiException e) {
-            fail (e);
+            fail(e);
         }
     }
 }
