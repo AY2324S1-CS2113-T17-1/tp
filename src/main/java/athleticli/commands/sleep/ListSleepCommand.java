@@ -7,6 +7,11 @@ import athleticli.data.sleep.SleepList;
 
 public class ListSleepCommand extends Command {
 
+    /**
+     * Lists all the sleep records in the sleep list.
+     * @param data The current data containing the sleep list.
+     * @return The message which will be shown to the user.
+     */
     public String[] execute (Data data) {
         SleepList sleepList = data.getSleeps();
         return new String[] {

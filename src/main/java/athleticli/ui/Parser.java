@@ -279,7 +279,12 @@ public class Parser {
         }
     }
 
-
+    /**
+     * Parses the raw user input for an add sleep command and returns the corresponding command object.
+     * @param commandArgs The raw user input containing the arguments.
+     * @return An object representing the slee0 add command.
+     * @throws AthletiException
+     */
     public static AddSleepCommand parseSleepAdd(String commandArgs) throws AthletiException {
 
         final String startMarkerConstant = "/start";
@@ -307,6 +312,12 @@ public class Parser {
         return new AddSleepCommand(startTime, endTime);
     }
 
+    /**
+     * Parses the raw user input for a delete sleep command and returns the corresponding command object.
+     * @param commandArgs The raw user input containing the arguments.
+     * @return An object representing the sleep delete command.
+     * @throws AthletiException
+     */
     public static DeleteSleepCommand parseSleepDelete(String commandArgs) throws AthletiException {
         int index;
 
@@ -319,6 +330,12 @@ public class Parser {
         return new DeleteSleepCommand(index);
     }
 
+    /**
+     * Parses the raw user input for an edit sleep command and returns the corresponding command object.
+     * @param commandArgs The raw user input containing the arguments.
+     * @return An object representing the sleep edit command.
+     * @throws AthletiException
+     */
     public static EditSleepCommand parseSleepEdit(String commandArgs) throws AthletiException {
         final String startMarkerConstant = "/start";
         final String endMarkerConstant = "/end";
