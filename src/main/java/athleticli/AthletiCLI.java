@@ -1,6 +1,5 @@
 package athleticli;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
@@ -17,9 +16,9 @@ import athleticli.ui.Ui;
  * Defines the basic structure and the behavior of AthletiCLI.
  */
 public class AthletiCLI {
+    private static Logger logger = Logger.getLogger(AthletiCLI.class.getName());
     private Ui ui;
     private Data data;
-    private static Logger logger = Logger.getLogger(AthletiCLI.class.getName());
 
     /**
      * Constructs an <code>AthletiCLI</code> object.
