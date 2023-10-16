@@ -18,6 +18,7 @@ import athleticli.exceptions.AthletiException;
 import athleticli.exceptions.UnknownCommandException;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**
@@ -279,6 +280,8 @@ public class Parser {
         }
     }
 
+    private static final DateTimeFormatter SLEEP_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
     /**
      * Parses the raw user input for an add sleep command and returns the corresponding command object.
      * @param commandArgs The raw user input containing the arguments.
@@ -287,8 +290,8 @@ public class Parser {
      */
     public static AddSleepCommand parseSleepAdd(String commandArgs) throws AthletiException {
 
-        final String startMarkerConstant = "/start";
-        final String endMarkerConstant = "/end";
+        final String startMarkerConstant = "start/";
+        final String endMarkerConstant = "end/";
 
         int startMarkerPos = commandArgs.indexOf(startMarkerConstant);
         int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
@@ -301,12 +304,26 @@ public class Parser {
             throw new AthletiException("Please specify the start time of your sleep before the end time.");
         }
 
-        String startTime =
+        String startTimeStr =
                 commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
-        String endTime = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
+        String endTimeStr = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
-        if (startTime.isEmpty() || endTime.isEmpty()) {
+        if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
             throw new AthletiException("Please specify both the start and end time of your sleep.");
+        }
+
+        // Convert the strings to LocalDateTime
+        LocalDateTime startTime, endTime;
+        try {
+            startTime = LocalDateTime.parse(startTimeStr, SLEEP_TIME_FORMATTER);
+            endTime = LocalDateTime.parse(endTimeStr, SLEEP_TIME_FORMATTER);
+        } catch (DateTimeParseException e) {
+            throw new AthletiException("Invalid date-time format. Please use dd-MM-yyyy HH:mm.");
+        }
+
+        //Check if the start time is before the end time
+        if (startTime.isAfter(endTime)) {
+            throw new AthletiException("Please specify the start time of your sleep before the end time.");
         }
 
         return new AddSleepCommand(startTime, endTime);
@@ -337,12 +354,11 @@ public class Parser {
      * @throws AthletiException
      */
     public static EditSleepCommand parseSleepEdit(String commandArgs) throws AthletiException {
-        final String startMarkerConstant = "/start";
-        final String endMarkerConstant = "/end";
+        final String startMarkerConstant = "start/";
+        final String endMarkerConstant = "end/";
 
         int startMarkerPos = commandArgs.indexOf(startMarkerConstant);
         int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
-
         int index;
 
         if (startMarkerPos == -1 || endMarkerPos == -1) {
@@ -359,12 +375,26 @@ public class Parser {
             throw new AthletiException("Please specify the index of the sleep record you want to edit.");
         }
 
-        String startTime =
+        String startTimeStr =
                 commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
-        String endTime = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
+        String endTimeStr = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
-        if (startTime.isEmpty() || endTime.isEmpty()) {
+        if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
             throw new AthletiException("Please specify both the start and end time of your sleep.");
+        }
+
+        // Convert the strings to LocalDateTime
+        LocalDateTime startTime, endTime;
+        try {
+            startTime = LocalDateTime.parse(startTimeStr, SLEEP_TIME_FORMATTER);
+            endTime = LocalDateTime.parse(endTimeStr, SLEEP_TIME_FORMATTER);
+        } catch (DateTimeParseException e) {
+            throw new AthletiException("Invalid date-time format. Please use dd-MM-yyyy HH:mm.");
+        }
+
+        //Check if the start time is before the end time
+        if (startTime.isAfter(endTime)) {
+            throw new AthletiException("Please specify the start time of your sleep before the end time.");
         }
 
         return new EditSleepCommand(index, startTime, endTime);

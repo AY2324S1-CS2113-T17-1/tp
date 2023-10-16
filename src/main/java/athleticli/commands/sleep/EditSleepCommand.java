@@ -1,5 +1,7 @@
 package athleticli.commands.sleep;
 
+import java.time.LocalDateTime;
+
 import athleticli.commands.Command;
 import athleticli.data.Data;
 
@@ -12,8 +14,8 @@ import athleticli.data.sleep.SleepList;
 public class EditSleepCommand extends Command {
 
     private int index;
-    private String from;
-    private String to;
+    private LocalDateTime from;
+    private LocalDateTime to;
 
     /**
      * Constructor for EditSleepCommand.
@@ -21,7 +23,7 @@ public class EditSleepCommand extends Command {
      * @param from New start time of the sleep.
      * @param to New end time of the sleep.
      */
-    public EditSleepCommand(int index, String from, String to) {
+    public EditSleepCommand(int index, LocalDateTime from, LocalDateTime to) {
         this.index = index;
         this.from = from;
         this.to = to;
