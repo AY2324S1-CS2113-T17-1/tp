@@ -48,7 +48,6 @@ public class AthletiCLI {
      * and executes corresponding instructions until exiting.
      */
     public void run() {
-        System.out.println(getClass().getClassLoader().getResource("logging.properties"));
         logger.entering(getClass().getName(), "run");
         ui.showWelcome();
         boolean isExit = false;
