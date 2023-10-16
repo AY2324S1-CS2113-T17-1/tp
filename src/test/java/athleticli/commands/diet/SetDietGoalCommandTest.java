@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class SetDietGoalCommandTest {
 
     private ArrayList<DietGoal> emptyInputDietGoals;
-    private ArrayList filledInputDietGoals;
+    private ArrayList<DietGoal> filledInputDietGoals;
     private DietGoal dietGoalFats;
     private Data data;
 
