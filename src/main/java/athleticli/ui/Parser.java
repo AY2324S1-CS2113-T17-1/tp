@@ -23,7 +23,6 @@ import athleticli.data.diet.DietGoal;
 import athleticli.data.diet.Diet;
 
 import athleticli.exceptions.AthletiException;
-import athleticli.exceptions.UnknownCommandException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -93,7 +92,7 @@ public class Parser {
         case CommandName.COMMAND_DIET_LIST:
             return new ListDietCommand();
         default:
-            throw new UnknownCommandException();
+            throw new AthletiException(Message.MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
