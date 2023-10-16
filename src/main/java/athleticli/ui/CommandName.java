@@ -16,7 +16,11 @@ public class CommandName {
     public static final String COMMAND_CYCLE = "cycle";
     public static final String COMMAND_SWIM = "swim";
 
+    public static final String COMMAND_DIET_GOAL_SET = "set-diet-goal";
+    public static final String COMMAND_DIET_GOAL_EDIT = "edit-diet-goal";
+
     public static final String COMMAND_DIET_ADD = "add-diet";
     public static final String COMMAND_DIET_DELETE = "delete-diet";
     public static final String COMMAND_DIET_LIST = "list-diet";
+
 }
