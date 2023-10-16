@@ -23,10 +23,12 @@ class EditDietGoalCommandTest {
 
     @BeforeEach
     void setUp() {
-        emptyInputDietGoals = new ArrayList<>();
+        data = new Data();
+
         dietGoalFats = new DietGoal("fats", 10000);
         newDietGoalFats = new DietGoal("fats", 10);
-        data = new Data();
+
+        emptyInputDietGoals = new ArrayList<>();
         filledInputDietGoals = new ArrayList<>();
         filledInputDietGoals.add(dietGoalFats);
         filledChangedInputDietGoals = new ArrayList<>();

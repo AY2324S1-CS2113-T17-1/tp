@@ -27,7 +27,7 @@ public class EditDietGoalCommand extends Command {
     public EditDietGoalCommand(ArrayList<DietGoal> dietGoals) {
         userUpdatedDietGoals = dietGoals;
     }
-    
+
     /**
      * Updates the Diet Goal List.
      *
