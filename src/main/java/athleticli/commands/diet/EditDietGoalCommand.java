@@ -56,9 +56,9 @@ public class EditDietGoalCommand extends Command {
 
         // Edit updated goals to current diet goals
         int newTargetValue;
-        for(DietGoal userUpdatedDietGoal : userUpdatedDietGoals){
-            for(DietGoal currentDietGoal: currentDietGoals){
-                if (!userUpdatedDietGoal.getNutrients().equals(currentDietGoal.getNutrients())){
+        for (DietGoal userUpdatedDietGoal : userUpdatedDietGoals) {
+            for (DietGoal currentDietGoal: currentDietGoals) {
+                if (!userUpdatedDietGoal.getNutrients().equals(currentDietGoal.getNutrients())) {
                     continue;
                 }
                 //update new target value to the current goal
