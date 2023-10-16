@@ -57,7 +57,7 @@ public class EditDietGoalCommand extends Command {
         // Edit updated goals to current diet goals
         int newTargetValue;
         for (DietGoal userUpdatedDietGoal : userUpdatedDietGoals) {
-            for (DietGoal currentDietGoal: currentDietGoals) {
+            for (DietGoal currentDietGoal : currentDietGoals) {
                 if (!userUpdatedDietGoal.getNutrients().equals(currentDietGoal.getNutrients())) {
                     continue;
                 }
@@ -66,7 +66,8 @@ public class EditDietGoalCommand extends Command {
                 currentDietGoal.setTargetValue(newTargetValue);
             }
         }
-
-        return new String[]{"These are your goals:\n", currentDietGoals.toString()};
+        int dietGoalNum = currentDietGoals.size();
+        return new String[]{Message.MESSAGE_DIETGOAL_LIST_HEADER, currentDietGoals.toString(),
+                String.format(Message.MESSAGE_DIETGOAL_COUNT, dietGoalNum)};
     }
 }
