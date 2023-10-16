@@ -67,6 +67,11 @@ public class Message {
             "following: \"calories\", \"protein\", \"carb\", \"fats\"!";
     public static final String MESSAGE_DIETGOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
             "Please edit the goal instead!";
+    public static final String MESSAGE_DIETGOAL_NOT_EXISTED = "Diet goal for %s is not present. " +
+            "Please add the goal before editing it!";
+    public static final String MESSAGE_DIETGOAL_COUNT = "Now you have %d diet goal(s).";
+    public static final String MESSAGE_DIETGOAL_NONE = "There are no goals at the moment. Add a diet goal to start.";
+    public static final String MESSAGE_DIETGOAL_LIST_HEADER = "These are your goal(s):\n";
 
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";

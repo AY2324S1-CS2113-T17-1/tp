@@ -54,8 +54,9 @@ public class SetDietGoalCommand extends Command {
 
         // Add new diet goals to current diet goals
         currentDietGoals.addAll(userNewDietGoals);
-
-        return new String[]{"These are your goals:\n", currentDietGoals.toString()};
+        int dietGoalNum = currentDietGoals.size();
+        return new String[]{Message.MESSAGE_DIETGOAL_LIST_HEADER, currentDietGoals.toString(),
+                String.format(Message.MESSAGE_DIETGOAL_COUNT, dietGoalNum)};
     }
 
 }
