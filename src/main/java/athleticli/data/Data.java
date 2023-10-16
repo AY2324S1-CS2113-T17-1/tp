@@ -58,5 +58,31 @@ public class Data {
         return sleepGoals;
     }
 
-    
+    /**
+     * Set all the objects
+     */
+    public void setActivities(ActivityList activities) {
+        this.activities = activities;
+    }
+
+    public void setActivityGoals(ActivityGoalList activityGoals) {
+        this.activityGoals = activityGoals;
+    }
+
+    public void setDiets(DietList diets) {
+        this.diets = diets;
+    }
+
+    public void setDietGoals(DietGoalList dietGoals) {
+        this.dietGoals = dietGoals;
+    }
+
+    public void setSleeps(SleepList sleeps) {
+        this.sleeps = sleeps;
+    }
+
+    public void setSleepGoals(SleepGoalList sleepGoals) {
+        this.sleepGoals = sleepGoals;
+    }
+  
 }
