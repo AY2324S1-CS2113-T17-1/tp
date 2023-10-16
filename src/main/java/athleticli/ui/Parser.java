@@ -3,34 +3,47 @@ package athleticli.ui;
 import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
 import athleticli.commands.activity.AddActivityCommand;
+
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.ListDietCommand;
+
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
+
 import athleticli.data.activity.Activity;
 import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
+
+import athleticli.commands.diet.EditDietGoalCommand;
+import athleticli.commands.diet.SetDietGoalCommand;
+import athleticli.data.diet.DietGoal;
 import athleticli.data.diet.Diet;
+
 import athleticli.exceptions.AthletiException;
 import athleticli.exceptions.UnknownCommandException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 
 /**
  * Defines the basic methods for command parser.
  */
 public class Parser {
+    private static final String CALORIES_MARKER = "calories";
+    private static final String PROTEIN_MARKER = "protein";
+    private static final String CARB_MARKER = "carb";
+    private static final String FAT_MARKER = "fat";
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
      * while the second part is the command arguments. The second part can be empty.
      *
      * @param rawUserInput The raw user input.
-     * @return A string array whose first element is the command type and the second element is the command
-     *         arguments.
+     * @return A string array whose first element is the command type
+     *     and the second element is the command arguments.
      */
     public static String[] splitCommandWordAndArgs(String rawUserInput) {
         final String[] split = rawUserInput.trim().split("\\s+", 2);
@@ -66,6 +79,10 @@ public class Parser {
             return new AddActivityCommand(parseRunCycle(commandArgs));
         case CommandName.COMMAND_SWIM:
             return new AddActivityCommand(parseSwim(commandArgs));
+        case CommandName.COMMAND_DIET_GOAL_SET:
+            return new SetDietGoalCommand(parseDietGoalSetEdit(commandArgs));
+        case CommandName.COMMAND_DIET_GOAL_EDIT:
+            return new EditDietGoalCommand();
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
@@ -296,8 +313,8 @@ public class Parser {
             throw new AthletiException("Please specify the start time of your sleep before the end time.");
         }
 
-        String startTime =
-                commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
+        String startTime = commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
+
         String endTime = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
         if (startTime.isEmpty() || endTime.isEmpty()) {
@@ -351,6 +368,57 @@ public class Parser {
         }
 
         return new EditSleepCommand(index, startTime, endTime);
+    }
+
+    /**
+     * @param commandArgs User provided data to create goals for the nutrients defined.
+     * @return a list of diet goals for further checking in the Set Diet Goal Command.
+     * @throws AthletiException Invalid input by the user.
+     */
+    public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
+        try {
+            String[] nutrientAndTargetValues;
+            if (commandArgs.contains(" ")) {
+                nutrientAndTargetValues = commandArgs.split("\\s+");
+            } else {
+                nutrientAndTargetValues = new String[]{commandArgs};
+            }
+            String[] nutrientAndTargetValue;
+            String nutrient;
+            int targetValue;
+
+            ArrayList<DietGoal> dietGoals = new ArrayList<>();
+
+            for (int i = 0; i < nutrientAndTargetValues.length; i++) {
+                nutrientAndTargetValue = nutrientAndTargetValues[i].split("/");
+                nutrient = nutrientAndTargetValue[0];
+                targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
+                if (targetValue == 0) {
+                    throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
+                } 
+                if (!verifyValidNutrients(nutrient)) {
+                    throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
+                } 
+                DietGoal dietGoal = new DietGoal(nutrient, targetValue);
+                dietGoals.add(dietGoal);
+
+            }
+
+            return dietGoals;
+
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
+        }
+    }
+
+    /**
+     * @param nutrient The nutrient that is provided by the user.
+     * @return boolean value depending on whether the nutrient is defined in our user guide.
+     *     It returns true if the nutrient is supported by our app, false otherwise.
+     */
+    public static boolean verifyValidNutrients(String nutrient) {
+        return nutrient.equals(CALORIES_MARKER) || nutrient.equals(PROTEIN_MARKER)
+                || nutrient.equals(CARB_MARKER) || nutrient.equals(FAT_MARKER);
     }
 
     /**
