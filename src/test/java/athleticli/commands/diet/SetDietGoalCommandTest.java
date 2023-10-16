@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 class SetDietGoalCommandTest {
 
@@ -43,7 +44,7 @@ class SetDietGoalCommandTest {
             String[] actualString = setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, actualString);
         } catch (AthletiException e) {
-            assert (false);
+            fail (e);
         }
     }
 
@@ -61,7 +62,7 @@ class SetDietGoalCommandTest {
             String[] actualString = setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, actualString);
         } catch (AthletiException e) {
-            assert (false);
+            fail (e);
         }
     }
 
@@ -71,7 +72,7 @@ class SetDietGoalCommandTest {
         try {
             setDietGoalCommand.execute(data);
         } catch (AthletiException e) {
-            assert (false);
+            fail (e);
         }
         assertThrows(AthletiException.class, () -> setDietGoalCommand.execute(data));
     }
