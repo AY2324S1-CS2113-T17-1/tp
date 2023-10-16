@@ -46,6 +46,7 @@ public class Parser {
      *     and the second element is the command arguments.
      */
     public static String[] splitCommandWordAndArgs(String rawUserInput) {
+        assert rawUserInput != null : "`rawUserInput` should not be null";
         final String[] split = rawUserInput.trim().split("\\s+", 2);
         return split.length == 2 ? split : new String[]{split[0], ""};
     }
@@ -58,6 +59,7 @@ public class Parser {
      * @throws AthletiException
      */
     public static Command parseCommand(String rawUserInput) throws AthletiException {
+        assert rawUserInput != null : "`rawUserInput` should not be null";
         final String[] commandTypeAndParams = splitCommandWordAndArgs(rawUserInput);
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
