@@ -28,7 +28,15 @@ public class ListActivityCommand extends Command {
     public String[] execute(Data data) {
         ActivityList activities = data.getActivities();
         final int size = activities.size();
-        String[] output = new String[size +1];
+        if (isDetailed) {
+            return printDetailedList(activities, size);
+        } else {
+            return printList(activities, size);
+        }
+    }
+
+    public String[] printList(ActivityList activities, int size) {
+        String[] output = new String[size + 1];
         output[0] = Message.MESSAGE_ACTIVITY_LIST;
         for (int i = 0; i < size; i++) {
             output[i+1] = (i+1) + "." + activities.get(i).toString();
@@ -36,5 +44,12 @@ public class ListActivityCommand extends Command {
         return output;
     }
 
-
+    public String[] printDetailedList(ActivityList activities, int size) {
+        String[] output = new String[size + 1];
+        output[0] = Message.MESSAGE_ACTIVITY_LIST;
+        for (int i = 0; i < size; i++) {
+            output[i+1] = activities.get(i).toDetailedString();
+        }
+        return output;
+    }
 }
