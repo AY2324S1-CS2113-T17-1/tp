@@ -434,7 +434,7 @@ public class Parser {
      */
     public static int parseDietGoalDelete(String deleteIndexString) throws AthletiException {
         try {
-            int deleteIndex = Integer.parseInt((deleteIndexString.trim()));
+            int deleteIndex = Integer.parseInt(deleteIndexString.trim());
             if (deleteIndex <= 0) {
                 throw new AthletiException(Message.MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT);
             }
