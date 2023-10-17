@@ -135,6 +135,12 @@ public class Parser {
         return index;
     }
 
+    /**
+     * Parses the provided updated activity for the edit command.
+     * @param arguments             The raw user input containing the updated activity.
+     * @return activity             The parsed Activity object.
+     * @throws AthletiException     If the input format is invalid.
+     */
     private static Activity parseActivityEdit(String arguments) throws AthletiException {
         try {
             return parseActivity(arguments.split(" ", 2)[1]);
@@ -143,6 +149,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the provided updated run for the edit command
+     * @param arguments             The raw user input containing the updated run.
+     * @return activity             The parsed run object.
+     * @throws AthletiException     If the input format is invalid.
+     */
     private static Activity parseRunEdit(String arguments) throws AthletiException {
         try {
             return parseRunCycle(arguments.split(" ", 2)[1], true);
@@ -151,6 +163,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the provided updated cycle for the edit command
+     * @param arguments             The raw user input containing the updated cycle.
+     * @return activity             The parsed cycle object.
+     * @throws AthletiException     If the input format is invalid.
+     */
     private static Activity parseCycleEdit(String arguments) throws AthletiException {
         try {
             return parseRunCycle(arguments.split(" ", 2)[1], false);
@@ -159,6 +177,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the provided update swim for the edit command
+     * @param arguments             The raw user input containing the updated swim.
+     * @return activity             The parsed swim object.
+     * @throws AthletiException     If the input format is invalid.
+     */
     private static Activity parseSwimEdit(String arguments) throws AthletiException {
         try {
             return parseSwim(arguments.split(" ", 2)[1]);
@@ -167,6 +191,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the index of an activity update for the edit command.
+     * @param arguments           The raw user input containing the index.
+     * @return index              The parsed Integer index.
+     * @throws AthletiException   If the input format is invalid
+     */
     private static int parseActivityEditIndex(String arguments) throws AthletiException {
         try {
             return parseActivityIndex(arguments.split(" ", 2)[0]);
