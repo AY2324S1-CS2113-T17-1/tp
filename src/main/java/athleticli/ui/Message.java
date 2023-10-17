@@ -46,7 +46,8 @@ public class Message {
     public static final String MESSAGE_DIET_ADDED = "Well done! I've added this diet:";
     public static final String MESSAGE_ELEVATION_MISSING =
             "Please specify the elevation gain using \"elevation/\"!";
-    public static final String MESSAGE_ELEVATION_EMPTY = "The elevation gain of an activity cannot be empty!";
+    public static final String MESSAGE_ELEVATION_EMPTY =
+            "The elevation gain of an activity cannot be empty!";
     public static final String MESSAGE_ELEVATION_INVALID =
             "The elevation gain of an activity must be an integer!";
     public static final String MESSAGE_ACTIVITY_INDEX_INVALID = "The activity index must be an integer!";
@@ -67,6 +68,25 @@ public class Message {
             "Now you have tracked a total of %d diets. Keep grinding!";
     public static final String MESSAGE_ACTIVITY_FIRST =
             "Now you have tracked your first activity. This is just the beginning!";
+
+    public static final String MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
+            "must be a positive integer!";
+    public static final String MESSAGE_DIETGOAL_INVALID_NUTRIENT = "Key word to nutrients goals has to be one of the " +
+            "following: \"calories\", \"protein\", \"carb\", \"fats\"!";
+    public static final String MESSAGE_DIETGOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
+            "Please edit the goal instead!";
+    public static final String MESSAGE_DIETGOAL_NOT_EXISTED = "Diet goal for %s is not present. " +
+            "Please add the goal before editing it!";
+    public static final String MESSAGE_DIETGOAL_COUNT = "Now you have %d diet goal(s).";
+    public static final String MESSAGE_DIETGOAL_NONE = "There are no goals at the moment. Add a diet goal to start.";
+    public static final String MESSAGE_DIETGOAL_LIST_HEADER = "These are your goal(s):\n";
+    public static final String MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT = "Please provide a positive integer.\n";
+    public static final String MESSAGE_DIETGOAL_EMPTY_DIETGOALLIST = "There is no diet goals at the moment. " +
+            "Please add one to continue.\n";
+    public static final String MESSAGE_DIETGOAL_DELETE_HEADER = "The following goal has been deleted:\n";
+    public static final String MESSAGE_DIETGOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
+            "Please enter a value from 1 to %d.";
+
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";
     public static final String MESSAGE_INVALID_DIET_INDEX =
@@ -74,6 +94,5 @@ public class Message {
     public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be an integer!";
     public static final String MESSAGE_DIET_DELETED = "Noted. I've removed this diet:";
     public static final String MESSAGE_DIET_LIST = "Here are the diets in your list:";
-
-
+    public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
 }
