@@ -1,25 +1,61 @@
 package athleticli.data.sleep;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDateTime;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class SleepListTest {
-    @Test
-    public void testToString() {
-        SleepList sleepList = new SleepList();
-        sleepList.add(new Sleep("10:00 PM", "6:00 AM"));
-        sleepList.add(new Sleep("11:00 PM", "7:00 AM"));
-        assertEquals("1. sleep from 10:00 PM to 6:00 AM\n2. sleep from 11:00 PM to 7:00 AM\n", sleepList.toString());
+
+    private SleepList sleepList;
+    private Sleep sleep1;
+    private Sleep sleep2;
+
+    @BeforeEach
+    public void setup() {
+        sleepList = new SleepList();
+        sleep1 = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0), 
+                          LocalDateTime.of(2023, 10, 18, 6, 0));
+        sleep2 = new Sleep(LocalDateTime.of(2023, 10, 18, 22, 0), 
+                          LocalDateTime.of(2023, 10, 19, 6, 0));
     }
 
     @Test
-    public void testAddAndGet() {
-        SleepList sleepList = new SleepList();
-        Sleep sleep1 = new Sleep("10:00 PM", "6:00 AM");
-        Sleep sleep2 = new Sleep("11:00 PM", "7:00 AM");
+    public void testToStringWithEmptyList() {
+        assertEquals("", sleepList.toString());
+    }
+
+    @Test
+    public void testToStringWithOneSleepObject() {
+        sleepList.add(sleep1);
+        String expected = "1. sleep record from 17-10-2023 22:00 to 18-10-2023 06:00\n";
+        assertEquals(expected, sleepList.toString());
+    }
+
+    @Test
+    public void testToStringWithMultipleSleepObjects() {
         sleepList.add(sleep1);
         sleepList.add(sleep2);
+        String expected = "1. sleep record from 17-10-2023 22:00 to 18-10-2023 06:00\n"
+                        + "2. sleep record from 18-10-2023 22:00 to 19-10-2023 06:00\n";
+        assertEquals(expected, sleepList.toString());
+    }
+
+    @Test
+    public void testAddSleep() {
+        sleepList.add(sleep1);
+        assertEquals(1, sleepList.size());
         assertEquals(sleep1, sleepList.get(0));
-        assertEquals(sleep2, sleepList.get(1));
+    }
+
+    @Test
+    public void testRemoveSleep() {
+        sleepList.add(sleep1);
+        sleepList.add(sleep2);
+        sleepList.remove(sleep1);
+        assertEquals(1, sleepList.size());
+        assertEquals(sleep2, sleepList.get(0));
     }
 }

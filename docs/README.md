@@ -97,6 +97,83 @@ You can list all your diets in AtheltiCLI.
 
 * `list-diet`
 
+## Sleep Management
+
+### Adding Sleep:
+
+**Command:** `add-sleep`  
+You can record your sleep timings in AtheltiCLI by adding your sleep start and end time.
+
+**Syntax:**
+
+*   `add-sleep start/START end/END`
+
+**Parameters:**
+
+*   START: The start time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
+*   END: The end time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
+
+**Examples:**
+
+*   `add-sleep start/01-09-2021 22:00 end/02-09-2021 06:00`
+
+### Listing Sleep:
+
+**Command:** `list-sleep`
+You can list all your sleep records in AtheltiCLI.
+
+**Syntax:** `list-sleep`
+
+**Examples:** `list-sleep`
+
+### Deleting Sleep:
+
+**Command:** `delete-sleep`  
+You can delete your sleep in AtheltiCLI by specifying the sleep's index.
+
+**Syntax:**
+
+*   `delete-sleep INDEX`
+
+**Parameters:**
+
+*   INDEX: The integer index of the sleep record you wish to delete.
+
+**Examples:**
+
+*   `delete-sleep 5`  
+    (Note: This will delete the 5th sleep record from your records.)
+
+### Editing Sleep:
+
+**Command:** `edit-sleep`  
+You can modify existing sleep records in AtheltiCLI by specifying the sleep's index and then providing the new start and end times.
+
+**Syntax:**
+
+*   `edit-sleep INDEX start/START end/END`
+
+**Parameters:**
+
+*   INDEX: The integer index of the sleep record you wish to edit.
+*   START: The new start time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
+*   END: The new end time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
+
+**Examples:**
+
+*   `edit-sleep 5 start/05-09-2021 23:00 end/06-09-2021 07:00`  
+    (Note: This will edit the 5th sleep record to have the new specified timings.)
+
+---
+
+Remember, when using AtheltiCLI:
+
+*   Make sure to provide accurate dates and times.
+*   Double-check indexes before deleting or editing records to prevent mistakes.
+*   If you encounter any error messages, read them carefully to understand what went wrong.
+
+---
+
 Useful links:
 [User Guide](UserGuide.md)
 [Developer Guide](DeveloperGuide.md)
