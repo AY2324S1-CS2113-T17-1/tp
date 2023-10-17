@@ -4,6 +4,7 @@ import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
 import athleticli.commands.activity.AddActivityCommand;
 import athleticli.commands.activity.DeleteActivityCommand;
+import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.ListDietCommand;
@@ -12,6 +13,7 @@ import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
 import athleticli.data.activity.Activity;
+import athleticli.data.activity.Cycle;
 import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
 import athleticli.data.diet.Diet;
@@ -63,12 +65,15 @@ public class Parser {
         case CommandName.COMMAND_ACTIVITY:
             return new AddActivityCommand(parseActivity(commandArgs));
         case CommandName.COMMAND_CYCLE:
+            return new AddActivityCommand(parseRunCycle(commandArgs, false));
         case CommandName.COMMAND_RUN:
-            return new AddActivityCommand(parseRunCycle(commandArgs));
+            return new AddActivityCommand(parseRunCycle(commandArgs, true));
         case CommandName.COMMAND_SWIM:
             return new AddActivityCommand(parseSwim(commandArgs));
         case CommandName.COMMAND_ACTIVITY_DELETE:
             return new DeleteActivityCommand(parseActivityIndex(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_LIST:
+            return new ListActivityCommand(parseActivityListDetail(commandArgs));
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
@@ -95,6 +100,15 @@ public class Parser {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_INVALID);
         }
         return index;
+    }
+
+    /**
+     * Parses the raw user input for viewing the activity list and returns whether the user wants the detailed view
+     * @param commandArgs   The raw user input containing the arguments.
+     * @return boolean      Whether the user wants the detailed view.
+     */
+    private static boolean parseActivityListDetail(String commandArgs) {
+        return commandArgs.toLowerCase().contains(Parameter.detailSeparator);
     }
 
     /**
@@ -178,7 +192,7 @@ public class Parser {
      * @return An object representing the activity.
      * @throws AthletiException
      */
-    public static Activity parseRunCycle(String arguments) throws AthletiException {
+    public static Activity parseRunCycle(String arguments, boolean isRun) throws AthletiException {
         final int durationIndex = arguments.indexOf(Parameter.durationSeparator);
         final int distanceIndex = arguments.indexOf(Parameter.distanceSeparator);
         final int datetimeIndex = arguments.indexOf(Parameter.datetimeSeparator);
@@ -203,7 +217,11 @@ public class Parser {
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
         final int elevationParsed = parseElevation(elevation);
 
-        return new Run(caption, durationParsed, distanceParsed, datetimeParsed, elevationParsed);
+        if (isRun) {
+            return new Run(caption, durationParsed, distanceParsed, datetimeParsed, elevationParsed);
+        } else {
+            return new Cycle(caption, durationParsed, distanceParsed, datetimeParsed, elevationParsed);
+        }
     }
 
     public static int parseElevation(String elevation) throws AthletiException {

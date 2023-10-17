@@ -59,6 +59,7 @@ public class Message {
                     "the following: \"butterfly\", \"backstroke\", \"breaststroke\", \"freestyle\"!";
     public static final String MESSAGE_ACTIVITY_COUNT =
             "You have tracked a total of %d activities. Keep pushing!";
+    public static final String MESSAGE_ACTIVITY_LIST = "These are the activities you have tracked so far:";
     public static final String MESSAGE_DIET_COUNT =
             "Now you have tracked a total of %d diets. Keep grinding!";
     public static final String MESSAGE_ACTIVITY_FIRST =
