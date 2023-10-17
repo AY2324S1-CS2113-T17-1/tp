@@ -1,13 +1,12 @@
 package athleticli.commands.sleep;
 
+import java.time.LocalDateTime;
+
 import athleticli.commands.Command;
 import athleticli.data.Data;
-
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import athleticli.ui.Message;
 
 /**
  * Executes the add sleep commands provided by the user.
@@ -16,7 +15,6 @@ public class AddSleepCommand extends Command {
 
     private LocalDateTime from;
     private LocalDateTime to;
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
      * Constructor for AddSleepCommand.
@@ -37,11 +35,11 @@ public class AddSleepCommand extends Command {
         SleepList sleepList = data.getSleeps();
         Sleep newSleep = new Sleep(from, to);
         sleepList.add(newSleep);
-        
+        String returnMessage2 = String.format(Message.MESSAGE_SLEEP_ADD_RETURN_2, sleepList.size());
         return new String[] {
-            "Got it. I've added this sleep record:",
-            "  " + from.format(FORMATTER) + " to " + to.format(FORMATTER),
-            "Now you have " + sleepList.size() + " sleep records in the list."
+            Message.MESSAGE_SLEEP_ADD_RETURN_1,
+            newSleep.toString(),
+            returnMessage2
         };
     }
 }

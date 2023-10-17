@@ -2,8 +2,8 @@ package athleticli.commands.sleep;
 
 import athleticli.commands.Command;
 import athleticli.data.Data;
-
 import athleticli.data.sleep.SleepList;
+import athleticli.ui.Message;
 
 public class ListSleepCommand extends Command {
 
@@ -14,8 +14,13 @@ public class ListSleepCommand extends Command {
      */
     public String[] execute (Data data) {
         SleepList sleepList = data.getSleeps();
+        if (sleepList.size() == 0) {
+            return new String[] {
+                Message.MESSAGE_SLEEP_LIST_EMPTY
+            };
+        }
         return new String[] {
-            "Here are the sleep records in your list:" + "\n",
+            Message.MESSAGE_SLEEP_LIST,
             sleepList.toString()
         };
     }

@@ -46,8 +46,7 @@ public class ListSleepCommandTest {
         data.setSleeps(new SleepList()); // Empty list
         ListSleepCommand command = new ListSleepCommand();
         String[] expected = {
-            "Here are the sleep records in your list:\n",
-            ""
+            "You have no sleep records in your list."
         };
         assertArrayEquals(expected, command.execute(data));
     }

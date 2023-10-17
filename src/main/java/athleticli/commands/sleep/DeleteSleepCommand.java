@@ -2,9 +2,9 @@ package athleticli.commands.sleep;
 
 import athleticli.commands.Command;
 import athleticli.data.Data;
-
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
+import athleticli.ui.Message;
 
 /**
  *  Executes the delete sleep commands provided by the user.
@@ -30,18 +30,19 @@ public class DeleteSleepCommand extends Command {
         SleepList sleepList = data.getSleeps();
         if (index > sleepList.size() || index < 1) {
             return new String[] {
-                "Invalid index. Please enter a valid index."
+                Message.MESSAGE_SLEEP_DELETE_INVALID_INDEX
             };
         }
         Sleep oldSleep = sleepList.get(index - 1);
         sleepList.remove(index - 1);
         
+        String returnMessage = String.format(Message.MESSAGE_SLEEP_DELETE_RETURN, index, oldSleep.toString());
         return new String[] {
-            "Got it. I've deleted this sleep record at index " + index + ": " +  oldSleep.toString()
+            returnMessage
         };
 
     }
-    
+
 }
 
 

@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 
 import athleticli.commands.Command;
 import athleticli.data.Data;
-
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
+import athleticli.ui.Message;
 
 /**
  * Executes the edit sleep commands provided by the user.
@@ -39,9 +39,11 @@ public class EditSleepCommand extends Command {
         Sleep oldSleep = sleepList.get(index - 1);
         Sleep newSleep = new Sleep(from, to);
         sleepList.set(index - 1, newSleep);
+
+        String returnMessage = String.format(Message.MESSAGE_SLEEP_EDIT_RETURN, index);
         
         return new String[] {
-            "Got it. I've changed this sleep record at index " + index + ":",
+            returnMessage,
             "original: " + oldSleep.toString(),
             "to new: " + newSleep.toString(),
         };

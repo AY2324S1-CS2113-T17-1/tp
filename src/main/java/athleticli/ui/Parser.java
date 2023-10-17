@@ -296,12 +296,8 @@ public class Parser {
         int startMarkerPos = commandArgs.indexOf(startMarkerConstant);
         int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
 
-        if (startMarkerPos == -1 || endMarkerPos == -1) {
-            throw new AthletiException("Please specify both the start and end time of your sleep.");
-        }
-
-        if (startMarkerPos > endMarkerPos) {
-            throw new AthletiException("Please specify the start time of your sleep before the end time.");
+        if (startMarkerPos == -1 || endMarkerPos == -1 || startMarkerPos > endMarkerPos) {
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
         String startTimeStr =
@@ -309,7 +305,7 @@ public class Parser {
         String endTimeStr = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
         if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
-            throw new AthletiException("Please specify both the start and end time of your sleep.");
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
         // Convert the strings to LocalDateTime
@@ -318,12 +314,12 @@ public class Parser {
             startTime = LocalDateTime.parse(startTimeStr, SLEEP_TIME_FORMATTER);
             endTime = LocalDateTime.parse(endTimeStr, SLEEP_TIME_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new AthletiException("Invalid date-time format. Please use dd-MM-yyyy HH:mm.");
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT);
         }
 
         //Check if the start time is before the end time
         if (startTime.isAfter(endTime)) {
-            throw new AthletiException("Please specify the start time of your sleep before the end time.");
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START);
         }
 
         return new AddSleepCommand(startTime, endTime);
@@ -341,7 +337,7 @@ public class Parser {
         try {
             index = Integer.parseInt(commandArgs.trim());
         } catch (NumberFormatException e) {
-            throw new AthletiException("Please specify the index of the sleep record you want to delete.");
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_DELETE_NO_INDEX);
         }
 
         return new DeleteSleepCommand(index);
@@ -361,18 +357,14 @@ public class Parser {
         int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
         int index;
 
-        if (startMarkerPos == -1 || endMarkerPos == -1) {
-            throw new AthletiException("Please specify both the start and end time of your sleep.");
-        }
-
-        if (startMarkerPos > endMarkerPos) {
-            throw new AthletiException("Please specify the start time of your sleep before the end time.");
+        if (startMarkerPos == -1 || endMarkerPos == -1 || startMarkerPos > endMarkerPos) {
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
         try {
             index = Integer.parseInt(commandArgs.substring(0, startMarkerPos).trim());
         } catch (NumberFormatException e) {
-            throw new AthletiException("Please specify the index of the sleep record you want to edit.");
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX);
         }
 
         String startTimeStr =
@@ -380,7 +372,7 @@ public class Parser {
         String endTimeStr = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
 
         if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
-            throw new AthletiException("Please specify both the start and end time of your sleep.");
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
         // Convert the strings to LocalDateTime
@@ -389,12 +381,12 @@ public class Parser {
             startTime = LocalDateTime.parse(startTimeStr, SLEEP_TIME_FORMATTER);
             endTime = LocalDateTime.parse(endTimeStr, SLEEP_TIME_FORMATTER);
         } catch (DateTimeParseException e) {
-            throw new AthletiException("Invalid date-time format. Please use dd-MM-yyyy HH:mm.");
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT);
         }
 
         //Check if the start time is before the end time
         if (startTime.isAfter(endTime)) {
-            throw new AthletiException("Please specify the start time of your sleep before the end time.");
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START);
         }
 
         return new EditSleepCommand(index, startTime, endTime);
