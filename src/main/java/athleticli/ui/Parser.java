@@ -4,7 +4,14 @@ import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
 import athleticli.commands.activity.AddActivityCommand;
 
-import athleticli.commands.diet.*;
+import athleticli.commands.diet.AddDietCommand;
+import athleticli.commands.diet.DeleteDietCommand;
+import athleticli.commands.diet.DeleteDietGoalCommand;
+import athleticli.commands.diet.EditDietGoalCommand;
+import athleticli.commands.diet.ListDietCommand;
+import athleticli.commands.diet.ListDietGoalCommand;
+import athleticli.commands.diet.SetDietGoalCommand;
+
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
@@ -414,7 +421,7 @@ public class Parser {
     /**
      * @param nutrient The nutrient that is provided by the user.
      * @return boolean value depending on whether the nutrient is defined in our user guide.
-     * It returns true if the nutrient is supported by our app, false otherwise.
+     *     It returns true if the nutrient is supported by our app, false otherwise.
      */
     public static boolean verifyValidNutrients(String nutrient) {
         return nutrient.equals(CALORIES_MARKER) || nutrient.equals(PROTEIN_MARKER)
