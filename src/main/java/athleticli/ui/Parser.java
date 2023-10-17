@@ -4,12 +4,7 @@ import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
 import athleticli.commands.activity.AddActivityCommand;
 
-import athleticli.commands.diet.AddDietCommand;
-import athleticli.commands.diet.DeleteDietCommand;
-import athleticli.commands.diet.EditDietGoalCommand;
-import athleticli.commands.diet.ListDietCommand;
-import athleticli.commands.diet.ListDietGoalCommand;
-import athleticli.commands.diet.SetDietGoalCommand;
+import athleticli.commands.diet.*;
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
@@ -44,7 +39,7 @@ public class Parser {
      *
      * @param rawUserInput The raw user input.
      * @return A string array whose first element is the command type
-     *     and the second element is the command arguments.
+     * and the second element is the command arguments.
      */
     public static String[] splitCommandWordAndArgs(String rawUserInput) {
         final String[] split = rawUserInput.trim().split("\\s+", 2);
@@ -86,6 +81,8 @@ public class Parser {
             return new EditDietGoalCommand(parseDietGoalSetEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_LIST:
             return new ListDietGoalCommand();
+        case CommandName.COMMAND_DIET_GOAL_DELETE:
+            return new DeleteDietGoalCommand(parseDietGoalDelete(commandArgs));
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
@@ -417,11 +414,24 @@ public class Parser {
     /**
      * @param nutrient The nutrient that is provided by the user.
      * @return boolean value depending on whether the nutrient is defined in our user guide.
-     *     It returns true if the nutrient is supported by our app, false otherwise.
+     * It returns true if the nutrient is supported by our app, false otherwise.
      */
     public static boolean verifyValidNutrients(String nutrient) {
         return nutrient.equals(CALORIES_MARKER) || nutrient.equals(PROTEIN_MARKER)
                 || nutrient.equals(CARB_MARKER) || nutrient.equals(FAT_MARKER);
+    }
+
+    public static int parseDietGoalDelete(String deleteIndexString) throws AthletiException {
+        try {
+            int deleteIndex = Integer.parseInt((deleteIndexString));
+            if (deleteIndex <= 0) {
+                throw new AthletiException(Message.MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT);
+            }
+            return deleteIndex;
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT);
+        }
+
     }
 
     /**
