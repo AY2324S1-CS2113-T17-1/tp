@@ -46,20 +46,38 @@ class ParserTest {
 
     @Test
     void parseCommand_addSleepCommand_expectAddSleepCommand() throws AthletiException {
-        final String addSleepCommandString = "add-sleep /start 10:00 PM /end 6:00 AM";
+        final String addSleepCommandString = "add-sleep start/06-10-2021 10:00 end/07-10-2021 06:00";
         assertInstanceOf(AddSleepCommand.class, parseCommand(addSleepCommandString));
+    }
+
+    @Test 
+    void parseCommand_addSleepCommand_missingStartExpectAthletiException() {
+        final String addSleepCommandString = "add-sleep end/07-10-2021 06:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addSleepCommandString));
     }
 
     @Test
     void parseCommand_editSleepCommand_expectEditSleepCommand() throws AthletiException {
-        final String editSleepCommandString = "edit-sleep 1 /start 10:00 PM /end 6:00 AM";
+        final String editSleepCommandString = "edit-sleep 1 start/06-10-2021 10:00 end/07-10-2021 06:00";
         assertInstanceOf(EditSleepCommand.class, parseCommand(editSleepCommandString));
+    }
+
+    @Test
+    void parseCommand_editSleepCommand_missingStartExpectAthletiException() {
+        final String editSleepCommandString = "edit-sleep 1 end/07-10-2021 06:00";
+        assertThrows(AthletiException.class, () -> parseCommand(editSleepCommandString));
     }
 
     @Test
     void parseCommand_deleteSleepCommand_expectDeleteSleepCommand() throws AthletiException {
         final String deleteSleepCommandString = "delete-sleep 1";
         assertInstanceOf(DeleteSleepCommand.class, parseCommand(deleteSleepCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteSleepCommand_invalidIndexExpectAthletiException() {
+        final String deleteSleepCommandString = "delete-sleep abc";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteSleepCommandString));
     }
 
     @Test
