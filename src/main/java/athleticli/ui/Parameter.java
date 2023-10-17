@@ -7,5 +7,5 @@ public class Parameter {
     public static final String datetimeSeparator = "datetime/";
     public static final String elevationSeparator = "elevation/";
     public static final String swimmingStyleSeparator = "style/";
-    public static final String detailSeparator = "detail";
+    public static final String detailFlag = "-d";
 }

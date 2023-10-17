@@ -108,7 +108,7 @@ public class Parser {
      * @return boolean      Whether the user wants the detailed view.
      */
     private static boolean parseActivityListDetail(String commandArgs) {
-        return commandArgs.toLowerCase().contains(Parameter.detailSeparator);
+        return commandArgs.toLowerCase().contains(Parameter.detailFlag);
     }
 
     /**
