@@ -35,7 +35,7 @@ public class DeleteDietGoalCommand extends Command {
      * @return The message which will be shown to the user.
      */
     public String[] execute(Data data) throws AthletiException {
-        logger.log(Level.FINE,"Executing delete command for diet goals");
+        logger.log(Level.FINE, "Executing delete command for diet goals");
         DietGoalList dietGoals = data.getDietGoals();
         if (dietGoals.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_EMPTY_DIETGOALLIST);
@@ -43,7 +43,7 @@ public class DeleteDietGoalCommand extends Command {
         try {
             DietGoal dietGoalRemoved = dietGoals.get(deleteIndex - 1);
             dietGoals.remove(deleteIndex - 1);
-            logger.log(Level.FINE,String.format("Diet goals %s has been successfully removed",
+            logger.log(Level.FINE, String.format("Diet goals %s has been successfully removed",
                     dietGoalRemoved.getNutrients()));
             return new String[]{Message.MESSAGE_DIETGOAL_DELETE_HEADER,
                     dietGoalRemoved.toString()};
