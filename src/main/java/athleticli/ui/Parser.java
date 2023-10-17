@@ -4,6 +4,7 @@ import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
 import athleticli.commands.activity.AddActivityCommand;
 import athleticli.commands.activity.DeleteActivityCommand;
+import athleticli.commands.activity.EditActivityCommand;
 import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
@@ -74,6 +75,14 @@ public class Parser {
             return new DeleteActivityCommand(parseActivityIndex(commandArgs));
         case CommandName.COMMAND_ACTIVITY_LIST:
             return new ListActivityCommand(parseActivityListDetail(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_EDIT:
+            return new EditActivityCommand(parseActivityEdit(commandArgs), parseActivityEditIndex(commandArgs));
+        case CommandName.COMMAND_RUN_EDIT:
+            return new EditActivityCommand(parseRunEdit(commandArgs), parseActivityEditIndex(commandArgs));
+        case CommandName.COMMAND_CYCLE_EDIT:
+            return new EditActivityCommand(parseCycleEdit(commandArgs), parseActivityEditIndex(commandArgs));
+        case CommandName.COMMAND_SWIM_EDIT:
+            return new EditActivityCommand(parseSwimEdit(commandArgs), parseActivityEditIndex(commandArgs));
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
@@ -100,6 +109,46 @@ public class Parser {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_INVALID);
         }
         return index;
+    }
+
+    private static Activity parseActivityEdit(String arguments) throws AthletiException {
+        try {
+            return parseActivity(arguments.split(" ", 2)[1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
+    }
+
+    private static Activity parseRunEdit(String arguments) throws AthletiException {
+        try {
+            return parseRunCycle(arguments.split(" ", 2)[1], true);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
+    }
+
+    private static Activity parseCycleEdit(String arguments) throws AthletiException {
+        try {
+            return parseRunCycle(arguments.split(" ", 2)[1], false);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
+    }
+
+    private static Activity parseSwimEdit(String arguments) throws AthletiException {
+        try {
+            return parseSwim(arguments.split(" ", 2)[1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
+    }
+
+    private static int parseActivityEditIndex(String arguments) throws AthletiException {
+        try {
+            return parseActivityIndex(arguments.split(" ", 2)[0]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
     }
 
     /**
