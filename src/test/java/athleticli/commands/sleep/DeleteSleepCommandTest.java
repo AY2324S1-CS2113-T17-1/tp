@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 public class DeleteSleepCommandTest {
 
     private Data data;
-    private Sleep sleep1, sleep2;
+    private Sleep sleep1;
+    private Sleep sleep2;
 
     @BeforeEach
     public void setup() {

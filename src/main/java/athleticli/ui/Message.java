@@ -76,14 +76,16 @@ public class Message {
     public static final String MESSAGE_SLEEP_ADD_RETURN_1 = "Got it. I've added this sleep record:";
     public static final String MESSAGE_SLEEP_ADD_RETURN_2 = "Now you have %d sleep records in the list.";
 
-    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT = "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME = "Please specify both the start and end time of your sleep.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START = "Please specify the start time of your sleep before the end time.";
-    //for delete
-    public static final String ERRORMESSAGE_PARSER_SLEEP_DELETE_NO_INDEX = "Please specify the index of the sleep record you want to delete.";
-    //for edit
-    public static final String ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX = "Please specify the index of the sleep record you want to edit.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT = 
+        "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME = 
+        "Please specify both the start and end time of your sleep.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START = 
+        "Please specify the start time of your sleep before the end time.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_DELETE_NO_INDEX = 
+        "Please specify the index of the sleep record you want to delete.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX = 
+        "Please specify the index of the sleep record you want to edit.";
 
-    
 
 }

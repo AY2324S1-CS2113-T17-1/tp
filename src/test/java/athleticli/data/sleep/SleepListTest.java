@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test;
 public class SleepListTest {
 
     private SleepList sleepList;
-    private Sleep sleep1, sleep2;
+    private Sleep sleep1;
+    private Sleep sleep2;
 
     @BeforeEach
     public void setup() {

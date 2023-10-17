@@ -25,6 +25,8 @@ import java.time.format.DateTimeParseException;
  * Defines the basic methods for command parser.
  */
 public class Parser {
+    private static DateTimeFormatter sleepTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
      * while the second part is the command arguments. The second part can be empty.
@@ -280,7 +282,6 @@ public class Parser {
         }
     }
 
-    private static final DateTimeFormatter SLEEP_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
      * Parses the raw user input for an add sleep command and returns the corresponding command object.
@@ -309,10 +310,11 @@ public class Parser {
         }
 
         // Convert the strings to LocalDateTime
-        LocalDateTime startTime, endTime;
+        LocalDateTime startTime;
+        LocalDateTime endTime;
         try {
-            startTime = LocalDateTime.parse(startTimeStr, SLEEP_TIME_FORMATTER);
-            endTime = LocalDateTime.parse(endTimeStr, SLEEP_TIME_FORMATTER);
+            startTime = LocalDateTime.parse(startTimeStr, sleepTimeFormatter);
+            endTime = LocalDateTime.parse(endTimeStr, sleepTimeFormatter);
         } catch (DateTimeParseException e) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT);
         }
@@ -376,10 +378,11 @@ public class Parser {
         }
 
         // Convert the strings to LocalDateTime
-        LocalDateTime startTime, endTime;
+        LocalDateTime startTime;
+        LocalDateTime endTime;
         try {
-            startTime = LocalDateTime.parse(startTimeStr, SLEEP_TIME_FORMATTER);
-            endTime = LocalDateTime.parse(endTimeStr, SLEEP_TIME_FORMATTER);
+            startTime = LocalDateTime.parse(startTimeStr, sleepTimeFormatter);
+            endTime = LocalDateTime.parse(endTimeStr, sleepTimeFormatter);
         } catch (DateTimeParseException e) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT);
         }
