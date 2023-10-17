@@ -7,10 +7,13 @@ import athleticli.data.activity.ActivityList;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+import java.util.logging.Logger;
+
 /**
  * Executes the edit activity command provided by the user.
  */
 public class EditActivityCommand extends Command {
+    private static Logger logger = Logger.getLogger("EditActivityCommand");
     private final int index;
     private final Activity activity;
 
@@ -32,12 +35,15 @@ public class EditActivityCommand extends Command {
      */
     @Override
     public String[] execute(Data data) throws AthletiException {
+        logger.log(java.util.logging.Level.INFO, "Editing activity at index " + index);
         ActivityList activities = data.getActivities();
         try {
             activities.set(index-1, activity);
+            logger.log(java.util.logging.Level.INFO, "Activity at index " + index + "successfully edited");
             return new String[]{Message.MESSAGE_ACTIVITY_UPDATED, activity.toString(),
                     String.format(Message.MESSAGE_ACTIVITY_COUNT, activities.size())};
         } catch (IndexOutOfBoundsException e) {
+            logger.log(java.util.logging.Level.WARNING, "Activity index out of bounds");
             throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNCE);
         }
     }
