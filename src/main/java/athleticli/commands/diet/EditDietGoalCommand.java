@@ -19,9 +19,9 @@ public class EditDietGoalCommand extends Command {
     private final ArrayList<DietGoal> userUpdatedDietGoals;
 
     /**
-     * This is a constructor to set up the edit diet goal command
+     * This is a constructor to set up the edit diet goal command.
      *
-     * @param dietGoals This is a list consisting of updated existing diet goals
+     * @param dietGoals This is a list consisting of updated existing diet goals.
      *                  to be added to the current goal list.
      */
     public EditDietGoalCommand(ArrayList<DietGoal> dietGoals) {
@@ -31,7 +31,7 @@ public class EditDietGoalCommand extends Command {
     /**
      * Updates the Diet Goal List.
      *
-     * @param data The current data containing the different nutrients' new goal value.
+     * @param data The current data containing the different nutrient goals.
      * @return The message which will be shown to the user.
      */
     @Override
