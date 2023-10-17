@@ -15,6 +15,7 @@ public class Sleep {
 
     /**
      * Constructor for Sleep.
+     *
      * @param from Start time of the sleep.
      * @param to End time of the sleep.
      */
@@ -25,6 +26,7 @@ public class Sleep {
 
     /**
      * toString method for Sleep.
+     *
      * @return String representation of the sleep record.
      */
     public String toString() {
