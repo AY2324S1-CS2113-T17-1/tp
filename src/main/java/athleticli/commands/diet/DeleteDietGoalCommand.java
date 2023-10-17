@@ -24,7 +24,7 @@ public class DeleteDietGoalCommand extends Command {
      */
     public DeleteDietGoalCommand(int deleteIndex) {
         //deleteIndex that is less than or equal to zero would result in exception
-        assert deleteIndex <= 0;
+        assert deleteIndex >= 1;
         this.deleteIndex = deleteIndex;
     }
 
