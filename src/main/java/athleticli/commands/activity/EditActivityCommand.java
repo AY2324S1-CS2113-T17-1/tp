@@ -24,6 +24,7 @@ public class EditActivityCommand extends Command {
      */
     public EditActivityCommand(Activity activity, int index) {
         this.index = index;
+        assert index > 0 : "Index should be greater than 0";
         this.activity = activity;
     }
 
