@@ -63,6 +63,23 @@ The index must be a positive number and is not larger than the number of activit
 * `delete-activity 2` deletes the second activity in the activity list.
 * `delete-activity 1` deletes the first activity in the activity list.
 
+### Listing Activities:
+
+'list-activity'
+
+You can see all your tracked activities in a list by using this command. For more detailed information, you can use 
+the detailed flag.
+
+**Syntaxt:**
+* `list-activity [-d]`
+
+**Flags:**
+* `-d`: Shows a detailed list of activities.
+
+**Examples:**
+* `list-activity` shows a brief overview  of all activities.
+* `list-activity -d` shows a detailed summary of all activities.
+
 ## Diet Management
 
 ### Adding Diets:
