@@ -25,7 +25,6 @@ import athleticli.data.diet.DietGoal;
 import athleticli.data.diet.Diet;
 
 import athleticli.exceptions.AthletiException;
-import athleticli.exceptions.UnknownCommandException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
@@ -49,6 +48,7 @@ public class Parser {
      *     and the second element is the command arguments.
      */
     public static String[] splitCommandWordAndArgs(String rawUserInput) {
+        assert rawUserInput != null : "`rawUserInput` should not be null";
         final String[] split = rawUserInput.trim().split("\\s+", 2);
         return split.length == 2 ? split : new String[]{split[0], ""};
     }
@@ -61,6 +61,7 @@ public class Parser {
      * @throws AthletiException
      */
     public static Command parseCommand(String rawUserInput) throws AthletiException {
+        assert rawUserInput != null : "`rawUserInput` should not be null";
         final String[] commandTypeAndParams = splitCommandWordAndArgs(rawUserInput);
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
@@ -97,7 +98,7 @@ public class Parser {
         case CommandName.COMMAND_DIET_LIST:
             return new ListDietCommand();
         default:
-            throw new UnknownCommandException();
+            throw new AthletiException(Message.MESSAGE_UNKNOWN_COMMAND);
         }
     }
 
