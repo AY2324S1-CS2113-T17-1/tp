@@ -9,14 +9,20 @@ import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
 import athleticli.exceptions.AthletiException;
-import athleticli.exceptions.UnknownCommandException;
+
 import org.junit.jupiter.api.Test;
 
 import static athleticli.ui.Parser.parseCommand;
+import static athleticli.ui.Parser.parseDietGoalSetEdit;
 import static athleticli.ui.Parser.splitCommandWordAndArgs;
+import static athleticli.ui.Parser.verifyValidNutrients;
+
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class ParserTest {
@@ -33,9 +39,9 @@ class ParserTest {
     }
 
     @Test
-    void parseCommand_unknownCommand_expectUnknownCommandException() {
+    void parseCommand_unknownCommand_expectAthletiException() {
         final String unknownCommand = "hello";
-        assertThrows(UnknownCommandException.class, () -> parseCommand(unknownCommand));
+        assertThrows(AthletiException.class, () -> parseCommand(unknownCommand));
     }
 
     @Test
@@ -186,5 +192,39 @@ class ParserTest {
     void parseCommand_deleteDietCommand_emptyIndexExpectAthletiException() {
         final String deleteDietCommandString = "delete-diet";
         assertThrows(AthletiException.class, () -> parseCommand(deleteDietCommandString));
+    }
+
+    @Test
+    void verifyNutrient_validNutrient_returnTrue() {
+        assertTrue(verifyValidNutrients("calories"));
+    }
+
+    @Test
+    void verifyNutrient_validNutrient_returnFalse() {
+        assertFalse(verifyValidNutrients("invalidNutrients"));
+    }
+
+    @Test
+    void parseDietGoalSet_oneValidGoal_oneGoalInList() {
+        String oneValidGoalString = "calories/60";
+        assertDoesNotThrow(() -> parseDietGoalSetEdit(oneValidGoalString));
+    }
+
+    @Test
+    void parseDietGoalSet_oneValidOneInvalidGoal_throwAthletiException() {
+        String oneValidOneInvalidGoalString = "calories/60 protein/protine";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(oneValidOneInvalidGoalString));
+    }
+
+    @Test
+    void parseDietGoalSet_zeroTargetValue_throwAthletiException() {
+        String zeroTargetValueGoalString = "calories/0";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(zeroTargetValueGoalString));
+    }
+
+    @Test
+    void parseDietGoalSet_oneInvalidGoal_throwAthlethiException() {
+        String invalidGoalString = "calories/caloreis protein/protein";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
     }
 }
