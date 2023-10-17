@@ -422,7 +422,6 @@ public class Parser {
     }
 
     /**
-     *
      * @param deleteIndexString Index of the goal to be deleted in String format
      * @return Index of the goal in integer format in users' perspective.
      * @throws AthletiException Catch invalid characters and numbers.
