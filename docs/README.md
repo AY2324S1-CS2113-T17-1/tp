@@ -65,12 +65,12 @@ The index must be a positive number and is not larger than the number of activit
 
 ### Listing Activities:
 
-'list-activity'
+`list-activity`
 
 You can see all your tracked activities in a list by using this command. For more detailed information, you can use 
 the detailed flag.
 
-**Syntaxt:**
+**Syntax:**
 * `list-activity [-d]`
 
 **Flags:**
@@ -79,6 +79,26 @@ the detailed flag.
 **Examples:**
 * `list-activity` shows a brief overview  of all activities.
 * `list-activity -d` shows a detailed summary of all activities.
+
+### Editing Activities:
+
+`edit-activity`, `edit-run`, `edit-swim`, `edit-cycle`
+
+You can edit your activities in AthletiCLI by editing the activity at the specified index.
+
+**Syntax:**
+* `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
+* `edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
+* `edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+
+**Parameters:**
+* INDEX: The index of the activity to be edited - must be a positive number
+* see adding activities for the other parameters
+
+**Examples:**
+* `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
+* `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
 ## Diet Management
 
