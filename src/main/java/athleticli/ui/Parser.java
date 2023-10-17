@@ -6,10 +6,12 @@ import athleticli.commands.activity.AddActivityCommand;
 
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
+import athleticli.commands.diet.DeleteDietGoalCommand;
 import athleticli.commands.diet.EditDietGoalCommand;
 import athleticli.commands.diet.ListDietCommand;
 import athleticli.commands.diet.ListDietGoalCommand;
 import athleticli.commands.diet.SetDietGoalCommand;
+
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
@@ -87,6 +89,8 @@ public class Parser {
             return new EditDietGoalCommand(parseDietGoalSetEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_LIST:
             return new ListDietGoalCommand();
+        case CommandName.COMMAND_DIET_GOAL_DELETE:
+            return new DeleteDietGoalCommand(parseDietGoalDelete(commandArgs));
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
@@ -418,11 +422,28 @@ public class Parser {
     /**
      * @param nutrient The nutrient that is provided by the user.
      * @return boolean value depending on whether the nutrient is defined in our user guide.
-     *     It returns true if the nutrient is supported by our app, false otherwise.
      */
     public static boolean verifyValidNutrients(String nutrient) {
         return nutrient.equals(CALORIES_MARKER) || nutrient.equals(PROTEIN_MARKER)
                 || nutrient.equals(CARB_MARKER) || nutrient.equals(FAT_MARKER);
+    }
+
+    /**
+     * @param deleteIndexString Index of the goal to be deleted in String format
+     * @return Index of the goal in integer format in users' perspective.
+     * @throws AthletiException Catch invalid characters and numbers.
+     */
+    public static int parseDietGoalDelete(String deleteIndexString) throws AthletiException {
+        try {
+            int deleteIndex = Integer.parseInt(deleteIndexString.trim());
+            if (deleteIndex <= 0) {
+                throw new AthletiException(Message.MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT);
+            }
+            return deleteIndex;
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT);
+        }
+
     }
 
     /**
