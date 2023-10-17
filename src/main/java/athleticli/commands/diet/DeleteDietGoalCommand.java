@@ -7,7 +7,12 @@ import athleticli.data.diet.DietGoalList;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+import java.io.IOException;
+
+import java.util.logging.ConsoleHandler;
+import java.util.logging.FileHandler;
 import java.util.logging.Level;
+import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 /**
@@ -24,8 +29,14 @@ public class DeleteDietGoalCommand extends Command {
      */
     public DeleteDietGoalCommand(int deleteIndex) {
         //deleteIndex that is less than or equal to zero would result in exception
-        assert deleteIndex >= 1;
+        assert deleteIndex >= 1: "'deleteIndex' should has the value of 1 minimally.";
         this.deleteIndex = deleteIndex;
+        LogManager.getLogManager().reset();
+        try {
+            logger.addHandler(new FileHandler("%t/athleticli-log.txt"));
+        } catch(IOException e) {
+            logger.addHandler(new ConsoleHandler());
+        }
     }
 
     /**
