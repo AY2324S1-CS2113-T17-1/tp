@@ -1,7 +1,6 @@
 package athleticli.data.activity;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a running activity consisting of relevant evaluation data.

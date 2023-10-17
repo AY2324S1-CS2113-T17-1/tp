@@ -157,7 +157,7 @@ public class Parser {
      * @return boolean      Whether the user wants the detailed view.
      */
     private static boolean parseActivityListDetail(String commandArgs) {
-        return commandArgs.toLowerCase().contains(Parameter.detailFlag);
+        return commandArgs.toLowerCase().contains(Parameter.DETAIL_FLAG);
     }
 
     /**
@@ -168,19 +168,19 @@ public class Parser {
      * @throws AthletiException
      */
     public static Activity parseActivity(String arguments) throws AthletiException {
-        final int durationIndex = arguments.indexOf(Parameter.durationSeparator);
-        final int distanceIndex = arguments.indexOf(Parameter.distanceSeparator);
-        final int datetimeIndex = arguments.indexOf(Parameter.datetimeSeparator);
+        final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
+        final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
+        final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
 
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
 
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
-                arguments.substring(durationIndex + Parameter.durationSeparator.length(), distanceIndex).trim();
+                arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex).trim();
         final String distance =
-                arguments.substring(distanceIndex + Parameter.distanceSeparator.length(), datetimeIndex).trim();
+                arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(), datetimeIndex).trim();
         final String datetime =
-                arguments.substring(datetimeIndex + Parameter.datetimeSeparator.length()).trim();
+                arguments.substring(datetimeIndex + Parameter.DATETIME_SEPARATOR.length()).trim();
 
         checkEmptyActivityArguments(caption, duration, distance, datetime);
 
@@ -242,22 +242,22 @@ public class Parser {
      * @throws AthletiException
      */
     public static Activity parseRunCycle(String arguments, boolean isRun) throws AthletiException {
-        final int durationIndex = arguments.indexOf(Parameter.durationSeparator);
-        final int distanceIndex = arguments.indexOf(Parameter.distanceSeparator);
-        final int datetimeIndex = arguments.indexOf(Parameter.datetimeSeparator);
-        final int elevationIndex = arguments.indexOf(Parameter.elevationSeparator);
+        final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
+        final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
+        final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
+        final int elevationIndex = arguments.indexOf(Parameter.ELEVATION_SEPARATOR);
 
         checkMissingRunCycleArguments(durationIndex, distanceIndex, datetimeIndex, elevationIndex);
 
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
-                arguments.substring(durationIndex + Parameter.durationSeparator.length(), distanceIndex).trim();
+                arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex).trim();
         final String distance =
-                arguments.substring(distanceIndex + Parameter.distanceSeparator.length(), datetimeIndex).trim();
+                arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(), datetimeIndex).trim();
         final String datetime =
-                arguments.substring(datetimeIndex + Parameter.datetimeSeparator.length(), elevationIndex).trim();
+                arguments.substring(datetimeIndex + Parameter.DATETIME_SEPARATOR.length(), elevationIndex).trim();
         final String elevation =
-                arguments.substring(elevationIndex + Parameter.elevationSeparator.length()).trim();
+                arguments.substring(elevationIndex + Parameter.ELEVATION_SEPARATOR.length()).trim();
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, elevation);
 
@@ -341,22 +341,22 @@ public class Parser {
      * @throws AthletiException
      */
     public static Activity parseSwim(String arguments) throws AthletiException {
-        final int durationIndex = arguments.indexOf(Parameter.durationSeparator);
-        final int distanceIndex = arguments.indexOf(Parameter.distanceSeparator);
-        final int datetimeIndex = arguments.indexOf(Parameter.distanceSeparator);
-        final int swimmingStyleIndex = arguments.indexOf(Parameter.swimmingStyleSeparator);
+        final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
+        final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
+        final int datetimeIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
+        final int swimmingStyleIndex = arguments.indexOf(Parameter.SWIMMING_STYLE_SEPARATOR);
 
         checkMissingSwimArguments(durationIndex, distanceIndex, datetimeIndex, swimmingStyleIndex);
 
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
-                arguments.substring(durationIndex + Parameter.durationSeparator.length(), distanceIndex).trim();
+                arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex).trim();
         final String distance =
-                arguments.substring(distanceIndex + Parameter.distanceSeparator.length(), datetimeIndex).trim();
+                arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(), datetimeIndex).trim();
         final String datetime =
-                arguments.substring(datetimeIndex + Parameter.datetimeSeparator.length(), swimmingStyleIndex).trim();
+                arguments.substring(datetimeIndex + Parameter.DATETIME_SEPARATOR.length(), swimmingStyleIndex).trim();
         final String swimmingStyle =
-                arguments.substring(swimmingStyleIndex + Parameter.swimmingStyleSeparator.length()).trim();
+                arguments.substring(swimmingStyleIndex + Parameter.SWIMMING_STYLE_SEPARATOR.length()).trim();
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, swimmingStyleIndex);
 
