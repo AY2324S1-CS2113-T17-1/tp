@@ -28,6 +28,8 @@ public class Ui {
      * @param out   The <code>PrintStream</code> displaying the program's output.
      */
     public Ui(InputStream in, PrintStream out) {
+        assert in != null : "Input stream `in` should not be null";
+        assert out != null : "Print stream `out` should not be null";
         this.in = new Scanner(in);
         this.out = out;
     }
@@ -48,6 +50,7 @@ public class Ui {
      * @param messages  The messages to be shown.
      */
     public void showMessages(String... messages) {
+        assert messages != null : "Messages should not be null";
         out.print(Message.LINE);
         for (String message : messages) {
             out.println(Message.PREFIX_MESSAGE + message);
@@ -61,6 +64,7 @@ public class Ui {
      * @param e The exception whose message will be shown.
      */
     public void showException(Exception e) {
+        assert e != null : "Exception `e` should not be null";
         showMessages(Message.PREFIX_EXCEPTION + e.getMessage());
     }
 

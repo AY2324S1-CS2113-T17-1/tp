@@ -9,7 +9,7 @@ import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
 import athleticli.exceptions.AthletiException;
-import athleticli.exceptions.UnknownCommandException;
+
 import org.junit.jupiter.api.Test;
 
 import static athleticli.ui.Parser.parseCommand;
@@ -39,9 +39,9 @@ class ParserTest {
     }
 
     @Test
-    void parseCommand_unknownCommand_expectUnknownCommandException() {
+    void parseCommand_unknownCommand_expectAthletiException() {
         final String unknownCommand = "hello";
-        assertThrows(UnknownCommandException.class, () -> parseCommand(unknownCommand));
+        assertThrows(AthletiException.class, () -> parseCommand(unknownCommand));
     }
 
     @Test
