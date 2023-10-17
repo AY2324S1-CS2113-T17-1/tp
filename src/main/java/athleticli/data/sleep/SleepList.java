@@ -8,6 +8,7 @@ import java.util.ArrayList;
 public class SleepList extends ArrayList<Sleep> {
     /**
      * toString method for SleepList.
+     *
      * @return String representation of the sleep list.
      */
     public String toString() {
