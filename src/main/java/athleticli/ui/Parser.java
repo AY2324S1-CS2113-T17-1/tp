@@ -421,9 +421,15 @@ public class Parser {
                 || nutrient.equals(CARB_MARKER) || nutrient.equals(FAT_MARKER);
     }
 
+    /**
+     *
+     * @param deleteIndexString Index of the goal to be deleted in String format
+     * @return Index of the goal in integer format in users' perspective.
+     * @throws AthletiException Catch invalid characters and numbers.
+     */
     public static int parseDietGoalDelete(String deleteIndexString) throws AthletiException {
         try {
-            int deleteIndex = Integer.parseInt((deleteIndexString));
+            int deleteIndex = Integer.parseInt((deleteIndexString.trim()));
             if (deleteIndex <= 0) {
                 throw new AthletiException(Message.MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT);
             }
