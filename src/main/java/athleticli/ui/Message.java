@@ -100,6 +100,10 @@ public class Message {
         "Please specify the index of the sleep record you want to delete.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX = 
         "Please specify the index of the sleep record you want to edit.";
+    public static final String ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE = 
+        "The index of the sleep record you want to edit is out of bounds.";
+    public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
+        "The index of the sleep record you want to delete is out of bounds.";
 
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";

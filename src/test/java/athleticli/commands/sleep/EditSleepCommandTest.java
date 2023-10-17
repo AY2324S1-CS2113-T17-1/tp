@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import athleticli.data.Data;
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
+import athleticli.exceptions.AthletiException;
 
 public class EditSleepCommandTest {
 
@@ -32,7 +33,7 @@ public class EditSleepCommandTest {
     }
 
     @Test
-    public void testExecuteWithValidIndex() {
+    public void testExecuteWithValidIndex() throws AthletiException {
         EditSleepCommand command = new EditSleepCommand(1, LocalDateTime.of(2023, 10, 17, 23, 0), 
                                                         LocalDateTime.of(2023, 10, 18, 7, 0));
         String[] expected = {
@@ -47,15 +48,15 @@ public class EditSleepCommandTest {
     public void testExecuteWithInvalidIndex() {
         EditSleepCommand commandNegative = new EditSleepCommand(-1, LocalDateTime.of(2023, 10, 17, 23, 0), 
                                                                 LocalDateTime.of(2023, 10, 18, 7, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> commandNegative.execute(data));
+        assertThrows(AthletiException.class, () -> commandNegative.execute(data));
 
         EditSleepCommand commandZero = new EditSleepCommand(0, LocalDateTime.of(2023, 10, 17, 23, 0), 
                                                            LocalDateTime.of(2023, 10, 18, 7, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> commandZero.execute(data));
+        assertThrows(AthletiException.class, () -> commandZero.execute(data));
 
         EditSleepCommand commandBeyond = new EditSleepCommand(3, LocalDateTime.of(2023, 10, 17, 23, 0), 
                                                               LocalDateTime.of(2023, 10, 18, 7, 0));
-        assertThrows(IndexOutOfBoundsException.class, () -> commandBeyond.execute(data));
+        assertThrows(AthletiException.class, () -> commandBeyond.execute(data));
     }
 
 }

@@ -6,6 +6,7 @@ import athleticli.commands.Command;
 import athleticli.data.Data;
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
+import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 /**
@@ -34,11 +35,17 @@ public class EditSleepCommand extends Command {
      * @param data The current data containing the sleep list.
      * @return The message which will be shown to the user.
      */
-    public String[] execute(Data data) {
+    public String[] execute(Data data) throws AthletiException {
         SleepList sleepList = data.getSleeps();
-        Sleep oldSleep = sleepList.get(index - 1);
+
+        //accessIndex is the index of the sleep in the list accounting for zero-indexing
+        int accessIndex = index - 1;
+        if (accessIndex < 0 || accessIndex >= sleepList.size()) {
+            throw new AthletiException(Message.ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE);
+        }
+        Sleep oldSleep = sleepList.get(accessIndex);
         Sleep newSleep = new Sleep(from, to);
-        sleepList.set(index - 1, newSleep);
+        sleepList.set(accessIndex, newSleep);
 
         String returnMessage = String.format(Message.MESSAGE_SLEEP_EDIT_RETURN, index);
         

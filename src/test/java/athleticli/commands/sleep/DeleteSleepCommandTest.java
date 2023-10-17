@@ -1,6 +1,7 @@
 package athleticli.commands.sleep;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import athleticli.data.Data;
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
+import athleticli.exceptions.AthletiException;
 
 import java.time.LocalDateTime;
 
@@ -31,7 +33,7 @@ public class DeleteSleepCommandTest {
     }
 
     @Test
-    public void testExecuteWithValidIndex() {
+    public void testExecuteWithValidIndex() throws AthletiException {
         DeleteSleepCommand command = new DeleteSleepCommand(1);
         String[] expected = {
             "Got it. I've deleted this sleep record at index 1: sleep record from 17-10-2023 22:00 to 18-10-2023 06:00"
@@ -40,26 +42,22 @@ public class DeleteSleepCommandTest {
     }
 
     @Test
-    public void testExecuteWithInvalidIndex() {
+    public void testExecuteWithInvalidIndex() throws AthletiException {
         DeleteSleepCommand commandNegative = new DeleteSleepCommand(-1);
-        String[] expectedNegative = { "Invalid index. Please enter a valid index." };
-        assertArrayEquals(expectedNegative, commandNegative.execute(data));
+        assertThrows(AthletiException.class, () -> commandNegative.execute(data));
 
         DeleteSleepCommand commandZero = new DeleteSleepCommand(0);
-        String[] expectedZero = { "Invalid index. Please enter a valid index." };
-        assertArrayEquals(expectedZero, commandZero.execute(data));
+        assertThrows(AthletiException.class, () -> commandZero.execute(data));
 
         DeleteSleepCommand commandBeyond = new DeleteSleepCommand(3); // Only 2 records in the list.
-        String[] expectedBeyond = { "Invalid index. Please enter a valid index." };
-        assertArrayEquals(expectedBeyond, commandBeyond.execute(data));
+        assertThrows(AthletiException.class, () -> commandBeyond.execute(data));
     }
 
     @Test
-    public void testExecuteWithEmptyList() {
+    public void testExecuteWithEmptyList() throws AthletiException {
         data.setSleeps(new SleepList()); // Empty list
         DeleteSleepCommand command = new DeleteSleepCommand(1);
-        String[] expected = { "Invalid index. Please enter a valid index." };
-        assertArrayEquals(expected, command.execute(data));
+        assertThrows(AthletiException.class, () -> command.execute(data));
     }
 
 }

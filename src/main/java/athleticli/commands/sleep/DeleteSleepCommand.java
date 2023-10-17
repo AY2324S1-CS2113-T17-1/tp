@@ -4,6 +4,7 @@ import athleticli.commands.Command;
 import athleticli.data.Data;
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
+import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 /**
@@ -26,15 +27,16 @@ public class DeleteSleepCommand extends Command {
      * @param data The current data containing the sleep list.
      * @return The message which will be shown to the user.
      */
-    public String[] execute(Data data) {
+    public String[] execute(Data data) throws AthletiException {
         SleepList sleepList = data.getSleeps();
-        if (index > sleepList.size() || index < 1) {
-            return new String[] {
-                Message.MESSAGE_SLEEP_DELETE_INVALID_INDEX
-            };
+
+        //accessIndex is the index of the sleep in the list accounting for zero-indexing
+        int accessIndex = index - 1; 
+        if (accessIndex < 0 || accessIndex >= sleepList.size()) {
+            throw new AthletiException(Message.ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE);
         }
-        Sleep oldSleep = sleepList.get(index - 1);
-        sleepList.remove(index - 1);
+        Sleep oldSleep = sleepList.get(accessIndex);
+        sleepList.remove(accessIndex);
         
         String returnMessage = String.format(Message.MESSAGE_SLEEP_DELETE_RETURN, index, oldSleep.toString());
         return new String[] {
