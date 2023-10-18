@@ -40,7 +40,7 @@ public class Parser {
     private static final String CALORIES_MARKER = "calories";
     private static final String PROTEIN_MARKER = "protein";
     private static final String CARB_MARKER = "carb";
-    private static final String FAT_MARKER = "fat";
+    private static final String FAT_MARKER = "fats";
 
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
@@ -426,6 +426,7 @@ public class Parser {
      * @throws AthletiException Invalid input by the user.
      */
     public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
+        System.out.println(commandArgs);
         try {
             String[] nutrientAndTargetValues;
             if (commandArgs.contains(" ")) {

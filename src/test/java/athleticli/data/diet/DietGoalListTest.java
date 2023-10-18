@@ -59,6 +59,6 @@ class DietGoalListTest {
     @Test
     void testToString_oneExistingGoal_expectCorrectFormat() {
         dietGoals.add(proteinGoal);
-        assertEquals("1. protein intake progress: (0/10000)\n", dietGoals.toString());
+        assertEquals("\t1. protein intake progress: (0/10000)\n", dietGoals.toString());
     }
 }
