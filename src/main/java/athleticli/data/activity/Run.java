@@ -6,8 +6,9 @@ import java.time.LocalDateTime;
  * Represents a running activity consisting of relevant evaluation data.
  */
 public class Run extends Activity{
-    private int elevationGain;
-    private double averagePace;
+    private final int elevationGain;
+    private final double averagePace;
+    private final int steps;
 
     /**
      * Generates a new running activity with running specific stats.
@@ -23,6 +24,7 @@ public class Run extends Activity{
         super(caption, movingTime, distance, startDateTime);
         this.elevationGain = elevationGain;
         this.averagePace = this.calculateAveragePace();
+        this.steps = 0;
     }
 
     /**
@@ -57,6 +59,29 @@ public class Run extends Activity{
         String paceOutput = this.convertAveragePaceToString() + " /km";
         result = result.replace("Time: ", "Pace: " + paceOutput + " | Time: ");
         return result;
+    }
+
+    /**
+     * Returns a detailed summary of the run.
+     * @return a multiline string representation of the run
+     */
+    public String toDetailedString() {
+        String startDateTimeOutput = generateStartDateTimeStringOutput();
+        String movingTimeOutput = generateMovingTimeStringOutput();
+        String distanceOutput = generateDistanceStringOutput();
+        String paceOutput = this.convertAveragePaceToString() + " /km";
+
+        int columnWidth = getColumnWidth();
+
+        String header = "[Run - " + this.getCaption() + " - " + startDateTimeOutput + "]";
+        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Avg Pace: " + paceOutput,
+                columnWidth);
+        String secondRow = formatTwoColumns("\tMoving Time: " + movingTimeOutput, "Elevation Gain: " +
+                elevationGain + " m", columnWidth);
+        String thirdRow = formatTwoColumns("\tCalories: " + this.getCalories() + " kcal", "Steps: " +
+                        this.steps, columnWidth);
+
+        return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
     }
 
 }
