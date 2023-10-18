@@ -175,7 +175,7 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 **Syntax:**
 
 
-* `diet calories/CALORIES protein/PROTEIN carbs/CARBS fat/FAT`
+* `set-diet-goal calories/CALORIES protein/PROTEIN carb/CARBS fat/FAT`
 
 
 **Parameters:**
@@ -183,7 +183,7 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
 * CALORIES: Your target value for calories intake, in terms of cal.
 * PROTEIN: The target for protein intake, in terms of milligrams.
-* CARBS: Your target value for carbohydrate intake, in terms of milligrams.
+* CARB: Your target value for carbohydrate intake, in terms of milligrams.
 * FAT: Your target value for fats intake, in terms of milligrams.
 
 
@@ -195,7 +195,7 @@ You can create one or multiple nutrient goals at once with this command.
 **Examples:**
 
 Create multiple nutrients goals:
-* `set-diet-goal calories/500 protein/20 carbs/50 fat/10`
+* `set-diet-goal calories/500 protein/20 carb/50 fat/10`
 
 
 Create a single calories goal:
@@ -260,7 +260,7 @@ This command takes in at least one argument. You are able to edit multiple diet 
 **Syntax:**
 
 
-* `edit-diet-goal calories/CALORIES protein/PROTEIN carbs/CARBS fat/FAT`
+* `edit-diet-goal calories/CALORIES protein/PROTEIN carb/CARBS fat/FAT`
 
 
 **Parameters:**
@@ -279,7 +279,7 @@ You can create one or multiple nutrient goals with this command.
 
 
 Edit multiple nutrients goals:
-* `edit-diet-goal calories/5000 protein/200 carbs/500 fat/100`
+* `edit-diet-goal calories/5000 protein/200 carb/500 fat/100`
 
 
 Edit a single calories goal:
