@@ -7,6 +7,7 @@ import athleticli.data.activity.ActivityList;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -36,7 +37,7 @@ public class EditActivityCommand extends Command {
      */
     @Override
     public String[] execute(Data data) throws AthletiException {
-        logger.log(java.util.logging.Level.INFO, "Editing activity at index " + index);
+        logger.log(Level.INFO, "Editing activity at index " + index);
         ActivityList activities = data.getActivities();
         try {
             activities.set(index-1, activity);
@@ -45,7 +46,7 @@ public class EditActivityCommand extends Command {
                     String.format(Message.MESSAGE_ACTIVITY_COUNT, activities.size())};
         } catch (IndexOutOfBoundsException e) {
             logger.log(java.util.logging.Level.WARNING, "Activity index out of bounds");
-            throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNCE);
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNDS);
         }
     }
 }

@@ -10,6 +10,7 @@ public class Activity {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("\"MMMM d, " +
             "yyyy 'at' h:mm a\"");
+    private static final int columnWidth = 40;
 
     private String description;
     private final String caption;
@@ -18,7 +19,6 @@ public class Activity {
     private final int distance;
     private int calories;
     private final LocalDateTime startDateTime;
-    private final int columnWidth = 35;
 
     /**
      * Generates a new general sports activity with some basic stats.

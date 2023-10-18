@@ -36,7 +36,7 @@ public class DeleteActivityCommand extends Command {
             return new String[]{Message.MESSAGE_ACTIVITY_DELETED, activity.toString(),
                     String.format(Message.MESSAGE_ACTIVITY_COUNT, activities.size())};
         } catch (IndexOutOfBoundsException e) {
-            throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNCE);
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNDS);
         }
     }
 

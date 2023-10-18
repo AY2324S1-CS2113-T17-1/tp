@@ -1,47 +1,63 @@
 package athleticli.commands.sleep;
 
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 import athleticli.data.Data;
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
-import org.junit.jupiter.api.Test;
+import athleticli.exceptions.AthletiException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.LocalDateTime;
 
 public class DeleteSleepCommandTest {
 
+    private Data data;
+    private Sleep sleep1;
+    private Sleep sleep2;
+
+    @BeforeEach
+    public void setup() {
+        data = new Data();
+        SleepList sleepList = new SleepList();
+        sleep1 = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0), 
+                          LocalDateTime.of(2023, 10, 18, 6, 0));
+        sleep2 = new Sleep(LocalDateTime.of(2023, 10, 18, 22, 0), 
+                          LocalDateTime.of(2023, 10, 19, 6, 0));
+        sleepList.add(sleep1);
+        sleepList.add(sleep2);
+        data.setSleeps(sleepList);
+    }
+
     @Test
-    public void execute_validIndex_success() {
-        Data data = new Data();
-        SleepList sleepList = data.getSleeps();
-        sleepList.add(new Sleep("08:00", "10:00"));
-        sleepList.add(new Sleep("09:00", "11:00"));
-        
-        // Execute command
+    public void testExecuteWithValidIndex() throws AthletiException {
         DeleteSleepCommand command = new DeleteSleepCommand(1);
-        String[] output = command.execute(data);
-
-        // Check that sleep was deleted
-        assertEquals(1, sleepList.size());
-        assertEquals("sleep from 09:00 to 11:00", sleepList.get(0).toString());
-
-        // Check output message
-        assertEquals("Got it. I've deleted this sleep record at index 1: sleep from 08:00 to 10:00", output[0]);
+        String[] expected = {
+            "Got it. I've deleted this sleep record at index 1: sleep record from 17-10-2023 22:00 to 18-10-2023 06:00"
+        };
+        assertArrayEquals(expected, command.execute(data));
     }
 
     @Test
-    public void execute_invalidIndex_failure() {
-        Data data = new Data();
-        SleepList sleepList = data.getSleeps();
-        sleepList.add(new Sleep("08:00", "10:00"));
+    public void testExecuteWithInvalidIndex() throws AthletiException {
+        DeleteSleepCommand commandNegative = new DeleteSleepCommand(-1);
+        assertThrows(AthletiException.class, () -> commandNegative.execute(data));
 
-        // Execute command
-        DeleteSleepCommand command = new DeleteSleepCommand(2);
-        String[] output = command.execute(data);
+        DeleteSleepCommand commandZero = new DeleteSleepCommand(0);
+        assertThrows(AthletiException.class, () -> commandZero.execute(data));
 
-        // Check that sleep was not deleted
-        assertEquals(1, sleepList.size());
-
-        // Check output message
-        assertEquals("Invalid index. Please enter a valid index.", output[0]);
+        DeleteSleepCommand commandBeyond = new DeleteSleepCommand(3); // Only 2 records in the list.
+        assertThrows(AthletiException.class, () -> commandBeyond.execute(data));
     }
+
+    @Test
+    public void testExecuteWithEmptyList() throws AthletiException {
+        data.setSleeps(new SleepList()); // Empty list
+        DeleteSleepCommand command = new DeleteSleepCommand(1);
+        assertThrows(AthletiException.class, () -> command.execute(data));
+    }
+
 }

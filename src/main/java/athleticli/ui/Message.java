@@ -51,7 +51,7 @@ public class Message {
     public static final String MESSAGE_ELEVATION_INVALID =
             "The elevation gain of an activity must be an integer!";
     public static final String MESSAGE_ACTIVITY_INDEX_INVALID = "The activity index must be an integer!";
-    public static final String MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNCE = "The activity index does not exist, check your " +
+    public static final String MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNDS = "The activity index does not exist, check your " +
             "list for the correct index!";
     public static final String MESSAGE_SWIMMINGSTYLE_MISSING =
             "Please specify the swimming style using \"style/\"!";
@@ -94,5 +94,27 @@ public class Message {
     public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be an integer!";
     public static final String MESSAGE_DIET_DELETED = "Noted. I've removed this diet:";
     public static final String MESSAGE_DIET_LIST = "Here are the diets in your list:";
+    public static final String MESSAGE_SLEEP_DELETE_INVALID_INDEX = "Invalid index. Please enter a valid index.";
+    public static final String MESSAGE_SLEEP_DELETE_RETURN = "Got it. I've deleted this sleep record at index %d: %s";
+    public static final String MESSAGE_SLEEP_EDIT_RETURN = "Got it. I've changed this sleep record at index %d:";
+    public static final String MESSAGE_SLEEP_LIST = "Here are the sleep records in your list:\n";
+    public static final String MESSAGE_SLEEP_LIST_EMPTY = "You have no sleep records in your list.";
+    public static final String MESSAGE_SLEEP_ADD_RETURN_1 = "Got it. I've added this sleep record:";
+    public static final String MESSAGE_SLEEP_ADD_RETURN_2 = "Now you have %d sleep records in the list.";
+
+    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT = 
+        "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME = 
+        "Please specify both the start and end time of your sleep.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START = 
+        "Please specify the start time of your sleep before the end time.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_DELETE_NO_INDEX = 
+        "Please specify the index of the sleep record you want to delete.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX = 
+        "Please specify the index of the sleep record you want to edit.";
+    public static final String ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE = 
+        "The index of the sleep record you want to edit is out of bounds.";
+    public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
+        "The index of the sleep record you want to delete is out of bounds.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
 }
