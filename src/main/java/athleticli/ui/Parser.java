@@ -3,7 +3,9 @@ package athleticli.ui;
 import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
 import athleticli.commands.activity.AddActivityCommand;
-
+import athleticli.commands.activity.DeleteActivityCommand;
+import athleticli.commands.activity.EditActivityCommand;
+import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
@@ -18,6 +20,7 @@ import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
 
 import athleticli.data.activity.Activity;
+import athleticli.data.activity.Cycle;
 import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
 
@@ -40,7 +43,7 @@ public class Parser {
     private static final String CALORIES_MARKER = "calories";
     private static final String PROTEIN_MARKER = "protein";
     private static final String CARB_MARKER = "carb";
-    private static final String FAT_MARKER = "fat";
+    private static final String FAT_MARKER = "fats";
 
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
@@ -82,10 +85,23 @@ public class Parser {
         case CommandName.COMMAND_ACTIVITY:
             return new AddActivityCommand(parseActivity(commandArgs));
         case CommandName.COMMAND_CYCLE:
+            return new AddActivityCommand(parseRunCycle(commandArgs, false));
         case CommandName.COMMAND_RUN:
-            return new AddActivityCommand(parseRunCycle(commandArgs));
+            return new AddActivityCommand(parseRunCycle(commandArgs, true));
         case CommandName.COMMAND_SWIM:
             return new AddActivityCommand(parseSwim(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_DELETE:
+            return new DeleteActivityCommand(parseActivityIndex(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_LIST:
+            return new ListActivityCommand(parseActivityListDetail(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_EDIT:
+            return new EditActivityCommand(parseActivityEdit(commandArgs), parseActivityEditIndex(commandArgs));
+        case CommandName.COMMAND_RUN_EDIT:
+            return new EditActivityCommand(parseRunEdit(commandArgs), parseActivityEditIndex(commandArgs));
+        case CommandName.COMMAND_CYCLE_EDIT:
+            return new EditActivityCommand(parseCycleEdit(commandArgs), parseActivityEditIndex(commandArgs));
+        case CommandName.COMMAND_SWIM_EDIT:
+            return new EditActivityCommand(parseSwimEdit(commandArgs), parseActivityEditIndex(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_SET:
             return new SetDietGoalCommand(parseDietGoalSetEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_EDIT:
@@ -106,6 +122,102 @@ public class Parser {
     }
 
     /**
+     * Parses the index of an activity.
+     * @param commandArgs The raw user input containing the index.
+     * @return index                The parsed Integer index.
+     * @throws AthletiException     If the input is not an integer.
+     */
+    private static int parseActivityIndex(String commandArgs) throws AthletiException {
+        final String commandArgsTrimmed = commandArgs.trim();
+        int index;
+        try {
+            index = Integer.parseInt(commandArgsTrimmed);
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_INVALID);
+        }
+        return index;
+    }
+
+    /**
+     * Parses the provided updated activity for the edit command.
+     * @param arguments             The raw user input containing the updated activity.
+     * @return activity             The parsed Activity object.
+     * @throws AthletiException     If the input format is invalid.
+     */
+    private static Activity parseActivityEdit(String arguments) throws AthletiException {
+        try {
+            return parseActivity(arguments.split(" ", 2)[1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
+    }
+
+    /**
+     * Parses the provided updated run for the edit command
+     * @param arguments             The raw user input containing the updated run.
+     * @return activity             The parsed run object.
+     * @throws AthletiException     If the input format is invalid.
+     */
+    private static Activity parseRunEdit(String arguments) throws AthletiException {
+        try {
+            return parseRunCycle(arguments.split(" ", 2)[1], true);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
+    }
+
+    /**
+     * Parses the provided updated cycle for the edit command
+     * @param arguments             The raw user input containing the updated cycle.
+     * @return activity             The parsed cycle object.
+     * @throws AthletiException     If the input format is invalid.
+     */
+    private static Activity parseCycleEdit(String arguments) throws AthletiException {
+        try {
+            return parseRunCycle(arguments.split(" ", 2)[1], false);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
+    }
+
+    /**
+     * Parses the provided update swim for the edit command
+     * @param arguments             The raw user input containing the updated swim.
+     * @return activity             The parsed swim object.
+     * @throws AthletiException     If the input format is invalid.
+     */
+    private static Activity parseSwimEdit(String arguments) throws AthletiException {
+        try {
+            return parseSwim(arguments.split(" ", 2)[1]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
+    }
+
+    /**
+     * Parses the index of an activity update for the edit command.
+     * @param arguments           The raw user input containing the index.
+     * @return index              The parsed Integer index.
+     * @throws AthletiException   If the input format is invalid
+     */
+    private static int parseActivityEditIndex(String arguments) throws AthletiException {
+        try {
+            return parseActivityIndex(arguments.split(" ", 2)[0]);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+        }
+    }
+
+    /**
+     * Parses the raw user input for viewing the activity list and returns whether the user wants the detailed view
+     * @param commandArgs   The raw user input containing the arguments.
+     * @return boolean      Whether the user wants the detailed view.
+     */
+    private static boolean parseActivityListDetail(String commandArgs) {
+        return commandArgs.toLowerCase().contains(Parameter.DETAIL_FLAG);
+    }
+
+    /**
      * Parses the raw user input for an activity and returns the corresponding activity object.
      *
      * @param arguments The raw user input containing the arguments.
@@ -113,16 +225,19 @@ public class Parser {
      * @throws AthletiException
      */
     public static Activity parseActivity(String arguments) throws AthletiException {
-        final int durationIndex = arguments.indexOf("duration/");
-        final int distanceIndex = arguments.indexOf("distance/");
-        final int datetimeIndex = arguments.indexOf("datetime/");
+        final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
+        final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
+        final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
 
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
 
         final String caption = arguments.substring(0, durationIndex).trim();
-        final String duration = arguments.substring(durationIndex + 9, distanceIndex).trim();
-        final String distance = arguments.substring(distanceIndex + 9, datetimeIndex).trim();
-        final String datetime = arguments.substring(datetimeIndex + 9).trim();
+        final String duration =
+                arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex).trim();
+        final String distance =
+                arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(), datetimeIndex).trim();
+        final String datetime =
+                arguments.substring(datetimeIndex + Parameter.DATETIME_SEPARATOR.length()).trim();
 
         checkEmptyActivityArguments(caption, duration, distance, datetime);
 
@@ -181,21 +296,25 @@ public class Parser {
      *
      * @param arguments The raw user input containing the arguments.
      * @return An object representing the activity.
-     * @throws AthletiException
+     * @throws AthletiException If the input format is invalid.
      */
-    public static Activity parseRunCycle(String arguments) throws AthletiException {
-        final int durationIndex = arguments.indexOf("duration/");
-        final int distanceIndex = arguments.indexOf("distance/");
-        final int datetimeIndex = arguments.indexOf("datetime/");
-        final int elevationIndex = arguments.indexOf("elevation/");
+    public static Activity parseRunCycle(String arguments, boolean isRun) throws AthletiException {
+        final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
+        final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
+        final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
+        final int elevationIndex = arguments.indexOf(Parameter.ELEVATION_SEPARATOR);
 
         checkMissingRunCycleArguments(durationIndex, distanceIndex, datetimeIndex, elevationIndex);
 
         final String caption = arguments.substring(0, durationIndex).trim();
-        final String duration = arguments.substring(durationIndex + 9, distanceIndex).trim();
-        final String distance = arguments.substring(distanceIndex + 9, datetimeIndex).trim();
-        final String datetime = arguments.substring(datetimeIndex + 9, elevationIndex).trim();
-        final String elevation = arguments.substring(elevationIndex + 10).trim();
+        final String duration =
+                arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex).trim();
+        final String distance =
+                arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(), datetimeIndex).trim();
+        final String datetime =
+                arguments.substring(datetimeIndex + Parameter.DATETIME_SEPARATOR.length(), elevationIndex).trim();
+        final String elevation =
+                arguments.substring(elevationIndex + Parameter.ELEVATION_SEPARATOR.length()).trim();
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, elevation);
 
@@ -204,7 +323,11 @@ public class Parser {
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
         final int elevationParsed = parseElevation(elevation);
 
-        return new Run(caption, durationParsed, distanceParsed, datetimeParsed, elevationParsed);
+        if (isRun) {
+            return new Run(caption, durationParsed, distanceParsed, datetimeParsed, elevationParsed);
+        } else {
+            return new Cycle(caption, durationParsed, distanceParsed, datetimeParsed, elevationParsed);
+        }
     }
 
     public static int parseElevation(String elevation) throws AthletiException {
@@ -275,18 +398,22 @@ public class Parser {
      * @throws AthletiException
      */
     public static Activity parseSwim(String arguments) throws AthletiException {
-        final int durationIndex = arguments.indexOf("duration/");
-        final int distanceIndex = arguments.indexOf("distance/");
-        final int datetimeIndex = arguments.indexOf("datetime/");
-        final int swimmingStyleIndex = arguments.indexOf("style/");
+        final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
+        final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
+        final int datetimeIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
+        final int swimmingStyleIndex = arguments.indexOf(Parameter.SWIMMING_STYLE_SEPARATOR);
 
         checkMissingSwimArguments(durationIndex, distanceIndex, datetimeIndex, swimmingStyleIndex);
 
         final String caption = arguments.substring(0, durationIndex).trim();
-        final String duration = arguments.substring(durationIndex + 9, distanceIndex).trim();
-        final String distance = arguments.substring(distanceIndex + 9, datetimeIndex).trim();
-        final String datetime = arguments.substring(datetimeIndex + 9, swimmingStyleIndex).trim();
-        final String swimmingStyle = arguments.substring(swimmingStyleIndex + 6).trim();
+        final String duration =
+                arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex).trim();
+        final String distance =
+                arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(), datetimeIndex).trim();
+        final String datetime =
+                arguments.substring(datetimeIndex + Parameter.DATETIME_SEPARATOR.length(), swimmingStyleIndex).trim();
+        final String swimmingStyle =
+                arguments.substring(swimmingStyleIndex + Parameter.SWIMMING_STYLE_SEPARATOR.length()).trim();
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, swimmingStyleIndex);
 
@@ -295,8 +422,7 @@ public class Parser {
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
         final Swim.SwimmingStyle swimmingStyleParsed = parseSwimmingStyle(swimmingStyle);
 
-        Swim swim = new Swim(caption, durationParsed, distanceParsed, datetimeParsed, swimmingStyleParsed);
-        return swim;
+        return new Swim(caption, durationParsed, distanceParsed, datetimeParsed, swimmingStyleParsed);
     }
 
     public static Swim.SwimmingStyle parseSwimmingStyle(String swimmingStyle) throws AthletiException {
@@ -426,6 +552,7 @@ public class Parser {
      * @throws AthletiException Invalid input by the user.
      */
     public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
+        System.out.println(commandArgs);
         try {
             String[] nutrientAndTargetValues;
             if (commandArgs.contains(" ")) {

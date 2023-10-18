@@ -42,6 +42,7 @@ public class Message {
             "The carbohydrate intake must be a non-negative integer!";
     public static final String MESSAGE_FAT_INVALID = "The fat intake must be a non-negative integer!";
     public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
+    public static final String MESSAGE_ACTIVITY_DELETED = "Gotcha, I've deleted this activity:";
     public static final String MESSAGE_DIET_ADDED = "Well done! I've added this diet:";
     public static final String MESSAGE_ELEVATION_MISSING =
             "Please specify the elevation gain using \"elevation/\"!";
@@ -49,13 +50,20 @@ public class Message {
             "The elevation gain of an activity cannot be empty!";
     public static final String MESSAGE_ELEVATION_INVALID =
             "The elevation gain of an activity must be an integer!";
+    public static final String MESSAGE_ACTIVITY_INDEX_INVALID = "The activity index must be an integer!";
+    public static final String MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNDS = "The activity index does not exist, check your " +
+            "list for the correct index!";
     public static final String MESSAGE_SWIMMINGSTYLE_MISSING =
             "Please specify the swimming style using \"style/\"!";
     public static final String MESSAGE_SWIMMINGSTYLE_INVALID =
             "The swimming style of an activity must be one of " +
                     "the following: \"butterfly\", \"backstroke\", \"breaststroke\", \"freestyle\"!";
     public static final String MESSAGE_ACTIVITY_COUNT =
-            "Now you have tracked a total of %d activities. Keep pushing!";
+            "You have tracked a total of %d activities. Keep pushing!";
+    public static final String MESSAGE_ACTIVITY_LIST = "These are the activities you have tracked so far:";
+    public static final String MESSAGE_ACTIVITY_EDIT_INVALID = "Oops, the format of the edit command is wrong! Please" +
+            " provide the index and the updated entry!";
+    public static final String MESSAGE_ACTIVITY_UPDATED = "Ok, I've updated this activity:";
     public static final String MESSAGE_DIET_COUNT =
             "Now you have tracked a total of %d diets. Keep grinding!";
     public static final String MESSAGE_ACTIVITY_FIRST =
@@ -86,8 +94,6 @@ public class Message {
     public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be an integer!";
     public static final String MESSAGE_DIET_DELETED = "Noted. I've removed this diet:";
     public static final String MESSAGE_DIET_LIST = "Here are the diets in your list:";
-
-    
     public static final String MESSAGE_SLEEP_DELETE_INVALID_INDEX = "Invalid index. Please enter a valid index.";
     public static final String MESSAGE_SLEEP_DELETE_RETURN = "Got it. I've deleted this sleep record at index %d: %s";
     public static final String MESSAGE_SLEEP_EDIT_RETURN = "Got it. I've changed this sleep record at index %d:";
@@ -110,7 +116,5 @@ public class Message {
         "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
         "The index of the sleep record you want to delete is out of bounds.";
-
-
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
 }

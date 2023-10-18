@@ -31,7 +31,7 @@ public class CycleTest {
     @Test
     public void testToString() {
         String expected = "[Cycle] Cycling in the afternoon | Distance: 40.46 km | Speed: 18.25 km/h | Time: 2h 13m | "
-                + "\"October 7, 2023 at 2:00 PM\"";
+                + "October 7, 2023 at 2:00 PM";
         assertEquals(expected, cycle.toString());
     }
 }
