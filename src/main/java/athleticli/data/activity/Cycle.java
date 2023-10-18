@@ -48,4 +48,26 @@ public class Cycle extends Activity {
         result = result.replace("Time: ", "Speed: " + speedOutput + " | Time: ");
         return result;
     }
+
+    /**
+     * Returns a detailed summary of the cycle.
+     * @return a multiline string representation of the cycle
+     */
+    public String toDetailedString() {
+        String startDateTimeOutput = generateStartDateTimeStringOutput();
+        String movingTimeOutput = generateMovingTimeStringOutput();
+        String distanceOutput = generateDistanceStringOutput();
+        String speedOutput = this.averageSpeed + " km/h";
+
+        int columnWidth = getColumnWidth();
+        String header = "[Cycle - " + this.getCaption() + " - " + startDateTimeOutput + "]";
+        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Elevation Gain: " +
+                        elevationGain + " m", columnWidth);
+        String secondRow = formatTwoColumns("\tMoving Time: " + movingTimeOutput, "Avg Speed: " +
+                        speedOutput, columnWidth);
+        String thirdRow = formatTwoColumns("\tCalories: " + this.getCalories() + " kcal", "Max Speed: " +
+                        "tbd", columnWidth);
+
+        return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+    }
 }

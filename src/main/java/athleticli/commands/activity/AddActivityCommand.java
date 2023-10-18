@@ -10,7 +10,7 @@ import athleticli.ui.Message;
  * Executes the add activity commands provided by the user.
  */
 public class AddActivityCommand extends Command {
-    private Activity activity;
+    private final Activity activity;
 
     /**
      * Constructor for AddActivityCommand.
@@ -34,7 +34,7 @@ public class AddActivityCommand extends Command {
         if (size > 1) {
             countMessage = String.format(Message.MESSAGE_ACTIVITY_COUNT, size);
         } else {
-            countMessage = String.format(Message.MESSAGE_ACTIVITY_FIRST, size);
+            countMessage = Message.MESSAGE_ACTIVITY_FIRST;
         }
         return new String[]{Message.MESSAGE_ACTIVITY_ADDED, this.activity.toString(), countMessage};
     }

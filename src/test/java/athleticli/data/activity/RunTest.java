@@ -38,7 +38,7 @@ public class RunTest {
     @Test
     public void testToString() {
         String expected = "[Run] Night Run | Distance: 18.12 km | Pace: 4:41 /km | Time: 1h 25m | " +
-                "\"October 10, 2023 at 11:21 PM\"";
+                "October 10, 2023 at 11:21 PM";
         assertEquals(expected, run.toString());
     }
 }
