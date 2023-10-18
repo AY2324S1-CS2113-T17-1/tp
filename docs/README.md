@@ -97,6 +97,139 @@ You can list all your diets in AtheltiCLI.
 
 * `list-diet`
 
+## Diet Goal Management
+
+
+### Adding Diet Goals:
+
+
+`set-diet-goal`
+You can create a new diet goal to track your nutrients intake with AtheltiCLI by adding the nutrients you wish to track and the target value for your nutrient goals.
+
+
+Currently only the following nutrients/metrics are tracked:
+1. Calories
+2. Protein
+3. Carbs
+4. Fats
+
+
+You can set multiple nutrients goals at once with the `set-diet-goal` command.
+
+
+**Syntax:**
+
+
+* `diet calories/CALORIES protein/PROTEIN carbs/CARBS fat/FAT`
+
+
+**Parameters:**
+
+
+* CALORIES: Your target value for calories intake, in terms of cal.
+* PROTEIN: The target for protein intake, in terms of milligrams.
+* CARBS: Your target value for carbohydrate intake, in terms of milligrams.
+* FAT: Your target value for fats intake, in terms of milligrams.
+
+
+You can create one or multiple nutrient goals at once with this command.
+
+
+
+
+**Examples:**
+
+Create multiple nutrients goals:
+* `set-diet-goal calories/500 protein/20 carbs/50 fat/10`
+
+
+Create a single calories goal:
+* `set-diet-goal calories/500`
+
+
+### Deleting Diet Goals:
+
+
+`delete-diet-goal`
+You can delete your diet goals in AtheltiCLI by deleting the goal at the specified index.
+This index will be referenced via `list-diet-goal` command.
+
+
+**Syntax:**
+
+
+* `delete-diet-goal INDEX`
+
+
+**Parameters:**
+
+
+* INDEX: The index of the diet goal to be deleted. It must be a positive integer.
+
+
+**Examples:**
+
+
+* `delete-diet-goal 1`
+
+
+### Listing Diet Goals:
+
+
+`list-diet-goals`
+You can list all your diet goals in AtheltiCLI.
+
+
+**Syntax:**
+
+
+* `list-diet-goal`
+
+
+**Examples:**
+
+
+* `list-diet-goal`
+
+
+### Editing Diet Goals:
+
+
+`edit-diet-goal`
+You can edit the target value of your diet goals in AtheltiCLI, redefining the target value for the specified nutrient.
+
+
+This command takes in at least one argument. You are able to edit multiple diet goals target value at once. No repetition is allowed.
+
+
+**Syntax:**
+
+
+* `edit-diet-goal calories/CALORIES protein/PROTEIN carbs/CARBS fat/FAT`
+
+
+**Parameters:**
+
+
+* CALORIES: Your target value for calories intake, in terms of cal.
+* PROTEIN: The target for protein intake, in terms of milligrams.
+* CARBS: Your target value for carbohydrate intake, in terms of milligrams.
+* FAT: Your target value for fats intake, in terms of milligrams.
+
+
+You can create one or multiple nutrient goals with this command.
+
+
+**Examples:**
+
+
+Edit multiple nutrients goals:
+* `edit-diet-goal calories/5000 protein/200 carbs/500 fat/100`
+
+
+Edit a single calories goal:
+* `edit-diet-goal calories/5000`
+
 ## Sleep Management
 
 ### Adding Sleep:
