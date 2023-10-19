@@ -442,19 +442,16 @@ public class Parser {
      */
     public static AddSleepCommand parseSleepAdd(String commandArgs) throws AthletiException {
 
-        final String startMarkerConstant = "start/";
-        final String endMarkerConstant = "end/";
-
-        int startMarkerPos = commandArgs.indexOf(startMarkerConstant);
-        int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
+        int startMarkerPos = commandArgs.indexOf(Parameter.START_TIME_SEPARATOR);
+        int endMarkerPos = commandArgs.indexOf(Parameter.END_TIME_SEPARATOR);
 
         if (startMarkerPos == -1 || endMarkerPos == -1 || startMarkerPos > endMarkerPos) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
         String startTimeStr =
-                commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
-        String endTimeStr = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
+                commandArgs.substring(startMarkerPos + Parameter.START_TIME_SEPARATOR.length(), endMarkerPos).trim();
+        String endTimeStr = commandArgs.substring(endMarkerPos + Parameter.END_TIME_SEPARATOR.length()).trim();
 
         if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
@@ -503,11 +500,8 @@ public class Parser {
      * @throws AthletiException
      */
     public static EditSleepCommand parseSleepEdit(String commandArgs) throws AthletiException {
-        final String startMarkerConstant = "start/";
-        final String endMarkerConstant = "end/";
-
-        int startMarkerPos = commandArgs.indexOf(startMarkerConstant);
-        int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
+        int startMarkerPos = commandArgs.indexOf(Parameter.START_TIME_SEPARATOR);
+        int endMarkerPos = commandArgs.indexOf(Parameter.END_TIME_SEPARATOR);
         int index;
 
         if (startMarkerPos == -1 || endMarkerPos == -1 || startMarkerPos > endMarkerPos) {
@@ -521,8 +515,8 @@ public class Parser {
         }
 
         String startTimeStr =
-                commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
-        String endTimeStr = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
+                commandArgs.substring(startMarkerPos + Parameter.START_TIME_SEPARATOR.length(), endMarkerPos).trim();
+        String endTimeStr = commandArgs.substring(endMarkerPos + Parameter.END_TIME_SEPARATOR.length()).trim();
 
         if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
