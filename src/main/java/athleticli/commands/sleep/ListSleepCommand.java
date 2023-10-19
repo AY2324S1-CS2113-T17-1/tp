@@ -14,15 +14,23 @@ public class ListSleepCommand extends Command {
      * @return The message which will be shown to the user.
      */
     public String[] execute (Data data) {
-        SleepList sleepList = data.getSleeps();
-        if (sleepList.size() == 0) {
+        SleepList sleeps = data.getSleeps();
+        final int size = sleeps.size();
+        if (size == 0) {
             return new String[] {
                 Message.MESSAGE_SLEEP_LIST_EMPTY
             };
         }
-        return new String[] {
-            Message.MESSAGE_SLEEP_LIST,
-            sleepList.toString()
-        };
+
+        return printList(sleeps, size);
+    }
+
+    public String[] printList(SleepList sleeps, int size) {
+        String[] returnString = new String[size+1];
+        returnString[0] = Message.MESSAGE_SLEEP_LIST;
+        for (int i = 0; i < size; i++) {
+            returnString[i+1] = (i + 1) + ". " + sleeps.get(i).toString();
+        }
+        return returnString;
     }
 }
