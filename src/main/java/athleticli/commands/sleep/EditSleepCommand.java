@@ -15,7 +15,7 @@ import athleticli.ui.Message;
  */
 public class EditSleepCommand extends Command {
 
-    private final static Logger LOGGER = Logger.getLogger(EditSleepCommand.class.getName());
+    private final Logger LOGGER = Logger.getLogger(EditSleepCommand.class.getName());
     private int index;
     private LocalDateTime from;
     private LocalDateTime to;

@@ -16,7 +16,7 @@ public class AddSleepCommand extends Command {
 
     private LocalDateTime from;
     private LocalDateTime to;
-    private static final Logger LOGGER = Logger.getLogger(AddSleepCommand.class.getName());
+    private final Logger LOGGER = Logger.getLogger(AddSleepCommand.class.getName());
 
     /**
      * Constructor for AddSleepCommand.
@@ -42,7 +42,7 @@ public class AddSleepCommand extends Command {
         SleepList sleepList = data.getSleeps();
         Sleep newSleep = new Sleep(from, to);
         sleepList.add(newSleep);
-        
+
         LOGGER.info("Added sleep: " + newSleep);
         LOGGER.fine("Sleep list: " + sleepList);
 
