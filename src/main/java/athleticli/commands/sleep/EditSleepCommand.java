@@ -1,6 +1,7 @@
 package athleticli.commands.sleep;
 
 import java.time.LocalDateTime;
+import java.util.logging.Logger;
 
 import athleticli.commands.Command;
 import athleticli.data.Data;
@@ -14,6 +15,7 @@ import athleticli.ui.Message;
  */
 public class EditSleepCommand extends Command {
 
+    private final static Logger LOGGER = Logger.getLogger(EditSleepCommand.class.getName());
     private int index;
     private LocalDateTime from;
     private LocalDateTime to;
@@ -28,6 +30,12 @@ public class EditSleepCommand extends Command {
         this.index = index;
         this.from = from;
         this.to = to;
+
+        assert from != null : "Start time cannot be null";
+        assert to != null : "End time cannot be null";
+        assert from.isBefore(to) : "Start time must be before end time";
+
+        LOGGER.fine("Creating EditSleepCommand with index: " + index + " from: " + from + " and to: " + to);
     }
     
     /**
@@ -43,12 +51,15 @@ public class EditSleepCommand extends Command {
         if (accessIndex < 0 || accessIndex >= sleepList.size()) {
             throw new AthletiException(Message.ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE);
         }
+
+        assert accessIndex >= 0 : "Index cannot be less than 0";
+        assert accessIndex < sleepList.size() : "Index cannot be more than size of list";
+
         Sleep oldSleep = sleepList.get(accessIndex);
         Sleep newSleep = new Sleep(from, to);
         sleepList.set(accessIndex, newSleep);
 
         String returnMessage = String.format(Message.MESSAGE_SLEEP_EDIT_RETURN, index);
-        
         return new String[] {
             returnMessage,
             "original: " + oldSleep.toString(),
@@ -57,7 +68,6 @@ public class EditSleepCommand extends Command {
 
     }
 
-   
 }
 
 
