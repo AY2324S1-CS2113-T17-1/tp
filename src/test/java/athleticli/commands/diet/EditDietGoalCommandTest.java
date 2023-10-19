@@ -78,7 +78,7 @@ class EditDietGoalCommandTest {
         try {
             SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
             EditDietGoalCommand editDietGoalCommand = new EditDietGoalCommand(filledChangedInputDietGoals);
-            String[] expectedString = {"These are your goal(s):\n", "1. fats intake progress: " +
+            String[] expectedString = {"These are your goal(s):\n", "\t1. fats intake progress: " +
                     "(0/10)\n", "Now you have 1 diet goal(s)."};
 
             setDietGoalCommand.execute(data);

@@ -31,9 +31,7 @@ public class ActivityTest {
     @Test
     public void testToString_longRun() {
         String expected = "[Activity] Sunday = Runday | Distance: 18.12 km | Time: 1h 24m | " +
-                "\"October" +
-                " " +
-                "10, 2023 at 11:21 PM\"";
+                "October 10, 2023 at 11:21 PM";
         assertEquals(expected, activity.toString());
     }
 }

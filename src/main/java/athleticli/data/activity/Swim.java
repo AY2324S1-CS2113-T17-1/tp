@@ -51,4 +51,23 @@ public class Swim extends Activity {
         return result;
     }
 
+    /**
+     * Returns a detailed summary of the swim.
+     * @return a multiline string representation of the swim
+     */
+    public String toDetailedString() {
+        String startDateTimeOutput = generateStartDateTimeStringOutput();
+        String movingTimeOutput = generateMovingTimeStringOutput();
+        String distanceOutput = generateDistanceStringOutput();
+
+        int columnWidth = getColumnWidth();
+        String header = "[Swim - " + this.getCaption() + " - " + startDateTimeOutput + "]";
+        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Moving Time: " +
+                movingTimeOutput, columnWidth);
+        String secondRow = formatTwoColumns("\tAvg Lap Time: " + averageLapTime + " s", "Calories: " +
+                this.getCalories() + " kcal", columnWidth);
+
+        return String.join(System.lineSeparator(), header, firstRow, secondRow);
+    }
+
 }

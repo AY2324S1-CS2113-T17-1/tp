@@ -8,15 +8,17 @@ import java.time.format.DateTimeFormatter;
  */
 public class Activity {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("\"MMMM d, " +
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("\"MMMM d, " +
             "yyyy 'at' h:mm a\"");
+    private static final int columnWidth = 40;
 
     private String description;
-    private String caption;
-    private int movingTime;
-    private int distance;
+    private final String caption;
+    private final int movingTime;
+
+    private final int distance;
     private int calories;
-    private LocalDateTime startDateTime;
+    private final LocalDateTime startDateTime;
 
     /**
      * Generates a new general sports activity with some basic stats.
@@ -49,22 +51,63 @@ public class Activity {
         return startDateTime;
     }
 
+    public int getCalories() {
+        return this.calories;
+    }
+
+    public int getColumnWidth() {
+        return columnWidth;
+    }
+
     /**
      * Returns a single line summary of the activity.
      * @return a string representation of the activity
      */
     @Override
     public String toString() {
+        String movingTimeOutput = generateMovingTimeStringOutput();
+        String distanceOutput = generateDistanceStringOutput();
+        String startDateTimeOutput = generateStartDateTimeStringOutput();
+        return "[Activity] " + caption + " | " + distanceOutput + " | " + movingTimeOutput + " | " +
+                startDateTimeOutput;
+    }
+
+    public String generateDistanceStringOutput() {
+        double distanceInKm = distance / 1000.0;
+        return "Distance: " + String.format("%.2f", distanceInKm).replace(",", ".")
+                + " km";
+    }
+
+    public String generateMovingTimeStringOutput() {
         int movingTimeHours = movingTime / 60;
         int movingTimeMinutes = movingTime % 60;
-        double distanceInKm = distance / 1000.0;
-        String movingTimeOutput = "Time: " + movingTimeHours + "h " + movingTimeMinutes + "m";
-        String distanceOutput = "Distance: " + String.format("%.2f", distanceInKm).replace(",", ".")
-                + " km";
-        String startDateTimeOutput = startDateTime.format(DATE_TIME_FORMATTER);
-        String result = "[Activity] " + caption + " | " + distanceOutput + " | " + movingTimeOutput + " | " +
-                startDateTimeOutput;
-        return result;
+        return "Time: " + movingTimeHours + "h " + movingTimeMinutes + "m";
+    }
+
+    public String generateStartDateTimeStringOutput() {
+        return startDateTime.format(DATE_TIME_FORMATTER).replace("\"", "");
+    }
+
+    /**
+     * Returns a detailed summary of the activity.
+     * @return a multiline string representation of the activity
+     */
+    public String toDetailedString() {
+        String startDateTimeOutput = generateStartDateTimeStringOutput();
+        String movingTimeOutput = generateMovingTimeStringOutput();
+        String distanceOutput = generateDistanceStringOutput();
+
+        String header = "[Activity - " + this.getCaption() + " - " + startDateTimeOutput + "]";
+        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Moving Time: " +
+                movingTimeOutput, columnWidth);
+        String secondRow = formatTwoColumns("\tCalories: " +
+                this.getCalories() + " kcal", "...", columnWidth);
+
+        return String.join(System.lineSeparator(), header, firstRow, secondRow);
+    }
+
+    public String formatTwoColumns(String left, String right, int columnWidth) {
+        return String.format("%-" + columnWidth + "s%s", left, right);
     }
 
 }
