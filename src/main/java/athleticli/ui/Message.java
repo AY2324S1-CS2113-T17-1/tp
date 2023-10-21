@@ -153,6 +153,7 @@ public class Message {
             + " INDEX";
     public static final String HELP_EDIT_SLEEP = CommandName.COMMAND_SLEEP_EDIT
             + " INDEX start/START end/END";
+    public static final String HELP_SAVE = CommandName.COMMAND_SAVE;
     public static final String HELP_BYE = CommandName.COMMAND_BYE;
     public static final String HELP_HELP = CommandName.COMMAND_HELP
             + " [COMMAND]";
