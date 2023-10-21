@@ -2,6 +2,7 @@ package athleticli.ui;
 
 import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
+import athleticli.commands.HelpCommand;
 import athleticli.commands.activity.AddActivityCommand;
 import athleticli.commands.activity.DeleteActivityCommand;
 import athleticli.commands.activity.EditActivityCommand;
@@ -74,6 +75,8 @@ public class Parser {
         switch (commandType) {
         case CommandName.COMMAND_BYE:
             return new ByeCommand();
+        case CommandName.COMMAND_HELP:
+            return new HelpCommand(commandArgs);
         case CommandName.COMMAND_SLEEP_ADD:
             return parseSleepAdd(commandArgs);
         case CommandName.COMMAND_SLEEP_LIST:
