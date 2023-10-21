@@ -29,6 +29,7 @@ Sleep Management:
  edit-sleep INDEX start/START end/END
 
 Misc:
+ save
  bye
  help [COMMAND]
 
