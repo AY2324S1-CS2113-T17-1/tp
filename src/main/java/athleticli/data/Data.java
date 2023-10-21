@@ -1,5 +1,7 @@
 package athleticli.data;
 
+import java.io.Serializable;
+
 import athleticli.data.activity.ActivityGoalList;
 import athleticli.data.activity.ActivityList;
 import athleticli.data.diet.DietGoalList;
@@ -10,7 +12,7 @@ import athleticli.data.sleep.SleepList;
 /**
  * Defines the basic fields and methods of data.
  */
-public class Data {
+public class Data implements Serializable {
     private ActivityList activities;
     private ActivityGoalList activityGoals;
     private DietList diets;

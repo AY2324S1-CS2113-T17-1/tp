@@ -9,6 +9,7 @@ import java.util.logging.Logger;
 import athleticli.commands.Command;
 import athleticli.data.Data;
 import athleticli.exceptions.AthletiException;
+import athleticli.storage.Storage;
 import athleticli.ui.Parser;
 import athleticli.ui.Ui;
 
@@ -25,7 +26,7 @@ public class AthletiCLI {
      */
     public AthletiCLI() {
         ui = new Ui();
-        data = new Data();
+        data = Storage.load();
         LogManager.getLogManager().reset();
         try {
             logger.addHandler(new FileHandler("%t/athleticli-log.txt"));
