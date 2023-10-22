@@ -1,11 +1,12 @@
 package athleticli.data.activity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
  * Represents a running activity consisting of relevant evaluation data.
  */
-public class Run extends Activity{
+public class Run extends Activity implements Serializable {
     private final int elevationGain;
     private final double averagePace;
     private final int steps;
