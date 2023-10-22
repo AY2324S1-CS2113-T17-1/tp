@@ -557,7 +557,7 @@ public class Parser {
      * @throws AthletiException Invalid input by the user.
      */
     public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
-        if (commandArgs.isEmpty()){
+        if (commandArgs.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
         }
         try {
@@ -584,7 +584,7 @@ public class Parser {
                 if (!verifyValidNutrients(nutrient)) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
                 }
-                if (recordedNutrients.contains(nutrient)){
+                if (recordedNutrients.contains(nutrient)) {
                     throw new AthletiException(Message.MESSSAGE_DIETGOAL_REPEATED_NUTRIENT);
                 }
                 DietGoal dietGoal = new DietGoal(nutrient, targetValue);
