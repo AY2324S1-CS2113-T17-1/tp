@@ -87,6 +87,10 @@ public class Message {
     public static final String MESSAGE_DIETGOAL_DELETE_HEADER = "The following goal has been deleted:\n";
     public static final String MESSAGE_DIETGOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
             "Please enter a value from 1 to %d.";
+    public static final String MESSAGE_DIETGOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
+            "to create or edit your diet goals:\n \"calories\", \"protein\", \"carb\", \"fats\"";
+    public static final String MESSSAGE_DIETGOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
+            "no repetitions for your diet goal nutrients.";
 
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";

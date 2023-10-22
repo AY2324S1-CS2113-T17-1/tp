@@ -35,6 +35,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Defines the basic methods for command parser.
@@ -558,7 +560,9 @@ public class Parser {
      * @throws AthletiException Invalid input by the user.
      */
     public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
-        System.out.println(commandArgs);
+        if (commandArgs.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
+        }
         try {
             String[] nutrientAndTargetValues;
             if (commandArgs.contains(" ")) {
@@ -571,6 +575,7 @@ public class Parser {
             int targetValue;
 
             ArrayList<DietGoal> dietGoals = new ArrayList<>();
+            Set<String> recordedNutrients = new HashSet<>();
 
             for (int i = 0; i < nutrientAndTargetValues.length; i++) {
                 nutrientAndTargetValue = nutrientAndTargetValues[i].split("/");
@@ -582,8 +587,12 @@ public class Parser {
                 if (!verifyValidNutrients(nutrient)) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
                 }
+                if (recordedNutrients.contains(nutrient)) {
+                    throw new AthletiException(Message.MESSSAGE_DIETGOAL_REPEATED_NUTRIENT);
+                }
                 DietGoal dietGoal = new DietGoal(nutrient, targetValue);
                 dietGoals.add(dietGoal);
+                recordedNutrients.add(nutrient);
 
             }
 
