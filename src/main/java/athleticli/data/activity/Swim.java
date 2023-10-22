@@ -1,8 +1,9 @@
 package athleticli.data.activity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Swim extends Activity {
+public class Swim extends Activity implements Serializable {
     private final int laps;
     private final SwimmingStyle style;
     private final int averageLapTime;

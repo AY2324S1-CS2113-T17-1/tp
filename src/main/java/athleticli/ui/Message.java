@@ -7,6 +7,7 @@ public class Message {
     public static final String PREFIX_EXCEPTION = "OOPS!!! ";
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
     public static final String[] MESSAGE_HELLO = {"Hello! I'm AthletiCLI!", "What can I do for you?"};
+    public static final String MESSAGE_SAVE = "File saved successfully!";
     public static final String MESSAGE_CAPTION_MISSING = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_MISSING =
             "Please specify the activity duration using \"duration/\"!";
@@ -121,6 +122,7 @@ public class Message {
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
         "The index of the sleep record you want to delete is out of bounds.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
+    public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
 
     /* Help Messages */
     public static final String HELP_ADD_ACTIVITY = CommandName.COMMAND_ACTIVITY
@@ -155,6 +157,7 @@ public class Message {
             + " INDEX";
     public static final String HELP_EDIT_SLEEP = CommandName.COMMAND_SLEEP_EDIT
             + " INDEX start/START end/END";
+    public static final String HELP_SAVE = CommandName.COMMAND_SAVE;
     public static final String HELP_BYE = CommandName.COMMAND_BYE;
     public static final String HELP_HELP = CommandName.COMMAND_HELP
             + " [COMMAND]";

@@ -36,6 +36,7 @@ public class HelpCommand extends Command {
         Message.HELP_EDIT_SLEEP,
         /* Misc */
         "\nMisc:",
+        Message.HELP_SAVE,
         Message.HELP_BYE,
         Message.HELP_HELP,
         "\n" + Message.HELP_DETAILS
@@ -62,6 +63,7 @@ public class HelpCommand extends Command {
             entry(CommandName.COMMAND_SLEEP_DELETE, Message.HELP_DELETE_SLEEP),
             entry(CommandName.COMMAND_SLEEP_EDIT, Message.HELP_EDIT_SLEEP),
             /* Misc */
+            entry(CommandName.COMMAND_SAVE, Message.HELP_SAVE),
             entry(CommandName.COMMAND_BYE, Message.HELP_BYE),
             entry(CommandName.COMMAND_HELP, Message.HELP_HELP)
     );

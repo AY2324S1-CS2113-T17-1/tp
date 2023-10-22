@@ -1,11 +1,12 @@
 package athleticli.data.diet;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Represents a list of diets.
  */
-public class DietList extends ArrayList<Diet> {
+public class DietList extends ArrayList<Diet> implements Serializable {
     /**
      * Constructs a diet list.
      */
