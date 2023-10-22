@@ -256,6 +256,12 @@ public class Parser {
         return new Activity(caption, durationParsed, distanceParsed, datetimeParsed);
     }
 
+    /**
+     * Parses the raw activity duration input provided by the user.
+     * @param duration          The raw user input containing the duration.
+     * @return durationParsed   The parsed Integer duration.
+     * @throws AthletiException If the input is not an integer.
+     */
     public static int parseDuration(String duration) throws AthletiException {
         int durationParsed;
         try {
@@ -266,6 +272,12 @@ public class Parser {
         return durationParsed;
     }
 
+    /**
+     * Parses the raw date time input provided by the user.
+     * @param datetime          The raw user input containing the date time.
+     * @return datetimeParsed   The parsed LocalDateTime object.
+     * @throws AthletiException If the input format is invalid.
+     */
     public static LocalDateTime parseDateTime(String datetime) throws AthletiException {
         LocalDateTime datetimeParsed;
         try {
@@ -276,6 +288,12 @@ public class Parser {
         return datetimeParsed;
     }
 
+    /**
+     * Parses the raw activity distance input provided by the user.
+     * @param distance              The raw user input containing the distance.
+     * @return distanceParsed       The parsed Integer distance.
+     * @throws AthletiException     If the input is not an integer.
+     */
     public static int parseDistance(String distance) throws AthletiException {
         int distanceParsed;
         try {
@@ -286,6 +304,13 @@ public class Parser {
         return distanceParsed;
     }
 
+    /**
+     * Checks if the raw user input is missing any arguments for creating an activity.
+     * @param durationIndex     The position of the duration separator.
+     * @param distanceIndex     The position of the distance separator.
+     * @param datetimeIndex     The position of the datetime separator.
+     * @throws AthletiException If any of the arguments are missing.
+     */
     public static void checkMissingActivityArguments(int durationIndex, int distanceIndex,
                                                      int datetimeIndex) throws AthletiException {
         if (durationIndex == -1) {
@@ -338,6 +363,12 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the raw elevation input provided by the user.
+     * @param elevation             The raw user input containing the elevation.
+     * @return elevationParsed      The parsed Integer elevation.
+     * @throws AthletiException     If the input is not an integer.
+     */
     public static int parseElevation(String elevation) throws AthletiException {
         int elevationParsed;
         try {
@@ -348,6 +379,14 @@ public class Parser {
         return elevationParsed;
     }
 
+    /**
+     * Checks if the raw user input is missing any arguments for creating a run or cycle.
+     * @param durationIndex     The position of the duration separator.
+     * @param distanceIndex     The position of the distance separator.
+     * @param datetimeIndex     The position of the datetime separator.
+     * @param elevationIndex    The position of the elevation separator.
+     * @throws AthletiException If any of the arguments are missing.
+     */
     public static void checkMissingRunCycleArguments(int durationIndex, int distanceIndex, int datetimeIndex,
                                                      int elevationIndex) throws AthletiException {
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
@@ -356,6 +395,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the raw user input is missing any arguments for creating a swim.
+     * @param durationIndex         The position of the duration separator.
+     * @param distanceIndex         The position of the distance separator.
+     * @param datetimeIndex         The position of the datetime separator.
+     * @param swimmingStyleIndex    The position of the swimming style separator.
+     * @throws AthletiException If any of the arguments are missing.
+     */
     public static void checkMissingSwimArguments(int durationIndex, int distanceIndex, int datetimeIndex,
                                                  int swimmingStyleIndex) throws AthletiException {
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
@@ -364,6 +411,14 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the raw user input includes any empty arguments for creating an activity.
+     * @param caption           The caption of the activity.
+     * @param duration          The duration of the activity.
+     * @param distance          The distance of the activity.
+     * @param datetime          The datetime of the activity.
+     * @throws AthletiException If any of the arguments are empty.
+     */
     public static void checkEmptyActivityArguments(String caption, String duration, String distance,
                                                    String datetime) throws AthletiException {
         if (caption.isEmpty()) {
@@ -380,6 +435,15 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the raw user input includes any empty arguments for creating a cycle or run.
+     * @param caption           The caption of the activity.
+     * @param duration          The duration of the activity.
+     * @param distance          The distance of the activity.
+     * @param datetime          The datetime of the activity.
+     * @param elevation         The elevation of the activity.
+     * @throws AthletiException If any of the arguments are empty.
+     */
     public static void checkEmptyActivityArguments(String caption, String duration, String distance,
                                                    String datetime,
                                                    String elevation) throws AthletiException {
@@ -389,9 +453,17 @@ public class Parser {
         }
     }
 
+    /**
+     * Checks if the raw user input includes any empty arguments for creating a swim.
+     * @param caption               The caption of the activity.
+     * @param duration              The duration of the activity.
+     * @param distance              The distance of the activity.
+     * @param datetime              The datetime of the activity.
+     * @param swimmingStyleIndex    The position of the swimming style separator.
+     * @throws AthletiException     If any of the arguments are empty.
+     */
     public static void checkEmptyActivityArguments(String caption, String duration, String distance,
-                                                   String datetime,
-                                                   int swimmingStyleIndex) throws AthletiException {
+                                                   String datetime, int swimmingStyleIndex) throws AthletiException {
         checkEmptyActivityArguments(caption, duration, distance, datetime);
         if (swimmingStyleIndex == -1) {
             throw new AthletiException(Message.MESSAGE_SWIMMINGSTYLE_MISSING);
@@ -433,6 +505,12 @@ public class Parser {
         return new Swim(caption, durationParsed, distanceParsed, datetimeParsed, swimmingStyleParsed);
     }
 
+    /**
+     * Parses the raw user input for a swimming style and returns the corresponding swimming style object.
+     * @param swimmingStyle     The raw user input containing the swimming style.
+     * @return swimmingStyle    An object representing the swimming style.
+     * @throws AthletiException If the input format is invalid.
+     */
     public static Swim.SwimmingStyle parseSwimmingStyle(String swimmingStyle) throws AthletiException {
         try {
             return Swim.SwimmingStyle.valueOf(swimmingStyle);
