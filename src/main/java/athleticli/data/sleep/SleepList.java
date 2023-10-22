@@ -1,5 +1,6 @@
 package athleticli.data.sleep;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**

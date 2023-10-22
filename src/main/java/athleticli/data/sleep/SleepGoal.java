@@ -4,5 +4,7 @@
 
 package athleticli.data.sleep;
 
-public class SleepGoal {
+import java.io.Serializable;
+
+public class SleepGoal implements Serializable {
 }

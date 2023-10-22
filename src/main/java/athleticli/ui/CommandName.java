@@ -5,6 +5,8 @@ package athleticli.ui;
  */
 public class CommandName {
     public static final String COMMAND_BYE = "bye";
+    public static final String COMMAND_HELP = "help";
+    public static final String COMMAND_SAVE = "save";
 
     public static final String COMMAND_SLEEP_ADD = "add-sleep";
     public static final String COMMAND_SLEEP_EDIT = "edit-sleep";

@@ -1,4 +1,6 @@
 package athleticli.data.activity;
 
-public class ActivityGoal {
+import java.io.Serializable;
+
+public class ActivityGoal implements Serializable {
 }

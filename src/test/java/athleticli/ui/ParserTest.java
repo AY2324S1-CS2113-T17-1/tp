@@ -15,14 +15,11 @@ import org.junit.jupiter.api.Test;
 import static athleticli.ui.Parser.parseCommand;
 import static athleticli.ui.Parser.parseDietGoalSetEdit;
 import static athleticli.ui.Parser.splitCommandWordAndArgs;
-import static athleticli.ui.Parser.verifyValidNutrients;
 
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class ParserTest {
@@ -234,16 +231,6 @@ class ParserTest {
     void parseCommand_deleteDietCommand_emptyIndexExpectAthletiException() {
         final String deleteDietCommandString = "delete-diet";
         assertThrows(AthletiException.class, () -> parseCommand(deleteDietCommandString));
-    }
-
-    @Test
-    void verifyNutrient_validNutrient_returnTrue() {
-        assertTrue(verifyValidNutrients("calories"));
-    }
-
-    @Test
-    void verifyNutrient_validNutrient_returnFalse() {
-        assertFalse(verifyValidNutrients("invalidNutrients"));
     }
 
     @Test
