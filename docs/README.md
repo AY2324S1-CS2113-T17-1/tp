@@ -53,13 +53,16 @@ You can record your activities in AtheltiCLI by adding different activities incl
 Accidentally added an activity? You can quickly delete activities by using the following command.
 The index must be a positive number and is not larger than the number of activities recorded.
 
-**Syntax:** 
+**Syntax:**
+
 * `delete-activity INDEX`
 
 **Parameters:**
+
 * INDEX: The index of the activity as shown in the displayed activity list.
 
-**Examples:** 
+**Examples:**
+
 * `delete-activity 2` deletes the second activity in the activity list.
 * `delete-activity 1` deletes the first activity in the activity list.
 
@@ -67,17 +70,20 @@ The index must be a positive number and is not larger than the number of activit
 
 `list-activity`
 
-You can see all your tracked activities in a list by using this command. For more detailed information, you can use 
+You can see all your tracked activities in a list by using this command. For more detailed information, you can use
 the detailed flag.
 
 **Syntax:**
+
 * `list-activity [-d]`
 
 **Flags:**
+
 * `-d`: Shows a detailed list of activities.
 
 **Examples:**
-* `list-activity` shows a brief overview  of all activities.
+
+* `list-activity` shows a brief overview of all activities.
 * `list-activity -d` shows a detailed summary of all activities.
 
 ### Editing Activities:
@@ -87,16 +93,19 @@ the detailed flag.
 You can edit your activities in AthletiCLI by editing the activity at the specified index.
 
 **Syntax:**
+
 * `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
 * `edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
 * `edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
 * `edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
 
 **Parameters:**
+
 * INDEX: The index of the activity to be edited - must be a positive number
 * see adding activities for the other parameters
 
 **Examples:**
+
 * `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
 * `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
@@ -104,23 +113,23 @@ You can edit your activities in AthletiCLI by editing the activity at the specif
 
 ### Adding Diets:
 
-`diet`
+`add-diet`
 You can record your diet in AtheltiCLI by adding your calorie, protein, carbohydrate,and fat intake of your meals.
 
 **Syntax:**
 
-* `diet calories/CALORIES protein/PROTEIN carbs/CARBS fat/FAT`
+* `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT`
 
 **Parameters:**
 
 * CALORIES: The total calories of the meal.
 * PROTEIN: The total protein of the meal.
-* CARBS: The total carbohydrates of the meal.
+* CARB: The total carbohydrates of the meal.
 * FAT: The total fat of the meal.
 
 **Examples:**
 
-* `diet calories/500 protein/20 carbs/50 fat/10`
+* `add-diet calories/500 protein/20 carb/50 fat/10`
 
 ### Deleting Diets:
 
@@ -152,6 +161,139 @@ You can list all your diets in AtheltiCLI.
 
 * `list-diet`
 
+## Diet Goal Management
+
+
+### Adding Diet Goals:
+
+
+`set-diet-goal`
+You can create a new diet goal to track your nutrients intake with AtheltiCLI by adding the nutrients you wish to track and the target value for your nutrient goals.
+
+
+Currently only the following nutrients/metrics are tracked:
+1. Calories
+2. Protein
+3. Carbs
+4. Fats
+
+
+You can set multiple nutrients goals at once with the `set-diet-goal` command.
+
+
+**Syntax:**
+
+
+* `set-diet-goal calories/CALORIES protein/PROTEIN carb/CARBS fat/FAT`
+
+
+**Parameters:**
+
+
+* CALORIES: Your target value for calories intake, in terms of cal.
+* PROTEIN: The target for protein intake, in terms of milligrams.
+* CARB: Your target value for carbohydrate intake, in terms of milligrams.
+* FAT: Your target value for fats intake, in terms of milligrams.
+
+
+You can create one or multiple nutrient goals at once with this command.
+
+
+
+
+**Examples:**
+
+Create multiple nutrients goals:
+* `set-diet-goal calories/500 protein/20 carb/50 fat/10`
+
+
+Create a single calories goal:
+* `set-diet-goal calories/500`
+
+
+### Deleting Diet Goals:
+
+
+`delete-diet-goal`
+You can delete your diet goals in AtheltiCLI by deleting the goal at the specified index.
+This index will be referenced via `list-diet-goal` command.
+
+
+**Syntax:**
+
+
+* `delete-diet-goal INDEX`
+
+
+**Parameters:**
+
+
+* INDEX: The index of the diet goal to be deleted. It must be a positive integer.
+
+
+**Examples:**
+
+
+* `delete-diet-goal 1`
+
+
+### Listing Diet Goals:
+
+
+`list-diet-goals`
+You can list all your diet goals in AtheltiCLI.
+
+
+**Syntax:**
+
+
+* `list-diet-goal`
+
+
+**Examples:**
+
+
+* `list-diet-goal`
+
+
+### Editing Diet Goals:
+
+
+`edit-diet-goal`
+You can edit the target value of your diet goals in AtheltiCLI, redefining the target value for the specified nutrient.
+
+
+This command takes in at least one argument. You are able to edit multiple diet goals target value at once. No repetition is allowed.
+
+
+**Syntax:**
+
+
+* `edit-diet-goal calories/CALORIES protein/PROTEIN carb/CARBS fat/FAT`
+
+
+**Parameters:**
+
+
+* CALORIES: Your target value for calories intake, in terms of cal.
+* PROTEIN: The target for protein intake, in terms of milligrams.
+* CARBS: Your target value for carbohydrate intake, in terms of milligrams.
+* FAT: Your target value for fats intake, in terms of milligrams.
+
+
+You can create one or multiple nutrient goals with this command.
+
+
+**Examples:**
+
+
+Edit multiple nutrients goals:
+* `edit-diet-goal calories/5000 protein/200 carb/500 fat/100`
+
+
+Edit a single calories goal:
+* `edit-diet-goal calories/5000`
+
 ## Sleep Management
 
 ### Adding Sleep:
@@ -161,16 +303,16 @@ You can record your sleep timings in AtheltiCLI by adding your sleep start and e
 
 **Syntax:**
 
-*   `add-sleep start/START end/END`
+* `add-sleep start/START end/END`
 
 **Parameters:**
 
-*   START: The start time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
-*   END: The end time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
+* START: The start time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
+* END: The end time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
 
 **Examples:**
 
-*   `add-sleep start/01-09-2021 22:00 end/02-09-2021 06:00`
+* `add-sleep start/01-09-2021 22:00 end/02-09-2021 06:00`
 
 ### Listing Sleep:
 
@@ -188,44 +330,45 @@ You can delete your sleep in AtheltiCLI by specifying the sleep's index.
 
 **Syntax:**
 
-*   `delete-sleep INDEX`
+* `delete-sleep INDEX`
 
 **Parameters:**
 
-*   INDEX: The integer index of the sleep record you wish to delete.
+* INDEX: The integer index of the sleep record you wish to delete.
 
 **Examples:**
 
-*   `delete-sleep 5`  
-    (Note: This will delete the 5th sleep record from your records.)
+* `delete-sleep 5`  
+  (Note: This will delete the 5th sleep record from your records.)
 
 ### Editing Sleep:
 
 **Command:** `edit-sleep`  
-You can modify existing sleep records in AtheltiCLI by specifying the sleep's index and then providing the new start and end times.
+You can modify existing sleep records in AtheltiCLI by specifying the sleep's index and then providing the new start and
+end times.
 
 **Syntax:**
 
-*   `edit-sleep INDEX start/START end/END`
+* `edit-sleep INDEX start/START end/END`
 
 **Parameters:**
 
-*   INDEX: The integer index of the sleep record you wish to edit.
-*   START: The new start time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
-*   END: The new end time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
+* INDEX: The integer index of the sleep record you wish to edit.
+* START: The new start time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
+* END: The new end time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
 
 **Examples:**
 
-*   `edit-sleep 5 start/05-09-2021 23:00 end/06-09-2021 07:00`  
-    (Note: This will edit the 5th sleep record to have the new specified timings.)
+* `edit-sleep 5 start/05-09-2021 23:00 end/06-09-2021 07:00`  
+  (Note: This will edit the 5th sleep record to have the new specified timings.)
 
 ---
 
 Remember, when using AtheltiCLI:
 
-*   Make sure to provide accurate dates and times.
-*   Double-check indexes before deleting or editing records to prevent mistakes.
-*   If you encounter any error messages, read them carefully to understand what went wrong.
+* Make sure to provide accurate dates and times.
+* Double-check indexes before deleting or editing records to prevent mistakes.
+* If you encounter any error messages, read them carefully to understand what went wrong.
 
 ---
 

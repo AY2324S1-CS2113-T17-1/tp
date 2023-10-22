@@ -4,7 +4,35 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! I'm sorry, but I don't know what that means :-(
+
+Activity Management:
+ activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
+ run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
+ cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ delete-activity INDEX
+ list-activity [-d]
+ edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
+ edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
+ edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+
+Diet Management:
+ add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT
+ delete-diet INDEX
+ list-diet
+
+Sleep Management:
+ add-sleep start/START end/END
+ list-sleep
+ delete-sleep INDEX
+ edit-sleep INDEX start/START end/END
+
+Misc:
+ bye
+ help [COMMAND]
+
+Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.
 ____________________________________________________________
 
 > ____________________________________________________________

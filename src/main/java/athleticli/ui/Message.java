@@ -19,7 +19,7 @@ public class Message {
     public static final String MESSAGE_PROTEIN_MISSING =
             "Please specify the protein intake using \"protein/\"!";
     public static final String MESSAGE_CARB_MISSING =
-            "Please specify the carbohydrate intake using \"carbs/\"!";
+            "Please specify the carbohydrate intake using \"carb/\"!";
     public static final String MESSAGE_FAT_MISSING = "Please specify the fat intake using \"fat/\"!";
     public static final String MESSAGE_CAPTION_EMPTY = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_EMPTY = "The duration of an activity cannot be empty!";
@@ -117,4 +117,43 @@ public class Message {
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
         "The index of the sleep record you want to delete is out of bounds.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
+
+    /* Help Messages */
+    public static final String HELP_ADD_ACTIVITY = CommandName.COMMAND_ACTIVITY
+            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME";
+    public static final String HELP_ADD_RUN = CommandName.COMMAND_RUN
+            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+    public static final String HELP_ADD_SWIM = CommandName.COMMAND_SWIM
+            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
+    public static final String HELP_ADD_CYCLE = CommandName.COMMAND_CYCLE
+            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+    public static final String HELP_DELETE_ACTIVITY = CommandName.COMMAND_ACTIVITY_DELETE
+            + " INDEX";
+    public static final String HELP_LIST_ACTIVITY = CommandName.COMMAND_ACTIVITY_LIST
+            + " [-d]";
+    public static final String HELP_EDIT_ACTIVITY = CommandName.COMMAND_ACTIVITY_EDIT
+            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME";
+    public static final String HELP_EDIT_RUN = CommandName.COMMAND_RUN_EDIT
+            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+    public static final String HELP_EDIT_SWIM = CommandName.COMMAND_SWIM_EDIT
+            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
+    public static final String HELP_EDIT_CYCLE = CommandName.COMMAND_CYCLE_EDIT
+            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+    public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
+            + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT";
+    public static final String HELP_DELETE_DIET = CommandName.COMMAND_DIET_DELETE
+            + " INDEX";
+    public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;
+    public static final String HELP_ADD_SLEEP = CommandName.COMMAND_SLEEP_ADD
+            + " start/START end/END";
+    public static final String HELP_LIST_SLEEP = CommandName.COMMAND_SLEEP_LIST;
+    public static final String HELP_DELETE_SLEEP = CommandName.COMMAND_SLEEP_DELETE
+            + " INDEX";
+    public static final String HELP_EDIT_SLEEP = CommandName.COMMAND_SLEEP_EDIT
+            + " INDEX start/START end/END";
+    public static final String HELP_BYE = CommandName.COMMAND_BYE;
+    public static final String HELP_HELP = CommandName.COMMAND_HELP
+            + " [COMMAND]";
+    public static final String HELP_DETAILS =
+            "Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.";
 }
