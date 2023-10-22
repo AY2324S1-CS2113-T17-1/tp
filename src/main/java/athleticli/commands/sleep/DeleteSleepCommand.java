@@ -15,7 +15,7 @@ import athleticli.ui.Message;
 public class DeleteSleepCommand extends Command {
 
     private int index;
-    private final Logger LOGGER = Logger.getLogger(DeleteSleepCommand.class.getName());
+    private final Logger logger = Logger.getLogger(DeleteSleepCommand.class.getName());
 
     /**
      * Constructor for DeleteSleepCommand.
@@ -23,7 +23,7 @@ public class DeleteSleepCommand extends Command {
      */
     public DeleteSleepCommand(int index) {
         this.index = index;
-        LOGGER.fine("Creating DeleteSleepCommand with index: " + index);
+        logger.fine("Creating DeleteSleepCommand with index: " + index);
     }
 
     /**
@@ -39,12 +39,12 @@ public class DeleteSleepCommand extends Command {
         if (accessIndex < 0 || accessIndex >= sleepList.size()) {
             throw new AthletiException(Message.ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE);
         }
-        assert accessIndex >= 0 : "Index cannot be less than 0";
-        assert accessIndex < sleepList.size() : "Index cannot be more than size of list";
+        assert accessIndex >= 0 : "Access index cannot be less than 0";
+        assert accessIndex < sleepList.size() : "Index cannot be more than size of sleep list";
 
         Sleep oldSleep = sleepList.get(accessIndex);
         sleepList.remove(accessIndex);
-        LOGGER.fine("Deleted sleep: " + oldSleep);
+        logger.fine("Deleted sleep: " + oldSleep);
         
         String returnMessage = String.format(Message.MESSAGE_SLEEP_DELETE_RETURN, index, oldSleep.toString());
         return new String[] {

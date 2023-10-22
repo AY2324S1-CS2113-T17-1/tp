@@ -16,7 +16,7 @@ public class AddSleepCommand extends Command {
 
     private LocalDateTime from;
     private LocalDateTime to;
-    private final Logger LOGGER = Logger.getLogger(AddSleepCommand.class.getName());
+    private final Logger logger = Logger.getLogger(AddSleepCommand.class.getName());
 
     /**
      * Constructor for AddSleepCommand.
@@ -30,7 +30,7 @@ public class AddSleepCommand extends Command {
         assert from != null : "Start time cannot be null";
         assert to != null : "End time cannot be null";
         assert from.isBefore(to) : "Start time must be before end time";
-        LOGGER.fine("Creating AddSleepCommand with from: " + from + " and to: " + to);
+        logger.fine("Creating AddSleepCommand with from: " + from + " and to: " + to);
     }
 
     /**
@@ -43,8 +43,8 @@ public class AddSleepCommand extends Command {
         Sleep newSleep = new Sleep(from, to);
         sleepList.add(newSleep);
 
-        LOGGER.info("Added sleep: " + newSleep);
-        LOGGER.fine("Sleep list: " + sleepList);
+        logger.info("Added sleep: " + newSleep);
+        logger.fine("Sleep list: " + sleepList);
 
         String returnMessage2 = String.format(Message.MESSAGE_SLEEP_ADD_RETURN_2, sleepList.size());
         return new String[] {

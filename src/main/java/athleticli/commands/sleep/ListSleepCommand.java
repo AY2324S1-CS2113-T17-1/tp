@@ -9,7 +9,7 @@ import athleticli.ui.Message;
 
 public class ListSleepCommand extends Command {
 
-    private static final Logger LOGGER = Logger.getLogger(ListSleepCommand.class.getName());
+    private static final Logger logger = Logger.getLogger(ListSleepCommand.class.getName());
 
     /**
      * Lists all the sleep records in the sleep list.
@@ -18,12 +18,11 @@ public class ListSleepCommand extends Command {
      * @return The message which will be shown to the user.
      */
     public String[] execute(Data data) {
-        LOGGER.info("Executing ListSleepCommand");
+        logger.info("Executing ListSleepCommand");
         SleepList sleeps = data.getSleeps();
         final int size = sleeps.size();
-        assert size >= 0 : "Sleep list size cannot be negative";
         if (size == 0) {
-            LOGGER.warning("Sleep list is empty");
+            logger.warning("Sleep list is empty");
             return new String[] {
                 Message.MESSAGE_SLEEP_LIST_EMPTY
             };
@@ -33,7 +32,7 @@ public class ListSleepCommand extends Command {
     }
 
     public String[] printList(SleepList sleeps, int size) {
-        LOGGER.fine("Printing sleep list");
+        logger.fine("Printing sleep list");
         String[] returnString = new String[size+1];
         returnString[0] = Message.MESSAGE_SLEEP_LIST;
         for (int i = 0; i < size; i++) {

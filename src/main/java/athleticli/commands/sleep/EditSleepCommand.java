@@ -15,7 +15,7 @@ import athleticli.ui.Message;
  */
 public class EditSleepCommand extends Command {
 
-    private final Logger LOGGER = Logger.getLogger(EditSleepCommand.class.getName());
+    private final Logger logger = Logger.getLogger(EditSleepCommand.class.getName());
     private int index;
     private LocalDateTime from;
     private LocalDateTime to;
@@ -35,7 +35,7 @@ public class EditSleepCommand extends Command {
         assert to != null : "End time cannot be null";
         assert from.isBefore(to) : "Start time must be before end time";
 
-        LOGGER.fine("Creating EditSleepCommand with index: " + index + " from: " + from + " and to: " + to);
+        logger.fine("Creating EditSleepCommand with index: " + index + " from: " + from + " and to: " + to);
     }
     
     /**
@@ -53,7 +53,7 @@ public class EditSleepCommand extends Command {
         }
 
         assert accessIndex >= 0 : "Index cannot be less than 0";
-        assert accessIndex < sleepList.size() : "Index cannot be more than size of list";
+        assert accessIndex < sleepList.size() : "Index cannot be more than size of sleep list";
 
         Sleep oldSleep = sleepList.get(accessIndex);
         Sleep newSleep = new Sleep(from, to);
