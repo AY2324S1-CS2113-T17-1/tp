@@ -7,6 +7,7 @@ public class Message {
     public static final String PREFIX_EXCEPTION = "OOPS!!! ";
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
     public static final String[] MESSAGE_HELLO = {"Hello! I'm AthletiCLI!", "What can I do for you?"};
+    public static final String MESSAGE_SAVE = "File saved successfully!";
     public static final String MESSAGE_CAPTION_MISSING = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_MISSING =
             "Please specify the activity duration using \"duration/\"!";
@@ -86,6 +87,10 @@ public class Message {
     public static final String MESSAGE_DIETGOAL_DELETE_HEADER = "The following goal has been deleted:\n";
     public static final String MESSAGE_DIETGOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
             "Please enter a value from 1 to %d.";
+    public static final String MESSAGE_DIETGOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
+            "to create or edit your diet goals:\n \"calories\", \"protein\", \"carb\", \"fats\"";
+    public static final String MESSSAGE_DIETGOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
+            "no repetitions for your diet goal nutrients.";
 
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";
@@ -117,6 +122,7 @@ public class Message {
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
         "The index of the sleep record you want to delete is out of bounds.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
+    public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
 
     /* Help Messages */
     public static final String HELP_ADD_ACTIVITY = CommandName.COMMAND_ACTIVITY
@@ -151,6 +157,7 @@ public class Message {
             + " INDEX";
     public static final String HELP_EDIT_SLEEP = CommandName.COMMAND_SLEEP_EDIT
             + " INDEX start/START end/END";
+    public static final String HELP_SAVE = CommandName.COMMAND_SAVE;
     public static final String HELP_BYE = CommandName.COMMAND_BYE;
     public static final String HELP_HELP = CommandName.COMMAND_HELP
             + " [COMMAND]";

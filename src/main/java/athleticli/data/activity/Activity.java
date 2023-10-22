@@ -1,5 +1,6 @@
 package athleticli.data.activity;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
@@ -7,7 +8,7 @@ import java.util.Locale;
 /**
  * Represents a physical activity consisting of basic sports data.
  */
-public class Activity {
+public class Activity implements Serializable {
 
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("\"MMMM d, " +
             "yyyy 'at' h:mm a\"", Locale.ENGLISH);

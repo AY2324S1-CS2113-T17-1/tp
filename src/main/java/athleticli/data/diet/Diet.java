@@ -1,9 +1,11 @@
 package athleticli.data.diet;
 
+import java.io.Serializable;
+
 /**
  * Defines the basic fields and methods of a diet.
  */
-public class Diet {
+public class Diet implements Serializable {
     private int calories;
     private int protein;
     private int carb;

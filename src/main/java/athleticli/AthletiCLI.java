@@ -7,8 +7,10 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import athleticli.commands.Command;
+import athleticli.commands.SaveCommand;
 import athleticli.data.Data;
 import athleticli.exceptions.AthletiException;
+import athleticli.storage.Storage;
 import athleticli.ui.Parser;
 import athleticli.ui.Ui;
 
@@ -17,15 +19,15 @@ import athleticli.ui.Ui;
  */
 public class AthletiCLI {
     private static Logger logger = Logger.getLogger(AthletiCLI.class.getName());
-    private Ui ui;
-    private Data data;
+    private static Ui ui;
+    private static Data data;
 
     /**
      * Constructs an <code>AthletiCLI</code> object.
      */
     public AthletiCLI() {
         ui = new Ui();
-        data = new Data();
+        data = Storage.load();
         LogManager.getLogManager().reset();
         try {
             logger.addHandler(new FileHandler("%t/athleticli-log.txt"));
@@ -40,6 +42,15 @@ public class AthletiCLI {
      * @param args  Arguments obtained from the command line.
      */
     public static void main(String[] args) {
+        /* save data when the JVM begins its shutdown sequence */
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                final String[] feedback = new SaveCommand().execute(data);
+                ui.showMessages(feedback);
+            } catch (AthletiException e) {
+                ui.showException(e);
+            }
+        }));
         new AthletiCLI().run();
     }
 
