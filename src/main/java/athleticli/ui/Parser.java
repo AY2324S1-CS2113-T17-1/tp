@@ -557,7 +557,7 @@ public class Parser {
      * @throws AthletiException Invalid input by the user.
      */
     public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
-        if (commandArgs.isEmpty()){
+        if (commandArgs.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
         }
         try {
@@ -581,10 +581,10 @@ public class Parser {
                 if (targetValue == 0) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
                 }
-                if (!verifyValidNutrients(nutrient)) {
+                if (!NutrientVerifier.verify(nutrient)) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
                 }
-                if (recordedNutrients.contains(nutrient)){
+                if (recordedNutrients.contains(nutrient)) {
                     throw new AthletiException(Message.MESSSAGE_DIETGOAL_REPEATED_NUTRIENT);
                 }
                 DietGoal dietGoal = new DietGoal(nutrient, targetValue);
@@ -598,15 +598,6 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
         }
-    }
-
-    /**
-     * @param nutrient The nutrient that is provided by the user.
-     * @return boolean value depending on whether the nutrient is defined in our user guide.
-     */
-    public static boolean verifyValidNutrients(String nutrient) {
-        return nutrient.equals(CALORIES_MARKER) || nutrient.equals(PROTEIN_MARKER)
-                || nutrient.equals(CARB_MARKER) || nutrient.equals(FAT_MARKER);
     }
 
     /**
