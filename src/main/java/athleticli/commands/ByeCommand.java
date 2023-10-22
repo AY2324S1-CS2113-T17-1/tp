@@ -19,7 +19,7 @@ public class ByeCommand extends Command {
     }
 
     /**
-     * Save data and returns the bye message to be shown to the user.
+     * Saves data and returns the bye message to be shown to the user.
      *
      * @return      The messages to be shown to the user.
      */
