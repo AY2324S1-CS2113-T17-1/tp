@@ -33,23 +33,24 @@ public class ListSleepCommandTest {
     @Test
     public void testExecuteWithRecords() {
         ListSleepCommand command = new ListSleepCommand();
-        String expectedList = "1. sleep record from 17-10-2023 22:00 to 18-10-2023 06:00\n" +
-                              "2. sleep record from 18-10-2023 22:00 to 19-10-2023 06:00\n";
         String[] expected = {
             "Here are the sleep records in your list:\n",
-            expectedList
-        };
-        assertArrayEquals(expected, command.execute(data));
+            "1. sleep record from 17-10-2023 22:00 to 18-10-2023 06:00",
+            "2. sleep record from 18-10-2023 22:00 to 19-10-2023 06:00"
+        };    
+        String[] actual = command.execute(data);
+        assertArrayEquals(expected, actual);
     }
 
     @Test
     public void testExecuteWithEmptyList() {
-        data.setSleeps(new SleepList()); // Empty list
+        data.setSleeps(new SleepList()); 
         ListSleepCommand command = new ListSleepCommand();
         String[] expected = {
             "You have no sleep records in your list."
         };
-        assertArrayEquals(expected, command.execute(data));
+        String[] actual = command.execute(data);
+        assertArrayEquals(expected, actual);
     }
 
 }

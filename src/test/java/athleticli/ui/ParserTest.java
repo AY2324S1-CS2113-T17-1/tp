@@ -66,6 +66,24 @@ class ParserTest {
         assertThrows(AthletiException.class, () -> parseCommand(addSleepCommandString));
     }
 
+    @Test 
+    void parseCommand_addSleepCommand_missingEndExpectAthletiException() {
+        final String addSleepCommandString = "add-sleep start/07-10-2021 06:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addSleepCommandString));
+    }
+
+    @Test 
+    void parseCommand_addSleepCommand_missingBothExpectAthletiException() {
+        final String addSleepCommandString = "add-sleep start/ end/";
+        assertThrows(AthletiException.class, () -> parseCommand(addSleepCommandString));
+    }
+
+    @Test
+    void parseCommand_addSleepCommand_invalidDatetimeExpectAthletiException() {
+        final String addSleepCommandString = "add-sleep start/07-10-2021 06:00 end/07-10-2021 05:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addSleepCommandString));
+    }
+
     @Test
     void parseCommand_editSleepCommand_expectEditSleepCommand() throws AthletiException {
         final String editSleepCommandString = "edit-sleep 1 start/06-10-2021 10:00 end/07-10-2021 06:00";
@@ -75,6 +93,30 @@ class ParserTest {
     @Test
     void parseCommand_editSleepCommand_missingStartExpectAthletiException() {
         final String editSleepCommandString = "edit-sleep 1 end/07-10-2021 06:00";
+        assertThrows(AthletiException.class, () -> parseCommand(editSleepCommandString));
+    }
+
+    @Test 
+    void parseCommand_editSleepCommand_missingEndExpectAthletiException() {
+        final String editSleepCommandString = "edit-sleep 1 start/07-10-2021 06:00";
+        assertThrows(AthletiException.class, () -> parseCommand(editSleepCommandString));
+    }
+
+    @Test
+    void parseCommand_editSleepCommand_missingBothExpectAthletiException() {
+        final String editSleepCommandString = "edit-sleep 1 start/ end/";
+        assertThrows(AthletiException.class, () -> parseCommand(editSleepCommandString));
+    }
+
+    @Test
+    void parseCommand_editSleepCommand_invalidDatetimeExpectAthletiException() {
+        final String editSleepCommandString = "edit-sleep 1 start/07-10-2021 07:00 end/07-10-2021 06:00";
+        assertThrows(AthletiException.class, () -> parseCommand(editSleepCommandString));
+    }
+
+    @Test
+    void parseCommand_editSleepCommand_invalidIndexExpectAthletiException() {
+        final String editSleepCommandString = "edit-sleep abc start/06-10-2021 10:00 end/07-10-2021 06:00";
         assertThrows(AthletiException.class, () -> parseCommand(editSleepCommandString));
     }
 

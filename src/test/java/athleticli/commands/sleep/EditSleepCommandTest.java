@@ -41,6 +41,7 @@ public class EditSleepCommandTest {
             "original: sleep record from 17-10-2023 22:00 to 18-10-2023 06:00",
             "to new: sleep record from 17-10-2023 23:00 to 18-10-2023 07:00",
         };
+        
         assertArrayEquals(expected, command.execute(data));
     }
 
