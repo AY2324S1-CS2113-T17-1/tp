@@ -1,2 +1,11 @@
 help
+activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00
+cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000
+cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000
+swim Evening Swim duration/60 distance/1000 datetime/2021-09-01 20:00
+delete-activity 3
+delete-activity 0
+list-activity
+list-activity -d
+edit-activity 1 Morning Run duration/60 distance/12000 datetime/2021-09-01 06:00
 bye

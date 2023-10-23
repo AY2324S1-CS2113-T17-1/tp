@@ -37,6 +37,61 @@ Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for de
 ____________________________________________________________
 
 > ____________________________________________________________
+ Well done! I've added this activity:
+ [Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | September 1, 2021 at 6:00 AM
+ Now you have tracked your first activity. This is just the beginning!
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this activity:
+ [Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | September 1, 2021 at 6:00 PM
+ You have tracked a total of 2 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this activity:
+ [Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | September 1, 2021 at 6:00 PM
+ You have tracked a total of 3 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify the swimming style using "style/"!
+____________________________________________________________
+
+> ____________________________________________________________
+ Gotcha, I've deleted this activity:
+ [Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | September 1, 2021 at 6:00 PM
+ You have tracked a total of 2 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The activity index does not exist, check your list for the correct index!
+____________________________________________________________
+
+> ____________________________________________________________
+ These are the activities you have tracked so far:
+ 1.[Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | September 1, 2021 at 6:00 AM
+ 2.[Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | September 1, 2021 at 6:00 PM
+____________________________________________________________
+
+> ____________________________________________________________
+ These are the activities you have tracked so far:
+ [Activity - Morning Run - September 1, 2021 at 6:00 AM]
+	Distance: 10.00 km                     Time: 1h 0m
+	Calories: 0 kcal                       ...
+ [Cycle - Evening Ride - September 1, 2021 at 6:00 PM]
+	Distance: 20.00 km                     Elevation Gain: 1000 m
+	Time: 2h 0m                            Avg Speed: 10.00 km/h
+	Calories: 0 kcal                       Max Speed: tbd
+____________________________________________________________
+
+> ____________________________________________________________
+ Ok, I've updated this activity:
+ [Activity] Morning Run | Distance: 12.00 km | Time: 1h 0m | September 1, 2021 at 6:00 AM
+ You have tracked a total of 2 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
  Bye. Hope to see you again soon!
 ____________________________________________________________
 
