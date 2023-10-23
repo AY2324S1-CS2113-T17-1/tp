@@ -2,6 +2,7 @@ package athleticli.data.activity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * Represents a running activity consisting of relevant evaluation data.
@@ -21,7 +22,7 @@ public class Run extends Activity implements Serializable {
      * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
      * @param elevationGain elevation gain in meters
      */
-    public Run(String caption, int movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
+    public Run(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
         super(caption, movingTime, distance, startDateTime);
         this.elevationGain = elevationGain;
         this.averagePace = this.calculateAveragePace();
@@ -33,7 +34,7 @@ public class Run extends Activity implements Serializable {
      * @return average pace of the run in minutes per km
      */
     public double calculateAveragePace() {
-        double time = (double) this.getMovingTime();
+        double time = (double) this.getMovingTime().toSecondOfDay() / 60;
         double distance = (double) this.getDistance() / 1000;
         return time / distance;
     }

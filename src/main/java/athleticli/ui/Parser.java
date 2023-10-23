@@ -37,6 +37,7 @@ import athleticli.exceptions.AthletiException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -265,18 +266,18 @@ public class Parser {
 
         checkEmptyActivityArguments(caption, duration, distance, datetime);
 
-        final int durationParsed = parseDuration(duration);
+        final LocalTime durationParsed = parseDuration(duration);
         final int distanceParsed = parseDistance(distance);
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
 
         return new Activity(caption, durationParsed, distanceParsed, datetimeParsed);
     }
 
-    public static int parseDuration(String duration) throws AthletiException {
-        int durationParsed;
+    public static LocalTime parseDuration(String duration) throws AthletiException {
+        LocalTime durationParsed;
         try {
-            durationParsed = Integer.parseInt(duration);
-        } catch (NumberFormatException e) {
+            durationParsed = LocalTime.parse(duration);
+        } catch (DateTimeParseException e) {
             throw new AthletiException(Message.MESSAGE_DURATION_INVALID);
         }
         return durationParsed;
@@ -353,7 +354,7 @@ public class Parser {
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, elevation);
 
-        final int durationParsed = parseDuration(duration);
+        final LocalTime durationParsed = parseDuration(duration);
         final int distanceParsed = parseDistance(distance);
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
         final int elevationParsed = parseElevation(elevation);
@@ -452,7 +453,7 @@ public class Parser {
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, swimmingStyleIndex);
 
-        final int durationParsed = parseDuration(duration);
+        final LocalTime durationParsed = parseDuration(duration);
         final int distanceParsed = parseDistance(distance);
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
         final Swim.SwimmingStyle swimmingStyleParsed = parseSwimmingStyle(swimmingStyle);

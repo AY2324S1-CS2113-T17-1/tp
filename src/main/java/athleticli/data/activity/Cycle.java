@@ -2,6 +2,7 @@ package athleticli.data.activity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * Represents a cycling activity consisting of relevant evaluation data.
@@ -21,7 +22,7 @@ public class Cycle extends Activity implements Serializable {
      * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
      * @param elevationGain elevation gain in meters
      */
-    public Cycle(String caption, int movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
+    public Cycle(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
         super(caption, movingTime, distance, startDateTime);
         this.elevationGain = elevationGain;
         this.averageSpeed = this.calculateAverageSpeed();
@@ -33,8 +34,8 @@ public class Cycle extends Activity implements Serializable {
      */
     public double calculateAverageSpeed() {
         double dist = (double) this.getDistance();
-        double time = (double) this.getMovingTime();
-        return (dist/1000) / (time/60);
+        double time = (double) this.getMovingTime().toSecondOfDay() / 3600;
+        return (dist/1000) / time;
     }
 
     /**

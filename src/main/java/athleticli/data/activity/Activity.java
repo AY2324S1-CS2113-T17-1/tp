@@ -2,6 +2,7 @@ package athleticli.data.activity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -10,13 +11,15 @@ import java.util.Locale;
  */
 public class Activity implements Serializable {
 
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("\"MMMM d, " +
-            "yyyy 'at' h:mm a\"", Locale.ENGLISH);
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MMMM d, " +
+            "yyyy 'at' h:mm a", Locale.ENGLISH);
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss",
+            Locale.ENGLISH);
     private static final int columnWidth = 40;
 
     private String description;
     private final String caption;
-    private final int movingTime;
+    private final LocalTime movingTime;
 
     private final int distance;
     private int calories;
@@ -30,14 +33,14 @@ public class Activity implements Serializable {
      * @param startDateTime start date and time of the activity
      * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
      */
-    public Activity(String caption, int movingTime, int distance, LocalDateTime startDateTime) {
+    public Activity(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime) {
         this.movingTime = movingTime;
         this.distance = distance;
         this.startDateTime = startDateTime;
         this.caption = caption;
     }
 
-    public int getMovingTime() {
+    public LocalTime getMovingTime() {
         return movingTime;
     }
 
@@ -67,7 +70,7 @@ public class Activity implements Serializable {
      */
     @Override
     public String toString() {
-        String movingTimeOutput = generateMovingTimeStringOutput();
+        String movingTimeOutput = generateShortMovingTimeStringOutput();
         String distanceOutput = generateDistanceStringOutput();
         String startDateTimeOutput = generateStartDateTimeStringOutput();
         return "[Activity] " + caption + " | " + distanceOutput + " | " + movingTimeOutput + " | " +
@@ -81,13 +84,25 @@ public class Activity implements Serializable {
     }
 
     public String generateMovingTimeStringOutput() {
-        int movingTimeHours = movingTime / 60;
-        int movingTimeMinutes = movingTime % 60;
-        return "Time: " + movingTimeHours + "h " + movingTimeMinutes + "m";
+        return "Time: " + movingTime.format(TIME_FORMATTER);
+    }
+
+    /**
+     * Returns a short representation of the moving time with the format depending on the duration.
+     * @return a string representation of the moving time
+     */
+    public String generateShortMovingTimeStringOutput() {
+        String output = "";
+        if (movingTime.getHour() > 0) {
+            output += movingTime.getHour() + "h " + movingTime.getMinute() + "m";
+        } else {
+            output += movingTime.getMinute() + "m " + movingTime.getSecond() + "s";
+        }
+        return "Time: " + output;
     }
 
     public String generateStartDateTimeStringOutput() {
-        return startDateTime.format(DATE_TIME_FORMATTER).replace("\"", "");
+        return startDateTime.format(DATE_TIME_FORMATTER);
     }
 
     /**

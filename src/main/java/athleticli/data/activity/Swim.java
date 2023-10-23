@@ -2,6 +2,7 @@ package athleticli.data.activity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class Swim extends Activity implements Serializable {
     private final int laps;
@@ -15,7 +16,7 @@ public class Swim extends Activity implements Serializable {
         FREESTYLE
     }
 
-    public Swim(String caption, int movingTime, int distance, LocalDateTime startDateTime, SwimmingStyle style) {
+    public Swim(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, SwimmingStyle style) {
         super(caption, movingTime, distance, startDateTime);
         this.laps = this.calculateLaps();
         this.style = style;
@@ -27,8 +28,7 @@ public class Swim extends Activity implements Serializable {
      * @return average lap time in seconds
      */
     public int calculateAverageLapTime() {
-        int laps = this.calculateLaps();
-        return this.getMovingTime() * 60 / laps;
+        return this.getMovingTime().toSecondOfDay() / this.laps;
     }
 
     public int calculateLaps() {
