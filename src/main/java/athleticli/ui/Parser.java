@@ -2,16 +2,19 @@ package athleticli.ui;
 
 import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
+import athleticli.commands.FindCommand;
 import athleticli.commands.HelpCommand;
 import athleticli.commands.SaveCommand;
 import athleticli.commands.activity.AddActivityCommand;
 import athleticli.commands.activity.DeleteActivityCommand;
 import athleticli.commands.activity.EditActivityCommand;
+import athleticli.commands.activity.FindActivityCommand;
 import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
 import athleticli.commands.diet.EditDietGoalCommand;
+import athleticli.commands.diet.FindDietCommand;
 import athleticli.commands.diet.ListDietCommand;
 import athleticli.commands.diet.ListDietGoalCommand;
 import athleticli.commands.diet.SetDietGoalCommand;
@@ -19,6 +22,7 @@ import athleticli.commands.diet.SetDietGoalCommand;
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
+import athleticli.commands.sleep.FindSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
 
 import athleticli.data.activity.Activity;
@@ -31,6 +35,7 @@ import athleticli.data.diet.Diet;
 
 import athleticli.exceptions.AthletiException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -82,6 +87,9 @@ public class Parser {
             return new HelpCommand(commandArgs);
         case CommandName.COMMAND_SAVE:
             return new SaveCommand();
+        case CommandName.COMMAND_FIND:
+            return new FindCommand(parseDate(commandArgs));
+        /* Sleep Management */
         case CommandName.COMMAND_SLEEP_ADD:
             return parseSleepAdd(commandArgs);
         case CommandName.COMMAND_SLEEP_LIST:
@@ -90,6 +98,9 @@ public class Parser {
             return parseSleepEdit(commandArgs);
         case CommandName.COMMAND_SLEEP_DELETE:
             return parseSleepDelete(commandArgs);
+        case CommandName.COMMAND_SLEEP_FIND:
+            return new FindSleepCommand(parseDate(commandArgs));
+        /* Activity Management */
         case CommandName.COMMAND_ACTIVITY:
             return new AddActivityCommand(parseActivity(commandArgs));
         case CommandName.COMMAND_CYCLE:
@@ -110,6 +121,9 @@ public class Parser {
             return new EditActivityCommand(parseCycleEdit(commandArgs), parseActivityEditIndex(commandArgs));
         case CommandName.COMMAND_SWIM_EDIT:
             return new EditActivityCommand(parseSwimEdit(commandArgs), parseActivityEditIndex(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_FIND:
+            return new FindActivityCommand(parseDate(commandArgs));
+        /* Diet Management */
         case CommandName.COMMAND_DIET_GOAL_SET:
             return new SetDietGoalCommand(parseDietGoalSetEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_EDIT:
@@ -124,6 +138,8 @@ public class Parser {
             return new DeleteDietCommand(parseDietIndex(commandArgs));
         case CommandName.COMMAND_DIET_LIST:
             return new ListDietCommand();
+        case CommandName.COMMAND_DIET_FIND:
+            return new FindDietCommand(parseDate(commandArgs));
         default:
             throw new AthletiException(Message.MESSAGE_UNKNOWN_COMMAND);
         }
@@ -274,6 +290,14 @@ public class Parser {
             throw new AthletiException(Message.MESSAGE_DATETIME_INVALID);
         }
         return datetimeParsed;
+    }
+
+    public static LocalDate parseDate(String date) throws AthletiException {
+        try {
+            return LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new AthletiException(Message.MESSAGE_DATETIME_INVALID);
+        }
     }
 
     public static int parseDistance(String distance) throws AthletiException {
