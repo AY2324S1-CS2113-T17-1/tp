@@ -16,19 +16,23 @@ Activity Management:
  edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
  edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
  edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ find-activity DATE
 
 Diet Management:
  add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT
  delete-diet INDEX
  list-diet
+ find-diet DATE
 
 Sleep Management:
  add-sleep start/START end/END
  list-sleep
  delete-sleep INDEX
  edit-sleep INDEX start/START end/END
+ find-sleep DATE
 
 Misc:
+ find DATE
  save
  bye
  help [COMMAND]

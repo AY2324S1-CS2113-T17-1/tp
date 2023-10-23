@@ -148,11 +148,15 @@ public class Message {
             + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
     public static final String HELP_EDIT_CYCLE = CommandName.COMMAND_CYCLE_EDIT
             + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+    public static final String HELP_FIND_ACTIVITY = CommandName.COMMAND_ACTIVITY_FIND
+            + " DATE";
     public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
             + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT";
     public static final String HELP_DELETE_DIET = CommandName.COMMAND_DIET_DELETE
             + " INDEX";
     public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;
+    public static final String HELP_FIND_DIET = CommandName.COMMAND_DIET_FIND
+            + " DATE";
     public static final String HELP_ADD_SLEEP = CommandName.COMMAND_SLEEP_ADD
             + " start/START end/END";
     public static final String HELP_LIST_SLEEP = CommandName.COMMAND_SLEEP_LIST;
@@ -160,10 +164,14 @@ public class Message {
             + " INDEX";
     public static final String HELP_EDIT_SLEEP = CommandName.COMMAND_SLEEP_EDIT
             + " INDEX start/START end/END";
+    public static final String HELP_FIND_SLEEP = CommandName.COMMAND_SLEEP_FIND
+            + " DATE";
     public static final String HELP_SAVE = CommandName.COMMAND_SAVE;
     public static final String HELP_BYE = CommandName.COMMAND_BYE;
     public static final String HELP_HELP = CommandName.COMMAND_HELP
             + " [COMMAND]";
+    public static final String HELP_FIND = CommandName.COMMAND_FIND
+            + " DATE";
     public static final String HELP_DETAILS =
             "Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.";
 }
