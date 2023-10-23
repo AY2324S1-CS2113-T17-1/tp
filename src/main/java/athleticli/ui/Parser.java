@@ -2,16 +2,19 @@ package athleticli.ui;
 
 import athleticli.commands.ByeCommand;
 import athleticli.commands.Command;
+import athleticli.commands.FindCommand;
 import athleticli.commands.HelpCommand;
 import athleticli.commands.SaveCommand;
 import athleticli.commands.activity.AddActivityCommand;
 import athleticli.commands.activity.DeleteActivityCommand;
 import athleticli.commands.activity.EditActivityCommand;
+import athleticli.commands.activity.FindActivityCommand;
 import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
 import athleticli.commands.diet.EditDietGoalCommand;
+import athleticli.commands.diet.FindDietCommand;
 import athleticli.commands.diet.ListDietCommand;
 import athleticli.commands.diet.ListDietGoalCommand;
 import athleticli.commands.diet.SetDietGoalCommand;
@@ -19,6 +22,7 @@ import athleticli.commands.diet.SetDietGoalCommand;
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
+import athleticli.commands.sleep.FindSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
 
 import athleticli.data.activity.Activity;
@@ -31,6 +35,7 @@ import athleticli.data.diet.Diet;
 
 import athleticli.exceptions.AthletiException;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -82,6 +87,9 @@ public class Parser {
             return new HelpCommand(commandArgs);
         case CommandName.COMMAND_SAVE:
             return new SaveCommand();
+        case CommandName.COMMAND_FIND:
+            return new FindCommand(parseDate(commandArgs));
+        /* Sleep Management */
         case CommandName.COMMAND_SLEEP_ADD:
             return parseSleepAdd(commandArgs);
         case CommandName.COMMAND_SLEEP_LIST:
@@ -90,6 +98,9 @@ public class Parser {
             return parseSleepEdit(commandArgs);
         case CommandName.COMMAND_SLEEP_DELETE:
             return parseSleepDelete(commandArgs);
+        case CommandName.COMMAND_SLEEP_FIND:
+            return new FindSleepCommand(parseDate(commandArgs));
+        /* Activity Management */
         case CommandName.COMMAND_ACTIVITY:
             return new AddActivityCommand(parseActivity(commandArgs));
         case CommandName.COMMAND_CYCLE:
@@ -110,6 +121,9 @@ public class Parser {
             return new EditActivityCommand(parseCycleEdit(commandArgs), parseActivityEditIndex(commandArgs));
         case CommandName.COMMAND_SWIM_EDIT:
             return new EditActivityCommand(parseSwimEdit(commandArgs), parseActivityEditIndex(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_FIND:
+            return new FindActivityCommand(parseDate(commandArgs));
+        /* Diet Management */
         case CommandName.COMMAND_DIET_GOAL_SET:
             return new SetDietGoalCommand(parseDietGoalSetEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_EDIT:
@@ -124,6 +138,8 @@ public class Parser {
             return new DeleteDietCommand(parseDietIndex(commandArgs));
         case CommandName.COMMAND_DIET_LIST:
             return new ListDietCommand();
+        case CommandName.COMMAND_DIET_FIND:
+            return new FindDietCommand(parseDate(commandArgs));
         default:
             throw new AthletiException(Message.MESSAGE_UNKNOWN_COMMAND);
         }
@@ -228,9 +244,9 @@ public class Parser {
     /**
      * Parses the raw user input for an activity and returns the corresponding activity object.
      *
-     * @param arguments The raw user input containing the arguments.
-     * @return An object representing the activity.
-     * @throws AthletiException
+     * @param arguments         The raw user input containing the arguments.
+     * @return                  An object representing the activity.
+     * @throws AthletiException If the input format is invalid.
      */
     public static Activity parseActivity(String arguments) throws AthletiException {
         final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
@@ -286,6 +302,14 @@ public class Parser {
             throw new AthletiException(Message.MESSAGE_DATETIME_INVALID);
         }
         return datetimeParsed;
+    }
+
+    public static LocalDate parseDate(String date) throws AthletiException {
+        try {
+            return LocalDate.parse(date);
+        } catch (DateTimeParseException e) {
+            throw new AthletiException(Message.MESSAGE_DATETIME_INVALID);
+        }
     }
 
     /**
@@ -473,9 +497,9 @@ public class Parser {
     /**
      * Parses the raw user input for a swim and returns the corresponding activity object.
      *
-     * @param arguments The raw user input containing the arguments.
-     * @return activity      An object representing the activity.
-     * @throws AthletiException
+     * @param arguments         The raw user input containing the arguments.
+     * @return activity         An object representing the activity.
+     * @throws AthletiException If the input format is invalid.
      */
     public static Activity parseSwim(String arguments) throws AthletiException {
         final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
@@ -528,19 +552,16 @@ public class Parser {
      */
     public static AddSleepCommand parseSleepAdd(String commandArgs) throws AthletiException {
 
-        final String startMarkerConstant = "start/";
-        final String endMarkerConstant = "end/";
-
-        int startMarkerPos = commandArgs.indexOf(startMarkerConstant);
-        int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
+        int startMarkerPos = commandArgs.indexOf(Parameter.START_TIME_SEPARATOR);
+        int endMarkerPos = commandArgs.indexOf(Parameter.END_TIME_SEPARATOR);
 
         if (startMarkerPos == -1 || endMarkerPos == -1 || startMarkerPos > endMarkerPos) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
         String startTimeStr =
-                commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
-        String endTimeStr = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
+                commandArgs.substring(startMarkerPos + Parameter.START_TIME_SEPARATOR.length(), endMarkerPos).trim();
+        String endTimeStr = commandArgs.substring(endMarkerPos + Parameter.END_TIME_SEPARATOR.length()).trim();
 
         if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
@@ -589,11 +610,8 @@ public class Parser {
      * @throws AthletiException
      */
     public static EditSleepCommand parseSleepEdit(String commandArgs) throws AthletiException {
-        final String startMarkerConstant = "start/";
-        final String endMarkerConstant = "end/";
-
-        int startMarkerPos = commandArgs.indexOf(startMarkerConstant);
-        int endMarkerPos = commandArgs.indexOf(endMarkerConstant);
+        int startMarkerPos = commandArgs.indexOf(Parameter.START_TIME_SEPARATOR);
+        int endMarkerPos = commandArgs.indexOf(Parameter.END_TIME_SEPARATOR);
         int index;
 
         if (startMarkerPos == -1 || endMarkerPos == -1 || startMarkerPos > endMarkerPos) {
@@ -607,8 +625,8 @@ public class Parser {
         }
 
         String startTimeStr =
-                commandArgs.substring(startMarkerPos + startMarkerConstant.length(), endMarkerPos).trim();
-        String endTimeStr = commandArgs.substring(endMarkerPos + endMarkerConstant.length()).trim();
+                commandArgs.substring(startMarkerPos + Parameter.START_TIME_SEPARATOR.length(), endMarkerPos).trim();
+        String endTimeStr = commandArgs.substring(endMarkerPos + Parameter.END_TIME_SEPARATOR.length()).trim();
 
         if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
@@ -662,7 +680,7 @@ public class Parser {
                 if (targetValue == 0) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
                 }
-                if (!verifyValidNutrients(nutrient)) {
+                if (!NutrientVerifier.verify(nutrient)) {
                     throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
                 }
                 if (recordedNutrients.contains(nutrient)) {
@@ -679,15 +697,6 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
         }
-    }
-
-    /**
-     * @param nutrient The nutrient that is provided by the user.
-     * @return boolean value depending on whether the nutrient is defined in our user guide.
-     */
-    public static boolean verifyValidNutrients(String nutrient) {
-        return nutrient.equals(CALORIES_MARKER) || nutrient.equals(PROTEIN_MARKER)
-                || nutrient.equals(CARB_MARKER) || nutrient.equals(FAT_MARKER);
     }
 
     /**

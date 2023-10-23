@@ -23,19 +23,23 @@ public class HelpCommand extends Command {
         Message.HELP_EDIT_RUN,
         Message.HELP_EDIT_SWIM,
         Message.HELP_EDIT_CYCLE,
+        Message.HELP_FIND_ACTIVITY,
         /* Diet Management */
         "\nDiet Management:",
         Message.HELP_ADD_DIET,
         Message.HELP_DELETE_DIET,
         Message.HELP_LIST_DIET,
+        Message.HELP_FIND_DIET,
         /* Sleep Management */
         "\nSleep Management:",
         Message.HELP_ADD_SLEEP,
         Message.HELP_LIST_SLEEP,
         Message.HELP_DELETE_SLEEP,
         Message.HELP_EDIT_SLEEP,
+        Message.HELP_FIND_SLEEP,
         /* Misc */
         "\nMisc:",
+        Message.HELP_FIND,
         Message.HELP_SAVE,
         Message.HELP_BYE,
         Message.HELP_HELP,
@@ -53,16 +57,20 @@ public class HelpCommand extends Command {
             entry(CommandName.COMMAND_RUN_EDIT, Message.HELP_EDIT_RUN),
             entry(CommandName.COMMAND_SWIM_EDIT, Message.HELP_EDIT_SWIM),
             entry(CommandName.COMMAND_CYCLE_EDIT, Message.HELP_EDIT_CYCLE),
+            entry(CommandName.COMMAND_ACTIVITY_FIND, Message.HELP_FIND_ACTIVITY),
             /* Diet Management */
             entry(CommandName.COMMAND_DIET_ADD, Message.HELP_ADD_DIET),
             entry(CommandName.COMMAND_DIET_DELETE, Message.HELP_DELETE_DIET),
             entry(CommandName.COMMAND_DIET_LIST, Message.HELP_LIST_DIET),
+            entry(CommandName.COMMAND_DIET_FIND, Message.HELP_FIND_DIET),
             /* Sleep Management */
             entry(CommandName.COMMAND_SLEEP_ADD, Message.HELP_ADD_SLEEP),
             entry(CommandName.COMMAND_SLEEP_LIST, Message.HELP_LIST_SLEEP),
             entry(CommandName.COMMAND_SLEEP_DELETE, Message.HELP_DELETE_SLEEP),
             entry(CommandName.COMMAND_SLEEP_EDIT, Message.HELP_EDIT_SLEEP),
+            entry(CommandName.COMMAND_SLEEP_FIND, Message.HELP_FIND_SLEEP),
             /* Misc */
+            entry(CommandName.COMMAND_FIND, Message.HELP_FIND),
             entry(CommandName.COMMAND_SAVE, Message.HELP_SAVE),
             entry(CommandName.COMMAND_BYE, Message.HELP_BYE),
             entry(CommandName.COMMAND_HELP, Message.HELP_HELP)

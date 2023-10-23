@@ -16,19 +16,23 @@ Activity Management:
  edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
  edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
  edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ find-activity DATE
 
 Diet Management:
  add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT
  delete-diet INDEX
  list-diet
+ find-diet DATE
 
 Sleep Management:
  add-sleep start/START end/END
  list-sleep
  delete-sleep INDEX
  edit-sleep INDEX start/START end/END
+ find-sleep DATE
 
 Misc:
+ find DATE
  save
  bye
  help [COMMAND]
@@ -89,6 +93,119 @@ ____________________________________________________________
  Ok, I've updated this activity:
  [Activity] Morning Run | Distance: 12.00 km | Time: 1h 0m | September 1, 2021 at 6:00 AM
  You have tracked a total of 2 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've added this sleep record:
+ sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
+ Now you have 1 sleep records in the list.
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've added this sleep record:
+ sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+ Now you have 2 sleep records in the list.
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the sleep records in your list:
+
+ 1. sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
+ 2. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify the start time of your sleep before the end time.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Invalid date-time format. Please use dd-MM-yyyy HH:mm.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Invalid date-time format. Please use dd-MM-yyyy HH:mm.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Invalid date-time format. Please use dd-MM-yyyy HH:mm.
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the sleep records in your list:
+
+ 1. sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
+ 2. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've changed this sleep record at index 1:
+ original: sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
+ to new: sleep record from 01-09-2021 23:00 to 02-09-2021 07:00
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify the start time of your sleep before the end time.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the sleep records in your list:
+
+ 1. sleep record from 01-09-2021 23:00 to 02-09-2021 07:00
+ 2. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've deleted this sleep record at index 1: sleep record from 01-09-2021 23:00 to 02-09-2021 07:00
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The index of the sleep record you want to edit is out of bounds.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify the index of the sleep record you want to delete.
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the sleep records in your list:
+
+ 1. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
 ____________________________________________________________
 
 > ____________________________________________________________
