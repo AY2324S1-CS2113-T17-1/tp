@@ -38,7 +38,7 @@ public class ActivityTest {
     @Test
     public void testToDetailedString() {
         String expected = "[Activity - Sunday = Runday - October 10, 2023 at 11:21 PM]\n" +
-                "\tDistance: Distance: 18.12 km           Moving Time: Time: 1h 24m\n" +
+                "\tDistance: 18.12 km                     Time: 1h 24m\n" +
                 "\tCalories: 0 kcal                       ...";
         String actual = activity.toDetailedString();
         assertEquals(expected, actual);

@@ -26,7 +26,8 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ParserTest {
     @Test
@@ -372,7 +373,8 @@ class ParserTest {
     void parseDateTime_validInput_dateTimeParsed() throws AthletiException {
         String validInput = "2021-09-01 06:00";
         LocalDateTime actual = Parser.parseDateTime(validInput);
-        LocalDateTime expected = LocalDateTime.parse("2021-09-01 06:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        LocalDateTime expected = LocalDateTime.parse("2021-09-01 06:00",
+                DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         assertEquals(actual, expected);
     }
 
