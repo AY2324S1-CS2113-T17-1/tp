@@ -307,6 +307,9 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DISTANCE_INVALID);
         }
+        if (distanceParsed < 0) {
+            throw new AthletiException(Message.MESSAGE_DISTANCE_NEGATIVE);
+        }
         return distanceParsed;
     }
 
