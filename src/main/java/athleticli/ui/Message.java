@@ -42,6 +42,7 @@ public class Message {
     public static final String MESSAGE_CARB_INVALID =
             "The carbohydrate intake must be a non-negative integer!";
     public static final String MESSAGE_FAT_INVALID = "The fat intake must be a non-negative integer!";
+    public static final String MESSAGE_ACTIVITY_FIND = "I've found these activities:";
     public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
     public static final String MESSAGE_ACTIVITY_DELETED = "Gotcha, I've deleted this activity:";
     public static final String MESSAGE_DIET_ADDED = "Well done! I've added this diet:";
@@ -99,6 +100,7 @@ public class Message {
     public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be an integer!";
     public static final String MESSAGE_DIET_DELETED = "Noted. I've removed this diet:";
     public static final String MESSAGE_DIET_LIST = "Here are the diets in your list:";
+    public static final String MESSAGE_DIET_FIND = "I've found these diets:";
     public static final String MESSAGE_SLEEP_DELETE_INVALID_INDEX = "Invalid index. Please enter a valid index.";
     public static final String MESSAGE_SLEEP_DELETE_RETURN = "Got it. I've deleted this sleep record at index %d: %s";
     public static final String MESSAGE_SLEEP_EDIT_RETURN = "Got it. I've changed this sleep record at index %d:";
@@ -106,6 +108,7 @@ public class Message {
     public static final String MESSAGE_SLEEP_LIST_EMPTY = "You have no sleep records in your list.";
     public static final String MESSAGE_SLEEP_ADD_RETURN_1 = "Got it. I've added this sleep record:";
     public static final String MESSAGE_SLEEP_ADD_RETURN_2 = "Now you have %d sleep records in the list.";
+    public static final String MESSAGE_SLEEP_FIND = "I've found these sleeps:";
 
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT = 
         "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
