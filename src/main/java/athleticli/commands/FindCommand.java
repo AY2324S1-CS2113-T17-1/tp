@@ -25,16 +25,12 @@ public class FindCommand extends Command {
      */
     @Override
     public String[] execute(Data data) throws AthletiException {
-        try {
-            var activities = Stream.of(new FindActivityCommand(date).execute(data));
-            var diets = Stream.of(new FindDietCommand(date).execute(data));
-            var sleeps = Stream.of(new FindSleepCommand(date).execute(data));
-            return Stream.of(activities, diets, sleeps)
-                    .reduce(Stream::concat)
-                    .orElseGet(Stream::empty)
-                    .toArray(String[]::new);
-        } catch (AthletiException e) {
-            throw e;
-        }
+        var activities = Stream.of(new FindActivityCommand(date).execute(data));
+        var diets = Stream.of(new FindDietCommand(date).execute(data));
+        var sleeps = Stream.of(new FindSleepCommand(date).execute(data));
+        return Stream.of(activities, diets, sleeps)
+                .reduce(Stream::concat)
+                .orElseGet(Stream::empty)
+                .toArray(String[]::new);
     }
 }
