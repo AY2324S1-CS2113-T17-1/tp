@@ -3,6 +3,7 @@ package athleticli.data.activity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import athleticli.data.Findable;
 
@@ -22,5 +23,9 @@ public class ActivityList extends ArrayList<Activity> implements Serializable, F
             }
         }
         return result;
+    }
+
+    public void sort() {
+        this.sort(Comparator.comparing(Activity::getStartDateTime).reversed());
     }
 }
