@@ -15,6 +15,12 @@ public class ActivityList extends ArrayList<Activity> implements Serializable, F
      */
     @Override
     public ArrayList<Object> find(LocalDate date) {
-        return null;
+        ArrayList<Object> result = new ArrayList<>();
+        for (Activity activity : this) {
+            if (activity.getStartDateTime().toLocalDate().equals(date)) {
+                result.add(activity);
+            }
+        }
+        return result;
     }
 }
