@@ -1,22 +1,23 @@
 package athleticli.data.sleep;
 
-import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
+
+import athleticli.data.Findable;
 
 /**
  * Represents a list of sleep records.
  */
-public class SleepList extends ArrayList<Sleep> implements Serializable {
+public class SleepList extends ArrayList<Sleep> implements Findable {
     /**
-     * toString method for SleepList.
+     * Returns a list of sleeps matching the date.
      *
-     * @return String representation of the sleep list.
+     * @param date The date to be matched.
+     * @return A list of sleeps matching the date.
      */
-    public String toString() {
-        StringBuilder output = new StringBuilder();
-        for (int i = 0; i < this.size(); i++) {
-            output.append((i + 1) + ". " + this.get(i).toString() + "\n");
-        }
-        return output.toString();
+    @Override
+    public ArrayList<Object> find(LocalDate date) {
+        // TODO
+        return null;
     }
 }

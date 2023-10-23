@@ -24,23 +24,7 @@ public class SleepListTest {
 
     @Test
     public void testToStringWithEmptyList() {
-        assertEquals("", sleepList.toString());
-    }
-
-    @Test
-    public void testToStringWithOneSleepObject() {
-        sleepList.add(sleep1);
-        String expected = "1. sleep record from 17-10-2023 22:00 to 18-10-2023 06:00\n";
-        assertEquals(expected, sleepList.toString());
-    }
-
-    @Test
-    public void testToStringWithMultipleSleepObjects() {
-        sleepList.add(sleep1);
-        sleepList.add(sleep2);
-        String expected = "1. sleep record from 17-10-2023 22:00 to 18-10-2023 06:00\n"
-                        + "2. sleep record from 18-10-2023 22:00 to 19-10-2023 06:00\n";
-        assertEquals(expected, sleepList.toString());
+        assertEquals("[]", sleepList.toString());
     }
 
     @Test

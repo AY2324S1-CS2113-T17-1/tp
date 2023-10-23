@@ -25,7 +25,7 @@ public class AddSleepCommandTest {
         LocalDateTime from = LocalDateTime.of(2023, 10, 17, 22, 0);
         LocalDateTime to = LocalDateTime.of(2023, 10, 18, 6, 0);
         AddSleepCommand command = new AddSleepCommand(from, to);
-        
+
         String[] expected = {
             "Got it. I've added this sleep record:",
             "sleep record from 17-10-2023 22:00 to 18-10-2023 06:00",

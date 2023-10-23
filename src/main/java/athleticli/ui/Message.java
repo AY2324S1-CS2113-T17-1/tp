@@ -42,6 +42,7 @@ public class Message {
     public static final String MESSAGE_CARB_INVALID =
             "The carbohydrate intake must be a non-negative integer!";
     public static final String MESSAGE_FAT_INVALID = "The fat intake must be a non-negative integer!";
+    public static final String MESSAGE_ACTIVITY_FIND = "I've found these activities:";
     public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
     public static final String MESSAGE_ACTIVITY_DELETED = "Gotcha, I've deleted this activity:";
     public static final String MESSAGE_DIET_ADDED = "Well done! I've added this diet:";
@@ -99,6 +100,7 @@ public class Message {
     public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be an integer!";
     public static final String MESSAGE_DIET_DELETED = "Noted. I've removed this diet:";
     public static final String MESSAGE_DIET_LIST = "Here are the diets in your list:";
+    public static final String MESSAGE_DIET_FIND = "I've found these diets:";
     public static final String MESSAGE_SLEEP_DELETE_INVALID_INDEX = "Invalid index. Please enter a valid index.";
     public static final String MESSAGE_SLEEP_DELETE_RETURN = "Got it. I've deleted this sleep record at index %d: %s";
     public static final String MESSAGE_SLEEP_EDIT_RETURN = "Got it. I've changed this sleep record at index %d:";
@@ -106,6 +108,7 @@ public class Message {
     public static final String MESSAGE_SLEEP_LIST_EMPTY = "You have no sleep records in your list.";
     public static final String MESSAGE_SLEEP_ADD_RETURN_1 = "Got it. I've added this sleep record:";
     public static final String MESSAGE_SLEEP_ADD_RETURN_2 = "Now you have %d sleep records in the list.";
+    public static final String MESSAGE_SLEEP_FIND = "I've found these sleeps:";
 
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT = 
         "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
@@ -145,11 +148,15 @@ public class Message {
             + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
     public static final String HELP_EDIT_CYCLE = CommandName.COMMAND_CYCLE_EDIT
             + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+    public static final String HELP_FIND_ACTIVITY = CommandName.COMMAND_ACTIVITY_FIND
+            + " DATE";
     public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
             + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT";
     public static final String HELP_DELETE_DIET = CommandName.COMMAND_DIET_DELETE
             + " INDEX";
     public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;
+    public static final String HELP_FIND_DIET = CommandName.COMMAND_DIET_FIND
+            + " DATE";
     public static final String HELP_ADD_SLEEP = CommandName.COMMAND_SLEEP_ADD
             + " start/START end/END";
     public static final String HELP_LIST_SLEEP = CommandName.COMMAND_SLEEP_LIST;
@@ -157,10 +164,14 @@ public class Message {
             + " INDEX";
     public static final String HELP_EDIT_SLEEP = CommandName.COMMAND_SLEEP_EDIT
             + " INDEX start/START end/END";
+    public static final String HELP_FIND_SLEEP = CommandName.COMMAND_SLEEP_FIND
+            + " DATE";
     public static final String HELP_SAVE = CommandName.COMMAND_SAVE;
     public static final String HELP_BYE = CommandName.COMMAND_BYE;
     public static final String HELP_HELP = CommandName.COMMAND_HELP
             + " [COMMAND]";
+    public static final String HELP_FIND = CommandName.COMMAND_FIND
+            + " DATE";
     public static final String HELP_DETAILS =
             "Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.";
 }
