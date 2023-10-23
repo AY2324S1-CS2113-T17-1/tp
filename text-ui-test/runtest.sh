@@ -8,6 +8,11 @@ cd ..
 
 cd text-ui-test
 
+if [ -e "data/athleticli.bin" ]
+then
+    rm data/athleticli.bin
+fi
+
 java  -jar $(find ../build/libs/ -mindepth 1 -print -quit) < input.txt > ACTUAL.TXT
 
 cp EXPECTED.TXT EXPECTED-UNIX.TXT
