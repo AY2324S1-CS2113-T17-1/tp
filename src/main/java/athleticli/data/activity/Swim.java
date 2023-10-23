@@ -84,12 +84,17 @@ public class Swim extends Activity implements Serializable {
 
         int columnWidth = getColumnWidth();
         String header = "[Swim - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Moving Time: " +
-                movingTimeOutput, columnWidth);
-        String secondRow = formatTwoColumns("\tAvg Lap Time: " + averageLapTime + " s", "Calories: " +
+        String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, columnWidth);
+        String secondRow = formatTwoColumns("\tLaps: " + this.getLaps(), "Style: "
+                + this.getStyle(), columnWidth);
+        String thirdRow = formatTwoColumns("\tAvg Lap Time: " + averageLapTime + " s", "Calories: " +
                 this.getCalories() + " kcal", columnWidth);
 
-        return String.join(System.lineSeparator(), header, firstRow, secondRow);
+        return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+    }
+
+    public SwimmingStyle getStyle() {
+        return style;
     }
 
 }

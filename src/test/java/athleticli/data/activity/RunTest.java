@@ -23,6 +23,15 @@ public class RunTest {
     }
 
     @Test
+    public void testConstructorAndGetters() {
+        assertEquals(CAPTION, run.getCaption());
+        assertEquals(DURATION, run.getMovingTime());
+        assertEquals(DISTANCE, run.getDistance());
+        assertEquals(DATE, run.getStartDateTime());
+        assertEquals(ELEVATION, run.getElevationGain());
+    }
+
+    @Test
     public void calculateAveragePace() {
         double averagePace = run.calculateAveragePace();
         assertEquals(4.69, averagePace, 0.005);
@@ -40,5 +49,15 @@ public class RunTest {
         String expected = "[Run] Night Run | Distance: 18.12 km | Pace: 4:41 /km | Time: 1h 25m | " +
                 "October 10, 2023 at 11:21 PM";
         assertEquals(expected, run.toString());
+    }
+
+    @Test
+    public void testToDetailedString() {
+        String expected = "[Run - Night Run - October 10, 2023 at 11:21 PM]\n"
+                + "\tDistance: 18.12 km                     Avg Pace: 4:41 /km\n"
+                + "\tMoving Time: Time: 1h 25m              Elevation Gain: 60 m\n"
+                + "\tCalories: 0 kcal                       Steps: 0";
+        String actual = run.toDetailedString();
+        assertEquals(expected, actual);
     }
 }

@@ -75,7 +75,7 @@ public class Run extends Activity implements Serializable {
         int columnWidth = getColumnWidth();
 
         String header = "[Run - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Avg Pace: " + paceOutput,
+        String firstRow = formatTwoColumns("\t" + distanceOutput, "Avg Pace: " + paceOutput,
                 columnWidth);
         String secondRow = formatTwoColumns("\tMoving Time: " + movingTimeOutput, "Elevation Gain: " +
                 elevationGain + " m", columnWidth);
@@ -83,6 +83,10 @@ public class Run extends Activity implements Serializable {
                         this.steps, columnWidth);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+    }
+
+    public int getElevationGain() {
+        return elevationGain;
     }
 
 }

@@ -22,6 +22,15 @@ public class SwimTest {
     }
 
     @Test
+    public void testConstructorAndGetters() {
+        assertEquals(CAPTION, swim.getCaption());
+        assertEquals(DURATION, swim.getMovingTime());
+        assertEquals(DISTANCE, swim.getDistance());
+        assertEquals(DATE, swim.getStartDateTime());
+        assertEquals(STYLE, swim.getStyle());
+    }
+
+    @Test
     public void calculateAverageLapTime() {
         assertEquals(105, swim.calculateAverageLapTime());
     }
@@ -36,6 +45,16 @@ public class SwimTest {
         String expected = "[Swim] Afternoon Swim | Distance: 1.00 km | Avg Lap Time: 105s | Time: 0h 35m | " +
                 "August 29, 2023 at 9:45 AM";
         assertEquals(expected, swim.toString());
+    }
+
+    @Test
+    public void testToDetailedString() {
+        String expected = "[Swim - Afternoon Swim - August 29, 2023 at 9:45 AM]\n"
+                + "\tDistance: 1.00 km                      Time: 0h 35m\n"
+                + "\tLaps: 20                               Style: BUTTERFLY\n"
+                + "\tAvg Lap Time: 105 s                    Calories: 0 kcal";
+        String actual = swim.toDetailedString();
+        assertEquals(expected, actual);
     }
 
 

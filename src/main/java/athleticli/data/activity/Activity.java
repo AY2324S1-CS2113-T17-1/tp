@@ -112,8 +112,7 @@ public class Activity implements Serializable {
         String distanceOutput = generateDistanceStringOutput();
 
         String header = "[Activity - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Moving Time: " +
-                movingTimeOutput, columnWidth);
+        String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, columnWidth);
         String secondRow = formatTwoColumns("\tCalories: " +
                 this.getCalories() + " kcal", "...", columnWidth);
 

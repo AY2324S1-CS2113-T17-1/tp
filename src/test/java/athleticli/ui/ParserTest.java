@@ -8,9 +8,15 @@ import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
+import athleticli.data.activity.Activity;
+import athleticli.data.activity.Run;
+import athleticli.data.activity.Swim;
 import athleticli.exceptions.AthletiException;
 
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static athleticli.ui.Parser.parseCommand;
 import static athleticli.ui.Parser.parseDietGoalSetEdit;
@@ -226,5 +232,230 @@ class ParserTest {
     void parseDietGoalSet_oneInvalidGoal_throwAthlethiException() {
         String invalidGoalString = "calories/caloreis protein/protein";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
+    }
+
+    @Test
+    void parseActivityIndex_validIndex_returnIndex() throws AthletiException {
+        int expected = 5;
+        int actual = Parser.parseActivityIndex("5");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parseActivityIndex_invalidIndex_throwAthletiException() {
+        assertThrows(AthletiException.class, () -> Parser.parseActivityIndex("abc"));
+    }
+
+    @Test
+    void parseActivityEdit_validInput_returnActivityEdit() throws AthletiException {
+        String validInput = "1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00";
+        assertDoesNotThrow(() -> Parser.parseActivityEdit(validInput));
+    }
+
+    @Test
+    void parseActivityEdit_invalidInput_throwAthletiException() {
+        String invalidInput = "1 Morning Run duration/60";
+        assertThrows(AthletiException.class, () -> Parser.parseActivityEdit(invalidInput));
+    }
+
+    @Test
+    void parseRunEdit_invalidInput_throwAthletiException() {
+        String invalidInput = "1 Morning Run duration/60";
+        assertThrows(AthletiException.class, () -> Parser.parseRunEdit(invalidInput));
+    }
+
+    @Test
+    void parseRunEdit_validInput_returnRunEdit() {
+        String validInput = "2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
+        assertDoesNotThrow(() -> Parser.parseRunEdit(validInput));
+    }
+
+    @Test
+    void parseCycleEdit_validInput_returnRunEdit() {
+        String validInput = "2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
+        assertDoesNotThrow(() -> Parser.parseCycleEdit(validInput));
+    }
+
+    @Test
+    void parseCycleEdit_invalidInput_throwAthletiException() {
+        String invalidInput = "1 Morning Run duration/60";
+        assertThrows(AthletiException.class, () -> Parser.parseCycleEdit(invalidInput));
+    }
+
+    @Test
+    void parseSwimEdit_validInput_noExceptionThrown() throws AthletiException {
+        String validInput = "2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
+        assertDoesNotThrow(() -> Parser.parseSwimEdit(validInput));
+    }
+
+    @Test
+    void parseSwimEdit_invalidInput_throwAthletiException() {
+        String invalidInput = "1 Morning Run duration/60";
+        assertThrows(AthletiException.class, () -> Parser.parseRunEdit(invalidInput));
+    }
+
+    @Test
+    void parseActivityEditIndex_validInput_returnIndex() throws AthletiException {
+        int expected = 5;
+        int actual = Parser.parseActivityEditIndex("5");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parseActivityListDetail_flagPresent_returnTrue() throws AthletiException {
+        String input = "list-activity -d";
+        assertTrue(Parser.parseActivityListDetail(input));
+    }
+
+    @Test
+    void parseActivityListDetail_flagAbsent_returnFalse() throws AthletiException {
+        String input = "list-activity";
+        assertFalse(Parser.parseActivityListDetail(input));
+    }
+
+    @Test
+    void parseActivity_validInput_activityParsed() throws AthletiException {
+        String validInput = "Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00";
+        Activity actual = Parser.parseActivity(validInput);
+        LocalDateTime time = LocalDateTime.parse("2021-09-01 06:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        Activity expected = new Activity("Morning Run", 60, 10000, time);
+        assertEquals(actual.getCaption(), expected.getCaption());
+        assertEquals(actual.getMovingTime(), expected.getMovingTime());
+        assertEquals(actual.getDistance(), expected.getDistance());
+        assertEquals(actual.getStartDateTime(), expected.getStartDateTime());
+    }
+
+    @Test
+    void parseDuration_validInput_durationParsed() throws AthletiException {
+        String validInput = "60";
+        int actual = Parser.parseDuration(validInput);
+        int expected = 60;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void parseDuration_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> Parser.parseDuration(invalidInput));
+    }
+
+    @Test
+    void parseDateTime_validInput_dateTimeParsed() throws AthletiException {
+        String validInput = "2021-09-01 06:00";
+        LocalDateTime actual = Parser.parseDateTime(validInput);
+        LocalDateTime expected = LocalDateTime.parse("2021-09-01 06:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void parseDateTime_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> Parser.parseDateTime(invalidInput));
+    }
+
+    @Test
+    void parseDistance_validInput_distanceParsed() throws AthletiException {
+        String validInput = "10000";
+        int actual = Parser.parseDistance(validInput);
+        int expected = 10000;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void parseDistance_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> Parser.parseDistance(invalidInput));
+    }
+
+    @Test
+    void checkMissingActivityArguments_missingDuration_throwAthletiException() {
+        assertThrows(AthletiException.class, () -> Parser.checkMissingActivityArguments(-1,
+                1,1));
+    }
+
+    @Test
+    void checkMissingActivityArguments_noMissingArguments_noExceptionThrown() {
+        assertDoesNotThrow(() -> Parser.checkMissingActivityArguments(1, 1, 1));
+    }
+
+    @Test
+    void parseRunCycle_validInput_activityParsed() throws AthletiException {
+        String validInput = "Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00 elevation/60";
+        Run actual = (Run) Parser.parseRunCycle(validInput, true);
+        LocalDateTime time = LocalDateTime.parse("2021-09-01 06:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        Run expected = new Run("Morning Run", 60, 10000, time, 60);
+        assertEquals(actual.getCaption(), expected.getCaption());
+        assertEquals(actual.getMovingTime(), expected.getMovingTime());
+        assertEquals(actual.getDistance(), expected.getDistance());
+        assertEquals(actual.getStartDateTime(), expected.getStartDateTime());
+        assertEquals(actual.getElevationGain(), expected.getElevationGain());
+    }
+
+    @Test
+    void parseElevation_validInput_elevationParsed() throws AthletiException {
+        String validInput = "60";
+        int actual = Parser.parseElevation(validInput);
+        int expected = 60;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void parseElevation_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> Parser.parseElevation(invalidInput));
+    }
+
+    @Test
+    void checkMissingRunCycleArguments_missingElevation_throwAthletiException() {
+        assertThrows(AthletiException.class, () -> Parser.checkMissingRunCycleArguments(1,
+                1,1,-1));
+    }
+
+    @Test
+    void checkMissingRunCycleArguments_noMissingArguments_noExceptionThrown() {
+        assertDoesNotThrow(() -> Parser.checkMissingRunCycleArguments(1, 1, 1, 1));
+    }
+
+    @Test
+    void checkMissingSwimArguments_missingStyle_throwAthletiException() {
+        assertThrows(AthletiException.class, () -> Parser.checkMissingSwimArguments(1,
+                1,1, -1));
+    }
+
+    @Test
+    void checkMissingSwimArguments_noMissingArguments_noExceptionThrown() {
+        assertDoesNotThrow(() -> Parser.checkMissingSwimArguments(1, 1, 1, 1));
+    }
+
+    @Test
+    void checkEmptyActivityArguments_emptyCaption_throwAthletiException() {
+        assertThrows(AthletiException.class, () -> Parser.checkEmptyActivityArguments("",
+                " "," ", " "));
+    }
+
+    @Test
+    void checkEmptyActivityArguments_noEmptyArguments_noExceptionThrown() {
+        assertDoesNotThrow(() -> Parser.checkEmptyActivityArguments("1", "1", "1", "1"));
+    }
+
+    @Test
+    void parseSwim_validInput_swimParsed() throws AthletiException {
+        String validInput = "Evening Swim duration/120 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
+        Swim actual = (Swim) Parser.parseSwim(validInput);
+        LocalDateTime time = LocalDateTime.parse("2021-09-01 18:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        Swim expected = new Swim("Evening Swim", 120, 20000, time, Swim.SwimmingStyle.FREESTYLE);
+        assertEquals(actual.getCaption(), expected.getCaption());
+        assertEquals(actual.getMovingTime(), expected.getMovingTime());
+        assertEquals(actual.getDistance(), expected.getDistance());
+        assertEquals(actual.getStartDateTime(), expected.getStartDateTime());
+        assertEquals(actual.getStyle(), expected.getStyle());
+    }
+
+    @Test
+    void parseSwimmingStyle_validInput_styleParsed() throws AthletiException {
+        String validInput = "freestyle";
+        Swim.SwimmingStyle actual = Parser.parseSwimmingStyle(validInput);
+        Swim.SwimmingStyle expected = Swim.SwimmingStyle.FREESTYLE;
+        assertEquals(actual, expected);
     }
 }

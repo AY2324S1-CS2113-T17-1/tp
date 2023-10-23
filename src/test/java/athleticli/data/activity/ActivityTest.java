@@ -21,7 +21,7 @@ public class ActivityTest {
     }
 
     @Test
-    public void testConstructor() {
+    public void testConstructorAndGetters() {
         assertEquals(CAPTION, activity.getCaption());
         assertEquals(DURATION, activity.getMovingTime());
         assertEquals(DISTANCE, activity.getDistance());
@@ -29,9 +29,46 @@ public class ActivityTest {
     }
 
     @Test
-    public void testToString_longRun() {
+    public void testToString() {
         String expected = "[Activity] Sunday = Runday | Distance: 18.12 km | Time: 1h 24m | " +
                 "October 10, 2023 at 11:21 PM";
         assertEquals(expected, activity.toString());
+    }
+
+    @Test
+    public void testToDetailedString() {
+        String expected = "[Activity - Sunday = Runday - October 10, 2023 at 11:21 PM]\n" +
+                "\tDistance: Distance: 18.12 km           Moving Time: Time: 1h 24m\n" +
+                "\tCalories: 0 kcal                       ...";
+        String actual = activity.toDetailedString();
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void generateDistanceStringOutput() {
+        String actual = activity.generateDistanceStringOutput();
+        String expected = "Distance: 18.12 km";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void generateMovingTimeStringOutput() {
+        String actual = activity.generateMovingTimeStringOutput();
+        String expected = "Time: 1h 24m";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void generateStartDateTimeStringOutput() {
+        String actual = activity.generateStartDateTimeStringOutput();
+        String expected = "October 10, 2023 at 11:21 PM";
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    public void formatTwoColumns() {
+        String actual = activity.formatTwoColumns("Distance: 18.12 km", "Time: 1h 24m", 30);
+        String expected = "Distance: 18.12 km            Time: 1h 24m";
+        assertEquals(expected, actual);
     }
 }

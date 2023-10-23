@@ -135,7 +135,7 @@ public class Parser {
      * @return index                The parsed Integer index.
      * @throws AthletiException     If the input is not an integer.
      */
-    private static int parseActivityIndex(String commandArgs) throws AthletiException {
+    public static int parseActivityIndex(String commandArgs) throws AthletiException {
         final String commandArgsTrimmed = commandArgs.trim();
         int index;
         try {
@@ -152,7 +152,7 @@ public class Parser {
      * @return activity             The parsed Activity object.
      * @throws AthletiException     If the input format is invalid.
      */
-    private static Activity parseActivityEdit(String arguments) throws AthletiException {
+    public static Activity parseActivityEdit(String arguments) throws AthletiException {
         try {
             return parseActivity(arguments.split(" ", 2)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -166,7 +166,7 @@ public class Parser {
      * @return activity             The parsed run object.
      * @throws AthletiException     If the input format is invalid.
      */
-    private static Activity parseRunEdit(String arguments) throws AthletiException {
+    public static Activity parseRunEdit(String arguments) throws AthletiException {
         try {
             return parseRunCycle(arguments.split(" ", 2)[1], true);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -180,7 +180,7 @@ public class Parser {
      * @return activity             The parsed cycle object.
      * @throws AthletiException     If the input format is invalid.
      */
-    private static Activity parseCycleEdit(String arguments) throws AthletiException {
+    public static Activity parseCycleEdit(String arguments) throws AthletiException {
         try {
             return parseRunCycle(arguments.split(" ", 2)[1], false);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -194,7 +194,7 @@ public class Parser {
      * @return activity             The parsed swim object.
      * @throws AthletiException     If the input format is invalid.
      */
-    private static Activity parseSwimEdit(String arguments) throws AthletiException {
+    public static Activity parseSwimEdit(String arguments) throws AthletiException {
         try {
             return parseSwim(arguments.split(" ", 2)[1]);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -208,7 +208,7 @@ public class Parser {
      * @return index              The parsed Integer index.
      * @throws AthletiException   If the input format is invalid
      */
-    private static int parseActivityEditIndex(String arguments) throws AthletiException {
+    public static int parseActivityEditIndex(String arguments) throws AthletiException {
         try {
             return parseActivityIndex(arguments.split(" ", 2)[0]);
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -221,7 +221,7 @@ public class Parser {
      * @param commandArgs   The raw user input containing the arguments.
      * @return boolean      Whether the user wants the detailed view.
      */
-    private static boolean parseActivityListDetail(String commandArgs) {
+    public static boolean parseActivityListDetail(String commandArgs) {
         return commandArgs.toLowerCase().contains(Parameter.DETAIL_FLAG);
     }
 
@@ -480,7 +480,7 @@ public class Parser {
     public static Activity parseSwim(String arguments) throws AthletiException {
         final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
         final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
-        final int datetimeIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
+        final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
         final int swimmingStyleIndex = arguments.indexOf(Parameter.SWIMMING_STYLE_SEPARATOR);
 
         checkMissingSwimArguments(durationIndex, distanceIndex, datetimeIndex, swimmingStyleIndex);
@@ -513,7 +513,7 @@ public class Parser {
      */
     public static Swim.SwimmingStyle parseSwimmingStyle(String swimmingStyle) throws AthletiException {
         try {
-            return Swim.SwimmingStyle.valueOf(swimmingStyle);
+            return Swim.SwimmingStyle.valueOf(swimmingStyle.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new AthletiException(Message.MESSAGE_SWIMMINGSTYLE_INVALID);
         }
