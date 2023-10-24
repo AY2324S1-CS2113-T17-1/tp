@@ -6,10 +6,10 @@ ____________________________________________________________
 > ____________________________________________________________
 
 Activity Management:
- activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
- run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
- swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
- cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
+ add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
+ add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
  delete-activity INDEX
  list-activity [-d]
  edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
