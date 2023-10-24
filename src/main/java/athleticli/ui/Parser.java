@@ -49,11 +49,6 @@ import java.util.Set;
 public class Parser {
     private static DateTimeFormatter sleepTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
-    private static final String CALORIES_MARKER = "calories";
-    private static final String PROTEIN_MARKER = "protein";
-    private static final String CARB_MARKER = "carb";
-    private static final String FAT_MARKER = "fats";
-
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
      * while the second part is the command arguments. The second part can be empty.
@@ -578,7 +573,7 @@ public class Parser {
      * @throws AthletiException Invalid input by the user.
      */
     public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
-        if (commandArgs.isEmpty()) {
+        if (commandArgs.trim().isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
         }
         try {

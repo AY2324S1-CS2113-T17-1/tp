@@ -18,7 +18,6 @@ class DeleteDietGoalCommandTest {
     private DietGoal dietGoalFats;
     private ArrayList<DietGoal> filledInputDietGoals;
 
-
     @BeforeEach
     void setUp() {
         data = new Data();
@@ -47,6 +46,18 @@ class DeleteDietGoalCommandTest {
     @Test
     void execute_deleteOneItemFromEmptyDietGoalList_expectAthletiException() {
         DeleteDietGoalCommand deleteDietGoalCommand = new DeleteDietGoalCommand(100);
+        assertThrows(AthletiException.class, () -> deleteDietGoalCommand.execute(data));
+    }
+
+    @Test
+    void execute_integerExceedListSize_expectAthletiException() {
+        SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
+        DeleteDietGoalCommand deleteDietGoalCommand = new DeleteDietGoalCommand(100);
+        try {
+            setDietGoalCommand.execute(data);
+        } catch (AthletiException e) {
+            fail();
+        }
         assertThrows(AthletiException.class, () -> deleteDietGoalCommand.execute(data));
     }
 }

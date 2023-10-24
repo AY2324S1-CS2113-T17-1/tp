@@ -1,22 +1,29 @@
 package athleticli.ui;
 
 import athleticli.commands.ByeCommand;
+
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
+import athleticli.commands.diet.DeleteDietGoalCommand;
+import athleticli.commands.diet.EditDietGoalCommand;
 import athleticli.commands.diet.ListDietCommand;
+import athleticli.commands.diet.ListDietGoalCommand;
+import athleticli.commands.diet.SetDietGoalCommand;
+
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
+
 import athleticli.exceptions.AthletiException;
 
 import org.junit.jupiter.api.Test;
 
 import static athleticli.ui.Parser.parseCommand;
+import static athleticli.ui.Parser.parseDietGoalDelete;
 import static athleticli.ui.Parser.parseDietGoalSetEdit;
 import static athleticli.ui.Parser.splitCommandWordAndArgs;
 
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -53,7 +60,7 @@ class ParserTest {
         assertInstanceOf(AddSleepCommand.class, parseCommand(addSleepCommandString));
     }
 
-    @Test 
+    @Test
     void parseCommand_addSleepCommand_missingStartExpectAthletiException() {
         final String addSleepCommandString = "add-sleep end/07-10-2021 06:00";
         assertThrows(AthletiException.class, () -> parseCommand(addSleepCommandString));
@@ -129,6 +136,30 @@ class ParserTest {
     void parseCommand_listSleepCommand_expectListSleepCommand() throws AthletiException {
         final String listSleepCommandString = "list-sleep";
         assertInstanceOf(ListSleepCommand.class, parseCommand(listSleepCommandString));
+    }
+
+    @Test
+    void parseCommand_setDietGoalCommand_expectSetDietGoalCommand() throws AthletiException {
+        final String setDietGoalCommandString = "set-diet-goal calories/1 protein/2 carb/3";
+        assertInstanceOf(SetDietGoalCommand.class, parseCommand(setDietGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editDietCommand_expectEditDietGoalCommand() throws AthletiException {
+        final String editDietGoalCommandString = "edit-diet-goal calories/1 protein/2 carb/3";
+        assertInstanceOf(EditDietGoalCommand.class, parseCommand(editDietGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_listDietGoalCommand_expectListDietGoalCommand() throws AthletiException {
+        final String listDietCommandString = "list-diet-goal";
+        assertInstanceOf(ListDietGoalCommand.class, parseCommand(listDietCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteDietGoalCommand_expectDeleteDietGoalCommand() throws AthletiException {
+        final String deleteDietGoalCommandString = "delete-diet-goal 1";
+        assertInstanceOf(DeleteDietGoalCommand.class, parseCommand(deleteDietGoalCommandString));
     }
 
     @Test
@@ -234,26 +265,50 @@ class ParserTest {
     }
 
     @Test
-    void parseDietGoalSet_oneValidGoal_oneGoalInList() {
-        String oneValidGoalString = "calories/60";
-        assertDoesNotThrow(() -> parseDietGoalSetEdit(oneValidGoalString));
+    void parseDietGoalSetEdit_noInput_throwAthletiException() {
+        String oneValidOneInvalidGoalString = " ";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(oneValidOneInvalidGoalString));
     }
 
     @Test
-    void parseDietGoalSet_oneValidOneInvalidGoal_throwAthletiException() {
+    void parseDietGoalSetEdit_oneValidOneInvalidGoal_throwAthletiException() {
         String oneValidOneInvalidGoalString = "calories/60 protein/protine";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(oneValidOneInvalidGoalString));
     }
 
     @Test
-    void parseDietGoalSet_zeroTargetValue_throwAthletiException() {
+    void parseDietGoalSetEdit_zeroTargetValue_throwAthletiException() {
         String zeroTargetValueGoalString = "calories/0";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(zeroTargetValueGoalString));
     }
 
     @Test
-    void parseDietGoalSet_oneInvalidGoal_throwAthlethiException() {
+    void parseDietGoalSetEdit_oneInvalidGoal_throwAthletiException() {
         String invalidGoalString = "calories/caloreis protein/protein";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
+    }
+
+    @Test
+    void parseDietGoalSetEdit_repeatedDietGoal_throwAthletiException() {
+        String invalidGoalString = "calories/1 calories/1";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
+    }
+
+    @Test
+    void parseDietGoalSetEdit_invalidNutrient_throwAthletiException() {
+        String invalidGoalString = "calorie/1";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
+    }
+
+    @Test
+    void parseDietGoalDelete_nonIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "nonInteger";
+        assertThrows(AthletiException.class, () -> parseDietGoalDelete(nonIntegerInput));
+    }
+
+    @Test
+    void parseDietGoalDelete_nonPositiveIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "0";
+        assertThrows(AthletiException.class, () -> parseDietGoalDelete(nonIntegerInput));
     }
 }

@@ -18,4 +18,3 @@ public class NutrientVerifier {
         return VERIFIED_NUTRIENTS.contains(nutrient);
     }
 }
-

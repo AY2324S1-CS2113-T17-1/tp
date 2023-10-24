@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -18,6 +17,7 @@ class EditDietGoalCommandTest {
     private ArrayList<DietGoal> emptyInputDietGoals;
     private ArrayList<DietGoal> filledInputDietGoals;
     private ArrayList<DietGoal> filledChangedInputDietGoals;
+    private DietGoal dietGoalCarb;
     private DietGoal dietGoalFats;
     private DietGoal newDietGoalFats;
     private Data data;
@@ -26,20 +26,16 @@ class EditDietGoalCommandTest {
     void setUp() {
         data = new Data();
 
+        dietGoalCarb = new DietGoal("carb", 10000);
         dietGoalFats = new DietGoal("fats", 10000);
         newDietGoalFats = new DietGoal("fats", 10);
 
         emptyInputDietGoals = new ArrayList<>();
         filledInputDietGoals = new ArrayList<>();
         filledInputDietGoals.add(dietGoalFats);
+        filledInputDietGoals.add(dietGoalCarb);
         filledChangedInputDietGoals = new ArrayList<>();
         filledChangedInputDietGoals.add(newDietGoalFats);
-    }
-
-    @Test
-    void execute_emptyInputList_expectNoError() {
-        EditDietGoalCommand editDietGoalCommand = new EditDietGoalCommand(emptyInputDietGoals);
-        assertDoesNotThrow(() -> editDietGoalCommand.execute(data));
     }
 
     @Test
@@ -61,25 +57,12 @@ class EditDietGoalCommandTest {
     }
 
     @Test
-    void execute_oneExistingInputDietGoal_expectNoError() {
-        SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
-        EditDietGoalCommand editDietGoalCommand = new EditDietGoalCommand(filledInputDietGoals);
-
-        try {
-            setDietGoalCommand.execute(data);
-        } catch (AthletiException e) {
-            fail(e);
-        }
-        assertDoesNotThrow(() -> editDietGoalCommand.execute(data));
-    }
-
-    @Test
     void execute_changeOneExistingInputDietGoal_expectCorrectMessage() {
         try {
             SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
             EditDietGoalCommand editDietGoalCommand = new EditDietGoalCommand(filledChangedInputDietGoals);
             String[] expectedString = {"These are your goal(s):\n", "\t1. fats intake progress: " +
-                    "(0/10)\n", "Now you have 1 diet goal(s)."};
+                    "(0/10)\n\n" + "\t2. carb intake progress: (0/10000)\n", "Now you have 2 diet goal(s)."};
 
             setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, editDietGoalCommand.execute(data));
