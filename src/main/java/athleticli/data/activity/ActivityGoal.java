@@ -8,5 +8,6 @@ public class ActivityGoal implements Serializable {
         DAILY, WEEKLY, MONTHLY, YEARLY
     }
 
+    private Timespan timespan;
 
 }
