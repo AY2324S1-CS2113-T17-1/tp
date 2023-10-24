@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,5 +43,15 @@ class ActivityListTest {
         activityList.sort();
         assertEquals(activityList.get(0), activitySecond);
         assertEquals(activityList.get(1), activityFirst);
+    }
+
+    @Test
+    void filterByTimespan() {
+        activityList.sort();
+        ArrayList<Object> filteredList = activityList.filterByTimespan(LocalDate.of(2023, 10, 9),
+                LocalDate.of(2023, 10, 9));
+        assertEquals(filteredList.get(0), activityFirst);
+        filteredList = activityList.filterByTimespan(LocalDate.of(2023, 10, 9), LocalDate.of(2023, 10, 10));
+        assertEquals(filteredList.get(0), activitySecond);
     }
 }
