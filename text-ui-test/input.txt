@@ -23,4 +23,26 @@ delete-sleeps 5
 edits-sleep 5 start/06-09-2021 23:00 end/07-09-2021 07:00
 add-sleep start/07-09-2021 22:00 ends/08-09-2021 06:00
 edit-sleeps 6 starts/08-09-2021 23:00 end/09-09-2021 07:00
+
+add-diet-goal
+list-diet-goal
+set-diet-goal
+set-diet-goal fat
+set-diet-goal fats
+set-diet-goal fats/fats
+set-diet-goal fats/1
+delete-diet-goal 3
+delete-diet-goal 1 2
+delete-diet-goal 1
+delete-diet-goal -1
+delete-diet-goal
+delete-diet-goal never gonna let you down
+set-diet-goal fats/1 calories/1 protein/1
+edit-diet-goal carb
+edit-diet-goal fats
+edit-diet-goal fats/fats
+edit-diet-goal fats/100
+edit-diet-goal carb/100
+list-diet-goal
+
 bye

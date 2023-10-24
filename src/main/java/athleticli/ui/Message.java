@@ -89,7 +89,8 @@ public class Message {
     public static final String MESSAGE_DIETGOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
             "Please enter a value from 1 to %d.";
     public static final String MESSAGE_DIETGOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
-            "to create or edit your diet goals:\n \"calories\", \"protein\", \"carb\", \"fats\"";
+            "to create or edit your diet goals:\n \"calories\", \"protein\", \"carb\", \"fats\" " +
+            "followed by the target value.\n" + "\te.g. calories/100";
     public static final String MESSSAGE_DIETGOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
             "no repetitions for your diet goal nutrients.";
 
