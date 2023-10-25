@@ -47,10 +47,4 @@ public class DeleteDietCommandTest {
         deleteDietCommand = new DeleteDietCommand(2);
         assertThrows(AthletiException.class, () -> deleteDietCommand.execute(data));
     }
-
-    @Test
-    void execute_negativeIndex_expectException() {
-        deleteDietCommand = new DeleteDietCommand(-1);
-        assertThrows(AthletiException.class, () -> deleteDietCommand.execute(data));
-    }
 }

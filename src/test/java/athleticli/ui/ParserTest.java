@@ -22,9 +22,17 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+import static athleticli.ui.Parser.checkEmptyDietArguments;
+import static athleticli.ui.Parser.checkMissingDietArguments;
+import static athleticli.ui.Parser.parseCalories;
+import static athleticli.ui.Parser.parseCarb;
 import static athleticli.ui.Parser.parseCommand;
+import static athleticli.ui.Parser.parseDiet;
 import static athleticli.ui.Parser.parseDietGoalDelete;
 import static athleticli.ui.Parser.parseDietGoalSetEdit;
+import static athleticli.ui.Parser.parseDietIndex;
+import static athleticli.ui.Parser.parseFat;
+import static athleticli.ui.Parser.parseProtein;
 import static athleticli.ui.Parser.splitCommandWordAndArgs;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -169,7 +177,7 @@ class ParserTest {
     @Test
     void parseCommand_addDietCommand_expectAddDietCommand() throws AthletiException {
         final String addDietCommandString =
-                "add-diet calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06" + " 10:00";
+                "add-diet calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
         assertInstanceOf(AddDietCommand.class, parseCommand(addDietCommandString));
     }
 
@@ -218,28 +226,28 @@ class ParserTest {
     @Test
     void parseCommand_addDietCommand_emptyCaloriesExpectAthletiException() {
         final String addDietCommandString =
-                "add-diet calories/ protein/2 carb/3 fat/4 datetime/2023-10-06 " + "10:00";
+                "add-diet calories/ protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
     void parseCommand_addDietCommand_emptyProteinExpectAthletiException() {
         final String addDietCommandString =
-                "add-diet calories/1 protein/ carb/3 fat/4 datetime/2023-10-06 " + "10:00";
+                "add-diet calories/1 protein/ carb/3 fat/4 datetime/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
     void parseCommand_addDietCommand_emptyCarbExpectAthletiException() {
         final String addDietCommandString =
-                "add-diet calories/1 protein/2 carb/ fat/4 datetime/2023-10-06 " + "10:00";
+                "add-diet calories/1 protein/2 carb/ fat/4 datetime/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
     void parseCommand_addDietCommand_emptyFatExpectAthletiException() {
         final String addDietCommandString =
-                "add-diet calories/1 protein/2 carb/3 fat/  datetime/2023-10-06" + " " + "10:00";
+                "add-diet calories/1 protein/2 carb/3 fat/ datetime/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
@@ -251,25 +259,68 @@ class ParserTest {
 
     @Test
     void parseCommand_addDietCommand_invalidCaloriesExpectAthletiException() {
-        final String addDietCommandString = "add-diet calories/abc protein/2 carb/3 fat/4";
+        final String addDietCommandString =
+                "add-diet calories/abc protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
     void parseCommand_addDietCommand_invalidProteinExpectAthletiException() {
-        final String addDietCommandString = "add-diet calories/1 protein/abc carb/3 fat/4";
+        final String addDietCommandString =
+                "add-diet calories/1 protein/abc carb/3 fat/4 datetime/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
     void parseCommand_addDietCommand_invalidCarbExpectAthletiException() {
-        final String addDietCommandString = "add-diet calories/1 protein/2 carb/abc fat/4";
+        final String addDietCommandString =
+                "add-diet calories/1 protein/2 carb/abc fat/4 datetime/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
     @Test
     void parseCommand_addDietCommand_invalidFatExpectAthletiException() {
-        final String addDietCommandString = "add-diet calories/1 protein/2 carb/3 fat/abc";
+        final String addDietCommandString =
+                "add-diet calories/1 protein/2 carb/3 fat/abc datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_invalidDateTimeFormatExpectAthletiException() {
+        final String addDietCommandString1 = "add-diet calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06";
+        final String addDietCommandString2 = "add-diet calories/1 protein/2 carb/3 fat/4 datetime/10:00";
+        final String addDietCommandString3 =
+                "add-diet calories/1 protein/2 carb/3 fat/4 datetime/16-10-2023 10:00:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString1));
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString2));
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString3));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_negativeCaloriesExpectAthletiException() {
+        final String addDietCommandString =
+                "add-diet calories/-1 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_negativeProteinExpectAthletiException() {
+        final String addDietCommandString =
+                "add-diet calories/1 protein/-2 carb/3 fat/4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_negativeCarbExpectAthletiException() {
+        final String addDietCommandString =
+                "add-diet calories/1 protein/2 carb/-3 fat/4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_negativeFatExpectAthletiException() {
+        final String addDietCommandString =
+                "add-diet calories/1 protein/2 carb/3 fat/-4 datetime/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
@@ -280,20 +331,234 @@ class ParserTest {
     }
 
     @Test
-    void parseCommand_addDietCommand_invalidDateTimeFormatExpectAthletiException() {
-        final String addDietCommandString1 = "add-diet calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06";
-        final String addDietCommandString2 = "add-diet calories/1 protein/2 carb/3 fat/4 datetime/10:00";
-        final String addDietCommandString3 =
-                "add-diet calories/1 protein/2 carb/3 fat/4 " + "datetime/16-10-2023" + " " + "10:00:00";
-        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString1));
-        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString2));
-        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString3));
-    }
-
-    @Test
     void parseCommand_deleteDietCommand_emptyIndexExpectAthletiException() {
         final String deleteDietCommandString = "delete-diet";
         assertThrows(AthletiException.class, () -> parseCommand(deleteDietCommandString));
+    }
+
+    @Test
+    void parseDietIndex_validIndex_returnIndex() throws AthletiException {
+        int expected = 5;
+        int actual = parseDietIndex("5");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parseDietIndex_nonIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "nonInteger";
+        assertThrows(AthletiException.class, () -> parseDietIndex(nonIntegerInput));
+    }
+
+    @Test
+    void parseDietIndex_nonPositiveIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "0";
+        assertThrows(AthletiException.class, () -> parseDietIndex(nonIntegerInput));
+    }
+
+    @Test
+    void parseDiet_emptyInput_throwAthletiException() {
+        String emptyInput = "";
+        assertThrows(AthletiException.class, () -> parseDiet(emptyInput));
+    }
+
+    @Test
+    void checkMissingDietArguments_missingCalories_throwAthletiException() {
+        int caloriesMarkerPos = -1;
+        int proteinMarkerPos = 1;
+        int carbMarkerPos = 2;
+        int fatMarkerPos = 3;
+        int datetimeMarkerPos = 4;
+        assertThrows(AthletiException.class,
+                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
+                        fatMarkerPos, datetimeMarkerPos));
+    }
+
+    @Test
+    void checkMissingDietArguments_missingProtein_throwAthletiException() {
+        int caloriesMarkerPos = 1;
+        int proteinMarkerPos = -1;
+        int carbMarkerPos = 2;
+        int fatMarkerPos = 3;
+        int datetimeMarkerPos = 4;
+        assertThrows(AthletiException.class,
+                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
+                        fatMarkerPos, datetimeMarkerPos));
+    }
+
+    @Test
+    void checkMissingDietArguments_missingCarb_throwAthletiException() {
+        int caloriesMarkerPos = 1;
+        int proteinMarkerPos = 2;
+        int carbMarkerPos = -1;
+        int fatMarkerPos = 3;
+        int datetimeMarkerPos = 4;
+        assertThrows(AthletiException.class,
+                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
+                        fatMarkerPos, datetimeMarkerPos));
+    }
+
+    @Test
+    void checkMissingDietArguments_missingFat_throwAthletiException() {
+        int caloriesMarkerPos = 1;
+        int proteinMarkerPos = 2;
+        int carbMarkerPos = 3;
+        int fatMarkerPos = -1;
+        int datetimeMarkerPos = 4;
+        assertThrows(AthletiException.class,
+                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
+                        fatMarkerPos, datetimeMarkerPos));
+    }
+
+    @Test
+    void checkMissingDietArguments_missingDatetime_throwAthletiException() {
+        int caloriesMarkerPos = 1;
+        int proteinMarkerPos = 2;
+        int carbMarkerPos = 3;
+        int fatMarkerPos = 4;
+        int datetimeMarkerPos = -1;
+        assertThrows(AthletiException.class,
+                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
+                        fatMarkerPos, datetimeMarkerPos));
+    }
+
+
+    @Test
+    void checkEmptyDietArguments_emptyCalories_throwAthletiException() {
+        String emptyCalories = "";
+        String nonEmptyProtein = "1";
+        String nonEmptyCarb = "2";
+        String nonEmptyFat = "3";
+        String nonEmptyDatetime = "2021-10-06 10:00";
+        assertThrows(AthletiException.class,
+                () -> checkEmptyDietArguments(emptyCalories, nonEmptyProtein, nonEmptyCarb, nonEmptyFat,
+                        nonEmptyDatetime));
+    }
+
+    @Test
+    void checkEmptyDietArguments_emptyProtein_throwAthletiException() {
+        String nonEmptyCalories = "1";
+        String emptyProtein = "";
+        String nonEmptyCarb = "2";
+        String nonEmptyFat = "3";
+        String nonEmptyDatetime = "2021-10-06 10:00";
+        assertThrows(AthletiException.class,
+                () -> checkEmptyDietArguments(nonEmptyCalories, emptyProtein, nonEmptyCarb, nonEmptyFat,
+                        nonEmptyDatetime));
+    }
+
+    @Test
+    void checkEmptyDietArguments_emptyCarb_throwAthletiException() {
+        String nonEmptyCalories = "1";
+        String nonEmptyProtein = "2";
+        String emptyCarb = "";
+        String nonEmptyFat = "3";
+        String nonEmptyDatetime = "2021-10-06 10:00";
+        assertThrows(AthletiException.class,
+                () -> checkEmptyDietArguments(nonEmptyCalories, nonEmptyProtein, emptyCarb, nonEmptyFat,
+                        nonEmptyDatetime));
+    }
+
+    @Test
+    void checkEmptyDietArguments_emptyFat_throwAthletiException() {
+        String nonEmptyCalories = "1";
+        String nonEmptyProtein = "2";
+        String nonEmptyCarb = "3";
+        String emptyFat = "";
+        String nonEmptyDatetime = "2021-10-06 10:00";
+        assertThrows(AthletiException.class,
+                () -> checkEmptyDietArguments(nonEmptyCalories, nonEmptyProtein, nonEmptyCarb, emptyFat,
+                        nonEmptyDatetime));
+    }
+
+    @Test
+    void checkEmptyDietArguments_emptyDatetime_throwAthletiException() {
+        String nonEmptyCalories = "1";
+        String nonEmptyProtein = "2";
+        String nonEmptyCarb = "3";
+        String nonEmptyFat = "4";
+        String emptyDatetime = "";
+        assertThrows(AthletiException.class,
+                () -> checkEmptyDietArguments(nonEmptyCalories, nonEmptyProtein, nonEmptyCarb, nonEmptyFat,
+                        emptyDatetime));
+    }
+
+    @Test
+    void parseCalories_validCalories_returnCalories() throws AthletiException {
+        int expected = 5;
+        int actual = parseCalories("5");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parseCalories_nonIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "nonInteger";
+        assertThrows(AthletiException.class, () -> parseCalories(nonIntegerInput));
+    }
+
+    @Test
+    void parseCalories_negativeIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "-1";
+        assertThrows(AthletiException.class, () -> parseCalories(nonIntegerInput));
+    }
+
+
+    @Test
+    void parseProtein_validProtein_returnProtein() throws AthletiException {
+        int expected = 5;
+        int actual = parseProtein("5");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parseProtein_nonIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "nonInteger";
+        assertThrows(AthletiException.class, () -> parseProtein(nonIntegerInput));
+    }
+
+    @Test
+    void parseProtein_negativeIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "-1";
+        assertThrows(AthletiException.class, () -> parseProtein(nonIntegerInput));
+    }
+
+
+    @Test
+    void parseCarb_validCarb_returnCarb() throws AthletiException {
+        int expected = 5;
+        int actual = parseCarb("5");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parseCarb_nonIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "nonInteger";
+        assertThrows(AthletiException.class, () -> parseCarb(nonIntegerInput));
+    }
+
+    @Test
+    void parseCarb_negativeIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "-1";
+        assertThrows(AthletiException.class, () -> parseCarb(nonIntegerInput));
+    }
+
+
+    @Test
+    void parseFat_validFat_returnFat() throws AthletiException {
+        int expected = 5;
+        int actual = parseFat("5");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parseFat_nonIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "nonInteger";
+        assertThrows(AthletiException.class, () -> parseFat(nonIntegerInput));
+    }
+
+    @Test
+    void parseFat_negativeIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "-1";
+        assertThrows(AthletiException.class, () -> parseFat(nonIntegerInput));
     }
 
     @Test
