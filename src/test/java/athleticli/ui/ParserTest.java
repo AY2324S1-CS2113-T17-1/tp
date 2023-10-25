@@ -21,12 +21,14 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
 
 import static athleticli.ui.Parser.checkEmptyDietArguments;
 import static athleticli.ui.Parser.checkMissingDietArguments;
 import static athleticli.ui.Parser.parseCalories;
 import static athleticli.ui.Parser.parseCarb;
 import static athleticli.ui.Parser.parseCommand;
+import static athleticli.ui.Parser.parseDate;
 import static athleticli.ui.Parser.parseDiet;
 import static athleticli.ui.Parser.parseDietGoalDelete;
 import static athleticli.ui.Parser.parseDietGoalSetEdit;
@@ -708,6 +710,26 @@ class ParserTest {
     void parseDateTime_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
         assertThrows(AthletiException.class, () -> Parser.parseDateTime(invalidInput));
+    }
+
+    @Test
+    void parseDate_validInput_dateParsed() throws AthletiException {
+        String validInput = "2021-09-01";
+        LocalDate actual = parseDate(validInput);
+        LocalDate expected = LocalDate.parse("2021-09-01");
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void parseDate_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> parseDate(invalidInput));
+    }
+
+    @Test
+    void parseDate_invalidInputWithTime_throwAthletiException() {
+        String invalidInput = "2021-09-01 06:00";
+        assertThrows(AthletiException.class, () -> parseDate(invalidInput));
     }
 
     @Test

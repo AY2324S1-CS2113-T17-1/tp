@@ -313,7 +313,7 @@ public class Parser {
         try {
             return LocalDate.parse(date);
         } catch (DateTimeParseException e) {
-            throw new AthletiException(Message.MESSAGE_DATETIME_INVALID);
+            throw new AthletiException(Message.MESSAGE_DATE_INVALID);
         }
     }
 

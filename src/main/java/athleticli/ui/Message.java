@@ -41,6 +41,8 @@ public class Message {
             "The distance of an activity cannot be negative!";
     public static final String MESSAGE_DATETIME_INVALID =
             "The datetime of an activity must be in the format \"yyyy-MM-dd HH:mm\"!";
+    public static final String MESSAGE_DATE_INVALID =
+            "The date of an activity must be in the format \"yyyy-MM-dd\"!";
     public static final String MESSAGE_CALORIES_INVALID =
             "The calories burned must be a non-negative integer!";
     public static final String MESSAGE_PROTEIN_INVALID = "The protein intake must be a non-negative integer!";
