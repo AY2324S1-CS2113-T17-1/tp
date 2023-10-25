@@ -115,12 +115,6 @@ public class Diet implements Serializable {
     }
 
     /**
-     * Returns a string representation of the diet.
-     *
-     * @return A string representation of the diet.
-     */
-
-    /**
      * Returns the date and time of the diet.
      *
      * @return The date and time of the diet.
@@ -137,6 +131,12 @@ public class Diet implements Serializable {
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
     }
+
+    /**
+     * Returns a string representation of the diet.
+     *
+     * @return A string representation of the diet.
+     */
 
     @Override
     public String toString() {
