@@ -35,6 +35,12 @@ public class ListActivityCommand extends Command {
         }
     }
 
+    /**
+     * Prints the list of activities.
+     * @param activities    The current activity list.
+     * @param size          The size of the activity list.
+     * @return              The message containing listing of activities which will be shown to the user.
+     */
     public String[] printList(ActivityList activities, int size) {
         String[] output = new String[size + 1];
         output[0] = Message.MESSAGE_ACTIVITY_LIST;
@@ -44,6 +50,12 @@ public class ListActivityCommand extends Command {
         return output;
     }
 
+    /**
+     * Prints the detailed list of activities.
+     * @param activities    The current activity list.
+     * @param size          The size of the activity list.
+     * @return              The message containing listing of activities which will be shown to the user.
+     */
     public String[] printDetailedList(ActivityList activities, int size) {
         String[] output = new String[size + 1];
         output[0] = Message.MESSAGE_ACTIVITY_LIST;
