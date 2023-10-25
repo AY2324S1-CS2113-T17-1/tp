@@ -1,15 +1,21 @@
 package athleticli.data.diet;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * Defines the basic fields and methods of a diet.
  */
 public class Diet implements Serializable {
+    public static final DateTimeFormatter DATE_TIME_FORMATTER =
+            DateTimeFormatter.ofPattern("MMMM d, " + "yyyy 'at' h:mm a", Locale.ENGLISH);
     private int calories;
     private int protein;
     private int carb;
     private int fat;
+    private LocalDateTime dateTime;
 
     /**
      * Constructs a <code>Diet</code> object.
@@ -18,12 +24,14 @@ public class Diet implements Serializable {
      * @param protein  Protein intake in grams.
      * @param carb     Carbohydrate intake in grams.
      * @param fat      Fat intake in grams.
+     * @param dateTime The date and time of the diet.
      */
-    public Diet(int calories, int protein, int carb, int fat) {
+    public Diet(int calories, int protein, int carb, int fat, LocalDateTime dateTime) {
         this.calories = calories;
         this.protein = protein;
         this.carb = carb;
         this.fat = fat;
+        this.dateTime = dateTime;
     }
 
     /**
@@ -103,8 +111,28 @@ public class Diet implements Serializable {
      *
      * @return A string representation of the diet.
      */
+
+    /**
+     * Returns the date and time of the diet.
+     *
+     * @return The date and time of the diet.
+     */
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    /**
+     * Sets the date and time of the diet.
+     *
+     * @param dateTime The date and time of the diet.
+     */
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
+    }
+
     @Override
     public String toString() {
-        return "Calories: " + calories + " Protein: " + protein + " Carb: " + carb + " Fat: " + fat;
+        return "Calories: " + calories + " Protein: " + protein + " Carb: " + carb + " Fat: " + fat +
+                       " Date: " + dateTime.format(DATE_TIME_FORMATTER);
     }
 }

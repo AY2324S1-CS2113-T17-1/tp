@@ -22,6 +22,8 @@ public class Message {
     public static final String MESSAGE_CARB_MISSING =
             "Please specify the carbohydrate intake using \"carb/\"!";
     public static final String MESSAGE_FAT_MISSING = "Please specify the fat intake using \"fat/\"!";
+    public static final String MESSAGE_DIET_DATETIME_MISSING =
+            "Please specify the datetime of the diet using \"datetime/\"!";
     public static final String MESSAGE_CAPTION_EMPTY = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_EMPTY = "The duration of an activity cannot be empty!";
     public static final String MESSAGE_DISTANCE_EMPTY = "The distance of an activity cannot be empty!";
@@ -30,6 +32,7 @@ public class Message {
     public static final String MESSAGE_PROTEIN_EMPTY = "The protein intake cannot be empty!";
     public static final String MESSAGE_CARB_EMPTY = "The carbohydrate intake cannot be empty!";
     public static final String MESSAGE_FAT_EMPTY = "The fat intake cannot be empty!";
+    public static final String MESSAGE_DIET_DATETIME_EMPTY = "The datetime of a diet cannot be empty!";
     public static final String MESSAGE_DURATION_INVALID =
             "The duration of an activity must be in the format \"hh:mm:ss\"!";
     public static final String MESSAGE_DISTANCE_INVALID =
