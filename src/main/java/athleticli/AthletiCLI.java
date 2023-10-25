@@ -25,8 +25,8 @@ public class AthletiCLI {
     /**
      * Constructs an <code>AthletiCLI</code> object.
      */
-    public AthletiCLI() {
-        ui = new Ui();
+    private AthletiCLI() {
+        ui = Ui.getInstance();
         data = Storage.load();
         LogManager.getLogManager().reset();
         try {
@@ -58,7 +58,7 @@ public class AthletiCLI {
      * Displays the welcome interface, continuously reads user input
      * and executes corresponding instructions until exiting.
      */
-    public void run() {
+    private void run() {
         logger.entering(getClass().getName(), "run");
         ui.showWelcome();
         boolean isExit = false;

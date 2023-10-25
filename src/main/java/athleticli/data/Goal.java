@@ -92,7 +92,8 @@ public abstract class Goal {
     /**
      * Returns whether the goal is achieved.
      *
-     * @return Whether the goal is achieved.
+     * @param data  The current data containing all records.
+     * @return      Whether the goal is achieved.
      */
-    public abstract boolean isAchieved();
+    public abstract boolean isAchieved(Data data);
 }
