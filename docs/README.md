@@ -23,16 +23,16 @@ covers dietary habits, sleep metrics, and more.
 
 ### Adding Activities:
 
-`activity`, `run`, `swim`, `cycle`
+`add-activity`, `add-run`, `add-swim`, `add-cycle`
 
 You can record your activities in AtheltiCLI by adding different activities including running, cycling, and swimming.
 
 **Syntax:**
 
-* `activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
-* `run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
-* `swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
-* `cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
+* `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
+* `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
 
 **Parameters:**
 
@@ -43,8 +43,8 @@ You can record your activities in AtheltiCLI by adding different activities incl
 
 **Examples:**
 
-* `activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
-* `cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
+* `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
 ### Deleting Activities:
 
