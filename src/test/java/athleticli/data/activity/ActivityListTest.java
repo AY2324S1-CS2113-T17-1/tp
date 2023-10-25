@@ -55,4 +55,32 @@ class ActivityListTest {
         filteredList = activityList.filterByTimespan(LocalDate.of(2023, 10, 9), LocalDate.of(2023, 10, 10));
         assertEquals(filteredList.get(0), activitySecond);
     }
+
+    @Test
+    void getTotalDistance_activity_totalDistance() {
+        int expected = 2 * DISTANCE;
+        int actual = activityList.getTotalDistance(Activity.class);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getTotalDistance_run_zero() {
+        int expected = 0;
+        int actual = activityList.getTotalDistance(Run.class);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getMovingTime_activity_totalTime() {
+        int expected = 2 * DURATION.toSecondOfDay();
+        int actual = activityList.getTotalMovingTime(Activity.class);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getMovingTime_run_zero() {
+        int expected = 0;
+        int actual = activityList.getTotalMovingTime(Run.class);
+        assertEquals(expected, actual);
+    }
 }

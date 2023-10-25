@@ -2,6 +2,7 @@ package athleticli.data.activity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -49,4 +50,37 @@ public class ActivityList extends ArrayList<Activity> implements Serializable, F
         }
         return result;
     }
+
+    /**
+     * Returns the total distance of all activities in the list matching the specified activity class.
+     * @param activityClass The activity class to be matched.
+     * @return The total distance of all activities in the list matching the specified activity class.
+     */
+    public int getTotalDistance(Class<?> activityClass) {
+        int runningDistance = 0;
+        for (Activity activity : this) {
+            if (activityClass.isInstance(activity)) {
+                runningDistance += activity.getDistance();
+            }
+        }
+        return runningDistance;
+    }
+
+    /**
+     * Returns the total moving time in seconds of all activities in the list matching the specified activity class.
+     * @param activityClass The activity class to be matched.
+     * @return The total moving time of all activities in the list matching the specified activity class.
+     */
+    public int getTotalMovingTime(Class<?> activityClass) {
+        int movingTime = 0;
+        for (Activity activity : this) {
+            if (activityClass.isInstance(activity)) {
+                LocalTime duration = activity.getMovingTime();
+                movingTime += duration.getHour() * 3600 + duration.getMinute() * 60 + duration.getSecond();
+            }
+        }
+        return movingTime;
+    }
+
+
 }
