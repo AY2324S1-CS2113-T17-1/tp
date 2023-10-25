@@ -49,7 +49,7 @@ class ActivityListTest {
     @Test
     void filterByTimespan() {
         activityList.sort();
-        ArrayList<Object> filteredList = activityList.filterByTimespan(LocalDate.of(2023, 10, 9),
+        ArrayList<Activity> filteredList = activityList.filterByTimespan(LocalDate.of(2023, 10, 9),
                 LocalDate.of(2023, 10, 9));
         assertEquals(filteredList.get(0), activityFirst);
         filteredList = activityList.filterByTimespan(LocalDate.of(2023, 10, 9), LocalDate.of(2023, 10, 10));
@@ -59,28 +59,32 @@ class ActivityListTest {
     @Test
     void getTotalDistance_activity_totalDistance() {
         int expected = 2 * DISTANCE;
-        int actual = activityList.getTotalDistance(Activity.class);
+        int actual = activityList.getTotalDistance(Activity.class, LocalDate.of(2023, 10, 9),
+                LocalDate.of(2023, 10, 10));
         assertEquals(expected, actual);
     }
 
     @Test
     void getTotalDistance_run_zero() {
         int expected = 0;
-        int actual = activityList.getTotalDistance(Run.class);
+        int actual = activityList.getTotalDistance(Run.class, LocalDate.of(2023, 10, 9),
+                LocalDate.of(2023, 10, 10));
         assertEquals(expected, actual);
     }
 
     @Test
-    void getMovingTime_activity_totalTime() {
+    void getTotalDuration_activity_totalTime() {
         int expected = 2 * DURATION.toSecondOfDay();
-        int actual = activityList.getTotalMovingTime(Activity.class);
+        int actual = activityList.getTotalDuration(Activity.class, LocalDate.of(2023, 10, 9),
+                LocalDate.of(2023, 10, 10));
         assertEquals(expected, actual);
     }
 
     @Test
-    void getMovingTime_run_zero() {
+    void getTotalDuration_run_zero() {
         int expected = 0;
-        int actual = activityList.getTotalMovingTime(Run.class);
+        int actual = activityList.getTotalDuration(Run.class, LocalDate.of(2023, 10, 9),
+                LocalDate.of(2023, 10, 10));
         assertEquals(expected, actual);
     }
 }

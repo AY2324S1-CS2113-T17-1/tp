@@ -39,8 +39,8 @@ public class ActivityList extends ArrayList<Activity> implements Serializable, F
      * @param endDate   The end date of the timespan.
      * @return A list of activities within the timespan.
      */
-    public ArrayList<Object> filterByTimespan(LocalDate startDate, LocalDate endDate) {
-        ArrayList<Object> result = new ArrayList<>();
+    public ArrayList<Activity> filterByTimespan(LocalDate startDate, LocalDate endDate) {
+        ArrayList<Activity> result = new ArrayList<>();
         for (Activity activity : this) {
             LocalDate activityDate = activity.getStartDateTime().toLocalDate();
             if (activityDate.isAfter(startDate.minusDays(1)) &&
@@ -56,9 +56,10 @@ public class ActivityList extends ArrayList<Activity> implements Serializable, F
      * @param activityClass The activity class to be matched.
      * @return The total distance of all activities in the list matching the specified activity class.
      */
-    public int getTotalDistance(Class<?> activityClass) {
+    public int getTotalDistance(Class<?> activityClass, LocalDate startDate, LocalDate endDate) {
+        ArrayList<Activity> filteredActivities = filterByTimespan(startDate, endDate);
         int runningDistance = 0;
-        for (Activity activity : this) {
+        for (Activity activity : filteredActivities) {
             if (activityClass.isInstance(activity)) {
                 runningDistance += activity.getDistance();
             }
@@ -71,9 +72,10 @@ public class ActivityList extends ArrayList<Activity> implements Serializable, F
      * @param activityClass The activity class to be matched.
      * @return The total moving time of all activities in the list matching the specified activity class.
      */
-    public int getTotalMovingTime(Class<?> activityClass) {
+    public int getTotalDuration(Class<?> activityClass, LocalDate startDate, LocalDate endDate) {
+        ArrayList<Activity> filteredActivities = filterByTimespan(startDate, endDate);
         int movingTime = 0;
-        for (Activity activity : this) {
+        for (Activity activity : filteredActivities) {
             if (activityClass.isInstance(activity)) {
                 LocalTime duration = activity.getMovingTime();
                 movingTime += duration.getHour() * 3600 + duration.getMinute() * 60 + duration.getSecond();
@@ -81,6 +83,5 @@ public class ActivityList extends ArrayList<Activity> implements Serializable, F
         }
         return movingTime;
     }
-
 
 }

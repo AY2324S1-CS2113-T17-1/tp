@@ -95,4 +95,12 @@ public abstract class Goal {
      * @return Whether the goal is achieved.
      */
     public abstract boolean isAchieved();
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
 }
