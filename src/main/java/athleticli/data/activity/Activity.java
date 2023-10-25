@@ -77,12 +77,20 @@ public class Activity implements Serializable {
                 startDateTimeOutput;
     }
 
+    /**
+     * Returns distance in user-friendly output format.
+     * @return a string representation of the distance
+     */
     public String generateDistanceStringOutput() {
         double distanceInKm = distance / 1000.0;
-        return "Distance: " + String.format("%.2f", distanceInKm).replace(",", ".")
+        return "Distance: " + String.format(Locale.ENGLISH, "%.2f", distanceInKm)
                 + " km";
     }
 
+    /**
+     * Returns moving time in user-friendly output format.
+     * @return a string representation of the moving time
+     */
     public String generateMovingTimeStringOutput() {
         return "Time: " + movingTime.format(TIME_FORMATTER);
     }
@@ -101,6 +109,10 @@ public class Activity implements Serializable {
         return "Time: " + output;
     }
 
+    /**
+     * Returns start date and time in user-friendly output format.
+     * @return a string representation of the start date and time
+     */
     public String generateStartDateTimeStringOutput() {
         return startDateTime.format(DATE_TIME_FORMATTER);
     }
@@ -115,14 +127,20 @@ public class Activity implements Serializable {
         String distanceOutput = generateDistanceStringOutput();
 
         String header = "[Activity - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Moving Time: " +
-                movingTimeOutput, columnWidth);
+        String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, columnWidth);
         String secondRow = formatTwoColumns("\tCalories: " +
                 this.getCalories() + " kcal", "...", columnWidth);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow);
     }
 
+    /**
+     * Formats two strings into two columns of equal width.
+     * @param left String to be placed in the left column
+     * @param right String to be placed in the right column
+     * @param columnWidth width of each column
+     * @return a formatted string with two columns of equal width
+     */
     public String formatTwoColumns(String left, String right, int columnWidth) {
         return String.format("%-" + columnWidth + "s%s", left, right);
     }

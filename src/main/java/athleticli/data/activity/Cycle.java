@@ -2,6 +2,7 @@ package athleticli.data.activity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.time.LocalTime;
 
 /**
@@ -46,9 +47,17 @@ public class Cycle extends Activity implements Serializable {
     public String toString() {
         String result = super.toString();
         result = result.replace("[Activity]", "[Cycle]");
-        String speedOutput = String.format("%.2f", this.averageSpeed).replace(",", ".") + " km/h";
+        String speedOutput = generateSpeedStringOutput();
         result = result.replace("Time: ", "Speed: " + speedOutput + " | Time: ");
         return result;
+    }
+
+    /**
+     * Returns a string representation of the average speed of the cycle.
+     * @return a string representation of the average speed of the cycle
+     */
+    public String generateSpeedStringOutput() {
+        return String.format(Locale.ENGLISH, "%.2f", this.averageSpeed) + " km/h";
     }
 
     /**
@@ -59,17 +68,21 @@ public class Cycle extends Activity implements Serializable {
         String startDateTimeOutput = generateStartDateTimeStringOutput();
         String movingTimeOutput = generateMovingTimeStringOutput();
         String distanceOutput = generateDistanceStringOutput();
-        String speedOutput = this.averageSpeed + " km/h";
+        String speedOutput = generateSpeedStringOutput();
 
         int columnWidth = getColumnWidth();
         String header = "[Cycle - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Elevation Gain: " +
+        String firstRow = formatTwoColumns("\t" + distanceOutput, "Elevation Gain: " +
                         elevationGain + " m", columnWidth);
-        String secondRow = formatTwoColumns("\tMoving Time: " + movingTimeOutput, "Avg Speed: " +
+        String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Avg Speed: " +
                         speedOutput, columnWidth);
         String thirdRow = formatTwoColumns("\tCalories: " + this.getCalories() + " kcal", "Max Speed: " +
                         "tbd", columnWidth);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+    }
+
+    public int getElevationGain() {
+        return this.elevationGain;
     }
 }

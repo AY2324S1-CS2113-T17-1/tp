@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -12,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ActivityListTest {
 
     private static final String CAPTION = "Sunday = Runday";
-    private static final int DURATION = 84;
+    private static final LocalTime DURATION = LocalTime.of(1, 24);
     private static final int DISTANCE = 18120;
     private ActivityList activityList;
     private LocalDateTime dateFirst;

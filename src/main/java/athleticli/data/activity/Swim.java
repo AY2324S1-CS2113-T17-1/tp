@@ -4,6 +4,9 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+/**
+ * Represents a swimming activity consisting of relevant evaluation data.
+ */
 public class Swim extends Activity implements Serializable {
     private final int laps;
     private final SwimmingStyle style;
@@ -16,6 +19,16 @@ public class Swim extends Activity implements Serializable {
         FREESTYLE
     }
 
+    /**
+     * Generates a new swimming activity with swimming specific stats.
+     * By default, calories is 0, i.e., not tracked.
+     * averageLapTime is calculated automatically based on the movingTime and laps.
+     * @param movingTime duration of the activity in HH:mm:ss format
+     * @param distance distance covered in meters
+     * @param startDateTime start date and time of the activity
+     * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
+     * @param style swimming style
+     */
     public Swim(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, SwimmingStyle style) {
         super(caption, movingTime, distance, startDateTime);
         this.laps = this.calculateLaps();
@@ -31,6 +44,10 @@ public class Swim extends Activity implements Serializable {
         return this.getMovingTime().toSecondOfDay() / this.laps;
     }
 
+    /**
+     * Calculates the number of laps.
+     * @return number of laps
+     */
     public int calculateLaps() {
         return this.getDistance() / 50;
     }
@@ -43,6 +60,10 @@ public class Swim extends Activity implements Serializable {
         return averageLapTime;
     }
 
+    /**
+     * Returns a short string representation of the swim.
+     * @return a string representation of the swim
+     */
     @Override
     public String toString() {
         String result = super.toString();
@@ -63,12 +84,17 @@ public class Swim extends Activity implements Serializable {
 
         int columnWidth = getColumnWidth();
         String header = "[Swim - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Moving Time: " +
-                movingTimeOutput, columnWidth);
-        String secondRow = formatTwoColumns("\tAvg Lap Time: " + averageLapTime + " s", "Calories: " +
+        String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, columnWidth);
+        String secondRow = formatTwoColumns("\tLaps: " + this.getLaps(), "Style: "
+                + this.getStyle(), columnWidth);
+        String thirdRow = formatTwoColumns("\tAvg Lap Time: " + averageLapTime + " s", "Calories: " +
                 this.getCalories() + " kcal", columnWidth);
 
-        return String.join(System.lineSeparator(), header, firstRow, secondRow);
+        return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+    }
+
+    public SwimmingStyle getStyle() {
+        return style;
     }
 
 }
