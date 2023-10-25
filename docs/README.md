@@ -38,7 +38,7 @@ You can record your activities in AtheltiCLI by adding different activities incl
 
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in minutes.
-* DISTANCE: The distance of the activity in meters.
+* DISTANCE: The distance of the activity in meters. It must be a positive number.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: YYYY-MM-DD HH:MM
 
 **Examples:**
