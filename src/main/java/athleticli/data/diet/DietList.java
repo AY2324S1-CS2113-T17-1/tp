@@ -1,10 +1,11 @@
 package athleticli.data.diet;
 
+import athleticli.data.Findable;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import athleticli.data.Findable;
 
 /**
  * Represents a list of diets.
@@ -42,7 +43,12 @@ public class DietList extends ArrayList<Diet> implements Serializable, Findable 
      */
     @Override
     public ArrayList<Object> find(LocalDate date) {
-        // TODO
-        return null;
+        ArrayList<Object> result = new ArrayList<>();
+        for (Diet diet : this) {
+            if (diet.getDateTime().toLocalDate().equals(date)) {
+                result.add(diet);
+            }
+        }
+        return result;
     }
 }
