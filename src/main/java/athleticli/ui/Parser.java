@@ -725,6 +725,8 @@ public class Parser {
             return dietGoals;
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
         }
     }
 
