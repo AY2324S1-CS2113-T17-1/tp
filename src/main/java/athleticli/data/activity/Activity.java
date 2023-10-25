@@ -80,7 +80,7 @@ public class Activity implements Serializable {
      */
     public String generateDistanceStringOutput() {
         double distanceInKm = distance / 1000.0;
-        return "Distance: " + String.format("%.2f", distanceInKm).replace(",", ".")
+        return "Distance: " + String.format(Locale.ENGLISH, "%.2f", distanceInKm)
                 + " km";
     }
 

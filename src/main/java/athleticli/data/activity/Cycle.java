@@ -2,6 +2,7 @@ package athleticli.data.activity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 /**
  * Represents a cycling activity consisting of relevant evaluation data.
@@ -55,7 +56,7 @@ public class Cycle extends Activity implements Serializable {
      * @return a string representation of the average speed of the cycle
      */
     public String generateSpeedStringOutput() {
-        return String.format("%.2f", this.averageSpeed).replace(",", ".") + " km/h";
+        return String.format(Locale.ENGLISH, "%.2f", this.averageSpeed) + " km/h";
     }
 
     /**
