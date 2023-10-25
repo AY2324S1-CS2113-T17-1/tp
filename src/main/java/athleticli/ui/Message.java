@@ -156,7 +156,7 @@ public class Message {
     public static final String HELP_FIND_ACTIVITY = CommandName.COMMAND_ACTIVITY_FIND
             + " DATE";
     public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
-            + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT";
+            + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
     public static final String HELP_DELETE_DIET = CommandName.COMMAND_DIET_DELETE
             + " INDEX";
     public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;
