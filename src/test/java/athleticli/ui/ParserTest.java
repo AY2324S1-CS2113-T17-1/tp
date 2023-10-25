@@ -1,9 +1,15 @@
 package athleticli.ui;
 
 import athleticli.commands.ByeCommand;
+
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
+import athleticli.commands.diet.DeleteDietGoalCommand;
+import athleticli.commands.diet.EditDietGoalCommand;
 import athleticli.commands.diet.ListDietCommand;
+import athleticli.commands.diet.ListDietGoalCommand;
+import athleticli.commands.diet.SetDietGoalCommand;
+
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
@@ -16,18 +22,19 @@ import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import static athleticli.ui.Parser.parseCommand;
+import static athleticli.ui.Parser.parseDietGoalDelete;
 import static athleticli.ui.Parser.parseDietGoalSetEdit;
 import static athleticli.ui.Parser.splitCommandWordAndArgs;
-
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertInstanceOf;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParserTest {
     @Test
@@ -60,7 +67,7 @@ class ParserTest {
         assertInstanceOf(AddSleepCommand.class, parseCommand(addSleepCommandString));
     }
 
-    @Test 
+    @Test
     void parseCommand_addSleepCommand_missingStartExpectAthletiException() {
         final String addSleepCommandString = "add-sleep end/07-10-2021 06:00";
         assertThrows(AthletiException.class, () -> parseCommand(addSleepCommandString));
@@ -136,6 +143,30 @@ class ParserTest {
     void parseCommand_listSleepCommand_expectListSleepCommand() throws AthletiException {
         final String listSleepCommandString = "list-sleep";
         assertInstanceOf(ListSleepCommand.class, parseCommand(listSleepCommandString));
+    }
+
+    @Test
+    void parseCommand_setDietGoalCommand_expectSetDietGoalCommand() throws AthletiException {
+        final String setDietGoalCommandString = "set-diet-goal calories/1 protein/2 carb/3";
+        assertInstanceOf(SetDietGoalCommand.class, parseCommand(setDietGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editDietCommand_expectEditDietGoalCommand() throws AthletiException {
+        final String editDietGoalCommandString = "edit-diet-goal calories/1 protein/2 carb/3";
+        assertInstanceOf(EditDietGoalCommand.class, parseCommand(editDietGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_listDietGoalCommand_expectListDietGoalCommand() throws AthletiException {
+        final String listDietCommandString = "list-diet-goal";
+        assertInstanceOf(ListDietGoalCommand.class, parseCommand(listDietCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteDietGoalCommand_expectDeleteDietGoalCommand() throws AthletiException {
+        final String deleteDietGoalCommandString = "delete-diet-goal 1";
+        assertInstanceOf(DeleteDietGoalCommand.class, parseCommand(deleteDietGoalCommandString));
     }
 
     @Test
@@ -241,25 +272,25 @@ class ParserTest {
     }
 
     @Test
-    void parseDietGoalSet_oneValidGoal_oneGoalInList() {
-        String oneValidGoalString = "calories/60";
-        assertDoesNotThrow(() -> parseDietGoalSetEdit(oneValidGoalString));
+    void parseDietGoalSetEdit_noInput_throwAthletiException() {
+        String oneValidOneInvalidGoalString = " ";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(oneValidOneInvalidGoalString));
     }
 
     @Test
-    void parseDietGoalSet_oneValidOneInvalidGoal_throwAthletiException() {
+    void parseDietGoalSetEdit_oneValidOneInvalidGoal_throwAthletiException() {
         String oneValidOneInvalidGoalString = "calories/60 protein/protine";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(oneValidOneInvalidGoalString));
     }
 
     @Test
-    void parseDietGoalSet_zeroTargetValue_throwAthletiException() {
+    void parseDietGoalSetEdit_zeroTargetValue_throwAthletiException() {
         String zeroTargetValueGoalString = "calories/0";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(zeroTargetValueGoalString));
     }
 
     @Test
-    void parseDietGoalSet_oneInvalidGoal_throwAthlethiException() {
+    void parseDietGoalSetEdit_oneInvalidGoal_throwAthletiException() {
         String invalidGoalString = "calories/caloreis protein/protein";
         assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
     }
@@ -277,8 +308,8 @@ class ParserTest {
     }
 
     @Test
-    void parseActivityEdit_validInput_returnActivityEdit() throws AthletiException {
-        String validInput = "1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00";
+    void parseActivityEdit_validInput_returnActivityEdit() {
+        String validInput = "1 Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00";
         assertDoesNotThrow(() -> Parser.parseActivityEdit(validInput));
     }
 
@@ -296,13 +327,13 @@ class ParserTest {
 
     @Test
     void parseRunEdit_validInput_returnRunEdit() {
-        String validInput = "2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
+        String validInput = "2 Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
         assertDoesNotThrow(() -> Parser.parseRunEdit(validInput));
     }
 
     @Test
     void parseCycleEdit_validInput_returnRunEdit() {
-        String validInput = "2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
+        String validInput = "2 Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
         assertDoesNotThrow(() -> Parser.parseCycleEdit(validInput));
     }
 
@@ -313,8 +344,8 @@ class ParserTest {
     }
 
     @Test
-    void parseSwimEdit_validInput_noExceptionThrown() throws AthletiException {
-        String validInput = "2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
+    void parseSwimEdit_validInput_noExceptionThrown() {
+        String validInput = "2 Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
         assertDoesNotThrow(() -> Parser.parseSwimEdit(validInput));
     }
 
@@ -345,10 +376,11 @@ class ParserTest {
 
     @Test
     void parseActivity_validInput_activityParsed() throws AthletiException {
-        String validInput = "Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00";
+        String validInput = "Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00";
         Activity actual = Parser.parseActivity(validInput);
+        LocalTime duration = LocalTime.parse("01:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         LocalDateTime time = LocalDateTime.parse("2021-09-01 06:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        Activity expected = new Activity("Morning Run", 60, 10000, time);
+        Activity expected = new Activity("Morning Run", duration, 10000, time);
         assertEquals(actual.getCaption(), expected.getCaption());
         assertEquals(actual.getMovingTime(), expected.getMovingTime());
         assertEquals(actual.getDistance(), expected.getDistance());
@@ -357,9 +389,9 @@ class ParserTest {
 
     @Test
     void parseDuration_validInput_durationParsed() throws AthletiException {
-        String validInput = "60";
-        int actual = Parser.parseDuration(validInput);
-        int expected = 60;
+        String validInput = "01:00:00";
+        LocalTime actual = Parser.parseDuration(validInput);
+        LocalTime expected = LocalTime.parse("01:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         assertEquals(actual, expected);
     }
 
@@ -411,10 +443,11 @@ class ParserTest {
 
     @Test
     void parseRunCycle_validInput_activityParsed() throws AthletiException {
-        String validInput = "Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00 elevation/60";
+        String validInput = "Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00 elevation/60";
         Run actual = (Run) Parser.parseRunCycle(validInput, true);
+        LocalTime movingTime = LocalTime.parse("01:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         LocalDateTime time = LocalDateTime.parse("2021-09-01 06:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        Run expected = new Run("Morning Run", 60, 10000, time, 60);
+        Run expected = new Run("Morning Run", movingTime, 10000, time, 60);
         assertEquals(actual.getCaption(), expected.getCaption());
         assertEquals(actual.getMovingTime(), expected.getMovingTime());
         assertEquals(actual.getDistance(), expected.getDistance());
@@ -471,10 +504,11 @@ class ParserTest {
 
     @Test
     void parseSwim_validInput_swimParsed() throws AthletiException {
-        String validInput = "Evening Swim duration/120 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
+        String validInput = "Evening Swim duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
         Swim actual = (Swim) Parser.parseSwim(validInput);
+        LocalTime movingTime = LocalTime.parse("02:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         LocalDateTime time = LocalDateTime.parse("2021-09-01 18:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-        Swim expected = new Swim("Evening Swim", 120, 20000, time, Swim.SwimmingStyle.FREESTYLE);
+        Swim expected = new Swim("Evening Swim", movingTime, 20000, time, Swim.SwimmingStyle.FREESTYLE);
         assertEquals(actual.getCaption(), expected.getCaption());
         assertEquals(actual.getMovingTime(), expected.getMovingTime());
         assertEquals(actual.getDistance(), expected.getDistance());
@@ -488,5 +522,29 @@ class ParserTest {
         Swim.SwimmingStyle actual = Parser.parseSwimmingStyle(validInput);
         Swim.SwimmingStyle expected = Swim.SwimmingStyle.FREESTYLE;
         assertEquals(actual, expected);
+    }
+
+    @Test
+    void parseDietGoalSetEdit_repeatedDietGoal_throwAthletiException() {
+        String invalidGoalString = "calories/1 calories/1";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
+    }
+
+    @Test
+    void parseDietGoalSetEdit_invalidNutrient_throwAthletiException() {
+        String invalidGoalString = "calorie/1";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
+    }
+
+    @Test
+    void parseDietGoalDelete_nonIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "nonInteger";
+        assertThrows(AthletiException.class, () -> parseDietGoalDelete(nonIntegerInput));
+    }
+
+    @Test
+    void parseDietGoalDelete_nonPositiveIntegerInput_throwAthletiException() {
+        String nonIntegerInput = "0";
+        assertThrows(AthletiException.class, () -> parseDietGoalDelete(nonIntegerInput));
     }
 }

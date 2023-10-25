@@ -23,28 +23,28 @@ covers dietary habits, sleep metrics, and more.
 
 ### Adding Activities:
 
-`activity`, `run`, `swim`, `cycle`
+`add-activity`, `add-run`, `add-swim`, `add-cycle`
 
 You can record your activities in AtheltiCLI by adding different activities including running, cycling, and swimming.
 
 **Syntax:**
 
-* `activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
-* `run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
-* `swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
-* `cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
+* `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
+* `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
 
 **Parameters:**
 
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in minutes.
-* DISTANCE: The distance of the activity in meters.
+* DISTANCE: The distance of the activity in meters. It must be a positive number.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: YYYY-MM-DD HH:MM
 
 **Examples:**
 
-* `activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
-* `cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
+* `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
 ### Deleting Activities:
 

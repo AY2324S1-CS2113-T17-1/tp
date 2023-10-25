@@ -6,10 +6,10 @@ ____________________________________________________________
 > ____________________________________________________________
 
 Activity Management:
- activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
- run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
- swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
- cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
+ add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
+ add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
  delete-activity INDEX
  list-activity [-d]
  edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
@@ -47,6 +47,10 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
+ OOPS!!! The duration of an activity must be in the format "hh:mm:ss"!
+____________________________________________________________
+
+> ____________________________________________________________
  Well done! I've added this activity:
  [Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | September 1, 2021 at 6:00 PM
  You have tracked a total of 2 activities. Keep pushing!
@@ -74,19 +78,19 @@ ____________________________________________________________
 
 > ____________________________________________________________
  These are the activities you have tracked so far:
- 1.[Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | September 1, 2021 at 6:00 AM
- 2.[Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | September 1, 2021 at 6:00 PM
+ 1.[Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | September 1, 2021 at 6:00 PM
+ 2.[Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | September 1, 2021 at 6:00 AM
 ____________________________________________________________
 
 > ____________________________________________________________
  These are the activities you have tracked so far:
- [Activity - Morning Run - September 1, 2021 at 6:00 AM]
-	Distance: 10.00 km                     Time: 1h 0m
-	Calories: 0 kcal                       ...
  [Cycle - Evening Ride - September 1, 2021 at 6:00 PM]
 	Distance: 20.00 km                     Elevation Gain: 1000 m
-	Time: 2h 0m                            Avg Speed: 10.00 km/h
+	Time: 02:00:00                         Avg Speed: 10.00 km/h
 	Calories: 0 kcal                       Max Speed: tbd
+ [Activity - Morning Run - September 1, 2021 at 6:00 AM]
+	Distance: 10.00 km                     Time: 01:00:00
+	Calories: 0 kcal                       ...
 ____________________________________________________________
 
 > ____________________________________________________________

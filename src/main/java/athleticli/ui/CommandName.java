@@ -17,10 +17,10 @@ public class CommandName {
     public static final String COMMAND_SLEEP_FIND = "find-sleep";
 
     /* Activity Management */
-    public static final String COMMAND_RUN = "run";
-    public static final String COMMAND_ACTIVITY = "activity";
-    public static final String COMMAND_CYCLE = "cycle";
-    public static final String COMMAND_SWIM = "swim";
+    public static final String COMMAND_RUN = "add-run";
+    public static final String COMMAND_ACTIVITY = "add-activity";
+    public static final String COMMAND_CYCLE = "add-cycle";
+    public static final String COMMAND_SWIM = "add-swim";
     public static final String COMMAND_ACTIVITY_DELETE = "delete-activity";
     public static final String COMMAND_ACTIVITY_LIST = "list-activity";
     public static final String COMMAND_ACTIVITY_EDIT = "edit-activity";

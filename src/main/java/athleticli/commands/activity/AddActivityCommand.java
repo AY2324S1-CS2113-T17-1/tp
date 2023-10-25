@@ -29,6 +29,7 @@ public class AddActivityCommand extends Command {
     public String[] execute(Data data) {
         ActivityList activities = data.getActivities();
         activities.add(this.activity);
+        activities.sort();
         int size = activities.size();
         String countMessage;
         if (size > 1) {

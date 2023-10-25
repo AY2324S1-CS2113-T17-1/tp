@@ -2,6 +2,7 @@ package athleticli.data.activity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * Represents a swimming activity consisting of relevant evaluation data.
@@ -22,13 +23,13 @@ public class Swim extends Activity implements Serializable {
      * Generates a new swimming activity with swimming specific stats.
      * By default, calories is 0, i.e., not tracked.
      * averageLapTime is calculated automatically based on the movingTime and laps.
-     * @param movingTime duration of the activity in minutes
+     * @param movingTime duration of the activity in HH:mm:ss format
      * @param distance distance covered in meters
      * @param startDateTime start date and time of the activity
      * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
      * @param style swimming style
      */
-    public Swim(String caption, int movingTime, int distance, LocalDateTime startDateTime, SwimmingStyle style) {
+    public Swim(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, SwimmingStyle style) {
         super(caption, movingTime, distance, startDateTime);
         this.laps = this.calculateLaps();
         this.style = style;
@@ -40,8 +41,7 @@ public class Swim extends Activity implements Serializable {
      * @return average lap time in seconds
      */
     public int calculateAverageLapTime() {
-        int laps = this.calculateLaps();
-        return this.getMovingTime() * 60 / laps;
+        return this.getMovingTime().toSecondOfDay() / this.laps;
     }
 
     /**

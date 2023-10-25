@@ -5,13 +5,14 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CycleTest {
 
     private static final String CAPTION = "Cycling in the afternoon";
-    private static final int DURATION = 133;
+    private static final LocalTime DURATION = LocalTime.of(2, 13);
     private static final int DISTANCE = 40460;
     private static final int ELEVATION = 101;
     private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 7, 14, 0);
@@ -40,7 +41,8 @@ public class CycleTest {
 
     @Test
     public void testToString() {
-        String expected = "[Cycle] Cycling in the afternoon | Distance: 40.46 km | Speed: 18.25 km/h | Time: 2h 13m | "
+        String expected = "[Cycle] Cycling in the afternoon | Distance: 40.46 km | Speed: 18.25 km/h | Time: 2h 13m" +
+                " | "
                 + "October 7, 2023 at 2:00 PM";
         assertEquals(expected, cycle.toString());
     }

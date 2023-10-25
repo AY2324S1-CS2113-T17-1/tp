@@ -37,6 +37,7 @@ import athleticli.exceptions.AthletiException;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
@@ -48,11 +49,6 @@ import java.util.Set;
  */
 public class Parser {
     private static DateTimeFormatter sleepTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
-    private static final String CALORIES_MARKER = "calories";
-    private static final String PROTEIN_MARKER = "protein";
-    private static final String CARB_MARKER = "carb";
-    private static final String FAT_MARKER = "fats";
 
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
@@ -265,7 +261,7 @@ public class Parser {
 
         checkEmptyActivityArguments(caption, duration, distance, datetime);
 
-        final int durationParsed = parseDuration(duration);
+        final LocalTime durationParsed = parseDuration(duration);
         final int distanceParsed = parseDistance(distance);
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
 
@@ -275,14 +271,14 @@ public class Parser {
     /**
      * Parses the raw activity duration input provided by the user.
      * @param duration          The raw user input containing the duration.
-     * @return durationParsed   The parsed Integer duration.
+     * @return durationParsed   The parsed LocalTime duration.
      * @throws AthletiException If the input is not an integer.
      */
-    public static int parseDuration(String duration) throws AthletiException {
-        int durationParsed;
+    public static LocalTime parseDuration(String duration) throws AthletiException {
+        LocalTime durationParsed;
         try {
-            durationParsed = Integer.parseInt(duration);
-        } catch (NumberFormatException e) {
+            durationParsed = LocalTime.parse(duration);
+        } catch (DateTimeParseException e) {
             throw new AthletiException(Message.MESSAGE_DURATION_INVALID);
         }
         return durationParsed;
@@ -324,6 +320,9 @@ public class Parser {
             distanceParsed = Integer.parseInt(distance);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DISTANCE_INVALID);
+        }
+        if (distanceParsed < 0) {
+            throw new AthletiException(Message.MESSAGE_DISTANCE_NEGATIVE);
         }
         return distanceParsed;
     }
@@ -375,7 +374,7 @@ public class Parser {
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, elevation);
 
-        final int durationParsed = parseDuration(duration);
+        final LocalTime durationParsed = parseDuration(duration);
         final int distanceParsed = parseDistance(distance);
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
         final int elevationParsed = parseElevation(elevation);
@@ -521,7 +520,7 @@ public class Parser {
 
         checkEmptyActivityArguments(caption, duration, distance, datetime, swimmingStyleIndex);
 
-        final int durationParsed = parseDuration(duration);
+        final LocalTime durationParsed = parseDuration(duration);
         final int distanceParsed = parseDistance(distance);
         final LocalDateTime datetimeParsed = parseDateTime(datetime);
         final Swim.SwimmingStyle swimmingStyleParsed = parseSwimmingStyle(swimmingStyle);
@@ -656,7 +655,7 @@ public class Parser {
      * @throws AthletiException Invalid input by the user.
      */
     public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
-        if (commandArgs.isEmpty()) {
+        if (commandArgs.trim().isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
         }
         try {

@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+participant ":AthletiCLI" as AthletiCLI #lightblue
+participant ":Parser" as Parser
+participant ":dietGoal" as dietGoal
+participant ":SetDietGoalCommand" as SetDietGoalCommand
+participant "temp:dietGoalList" as tempDietGoalList
+participant "data:dietGoalList" as dataDietGoalList
+
+'autonumber
+AthletiCLI++
+AthletiCLI -> Parser++ : ParseCommand("set-diet-goal fats/1")
+Parser -> Parser++ : ParseDietGoalSetEdit("fats/1")
+create tempDietGoalList
+Parser -> tempDietGoalList++ : dietGoalList()
+tempDietGoalList --> Parser-- : dietGoalList
+
+    loop number of valid new diet goals
+    create dietGoal
+    Parser -> dietGoal++ : dietGoal()
+    dietGoal --> Parser-- : dietGoal
+    end
+
+Parser --> Parser-- : dietGoalList
+create SetDietGoalCommand
+Parser -> SetDietGoalCommand++ : SetDietGoalCommand()
+SetDietGoalCommand --> Parser-- : SetDietGoalCommand
+Parser --> AthletiCLI-- : SetDietGoalCommand
+AthletiCLI -> SetDietGoalCommand++ : execute()
+SetDietGoalCommand -> dataDietGoalList++ : add()
+dataDietGoalList --> SetDietGoalCommand--
+destroy tempDietGoalList
+SetDietGoalCommand --> AthletiCLI-- : messages
+
+destroy SetDietGoalCommand
+
+@enduml

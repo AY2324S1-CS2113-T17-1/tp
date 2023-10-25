@@ -8,13 +8,14 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class EditActivityCommandTest {
     private static final String CAPTION = "Night Run";
-    private static final int DURATION = 85;
+    private static final LocalTime DURATION = LocalTime.of(1, 24);
     private static final int DISTANCE = 18120;
     private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 10, 23, 21);
     private AddActivityCommand addActivityCommand;
