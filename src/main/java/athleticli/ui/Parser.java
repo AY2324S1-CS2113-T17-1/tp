@@ -794,7 +794,7 @@ public class Parser {
      * @param datetimeMarkerPos The position of the datetime marker.
      * @throws AthletiException
      */
-    private static void checkMissingDietArguments(int caloriesMarkerPos, int proteinMarkerPos,
+    public static void checkMissingDietArguments(int caloriesMarkerPos, int proteinMarkerPos,
                                                   int carbMarkerPos, int fatMarkerPos,
                                                   int datetimeMarkerPos) throws AthletiException {
         if (caloriesMarkerPos == -1) {
@@ -824,7 +824,7 @@ public class Parser {
      * @param datetime The datetime input.
      * @throws AthletiException
      */
-    private static void checkEmptyDietArguments(String calories, String protein, String carb, String fat,
+    public static void checkEmptyDietArguments(String calories, String protein, String carb, String fat,
                                                 String datetime) throws AthletiException {
         if (calories.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_CALORIES_EMPTY);
@@ -850,11 +850,14 @@ public class Parser {
      * @return The parsed calories.
      * @throws AthletiException
      */
-    private static int parseCalories(String calories) throws AthletiException {
+    public static int parseCalories(String calories) throws AthletiException {
         int caloriesParsed;
         try {
             caloriesParsed = Integer.parseInt(calories);
         } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_CALORIES_INVALID);
+        }
+        if (caloriesParsed < 0) {
             throw new AthletiException(Message.MESSAGE_CALORIES_INVALID);
         }
         return caloriesParsed;
@@ -874,6 +877,9 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_PROTEIN_INVALID);
         }
+        if (proteinParsed < 0) {
+            throw new AthletiException(Message.MESSAGE_PROTEIN_INVALID);
+        }
         return proteinParsed;
     }
 
@@ -889,6 +895,9 @@ public class Parser {
         try {
             carbParsed = Integer.parseInt(carb);
         } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_CARB_INVALID);
+        }
+        if (carbParsed < 0) {
             throw new AthletiException(Message.MESSAGE_CARB_INVALID);
         }
         return carbParsed;
@@ -908,6 +917,9 @@ public class Parser {
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_FAT_INVALID);
         }
+        if (fatParsed < 0) {
+            throw new AthletiException(Message.MESSAGE_FAT_INVALID);
+        }
         return fatParsed;
     }
 
@@ -923,6 +935,9 @@ public class Parser {
         try {
             index = Integer.parseInt(commandArgs.trim());
         } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_DIET_INDEX_TYPE_INVALID);
+        }
+        if (index < 1) {
             throw new AthletiException(Message.MESSAGE_DIET_INDEX_TYPE_INVALID);
         }
         return index;
