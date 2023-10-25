@@ -724,26 +724,21 @@ public class Parser {
      * @throws AthletiException
      */
     public static Diet parseDiet(String commandArgs) throws AthletiException {
-        final String caloriesMarkerConstant = "calories/";
-        final String proteinMarkerConstant = "protein/";
-        final String carbMarkerConstant = "carb/";
-        final String fatMarkerConstant = "fat/";
-
-        int caloriesMarkerPos = commandArgs.indexOf(caloriesMarkerConstant);
-        int proteinMarkerPos = commandArgs.indexOf(proteinMarkerConstant);
-        int carbMarkerPos = commandArgs.indexOf(carbMarkerConstant);
-        int fatMarkerPos = commandArgs.indexOf(fatMarkerConstant);
+        int caloriesMarkerPos = commandArgs.indexOf(Parameter.CALORIES_SEPARATOR);
+        int proteinMarkerPos = commandArgs.indexOf(Parameter.PROTEIN_SEPARATOR);
+        int carbMarkerPos = commandArgs.indexOf(Parameter.CARB_SEPARATOR);
+        int fatMarkerPos = commandArgs.indexOf(Parameter.FAT_SEPARATOR);
 
         checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos, fatMarkerPos);
 
         String calories =
-                commandArgs.substring(caloriesMarkerPos + caloriesMarkerConstant.length(), proteinMarkerPos)
+                commandArgs.substring(caloriesMarkerPos + Parameter.CALORIES_SEPARATOR.length(), proteinMarkerPos)
                         .trim();
         String protein =
-                commandArgs.substring(proteinMarkerPos + proteinMarkerConstant.length(), carbMarkerPos)
+                commandArgs.substring(proteinMarkerPos + Parameter.PROTEIN_SEPARATOR.length(), carbMarkerPos)
                         .trim();
-        String carb = commandArgs.substring(carbMarkerPos + carbMarkerConstant.length(), fatMarkerPos).trim();
-        String fat = commandArgs.substring(fatMarkerPos + fatMarkerConstant.length()).trim();
+        String carb = commandArgs.substring(carbMarkerPos + Parameter.CARB_SEPARATOR.length(), fatMarkerPos).trim();
+        String fat = commandArgs.substring(fatMarkerPos + Parameter.FAT_SEPARATOR.length()).trim();
 
         checkEmptyDietArguments(calories, protein, carb, fat);
 
