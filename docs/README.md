@@ -109,6 +109,27 @@ You can edit your activities in AthletiCLI by editing the activity at the specif
 * `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
 * `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
+### Setting Goals:
+
+'set-activity-goal'
+
+You can set goals for your activities in AthletiCLI by setting the target distance or duration for a specific sport.
+
+**Syntax**
+* `set-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`
+
+**Parameters**
+
+* SPORT: The sport for which you want to set a goal. It must be one of the following: run, swim, cycle, general.
+* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
+* VALUE: The value of the target. It must be a positive number. For distance, it is in meters. For duration, it is 
+  in minutes.
+
+**Examples**
+
+* `set-activity-goal sport/run target/distance period/weekly value/10000` sets a goal of running 10km per week.
+* `set-activity-goal sport/swim target/duration period/monthly value/120` sets a goal of swimming for 2 hours per month.
+
 ## Diet Management
 
 ### Adding Diets:
