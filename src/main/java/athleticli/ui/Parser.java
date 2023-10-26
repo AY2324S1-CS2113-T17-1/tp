@@ -957,16 +957,12 @@ public class Parser {
         return index;
     }
 
-
     /**
-     * Parses the value for a marker in the arguments.
+     * Parses the value for a specific marker in a given argument string.
      *
-     * @param arguments The raw user input containing the arguments. The arguments should be in the format of
-     *                  <marker><value> <marker><value> ...
-     *                  where <marker> is one of the markers defined in Parameter.java and <value> is the
-     *                  value for the marker.
-     * @param marker    The marker to search for.
-     * @return The value for the marker.
+     * @param arguments The raw user input containing the arguments.
+     * @param marker    The marker whose value is to be retrieved.
+     * @return The value associated with the given marker, or an empty string if the marker is not found.
      */
     public static String getValueForMarker(String arguments, String marker) {
         String patternString = "";
