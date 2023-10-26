@@ -1,4 +1,7 @@
-# AthletiCLI User Guide
+---
+layout: page
+title: User Guide
+---
 
 ## Quick Start
 

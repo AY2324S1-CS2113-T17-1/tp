@@ -1,4 +1,12 @@
-# AthletiCLI
+---
+permalink: /
+layout: page
+title: About AthletiCLI
+feature_text: |
+  # AthletiCLI
+  Your all-in-one solution to track, analyse, and optimize your athletic performance.
+feature_image: "https://picsum.photos/1300/400?image=989"
+---
 
 [![](https://github.com/AY2324S1-CS2113-T17-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S1-CS2113-T17-1/tp/actions)
 

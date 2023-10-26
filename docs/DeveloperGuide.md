@@ -1,16 +1,10 @@
-# Developer Guide
+---
+layout: page
+title: Developer Guide
+---
 
-## Content Page
-- [Acknowledgements](#acknowledgements)
-- [Design](#design)
-- [Implementation](#implementation)
-- [Product Scope](#product-scope)
-- [Target User Profile](#target-user-profile)
-- [Value Proposition](#value-proposition)
-- [User Stories](#user-stories)
-- [Non-functional Requirements](#non-functional-requirements)
-- [Glossary](#glossary)
-- [Instruction for Manual Testing](#instructions-for-manual-testing)
+- Table of Contents
+{:toc}
 
 ## Acknowledgements
 
