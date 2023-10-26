@@ -48,7 +48,7 @@ Step 7. AthletiCLI will execute the SetDietGoalCommand. This adds the dietGoals 
 temporary list into the data instance of DietGoalList which will be kept for records.
 
 Step 8. After executing the SetDietGoalCommand, SetDietGoalCommand returns a message that is passed to 
-AthletiCLI to passed to UI(not shown) for display.
+AthletiCLI to be passed to UI(not shown) for display.
 
 #### [Implemented] Adding activities
 The `add-activity` feature allows users to add a new activity into the application.

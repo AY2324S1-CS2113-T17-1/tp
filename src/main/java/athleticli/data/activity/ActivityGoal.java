@@ -50,6 +50,7 @@ public class ActivityGoal extends Goal implements Serializable {
             break;
         case DURATION:
             total = activities.getTotalDuration(activityClass, this.getStartDate(), this.getEndDate());
+            total = total / 60;
             break;
         default:
             throw new IllegalStateException("Unexpected value: " + goalType);

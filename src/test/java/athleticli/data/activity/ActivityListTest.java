@@ -16,8 +16,6 @@ class ActivityListTest {
     private static final LocalTime DURATION = LocalTime.of(1, 24);
     private static final int DISTANCE = 18120;
     private ActivityList activityList;
-    private LocalDateTime dateFirst;
-    private LocalDateTime dateSecond;
     private Activity activityFirst;
     private Activity activitySecond;
 
@@ -25,8 +23,8 @@ class ActivityListTest {
     @BeforeEach
     void setUp() {
         activityList = new ActivityList();
-        dateSecond = LocalDateTime.of(2023, 10, 10, 23, 21);
-        dateFirst = LocalDateTime.of(2023, 10, 9, 23, 21);
+        LocalDateTime dateSecond = LocalDateTime.of(2023, 10, 10, 23, 21);
+        LocalDateTime dateFirst = LocalDateTime.of(2023, 10, 9, 23, 21);
         activityFirst = new Activity(CAPTION, DURATION, DISTANCE, dateFirst);
         activitySecond = new Activity(CAPTION, DURATION, DISTANCE, dateSecond);
         activityList.add(activityFirst);

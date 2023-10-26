@@ -8,6 +8,7 @@ import java.util.Scanner;
  * Defines the behavior of the CLI.
  */
 public class Ui {
+    private static Ui uiInstance;
     private final Scanner in;
     private final PrintStream out;
 
@@ -16,7 +17,7 @@ public class Ui {
      * and output <code>out</code> is the standard input and the standard
      * output, respectively.
      */
-    public Ui() {
+    private Ui() {
         this(System.in, System.out);
     }
 
@@ -27,11 +28,23 @@ public class Ui {
      * @param in    The <code>InputStream</code> accepting the user's input.
      * @param out   The <code>PrintStream</code> displaying the program's output.
      */
-    public Ui(InputStream in, PrintStream out) {
+    private Ui(InputStream in, PrintStream out) {
         assert in != null : "Input stream `in` should not be null";
         assert out != null : "Print stream `out` should not be null";
         this.in = new Scanner(in);
         this.out = out;
+    }
+
+    /**
+     * Returns the singleton instance of `Ui`.
+     *
+     * @return  The singleton instance of `Ui`.
+     */
+    public static Ui getInstance() {
+        if (uiInstance == null) {
+            uiInstance = new Ui();
+        }
+        return uiInstance;
     }
 
     /**
