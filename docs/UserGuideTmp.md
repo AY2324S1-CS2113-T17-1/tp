@@ -108,58 +108,6 @@ You can edit your activities in AthletiCLI by editing the activity at the specif
 * `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
 * `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
-## Diet Management
-
-### Adding Diets:
-
-`add-diet`
-You can record your diet in AtheltiCLI by adding your calorie, protein, carbohydrate,and fat intake of your meals.
-
-**Syntax:**
-
-* `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`
-
-**Parameters:**
-
-* CALORIES: The total calories of the meal.
-* PROTEIN: The total protein of the meal.
-* CARB: The total carbohydrates of the meal.
-* FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: YYYY-MM-DD HH:MM
-
-**Examples:**
-
-* `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
-
-### Deleting Diets:
-
-`delete-diet`
-You can delete your diet in AtheltiCLI by deleting the diet at the specified index.
-
-**Syntax:**
-
-* `delete-diet INDEX`
-
-**Parameters:**
-
-* INDEX: The index of the diet to be deleted - must be a positive integer.
-
-**Examples:**
-
-* `delete-diet 1`
-
-### Listing Diets:
-
-`list-diet`
-You can list all your diets in AtheltiCLI.
-
-**Syntax:**
-
-* `list-diet`
-
-**Examples:**
-
-* `list-diet`
 
 ## Diet Goal Management
 

@@ -18,18 +18,21 @@ import athleticli.data.activity.Swim;
 import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.LocalDate;
+import java.util.HashMap;
 
 import static athleticli.ui.Parser.checkEmptyDietArguments;
 import static athleticli.ui.Parser.checkMissingDietArguments;
+import static athleticli.ui.Parser.getValueForMarker;
 import static athleticli.ui.Parser.parseCalories;
 import static athleticli.ui.Parser.parseCarb;
 import static athleticli.ui.Parser.parseCommand;
 import static athleticli.ui.Parser.parseDate;
 import static athleticli.ui.Parser.parseDiet;
+import static athleticli.ui.Parser.parseDietEdit;
 import static athleticli.ui.Parser.parseDietGoalDelete;
 import static athleticli.ui.Parser.parseDietGoalSetEdit;
 import static athleticli.ui.Parser.parseDietIndex;
@@ -543,7 +546,6 @@ class ParserTest {
         assertThrows(AthletiException.class, () -> parseCarb(nonIntegerInput));
     }
 
-
     @Test
     void parseFat_validFat_returnFat() throws AthletiException {
         int expected = 5;
@@ -561,6 +563,66 @@ class ParserTest {
     void parseFat_negativeIntegerInput_throwAthletiException() {
         String nonIntegerInput = "-1";
         assertThrows(AthletiException.class, () -> parseFat(nonIntegerInput));
+    }
+
+    @Test
+    void getValueForMarker_validInput_returnValue() {
+        String validInput = "2 calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
+        String caloriesActual = getValueForMarker(validInput, Parameter.CALORIES_SEPARATOR);
+        String proteinActual = getValueForMarker(validInput, Parameter.PROTEIN_SEPARATOR);
+        String carbActual = getValueForMarker(validInput, Parameter.CARB_SEPARATOR);
+        String fatActual = getValueForMarker(validInput, Parameter.FAT_SEPARATOR);
+        String datetimeActual = getValueForMarker(validInput, Parameter.DATETIME_SEPARATOR);
+        assertEquals("1", caloriesActual);
+        assertEquals("2", proteinActual);
+        assertEquals("3", carbActual);
+        assertEquals("4", fatActual);
+        assertEquals("2023-10-06 10:00", datetimeActual);
+    }
+
+    @Test
+    void getValueForMarker_invalidInput_returnEmptyString() {
+        String invalidInput = "2 calorie/1 proteins/2 carbs/3 fats/4 datetime/2023-10-06";
+        String caloriesActual = getValueForMarker(invalidInput, Parameter.CALORIES_SEPARATOR);
+        String proteinActual = getValueForMarker(invalidInput, Parameter.PROTEIN_SEPARATOR);
+        String carbActual = getValueForMarker(invalidInput, Parameter.CARB_SEPARATOR);
+        String fatActual = getValueForMarker(invalidInput, Parameter.FAT_SEPARATOR);
+        String datetimeActual = getValueForMarker(invalidInput, Parameter.DATETIME_SEPARATOR);
+        assertEquals("", caloriesActual);
+        assertEquals("", proteinActual);
+        assertEquals("", carbActual);
+        assertEquals("", fatActual);
+        assertEquals("", datetimeActual);
+    }
+
+    @Test
+    void parseDietEdit_validInput_returnDietEdit() throws AthletiException {
+        String validInput = "2 calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
+        HashMap<String, String> actual = parseDietEdit(validInput);
+        HashMap<String, String> expected = new HashMap<>();
+        expected.put(Parameter.CALORIES_SEPARATOR, "1");
+        expected.put(Parameter.PROTEIN_SEPARATOR, "2");
+        expected.put(Parameter.CARB_SEPARATOR, "3");
+        expected.put(Parameter.FAT_SEPARATOR, "4");
+        expected.put(Parameter.DATETIME_SEPARATOR, "2023-10-06T10:00");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parseDietEdit_someMarkersPresent_returnDietEdit() throws AthletiException {
+        String validInput = "2 calories/1 protein/2 carb/3";
+        HashMap<String, String> actual = parseDietEdit(validInput);
+        HashMap<String, String> expected = new HashMap<>();
+        expected.put(Parameter.CALORIES_SEPARATOR, "1");
+        expected.put(Parameter.PROTEIN_SEPARATOR, "2");
+        expected.put(Parameter.CARB_SEPARATOR, "3");
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parseDietEdit_zeroValidInput_throwAthletiException() {
+        String invalidInput = "2 calorie/1 proteins/2 carbs/3 fats/4 datetime/2023-10-06";
+        assertThrows(AthletiException.class, () -> parseDietEdit(invalidInput));
     }
 
     @Test

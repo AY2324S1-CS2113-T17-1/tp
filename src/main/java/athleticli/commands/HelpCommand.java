@@ -60,6 +60,7 @@ public class HelpCommand extends Command {
             entry(CommandName.COMMAND_ACTIVITY_FIND, Message.HELP_FIND_ACTIVITY),
             /* Diet Management */
             entry(CommandName.COMMAND_DIET_ADD, Message.HELP_ADD_DIET),
+            entry(CommandName.COMMAND_DIET_EDIT, Message.HELP_EDIT_DIET),
             entry(CommandName.COMMAND_DIET_DELETE, Message.HELP_DELETE_DIET),
             entry(CommandName.COMMAND_DIET_LIST, Message.HELP_LIST_DIET),
             entry(CommandName.COMMAND_DIET_FIND, Message.HELP_FIND_DIET),
