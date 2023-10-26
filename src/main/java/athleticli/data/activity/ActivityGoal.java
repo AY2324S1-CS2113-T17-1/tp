@@ -4,7 +4,6 @@ import athleticli.data.Data;
 import athleticli.data.Goal;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 public class ActivityGoal extends Goal implements Serializable {
 
@@ -21,14 +20,13 @@ public class ActivityGoal extends Goal implements Serializable {
 
     /**
      * Constructs an activity goal.
-     * @param date        The date of the activity goal.
-     * @param period      The period of the activity goal.
+     * @param timespan    The timespan of the activity goal.
      * @param goalType    The goal type of the activity goal.
      * @param sport       The sport of the activity goal.
      * @param targetValue The target value of the activity goal.
      */
-    public ActivityGoal(LocalDate date, Period period, GoalType goalType, Sport sport, int targetValue) {
-        super(date, period);
+    public ActivityGoal(Timespan timespan, GoalType goalType, Sport sport, int targetValue) {
+        super(timespan);
         this.targetValue = targetValue;
         this.goalType = goalType;
         this.sport = sport;
@@ -56,10 +54,10 @@ public class ActivityGoal extends Goal implements Serializable {
         int total;
         switch(goalType) {
         case DISTANCE:
-            total = activities.getTotalDistance(activityClass, this.getStartDate(), this.getEndDate());
+            total = activities.getTotalDistance(activityClass, this.getTimespan());
             break;
         case DURATION:
-            total = activities.getTotalDuration(activityClass, this.getStartDate(), this.getEndDate());
+            total = activities.getTotalDuration(activityClass, this.getTimespan());
             total = total / 60;
             break;
         default:

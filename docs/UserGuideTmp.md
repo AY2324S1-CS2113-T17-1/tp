@@ -1,18 +1,7 @@
 ---
-permalink: /
 layout: page
-title: About AthletiCLI
-feature_text: |
-  # AthletiCLI
-  Your all-in-one solution to track, analyse, and optimize your athletic performance.
-feature_image: "https://picsum.photos/1300/400?image=989"
+title: User Guide
 ---
-
-[![](https://github.com/AY2324S1-CS2113-T17-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S1-CS2113-T17-1/tp/actions)
-
-**AthletiCLI** is your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the
-committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also
-covers dietary habits, sleep metrics, and more.
 
 ## Quick Start
 
@@ -119,78 +108,6 @@ You can edit your activities in AthletiCLI by editing the activity at the specif
 * `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
 * `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
-### Setting Goals:
-
-'set-activity-goal'
-
-You can set goals for your activities in AthletiCLI by setting the target distance or duration for a specific sport.
-
-**Syntax**
-* `set-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`
-
-**Parameters**
-
-* SPORT: The sport for which you want to set a goal. It must be one of the following: run, swim, cycle, general.
-* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
-* VALUE: The value of the target. It must be a positive number. For distance, it is in meters. For duration, it is 
-  in minutes.
-
-**Examples**
-
-* `set-activity-goal sport/run target/distance period/weekly value/10000` sets a goal of running 10km per week.
-* `set-activity-goal sport/swim target/duration period/monthly value/120` sets a goal of swimming for 2 hours per month.
-
-## Diet Management
-
-### Adding Diets:
-
-`add-diet`
-You can record your diet in AtheltiCLI by adding your calorie, protein, carbohydrate,and fat intake of your meals.
-
-**Syntax:**
-
-* `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT`
-
-**Parameters:**
-
-* CALORIES: The total calories of the meal.
-* PROTEIN: The total protein of the meal.
-* CARB: The total carbohydrates of the meal.
-* FAT: The total fat of the meal.
-
-**Examples:**
-
-* `add-diet calories/500 protein/20 carb/50 fat/10`
-
-### Deleting Diets:
-
-`delete-diet`
-You can delete your diet in AtheltiCLI by deleting the diet at the specified index.
-
-**Syntax:**
-
-* `delete-diet INDEX`
-
-**Parameters:**
-
-* INDEX: The index of the diet to be deleted - must be a positive integer.
-
-**Examples:**
-
-* `delete-diet 1`
-
-### Listing Diets:
-
-`list-diet`
-You can list all your diets in AtheltiCLI.
-
-**Syntax:**
-
-* `list-diet`
-
-**Examples:**
-
-* `list-diet`
 
 ## Diet Goal Management
 
@@ -400,14 +317,3 @@ Remember, when using AtheltiCLI:
 * Make sure to provide accurate dates and times.
 * Double-check indexes before deleting or editing records to prevent mistakes.
 * If you encounter any error messages, read them carefully to understand what went wrong.
-
----
-
-Useful links:
-[User Guide](UserGuide.md)
-[Developer Guide](DeveloperGuide.md)
-[About Us](AboutUs.md)
-
-* If you are interested in using AthletiCLI, head over to the [User Guide](UserGuide.html).
-* If you are interested about developing AthletiCLI, the [Developer Guide](DeveloperGuide.html) is a good place to start.
-* If you would like to learn more about our development team, please visit the [About Us](AboutUs.html) page.

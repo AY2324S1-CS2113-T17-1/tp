@@ -37,6 +37,7 @@ public class CommandName {
     public static final String COMMAND_DIET_GOAL_DELETE = "delete-diet-goal";
     public static final String COMMAND_DIET_ADD = "add-diet";
     public static final String COMMAND_DIET_DELETE = "delete-diet";
+    public static final String COMMAND_DIET_EDIT = "edit-diet";
     public static final String COMMAND_DIET_LIST = "list-diet";
     public static final String COMMAND_DIET_FIND = "find-diet";
 }
