@@ -22,6 +22,8 @@ public class Message {
     public static final String MESSAGE_CARB_MISSING =
             "Please specify the carbohydrate intake using \"carb/\"!";
     public static final String MESSAGE_FAT_MISSING = "Please specify the fat intake using \"fat/\"!";
+    public static final String MESSAGE_DIET_DATETIME_MISSING =
+            "Please specify the datetime of the diet using \"datetime/\"!";
     public static final String MESSAGE_CAPTION_EMPTY = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_EMPTY = "The duration of an activity cannot be empty!";
     public static final String MESSAGE_DISTANCE_EMPTY = "The distance of an activity cannot be empty!";
@@ -30,6 +32,7 @@ public class Message {
     public static final String MESSAGE_PROTEIN_EMPTY = "The protein intake cannot be empty!";
     public static final String MESSAGE_CARB_EMPTY = "The carbohydrate intake cannot be empty!";
     public static final String MESSAGE_FAT_EMPTY = "The fat intake cannot be empty!";
+    public static final String MESSAGE_DIET_DATETIME_EMPTY = "The datetime of a diet cannot be empty!";
     public static final String MESSAGE_DURATION_INVALID =
             "The duration of an activity must be in the format \"hh:mm:ss\"!";
     public static final String MESSAGE_DISTANCE_INVALID =
@@ -37,7 +40,9 @@ public class Message {
     public static final String MESSAGE_DISTANCE_NEGATIVE =
             "The distance of an activity cannot be negative!";
     public static final String MESSAGE_DATETIME_INVALID =
-            "The datetime of an activity must be in the format \"yyyy-MM-dd HH:mm\"!";
+            "The datetime must be in the format \"yyyy-MM-dd HH:mm\"!";
+    public static final String MESSAGE_DATE_INVALID =
+            "The date must be in the format \"yyyy-MM-dd\"!";
     public static final String MESSAGE_CALORIES_INVALID =
             "The calories burned must be a non-negative integer!";
     public static final String MESSAGE_PROTEIN_INVALID = "The protein intake must be a non-negative integer!";
@@ -100,7 +105,7 @@ public class Message {
             "Now you have tracked your first diet. This is just the beginning!";
     public static final String MESSAGE_INVALID_DIET_INDEX =
             "The diet index is invalid! Please enter a valid diet index!";
-    public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be an integer!";
+    public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be a positive integer!";
     public static final String MESSAGE_DIET_DELETED = "Noted. I've removed this diet:";
     public static final String MESSAGE_DIET_LIST = "Here are the diets in your list:";
     public static final String MESSAGE_DIET_FIND = "I've found these diets:";
@@ -154,7 +159,7 @@ public class Message {
     public static final String HELP_FIND_ACTIVITY = CommandName.COMMAND_ACTIVITY_FIND
             + " DATE";
     public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
-            + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT";
+            + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
     public static final String HELP_DELETE_DIET = CommandName.COMMAND_DIET_DELETE
             + " INDEX";
     public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;

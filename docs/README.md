@@ -118,7 +118,7 @@ You can record your diet in AtheltiCLI by adding your calorie, protein, carbohyd
 
 **Syntax:**
 
-* `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT`
+* `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`
 
 **Parameters:**
 
@@ -126,10 +126,11 @@ You can record your diet in AtheltiCLI by adding your calorie, protein, carbohyd
 * PROTEIN: The total protein of the meal.
 * CARB: The total carbohydrates of the meal.
 * FAT: The total fat of the meal.
+* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: YYYY-MM-DD HH:MM
 
 **Examples:**
 
-* `add-diet calories/500 protein/20 carb/50 fat/10`
+* `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
 
 ### Deleting Diets:
 
