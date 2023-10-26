@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /*
@@ -46,9 +46,7 @@ public class EditDietCommandTest {
         editDietCommand.execute(data);
         String[] expected = {"Ok, I've updated this diet:", newDiet.toString()};
         String[] actual = editDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -63,9 +61,7 @@ public class EditDietCommandTest {
         editDietCommand.execute(data);
         String[] expected = {"Ok, I've updated this diet:", newDiet.toString()};
         String[] actual = editDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -80,9 +76,7 @@ public class EditDietCommandTest {
         editDietCommand.execute(data);
         String[] expected = {"Ok, I've updated this diet:", newDiet.toString()};
         String[] actual = editDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -97,9 +91,7 @@ public class EditDietCommandTest {
         editDietCommand.execute(data);
         String[] expected = {"Ok, I've updated this diet:", newDiet.toString()};
         String[] actual = editDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -114,9 +106,7 @@ public class EditDietCommandTest {
         editDietCommand.execute(data);
         String[] expected = {"Ok, I've updated this diet:", newDiet.toString()};
         String[] actual = editDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -128,9 +118,7 @@ public class EditDietCommandTest {
         editDietCommand.execute(data);
         String[] expected = {"Ok, I've updated this diet:", newDiet.toString()};
         String[] actual = editDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 
     @Test
@@ -145,9 +133,7 @@ public class EditDietCommandTest {
         editDietCommand.execute(data);
         String[] expected = {"Ok, I've updated this diet:", newDiet.toString()};
         String[] actual = editDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 
     @Test
