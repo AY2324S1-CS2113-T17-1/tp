@@ -33,6 +33,7 @@ public class Message {
     public static final String MESSAGE_CARB_EMPTY = "The carbohydrate intake cannot be empty!";
     public static final String MESSAGE_FAT_EMPTY = "The fat intake cannot be empty!";
     public static final String MESSAGE_DIET_DATETIME_EMPTY = "The datetime of a diet cannot be empty!";
+    public static final String MESSAGE_DIET_UPDATED = "Ok, I've updated this diet:";
     public static final String MESSAGE_DURATION_INVALID =
             "The duration of an activity must be in the format \"hh:mm:ss\"!";
     public static final String MESSAGE_DISTANCE_INVALID =
@@ -109,6 +110,8 @@ public class Message {
     public static final String MESSAGE_DIET_DELETED = "Noted. I've removed this diet:";
     public static final String MESSAGE_DIET_LIST = "Here are the diets in your list:";
     public static final String MESSAGE_DIET_FIND = "I've found these diets:";
+    public static final String MESSAGE_DIET_NO_CHANGE_REQUESTED = "No change requested. Specify the appropriate " +
+            "parameters to edit the diet.";
     public static final String MESSAGE_SLEEP_DELETE_INVALID_INDEX = "Invalid index. Please enter a valid index.";
     public static final String MESSAGE_SLEEP_DELETE_RETURN = "Got it. I've deleted this sleep record at index %d: %s";
     public static final String MESSAGE_SLEEP_EDIT_RETURN = "Got it. I've changed this sleep record at index %d:";
@@ -160,6 +163,8 @@ public class Message {
             + " DATE";
     public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
             + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
+    public static final String HELP_EDIT_DIET = CommandName.COMMAND_DIET_EDIT
+            + " INDEX calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
     public static final String HELP_DELETE_DIET = CommandName.COMMAND_DIET_DELETE
             + " INDEX";
     public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;

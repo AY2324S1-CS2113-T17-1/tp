@@ -13,6 +13,7 @@ import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
+import athleticli.commands.diet.EditDietCommand;
 import athleticli.commands.diet.EditDietGoalCommand;
 import athleticli.commands.diet.FindDietCommand;
 import athleticli.commands.diet.ListDietCommand;
@@ -37,14 +38,18 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Defines the basic methods for command parser.
  */
 public class Parser {
-    private static final DateTimeFormatter sleepTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+    private static final DateTimeFormatter sleepTimeFormatter =
+            DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
 
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
@@ -127,6 +132,8 @@ public class Parser {
             return new DeleteDietGoalCommand(parseDietGoalDelete(commandArgs));
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(parseDiet(commandArgs));
+        case CommandName.COMMAND_DIET_EDIT:
+            return new EditDietCommand(parseDietIndex(commandArgs), parseDietEdit(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
             return new DeleteDietCommand(parseDietIndex(commandArgs));
         case CommandName.COMMAND_DIET_LIST:
@@ -797,8 +804,8 @@ public class Parser {
      * @throws AthletiException
      */
     public static void checkMissingDietArguments(int caloriesMarkerPos, int proteinMarkerPos,
-                                                  int carbMarkerPos, int fatMarkerPos,
-                                                  int datetimeMarkerPos) throws AthletiException {
+                                                 int carbMarkerPos, int fatMarkerPos,
+                                                 int datetimeMarkerPos) throws AthletiException {
         if (caloriesMarkerPos == -1) {
             throw new AthletiException(Message.MESSAGE_CALORIES_MISSING);
         }
@@ -827,7 +834,7 @@ public class Parser {
      * @throws AthletiException
      */
     public static void checkEmptyDietArguments(String calories, String protein, String carb, String fat,
-                                                String datetime) throws AthletiException {
+                                               String datetime) throws AthletiException {
         if (calories.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_CALORIES_EMPTY);
         }
@@ -930,12 +937,17 @@ public class Parser {
      *
      * @param commandArgs The raw user input containing the index.
      * @return The parsed index.
-     * @throws AthletiException
+     * @throws AthletiException If the input format is invalid.
      */
     public static int parseDietIndex(String commandArgs) throws AthletiException {
+        if (commandArgs == null || commandArgs.trim().isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_DIET_INDEX_TYPE_INVALID);
+        }
+
+        String[] words = commandArgs.trim().split("\\s+", 2);  // Split into parts
         int index;
         try {
-            index = Integer.parseInt(commandArgs.trim());
+            index = Integer.parseInt(words[0]);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DIET_INDEX_TYPE_INVALID);
         }
@@ -943,5 +955,78 @@ public class Parser {
             throw new AthletiException(Message.MESSAGE_DIET_INDEX_TYPE_INVALID);
         }
         return index;
+    }
+
+
+    /**
+     * Parses the value for a marker in the arguments.
+     *
+     * @param arguments The raw user input containing the arguments. The arguments should be in the format of
+     *                  <marker><value> <marker><value> ...
+     *                  where <marker> is one of the markers defined in Parameter.java and <value> is the
+     *                  value for the marker.
+     * @param marker    The marker to search for.
+     * @return The value for the marker.
+     */
+    public static String getValueForMarker(String arguments, String marker) {
+        String patternString = "";
+
+        if (marker.equals(Parameter.DATETIME_SEPARATOR)) {
+            // Special handling for datetime to capture the date and time
+            patternString = marker + "(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})";
+        } else {
+            // For other markers, capture a sequence of non-whitespace characters
+            patternString = marker + "(\\S+)";
+        }
+
+        Pattern pattern = Pattern.compile(patternString);
+        Matcher matcher = pattern.matcher(arguments);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+
+        // Return empty string if no match is found
+        return "";
+    }
+
+    /**
+     * Parses the raw user input for a sleep and returns the corresponding sleep object.
+     *
+     * @param arguments The raw user input containing the arguments.
+     * @return An object representing the sleep.
+     * @throws AthletiException If the input format is invalid.
+     */
+    public static HashMap<String, String> parseDietEdit(String arguments) throws AthletiException {
+        HashMap<String, String> dietMap = new HashMap<>();
+        String calories = getValueForMarker(arguments, Parameter.CALORIES_SEPARATOR);
+        String protein = getValueForMarker(arguments, Parameter.PROTEIN_SEPARATOR);
+        String carb = getValueForMarker(arguments, Parameter.CARB_SEPARATOR);
+        String fat = getValueForMarker(arguments, Parameter.FAT_SEPARATOR);
+        String datetime = getValueForMarker(arguments, Parameter.DATETIME_SEPARATOR);
+        if (!calories.isEmpty()) {
+            int caloriesParsed = Integer.parseInt(calories);
+            dietMap.put(Parameter.CALORIES_SEPARATOR, Integer.toString(caloriesParsed));
+        }
+        if (!protein.isEmpty()) {
+            int proteinParsed = Integer.parseInt(protein);
+            dietMap.put(Parameter.PROTEIN_SEPARATOR, Integer.toString(proteinParsed));
+        }
+        if (!carb.isEmpty()) {
+            int carbParsed = Integer.parseInt(carb);
+            dietMap.put(Parameter.CARB_SEPARATOR, Integer.toString(carbParsed));
+        }
+        if (!fat.isEmpty()) {
+            int fatParsed = Integer.parseInt(fat);
+            dietMap.put(Parameter.FAT_SEPARATOR, Integer.toString(fatParsed));
+        }
+        if (!datetime.isEmpty()) {
+            LocalDateTime datetimeParsed = parseDateTime(datetime);
+            dietMap.put(Parameter.DATETIME_SEPARATOR, datetimeParsed.toString());
+        }
+        if (dietMap.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_DIET_NO_CHANGE_REQUESTED);
+        }
+        return dietMap;
     }
 }
