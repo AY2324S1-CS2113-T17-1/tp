@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SetActivityGoalCommandTest {
     private SetActivityGoalCommand setActivityGoalCommand;
@@ -42,6 +42,9 @@ class SetActivityGoalCommandTest {
     @Test
     void execute() {
         String[] actual = setActivityGoalCommand.execute(data);
-        String[] expected = {"Alright, I've added this activity goal:", activityGoal.toString()};
+        String[] expected = {"Alright, I've added this activity goal:", activityGoal.toString(data)};
+        for (int i = 0; i < actual.length; i++) {
+            assertEquals(expected[i], actual[i]);
+        }
     }
 }

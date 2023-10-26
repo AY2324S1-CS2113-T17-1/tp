@@ -94,8 +94,8 @@ public class ActivityGoal extends Goal implements Serializable {
     public String toString(Data data) {
         String goalTypeString = goalType.name();
         String sportString = sport.name();
-        return (getTimespan().name().toLowerCase() + " " + sportString.toLowerCase() + " " + goalTypeString.toLowerCase()
-                + ": " + getCurrentValue(data) + " / " + targetValue);
+        return (getTimespan().name().toLowerCase() + " " + sportString.toLowerCase() + " " +
+                goalTypeString.toLowerCase() + ": " + getCurrentValue(data) + " / " + targetValue);
     }
 
     public GoalType getGoalType() {

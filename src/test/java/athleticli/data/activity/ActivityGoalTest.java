@@ -1,7 +1,6 @@
 package athleticli.data.activity;
 
 import athleticli.data.Data;
-import athleticli.data.Goal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

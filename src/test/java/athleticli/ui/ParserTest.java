@@ -754,8 +754,8 @@ class ParserTest {
     void parseActivityGoal_validInput_activityGoalParsed() throws AthletiException {
         String validInput = "sport/running type/distance period/weekly target/10000";
         ActivityGoal actual = Parser.parseActivityGoal(validInput);
-        ActivityGoal expected = new ActivityGoal(Goal.Timespan.WEEKLY, ActivityGoal.GoalType.DISTANCE, ActivityGoal.Sport.RUNNING,
-                10000);
+        ActivityGoal expected = new ActivityGoal(Goal.Timespan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
+                ActivityGoal.Sport.RUNNING, 10000);
         assertEquals(actual.getTimespan(), expected.getTimespan());
         assertEquals(actual.getGoalType(), expected.getGoalType());
         assertEquals(actual.getSport(), expected.getSport());

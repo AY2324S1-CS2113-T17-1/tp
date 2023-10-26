@@ -34,8 +34,8 @@ class ActivityListTest {
 
     @Test
     void find() {
-        assertEquals(activityList.find(LocalDate.of(2023, 10, 10)).get(0), activitySecond);
-        assertEquals(activityList.find(LocalDate.of(2023, 10, 9)).get(0), activityFirst);
+        assertEquals(activityList.find(LocalDate.now()).get(0), activitySecond);
+        assertEquals(activityList.find(LocalDate.now().minusDays(1)).get(0), activityFirst);
     }
 
     @Test
