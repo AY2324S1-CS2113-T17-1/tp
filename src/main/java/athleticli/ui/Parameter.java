@@ -9,6 +9,11 @@ public class Parameter {
     public static final String SWIMMING_STYLE_SEPARATOR = "style/";
     public static final String DETAIL_FLAG = "-d";
 
+    public static final String CALORIES_SEPARATOR = "calories/";
+    public static final String PROTEIN_SEPARATOR = "protein/";
+    public static final String CARB_SEPARATOR = "carb/";
+    public static final String FAT_SEPARATOR = "fat/";
+
     public static final String START_TIME_SEPARATOR = "start/";
     public static final String END_TIME_SEPARATOR = "end/";
 }
