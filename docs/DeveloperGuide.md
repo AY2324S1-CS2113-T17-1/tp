@@ -39,6 +39,29 @@ The bulk of the AthletiCLI’s work is done by the following components, with ea
 
 ## Implementation
 
+### Diet Management in AthletiCLI
+
+#### [Implemented] Setting Up, Editing, Deleting, Listing, and Finding Diets
+
+Regardless of the operation you are performing on diets (setting up, editing, deleting, listing, or finding), the process follows a general five-step pattern in AthletiCLI:
+
+1. **Input Processing**: The user's input is passed through AthletiCLI to the Parser Class. Examples of user inputs include:
+    - "add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00" for adding a diet.
+    - "edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00" for editing a diet.
+    - "delete-diet 1" for deleting a diet.
+    - "list-diet" for listing all diets.
+    - "find-diet 2021-09-01" for finding diets of a particular date.
+
+2. **Command Identification**: The Parser Class identifies the type of diet operation and passes the necessary parameters.
+
+3. **Command Creation**: An instance of the corresponding command class is created (e.g., AddDietCommand, EditDietCommand, etc.) and returned to AthletiCLI.
+
+4. **Command Execution**: AthletiCLI executes the command, interacting with the data instance of DietList to perform the required operation.
+
+5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
+
+By following these general steps, AthletiCLI ensures a streamlined process for managing diet-related tasks.
+
 ### [Implemented] Setting Up of Diet Goals
 
 This following sequence diagram show how the 'set-diet-goal' command works:
@@ -88,14 +111,19 @@ for checking the presence of a dietGoal.
 
 ## User Stories
 
-| Version | As a ...                        | I want to ...             | So that I can ...                                                                      |
-|---------|---------------------------------|---------------------------|----------------------------------------------------------------------------------------|
-| v1.0    | new user                        | see usage instructions    | refer to them when I forget how to use the application                                 |
-| v1.0    | motivated weight-conscious user | set diet goals            | have the motivation to work towards keeping weight in check.                           |
-| v1.0    | forgetful user                  | see all my diet goals     | remind myself of all the diet goals I have set.                                        |
-| v1.0    | regretful user                  | remove my diet goals      | I can rescind the strict goals I set previously when I find the goals too far fetched. |
-| v1.0    | motivated user                  | update my diet goals      | I can work towards better version of myself by setting stricter goals.                 |
-| v2.0    | user                            | find a to-do item by name | locate a to-do without having to go through the entire list                            |
+| Version | As a ...                          | I want to ...                     | So that I can ...                                                                      |
+|---------|-----------------------------------|-----------------------------------|----------------------------------------------------------------------------------------|
+| v1.0    | health-conscious user             | add my dietary information        | keep track of my daily calorie and nutrient intake                                     |
+| v1.0    | organized user                    | delete a dietary entry            | remove outdated or incorrect data from my diet records                                 |
+| v1.0    | fitness enthusiast                | view all my diet records          | have a clear overview of my dietary habits and make informed decisions on my diet      |
+| v1.0    | new user                          | see usage instructions            | refer to them when I forget how to use the application                                 |
+| v1.0    | motivated weight-conscious user   | set diet goals                    | have the motivation to work towards keeping weight in check.                           |
+| v1.0    | forgetful user                    | see all my diet goals             | remind myself of all the diet goals I have set.                                        |
+| v1.0    | regretful user                    | remove my diet goals              | I can rescind the strict goals I set previously when I find the goals too far fetched. |
+| v1.0    | motivated user                    | update my diet goals              | I can work towards better version of myself by setting stricter goals.                 |
+| v2.0    | user                              | find a to-do item by name         | locate a to-do without having to go through the entire list                            |
+| v2.0    | meticulous user                   | edit my dietary entries           | correct any mistakes or update my diet information as needed                           |
+| v2.0    | user seeking specific information | find my diets for a specific date | easily retrieve my dietary information for any particular day                          |
 
 ## Non-Functional Requirements
 
