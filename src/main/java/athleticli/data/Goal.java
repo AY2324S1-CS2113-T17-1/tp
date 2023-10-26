@@ -10,59 +10,31 @@ public abstract class Goal {
      * Defines different types of timespans.
      */
     public enum Timespan {
-        DAILY {
-            /**
-             * Returns the number of days in a day.
-             *
-             * @return The number of days in a day.
-             */
-            @Override
-            public long toDays() {
-                return 1;
-            }
-        },
-        WEEKLY {
-            /**
-             * Returns the number of days in a week.
-             *
-             * @return  The number of days in a week.
-             */
-            @Override
-            public long toDays() {
-                return 7;
-            }
-        },
-        MONTHLY {
-            /**
-             * Returns the number of days in a month.
-             *
-             * @return  The number of days in a month.
-             */
-            @Override
-            public long toDays() {
-                // A monthly goal always counts data within the last 30 days.
-                return 30;
-            }
-        },
-        YEARLY {
-            /**
-             * Returns the number of days in a year.
-             *
-             * @return  The number of days in a year.
-             */
-            @Override
-            public long toDays() {
-                // A yearly goal always counts data within the last 365 days.
-                return 365;
-            }
-        };
+        DAILY(1),
+        WEEKLY(7),
+        MONTHLY(30),
+        YEARLY(365);
+
+        private final long days;
+
+        Timespan(long days) {
+            this.days = days;
+        }
 
         /**
          * Returns the number of days in the timespan.
          *
          * @return  The number of days in the timespan.
          */
-        abstract public long toDays();
+        public long getDays() {
+            return days;
+        }
+    }
+
+    private Timespan timespan;
+
+    public Goal(Timespan timespan) {
+        this.timespan = timespan;
     }
 
     /**
@@ -74,12 +46,6 @@ public abstract class Goal {
         return timespan;
     }
 
-    private Timespan timespan;
-
-    public Goal(Timespan timespan) {
-        this.timespan = timespan;
-    }
-
     /**
      * Checks whether the date is between the timespan.
      *
@@ -88,7 +54,7 @@ public abstract class Goal {
      */
     public boolean checkDate(LocalDate date) {
         final LocalDate endDate = LocalDate.now();
-        final LocalDate startDate = endDate.minusDays(timespan.toDays() - 1);
+        final LocalDate startDate = endDate.minusDays(timespan.getDays() - 1);
         return !(date.isBefore(startDate) || date.isAfter(endDate));
     }
 
