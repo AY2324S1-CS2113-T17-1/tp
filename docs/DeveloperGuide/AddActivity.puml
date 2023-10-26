@@ -36,5 +36,3 @@ AddActivityCommand -> activities++: add(a)
 activities --> AddActivityCommand--
 AddActivityCommand -> AthletiCLI--: message
 @enduml
-
-
