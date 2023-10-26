@@ -11,4 +11,8 @@ public class Parameter {
 
     public static final String START_TIME_SEPARATOR = "start/";
     public static final String END_TIME_SEPARATOR = "end/";
+    public static final String SPORT_SEPARATOR = "sport/";
+    public static final String TYPE_SEPARATOR = "type/";
+    public static final String PERIOD_SEPARATOR = "period/";
+    public static final String TARGET_SEPARATOR = "target/";
 }

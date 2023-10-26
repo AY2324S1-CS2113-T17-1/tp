@@ -40,7 +40,17 @@ public class ActivityGoal extends Goal implements Serializable {
      * @return Whether the activity goal is achieved.
      */
     @Override
-    public boolean isAchieved(Data data) {
+    public boolean isAchieved(Data data) throws IllegalStateException {
+        int total = getCurrentValue(data);
+        return total >= targetValue;
+    }
+
+    /**
+     * Returns the current value of the activity goal metric.
+     * @param data The data containing the activity list.
+     * @return The current value of the activity goal metric.
+     */
+    public int getCurrentValue(Data data) throws IllegalStateException {
         ActivityList activities = data.getActivities();
         Class<?> activityClass = getActivityClass();
         int total;
@@ -55,7 +65,7 @@ public class ActivityGoal extends Goal implements Serializable {
         default:
             throw new IllegalStateException("Unexpected value: " + goalType);
         }
-        return total >= targetValue;
+        return total;
     }
 
     public void setTargetValue(int targetValue) {
@@ -77,6 +87,16 @@ public class ActivityGoal extends Goal implements Serializable {
         default:
             return Activity.class;
         }
+    }
+
+    /**
+     * Returns the string representation of the activity goal including progress information.
+     * @return The string representation of the activity goal.
+     */
+    public String toString(Data data) {
+        String goalTypeString = goalType.name();
+        String sportString = sport.name();
+        return (sportString.toLowerCase() + goalTypeString.toLowerCase() + " goal: " + getCurrentValue(data) + " / " + targetValue);
     }
 
 }

@@ -28,7 +28,7 @@ class ActivityGoalTest {
     }
 
     @Test
-    void isAchieved_activityDurationGoal_true() {
+    void isAchieved_activityDistanceGoal_true() {
         int targetValue = 8000;
         ActivityGoal.GoalType goalType = ActivityGoal.GoalType.DISTANCE;
         ActivityGoal.Sport sport = ActivityGoal.Sport.GENERAL;
@@ -46,6 +46,7 @@ class ActivityGoalTest {
         boolean actual = activityGoal.isAchieved(data);
         assertEquals(expected, actual);
     }
+
 
     @Test
     void isAchieved_runGoalWithNoTrackedRun_false() {
@@ -95,5 +96,11 @@ class ActivityGoalTest {
 
     @Test
     void getActivityClass() {
+        ActivityGoal.GoalType goalType = ActivityGoal.GoalType.DURATION;
+        ActivityGoal.Sport sport = ActivityGoal.Sport.RUNNING;
+        activityGoal = new ActivityGoal(date, period, goalType, sport, 0);
+        Class<?> expected = Run.class;
+        Class<?> actual = activityGoal.getActivityClass();
+        assertEquals(expected, actual);
     }
 }
