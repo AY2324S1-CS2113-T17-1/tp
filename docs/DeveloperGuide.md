@@ -2,7 +2,8 @@
 
 ## Content Page
 - [Acknowledgements](#acknowledgements)
-- [Design](#design-and-implementation)
+- [Design](#design)
+- [Implementation](#implementation)
 - [Product Scope](#product-scope)
 - [Target User Profile](#target-user-profile)
 - [Value Proposition](#value-proposition)
@@ -15,10 +16,36 @@
 
 {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 
-## Design & implementation
+## Design
 
-{Describe the design and implementation of the product. Use UML diagrams and short code snippets where applicable.}
-#### [Implemented] Setting Up of Diet Goals
+### Architecture
+
+Given below is a quick overview of main components and how they interact with each other.
+
+**Main components of the architecture**
+
+**`AthletiCLI`** is in charge of the app launch and shut down.
+
+The bulk of the AthletiCLI’s work is done by the following components, with each of them corresponds to a package:
+
+* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI of AthletiCLI.
+* [`Storage`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/storage): Reads data from, and writes data to, the hard disk.
+* [`Data`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/data): Holds the data of AthletiCLI in memory.
+* [`Commands`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/commands): The command executors.
+
+[`Exceptions`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/exceptions) represents exceptions used by multiple other components.
+
+### UI Component
+
+### Storage Component
+
+### Data Component
+
+### Commands Component
+
+## Implementation
+
+### [Implemented] Setting Up of Diet Goals
 
 This following sequence diagram show how the 'set-diet-goal' command works:
 
@@ -47,7 +74,7 @@ temporary list into the data instance of DietGoalList which will be kept for rec
 Step 8. After executing the SetDietGoalCommand, SetDietGoalCommand returns a message that is passed to 
 AthletiCLI to be passed to UI(not shown) for display.
 
-#### [Proposed] Implementation of DietGoalList
+### [Proposed] Implementation of DietGoalList
 
 The current implementation of DietGoalList is an ArrayList.
 It helps to store dietGoals, however it is not efficient in searching for a particular dietGoal.
