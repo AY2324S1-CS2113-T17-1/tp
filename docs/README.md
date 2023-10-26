@@ -137,8 +137,9 @@ You can set goals for your activities in AthletiCLI by setting the target distan
 
 **Examples**
 
-* `set-activity-goal sport/run target/distance period/weekly value/10000` sets a goal of running 10km per week.
-* `set-activity-goal sport/swim target/duration period/monthly value/120` sets a goal of swimming for 2 hours per month.
+* `set-activity-goal sport/running type/distance period/weekly target/10000` sets a goal of running 10km per week.
+* `set-activity-goal sport/swimming type/duration period/monthly target/120` sets a goal of swimming for 2 hours per 
+  month.
 
 ## Diet Management
 

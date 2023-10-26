@@ -26,6 +26,6 @@ public class SetActivityGoalCommand extends Command {
     public String[] execute(Data data) {
         ActivityGoalList activityGoals = data.getActivityGoals();
         activityGoals.add(this.activityGoal);
-        return new String[]{Message.MESSAGE_ACTIVITY_GOAL_ADDED, this.activityGoal.toString()};
+        return new String[]{Message.MESSAGE_ACTIVITY_GOAL_ADDED, this.activityGoal.toString(data)};
     }
 }
