@@ -1,92 +1,95 @@
 package athleticli.data;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 
 /**
  * Defines the basic fields and methods for a goal.
  */
 public abstract class Goal {
     /**
-     * Defines different types of goal periods.
+     * Defines different types of timespans.
      */
-    public enum Period {
-        WEEKLY,
-        MONTHLY
-    }
+    public enum Timespan {
+        DAILY {
+            /**
+             * Returns the number of days in a day.
+             *
+             * @return The number of days in a day.
+             */
+            @Override
+            public long toDays() {
+                return 1;
+            }
+        },
+        WEEKLY {
+            /**
+             * Returns the number of days in a week.
+             *
+             * @return  The number of days in a week.
+             */
+            @Override
+            public long toDays() {
+                return 7;
+            }
+        },
+        MONTHLY {
+            /**
+             * Returns the number of days in a month.
+             *
+             * @return  The number of days in a month.
+             */
+            @Override
+            public long toDays() {
+                // A monthly goal always counts data within the last 30 days.
+                return 30;
+            }
+        },
+        YEARLY {
+            /**
+             * Returns the number of days in a year.
+             *
+             * @return  The number of days in a year.
+             */
+            @Override
+            public long toDays() {
+                // A yearly goal always counts data within the last 365 days.
+                return 365;
+            }
+        };
 
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private Period period;
-
-    public Goal(LocalDate date, Period period) {
-        switch (period) {
-        case WEEKLY:
-            this.startDate = getFirstDayOfWeek(date);
-            this.endDate = getLastDayOfWeek(date);
-            break;
-        case MONTHLY:
-            this.startDate = getFirstDayOfMonth(date);
-            this.endDate = getLastDayOfMonth(date);
-            break;
-        default:
-        }
-        this.period = period;
+        /**
+         * Returns the number of days in the timespan.
+         *
+         * @return  The number of days in the timespan.
+         */
+        abstract public long toDays();
     }
 
     /**
-     * Checks whether the date is between the period.
+     * Returns the timespan of this goal.
+     *
+     * @return  The timespan of this goal.
+     */
+    public Timespan getTimespan() {
+        return timespan;
+    }
+
+    private Timespan timespan;
+
+    public Goal(Timespan timespan) {
+        this.timespan = timespan;
+    }
+
+    /**
+     * Checks whether the date is between the timespan.
      *
      * @param date  The date to be matched.
-     * @return      Whether the date is between the period.
+     * @return      Whether the date is between the timespan.
      */
     public boolean checkDate(LocalDate date) {
+        final LocalDate endDate = LocalDate.now();
+        final LocalDate startDate = endDate.minusDays(timespan.toDays() - 1);
         return !(date.isBefore(startDate) || date.isAfter(endDate));
-    }
-
-    /**
-     * Calculates the first day of week in which the specified date falls.
-     *
-     * @param date  The specified date.
-     * @return      The first day of week in which the specified date falls.
-     */
-    private static LocalDate getFirstDayOfWeek(LocalDate date) {
-        // manually specify Monday as the start of the week
-        // to avoid differences due to locale settings
-        return date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-    }
-
-    /**
-     * Calculates the last day of week in which the specified date falls.
-     *
-     * @param date  The specified date.
-     * @return      The last day of week in which the specified date falls.
-     */
-    private static LocalDate getLastDayOfWeek(LocalDate date) {
-        // manually specify Sunday as the end of the week
-        // to avoid differences due to locale settings
-        return date.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-    }
-
-    /**
-     * Calculates the first day of month in which the specified date falls.
-     *
-     * @param date  The specified date.
-     * @return      The first day of month in which the specified date falls.
-     */
-    private static LocalDate getFirstDayOfMonth(LocalDate date) {
-        return date.with(TemporalAdjusters.firstDayOfMonth());
-    }
-
-    /**
-     * Calculates the last day of month in which the specified date falls.
-     *
-     * @param date  The specified date.
-     * @return      The last day of month in which the specified date falls.
-     */
-    private static LocalDate getLastDayOfMonth(LocalDate date) {
-        return date.with(TemporalAdjusters.lastDayOfMonth());
     }
 
     /**
