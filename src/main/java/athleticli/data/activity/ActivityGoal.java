@@ -3,10 +3,7 @@ package athleticli.data.activity;
 import athleticli.data.Data;
 import athleticli.data.Goal;
 
-import java.io.Serializable;
-
-public class ActivityGoal extends Goal implements Serializable {
-
+public class ActivityGoal extends Goal {
     public enum GoalType {
         DISTANCE, DURATION // can be extended
     }
