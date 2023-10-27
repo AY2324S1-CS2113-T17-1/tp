@@ -142,14 +142,42 @@ Verifying if there is an existence of a dietGoal using an ArrayList takes O(n) t
 The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
 for checking the presence of a dietGoal. 
 
+### Sleep Management in AthletiCLI
+
+#### [Implemented] Adding, Editing, Deleting, Listing Sleep
+
+1. **Input Processing**: The user's input is passed through AthletiCLI to the Parser Class. Examples of user inputs include:
+    - "add-sleep hours/8 datetime/2021-09-01 06:00" for adding sleep.
+    - "edit-sleep 1 hours/8 datetime/2021-09-01 06:00" for editing sleep.
+    - "delete-sleep 1" for deleting sleep.
+    - "list-sleep" for listing all sleep.
+
+2. **Command Identification**: The Parser Class identifies the type of sleep operation and passes the necessary parameters.
+
+3. **Command Creation**: An instance of the corresponding command class is created (e.g., AddSleepCommand, EditSleepCommand, etc.) and returned to AthletiCLI.
+
+4. **Command Execution**: AthletiCLI executes the command, interacting with the data instance of SleepList to perform the required operation.
+
+5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
+
+
+
 ## Product scope
 ### Target user profile
 
-{Describe the target user profile}
+AthletiCLI is designed for athletic individuals who are committed to optimizing their performance. 
+
+These users are highly disciplined and engaged not only in regular, intense physical training but also in nutrition, mental conditioning, and recovery. 
+
+They are looking for a holistic tool that integrates all facets of an athletic lifestyle. AthletiCLI serves as a daily or weekly companion, designed to monitor, track, and analyze various elements crucial for high-level athletic performance. 
 
 ### Value proposition
 
-{Describe the value proposition: what problem does it solve?}
+AthletiCLI provides a streamlined, integrated solution for athletic individuals focused on achieving peak performance. 
+
+While the app includes robust capabilities for tracking physical training metrics, it also offers features for monitoring dietary habits and sleep metrics. 
+
+By providing a comprehensive view of various performance-related factors over time, AthletiCLI enables athletes to identify trends, refine their training and lifestyle habits, and optimize outcomes. The app is more than a tracking tool—it's a performance optimization platform that takes into account the full spectrum of an athlete's life. 
 
 ## User Stories
 
@@ -163,14 +191,22 @@ for checking the presence of a dietGoal.
 | v1.0    | forgetful user                    | see all my diet goals             | remind myself of all the diet goals I have set.                                        |
 | v1.0    | regretful user                    | remove my diet goals              | I can rescind the strict goals I set previously when I find the goals too far fetched. |
 | v1.0    | motivated user                    | update my diet goals              | I can work towards better version of myself by setting stricter goals.                 |
+| v1.0    | sleep deprived user               | add my sleep information          | keep track of my sleep habits and identify areas for improvement                       |
+| v1.0    | sleep deprived user               | delete a sleep entry              | remove outdated or incorrect data from my sleep records                                |
+| v1.0    | sleep deprived user               | view all my sleep records         | have a clear overview of my sleep habits and make informed decisions on my sleep       |
+| v1.0    | sleep deprived user               | edit my sleep entries             | correct any mistakes or update my sleep information as needed                          |
 | v2.0    | user                              | find a to-do item by name         | locate a to-do without having to go through the entire list                            |
 | v2.0    | meticulous user                   | edit my dietary entries           | correct any mistakes or update my diet information as needed                           |
-| v2.0    | user seeking specific information | find my diets for a specific date | easily retrieve my dietary information for any particular day                          |
+
+
+
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
 1. AthletiCLI should work on Windows, MacOS and Linux that has java 11 installed.
+2. AthletiCLI should be able to store data locally.
+3. AthletiCLI should be able to work offline.
+4. AthletiCLI should be easy to use.
 
 ## Glossary
 
