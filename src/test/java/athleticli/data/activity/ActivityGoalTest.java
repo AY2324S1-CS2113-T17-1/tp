@@ -93,9 +93,6 @@ class ActivityGoalTest {
         assertEquals(expected, actual);
     }
 
-    @Test
-    void setTargetValue() {
-    }
 
     @Test
     void getActivityClass() {
