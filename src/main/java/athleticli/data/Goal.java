@@ -49,10 +49,11 @@ public abstract class Goal {
     /**
      * Checks whether the date is between the timespan.
      *
-     * @param date  The date to be matched.
-     * @return      Whether the date is between the timespan.
+     * @param date     The date to be matched.
+     * @param timespan The timespan of the goal.
+     * @return         Whether the date is between the timespan.
      */
-    public boolean checkDate(LocalDate date) {
+    public static boolean checkDate(LocalDate date, Timespan timespan) {
         final LocalDate endDate = LocalDate.now();
         final LocalDate startDate = endDate.minusDays(timespan.getDays() - 1);
         return !(date.isBefore(startDate) || date.isAfter(endDate));
@@ -65,4 +66,5 @@ public abstract class Goal {
      * @return      Whether the goal is achieved.
      */
     public abstract boolean isAchieved(Data data);
+
 }

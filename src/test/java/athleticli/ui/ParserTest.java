@@ -12,9 +12,14 @@ import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
+import athleticli.data.Goal;
 import athleticli.data.activity.Activity;
+import athleticli.data.activity.ActivityGoal;
 import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
+import athleticli.data.activity.ActivityGoal.GoalType;
+import athleticli.data.activity.ActivityGoal.Sport;
+import athleticli.data.Goal.Timespan;
 import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.Test;
 
@@ -743,6 +748,78 @@ class ParserTest {
         assertEquals(actual.getMovingTime(), expected.getMovingTime());
         assertEquals(actual.getDistance(), expected.getDistance());
         assertEquals(actual.getStartDateTime(), expected.getStartDateTime());
+    }
+
+    @Test
+    void parseActivityGoal_validInput_activityGoalParsed() throws AthletiException {
+        String validInput = "sport/running type/distance period/weekly target/10000";
+        ActivityGoal actual = Parser.parseActivityGoal(validInput);
+        ActivityGoal expected = new ActivityGoal(Goal.Timespan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
+                ActivityGoal.Sport.RUNNING, 10000);
+        assertEquals(actual.getTimespan(), expected.getTimespan());
+        assertEquals(actual.getGoalType(), expected.getGoalType());
+        assertEquals(actual.getSport(), expected.getSport());
+        assertEquals(actual.getTargetValue(), expected.getTargetValue());
+    }
+
+    @Test
+    void parseSport_validInput_sportParsed() throws AthletiException {
+        String validInput = "running";
+        Sport actual = Parser.parseSport(validInput);
+        Sport expected = Sport.RUNNING;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void parseSport_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> Parser.parseSport(invalidInput));
+    }
+
+    @Test
+    void parseGoalType_validInput_goalTypeParsed() throws AthletiException {
+        String validInput = "distance";
+        GoalType actual = Parser.parseGoalType(validInput);
+        GoalType expected = GoalType.DISTANCE;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void parsePeriod_validInput_periodParsed() throws AthletiException {
+        String validInput = "weekly";
+        Timespan actual = Parser.parsePeriod(validInput);
+        Timespan expected = Timespan.WEEKLY;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void parsePeriod_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> Parser.parsePeriod(invalidInput));
+    }
+
+    @Test
+    void parseTarget_validInput_targetParsed() throws AthletiException {
+        String validInput = "10000";
+        int actual = Parser.parseTarget(validInput);
+        int expected = 10000;
+        assertEquals(actual, expected);
+    }
+
+    @Test
+    void parseTarget_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> Parser.parseTarget(invalidInput));
+    }
+
+    @Test
+    void checkMissingActivityGoalArguments_missingSport_throwAthletiException() {
+        assertThrows(AthletiException.class, () -> Parser.checkMissingActivityGoalArguments(-1, 1, 1, 1));
+    }
+
+    @Test
+    void checkMissingActivityGoalArguments_noMissingArguments_noExceptionThrown() {
+        assertDoesNotThrow(() -> Parser.checkMissingActivityGoalArguments(1, 1, 1, 1));
     }
 
     @Test

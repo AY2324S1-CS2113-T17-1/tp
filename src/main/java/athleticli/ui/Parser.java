@@ -5,11 +5,6 @@ import athleticli.commands.Command;
 import athleticli.commands.FindCommand;
 import athleticli.commands.HelpCommand;
 import athleticli.commands.SaveCommand;
-import athleticli.commands.activity.AddActivityCommand;
-import athleticli.commands.activity.DeleteActivityCommand;
-import athleticli.commands.activity.EditActivityCommand;
-import athleticli.commands.activity.FindActivityCommand;
-import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
@@ -24,12 +19,22 @@ import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.FindSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
+
+import athleticli.data.Goal;
+import athleticli.data.diet.DietGoal;
+
 import athleticli.data.activity.Activity;
 import athleticli.data.activity.Cycle;
 import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
+import athleticli.data.activity.ActivityGoal;
+import athleticli.commands.activity.AddActivityCommand;
+import athleticli.commands.activity.DeleteActivityCommand;
+import athleticli.commands.activity.EditActivityCommand;
+import athleticli.commands.activity.FindActivityCommand;
+import athleticli.commands.activity.ListActivityCommand;
+import athleticli.commands.activity.SetActivityGoalCommand;
 import athleticli.data.diet.Diet;
-import athleticli.data.diet.DietGoal;
 import athleticli.exceptions.AthletiException;
 
 import java.time.LocalDate;
@@ -121,6 +126,8 @@ public class Parser {
             return new EditActivityCommand(parseSwimEdit(commandArgs), parseActivityEditIndex(commandArgs));
         case CommandName.COMMAND_ACTIVITY_FIND:
             return new FindActivityCommand(parseDate(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_GOAL_SET:
+            return new SetActivityGoalCommand(parseActivityGoal(commandArgs));
         /* Diet Management */
         case CommandName.COMMAND_DIET_GOAL_SET:
             return new SetDietGoalCommand(parseDietGoalSetEdit(commandArgs));
@@ -574,6 +581,119 @@ public class Parser {
         }
     }
 
+    /**
+     * Parses the raw user input for adding an activity goal and returns the corresponding activity goal object.
+     * @param commandArgs       The raw user input containing the arguments.
+     * @return activityGoal     An object representing the activity goal.
+     * @throws AthletiException If the input format is invalid.
+     */
+    public static ActivityGoal parseActivityGoal(String commandArgs) throws AthletiException {
+        final int sportIndex = commandArgs.indexOf(Parameter.SPORT_SEPARATOR);
+        final int typeIndex = commandArgs.indexOf(Parameter.TYPE_SEPARATOR);
+        final int periodIndex = commandArgs.indexOf(Parameter.PERIOD_SEPARATOR);
+        final int targetIndex = commandArgs.indexOf(Parameter.TARGET_SEPARATOR);
+
+        checkMissingActivityGoalArguments(sportIndex, typeIndex, periodIndex, targetIndex);
+
+        final String sport = commandArgs.substring(sportIndex + Parameter.SPORT_SEPARATOR.length(), typeIndex).trim();
+        final String type =
+                commandArgs.substring(typeIndex + Parameter.TYPE_SEPARATOR.length(), periodIndex).trim();
+        final String period =
+                commandArgs.substring(periodIndex + Parameter.PERIOD_SEPARATOR.length(), targetIndex).trim();
+        final String target = commandArgs.substring(targetIndex + Parameter.TARGET_SEPARATOR.length()).trim();
+
+        final ActivityGoal.Sport sportParsed = parseSport(sport);
+        final ActivityGoal.GoalType typeParsed = parseGoalType(type);
+        final Goal.Timespan periodParsed = parsePeriod(period);
+        final int targetParsed = parseTarget(target);
+
+        return new ActivityGoal(periodParsed, typeParsed, sportParsed, targetParsed);
+    }
+
+    /**
+     * Parses the sport input provided by the user.
+     * @param sport                 The raw user input containing the sport.
+     * @return sportParsed          The parsed Sport object.
+     * @throws AthletiException     If the input format is invalid.
+     */
+    public static ActivityGoal.Sport parseSport(String sport) throws AthletiException {
+        try {
+            return ActivityGoal.Sport.valueOf(sport.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new AthletiException(Message.MESSAGE_SPORT_INVALID);
+        }
+    }
+
+    /**
+     * Parses the goal type input provided by the user.
+     * @param type                The raw user input containing the goal type.
+     * @return goalParsed         The parsed GoalType object.
+     * @throws AthletiException   If the input format is invalid.
+     */
+    public static ActivityGoal.GoalType parseGoalType(String type) throws AthletiException {
+        try {
+            return ActivityGoal.GoalType.valueOf(type.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new AthletiException(Message.MESSAGE_TYPE_INVALID);
+        }
+    }
+
+    /**
+     * Parses the period input provided by the user
+     * @param period            The raw user input containing the period.
+     * @return periodParsed     The parsed Period object.
+     * @throws AthletiException If the input format is invalid.
+     */
+    public static Goal.Timespan parsePeriod(String period) throws AthletiException {
+        try {
+            return Goal.Timespan.valueOf(period.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new AthletiException(Message.MESSAGE_PERIOD_INVALID);
+        }
+    }
+
+    /**
+     * Parses the target input provided by the user.
+     * @param target            The raw user input containing the target value.
+     * @return targetParsed     The parsed Integer target value.
+     * @throws AthletiException If the input is not a positive number.
+     */
+    public static int parseTarget(String target) throws AthletiException {
+        int targetParsed;
+        try {
+            targetParsed = Integer.parseInt(target);
+        } catch (NumberFormatException e) {
+            throw new AthletiException(Message.MESSAGE_TARGET_INVALID);
+        }
+        if (targetParsed < 0) {
+            throw new AthletiException(Message.MESSAGE_TARGET_NEGATIVE);
+        }
+        return targetParsed;
+    }
+
+    /**
+     * Checks if the raw user input is missing any arguments for creating an activity goal.
+     * @param sportIndex        The position of the sport separator.
+     * @param targetIndex       The position of the target separator.
+     * @param periodIndex       The position of the period separator.
+     * @param valueIndex        The position of the value separator.
+     * @throws AthletiException If any of the arguments are missing.
+     */
+    public static void checkMissingActivityGoalArguments(int sportIndex, int targetIndex, int periodIndex,
+            int valueIndex) throws AthletiException {
+        if (sportIndex == -1) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_SPORT_MISSING);
+        }
+        if (targetIndex == -1) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TARGET_MISSING);
+        }
+        if (periodIndex == -1) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_PERIOD_MISSING);
+        }
+        if (valueIndex == -1) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TARGET_MISSING);
+        }
+    }
 
     /**
      * Parses the raw user input for an add sleep command and returns the corresponding command object.

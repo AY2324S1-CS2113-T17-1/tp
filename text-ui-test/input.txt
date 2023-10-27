@@ -1,9 +1,10 @@
 help
-add-activity Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00
-add-activity Morning Run duration/00:60:00 distance/10000 datetime/2021-09-01 06:00
-add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000
-add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000
-add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2021-09-01 20:00
+add-activity Morning Run duration/01:00:00 distance/10000 datetime/2023-10-26 06:00
+add-activity Morning Run duration/00:60:00 distance/10000 datetime/2023-10-26 06:00
+set-activity-goal sport/general type/distance period/monthly target/10000
+add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2023-10-26 18:00 elevation/1000
+add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2023-10-26 18:00 elevation/1000
+add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2023-10-16 20:00
 delete-activity 2
 delete-activity 0
 list-activity

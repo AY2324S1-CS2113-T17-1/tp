@@ -12,6 +12,13 @@ title: Developer Guide
 
 ## Design
 
+This section provides a high-level explanation of the design and implementation of AthletiCLI, 
+supported by UML diagrams and short code snippets to illustrate the flow of data and interactions between the 
+components.
+
+
+#### [Implemented] Setting Up of Diet Goals
+
 ### Architecture
 
 Given below is a quick overview of main components and how they interact with each other.
@@ -90,6 +97,41 @@ temporary list into the data instance of DietGoalList which will be kept for rec
 
 Step 8. After executing the SetDietGoalCommand, SetDietGoalCommand returns a message that is passed to 
 AthletiCLI to be passed to UI(not shown) for display.
+
+#### [Implemented] Adding activities
+The `add-activity` feature allows users to add a new activity into the application.
+These are the main components behind the architecture of the `add-activity` feature:
+1. `AthletiCLI`: faciliates the mechanism. It captures the input and calls the parser and execution.
+2. `Parser`: parses the user input and generates the appropriate command object and activity 
+   instance.
+3. `AddActivityCommand`: encapsulates the execution of the `add-activity` command. It adds 
+   the activity to the data.
+4. `Activity`: represents the activity that is to be added.
+5. `Data`: holds current state of the activity list.
+6. `ActivityList`: maintains the list of all added activities.
+
+Given below is an example usage scenario and how the add mechanism behaves at each step.
+
+**Step 1 - Input Capture:** The user issues an `add-activity ...` which is captured and passed to the Parser by the 
+running AthletiCLI instance.
+
+**Step 2 - Activity Parsing:** The Parser parses the raw input to obtain the arguments of the activity. Given that all 
+parameters are provided correctly and no exception is thrown, a new activity object is created.
+
+**Step 3 - Command Parsing:** In addition the parser will create an `AddActivityCommand` object with the newly added 
+activity attached to it. The command implements the `AddActivityCommand#execute()` operation and is passed to 
+the AthletiCLI instance.
+
+**Step 4 - Activity Addition:** The AthletiCLI instance executes the `AddActivityCommand` object. The command will 
+access the data and retrieve the currently stored list of activities stored inside it. The new `Activity` object is 
+added to the list.
+
+**Step 5 - User Interaction:** Once the activity is successfully added, a confirmation message is displayed to the user.
+
+The following sequence diagram shows how the `add-activity` operation works:
+<p  align="center" width="100%">
+  <img width="80%" src="DeveloperGuide/AddActivity.png" alt="Sequence Diagram of add-activity`"/>
+</p>
 
 ### [Proposed] Implementation of DietGoalList
 

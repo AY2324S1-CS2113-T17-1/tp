@@ -17,6 +17,11 @@ public class Message {
             "Please specify the activity duration using \"datetime/\"!";
     public static final String MESSAGE_CALORIES_MISSING =
             "Please specify the calories burned using \"calories/\"!";
+    public static final String MESSAGE_ACTIVITYGOAL_SPORT_MISSING = "Please specify the sport using \"sport/\"!";
+    public static final String MESSAGE_ACTIVITYGOAL_TYPE_MISSING = "Please specify the goal type using \"type/\"!";
+    public static final String MESSAGE_ACTIVITYGOAL_PERIOD_MISSING = "Please specify the period using \"period/\"!";
+    public static final String MESSAGE_ACTIVITYGOAL_TARGET_MISSING = "Please specify the target value using " +
+            "\"target/\"!";
     public static final String MESSAGE_PROTEIN_MISSING =
             "Please specify the protein intake using \"protein/\"!";
     public static final String MESSAGE_CARB_MISSING =
@@ -40,18 +45,29 @@ public class Message {
             "The distance of an activity must be a positive integer!";
     public static final String MESSAGE_DISTANCE_NEGATIVE =
             "The distance of an activity cannot be negative!";
+    public static final String MESSAGE_TARGET_NEGATIVE = "The target value cannot be negative. " +
+            "You wanna make progress, not regress ;)";
+    public static final String MESSAGE_TARGET_INVALID = "The target value of an activity goal must be a positive " +
+            "integer!";
     public static final String MESSAGE_DATETIME_INVALID =
             "The datetime must be in the format \"yyyy-MM-dd HH:mm\"!";
     public static final String MESSAGE_DATE_INVALID =
             "The date must be in the format \"yyyy-MM-dd\"!";
     public static final String MESSAGE_CALORIES_INVALID =
             "The calories burned must be a non-negative integer!";
+    public static final String MESSAGE_SPORT_INVALID = "The sport of an activity must be one of the following: " +
+            "\"running\", \"cycling\", \"swimming\", \"general\"!";
+    public static final String MESSAGE_TYPE_INVALID = "The type of an activity must be either \"distance\" or " +
+            "\"duration\"!";
+    public static final String MESSAGE_PERIOD_INVALID = "The period of an activity must be either \"weekly\" or " +
+            "\"monthly\"!";
     public static final String MESSAGE_PROTEIN_INVALID = "The protein intake must be a non-negative integer!";
     public static final String MESSAGE_CARB_INVALID =
             "The carbohydrate intake must be a non-negative integer!";
     public static final String MESSAGE_FAT_INVALID = "The fat intake must be a non-negative integer!";
     public static final String MESSAGE_ACTIVITY_FIND = "I've found these activities:";
     public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
+    public static final String MESSAGE_ACTIVITY_GOAL_ADDED = "Alright, I've added this activity goal:";
     public static final String MESSAGE_ACTIVITY_DELETED = "Gotcha, I've deleted this activity:";
     public static final String MESSAGE_DIET_ADDED = "Well done! I've added this diet:";
     public static final String MESSAGE_ELEVATION_MISSING =
