@@ -49,8 +49,9 @@ public abstract class Goal {
     /**
      * Checks whether the date is between the timespan.
      *
-     * @param date  The date to be matched.
-     * @return      Whether the date is between the timespan.
+     * @param date     The date to be matched.
+     * @param timespan The timespan of the goal.
+     * @return         Whether the date is between the timespan.
      */
     public static boolean checkDate(LocalDate date, Timespan timespan) {
         final LocalDate endDate = LocalDate.now();
