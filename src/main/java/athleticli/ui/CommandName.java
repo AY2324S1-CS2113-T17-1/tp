@@ -28,6 +28,7 @@ public class CommandName {
     public static final String COMMAND_RUN_EDIT = "edit-run";
     public static final String COMMAND_CYCLE_EDIT = "edit-cycle";
     public static final String COMMAND_SWIM_EDIT = "edit-swim";
+    public static final String COMMAND_ACTIVITY_GOAL_SET = "set-activity-goal";
 
     /* Diet Management */
     public static final String COMMAND_DIET_GOAL_SET = "set-diet-goal";
@@ -36,6 +37,7 @@ public class CommandName {
     public static final String COMMAND_DIET_GOAL_DELETE = "delete-diet-goal";
     public static final String COMMAND_DIET_ADD = "add-diet";
     public static final String COMMAND_DIET_DELETE = "delete-diet";
+    public static final String COMMAND_DIET_EDIT = "edit-diet";
     public static final String COMMAND_DIET_LIST = "list-diet";
     public static final String COMMAND_DIET_FIND = "find-diet";
 }

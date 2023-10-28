@@ -1,98 +1,70 @@
 package athleticli.data;
 
-import java.time.DayOfWeek;
 import java.time.LocalDate;
-import java.time.temporal.TemporalAdjusters;
 
 /**
  * Defines the basic fields and methods for a goal.
  */
 public abstract class Goal {
     /**
-     * Defines different types of goal periods.
+     * Defines different types of timespans.
      */
-    public enum Period {
-        WEEKLY,
-        MONTHLY
-    }
+    public enum Timespan {
+        DAILY(1),
+        WEEKLY(7),
+        MONTHLY(30),
+        YEARLY(365);
 
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private Period period;
+        private final long days;
 
-    public Goal(LocalDate date, Period period) {
-        switch (period) {
-        case WEEKLY:
-            this.startDate = getFirstDayOfWeek(date);
-            this.endDate = getLastDayOfWeek(date);
-            break;
-        case MONTHLY:
-            this.startDate = getFirstDayOfMonth(date);
-            this.endDate = getLastDayOfMonth(date);
-            break;
-        default:
+        Timespan(long days) {
+            this.days = days;
         }
-        this.period = period;
+
+        /**
+         * Returns the number of days in the timespan.
+         *
+         * @return  The number of days in the timespan.
+         */
+        public long getDays() {
+            return days;
+        }
+    }
+
+    private Timespan timespan;
+
+    public Goal(Timespan timespan) {
+        this.timespan = timespan;
     }
 
     /**
-     * Checks whether the date is between the period.
+     * Returns the timespan of this goal.
      *
-     * @param date  The date to be matched.
-     * @return      Whether the date is between the period.
+     * @return  The timespan of this goal.
      */
-    public boolean checkDate(LocalDate date) {
+    public Timespan getTimespan() {
+        return timespan;
+    }
+
+    /**
+     * Checks whether the date is between the timespan.
+     *
+     * @param date     The date to be matched.
+     * @param timespan The timespan of the goal.
+     * @return         Whether the date is between the timespan.
+     */
+    public static boolean checkDate(LocalDate date, Timespan timespan) {
+        final LocalDate endDate = LocalDate.now();
+        final LocalDate startDate = endDate.minusDays(timespan.getDays() - 1);
         return !(date.isBefore(startDate) || date.isAfter(endDate));
-    }
-
-    /**
-     * Calculates the first day of week in which the specified date falls.
-     *
-     * @param date  The specified date.
-     * @return      The first day of week in which the specified date falls.
-     */
-    private static LocalDate getFirstDayOfWeek(LocalDate date) {
-        // manually specify Monday as the start of the week
-        // to avoid differences due to locale settings
-        return date.with(TemporalAdjusters.previousOrSame(DayOfWeek.MONDAY));
-    }
-
-    /**
-     * Calculates the last day of week in which the specified date falls.
-     *
-     * @param date  The specified date.
-     * @return      The last day of week in which the specified date falls.
-     */
-    private static LocalDate getLastDayOfWeek(LocalDate date) {
-        // manually specify Sunday as the end of the week
-        // to avoid differences due to locale settings
-        return date.with(TemporalAdjusters.nextOrSame(DayOfWeek.SUNDAY));
-    }
-
-    /**
-     * Calculates the first day of month in which the specified date falls.
-     *
-     * @param date  The specified date.
-     * @return      The first day of month in which the specified date falls.
-     */
-    private static LocalDate getFirstDayOfMonth(LocalDate date) {
-        return date.with(TemporalAdjusters.firstDayOfMonth());
-    }
-
-    /**
-     * Calculates the last day of month in which the specified date falls.
-     *
-     * @param date  The specified date.
-     * @return      The last day of month in which the specified date falls.
-     */
-    private static LocalDate getLastDayOfMonth(LocalDate date) {
-        return date.with(TemporalAdjusters.lastDayOfMonth());
     }
 
     /**
      * Returns whether the goal is achieved.
      *
-     * @return Whether the goal is achieved.
+     * @param data  The current data containing all records.
+     * @return      Whether the goal is achieved.
      */
-    public abstract boolean isAchieved();
+    public abstract boolean isAchieved(Data data);
+
 }

@@ -1,5 +1,6 @@
 package athleticli.data.activity;
 
+import athleticli.data.Goal.Timespan;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,8 +17,6 @@ class ActivityListTest {
     private static final LocalTime DURATION = LocalTime.of(1, 24);
     private static final int DISTANCE = 18120;
     private ActivityList activityList;
-    private LocalDateTime dateFirst;
-    private LocalDateTime dateSecond;
     private Activity activityFirst;
     private Activity activitySecond;
 
@@ -25,8 +24,8 @@ class ActivityListTest {
     @BeforeEach
     void setUp() {
         activityList = new ActivityList();
-        dateSecond = LocalDateTime.of(2023, 10, 10, 23, 21);
-        dateFirst = LocalDateTime.of(2023, 10, 9, 23, 21);
+        LocalDateTime dateSecond = LocalDateTime.now();
+        LocalDateTime dateFirst = LocalDateTime.now().minusDays(1);
         activityFirst = new Activity(CAPTION, DURATION, DISTANCE, dateFirst);
         activitySecond = new Activity(CAPTION, DURATION, DISTANCE, dateSecond);
         activityList.add(activityFirst);
@@ -35,8 +34,8 @@ class ActivityListTest {
 
     @Test
     void find() {
-        assertEquals(activityList.find(LocalDate.of(2023, 10, 10)).get(0), activitySecond);
-        assertEquals(activityList.find(LocalDate.of(2023, 10, 9)).get(0), activityFirst);
+        assertEquals(activityList.find(LocalDate.now()).get(0), activitySecond);
+        assertEquals(activityList.find(LocalDate.now().minusDays(1)).get(0), activityFirst);
     }
 
     @Test
@@ -49,10 +48,39 @@ class ActivityListTest {
     @Test
     void filterByTimespan() {
         activityList.sort();
-        ArrayList<Object> filteredList = activityList.filterByTimespan(LocalDate.of(2023, 10, 9),
-                LocalDate.of(2023, 10, 9));
-        assertEquals(filteredList.get(0), activityFirst);
-        filteredList = activityList.filterByTimespan(LocalDate.of(2023, 10, 9), LocalDate.of(2023, 10, 10));
+        ArrayList<Activity> filteredList = activityList.filterByTimespan(Timespan.WEEKLY);
         assertEquals(filteredList.get(0), activitySecond);
+        assertEquals(filteredList.get(1), activityFirst);
+        filteredList = activityList.filterByTimespan(Timespan.DAILY);
+        assertEquals(filteredList.get(0), activitySecond);
+        assertEquals(filteredList.size(), 1);
+    }
+
+    @Test
+    void getTotalDistance_activity_totalDistance() {
+        int expected = 2 * DISTANCE;
+        int actual = activityList.getTotalDistance(Activity.class, Timespan.WEEKLY);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getTotalDistance_run_zero() {
+        int expected = 0;
+        int actual = activityList.getTotalDistance(Run.class, Timespan.WEEKLY);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getTotalDuration_activity_totalTime() {
+        int expected = 2 * DURATION.toSecondOfDay();
+        int actual = activityList.getTotalDuration(Activity.class, Timespan.WEEKLY);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void getTotalDuration_run_zero() {
+        int expected = 0;
+        int actual = activityList.getTotalDuration(Run.class, Timespan.WEEKLY);
+        assertEquals(expected, actual);
     }
 }
