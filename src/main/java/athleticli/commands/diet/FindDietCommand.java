@@ -9,6 +9,10 @@ import athleticli.data.diet.Diet;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+
+/**
+ * Finds diets matching the date.
+ */
 public class FindDietCommand extends FindCommand {
     public FindDietCommand(LocalDate date) {
         super(date);
