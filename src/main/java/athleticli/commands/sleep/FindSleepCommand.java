@@ -19,7 +19,7 @@ public class FindSleepCommand extends FindCommand {
      *
      * @param data The current data.
      * @return The messages to be shown to the user.
-     * @throws AthletiException
+     * @throws AthletiException If any errors occur in finding the sleep entry.
      */
     @Override
     public String[] execute(Data data) throws AthletiException {
