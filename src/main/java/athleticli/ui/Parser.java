@@ -849,7 +849,7 @@ public class Parser {
             nutrientAndTargetValue = commandArgs[i].split("/");
             nutrient = nutrientAndTargetValue[0];
             targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
-            if (targetValue == 0) {
+            if (targetValue <= 0) {
                 throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
             }
             if (!NutrientVerifier.verify(nutrient)) {
