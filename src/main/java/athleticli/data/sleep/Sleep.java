@@ -1,13 +1,12 @@
 package athleticli.data.sleep;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
  * Represents a sleep record.
  */
-public class Sleep implements Serializable {
+public class Sleep {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-YYYY HH:mm");
 

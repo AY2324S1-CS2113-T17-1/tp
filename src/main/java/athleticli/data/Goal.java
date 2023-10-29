@@ -15,9 +15,9 @@ public abstract class Goal {
         MONTHLY(30),
         YEARLY(365);
 
-        private final long days;
+        private final int days;
 
-        Timespan(long days) {
+        Timespan(int days) {
             this.days = days;
         }
 
@@ -26,7 +26,7 @@ public abstract class Goal {
          *
          * @return  The number of days in the timespan.
          */
-        public long getDays() {
+        public int getDays() {
             return days;
         }
     }

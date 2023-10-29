@@ -1,47 +1,48 @@
 package athleticli.storage;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Objects;
+import java.util.stream.Stream;
 
-import athleticli.data.Data;
+import athleticli.exceptions.WrappedIOException;
 
 /**
  * Defines the basic methods for file storage.
  */
 public class Storage {
     /**
-     * Returns the data read from the file, or an empty <code>Data</code>
-     * object if the file does not exist or cannot be parsed properly.
+     * Saves strings into a file.
      *
-     * @return  The data read from the file, or an empty <code>Data</code> object.
-     */
-    public static Data load() {
-        try (var fileInputStream = new FileInputStream(Config.PATH_SAVE);
-            var objectInputStream = new ObjectInputStream(fileInputStream)) {
-            return (Data) objectInputStream.readObject();
-        } catch (Exception e) {
-            return new Data();
-        }
-    }
-
-    /**
-     * Saves the data into the file.
-     *
-     * @param data             The data to be saved.
+     * @param path      The path to the file.
+     * @param items     The stream of strings.
      * @throws IOException
      */
-    public static void save(Data data) throws IOException {
-        File file = new File(Config.PATH_SAVE);
+    public static void save(String path, Stream<String> items) throws IOException {
+        File file = new File(path);
         if (!file.exists()) {
             file.getParentFile().mkdirs();
             file.createNewFile();
         }
-        var fileOutputStream = new FileOutputStream(file, false);
-        var objectOutputStream = new ObjectOutputStream(fileOutputStream);
-        objectOutputStream.writeObject(data);
+        FileWriter fileWriter = new FileWriter(file);
+        try {
+            items.filter(Objects::nonNull).forEachOrdered(str -> {
+                try {
+                    fileWriter.write(str);
+                } catch (IOException e) {
+                    throw new WrappedIOException(e);
+                }
+            });
+        } catch (WrappedIOException e) {
+            throw e.getCause();
+        }
+        fileWriter.close();
+    }
+
+    public static Stream<String> load(String path) throws IOException {
+        return Files.lines(Path.of(path));
     }
 }
