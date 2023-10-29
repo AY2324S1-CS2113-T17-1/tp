@@ -44,15 +44,15 @@ public class ActivityList extends StorableList<Activity> implements Findable {
     }
 
     /**
-     * Returns a list of activities within the timespan.
-     * @param timespan The timespan to be matched.
-     * @return A list of activities within the timespan.
+     * Returns a list of activities within the time span.
+     * @param timeSpan The time span to be matched.
+     * @return A list of activities within the time span.
      */
-    public ArrayList<Activity> filterByTimespan(Goal.Timespan timespan) {
+    public ArrayList<Activity> filterByTimespan(Goal.TimeSpan timeSpan) {
         ArrayList<Activity> result = new ArrayList<>();
         for (Activity activity : this) {
             LocalDate activityDate = activity.getStartDateTime().toLocalDate();
-            if (Goal.checkDate(activityDate, timespan)) {
+            if (Goal.checkDate(activityDate, timeSpan)) {
                 result.add(activity);
             }
         }
@@ -64,8 +64,8 @@ public class ActivityList extends StorableList<Activity> implements Findable {
      * @param activityClass The activity class to be matched.
      * @return The total distance of all activities in the list matching the specified activity class.
      */
-    public int getTotalDistance(Class<?> activityClass, Goal.Timespan timespan) {
-        ArrayList<Activity> filteredActivities = filterByTimespan(timespan);
+    public int getTotalDistance(Class<?> activityClass, Goal.TimeSpan timeSpan) {
+        ArrayList<Activity> filteredActivities = filterByTimespan(timeSpan);
         int runningDistance = 0;
         for (Activity activity : filteredActivities) {
             if (activityClass.isInstance(activity)) {
@@ -80,8 +80,8 @@ public class ActivityList extends StorableList<Activity> implements Findable {
      * @param activityClass The activity class to be matched.
      * @return The total moving time of all activities in the list matching the specified activity class.
      */
-    public int getTotalDuration(Class<?> activityClass, Goal.Timespan timespan) {
-        ArrayList<Activity> filteredActivities = filterByTimespan(timespan);
+    public int getTotalDuration(Class<?> activityClass, Goal.TimeSpan timeSpan) {
+        ArrayList<Activity> filteredActivities = filterByTimespan(timeSpan);
         int movingTime = 0;
         for (Activity activity : filteredActivities) {
             if (activityClass.isInstance(activity)) {

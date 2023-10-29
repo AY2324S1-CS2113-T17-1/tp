@@ -17,13 +17,13 @@ public class ActivityGoal extends Goal {
 
     /**
      * Constructs an activity goal.
-     * @param timespan    The timespan of the activity goal.
+     * @param timeSpan    The time span of the activity goal.
      * @param goalType    The goal type of the activity goal.
      * @param sport       The sport of the activity goal.
      * @param targetValue The target value of the activity goal.
      */
-    public ActivityGoal(Timespan timespan, GoalType goalType, Sport sport, int targetValue) {
-        super(timespan);
+    public ActivityGoal(TimeSpan timeSpan, GoalType goalType, Sport sport, int targetValue) {
+        super(timeSpan);
         this.targetValue = targetValue;
         this.goalType = goalType;
         this.sport = sport;
@@ -51,10 +51,10 @@ public class ActivityGoal extends Goal {
         int total;
         switch(goalType) {
         case DISTANCE:
-            total = activities.getTotalDistance(activityClass, this.getTimespan());
+            total = activities.getTotalDistance(activityClass, this.getTimeSpan());
             break;
         case DURATION:
-            total = activities.getTotalDuration(activityClass, this.getTimespan());
+            total = activities.getTotalDuration(activityClass, this.getTimeSpan());
             total = total / 60;
             break;
         default:
@@ -91,7 +91,7 @@ public class ActivityGoal extends Goal {
     public String toString(Data data) {
         String goalTypeString = goalType.name();
         String sportString = sport.name();
-        return (getTimespan().name().toLowerCase() + " " + sportString.toLowerCase() + " " +
+        return (getTimeSpan().name().toLowerCase() + " " + sportString.toLowerCase() + " " +
                 goalTypeString.toLowerCase() + ": " + getCurrentValue(data) + " / " + targetValue);
     }
 

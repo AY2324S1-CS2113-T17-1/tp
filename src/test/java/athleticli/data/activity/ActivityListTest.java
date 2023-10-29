@@ -1,6 +1,6 @@
 package athleticli.data.activity;
 
-import athleticli.data.Goal.Timespan;
+import athleticli.data.Goal.TimeSpan;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -48,10 +48,10 @@ class ActivityListTest {
     @Test
     void filterByTimespan() {
         activityList.sort();
-        ArrayList<Activity> filteredList = activityList.filterByTimespan(Timespan.WEEKLY);
+        ArrayList<Activity> filteredList = activityList.filterByTimespan(TimeSpan.WEEKLY);
         assertEquals(filteredList.get(0), activitySecond);
         assertEquals(filteredList.get(1), activityFirst);
-        filteredList = activityList.filterByTimespan(Timespan.DAILY);
+        filteredList = activityList.filterByTimespan(TimeSpan.DAILY);
         assertEquals(filteredList.get(0), activitySecond);
         assertEquals(filteredList.size(), 1);
     }
@@ -59,28 +59,28 @@ class ActivityListTest {
     @Test
     void getTotalDistance_activity_totalDistance() {
         int expected = 2 * DISTANCE;
-        int actual = activityList.getTotalDistance(Activity.class, Timespan.WEEKLY);
+        int actual = activityList.getTotalDistance(Activity.class, TimeSpan.WEEKLY);
         assertEquals(expected, actual);
     }
 
     @Test
     void getTotalDistance_run_zero() {
         int expected = 0;
-        int actual = activityList.getTotalDistance(Run.class, Timespan.WEEKLY);
+        int actual = activityList.getTotalDistance(Run.class, TimeSpan.WEEKLY);
         assertEquals(expected, actual);
     }
 
     @Test
     void getTotalDuration_activity_totalTime() {
         int expected = 2 * DURATION.toSecondOfDay();
-        int actual = activityList.getTotalDuration(Activity.class, Timespan.WEEKLY);
+        int actual = activityList.getTotalDuration(Activity.class, TimeSpan.WEEKLY);
         assertEquals(expected, actual);
     }
 
     @Test
     void getTotalDuration_run_zero() {
         int expected = 0;
-        int actual = activityList.getTotalDuration(Run.class, Timespan.WEEKLY);
+        int actual = activityList.getTotalDuration(Run.class, TimeSpan.WEEKLY);
         assertEquals(expected, actual);
     }
 }

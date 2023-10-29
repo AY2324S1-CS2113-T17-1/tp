@@ -604,7 +604,7 @@ public class Parser {
 
         final ActivityGoal.Sport sportParsed = parseSport(sport);
         final ActivityGoal.GoalType typeParsed = parseGoalType(type);
-        final Goal.Timespan periodParsed = parsePeriod(period);
+        final Goal.TimeSpan periodParsed = parsePeriod(period);
         final int targetParsed = parseTarget(target);
 
         return new ActivityGoal(periodParsed, typeParsed, sportParsed, targetParsed);
@@ -644,9 +644,9 @@ public class Parser {
      * @return periodParsed     The parsed Period object.
      * @throws AthletiException If the input format is invalid.
      */
-    public static Goal.Timespan parsePeriod(String period) throws AthletiException {
+    public static Goal.TimeSpan parsePeriod(String period) throws AthletiException {
         try {
-            return Goal.Timespan.valueOf(period.toUpperCase());
+            return Goal.TimeSpan.valueOf(period.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new AthletiException(Message.MESSAGE_PERIOD_INVALID);
         }
