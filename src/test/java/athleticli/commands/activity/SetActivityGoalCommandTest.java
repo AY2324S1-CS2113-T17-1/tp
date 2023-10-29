@@ -1,7 +1,7 @@
 package athleticli.commands.activity;
 
 import athleticli.data.Data;
-import athleticli.data.Goal.Timespan;
+import athleticli.data.Goal.TimeSpan;
 import athleticli.data.activity.ActivityGoal;
 import athleticli.data.activity.Run;
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +24,7 @@ class SetActivityGoalCommandTest {
 
         ActivityGoal.GoalType goalType = ActivityGoal.GoalType.DISTANCE;
         ActivityGoal.Sport sport = ActivityGoal.Sport.RUNNING;
-        Timespan period = Timespan.WEEKLY;
+        TimeSpan period = TimeSpan.WEEKLY;
         LocalDate date = LocalDate.now();
         activityGoal = new ActivityGoal(period, goalType, sport, 10000);
 
