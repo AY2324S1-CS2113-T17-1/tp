@@ -296,13 +296,6 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- The following goal has been deleted:
-
- fats intake progress: (0/1)
-
-____________________________________________________________
-
-> ____________________________________________________________
  OOPS!!! Please provide a positive integer.
 
 ____________________________________________________________
@@ -321,22 +314,6 @@ ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
  "calories", "protein", "carb", "fats" followed by the target value.
 	e.g. calories/100
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! Diet goal for fats is not present. Please add the goal before editing it!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -354,9 +331,33 @@ ____________________________________________________________
 > ____________________________________________________________
  These are your goal(s):
 
- 	1. calories intake progress: (0/1)
+ 	1. fats intake progress: (0/100)
 
- Now you have 1 diet goal(s).
+	2. calories intake progress: (0/1)
+
+ Now you have 2 diet goal(s).
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your goal(s):
+
+ 	1. fats intake progress: (0/100)
+
+	2. calories intake progress: (0/1)
+
+ Now you have 2 diet goal(s).
 ____________________________________________________________
 
 > ____________________________________________________________
