@@ -819,7 +819,7 @@ public class Parser {
         }
         try {
             String[] commandArgs;
-            if (! commandArgsString.contains(" ")){
+            if (!commandArgsString.contains(" ")){
                 throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
             }
 
