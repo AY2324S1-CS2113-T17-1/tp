@@ -5,9 +5,6 @@ import athleticli.data.StorableList;
 
 import static athleticli.storage.Config.PATH_DIET_GOAL;
 
-
->>>>>>> master
-
 /**
  * Represents a list of diet goals.
  */
