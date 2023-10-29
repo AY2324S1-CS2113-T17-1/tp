@@ -3,14 +3,13 @@ package athleticli.data.diet;
 import athleticli.data.Data;
 import athleticli.data.Goal;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
  * Represents a diet goal.
  */
-public class DietGoal extends Goal implements Serializable {
+public class DietGoal extends Goal {
     private String nutrient;
     private int targetValue;
 

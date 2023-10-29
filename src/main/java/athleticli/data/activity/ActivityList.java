@@ -1,15 +1,24 @@
 package athleticli.data.activity;
 
-import java.io.Serializable;
+import static athleticli.storage.Config.PATH_ACTIVITY;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
 import athleticli.data.Findable;
+import athleticli.data.StorableList;
 import athleticli.data.Goal;
 
-public class ActivityList extends ArrayList<Activity> implements Serializable, Findable {
+public class ActivityList extends StorableList<Activity> implements Findable {
+    /**
+     * Constructs an empty activity list.
+     */
+    public ActivityList() {
+        super(PATH_ACTIVITY);
+    }
+
     /**
      * Returns a list of activities matching the date.
      *
@@ -83,4 +92,27 @@ public class ActivityList extends ArrayList<Activity> implements Serializable, F
         return movingTime;
     }
 
+    /**
+     * Parses an activity from a string.
+     *
+     * @param s The string to be parsed.
+     * @return The activity parsed from the string.
+     */
+    @Override
+    public Activity parse(String s) {
+        // TODO
+        return null;
+    }
+
+    /**
+     * Unparses an activity to a string.
+     *
+     * @param activity The activity to be parsed.
+     * @return The string unparsed from the activity.
+     */
+    @Override
+    public String unparse(Activity activity) {
+        // TODO
+        return null;
+    }
 }

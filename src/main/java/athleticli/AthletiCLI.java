@@ -10,7 +10,6 @@ import athleticli.commands.Command;
 import athleticli.commands.SaveCommand;
 import athleticli.data.Data;
 import athleticli.exceptions.AthletiException;
-import athleticli.storage.Storage;
 import athleticli.ui.Parser;
 import athleticli.ui.Ui;
 
@@ -19,15 +18,13 @@ import athleticli.ui.Ui;
  */
 public class AthletiCLI {
     private static Logger logger = Logger.getLogger(AthletiCLI.class.getName());
-    private static Ui ui;
-    private static Data data;
+    private static Ui ui = Ui.getInstance();
+    private static Data data = Data.getInstance();
 
     /**
      * Constructs an <code>AthletiCLI</code> object.
      */
     private AthletiCLI() {
-        ui = Ui.getInstance();
-        data = Storage.load();
         LogManager.getLogManager().reset();
         try {
             logger.addHandler(new FileHandler("%t/athleticli-log.txt"));
@@ -60,6 +57,7 @@ public class AthletiCLI {
      */
     private void run() {
         logger.entering(getClass().getName(), "run");
+        data.load();
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {
