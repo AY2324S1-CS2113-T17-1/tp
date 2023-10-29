@@ -1,5 +1,7 @@
 package athleticli.data.diet;
 
+import athleticli.data.Data;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -19,11 +21,10 @@ public class DietGoalList extends ArrayList<DietGoal> implements Serializable {
      *
      * @return A string representation of the diet goal list.
      */
-    @Override
-    public String toString() {
+    public String toString(Data data) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < size(); i++) {
-            result.append("\t").append(i + 1).append(". ").append(get(i).toString());
+            result.append("\t").append(i + 1).append(". ").append(get(i).toString(data));
             if (i != size() - 1) {
                 result.append("\n");
             }

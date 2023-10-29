@@ -42,8 +42,8 @@ public class DietList extends ArrayList<Diet> implements Serializable, Findable 
      * @return A list of diets matching the date.
      */
     @Override
-    public ArrayList<Object> find(LocalDate date) {
-        ArrayList<Object> result = new ArrayList<>();
+    public ArrayList<Diet> find(LocalDate date) {
+        ArrayList<Diet> result = new ArrayList<>();
         for (Diet diet : this) {
             if (diet.getDateTime().toLocalDate().equals(date)) {
                 result.add(diet);

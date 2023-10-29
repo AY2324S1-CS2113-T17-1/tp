@@ -809,45 +809,23 @@ public class Parser {
     }
 
     /**
-     * @param commandArgs User provided data to create goals for the nutrients defined.
+     * @param commandArgsString User provided data to create goals for the nutrients defined.
      * @return a list of diet goals for further checking in the Set Diet Goal Command.
      * @throws AthletiException Invalid input by the user.
      */
-    public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgs) throws AthletiException {
-        if (commandArgs.trim().isEmpty()) {
+    public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgsString) throws AthletiException {
+        if (commandArgsString.trim().isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
         }
         try {
-            String[] nutrientAndTargetValues;
-            if (commandArgs.contains(" ")) {
-                nutrientAndTargetValues = commandArgs.split("\\s+");
-            } else {
-                nutrientAndTargetValues = new String[]{commandArgs};
+            String[] commandArgs;
+            if (! commandArgsString.contains(" ")){
+                throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
             }
-            String[] nutrientAndTargetValue;
-            String nutrient;
-            int targetValue;
 
-            ArrayList<DietGoal> dietGoals = new ArrayList<>();
-            Set<String> recordedNutrients = new HashSet<>();
+            commandArgs = commandArgsString.split("\\s+");
 
-            for (int i = 0; i < nutrientAndTargetValues.length; i++) {
-                nutrientAndTargetValue = nutrientAndTargetValues[i].split("/");
-                nutrient = nutrientAndTargetValue[0];
-                targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
-                if (targetValue == 0) {
-                    throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
-                }
-                if (!NutrientVerifier.verify(nutrient)) {
-                    throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
-                }
-                if (recordedNutrients.contains(nutrient)) {
-                    throw new AthletiException(Message.MESSSAGE_DIETGOAL_REPEATED_NUTRIENT);
-                }
-                DietGoal dietGoal = new DietGoal(nutrient, targetValue);
-                dietGoals.add(dietGoal);
-                recordedNutrients.add(nutrient);
-            }
+            ArrayList<DietGoal> dietGoals = initializeIntermmediateDietGoals(commandArgs);
 
             return dietGoals;
         } catch (NumberFormatException e) {
@@ -855,6 +833,36 @@ public class Parser {
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
         }
+    }
+
+    private static ArrayList<DietGoal> initializeIntermmediateDietGoals(String[] commandArgs) throws AthletiException {
+        String[] nutrientAndTargetValue;
+        String nutrient;
+        int targetValue;
+
+        Goal.Timespan timespan = parsePeriod(commandArgs[0]);
+
+        ArrayList<DietGoal> dietGoals = new ArrayList<>();
+        Set<String> recordedNutrients = new HashSet<>();
+
+        for (int i = 1; i < commandArgs.length; i++) {
+            nutrientAndTargetValue = commandArgs[i].split("/");
+            nutrient = nutrientAndTargetValue[0];
+            targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
+            if (targetValue == 0) {
+                throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
+            }
+            if (!NutrientVerifier.verify(nutrient)) {
+                throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
+            }
+            if (recordedNutrients.contains(nutrient)) {
+                throw new AthletiException(Message.MESSSAGE_DIETGOAL_REPEATED_NUTRIENT);
+            }
+            DietGoal dietGoal = new DietGoal(timespan, nutrient, targetValue);
+            dietGoals.add(dietGoal);
+            recordedNutrients.add(nutrient);
+        }
+        return dietGoals;
     }
 
     /**

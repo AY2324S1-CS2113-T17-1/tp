@@ -1,41 +1,30 @@
 package athleticli.data.diet;
 
+import athleticli.data.Data;
+import athleticli.data.Goal;
+
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 /**
  * Represents a diet goal.
  */
-public class DietGoal implements Serializable {
-    private String nutrients;
+public class DietGoal extends Goal implements Serializable {
+    private String nutrient;
     private int targetValue;
-    private int currentValue;
-    private boolean isGoalAchieved;
 
     /**
      * Constructs a diet goal with no current value.
      *
-     * @param nutrients   The nutrients of the diet goal.
+     * @param timespan    The timespan of the diet goal.
+     * @param nutrient    The nutrients of the diet goal.
      * @param targetValue The target value of the diet goal.
      */
-    public DietGoal(String nutrients, int targetValue) {
-        this.nutrients = nutrients;
+    public DietGoal(Timespan timespan, String nutrient, int targetValue) {
+        super(timespan);
+        this.nutrient = nutrient;
         this.targetValue = targetValue;
-        currentValue = 0;
-        isGoalAchieved = false;
-    }
-
-    /**
-     * Constructs a diet goal with a current value.
-     *
-     * @param nutrients    The nutrients of the diet goal.
-     * @param targetValue  The target value of the diet goal.
-     * @param currentValue The current value of the diet goal.
-     */
-    public DietGoal(String nutrients, int targetValue, int currentValue) {
-        this.nutrients = nutrients;
-        this.targetValue = targetValue;
-        this.currentValue = currentValue;
-        isGoalAchieved = currentValue >= targetValue;
     }
 
     /**
@@ -43,17 +32,17 @@ public class DietGoal implements Serializable {
      *
      * @return The nutrients of the diet goal.
      */
-    public String getNutrients() {
-        return nutrients;
+    public String getNutrient() {
+        return nutrient;
     }
 
     /**
      * Sets the nutrients of the diet goal.
      *
-     * @param nutrients The nutrients of the diet goal.
+     * @param nutrient The nutrient of the diet goal.
      */
-    public void setNutrients(String nutrients) {
-        this.nutrients = nutrients;
+    public void setNutrient(String nutrient) {
+        this.nutrient = nutrient;
     }
 
     /**
@@ -72,26 +61,57 @@ public class DietGoal implements Serializable {
      */
     public void setTargetValue(int targetValue) {
         this.targetValue = targetValue;
-        setIsGoalAchieved(currentValue >= targetValue);
     }
 
     /**
-     * Returns the current value of the diet goal.
+     * Returns the current value of the diet goal from dietList.
      *
      * @return The current value of the diet goal.
      */
-    public int getCurrentValue() {
+    public int getCurrentValue(Data data) {
+        return updateCurrentValue(data);
+    }
+
+    private int updateCurrentValue(Data data) {
+        int currentValue = 0;
+        DietList diets = data.getDiets();
+        long numDays = getTimespan().getDays();
+        ArrayList<LocalDate> dates = getPastDates((int) numDays);
+        ArrayList<Diet> dietRecords;
+        for (LocalDate date : dates) {
+            dietRecords = diets.find(date);
+            for (Diet diet : dietRecords) {
+                switch (nutrient) {
+                case "fats":
+                    currentValue += diet.getFat();
+                    break;
+                case "calories":
+                    currentValue += diet.getProtein();
+                    break;
+                case "protein":
+                    currentValue += diet.getProtein();
+                    break;
+                case "carb":
+                    currentValue += diet.getCarb();
+                    break;
+                default:
+                    currentValue += 0;
+
+                }
+            }
+        }
         return currentValue;
     }
 
-    /**
-     * Sets the current value of the diet goal.
-     *
-     * @param currentValue The current value of the diet goal.
-     */
-    public void setCurrentValue(int currentValue) {
-        this.currentValue = currentValue;
-        setIsGoalAchieved(currentValue >= targetValue);
+    private ArrayList<LocalDate> getPastDates(int numDays) {
+        ArrayList<LocalDate> pastDates = new ArrayList<>();
+        LocalDate currentDate = LocalDate.now();
+
+        for (int i = 0; i < numDays; i++) {
+            LocalDate pastDate = currentDate.minusDays(i);
+            pastDates.add(pastDate);
+        }
+        return pastDates;
     }
 
     /**
@@ -99,17 +119,9 @@ public class DietGoal implements Serializable {
      *
      * @return Whether the diet goal is achieved.
      */
-    public boolean getIsGoalAchieved() {
-        return isGoalAchieved;
-    }
-
-    /**
-     * Sets whether the diet goal is achieved.
-     *
-     * @param isGoalAchieved Whether the diet goal is achieved.
-     */
-    private void setIsGoalAchieved(boolean isGoalAchieved) {
-        this.isGoalAchieved = isGoalAchieved;
+    public boolean isAchieved(Data data) {
+        int currentValue = getCurrentValue(data);
+        return currentValue >= targetValue;
     }
 
     /**
@@ -117,8 +129,7 @@ public class DietGoal implements Serializable {
      *
      * @return The string representation of the diet goal.
      */
-    @Override
-    public String toString() {
-        return nutrients + " intake progress: (" + currentValue + "/" + targetValue + ")\n";
+    public String toString(Data data) {
+        return nutrient + " intake progress: (" + getCurrentValue(data) + "/" + targetValue + ")\n";
     }
 }

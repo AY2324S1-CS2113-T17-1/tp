@@ -16,7 +16,7 @@ public class SleepList extends ArrayList<Sleep> implements Findable {
      * @return A list of sleeps matching the date.
      */
     @Override
-    public ArrayList<Object> find(LocalDate date) {
+    public ArrayList<Sleep> find(LocalDate date) {
         // TODO
         return null;
     }
