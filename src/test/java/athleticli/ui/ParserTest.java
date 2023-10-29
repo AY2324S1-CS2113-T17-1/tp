@@ -161,13 +161,13 @@ class ParserTest {
 
     @Test
     void parseCommand_setDietGoalCommand_expectSetDietGoalCommand() throws AthletiException {
-        final String setDietGoalCommandString = "set-diet-goal calories/1 protein/2 carb/3";
+        final String setDietGoalCommandString = "set-diet-goal weekly calories/1 protein/2 carb/3";
         assertInstanceOf(SetDietGoalCommand.class, parseCommand(setDietGoalCommandString));
     }
 
     @Test
     void parseCommand_editDietCommand_expectEditDietGoalCommand() throws AthletiException {
-        final String editDietGoalCommandString = "edit-diet-goal calories/1 protein/2 carb/3";
+        final String editDietGoalCommandString = "edit-diet-goal weekly calories/1 protein/2 carb/3";
         assertInstanceOf(EditDietGoalCommand.class, parseCommand(editDietGoalCommandString));
     }
 

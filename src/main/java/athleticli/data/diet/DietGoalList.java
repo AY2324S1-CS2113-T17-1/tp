@@ -1,8 +1,9 @@
 package athleticli.data.diet;
 
-import static athleticli.storage.Config.PATH_DIET_GOAL;
-
+import athleticli.data.Data;
 import athleticli.data.StorableList;
+
+import static athleticli.storage.Config.PATH_DIET_GOAL;
 
 /**
  * Represents a list of diet goals.
@@ -20,11 +21,10 @@ public class DietGoalList extends StorableList<DietGoal> {
      *
      * @return A string representation of the diet goal list.
      */
-    @Override
-    public String toString() {
+    public String toString(Data data) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < size(); i++) {
-            result.append("\t").append(i + 1).append(". ").append(get(i).toString());
+            result.append("\t").append(i + 1).append(". ").append(get(i).toString(data));
             if (i != size() - 1) {
                 result.append("\n");
             }
