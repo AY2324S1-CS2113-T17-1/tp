@@ -41,7 +41,7 @@ public class EditDietGoalCommand extends Command {
             boolean isDietGoalExisted = false;
             for (DietGoal dietGoal : currentDietGoals) {
                 boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
-                boolean isTimeSpanSimilar = userDietGoal.getTimespan().equals(dietGoal.getTimespan());
+                boolean isTimeSpanSimilar = userDietGoal.getTimeSpan().equals(dietGoal.getTimeSpan());
                 if (isNutrientSimilar && isTimeSpanSimilar) {
                     isDietGoalExisted = true;
                 }

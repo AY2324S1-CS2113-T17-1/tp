@@ -21,7 +21,7 @@ class ListDietGoalCommandTest {
     void setUp() {
         data = new Data();
 
-        dietGoalFats = new DietGoal(Goal.Timespan.WEEKLY,"fats", 10000);
+        dietGoalFats = new DietGoal(Goal.TimeSpan.WEEKLY,"fats", 10000);
 
         filledInputDietGoals = new ArrayList<>();
         filledInputDietGoals.add(dietGoalFats);

@@ -840,7 +840,7 @@ public class Parser {
         String nutrient;
         int targetValue;
 
-        Goal.Timespan timespan = parsePeriod(commandArgs[0]);
+        Goal.TimeSpan timespan = parsePeriod(commandArgs[0]);
 
         ArrayList<DietGoal> dietGoals = new ArrayList<>();
         Set<String> recordedNutrients = new HashSet<>();

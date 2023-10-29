@@ -27,9 +27,9 @@ class EditDietGoalCommandTest {
     void setUp() {
         data = new Data();
 
-        dietGoalCarb = new DietGoal(Goal.Timespan.WEEKLY, "carb", 10000);
-        dietGoalFats = new DietGoal(Goal.Timespan.WEEKLY, "fats", 10000);
-        newDietGoalFats = new DietGoal(Goal.Timespan.WEEKLY, "fats", 10);
+        dietGoalCarb = new DietGoal(Goal.TimeSpan.WEEKLY, "carb", 10000);
+        dietGoalFats = new DietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
+        newDietGoalFats = new DietGoal(Goal.TimeSpan.WEEKLY, "fats", 10);
 
         emptyInputDietGoals = new ArrayList<>();
         filledInputDietGoals = new ArrayList<>();

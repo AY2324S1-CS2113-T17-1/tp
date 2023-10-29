@@ -20,7 +20,7 @@ public class DietGoal extends Goal {
      * @param nutrient    The nutrients of the diet goal.
      * @param targetValue The target value of the diet goal.
      */
-    public DietGoal(Timespan timespan, String nutrient, int targetValue) {
+    public DietGoal(TimeSpan timespan, String nutrient, int targetValue) {
         super(timespan);
         this.nutrient = nutrient;
         this.targetValue = targetValue;
@@ -74,8 +74,8 @@ public class DietGoal extends Goal {
     private int updateCurrentValue(Data data) {
         int currentValue = 0;
         DietList diets = data.getDiets();
-        long numDays = getTimespan().getDays();
-        ArrayList<LocalDate> dates = getPastDates((int) numDays);
+        int numDays = getTimeSpan().getDays();
+        ArrayList<LocalDate> dates = getPastDates(numDays);
         ArrayList<Diet> dietRecords;
         for (LocalDate date : dates) {
             dietRecords = diets.find(date);

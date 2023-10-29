@@ -25,7 +25,7 @@ class DietGoalTest {
 
     @BeforeEach
     void setUp() {
-        proteinGoal = new DietGoal(Goal.Timespan.WEEKLY, "protein", 10000);
+        proteinGoal = new DietGoal(Goal.TimeSpan.WEEKLY, "protein", 10000);
         data = new Data();
         diet = new Diet(calories, protein, carb, fats, dateTime);
 

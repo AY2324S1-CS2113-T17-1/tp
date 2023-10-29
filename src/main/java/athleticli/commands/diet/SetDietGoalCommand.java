@@ -40,7 +40,7 @@ public class SetDietGoalCommand extends Command {
         for (DietGoal dietGoal : currentDietGoals) {
             for (DietGoal userDietGoal : userNewDietGoals) {
                 boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
-                boolean isTimeSpanSimilar = userDietGoal.getTimespan().equals(dietGoal.getTimespan());
+                boolean isTimeSpanSimilar = userDietGoal.getTimeSpan().equals(dietGoal.getTimeSpan());
                 if (isNutrientSimilar && isTimeSpanSimilar) {
                     throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_ALREADY_EXISTED,
                             dietGoal.getNutrient()));
