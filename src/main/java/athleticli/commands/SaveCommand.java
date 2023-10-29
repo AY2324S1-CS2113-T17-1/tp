@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import athleticli.data.Data;
 import athleticli.exceptions.AthletiException;
-import athleticli.storage.Storage;
 import athleticli.ui.Message;
 
 public class SaveCommand extends Command {
@@ -19,7 +18,7 @@ public class SaveCommand extends Command {
     public String[] execute(Data data) throws AthletiException {
         assert data != null;
         try {
-            Storage.save(data);
+            data.save();
         } catch (IOException e) {
             throw new AthletiException(Message.MESSAGE_IO_EXCEPTION);
         }

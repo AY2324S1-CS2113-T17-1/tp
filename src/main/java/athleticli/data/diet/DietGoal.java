@@ -1,11 +1,9 @@
 package athleticli.data.diet;
 
-import java.io.Serializable;
-
 /**
  * Represents a diet goal.
  */
-public class DietGoal implements Serializable {
+public class DietGoal {
     private String nutrients;
     private int targetValue;
     private int currentValue;

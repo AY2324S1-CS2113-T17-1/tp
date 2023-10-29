@@ -1,13 +1,12 @@
 package athleticli.data.activity;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 /**
  * Represents a swimming activity consisting of relevant evaluation data.
  */
-public class Swim extends Activity implements Serializable {
+public class Swim extends Activity {
     private final int laps;
     private final SwimmingStyle style;
     private final int averageLapTime;
