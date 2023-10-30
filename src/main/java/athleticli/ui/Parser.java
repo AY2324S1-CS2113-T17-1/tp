@@ -40,7 +40,6 @@ import athleticli.exceptions.AthletiException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,9 +52,6 @@ import java.util.regex.Pattern;
  * Defines the basic methods for command parser.
  */
 public class Parser {
-    private static final DateTimeFormatter sleepTimeFormatter =
-            DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
      * while the second part is the command arguments. The second part can be empty.
@@ -704,32 +700,26 @@ public class Parser {
      */
     public static AddSleepCommand parseSleepAdd(String commandArgs) throws AthletiException {
 
-        int startMarkerPos = commandArgs.indexOf(Parameter.START_TIME_SEPARATOR);
-        int endMarkerPos = commandArgs.indexOf(Parameter.END_TIME_SEPARATOR);
+        final int startTimeIndex = commandArgs.indexOf(Parameter.START_TIME_SEPARATOR);
+        final int endTimeIndex = commandArgs.indexOf(Parameter.END_TIME_SEPARATOR);
 
-        if (startMarkerPos == -1 || endMarkerPos == -1 || startMarkerPos > endMarkerPos) {
+        if (startTimeIndex == -1 || endTimeIndex == -1 || startTimeIndex > endTimeIndex) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
-        String startTimeStr =
-                commandArgs.substring(startMarkerPos + Parameter.START_TIME_SEPARATOR.length(), endMarkerPos)
+        final String startTimeStr =
+                commandArgs.substring(startTimeIndex + Parameter.START_TIME_SEPARATOR.length(), endTimeIndex)
                         .trim();
-        String endTimeStr =
-                commandArgs.substring(endMarkerPos + Parameter.END_TIME_SEPARATOR.length()).trim();
+        final String endTimeStr =
+                commandArgs.substring(endTimeIndex + Parameter.END_TIME_SEPARATOR.length()).trim();
 
         if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
         // Convert the strings to LocalDateTime
-        LocalDateTime startTime;
-        LocalDateTime endTime;
-        try {
-            startTime = LocalDateTime.parse(startTimeStr, sleepTimeFormatter);
-            endTime = LocalDateTime.parse(endTimeStr, sleepTimeFormatter);
-        } catch (DateTimeParseException e) {
-            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT);
-        }
+        final LocalDateTime startTime = parseDateTime(startTimeStr);
+        final LocalDateTime endTime = parseDateTime(endTimeStr);
 
         //Check if the start time is before the end time
         if (startTime.isAfter(endTime)) {
@@ -766,25 +756,25 @@ public class Parser {
      * @throws AthletiException
      */
     public static EditSleepCommand parseSleepEdit(String commandArgs) throws AthletiException {
-        int startMarkerPos = commandArgs.indexOf(Parameter.START_TIME_SEPARATOR);
-        int endMarkerPos = commandArgs.indexOf(Parameter.END_TIME_SEPARATOR);
+        final int startTimeIndex = commandArgs.indexOf(Parameter.START_TIME_SEPARATOR);
+        final int endTimeIndex = commandArgs.indexOf(Parameter.END_TIME_SEPARATOR);
         int index;
 
-        if (startMarkerPos == -1 || endMarkerPos == -1 || startMarkerPos > endMarkerPos) {
+        if (startTimeIndex == -1 || endTimeIndex == -1 || startTimeIndex > endTimeIndex) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
         try {
-            index = Integer.parseInt(commandArgs.substring(0, startMarkerPos).trim());
+            index = Integer.parseInt(commandArgs.substring(0, startTimeIndex).trim());
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX);
         }
 
         String startTimeStr =
-                commandArgs.substring(startMarkerPos + Parameter.START_TIME_SEPARATOR.length(), endMarkerPos)
+                commandArgs.substring(startTimeIndex + Parameter.START_TIME_SEPARATOR.length(), endTimeIndex)
                         .trim();
         String endTimeStr =
-                commandArgs.substring(endMarkerPos + Parameter.END_TIME_SEPARATOR.length()).trim();
+                commandArgs.substring(endTimeIndex + Parameter.END_TIME_SEPARATOR.length()).trim();
 
         if (startTimeStr.isEmpty() || endTimeStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
@@ -793,12 +783,8 @@ public class Parser {
         // Convert the strings to LocalDateTime
         LocalDateTime startTime;
         LocalDateTime endTime;
-        try {
-            startTime = LocalDateTime.parse(startTimeStr, sleepTimeFormatter);
-            endTime = LocalDateTime.parse(endTimeStr, sleepTimeFormatter);
-        } catch (DateTimeParseException e) {
-            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT);
-        }
+        startTime = parseDateTime(startTimeStr);
+        endTime = parseDateTime(endTimeStr);
 
         //Check if the start time is before the end time
         if (startTime.isAfter(endTime)) {

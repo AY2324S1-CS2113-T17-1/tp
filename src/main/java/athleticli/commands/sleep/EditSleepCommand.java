@@ -62,8 +62,8 @@ public class EditSleepCommand extends Command {
         String returnMessage = String.format(Message.MESSAGE_SLEEP_EDIT_RETURN, index);
         return new String[] {
             returnMessage,
-            "original: " + oldSleep.toString(),
-            "to new: " + newSleep.toString(),
+            "original: " + oldSleep,
+            "to new: " + newSleep
         };
 
     }

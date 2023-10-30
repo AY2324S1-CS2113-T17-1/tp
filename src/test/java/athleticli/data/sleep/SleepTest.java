@@ -21,7 +21,7 @@ public class SleepTest {
     @Test
     public void testToString() {
         Sleep sleep = new Sleep(from, to);
-        String expected = "sleep record from 17-10-2023 22:00 to 18-10-2023 06:00";
+        String expected = "sleep record from 2023-10-17 22:10 to 2023-10-18 06:10";
         assertEquals(expected, sleep.toString());
     }
 

@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  */
 public class Sleep {
 
-    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-YYYY HH:mm");
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("YYYY-MM-dd HH:MM");
 
     private LocalDateTime from;
     private LocalDateTime to;

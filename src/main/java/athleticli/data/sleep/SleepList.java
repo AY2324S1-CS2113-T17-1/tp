@@ -11,7 +11,7 @@ import athleticli.data.StorableList;
 /**
  * Represents a list of sleep records.
  */
-public class SleepList extends StorableList<Sleep> implements Findable {
+public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
     /**
      * Constructs a sleep list with its storage path.
      */
