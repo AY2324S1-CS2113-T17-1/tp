@@ -47,7 +47,7 @@ public class EditDietGoalCommand extends Command {
                 }
             }
             if (!isDietGoalExisted) {
-                throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_NOT_EXISTED,
+                throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_NOT_EXISTED,
                         userDietGoal.getNutrient()));
             }
         }
@@ -65,7 +65,7 @@ public class EditDietGoalCommand extends Command {
             }
         }
         int dietGoalNum = currentDietGoals.size();
-        return new String[]{Message.MESSAGE_DIETGOAL_LIST_HEADER, currentDietGoals.toString(data),
-                String.format(Message.MESSAGE_DIETGOAL_COUNT, dietGoalNum)};
+        return new String[]{Message.MESSAGE_DIET_GOAL_LIST_HEADER, currentDietGoals.toString(data),
+                String.format(Message.MESSAGE_DIET_GOAL_COUNT, dietGoalNum)};
     }
 }
