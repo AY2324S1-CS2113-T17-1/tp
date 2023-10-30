@@ -97,8 +97,8 @@ public class Message {
 
     public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
             "must be a positive integer!";
-    public static final String MESSAGE_DIET_GOAL_INVALID_NUTRIENT = "Key word to nutrients goals has to be one of the " +
-            "following: \"calories\", \"protein\", \"carb\", \"fats\"!";
+    public static final String MESSAGE_DIET_GOAL_INVALID_NUTRIENT = "Key word to nutrients goals has " +
+            "to be one of the following: \"calories\", \"protein\", \"carb\", \"fats\"!";
     public static final String MESSAGE_DIET_GOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
             "Please edit the goal instead!";
     public static final String MESSAGE_DIET_GOAL_NOT_EXISTED = "Diet goal for %s is not present. " +
