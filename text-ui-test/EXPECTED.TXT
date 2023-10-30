@@ -4,10 +4,496 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
+
+Activity Management:
+ add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
+ add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
+ add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ delete-activity INDEX
+ list-activity [-d]
+ edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
+ edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
+ edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ find-activity DATE
+
+Diet Management:
+ add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME
+ delete-diet INDEX
+ list-diet
+ find-diet DATE
+
+Sleep Management:
+ add-sleep start/START end/END
+ list-sleep
+ delete-sleep INDEX
+ edit-sleep INDEX start/START end/END
+ find-sleep DATE
+
+Misc:
+ find DATE
+ save
+ bye
+ help [COMMAND]
+
+Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this activity:
+ [Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | October 26, 2023 at 6:00 AM
+ Now you have tracked your first activity. This is just the beginning!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The duration of an activity must be in the format "hh:mm:ss"!
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've added this activity goal:
+ monthly general distance: 10000 / 10000
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this activity:
+ [Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | October 26, 2023 at 6:00 PM
+ You have tracked a total of 2 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this activity:
+ [Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | October 26, 2023 at 6:00 PM
+ You have tracked a total of 3 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify the swimming style using "style/"!
+____________________________________________________________
+
+> ____________________________________________________________
+ Gotcha, I've deleted this activity:
+ [Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | October 26, 2023 at 6:00 PM
+ You have tracked a total of 2 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The activity index does not exist, check your list for the correct index!
+____________________________________________________________
+
+> ____________________________________________________________
+ These are the activities you have tracked so far:
+ 1.[Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | October 26, 2023 at 6:00 PM
+ 2.[Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | October 26, 2023 at 6:00 AM
+____________________________________________________________
+
+> ____________________________________________________________
+ These are the activities you have tracked so far:
+ [Cycle - Evening Ride - October 26, 2023 at 6:00 PM]
+	Distance: 20.00 km                     Elevation Gain: 1000 m
+	Time: 02:00:00                         Avg Speed: 10.00 km/h
+	Calories: 0 kcal                       Max Speed: tbd
+ [Activity - Morning Run - October 26, 2023 at 6:00 AM]
+	Distance: 10.00 km                     Time: 01:00:00
+	Calories: 0 kcal                       ...
+____________________________________________________________
+
+> ____________________________________________________________
+ Ok, I've updated this activity:
+ [Activity] Morning Run | Distance: 12.00 km | Time: 1h 0m | September 1, 2021 at 6:00 AM
+ You have tracked a total of 2 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've added this sleep record:
+ sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
+ Now you have 1 sleep records in the list.
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've added this sleep record:
+ sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+ Now you have 2 sleep records in the list.
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the sleep records in your list:
+
+ 1. sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
+ 2. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify the start time of your sleep before the end time.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Invalid date-time format. Please use dd-MM-yyyy HH:mm.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Invalid date-time format. Please use dd-MM-yyyy HH:mm.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Invalid date-time format. Please use dd-MM-yyyy HH:mm.
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the sleep records in your list:
+
+ 1. sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
+ 2. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've changed this sleep record at index 1:
+ original: sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
+ to new: sleep record from 01-09-2021 23:00 to 02-09-2021 07:00
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify the start time of your sleep before the end time.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the sleep records in your list:
+
+ 1. sleep record from 01-09-2021 23:00 to 02-09-2021 07:00
+ 2. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've deleted this sleep record at index 1: sleep record from 01-09-2021 23:00 to 02-09-2021 07:00
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The index of the sleep record you want to edit is out of bounds.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify the index of the sleep record you want to delete.
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the sleep records in your list:
+
+ 1. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ There are no goals at the moment. Add a diet goal to start.
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The period of an activity must be either "weekly" or "monthly"!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The target value for nutrients must be a positive integer!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The period of an activity must be either "weekly" or "monthly"!
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your goal(s):
+
+ 	1. fats intake progress: (0/1)
+
+	2. calories intake progress: (0/1)
+
+	3. protein intake progress: (0/1)
+
+ Now you have 3 diet goal(s).
+____________________________________________________________
+
+> ____________________________________________________________
+ The following goal has been deleted:
+
+ protein intake progress: (0/1)
+
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please provide a positive integer.
+
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please provide a positive integer.
+
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please provide a positive integer.
+
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please provide a positive integer.
+
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your goal(s):
+
+ 	1. fats intake progress: (0/100)
+
+	2. calories intake progress: (0/1)
+
+ Now you have 2 diet goal(s).
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ "calories", "protein", "carb", "fats" followed by the target value.
+	e.g. calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your goal(s):
+
+ 	1. fats intake progress: (0/100)
+
+	2. calories intake progress: (0/1)
+
+ Now you have 2 diet goal(s).
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ Usage: add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this diet:
+ Calories: 500 Protein: 20 Carb: 50 Fat: 10 Date: September 1, 2021 at 6:00 AM
+ Now you have tracked your first diet. This is just the beginning!
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this diet:
+ Calories: 150 Protein: 50 Carb: 5 Fat: 2 Date: January 4, 2023 at 10:00 AM
+ Now you have tracked a total of 2 diets. Keep grinding!
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this diet:
+ Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+ Now you have tracked a total of 3 diets. Keep grinding!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The calories burned must be a non-negative integer!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The protein intake must be a non-negative integer!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The carbohydrate intake must be a non-negative integer!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The fat intake must be a non-negative integer!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
+____________________________________________________________
+
+> ____________________________________________________________
+ Usage: edit-diet INDEX calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME
+____________________________________________________________
+
+> ____________________________________________________________
+ Ok, I've updated this diet:
+ Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+____________________________________________________________
+
+> ____________________________________________________________
+ Usage: list-diet
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the diets in your list:
+ 1. Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+2. Calories: 150 Protein: 50 Carb: 5 Fat: 2 Date: January 4, 2023 at 10:00 AM
+3. Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+ Now you have tracked a total of 3 diets. Keep grinding!
+____________________________________________________________
+
+> ____________________________________________________________
+ Ok, I've updated this diet:
+ Calories: 5 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! No change requested. Specify the appropriate parameters to edit the diet.
+____________________________________________________________
+
+> ____________________________________________________________
+ Usage: delete-diet INDEX
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The diet index must be a positive integer!
+____________________________________________________________
+
+> ____________________________________________________________
+ Noted. I've removed this diet:
+ Calories: 150 Protein: 50 Carb: 5 Fat: 2 Date: January 4, 2023 at 10:00 AM
+ Now you have tracked a total of 2 diets. Keep grinding!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The diet index is invalid! Please enter a valid diet index!
+____________________________________________________________
+
+> ____________________________________________________________
+ Here are the diets in your list:
+ 1. Calories: 5 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+2. Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+ Now you have tracked a total of 2 diets. Keep grinding!
+____________________________________________________________
+
+> ____________________________________________________________
+ Usage: find-diet DATE
+____________________________________________________________
+
+> ____________________________________________________________
+ I've found these diets:
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The date must be in the format "yyyy-MM-dd"!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The date must be in the format "yyyy-MM-dd"!
+____________________________________________________________
+
+> ____________________________________________________________
  OOPS!!! I'm sorry, but I don't know what that means :-(
 ____________________________________________________________
 
 > ____________________________________________________________
  Bye. Hope to see you again soon!
+____________________________________________________________
+
+____________________________________________________________
+ File saved successfully!
 ____________________________________________________________
 

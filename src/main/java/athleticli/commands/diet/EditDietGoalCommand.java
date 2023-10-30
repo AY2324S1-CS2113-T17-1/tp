@@ -9,8 +9,6 @@ import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Executes the edit-diet-goal commands provided by the user.
@@ -37,20 +35,20 @@ public class EditDietGoalCommand extends Command {
     @Override
     public String[] execute(Data data) throws AthletiException {
         DietGoalList currentDietGoals = data.getDietGoals();
-        Set<String> currentDietGoalsNutrients = new HashSet<>();
 
-        // Populate the set with current diet goal nutrients
-        for (DietGoal dietGoal : currentDietGoals) {
-            currentDietGoalsNutrients.add(dietGoal.getNutrients());
-        }
-
-        // Check if user edited diet goals is in records previously
-        boolean isNutrientGoalInCurrentDietGoalList;
+        // Check if all the userUpdatedDietGoals has already existed.
         for (DietGoal userDietGoal : userUpdatedDietGoals) {
-            String userNewNutrient = userDietGoal.getNutrients();
-            isNutrientGoalInCurrentDietGoalList = currentDietGoalsNutrients.contains(userNewNutrient);
-            if (!isNutrientGoalInCurrentDietGoalList) {
-                throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_NOT_EXISTED, userNewNutrient));
+            boolean isDietGoalExisted = false;
+            for (DietGoal dietGoal : currentDietGoals) {
+                boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
+                boolean isTimeSpanSimilar = userDietGoal.getTimeSpan().equals(dietGoal.getTimeSpan());
+                if (isNutrientSimilar && isTimeSpanSimilar) {
+                    isDietGoalExisted = true;
+                }
+            }
+            if (!isDietGoalExisted) {
+                throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_NOT_EXISTED,
+                        userDietGoal.getNutrient()));
             }
         }
 
@@ -58,7 +56,7 @@ public class EditDietGoalCommand extends Command {
         int newTargetValue;
         for (DietGoal userUpdatedDietGoal : userUpdatedDietGoals) {
             for (DietGoal currentDietGoal : currentDietGoals) {
-                if (!userUpdatedDietGoal.getNutrients().equals(currentDietGoal.getNutrients())) {
+                if (!userUpdatedDietGoal.getNutrient().equals(currentDietGoal.getNutrient())) {
                     continue;
                 }
                 //update new target value to the current goal
@@ -67,7 +65,7 @@ public class EditDietGoalCommand extends Command {
             }
         }
         int dietGoalNum = currentDietGoals.size();
-        return new String[]{Message.MESSAGE_DIETGOAL_LIST_HEADER, currentDietGoals.toString(),
+        return new String[]{Message.MESSAGE_DIETGOAL_LIST_HEADER, currentDietGoals.toString(data),
                 String.format(Message.MESSAGE_DIETGOAL_COUNT, dietGoalNum)};
     }
 }

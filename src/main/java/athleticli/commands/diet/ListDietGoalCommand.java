@@ -28,7 +28,7 @@ public class ListDietGoalCommand extends Command {
         if (dietGoalNum == 0) {
             return new String[]{Message.MESSAGE_DIETGOAL_NONE};
         }
-        return new String[]{Message.MESSAGE_DIETGOAL_LIST_HEADER, dietGoalList.toString(),
+        return new String[]{Message.MESSAGE_DIETGOAL_LIST_HEADER, dietGoalList.toString(data),
                 String.format(Message.MESSAGE_DIETGOAL_COUNT, dietGoalNum)};
     }
 }

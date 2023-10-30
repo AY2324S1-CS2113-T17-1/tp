@@ -1,11 +1,12 @@
 package athleticli.data.activity;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 /**
  * Represents a running activity consisting of relevant evaluation data.
  */
-public class Run extends Activity{
+public class Run extends Activity {
     private final int elevationGain;
     private final double averagePace;
     private final int steps;
@@ -20,7 +21,7 @@ public class Run extends Activity{
      * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
      * @param elevationGain elevation gain in meters
      */
-    public Run(String caption, int movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
+    public Run(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
         super(caption, movingTime, distance, startDateTime);
         this.elevationGain = elevationGain;
         this.averagePace = this.calculateAveragePace();
@@ -32,7 +33,7 @@ public class Run extends Activity{
      * @return average pace of the run in minutes per km
      */
     public double calculateAveragePace() {
-        double time = (double) this.getMovingTime();
+        double time = (double) this.getMovingTime().toSecondOfDay() / 60;
         double distance = (double) this.getDistance() / 1000;
         return time / distance;
     }
@@ -74,7 +75,7 @@ public class Run extends Activity{
         int columnWidth = getColumnWidth();
 
         String header = "[Run - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Avg Pace: " + paceOutput,
+        String firstRow = formatTwoColumns("\t" + distanceOutput, "Avg Pace: " + paceOutput,
                 columnWidth);
         String secondRow = formatTwoColumns("\tMoving Time: " + movingTimeOutput, "Elevation Gain: " +
                 elevationGain + " m", columnWidth);
@@ -82,6 +83,10 @@ public class Run extends Activity{
                         this.steps, columnWidth);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+    }
+
+    public int getElevationGain() {
+        return elevationGain;
     }
 
 }

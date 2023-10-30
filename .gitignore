@@ -15,3 +15,7 @@ bin/
 
 /text-ui-test/ACTUAL.TXT
 text-ui-test/EXPECTED-UNIX.TXT
+/data/
+
+.vscode/
+text-ui-test/data/

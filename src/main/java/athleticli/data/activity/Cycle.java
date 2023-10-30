@@ -1,6 +1,8 @@
 package athleticli.data.activity;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
+import java.time.LocalTime;
 
 /**
  * Represents a cycling activity consisting of relevant evaluation data.
@@ -20,7 +22,7 @@ public class Cycle extends Activity {
      * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
      * @param elevationGain elevation gain in meters
      */
-    public Cycle(String caption, int movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
+    public Cycle(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
         super(caption, movingTime, distance, startDateTime);
         this.elevationGain = elevationGain;
         this.averageSpeed = this.calculateAverageSpeed();
@@ -32,8 +34,8 @@ public class Cycle extends Activity {
      */
     public double calculateAverageSpeed() {
         double dist = (double) this.getDistance();
-        double time = (double) this.getMovingTime();
-        return (dist/1000) / (time/60);
+        double time = (double) this.getMovingTime().toSecondOfDay() / 3600;
+        return (dist/1000) / time;
     }
 
     /**
@@ -44,9 +46,17 @@ public class Cycle extends Activity {
     public String toString() {
         String result = super.toString();
         result = result.replace("[Activity]", "[Cycle]");
-        String speedOutput = String.format("%.2f", this.averageSpeed).replace(",", ".") + " km/h";
+        String speedOutput = generateSpeedStringOutput();
         result = result.replace("Time: ", "Speed: " + speedOutput + " | Time: ");
         return result;
+    }
+
+    /**
+     * Returns a string representation of the average speed of the cycle.
+     * @return a string representation of the average speed of the cycle
+     */
+    public String generateSpeedStringOutput() {
+        return String.format(Locale.ENGLISH, "%.2f", this.averageSpeed) + " km/h";
     }
 
     /**
@@ -57,17 +67,21 @@ public class Cycle extends Activity {
         String startDateTimeOutput = generateStartDateTimeStringOutput();
         String movingTimeOutput = generateMovingTimeStringOutput();
         String distanceOutput = generateDistanceStringOutput();
-        String speedOutput = this.averageSpeed + " km/h";
+        String speedOutput = generateSpeedStringOutput();
 
         int columnWidth = getColumnWidth();
         String header = "[Cycle - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\tDistance: " + distanceOutput, "Elevation Gain: " +
+        String firstRow = formatTwoColumns("\t" + distanceOutput, "Elevation Gain: " +
                         elevationGain + " m", columnWidth);
-        String secondRow = formatTwoColumns("\tMoving Time: " + movingTimeOutput, "Avg Speed: " +
+        String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Avg Speed: " +
                         speedOutput, columnWidth);
         String thirdRow = formatTwoColumns("\tCalories: " + this.getCalories() + " kcal", "Max Speed: " +
                         "tbd", columnWidth);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+    }
+
+    public int getElevationGain() {
+        return this.elevationGain;
     }
 }

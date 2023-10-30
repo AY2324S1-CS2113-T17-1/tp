@@ -19,6 +19,7 @@ public class DeleteDietCommand extends Command {
      * @param index Diet to be added.
      */
     public DeleteDietCommand(int index) {
+        assert index > 0 : "Index cannot be less than 1";
         this.index = index;
     }
 
@@ -31,7 +32,7 @@ public class DeleteDietCommand extends Command {
     public String[] execute(Data data) throws AthletiException {
         DietList dietList = data.getDiets();
         int size = dietList.size();
-        if (index > size || index < 1) {
+        if (index > size) {
             throw new AthletiException(Message.MESSAGE_INVALID_DIET_INDEX);
         }
         Diet oldDiet = dietList.get(index - 1);

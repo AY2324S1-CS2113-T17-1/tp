@@ -7,6 +7,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 import athleticli.commands.Command;
+import athleticli.commands.SaveCommand;
 import athleticli.data.Data;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Parser;
@@ -17,15 +18,13 @@ import athleticli.ui.Ui;
  */
 public class AthletiCLI {
     private static Logger logger = Logger.getLogger(AthletiCLI.class.getName());
-    private Ui ui;
-    private Data data;
+    private static Ui ui = Ui.getInstance();
+    private static Data data = Data.getInstance();
 
     /**
      * Constructs an <code>AthletiCLI</code> object.
      */
-    public AthletiCLI() {
-        ui = new Ui();
-        data = new Data();
+    private AthletiCLI() {
         LogManager.getLogManager().reset();
         try {
             logger.addHandler(new FileHandler("%t/athleticli-log.txt"));
@@ -40,6 +39,15 @@ public class AthletiCLI {
      * @param args  Arguments obtained from the command line.
      */
     public static void main(String[] args) {
+        /* save data when the JVM begins its shutdown sequence */
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            try {
+                final String[] feedback = new SaveCommand().execute(data);
+                ui.showMessages(feedback);
+            } catch (AthletiException e) {
+                ui.showException(e);
+            }
+        }));
         new AthletiCLI().run();
     }
 
@@ -47,8 +55,9 @@ public class AthletiCLI {
      * Displays the welcome interface, continuously reads user input
      * and executes corresponding instructions until exiting.
      */
-    public void run() {
+    private void run() {
         logger.entering(getClass().getName(), "run");
+        data.load();
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {

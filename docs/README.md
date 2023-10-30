@@ -1,4 +1,14 @@
-# AthletiCLI User Guide
+---
+permalink: /
+layout: page
+title: About AthletiCLI
+feature_text: |
+  # AthletiCLI
+  Your all-in-one solution to track, analyse, and optimize your athletic performance.
+feature_image: "https://picsum.photos/1300/400?image=989"
+---
+
+[![](https://github.com/AY2324S1-CS2113-T17-1/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2324S1-CS2113-T17-1/tp/actions)
 
 **AthletiCLI** is your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the
 committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also
@@ -23,28 +33,28 @@ covers dietary habits, sleep metrics, and more.
 
 ### Adding Activities:
 
-`activity`, `run`, `swim`, `cycle`
+`add-activity`, `add-run`, `add-swim`, `add-cycle`
 
 You can record your activities in AtheltiCLI by adding different activities including running, cycling, and swimming.
 
 **Syntax:**
 
-* `activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
-* `run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
-* `swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
-* `cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
+* `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
+* `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
 
 **Parameters:**
 
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in minutes.
-* DISTANCE: The distance of the activity in meters.
+* DISTANCE: The distance of the activity in meters. It must be a positive number.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: YYYY-MM-DD HH:MM
 
 **Examples:**
 
-* `activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
-* `cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
+* `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
 ### Deleting Activities:
 
@@ -109,6 +119,28 @@ You can edit your activities in AthletiCLI by editing the activity at the specif
 * `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
 * `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
+### Setting Goals:
+
+'set-activity-goal'
+
+You can set goals for your activities in AthletiCLI by setting the target distance or duration for a specific sport.
+
+**Syntax**
+* `set-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`
+
+**Parameters**
+
+* SPORT: The sport for which you want to set a goal. It must be one of the following: run, swim, cycle, general.
+* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
+* VALUE: The value of the target. It must be a positive number. For distance, it is in meters. For duration, it is 
+  in minutes.
+
+**Examples**
+
+* `set-activity-goal sport/running type/distance period/weekly target/10000` sets a goal of running 10km per week.
+* `set-activity-goal sport/swimming type/duration period/monthly target/120` sets a goal of swimming for 2 hours per 
+  month.
+
 ## Diet Management
 
 ### Adding Diets:
@@ -160,6 +192,139 @@ You can list all your diets in AtheltiCLI.
 **Examples:**
 
 * `list-diet`
+
+## Diet Goal Management
+
+
+### Adding Diet Goals:
+
+
+`set-diet-goal`
+You can create a new diet goal to track your nutrients intake with AtheltiCLI by adding the nutrients you wish to track and the target value for your nutrient goals.
+
+
+Currently only the following nutrients/metrics are tracked:
+1. Calories
+2. Protein
+3. Carbs
+4. Fats
+
+
+You can set multiple nutrients goals at once with the `set-diet-goal` command.
+
+
+**Syntax:**
+
+
+* `set-diet-goal calories/CALORIES protein/PROTEIN carb/CARBS fat/FAT`
+
+
+**Parameters:**
+
+
+* CALORIES: Your target value for calories intake, in terms of cal.
+* PROTEIN: The target for protein intake, in terms of milligrams.
+* CARB: Your target value for carbohydrate intake, in terms of milligrams.
+* FAT: Your target value for fats intake, in terms of milligrams.
+
+
+You can create one or multiple nutrient goals at once with this command.
+
+
+
+
+**Examples:**
+
+Create multiple nutrients goals:
+* `set-diet-goal calories/500 protein/20 carb/50 fat/10`
+
+
+Create a single calories goal:
+* `set-diet-goal calories/500`
+
+
+### Deleting Diet Goals:
+
+
+`delete-diet-goal`
+You can delete your diet goals in AtheltiCLI by deleting the goal at the specified index.
+This index will be referenced via `list-diet-goal` command.
+
+
+**Syntax:**
+
+
+* `delete-diet-goal INDEX`
+
+
+**Parameters:**
+
+
+* INDEX: The index of the diet goal to be deleted. It must be a positive integer.
+
+
+**Examples:**
+
+
+* `delete-diet-goal 1`
+
+
+### Listing Diet Goals:
+
+
+`list-diet-goals`
+You can list all your diet goals in AtheltiCLI.
+
+
+**Syntax:**
+
+
+* `list-diet-goal`
+
+
+**Examples:**
+
+
+* `list-diet-goal`
+
+
+### Editing Diet Goals:
+
+
+`edit-diet-goal`
+You can edit the target value of your diet goals in AtheltiCLI, redefining the target value for the specified nutrient.
+
+
+This command takes in at least one argument. You are able to edit multiple diet goals target value at once. No repetition is allowed.
+
+
+**Syntax:**
+
+
+* `edit-diet-goal calories/CALORIES protein/PROTEIN carb/CARBS fat/FAT`
+
+
+**Parameters:**
+
+
+* CALORIES: Your target value for calories intake, in terms of cal.
+* PROTEIN: The target for protein intake, in terms of milligrams.
+* CARBS: Your target value for carbohydrate intake, in terms of milligrams.
+* FAT: Your target value for fats intake, in terms of milligrams.
+
+
+You can create one or multiple nutrient goals with this command.
+
+
+**Examples:**
+
+
+Edit multiple nutrients goals:
+* `edit-diet-goal calories/5000 protein/200 carb/500 fat/100`
+
+
+Edit a single calories goal:
+* `edit-diet-goal calories/5000`
 
 ## Sleep Management
 
@@ -243,3 +408,7 @@ Useful links:
 [User Guide](UserGuide.md)
 [Developer Guide](DeveloperGuide.md)
 [About Us](AboutUs.md)
+
+* If you are interested in using AthletiCLI, head over to the [User Guide](UserGuide.html).
+* If you are interested about developing AthletiCLI, the [Developer Guide](DeveloperGuide.html) is a good place to start.
+* If you would like to learn more about our development team, please visit the [About Us](AboutUs.html) page.

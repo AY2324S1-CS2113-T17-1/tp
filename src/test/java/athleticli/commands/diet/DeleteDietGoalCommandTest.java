@@ -1,6 +1,7 @@
 package athleticli.commands.diet;
 
 import athleticli.data.Data;
+import athleticli.data.Goal;
 import athleticli.data.diet.DietGoal;
 import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,12 +19,11 @@ class DeleteDietGoalCommandTest {
     private DietGoal dietGoalFats;
     private ArrayList<DietGoal> filledInputDietGoals;
 
-
     @BeforeEach
     void setUp() {
         data = new Data();
 
-        dietGoalFats = new DietGoal("fats", 10000);
+        dietGoalFats = new DietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
 
         filledInputDietGoals = new ArrayList<>();
         filledInputDietGoals.add(dietGoalFats);
@@ -47,6 +47,18 @@ class DeleteDietGoalCommandTest {
     @Test
     void execute_deleteOneItemFromEmptyDietGoalList_expectAthletiException() {
         DeleteDietGoalCommand deleteDietGoalCommand = new DeleteDietGoalCommand(100);
+        assertThrows(AthletiException.class, () -> deleteDietGoalCommand.execute(data));
+    }
+
+    @Test
+    void execute_integerExceedListSize_expectAthletiException() {
+        SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
+        DeleteDietGoalCommand deleteDietGoalCommand = new DeleteDietGoalCommand(100);
+        try {
+            setDietGoalCommand.execute(data);
+        } catch (AthletiException e) {
+            fail();
+        }
         assertThrows(AthletiException.class, () -> deleteDietGoalCommand.execute(data));
     }
 }
