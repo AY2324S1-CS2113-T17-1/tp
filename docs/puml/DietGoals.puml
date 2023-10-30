@@ -7,7 +7,9 @@ participant ":Parser" as Parser #lightgreen
 participant ":dietGoal" as dietGoal #lightyellow
 participant ":SetDietGoalCommand" as SetDietGoalCommand #lightpink
 participant "temp:dietGoalList" as tempDietGoalList #yellow
+participant "data:Data" as dataData
 participant "data:dietGoalList" as dataDietGoalList #yellow
+
 
 'autonumber
 AthletiCLI++
@@ -29,6 +31,8 @@ Parser -> SetDietGoalCommand++ : SetDietGoalCommand()
 SetDietGoalCommand --> Parser-- : SetDietGoalCommand
 Parser --> AthletiCLI-- : SetDietGoalCommand
 AthletiCLI -> SetDietGoalCommand++ : execute()
+SetDietGoalCommand -> dataData++ : getDietGoals()
+dataData --> SetDietGoalCommand-- : data:dietGoalList
 
     loop number of valid new diet goals
     SetDietGoalCommand -> dataDietGoalList++ : add()
