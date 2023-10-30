@@ -3,11 +3,11 @@
 skinparam Style strictuml
 skinparam SequenceMessageAlignment center
 participant ":AthletiCLI" as AthletiCLI #lightblue
-participant ":Parser" as Parser
-participant ":dietGoal" as dietGoal
-participant ":SetDietGoalCommand" as SetDietGoalCommand
-participant "temp:dietGoalList" as tempDietGoalList
-participant "data:dietGoalList" as dataDietGoalList
+participant ":Parser" as Parser #lightgreen
+participant ":dietGoal" as dietGoal #lightyellow
+participant ":SetDietGoalCommand" as SetDietGoalCommand #lightpink
+participant "temp:dietGoalList" as tempDietGoalList #yellow
+participant "data:dietGoalList" as dataDietGoalList #yellow
 
 'autonumber
 AthletiCLI++
@@ -29,8 +29,12 @@ Parser -> SetDietGoalCommand++ : SetDietGoalCommand()
 SetDietGoalCommand --> Parser-- : SetDietGoalCommand
 Parser --> AthletiCLI-- : SetDietGoalCommand
 AthletiCLI -> SetDietGoalCommand++ : execute()
-SetDietGoalCommand -> dataDietGoalList++ : add()
-dataDietGoalList --> SetDietGoalCommand--
+
+    loop number of valid new diet goals
+    SetDietGoalCommand -> dataDietGoalList++ : add()
+    dataDietGoalList --> SetDietGoalCommand--
+    end
+
 destroy tempDietGoalList
 SetDietGoalCommand --> AthletiCLI-- : messages
 

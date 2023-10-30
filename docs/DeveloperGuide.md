@@ -17,8 +17,6 @@ supported by UML diagrams and short code snippets to illustrate the flow of data
 components.
 
 
-#### [Implemented] Setting Up of Diet Goals
-
 ### Architecture
 
 Given below is a quick overview of main components and how they interact with each other.
