@@ -95,27 +95,27 @@ public class Message {
     public static final String MESSAGE_ACTIVITY_FIRST =
             "Now you have tracked your first activity. This is just the beginning!";
 
-    public static final String MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
+    public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
             "must be a positive integer!";
-    public static final String MESSAGE_DIETGOAL_INVALID_NUTRIENT = "Key word to nutrients goals has to be one of the " +
-            "following: \"calories\", \"protein\", \"carb\", \"fats\"!";
-    public static final String MESSAGE_DIETGOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
+    public static final String MESSAGE_DIET_GOAL_INVALID_NUTRIENT = "Key word to nutrients goals has " +
+            "to be one of the following: \"calories\", \"protein\", \"carb\", \"fats\"!";
+    public static final String MESSAGE_DIET_GOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
             "Please edit the goal instead!";
-    public static final String MESSAGE_DIETGOAL_NOT_EXISTED = "Diet goal for %s is not present. " +
+    public static final String MESSAGE_DIET_GOAL_NOT_EXISTED = "Diet goal for %s is not present. " +
             "Please add the goal before editing it!";
-    public static final String MESSAGE_DIETGOAL_COUNT = "Now you have %d diet goal(s).";
-    public static final String MESSAGE_DIETGOAL_NONE = "There are no goals at the moment. Add a diet goal to start.";
-    public static final String MESSAGE_DIETGOAL_LIST_HEADER = "These are your goal(s):\n";
-    public static final String MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT = "Please provide a positive integer.\n";
-    public static final String MESSAGE_DIETGOAL_EMPTY_DIETGOALLIST = "There is no diet goals at the moment. " +
+    public static final String MESSAGE_DIET_GOAL_COUNT = "Now you have %d diet goal(s).";
+    public static final String MESSAGE_DIET_GOAL_NONE = "There are no goals at the moment. Add a diet goal to start.";
+    public static final String MESSAGE_DIET_GOAL_LIST_HEADER = "These are your goal(s):\n";
+    public static final String MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT = "Please provide a positive integer.\n";
+    public static final String MESSAGE_DIET_GOAL_EMPTY_DIET_GOAL_LIST = "There is no diet goals at the moment. " +
             "Please add one to continue.\n";
-    public static final String MESSAGE_DIETGOAL_DELETE_HEADER = "The following goal has been deleted:\n";
-    public static final String MESSAGE_DIETGOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
+    public static final String MESSAGE_DIET_GOAL_DELETE_HEADER = "The following goal has been deleted:\n";
+    public static final String MESSAGE_DIET_GOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
             "Please enter a value from 1 to %d.";
-    public static final String MESSAGE_DIETGOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
+    public static final String MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
             "to create or edit your diet goals:\n \"calories\", \"protein\", \"carb\", \"fats\" " +
             "followed by the target value.\n" + "\te.g. calories/100";
-    public static final String MESSSAGE_DIETGOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
+    public static final String MESSAGE_DIET_GOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
             "no repetitions for your diet goal nutrients.";
 
     public static final String MESSAGE_DIET_FIRST =

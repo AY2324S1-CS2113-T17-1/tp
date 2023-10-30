@@ -12,14 +12,13 @@ import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
-import athleticli.data.Goal;
 import athleticli.data.activity.Activity;
 import athleticli.data.activity.ActivityGoal;
 import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
 import athleticli.data.activity.ActivityGoal.GoalType;
 import athleticli.data.activity.ActivityGoal.Sport;
-import athleticli.data.Goal.Timespan;
+import athleticli.data.Goal.TimeSpan;
 import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.Test;
 
@@ -162,13 +161,13 @@ class ParserTest {
 
     @Test
     void parseCommand_setDietGoalCommand_expectSetDietGoalCommand() throws AthletiException {
-        final String setDietGoalCommandString = "set-diet-goal calories/1 protein/2 carb/3";
+        final String setDietGoalCommandString = "set-diet-goal weekly calories/1 protein/2 carb/3";
         assertInstanceOf(SetDietGoalCommand.class, parseCommand(setDietGoalCommandString));
     }
 
     @Test
     void parseCommand_editDietCommand_expectEditDietGoalCommand() throws AthletiException {
-        final String editDietGoalCommandString = "edit-diet-goal calories/1 protein/2 carb/3";
+        final String editDietGoalCommandString = "edit-diet-goal weekly calories/1 protein/2 carb/3";
         assertInstanceOf(EditDietGoalCommand.class, parseCommand(editDietGoalCommandString));
     }
 
@@ -754,9 +753,9 @@ class ParserTest {
     void parseActivityGoal_validInput_activityGoalParsed() throws AthletiException {
         String validInput = "sport/running type/distance period/weekly target/10000";
         ActivityGoal actual = Parser.parseActivityGoal(validInput);
-        ActivityGoal expected = new ActivityGoal(Goal.Timespan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
+        ActivityGoal expected = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
                 ActivityGoal.Sport.RUNNING, 10000);
-        assertEquals(actual.getTimespan(), expected.getTimespan());
+        assertEquals(actual.getTimeSpan(), expected.getTimeSpan());
         assertEquals(actual.getGoalType(), expected.getGoalType());
         assertEquals(actual.getSport(), expected.getSport());
         assertEquals(actual.getTargetValue(), expected.getTargetValue());
@@ -787,8 +786,8 @@ class ParserTest {
     @Test
     void parsePeriod_validInput_periodParsed() throws AthletiException {
         String validInput = "weekly";
-        Timespan actual = Parser.parsePeriod(validInput);
-        Timespan expected = Timespan.WEEKLY;
+        TimeSpan actual = Parser.parsePeriod(validInput);
+        TimeSpan expected = TimeSpan.WEEKLY;
         assertEquals(actual, expected);
     }
 

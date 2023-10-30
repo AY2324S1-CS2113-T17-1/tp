@@ -1,17 +1,19 @@
 package athleticli.data.diet;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import athleticli.data.Data;
+import athleticli.data.StorableList;
+
+import static athleticli.storage.Config.PATH_DIET_GOAL;
 
 /**
  * Represents a list of diet goals.
  */
-public class DietGoalList extends ArrayList<DietGoal> implements Serializable {
+public class DietGoalList extends StorableList<DietGoal> {
     /**
      * Constructs a diet goal list.
      */
     public DietGoalList() {
-        super();
+        super(PATH_DIET_GOAL);
     }
 
     /**
@@ -19,15 +21,38 @@ public class DietGoalList extends ArrayList<DietGoal> implements Serializable {
      *
      * @return A string representation of the diet goal list.
      */
-    @Override
-    public String toString() {
+    public String toString(Data data) {
         StringBuilder result = new StringBuilder();
         for (int i = 0; i < size(); i++) {
-            result.append("\t").append(i + 1).append(". ").append(get(i).toString());
+            result.append("\t").append(i + 1).append(". ").append(get(i).toString(data));
             if (i != size() - 1) {
                 result.append("\n");
             }
         }
         return result.toString();
+    }
+
+    /**
+     * Parses a diet goal from a string.
+     *
+     * @param s The string to be parsed.
+     * @return The diet goal parsed from the string.
+     */
+    @Override
+    public DietGoal parse(String s) {
+        // TODO
+        return null;
+    }
+
+    /**
+     * Unparses a diet goal to a string.
+     *
+     * @param dietGoal The diet goal to be parsed.
+     * @return The string unparsed from the diet goal.
+     */
+    @Override
+    public String unparse(DietGoal dietGoal) {
+        // TODO
+        return null;
     }
 }

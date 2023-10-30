@@ -8,7 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-import static athleticli.data.Goal.Timespan;
+import static athleticli.data.Goal.TimeSpan;
 import static athleticli.data.activity.ActivityGoal.GoalType;
 import static athleticli.data.activity.ActivityGoal.Sport;
 
@@ -20,7 +20,7 @@ class ActivityGoalTest {
     private ActivityGoal activityGoal;
     private Data data;
 
-    private Timespan period = Timespan.WEEKLY;
+    private TimeSpan period = TimeSpan.WEEKLY;
     private final LocalDate date = LocalDate.now();
     private final String caption = "Sunday = Runday";
     private final int distance = 3000;

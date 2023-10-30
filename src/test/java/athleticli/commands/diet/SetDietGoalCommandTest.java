@@ -1,6 +1,7 @@
 package athleticli.commands.diet;
 
 import athleticli.data.Data;
+import athleticli.data.Goal;
 import athleticli.data.diet.DietGoal;
 import athleticli.exceptions.AthletiException;
 
@@ -24,8 +25,8 @@ class SetDietGoalCommandTest {
     @BeforeEach
     void setUp() {
         emptyInputDietGoals = new ArrayList<>();
-        dietGoalFats = new DietGoal("fats", 10000);
-        dietGoalCarb = new DietGoal("carb", 10000);
+        dietGoalFats = new DietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
+        dietGoalCarb = new DietGoal(Goal.TimeSpan.WEEKLY, "carb", 10000);
         data = new Data();
         filledInputDietGoals = new ArrayList<>();
         filledInputDietGoals.add(dietGoalFats);

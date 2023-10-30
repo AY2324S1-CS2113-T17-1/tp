@@ -1,6 +1,5 @@
 package athleticli.data.activity;
 
-import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Locale;
 import java.time.LocalTime;
@@ -8,7 +7,7 @@ import java.time.LocalTime;
 /**
  * Represents a cycling activity consisting of relevant evaluation data.
  */
-public class Cycle extends Activity implements Serializable {
+public class Cycle extends Activity {
 
     private final int elevationGain;
     private final double averageSpeed;

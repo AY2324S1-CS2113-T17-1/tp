@@ -1,6 +1,12 @@
 package athleticli.data.diet;
 
+import athleticli.commands.diet.AddDietCommand;
+import athleticli.data.Data;
+import athleticli.data.Goal;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,69 +14,71 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DietGoalTest {
 
+    private DietGoal proteinGoal;
+    private Data data;
+    private Diet diet;
+    private final int calories = 10000;
+    private final int protein = 20000;
+    private final int carb = 30000;
+    private final int fats = 40000;
+    private final LocalDateTime dateTime = LocalDateTime.now();
+
+    @BeforeEach
+    void setUp() {
+        proteinGoal = new DietGoal(Goal.TimeSpan.WEEKLY, "protein", 10000);
+        data = new Data();
+        diet = new Diet(calories, protein, carb, fats, dateTime);
+
+    }
+
     @Test
     void getNutrients_initializeCommonArgs_expectArgs() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
-        assertEquals("protein", proteinGoal.getNutrients());
+        assertEquals("protein", proteinGoal.getNutrient());
     }
 
     @Test
     void setNutrients_setCommonArgs_expectArgs() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
-        proteinGoal.setNutrients("Advanced Protein");
-        assertEquals("Advanced Protein", proteinGoal.getNutrients());
+        proteinGoal.setNutrient("Advanced Protein");
+        assertEquals("Advanced Protein", proteinGoal.getNutrient());
     }
 
     @Test
     void getTargetValue_initializeCommonArgs_expectArgs() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
         assertEquals(10000, proteinGoal.getTargetValue());
     }
 
     @Test
     void setTargetValue_initializeCommonArgs_expectArgs() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
         proteinGoal.setTargetValue(10);
         assertEquals(10, proteinGoal.getTargetValue());
     }
 
     @Test
     void getCurrentValue_initializeCommonArgs_expectZero() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
-        assertEquals(0, proteinGoal.getCurrentValue());
+        assertEquals(0, proteinGoal.getCurrentValue(data));
     }
 
     @Test
     void setCurrentValue() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
-        proteinGoal.setCurrentValue(20);
-        assertEquals(20, proteinGoal.getCurrentValue());
+        AddDietCommand addDietCommand = new AddDietCommand(diet);
+        addDietCommand.execute(data);
+        assertEquals(20000, proteinGoal.getCurrentValue(data));
     }
 
     @Test
-    void getIsGoalAchieved_currentValueGreaterThanTargetValue_expectTrue() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
-        proteinGoal.setCurrentValue(20000);
-        assertTrue(proteinGoal.getIsGoalAchieved());
+    void isAchieved_currentValueEqualToTargetValue_expectTrue() {
+        AddDietCommand addDietCommand = new AddDietCommand(diet);
+        addDietCommand.execute(data);
+        assertTrue(proteinGoal.isAchieved(data));
     }
 
     @Test
-    void getIsGoalAchieved_currentValueEqualToTargetValue_expectTrue() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
-        proteinGoal.setCurrentValue(10000);
-        assertTrue(proteinGoal.getIsGoalAchieved());
-    }
-
-    @Test
-    void getIsGoalAchieved_currentValueLesserThanTargetValue_expectFalse() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
-        proteinGoal.setCurrentValue(100);
-        assertFalse(proteinGoal.getIsGoalAchieved());
+    void isAchieved_currentValueLesserThanTargetValue_expectFalse() {
+        assertFalse(proteinGoal.isAchieved(data));
     }
 
     @Test
     void testToString_initializeCommonArgs_expectCorrectFormat() {
-        DietGoal proteinGoal = new DietGoal("protein", 10000);
-        assertEquals("protein intake progress: (0/10000)\n", proteinGoal.toString());
+        assertEquals("protein intake progress: (0/10000)\n", proteinGoal.toString(data));
     }
 }
