@@ -253,6 +253,23 @@ You can list all your diets in AtheltiCLI.
 
 * `list-diet`
 
+### Finding Diets:
+
+`find-diet date/DATE`
+
+You can find all your diets on a specific date in AtheltiCLI.
+
+**Syntax:**
+
+* `find-diet date/DATE`
+
+**Parameters:**
+
+* DATE: The date of the diet. It must follow the ISO Date Format: YYYY-MM-DD
+
+**Examples:**
+
+* `find-diet date/2021-09-01`
 
 
 ## Diet Goal Management
