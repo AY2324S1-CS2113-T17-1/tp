@@ -35,6 +35,7 @@ import athleticli.commands.activity.FindActivityCommand;
 import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.activity.SetActivityGoalCommand;
 import athleticli.commands.activity.EditActivityGoalCommand;
+import athleticli.commands.activity.ListActivityGoalCommand;
 import athleticli.data.diet.Diet;
 import athleticli.exceptions.AthletiException;
 
@@ -131,6 +132,8 @@ public class Parser {
             return new SetActivityGoalCommand(parseActivityGoal(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_EDIT:
             return new EditActivityGoalCommand(parseActivityGoal(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_GOAL_LIST:
+            return new ListActivityGoalCommand();
         /* Diet Management */
         case CommandName.COMMAND_DIET_GOAL_SET:
             return new SetDietGoalCommand(parseDietGoalSetEdit(commandArgs));
