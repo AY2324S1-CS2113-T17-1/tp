@@ -67,8 +67,11 @@ public class Message {
     public static final String MESSAGE_FAT_INVALID = "The fat intake must be a non-negative integer!";
     public static final String MESSAGE_ACTIVITY_FIND = "I've found these activities:";
     public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
-    public static final String MESSAGE_ACTIVITY_GOAL_ADDED = "Alright, I've added this activity goal:";
     public static final String MESSAGE_ACTIVITY_DELETED = "Gotcha, I've deleted this activity:";
+    public static final String MESSAGE_ACTIVITY_GOAL_ADDED = "Alright, I've added this activity goal:";
+    public static final String MESSAGE_ACTIVITY_GOAL_EDITED = "Alright, I've edited this activity goal:";
+    public static final String MESSAGE_NO_SUCH_GOAL_EXISTS = "No such goal exists.";
+    public static final String MESSAGE_ACTIVITY_GOAL_LIST = "These are your activity goals:";
     public static final String MESSAGE_DIET_ADDED = "Well done! I've added this diet:";
     public static final String MESSAGE_ELEVATION_MISSING =
             "Please specify the elevation gain using \"elevation/\"!";
@@ -153,6 +156,8 @@ public class Message {
         "The index of the sleep record you want to delete is out of bounds.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
+    public static final String MESSAGE_LOAD_EXCEPTION =
+            "An exception occurred when loading %s. Please fix or delete it and rerun AthletiCLI!";
 
     /* Help Messages */
     public static final String HELP_ADD_ACTIVITY = CommandName.COMMAND_ACTIVITY
