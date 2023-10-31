@@ -153,6 +153,8 @@ public class Message {
         "The index of the sleep record you want to delete is out of bounds.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
+    public static final String MESSAGE_LOAD_EXCEPTION =
+            "An exception occurred when loading %s. Please fix or delete it and rerun AthletiCLI!";
 
     /* Help Messages */
     public static final String HELP_ADD_ACTIVITY = CommandName.COMMAND_ACTIVITY
