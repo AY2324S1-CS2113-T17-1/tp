@@ -1,15 +1,36 @@
 package athleticli.data.activity;
 
-import static athleticli.storage.Config.PATH_ACTIVITY_GOAL;
-
+import athleticli.data.Data;
 import athleticli.data.StorableList;
 
+import static athleticli.storage.Config.PATH_ACTIVITY_GOAL;
+
+/**
+ * Represents a list of activity goals.
+ */
 public class ActivityGoalList extends StorableList<ActivityGoal> {
     /**
      * Constructs an activity goal list.
      */
     public ActivityGoalList() {
         super(PATH_ACTIVITY_GOAL);
+    }
+
+    /**
+     * Returns a string representation of the activity goal list.
+     *
+     * @param data The data containing the activity goal list.
+     * @return A string representation of the activity goal list.
+     */
+    public String toString(Data data) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < size(); i++) {
+            result.append(i + 1).append(". ").append(get(i).toString(data));
+            if (i != size() - 1) {
+                result.append("\n");
+            }
+        }
+        return result.toString();
     }
 
     /**
