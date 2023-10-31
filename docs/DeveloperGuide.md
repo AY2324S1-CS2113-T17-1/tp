@@ -51,11 +51,11 @@ The bulk of the AthletiCLI’s work is done by the following components, with ea
 Regardless of the operation you are performing on diets (setting up, editing, deleting, listing, or finding), the process follows a general five-step pattern in AthletiCLI:
 
 1. **Input Processing**: The user's input is passed through AthletiCLI to the Parser Class. Examples of user inputs include:
-    - "add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00" for adding a diet.
-    - "edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00" for editing a diet.
-    - "delete-diet 1" for deleting a diet.
-    - "list-diet" for listing all diets.
-    - "find-diet 2021-09-01" for finding diets of a particular date.
+    - `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for adding a diet.
+    - `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for editing a diet.
+    - `delete-diet 1` for deleting a diet.
+    - `list-diet` for listing all diets.
+    - `find-diet 2021-09-01` for finding diets of a particular date.
 
 2. **Command Identification**: The Parser Class identifies the type of diet operation and passes the necessary parameters.
 
