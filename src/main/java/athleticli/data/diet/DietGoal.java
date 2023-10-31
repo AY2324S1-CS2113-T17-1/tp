@@ -65,6 +65,7 @@ public class DietGoal extends Goal {
     /**
      * Returns the current value of the diet goal from dietList.
      *
+     * @param data A storage class to retrieve diet information.
      * @return The current value of the diet goal.
      */
     public int getCurrentValue(Data data) {
@@ -116,6 +117,7 @@ public class DietGoal extends Goal {
     /**
      * Returns whether the diet goal is achieved.
      *
+     * @param data A storage class to retrieve diet information.
      * @return Whether the diet goal is achieved.
      */
     public boolean isAchieved(Data data) {
@@ -126,6 +128,7 @@ public class DietGoal extends Goal {
     /**
      * Returns the string representation of the diet goal.
      *
+     * @param data A storage class to retrieve diet information.
      * @return The string representation of the diet goal.
      */
     public String toString(Data data) {

@@ -4,6 +4,7 @@ import athleticli.data.Data;
 import athleticli.data.Goal;
 import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
+import athleticli.ui.Message;
 
 import static athleticli.storage.Config.PATH_DIET_GOAL;
 
@@ -21,6 +22,7 @@ public class DietGoalList extends StorableList<DietGoal> {
     /**
      * Returns a string representation of the diet goal list.
      *
+     * @param data A storage class to retrieve diet information.
      * @return A string representation of the diet goal list.
      */
     public String toString(Data data) {
@@ -52,8 +54,9 @@ public class DietGoalList extends StorableList<DietGoal> {
 
             return new DietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
                     dietGoalNutrientString, dietGoalTargetValue);
+
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            throw new AthletiException("Some error has been encountered while loading diet goals.");
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_LOAD_ERROR);
         }
     }
 
