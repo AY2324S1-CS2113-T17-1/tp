@@ -231,32 +231,32 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -312,20 +312,20 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -340,14 +340,14 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
