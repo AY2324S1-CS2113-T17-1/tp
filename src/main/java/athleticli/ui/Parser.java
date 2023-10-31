@@ -815,12 +815,12 @@ public class Parser {
      */
     public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgsString) throws AthletiException {
         if (commandArgsString.trim().isEmpty()) {
-            throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT);
         }
         try {
             String[] commandArgs;
             if (!commandArgsString.contains(" ")){
-                throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT);
             }
 
             commandArgs = commandArgsString.split("\\s+");
@@ -829,9 +829,9 @@ public class Parser {
 
             return dietGoals;
         } catch (NumberFormatException e) {
-            throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT);
         } catch (ArrayIndexOutOfBoundsException e) {
-            throw new AthletiException(Message.MESSAGE_DIETGOAL_INSUFFICIENT_INPUT);
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT);
         }
     }
 
@@ -850,13 +850,13 @@ public class Parser {
             nutrient = nutrientAndTargetValue[0];
             targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
             if (targetValue <= 0) {
-                throw new AthletiException(Message.MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT);
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT);
             }
             if (!NutrientVerifier.verify(nutrient)) {
-                throw new AthletiException(Message.MESSAGE_DIETGOAL_INVALID_NUTRIENT);
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_NUTRIENT);
             }
             if (recordedNutrients.contains(nutrient)) {
-                throw new AthletiException(Message.MESSSAGE_DIETGOAL_REPEATED_NUTRIENT);
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_REPEATED_NUTRIENT);
             }
             DietGoal dietGoal = new DietGoal(timespan, nutrient, targetValue);
             dietGoals.add(dietGoal);
@@ -874,11 +874,11 @@ public class Parser {
         try {
             int deleteIndex = Integer.parseInt(deleteIndexString.trim());
             if (deleteIndex <= 0) {
-                throw new AthletiException(Message.MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT);
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT);
             }
             return deleteIndex;
         } catch (NumberFormatException e) {
-            throw new AthletiException(Message.MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT);
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT);
         }
     }
 

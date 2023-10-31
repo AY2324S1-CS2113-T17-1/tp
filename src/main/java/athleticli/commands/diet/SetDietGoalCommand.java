@@ -42,7 +42,7 @@ public class SetDietGoalCommand extends Command {
                 boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
                 boolean isTimeSpanSimilar = userDietGoal.getTimeSpan().equals(dietGoal.getTimeSpan());
                 if (isNutrientSimilar && isTimeSpanSimilar) {
-                    throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_ALREADY_EXISTED,
+                    throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_ALREADY_EXISTED,
                             dietGoal.getNutrient()));
                 }
             }
@@ -51,8 +51,8 @@ public class SetDietGoalCommand extends Command {
         // Add new diet goals to current diet goals
         currentDietGoals.addAll(userNewDietGoals);
         int dietGoalNum = currentDietGoals.size();
-        return new String[]{Message.MESSAGE_DIETGOAL_LIST_HEADER, currentDietGoals.toString(data),
-                String.format(Message.MESSAGE_DIETGOAL_COUNT, dietGoalNum)};
+        return new String[]{Message.MESSAGE_DIET_GOAL_LIST_HEADER, currentDietGoals.toString(data),
+                String.format(Message.MESSAGE_DIET_GOAL_COUNT, dietGoalNum)};
     }
 
 }
