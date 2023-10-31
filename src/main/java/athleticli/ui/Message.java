@@ -67,8 +67,11 @@ public class Message {
     public static final String MESSAGE_FAT_INVALID = "The fat intake must be a non-negative integer!";
     public static final String MESSAGE_ACTIVITY_FIND = "I've found these activities:";
     public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
-    public static final String MESSAGE_ACTIVITY_GOAL_ADDED = "Alright, I've added this activity goal:";
     public static final String MESSAGE_ACTIVITY_DELETED = "Gotcha, I've deleted this activity:";
+    public static final String MESSAGE_ACTIVITY_GOAL_ADDED = "Alright, I've added this activity goal:";
+    public static final String MESSAGE_ACTIVITY_GOAL_EDITED = "Alright, I've edited this activity goal:";
+    public static final String MESSAGE_NO_SUCH_GOAL_EXISTS = "No such goal exists.";
+    public static final String MESSAGE_ACTIVITY_GOAL_LIST = "These are your activity goals:";
     public static final String MESSAGE_DIET_ADDED = "Well done! I've added this diet:";
     public static final String MESSAGE_ELEVATION_MISSING =
             "Please specify the elevation gain using \"elevation/\"!";
