@@ -8,6 +8,7 @@ import athleticli.data.diet.DietGoalList;
 import athleticli.data.diet.DietList;
 import athleticli.data.sleep.SleepGoalList;
 import athleticli.data.sleep.SleepList;
+import athleticli.exceptions.AthletiException;
 
 /**
  * Defines the basic fields and methods of data.
@@ -36,7 +37,7 @@ public class Data {
     /**
      * Loads data from files.
      */
-    public void load() {
+    public void load() throws AthletiException {
         activities.load();
         activityGoals.load();
         diets.load();
