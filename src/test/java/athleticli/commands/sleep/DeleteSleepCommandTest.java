@@ -36,7 +36,9 @@ public class DeleteSleepCommandTest {
     public void testExecuteWithValidIndex() throws AthletiException {
         DeleteSleepCommand command = new DeleteSleepCommand(1);
         String[] expected = {
-            "Got it. I've deleted this sleep record at index 1: sleep record from 2023-10-17 22:10 to 2023-10-18 06:10"
+            "Got it. I've deleted this sleep record at index 1: [Sleep] | Date: 2023-10-17 " +
+                "| Start Time: October 17, 2023 at 10:00 PM | End Time: October 18, 2023 at 6:00 AM | " +
+                "Sleeping Duration: 8 Hours "
         };
         assertArrayEquals(expected, command.execute(data));
     }

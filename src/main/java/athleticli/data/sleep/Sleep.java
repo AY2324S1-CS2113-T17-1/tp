@@ -15,7 +15,7 @@ public class Sleep {
     public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MMMM d, " +
             "yyyy 'at' h:mm a", Locale.ENGLISH);
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(
-    "yyyy-MM-dd", Locale.ENGLISH);
+            "yyyy-MM-dd", Locale.ENGLISH);
 
     private final LocalDateTime startDateTime;
     private final LocalDateTime toDateTime;
@@ -79,20 +79,21 @@ public class Sleep {
         }
     }
 
-    @Override
     /**
      * Returns a single line summary of the sleep record.
      * @return String representation of the sleep record.
      */
+    @Override
     public String toString() {
         String sleepingDurationOutput = generateSleepingDurationStringOutput();
         String startDateTimeOutput = generateStartDateTimeStringOutput();
         String toDateTimeOutput = generateToDateTimeStringOutput();
         String sleepDateOutput = generateSleepDateStringOutput();
-        return "[Sleep]" + " | " + sleepDateOutput + " | " + startDateTimeOutput + " | " + toDateTimeOutput + " | " + sleepingDurationOutput;
+        return "[Sleep]" + " | " + sleepDateOutput + " | " + startDateTimeOutput + 
+            " | " + toDateTimeOutput + " | " + sleepingDurationOutput;
     }
 
-   public String generateSleepingDurationStringOutput() {
+    public String generateSleepingDurationStringOutput() {
         String sleepingDurationOutput = "";
         if (sleepingDuration.getHour() != 0) {
             sleepingDurationOutput += sleepingDuration.getHour() + " Hours ";
@@ -117,7 +118,6 @@ public class Sleep {
 
     /**
      * Provides a detailed string representation of the sleep duration.
-     *
      * @return String representation of the sleep entry.
      */
     public String toDetailedString() {

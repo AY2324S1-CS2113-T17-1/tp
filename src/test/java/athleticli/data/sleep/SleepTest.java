@@ -23,7 +23,8 @@ public class SleepTest {
     @Test
     public void testToString() {
         Sleep sleep = new Sleep(from, to);
-        String expected = "[Sleep] | Date: 2023-10-17 | Start Time: October 17, 2023 at 10:00 PM | End Time: October 18, 2023 at 6:00 AM | Sleeping Duration: 8 Hours ";
+        String expected = "[Sleep] | Date: 2023-10-17 | Start Time: October 17, 2023 at 10:00 PM " +
+            "| End Time: October 18, 2023 at 6:00 AM | Sleeping Duration: 8 Hours ";
         assertEquals(expected, sleep.toString());
     }
 

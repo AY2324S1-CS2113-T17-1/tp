@@ -66,7 +66,8 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
 
     /**
      * Returns the average sleep duration of the sleep list.
-     * @param sleepList The sleep list to be averaged.
+     * @param sleepClass The class of the sleep.
+     * @param timeSpan The time span to be matched.
      * @return The average sleep duration of the sleep list in seconds.
      */
     public int getTotalSleepDuration(Class<?> sleepClass, Goal.TimeSpan timeSpan) {
