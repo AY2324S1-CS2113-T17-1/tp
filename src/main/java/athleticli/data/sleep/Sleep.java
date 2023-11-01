@@ -115,21 +115,4 @@ public class Sleep {
     public String generateSleepDateStringOutput() {
         return "Date: " + sleepDate.format(DATE_FORMATTER);
     }
-
-    /**
-     * Provides a detailed string representation of the sleep duration.
-     * @return String representation of the sleep entry.
-     */
-    public String toDetailedString() {
-        String format = "| %-10s | %-30s |%n";
-        StringBuilder sb = new StringBuilder();
-    
-        sb.append(String.format(format, "----------", "------------------------------"));
-        sb.append(String.format(format, "Date", sleepDate));
-        sb.append(String.format(format, "Duration", generateSleepingDurationStringOutput()));
-        sb.append(String.format(format, "From", startDateTime.format(DATE_TIME_FORMATTER)));
-        sb.append(String.format(format, "To", toDateTime.format(DATE_TIME_FORMATTER)));
-    
-        return sb.toString();
-    }
 }

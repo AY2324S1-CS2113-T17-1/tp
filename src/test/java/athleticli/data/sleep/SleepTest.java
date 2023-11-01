@@ -64,15 +64,4 @@ public class SleepTest {
     public void testGenerateSleepDateStringOutput() {
         assertEquals("Date: 2023-10-17", sleep.generateSleepDateStringOutput());
     }
-
-    @Test
-    public void testToDetailedString() {
-        String expectedDetail = "| ---------- | ------------------------------ |\n" + 
-                "| Date       | 2023-10-17                     |\n" + 
-                "| Duration   | Sleeping Duration: 8 Hours     |\n" + 
-                "| From       | October 17, 2023 at 10:00 PM   |\n" + 
-                "| To         | October 18, 2023 at 6:00 AM    |\n";
-        assertEquals(expectedDetail, sleep.toDetailedString());
-    }
-
 }
