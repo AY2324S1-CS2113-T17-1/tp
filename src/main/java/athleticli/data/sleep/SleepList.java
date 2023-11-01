@@ -45,7 +45,40 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
     public void sort() {
         this.sort(Comparator.comparing(Sleep::getToDateTime).reversed());
     }
-    
+
+
+    /**
+     * Returns a list of sleeps within the time span.
+     *
+     * @param timeSpan The time span to be matched.
+     * @return A list of sleeps within the time span.
+     */
+    public ArrayList<Sleep> filterByTimespan(Goal.TimeSpan timeSpan) {
+        ArrayList<Sleep> result = new ArrayList<>();
+        for (Sleep sleep : this) {
+            LocalDate sleepDate = sleep.getStartDateTime().toLocalDate();
+            if (Goal.checkDate(sleepDate, timeSpan)) {
+                result.add(sleep);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Returns the average sleep duration of the sleep list.
+     * @param sleepList The sleep list to be averaged.
+     * @return The average sleep duration of the sleep list in seconds.
+     */
+    public int getTotalSleepDuration(Class<?> sleepClass, Goal.TimeSpan timeSpan) {
+        ArrayList<Sleep> filteredSleepList = filterByTimespan(timeSpan);
+        int totalSleepDuration = 0;
+        for (Sleep sleep : filteredSleepList) {
+            LocalTime sleepDuration = sleep.getSleepingTime();
+            totalSleepDuration += sleepDuration.toSecondOfDay();
+        }
+        return totalSleepDuration;
+    }
+
     /**
      * Parses a sleep from a string.
      *
