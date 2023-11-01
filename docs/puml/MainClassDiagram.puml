@@ -3,24 +3,24 @@
 hide circle
 
 class AthletiCLI{
-    void main()
-    void run()
+    main()
+    run()
 
 }
 class Ui{
-    Ui getInstance()
-    String getUserCommand()
-    void showMessages(Messages: String)
-    void showException(e: Exception)
+    getInstance():Ui
+    getUserCommand():String
+    showMessages(Messages: String)
+    showException(e: Exception)
 
 }
 class Parser{
-     Command parseCommand(rawUserInput: String)
+     parseCommand(rawUserInput: String):Command
 }
 class Data{
-    Data getInstance()
-    void load()
-    void save()
+    getInstance():Data
+    load()
+    save()
 }
 
 

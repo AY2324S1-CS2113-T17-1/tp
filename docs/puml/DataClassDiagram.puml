@@ -4,8 +4,8 @@ hide circle
 
 
 class StorableList{
-    void load()
-    void save()
+    load()
+    save()
     {abstract} parse(s:String)
     {abstract} unparse(t:T)
 
@@ -20,31 +20,31 @@ class SleepGoalList{
 
 }
 interface Findable{
-    ArrayList<T> find(date: LocalDate)
+    find(date: LocalDate): ArrayList<T>
 }
 class Data{
-    Data getInstance()
-    void load()
-    void save()
+    getInstance(): Data
+    load()
+    save()
 }
 
-Findable <|-- ActivityList
-Findable <|-- DietList
-Findable <|-- SleepList
+Findable <|.. ActivityList
+Findable <|.. DietList
+Findable <|.. SleepList
 
-StorableList <-- ActivityList
-StorableList <-- DietList
-StorableList <-- SleepList
-StorableList <-- ActivityGoalLIst
-StorableList <-- DietGoalList
-StorableList <-- SleepGoalList
+StorableList <|-- ActivityList
+StorableList <|-- DietList
+StorableList <|-- SleepList
+StorableList <|-- ActivityGoalLIst
+StorableList <|-- DietGoalList
+StorableList <|-- SleepGoalList
 
-Data --- ActivityList
-Data --- DietList
-Data --- SleepList
-Data --- ActivityGoalLIst
-Data --- DietGoalList
-Data --- SleepGoalList
+Data --u- ActivityList
+Data --u- DietList
+Data --u- SleepList
+Data --u- ActivityGoalLIst
+Data --u- DietGoalList
+Data --u- SleepGoalList
 
 
 
