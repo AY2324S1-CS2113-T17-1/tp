@@ -27,29 +27,42 @@ Given below is a quick overview of main components and how they interact with ea
 
 The bulk of the AthletiCLI’s work is done by the following components, with each of them corresponds to a package:
 
-* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI of AthletiCLI.
+* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI and other UI-related sub-components (e.g., `Parser`) of AthletiCLI.
 * [`Storage`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/storage): Reads data from, and writes data to, the hard disk.
 * [`Data`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/data): Holds the data of AthletiCLI in memory.
 * [`Commands`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/commands): The command executors.
 
 [`Exceptions`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/exceptions) represents exceptions used by multiple other components.
 
-### AtheletiCLI Overview
+### Overview
+
+The class diagram shows the relationship between `AthletiCLI`, `Ui`, `Parser`, and `Data`.
+
 <p  align="center" width="100%">
   <img width="80%" src="images/MainClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
 </p>
 
-
-### UI Component
-
-### Storage Component
-
 ### Data Component
+
+The class diagram shows how the `Data` component is constructed with multiple classes.
+
 <p  align="center" width="100%">
   <img width="80%" src="images/DataClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
 </p>
 
-### Commands Component
+**How the architecture components interact with each other**
+
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `help add-diet`.
+
+![](images/HelpAddDiet.svg)
+
+This diagram involves the interaction between `AthletiCLI`, `UI` (including the parser), `Commands` components and the user.
+
+The `Storage` component only interacts with the `Data` component. The _Sequence Diagram_ below shows how they interact with each other for the scenario where a `save` command is executed.
+
+![](images/Save.svg)
+
+For simplicity, only 1 `StorableList` is drawn instead of the actual 6.
 
 ## Implementation
 
