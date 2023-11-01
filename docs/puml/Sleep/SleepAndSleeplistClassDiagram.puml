@@ -1,0 +1,60 @@
+@startuml
+
+package athleticli.data {
+
+    interface Findable<T> {
+        + find(date: LocalDate): ArrayList<T>
+    }
+
+    class StorableList<T> {
+        - path: String
+        
+        + StorableList(path: String)
+        + save(): void
+        + load(): void
+        + abstract parse(s: String): T
+        + abstract unparse(t: T): String
+    }
+}
+
+package athleticli.data.sleep {
+
+    class Sleep {
+        - static DATE_TIME_FORMATTER: DateTimeFormatter
+        - static DATE_FORMATTER: DateTimeFormatter
+        - startDateTime: LocalDateTime
+        - toDateTime: LocalDateTime
+        - sleepingDuration: LocalTime
+        - sleepDate: LocalDate
+
+        + Sleep(startDateTime: LocalDateTime, toDateTime: LocalDateTime)
+        + getStartDateTime(): LocalDateTime
+        + getToDateTime(): LocalDateTime
+        + getSleepDate(): LocalDate
+        + getSleepingTime(): LocalTime
+        + toString(): String
+        + toDetailedString(): String
+        - calculateSleepingDuration(): LocalTime
+        - calculateSleepDate(): LocalDate
+        - generateSleepingDurationStringOutput(): String
+        - generateStartDateTimeStringOutput(): String
+        - generateToDateTimeStringOutput(): String
+        - generateSleepDateStringOutput(): String
+    }
+
+    class SleepList {
+        + SleepList()
+        + find(date: LocalDate): ArrayList<Sleep>
+        + sort(): void
+        + filterByTimespan(timeSpan: Goal.TimeSpan): ArrayList<Sleep>
+        + getTotalSleepDuration(sleepClass: Class<?>, timeSpan: Goal.TimeSpan): int
+        + parse(s: String): Sleep
+        + unparse(sleep: Sleep): String
+    }
+
+    SleepList --|> StorableList
+    SleepList ..> Sleep: "*"
+    SleepList ..|> Findable
+}
+
+@enduml
