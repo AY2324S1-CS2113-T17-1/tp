@@ -408,3 +408,55 @@ Edit multiple nutrients goals if all of them exists:
 
 Edit a single calories goal if the goal exists:
 * `edit-diet-goal WEEKLY calories/5000`
+
+## Miscellaneous
+
+### Finding Records:
+
+You can find all your records, including activities, sleeps, and diets, on a specific date in AtheltiCLI.
+
+**Syntax:**
+
+* `find DATE`
+
+**Parameters:**
+
+* `DATE`: The date of the records. It must follow the ISO Date Format: `yyyy-MM-dd`.
+
+**Example:**
+
+* `find 2023-11-01`
+
+### Saving Files:
+
+You can save files while using AthletiCLI if you want to, rather than waiting until the AthletiCLI exits to automatically save them.
+
+**Syntax:**
+
+* `save`
+
+
+### Exiting AthletiCLI:
+
+You can use the `bye` command at any time to safely store the file and exit AthletiCLI.
+
+**Syntax:**
+
+* `bye`
+
+### Viewing Help Messages:
+
+If you forget a command, you can always use the `help` command to see their syntax.
+
+**Syntax:**
+
+* `help [COMMAND]`
+
+**Parameters:**
+
+* `COMMAND`: The command you want to view. If it is omitted, a list containing the syntax of all commands will be shown.
+
+**Examples:**
+
+* `help` lists the syntax of all commands.
+* `help add-diet` shows the syntax of the `add-diet` command.
