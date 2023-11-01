@@ -128,7 +128,7 @@ added to the list.
 
 The following sequence diagram shows how the `add-activity` operation works:
 <p  align="center" width="100%">
-  <img width="80%" src="DeveloperGuide/AddActivity.png" alt="Sequence Diagram of add-activity`"/>
+  <img width="80%" src="images/AddActivity.png" alt="Sequence Diagram of add-activity`"/>
 </p>
 
 ### [Proposed] Implementation of DietGoalList
