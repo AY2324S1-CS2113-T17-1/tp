@@ -27,12 +27,28 @@ Given below is a quick overview of main components and how they interact with ea
 
 The bulk of the AthletiCLI’s work is done by the following components, with each of them corresponds to a package:
 
-* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI and other UI-related components (e.g., parsers) of AthletiCLI.
+* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI and other UI-related sub-components (e.g., `Parser`) of AthletiCLI.
 * [`Storage`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/storage): Reads data from, and writes data to, the hard disk.
 * [`Data`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/data): Holds the data of AthletiCLI in memory.
 * [`Commands`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/commands): The command executors.
 
 [`Exceptions`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/exceptions) represents exceptions used by multiple other components.
+
+### Overview
+
+The class diagram shows the relationship between `AthletiCLI`, `Ui`, `Parser`, and `Data`.
+
+<p  align="center" width="100%">
+  <img width="80%" src="images/MainClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
+</p>
+
+### Data Component
+
+The class diagram shows how the `Data` component is constructed with multiple classes.
+
+<p  align="center" width="100%">
+  <img width="80%" src="images/DataClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
+</p>
 
 **How the architecture components interact with each other**
 
@@ -102,6 +118,16 @@ temporary list into the data instance of DietGoalList which will be kept for rec
 Step 8. After executing the SetDietGoalCommand, SetDietGoalCommand returns a message that is passed to 
 AthletiCLI to be passed to UI(not shown) for display.
 
+### [Proposed] Implementation of DietGoalList
+
+The current implementation of DietGoalList is an ArrayList.
+It helps to store dietGoals, however it is not efficient in searching for a particular dietGoal.
+At any instance of time, there could only be the existence of one dietGoal.
+Verifying if there is an existence of a dietGoal using an ArrayList takes O(n) time, where n is the number of dietGoals.
+The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
+for checking the presence of a dietGoal.
+
+
 #### [Implemented] Adding activities
 The `add-activity` feature allows users to add a new activity into the application.
 These are the main components behind the architecture of the `add-activity` feature:
@@ -137,14 +163,6 @@ The following sequence diagram shows how the `add-activity` operation works:
   <img width="80%" src="DeveloperGuide/AddActivity.png" alt="Sequence Diagram of add-activity`"/>
 </p>
 
-### [Proposed] Implementation of DietGoalList
-
-The current implementation of DietGoalList is an ArrayList.
-It helps to store dietGoals, however it is not efficient in searching for a particular dietGoal.
-At any instance of time, there could only be the existence of one dietGoal.
-Verifying if there is an existence of a dietGoal using an ArrayList takes O(n) time, where n is the number of dietGoals.
-The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
-for checking the presence of a dietGoal. 
 
 ### Sleep Management in AthletiCLI
 
