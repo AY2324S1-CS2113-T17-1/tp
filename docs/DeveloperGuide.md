@@ -34,11 +34,20 @@ The bulk of the AthletiCLI’s work is done by the following components, with ea
 
 [`Exceptions`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/exceptions) represents exceptions used by multiple other components.
 
+### AtheletiCLI Overview
+<p  align="center" width="100%">
+  <img width="80%" src="images/MainClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
+</p>
+
+
 ### UI Component
 
 ### Storage Component
 
 ### Data Component
+<p  align="center" width="100%">
+  <img width="80%" src="images/DataClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
+</p>
 
 ### Commands Component
 
@@ -96,6 +105,16 @@ temporary list into the data instance of DietGoalList which will be kept for rec
 Step 8. After executing the SetDietGoalCommand, SetDietGoalCommand returns a message that is passed to 
 AthletiCLI to be passed to UI(not shown) for display.
 
+### [Proposed] Implementation of DietGoalList
+
+The current implementation of DietGoalList is an ArrayList.
+It helps to store dietGoals, however it is not efficient in searching for a particular dietGoal.
+At any instance of time, there could only be the existence of one dietGoal.
+Verifying if there is an existence of a dietGoal using an ArrayList takes O(n) time, where n is the number of dietGoals.
+The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
+for checking the presence of a dietGoal.
+
+
 #### [Implemented] Adding activities
 The `add-activity` feature allows users to add a new activity into the application.
 These are the main components behind the architecture of the `add-activity` feature:
@@ -131,14 +150,6 @@ The following sequence diagram shows how the `add-activity` operation works:
   <img width="80%" src="DeveloperGuide/AddActivity.png" alt="Sequence Diagram of add-activity`"/>
 </p>
 
-### [Proposed] Implementation of DietGoalList
-
-The current implementation of DietGoalList is an ArrayList.
-It helps to store dietGoals, however it is not efficient in searching for a particular dietGoal.
-At any instance of time, there could only be the existence of one dietGoal.
-Verifying if there is an existence of a dietGoal using an ArrayList takes O(n) time, where n is the number of dietGoals.
-The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
-for checking the presence of a dietGoal. 
 
 ### Sleep Management in AthletiCLI
 
