@@ -43,7 +43,7 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
      * Sorts the sleep entries in the list by date.
      */
     public void sort() {
-        this.sort(Comparator.comparing(Sleep::getStartDateTime).reversed());
+        this.sort(Comparator.comparing(Sleep::getToDateTime).reversed());
     }
     
     /**
