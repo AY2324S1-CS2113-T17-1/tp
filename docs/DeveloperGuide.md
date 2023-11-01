@@ -127,8 +127,8 @@ added to the list.
 **Step 5 - User Interaction:** Once the activity is successfully added, a confirmation message is displayed to the user.
 
 The following sequence diagram shows how the `add-activity` operation works:
-<p  align="center" width="100%">
-  <img width="80%" src="images/AddActivity.png" alt="Sequence Diagram of add-activity`"/>
+<p  align="center" >
+  <img width="80%" src="images/AddActivity.png" alt="Sequence Diagram of add-activity"/>
 </p>
 
 ### [Proposed] Implementation of DietGoalList
@@ -179,26 +179,30 @@ By providing a comprehensive view of various performance-related factors over ti
 
 ## User Stories
 
-| Version | As a ...                        | I want to ...              | So that I can ...                                                                      |
-|---------|---------------------------------|----------------------------|----------------------------------------------------------------------------------------|
-| v1.0    | health-conscious user           | add my dietary information | keep track of my daily calorie and nutrient intake                                     |
-| v1.0    | organized user                  | delete a dietary entry     | remove outdated or incorrect data from my diet records                                 |
-| v1.0    | fitness enthusiast              | view all my diet records   | have a clear overview of my dietary habits and make informed decisions on my diet      |
-| v1.0    | new user                        | see usage instructions     | refer to them when I forget how to use the application                                 |
-| v1.0    | motivated weight-conscious user | set diet goals             | have the motivation to work towards keeping weight in check.                           |
-| v1.0    | forgetful user                  | see all my diet goals      | remind myself of all the diet goals I have set.                                        |
-| v1.0    | regretful user                  | remove my diet goals       | I can rescind the strict goals I set previously when I find the goals too far fetched. |
-| v1.0    | motivated user                  | update my diet goals       | I can work towards better version of myself by setting stricter goals.                 |
-| v1.0    | sleep deprived user             | add my sleep information   | keep track of my sleep habits and identify areas for improvement                       |
-| v1.0    | sleep deprived user             | delete a sleep entry       | remove outdated or incorrect data from my sleep records                                |
-| v1.0    | sleep deprived user             | view all my sleep records  | have a clear overview of my sleep habits and make informed decisions on my sleep       |
-| v1.0    | sleep deprived user             | edit my sleep entries      | correct any mistakes or update my sleep information as needed                          |
-| v2.0    | user                            | find a to-do item by name  | locate a to-do without having to go through the entire list                            |
-| v2.0    | meticulous user                 | edit my dietary entries    | correct any mistakes or update my diet information as needed                           |
-| v2.0    | active user                     | set activity goals         | work towards a specific fitness target for different sports activities.                |
-| v2.0    | adaptable athlete               | edit my activity goals     | modify my fitness targets to align with my current fitness level and schedule.         |
-| v2.0    | organized athlete               | list all my activity goals | have a clear overview of my set targets and track my progress easily.                  |
-| v2.0    | meticulous user                 | find my diets by date      | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
+| Version | As a ...                        | I want to ...                                                     | So that I can ...                                                                      |
+|---------|---------------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| v1.0    | fitness enthusiastic user       | add different activities including running, swimming and cycling) | keep track of my fitness activities and athletic performance.                          |
+| v1.0    | analytical user                 | view my activity details at any point in time                     | track my progress and make informed decisions about my fitness routine.                |
+| v1.0    | clumsy user                     | delete any tracked activity                                       | I can correct any mistakes or remove accidentally added activities.                    |
+| v1.0    | detail-oriented user            | modify any of my tracked activities                               | ensure accuracy in my fitness records.                                                 |
+| v1.0    | health-conscious user           | add my dietary information                                        | keep track of my daily calorie and nutrient intake                                     |
+| v1.0    | organized user                  | delete a dietary entry                                            | remove outdated or incorrect data from my diet records                                 |
+| v1.0    | fitness enthusiast              | view all my diet records                                          | have a clear overview of my dietary habits and make informed decisions on my diet      |
+| v1.0    | new user                        | see usage instructions                                            | refer to them when I forget how to use the application                                 |
+| v1.0    | motivated weight-conscious user | set diet goals                                                    | have the motivation to work towards keeping weight in check.                           |
+| v1.0    | forgetful user                  | see all my diet goals                                             | remind myself of all the diet goals I have set.                                        |
+| v1.0    | regretful user                  | remove my diet goals                                              | I can rescind the strict goals I set previously when I find the goals too far fetched. |
+| v1.0    | motivated user                  | update my diet goals                                              | I can work towards better version of myself by setting stricter goals.                 |
+| v1.0    | sleep deprived user             | add my sleep information                                          | keep track of my sleep habits and identify areas for improvement                       |
+| v1.0    | sleep deprived user             | delete a sleep entry                                              | remove outdated or incorrect data from my sleep records                                |
+| v1.0    | sleep deprived user             | view all my sleep records                                         | have a clear overview of my sleep habits and make informed decisions on my sleep       |
+| v1.0    | sleep deprived user             | edit my sleep entries                                             | correct any mistakes or update my sleep information as needed                          |
+| v2.0    | user                            | find a to-do item by name                                         | locate a to-do without having to go through the entire list                            |
+| v2.0    | meticulous user                 | edit my dietary entries                                           | correct any mistakes or update my diet information as needed                           |
+| v2.0    | active user                     | set activity goals                                                | work towards a specific fitness target for different sports activities.                |
+| v2.0    | adaptable athlete               | edit my activity goals                                            | modify my fitness targets to align with my current fitness level and schedule.         |
+| v2.0    | organized athlete               | list all my activity goals                                        | have a clear overview of my set targets and track my progress easily.                  |
+| v2.0    | meticulous user                 | find my diets by date                                             | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
 
 ## Non-Functional Requirements
 
