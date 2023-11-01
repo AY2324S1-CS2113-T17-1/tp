@@ -15,10 +15,10 @@ import athleticli.ui.Message;
  */
 public class EditSleepCommand extends Command {
 
-    private final Logger logger = Logger.getLogger(EditSleepCommand.class.getName());
-    private int index;
-    private LocalDateTime from;
-    private LocalDateTime to;
+    private static final Logger logger = Logger.getLogger(EditSleepCommand.class.getName());
+    private final int index;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
 
     /**
      * Constructor for EditSleepCommand.
@@ -62,8 +62,8 @@ public class EditSleepCommand extends Command {
         String returnMessage = String.format(Message.MESSAGE_SLEEP_EDIT_RETURN, index);
         return new String[] {
             returnMessage,
-            "original: " + oldSleep.toString(),
-            "to new: " + newSleep.toString(),
+            "original: " + oldSleep,
+            "to new: " + newSleep
         };
 
     }

@@ -28,7 +28,8 @@ public class AddSleepCommandTest {
 
         String[] expected = {
             "Got it. I've added this sleep record:",
-            "sleep record from 17-10-2023 22:00 to 18-10-2023 06:00",
+            "[Sleep] | Date: 2023-10-17 | Start Time: October 17, 2023 at 10:00 PM " +
+                "| End Time: October 18, 2023 at 6:00 AM | Sleeping Duration: 8 Hours ",
             "Now you have 1 sleep records in the list."
         };
         
@@ -48,7 +49,8 @@ public class AddSleepCommandTest {
 
         String[] expected = {
             "Got it. I've added this sleep record:",
-            "sleep record from 18-10-2023 22:00 to 19-10-2023 06:00",
+            "[Sleep] | Date: 2023-10-18 | Start Time: October 18, 2023 at 10:00 PM " +
+                "| End Time: October 19, 2023 at 6:00 AM | Sleeping Duration: 8 Hours ",
             "Now you have 2 sleep records in the list."
         };
         

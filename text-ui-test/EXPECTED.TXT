@@ -4,7 +4,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
-
+ 
 Activity Management:
  add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
  add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
@@ -17,26 +17,26 @@ Activity Management:
  edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
  edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
  find-activity DATE
-
+ 
 Diet Management:
  add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME
  delete-diet INDEX
  list-diet
  find-diet DATE
-
+ 
 Sleep Management:
  add-sleep start/START end/END
  list-sleep
  delete-sleep INDEX
  edit-sleep INDEX start/START end/END
  find-sleep DATE
-
+ 
 Misc:
  find DATE
  save
  bye
  help [COMMAND]
-
+ 
 Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.
 ____________________________________________________________
 
@@ -105,22 +105,26 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
  Got it. I've added this sleep record:
- sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
+ [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
  Now you have 1 sleep records in the list.
 ____________________________________________________________
 
 > ____________________________________________________________
  Got it. I've added this sleep record:
- sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+ [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
  Now you have 2 sleep records in the list.
 ____________________________________________________________
 
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
- 2. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+ 1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -136,28 +140,31 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Invalid date-time format. Please use dd-MM-yyyy HH:mm.
+ Got it. I've added this sleep record:
+ [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ Now you have 3 sleep records in the list.
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Invalid date-time format. Please use dd-MM-yyyy HH:mm.
+ OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Invalid date-time format. Please use dd-MM-yyyy HH:mm.
+ OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
 ____________________________________________________________
 
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
- 2. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+ 1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 3. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
  Got it. I've changed this sleep record at index 1:
- original: sleep record from 01-09-2021 22:00 to 02-09-2021 06:00
- to new: sleep record from 01-09-2021 23:00 to 02-09-2021 07:00
+ original: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ to new: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -175,12 +182,13 @@ ____________________________________________________________
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. sleep record from 01-09-2021 23:00 to 02-09-2021 07:00
- 2. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+ 1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 3. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
- Got it. I've deleted this sleep record at index 1: sleep record from 01-09-2021 23:00 to 02-09-2021 07:00
+ Got it. I've deleted this sleep record at index 1: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -194,7 +202,8 @@ ____________________________________________________________
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. sleep record from 02-09-2021 22:00 to 03-09-2021 06:00
+ 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -231,32 +240,32 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -312,20 +321,20 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -340,14 +349,14 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- "calories", "protein", "carb", "fats" followed by the target value.
-	e.g. calories/100
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
 ____________________________________________________________
 
 > ____________________________________________________________
