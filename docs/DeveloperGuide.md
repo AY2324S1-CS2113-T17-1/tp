@@ -27,20 +27,42 @@ Given below is a quick overview of main components and how they interact with ea
 
 The bulk of the AthletiCLI’s work is done by the following components, with each of them corresponds to a package:
 
-* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI of AthletiCLI.
+* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI and other UI-related sub-components (e.g., `Parser`) of AthletiCLI.
 * [`Storage`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/storage): Reads data from, and writes data to, the hard disk.
 * [`Data`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/data): Holds the data of AthletiCLI in memory.
 * [`Commands`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/commands): The command executors.
 
 [`Exceptions`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/exceptions) represents exceptions used by multiple other components.
 
-### UI Component
+### Overview
 
-### Storage Component
+The class diagram shows the relationship between `AthletiCLI`, `Ui`, `Parser`, and `Data`.
+
+<p  align="center" width="100%">
+  <img width="80%" src="images/MainClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
+</p>
 
 ### Data Component
 
-### Commands Component
+The class diagram shows how the `Data` component is constructed with multiple classes.
+
+<p  align="center" width="100%">
+  <img width="80%" src="images/DataClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
+</p>
+
+**How the architecture components interact with each other**
+
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `help add-diet`.
+
+![](images/HelpAddDiet.svg)
+
+This diagram involves the interaction between `AthletiCLI`, `UI` (including the parser), `Commands` components and the user.
+
+The `Storage` component only interacts with the `Data` component. The _Sequence Diagram_ below shows how they interact with each other for the scenario where a `save` command is executed.
+
+![](images/Save.svg)
+
+For simplicity, only 1 `StorableList` is drawn instead of the actual 6.
 
 ## Implementation
 
@@ -67,7 +89,7 @@ Regardless of the operation you are performing on diets (setting up, editing, de
 
 By following these general steps, AthletiCLI ensures a streamlined process for managing diet-related tasks.
 
-### [Implemented] Setting Up of Diet Goals
+#### [Implemented] Setting Up of Diet Goals
 
 This following sequence diagram show how the 'set-diet-goal' command works:
 
@@ -75,26 +97,36 @@ This following sequence diagram show how the 'set-diet-goal' command works:
   <img width="80%" src="images/setDietGoalUmlSequenceDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
 </p>
 
-Step 1. The input from the user ("set-diet-goal fats/1") runs through AthletiCLI to the Parser Class.
+**Step 1:** The input from the user ("set-diet-goal fats/1") runs through AthletiCLI to the Parser Class.
 
-Step 2. The Parser Class will identify the request as setting up a diet goal and pass in the parameters
+**Step 2:** The Parser Class will identify the request as setting up a diet goal and pass in the parameters
 "fats/1".
 
-Step 3. A temporary dietGoalList is created to store newly created diet goals.
+**Step 3:** A temporary dietGoalList is created to store newly created diet goals.
 
-Step 4. The inputs are verified against our lists of approved diet goals.
+**Step 4:** The inputs are verified against our lists of approved diet goals.
 
-Step 5. For each of the diet goals that are valid, a dietGoal object will be created and stored in the 
+**Step 5:** For each of the diet goals that are valid, a dietGoal object will be created and stored in the 
 temporary dietGoalList.
 
-Step 6. The Parser then creates for an instance of SetDietGoalCommand and returns the instance to 
+**Step 6:** The Parser then creates for an instance of SetDietGoalCommand and returns the instance to 
 AthletiCLI.
 
-Step 7. AthletiCLI will execute the SetDietGoalCommand. This adds the dietGoals that are present in the 
+**Step 7:** AthletiCLI will execute the SetDietGoalCommand. This adds the dietGoals that are present in the 
 temporary list into the data instance of DietGoalList which will be kept for records.
 
-Step 8. After executing the SetDietGoalCommand, SetDietGoalCommand returns a message that is passed to 
+**Step 8:** After executing the SetDietGoalCommand, SetDietGoalCommand returns a message that is passed to 
 AthletiCLI to be passed to UI(not shown) for display.
+
+#### [Proposed] Implementation of DietGoalList
+
+The current implementation of DietGoalList is an ArrayList.
+It helps to store dietGoals, however it is not efficient in searching for a particular dietGoal.
+At any instance of time, there could only be the existence of one dietGoal.
+Verifying if there is an existence of a dietGoal using an ArrayList takes O(n) time, where n is the number of dietGoals.
+The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
+for checking the presence of a dietGoal.
+
 
 #### [Implemented] Adding activities
 The `add-activity` feature allows users to add a new activity into the application.
@@ -131,18 +163,10 @@ The following sequence diagram shows how the `add-activity` operation works:
   <img width="80%" src="images/AddActivity.png" alt="Sequence Diagram of add-activity`"/>
 </p>
 
-### [Proposed] Implementation of DietGoalList
-
-The current implementation of DietGoalList is an ArrayList.
-It helps to store dietGoals, however it is not efficient in searching for a particular dietGoal.
-At any instance of time, there could only be the existence of one dietGoal.
-Verifying if there is an existence of a dietGoal using an ArrayList takes O(n) time, where n is the number of dietGoals.
-The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
-for checking the presence of a dietGoal. 
 
 ### Sleep Management in AthletiCLI
 
-#### [Implemented] Adding, Editing, Deleting, Listing Sleep
+#### [Implemented] Finding, Adding, Editing, Deleting, Listing Sleep
 
 1. **Input Processing**: The user's input is passed through AthletiCLI to the Parser Class. Examples of user inputs include:
     - "add-sleep hours/8 datetime/2021-09-01 06:00" for adding sleep.
@@ -158,6 +182,12 @@ for checking the presence of a dietGoal.
 
 5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
 
+The following class diagram shows how sleep and sleep-related classes are constructed in AthletiCLI:
+
+<p  align="center" width="100%">
+  <img width="80%" src="images/SleepAndSleepListClassDiagram.svg" alt="Class Diagram of Sleep and SleepList"/>
+
+</p>
 
 
 ## Product scope
@@ -179,26 +209,27 @@ By providing a comprehensive view of various performance-related factors over ti
 
 ## User Stories
 
-| Version | As a ...                        | I want to ...              | So that I can ...                                                                      |
-|---------|---------------------------------|----------------------------|----------------------------------------------------------------------------------------|
-| v1.0    | health-conscious user           | add my dietary information | keep track of my daily calorie and nutrient intake                                     |
-| v1.0    | organized user                  | delete a dietary entry     | remove outdated or incorrect data from my diet records                                 |
-| v1.0    | fitness enthusiast              | view all my diet records   | have a clear overview of my dietary habits and make informed decisions on my diet      |
-| v1.0    | new user                        | see usage instructions     | refer to them when I forget how to use the application                                 |
-| v1.0    | motivated weight-conscious user | set diet goals             | have the motivation to work towards keeping weight in check.                           |
-| v1.0    | forgetful user                  | see all my diet goals      | remind myself of all the diet goals I have set.                                        |
-| v1.0    | regretful user                  | remove my diet goals       | I can rescind the strict goals I set previously when I find the goals too far fetched. |
-| v1.0    | motivated user                  | update my diet goals       | I can work towards better version of myself by setting stricter goals.                 |
-| v1.0    | sleep deprived user             | add my sleep information   | keep track of my sleep habits and identify areas for improvement                       |
-| v1.0    | sleep deprived user             | delete a sleep entry       | remove outdated or incorrect data from my sleep records                                |
-| v1.0    | sleep deprived user             | view all my sleep records  | have a clear overview of my sleep habits and make informed decisions on my sleep       |
-| v1.0    | sleep deprived user             | edit my sleep entries      | correct any mistakes or update my sleep information as needed                          |
-| v2.0    | user                            | find a to-do item by name  | locate a to-do without having to go through the entire list                            |
-| v2.0    | meticulous user                 | edit my dietary entries    | correct any mistakes or update my diet information as needed                           |
-| v2.0    | active user                     | set activity goals         | work towards a specific fitness target for different sports activities.                |
-| v2.0    | adaptable athlete               | edit my activity goals     | modify my fitness targets to align with my current fitness level and schedule.         |
-| v2.0    | organized athlete               | list all my activity goals | have a clear overview of my set targets and track my progress easily.                  |
-| v2.0    | meticulous user                 | find my diets by date      | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
+| Version | As a ...                        | I want to ...                                    | So that I can ...                                                                      |
+|---------|---------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------|
+| v1.0    | health-conscious user           | add my dietary information                       | keep track of my daily calorie and nutrient intake                                     |
+| v1.0    | organized user                  | delete a dietary entry                           | remove outdated or incorrect data from my diet records                                 |
+| v1.0    | fitness enthusiast              | view all my diet records                         | have a clear overview of my dietary habits and make informed decisions on my diet      |
+| v1.0    | new user                        | see usage instructions                           | refer to them when I forget how to use the application                                 |
+| v1.0    | motivated weight-conscious user | set diet goals                                   | have the motivation to work towards keeping weight in check.                           |
+| v1.0    | forgetful user                  | see all my diet goals                            | remind myself of all the diet goals I have set.                                        |
+| v1.0    | regretful user                  | remove my diet goals                             | I can rescind the strict goals I set previously when I find the goals too far fetched. |
+| v1.0    | motivated user                  | update my diet goals                             | I can work towards better version of myself by setting stricter goals.                 |
+| v1.0    | sleep deprived user             | add my sleep information                         | keep track of my sleep habits and identify areas for improvement                       |
+| v1.0    | sleep deprived user             | delete a sleep entry                             | remove outdated or incorrect data from my sleep records                                |
+| v1.0    | sleep deprived user             | view all my sleep records                        | have a clear overview of my sleep habits and make informed decisions on my sleep       |
+| v1.0    | sleep deprived user             | edit my sleep entries                            | correct any mistakes or update my sleep information as needed                          |
+| v2.0    | user                            | find a to-do item by name                        | locate a to-do without having to go through the entire list                            |
+| v2.0    | meticulous user                 | edit my dietary entries                          | correct any mistakes or update my diet information as needed                           |
+| v2.0    | active user                     | set activity goals                               | work towards a specific fitness target for different sports activities.                |
+| v2.0    | adaptable athlete               | edit my activity goals                           | modify my fitness targets to align with my current fitness level and schedule.         |
+| v2.0    | organized athlete               | list all my activity goals                       | have a clear overview of my set targets and track my progress easily.                  |
+| v2.0    | meticulous user                 | find my diets by date                            | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
+| v2.0    | motivated user                  | keep track of my diet goals for a period of time | I can monitor my diet progress on a weekly basis and make adjustments if needed.       |                                         |
 
 ## Non-Functional Requirements
 
