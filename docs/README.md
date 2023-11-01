@@ -339,12 +339,12 @@ You can record your sleep timings in AtheltiCLI by adding your sleep start and e
 
 **Parameters:**
 
-* START: The start time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
-* END: The end time of the sleep in the following Date Time Format: DD-MM-YYYY HH:MM
+* START: The start time of the sleep. It must follow the ISO Date Time Format: YYYY-MM-DD HH:MM
+* END: The end time of the sleep. It must follow the ISO Date Time Format: YYYY-MM-DD HH:MM
 
 **Examples:**
 
-* `add-sleep start/01-09-2021 22:00 end/02-09-2021 06:00`
+* `add-sleep start/2021-09-05 23:00 end/2021-09-06 07:00`
 
 ### Listing Sleep:
 
@@ -391,7 +391,7 @@ end times.
 
 **Examples:**
 
-* `edit-sleep 5 start/05-09-2021 23:00 end/06-09-2021 07:00`  
+* `edit-sleep 5 start/2021-09-05 23:00 end/2021-09-06 07:00`
   (Note: This will edit the 5th sleep record to have the new specified timings.)
 
 ---

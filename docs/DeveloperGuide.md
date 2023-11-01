@@ -166,7 +166,7 @@ The following sequence diagram shows how the `add-activity` operation works:
 
 ### Sleep Management in AthletiCLI
 
-#### [Implemented] Adding, Editing, Deleting, Listing Sleep
+#### [Implemented] Finding, Adding, Editing, Deleting, Listing Sleep
 
 1. **Input Processing**: The user's input is passed through AthletiCLI to the Parser Class. Examples of user inputs include:
     - "add-sleep hours/8 datetime/2021-09-01 06:00" for adding sleep.
@@ -182,6 +182,12 @@ The following sequence diagram shows how the `add-activity` operation works:
 
 5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
 
+The following class diagram shows how sleep and sleep-related classes are constructed in AthletiCLI:
+
+<p  align="center" width="100%">
+  <img width="80%" src="images/SleepAndSleepListClassDiagram.svg" alt="Class Diagram of Sleep and SleepList"/>
+
+</p>
 
 
 ## Product scope
