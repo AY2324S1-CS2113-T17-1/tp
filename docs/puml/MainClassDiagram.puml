@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+hide circle
+
+class AthletiCLI{
+    void main()
+    void run()
+
+}
+class Ui{
+    Ui getInstance()
+    String getUserCommand()
+    void showMessages(Messages: String)
+    void showException(e: Exception)
+
+}
+class Parser{
+     Command parseCommand(rawUserInput: String)
+}
+class Data{
+    Data getInstance()
+    void load()
+    void save()
+}
+
+
+
+AthletiCLI --> Ui
+AthletiCLI --> Parser
+AthletiCLI --> Data
+@enduml
