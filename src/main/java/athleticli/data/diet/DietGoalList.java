@@ -1,7 +1,10 @@
 package athleticli.data.diet;
 
 import athleticli.data.Data;
+import athleticli.data.Goal;
 import athleticli.data.StorableList;
+import athleticli.exceptions.AthletiException;
+import athleticli.ui.Message;
 
 import static athleticli.storage.Config.PATH_DIET_GOAL;
 
@@ -19,6 +22,7 @@ public class DietGoalList extends StorableList<DietGoal> {
     /**
      * Returns a string representation of the diet goal list.
      *
+     * @param data A storage class to retrieve diet information.
      * @return A string representation of the diet goal list.
      */
     public String toString(Data data) {
@@ -39,9 +43,21 @@ public class DietGoalList extends StorableList<DietGoal> {
      * @return The diet goal parsed from the string.
      */
     @Override
-    public DietGoal parse(String s) {
-        // TODO
-        return null;
+    public DietGoal parse(String s) throws AthletiException {
+        try {
+            String[] dietGoalDetails = s.split("\\s+");
+            System.out.println(dietGoalDetails);
+            String dietGoalTimeSpanString = dietGoalDetails[1];
+            String dietGoalNutrientString = dietGoalDetails[2];
+            String dietGoalTargetValueString = dietGoalDetails[3];
+            int dietGoalTargetValue = Integer.parseInt(dietGoalTargetValueString);
+
+            return new DietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
+                    dietGoalNutrientString, dietGoalTargetValue);
+
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_LOAD_ERROR);
+        }
     }
 
     /**
@@ -52,7 +68,11 @@ public class DietGoalList extends StorableList<DietGoal> {
      */
     @Override
     public String unparse(DietGoal dietGoal) {
-        // TODO
-        return null;
+        /*
+         * diet goal has nutrient, target value, date. there rest are calculated on the spot.
+         * */
+        return "dietGoal " + dietGoal.getTimeSpan() + " " + dietGoal.getNutrient()
+                + " " + dietGoal.getTargetValue();
+
     }
 }

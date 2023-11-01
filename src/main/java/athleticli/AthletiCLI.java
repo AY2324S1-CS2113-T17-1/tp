@@ -57,7 +57,12 @@ public class AthletiCLI {
      */
     private void run() {
         logger.entering(getClass().getName(), "run");
-        data.load();
+        try {
+            data.load();
+        } catch (AthletiException e) {
+            ui.showException(e);
+            return;
+        }
         ui.showWelcome();
         boolean isExit = false;
         while (!isExit) {

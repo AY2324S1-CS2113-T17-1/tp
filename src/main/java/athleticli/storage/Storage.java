@@ -43,6 +43,11 @@ public class Storage {
     }
 
     public static Stream<String> load(String path) throws IOException {
+        File file = new File(path);
+        if (!file.exists()) {
+            file.getParentFile().mkdirs();
+            file.createNewFile();
+        }
         return Files.lines(Path.of(path));
     }
 }

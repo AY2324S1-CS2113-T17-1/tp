@@ -112,13 +112,14 @@ You can edit your activities in AthletiCLI by editing the activity at the specif
 * `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
 * `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
-### Setting Goals:
+### Setting Activity Goals:
 
 'set-activity-goal'
 
 You can set goals for your activities in AthletiCLI by setting the target distance or duration for a specific sport.
 
 **Syntax**
+
 * `set-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`
 
 **Parameters**
@@ -133,6 +134,45 @@ You can set goals for your activities in AthletiCLI by setting the target distan
 * `set-activity-goal sport/running type/distance period/weekly target/10000` sets a goal of running 10km per week.
 * `set-activity-goal sport/swimming type/duration period/monthly target/120` sets a goal of swimming for 2 hours per
   month.
+
+### Editing Activity Goals:
+
+'edit-activity-goal'
+
+You can edit your already set goals by mentioning the sport, target, and period of the goal you want to edit.
+
+**Syntax**
+
+* `edit-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`
+
+**Parameters**
+
+* SPORT: The sport for which you want to set a goal. It must be one of the following: running, swimming, cycling,
+  general.
+* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, yearly.
+* VALUE: The value of the target. It must be a positive number. For distance, it is in meters. For duration, it is
+  in minutes.
+
+**Examples**
+
+* `edit-activity-goal sport/running type/distance period/weekly target/20000` edits the goal of running 20km per week.
+* `edit-activity-goal sport/swimming type/duration period/monthly target/60` edits the goal of swimming for 1 hour per
+  month.
+
+### Listing Activity Goals:
+
+'list-activity-goal'
+
+You can list all your goals in AthletiCLI and see your progress towards them.
+
+**Syntax**
+
+* `list-activity-goal`
+
+**Examples**
+
+* `list-activity-goal` lists all your goals.
 
 ## Diet Management
 
@@ -213,6 +253,23 @@ You can list all your diets in AtheltiCLI.
 
 * `list-diet`
 
+### Finding Diets:
+
+`find-diet date/DATE`
+
+You can find all your diets on a specific date in AtheltiCLI.
+
+**Syntax:**
+
+* `find-diet date/DATE`
+
+**Parameters:**
+
+* DATE: The date of the diet. It must follow the ISO Date Format: YYYY-MM-DD
+
+**Examples:**
+
+* `find-diet date/2021-09-01`
 
 
 ## Diet Goal Management
@@ -351,3 +408,55 @@ Edit multiple nutrients goals if all of them exists:
 
 Edit a single calories goal if the goal exists:
 * `edit-diet-goal WEEKLY calories/5000`
+
+## Miscellaneous
+
+### Finding Records:
+
+You can find all your records, including activities, sleeps, and diets, on a specific date in AtheltiCLI.
+
+**Syntax:**
+
+* `find DATE`
+
+**Parameters:**
+
+* `DATE`: The date of the records. It must follow the ISO Date Format: `yyyy-MM-dd`.
+
+**Example:**
+
+* `find 2023-11-01`
+
+### Saving Files:
+
+You can save files while using AthletiCLI if you want to, rather than waiting until the AthletiCLI exits to automatically save them.
+
+**Syntax:**
+
+* `save`
+
+
+### Exiting AthletiCLI:
+
+You can use the `bye` command at any time to safely store the file and exit AthletiCLI.
+
+**Syntax:**
+
+* `bye`
+
+### Viewing Help Messages:
+
+If you forget a command, you can always use the `help` command to see their syntax.
+
+**Syntax:**
+
+* `help [COMMAND]`
+
+**Parameters:**
+
+* `COMMAND`: The command you want to view. If it is omitted, a list containing the syntax of all commands will be shown.
+
+**Examples:**
+
+* `help` lists the syntax of all commands.
+* `help add-diet` shows the syntax of the `add-diet` command.

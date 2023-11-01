@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+participant ":AthletiCLI" as AthletiCLI #lightblue
+participant "<<class>>\nParser" as Parser #lightgreen
+participant ":HelpCommand" as HelpCommand #lightpink
+participant ":Ui" as Ui #lightyellow
+actor User as User
+
+
+'autonumber
+AthletiCLI++
+AthletiCLI -> Ui++ : getUserCommand()
+User -> Ui : "help add-diet"
+Ui --> AthletiCLI-- : "help add-diet"
+AthletiCLI -> Parser++ : parseCommand("help add-diet")
+create HelpCommand
+Parser -> HelpCommand++ : new HelpCommand("add-diet")
+HelpCommand --> Parser-- : :HelpCommand
+Parser --> AthletiCLI-- : :HelpCommand
+AthletiCLI -> HelpCommand++ : execute(data)
+HelpCommand --> AthletiCLI-- : feedback:String
+AthletiCLI -> Ui++ : showMessages(feedback)
+Ui --> AthletiCLI--
+
+destroy HelpCommand
+
+@enduml

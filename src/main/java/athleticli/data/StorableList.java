@@ -1,8 +1,12 @@
 package athleticli.data;
 
+import static athleticli.ui.Message.MESSAGE_LOAD_EXCEPTION;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
+import athleticli.exceptions.AthletiException;
+import athleticli.exceptions.WrappedAthletiException;
 import athleticli.storage.Storage;
 
 public abstract class StorableList<T> extends ArrayList<T> {
@@ -25,11 +29,17 @@ public abstract class StorableList<T> extends ArrayList<T> {
     /**
      * Loads from a file.
      */
-    public void load() {
+    public void load() throws AthletiException {
         try {
-            Storage.load(path).map(this::parse).forEachOrdered(this::add);
-        } catch (IOException e) {
-            this.clear();
+            Storage.load(path).map(s -> {
+                try {
+                    return parse(s);
+                } catch (AthletiException e) {
+                    throw new WrappedAthletiException(e);
+                }
+            }).forEachOrdered(this::add);
+        } catch (IOException | WrappedAthletiException e) {
+            throw new AthletiException(String.format(MESSAGE_LOAD_EXCEPTION, path));
         }
     }
 
@@ -39,7 +49,7 @@ public abstract class StorableList<T> extends ArrayList<T> {
      * @param s     The string to be parsed.
      * @return      The T object parsed from the string.
      */
-    public abstract T parse(String s);
+    public abstract T parse(String s) throws AthletiException;
 
     /**
      * Unparses a T object to a string.
