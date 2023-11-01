@@ -3,10 +3,13 @@ package athleticli.data.sleep;
 import static athleticli.storage.Config.PATH_SLEEP;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import athleticli.data.Findable;
 import athleticli.data.StorableList;
+import athleticli.data.Goal;
 
 /**
  * Represents a list of sleep records.
@@ -36,6 +39,13 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
         return result;
     }
 
+    /**
+     * Sorts the sleep entries in the list by date.
+     */
+    public void sort() {
+        this.sort(Comparator.comparing(Sleep::getStartDateTime).reversed());
+    }
+    
     /**
      * Parses a sleep from a string.
      *
