@@ -27,8 +27,13 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
      */
     @Override
     public ArrayList<Sleep> find(LocalDate date) {
-        // TODO
-        return null;
+        ArrayList<Sleep> result = new ArrayList<>();
+        for (Sleep sleep : this) {
+            if (sleep.getStartDateTime().toLocalDate().equals(date)) {
+                result.add(sleep);
+            }
+        }
+        return result;
     }
 
     /**
