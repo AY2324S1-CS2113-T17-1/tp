@@ -108,6 +108,9 @@ These are the main components behind the architecture of the `add-activity` feat
 5. `Data`: holds current state of the activity list.
 6. `ActivityList`: maintains the list of all added activities.
 
+Here is a class diagram of the relationships between the data components `Activity`,`Data` and `ActivityList`:
+(tbd)
+
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
 **Step 1 - Input Capture:** The user issues an `add-activity ...` which is captured and passed to the Parser by the 
@@ -128,8 +131,54 @@ added to the list.
 
 The following sequence diagram shows how the `add-activity` operation works:
 <p  align="center" >
-  <img width="80%" src="images/AddActivity.png" alt="Sequence Diagram of add-activity"/>
+  <img width="100%" src="images/AddActivity.svg" alt="Sequence Diagram of add-activity"/>
 </p>
+
+#### [Implemented] Tracking activity goals
+
+With the `set-activity-goal` feature, users can set periodic goals for their activities.
+The fulfillment of these goals is tracked automatically and can be evaluated by the user at any time.
+
+These are the key components and their roles in the architecture of the goal tracking:
+* `SetActivityGoalCommand`: encapsulates the execution of the `set-activity-goal` command. It adds 
+  the activity goal to the data.
+* `ActivityGoal`: represents the activity goal that is to be added and contains functionality to 
+  track the fulfillment of the goal. 
+* `ActivityList`: contains key functionality to retrieve and filter the activity list according to the specified 
+  properties of the goal.
+
+Given below is an example usage scenario and how the goal setting and tracking mechanism behaves at 
+each step.
+
+1. **Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
+   Parser by the running AthletiCLI instance.
+2. **Step 2 - Goal Parsing:** The Parser parses the raw input to obtain the sports, target and timespan of the goal. 
+   Given that all these parameters are provided correctly and no exception is thrown, a new activity goal object is 
+   created.
+3. **Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
+   added activity goal attached to it. The command implements the `SetActivityGoalCommand#execute()` operation and is 
+   passed to the AthletiCLI instance.
+4. **Step 4 - Goal Addition:** The AthletiCLI instance executes the `SetActivityGoalCommand` object. The command will 
+   access the data and retrieve the currently stored list of activity goals stored inside it. The new `ActivityGoal` 
+   object is added to the list.
+
+The following sequence diagram shows how the `set-activity-goal` operation works:
+<p  align="center" >
+  <img width="100%" src="images/AddActivityGoal.svg" alt="Sequence Diagram of set-activity-goal"/>
+</p>
+
+Assume that the user has set a goal to run 10km per week and has already tracked two running activities of 5km each.
+The following describes how the goal evaluation works after being invoked by the user, e.g., with a list-activity-goal command:
+
+5. **Step 5 - Goal Evaluation:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
+activity list with the two tracked activities from the data and calls the total distance calculation function. It filters the 
+   activity list according to the specified timespan and sports of the goal. The current value obtained by this, 
+   10km in the example, is returned to the `ActivityGoal` object, which then compares it to the target value of the goal. This mechanism is visualized in the following sequence diagram:
+
+<p  align="center" >
+    <img width="100%" src="images/ActivityGoalEvaluation.svg" alt="Sequence Diagram of activity goal evaluation"/>
+</p>
+
 
 ### [Proposed] Implementation of DietGoalList
 
