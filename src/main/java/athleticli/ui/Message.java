@@ -1,5 +1,7 @@
 package athleticli.ui;
 
+import athleticli.parser.CommandName;
+
 public class Message {
     public static final String PROMPT = "> ";
     public static final String LINE = "____________________________________________________________\n";

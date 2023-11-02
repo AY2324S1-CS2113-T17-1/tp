@@ -14,8 +14,8 @@ import athleticli.ui.Message;
  */
 public class AddSleepCommand extends Command {
 
-    private LocalDateTime from;
-    private LocalDateTime to;
+    private final LocalDateTime from;
+    private final LocalDateTime to;
     private final Logger logger = Logger.getLogger(AddSleepCommand.class.getName());
 
     /**

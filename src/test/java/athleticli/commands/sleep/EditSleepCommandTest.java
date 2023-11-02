@@ -38,8 +38,10 @@ public class EditSleepCommandTest {
                                                         LocalDateTime.of(2023, 10, 18, 7, 0));
         String[] expected = {
             "Got it. I've changed this sleep record at index 1:",
-            "original: sleep record from 17-10-2023 22:00 to 18-10-2023 06:00",
-            "to new: sleep record from 17-10-2023 23:00 to 18-10-2023 07:00",
+            "original: [Sleep] | Date: 2023-10-17 | Start Time: October 17, 2023 at 10:00 PM " +
+                "| End Time: October 18, 2023 at 6:00 AM | Sleeping Duration: 8 Hours ",
+            "to new: [Sleep] | Date: 2023-10-17 | Start Time: October 17, 2023 at 11:00 PM " +
+                "| End Time: October 18, 2023 at 7:00 AM | Sleeping Duration: 8 Hours ",
         };
         
         assertArrayEquals(expected, command.execute(data));

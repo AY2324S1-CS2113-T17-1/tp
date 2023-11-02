@@ -1,0 +1,28 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+!define LOGIC_COLOR #3333C4
+
+participant ":ActivityGoal" as ActivityGoal LOGIC_COLOR
+participant "data:Data" as Data #lightgrey
+participant "activities:ActivityList" as activities #lightgrey
+
+
+ActivityGoal++
+-> ActivityGoal: isAchieved(data)
+ActivityGoal -> ActivityGoal++: getCurrentValue(data)
+ActivityGoal -> ActivityGoal++: getActivityClass()
+ActivityGoal --> ActivityGoal--: activityClass
+ActivityGoal -> Data++: getActivities()
+Data --> ActivityGoal--: activities
+
+ActivityGoal -> activities++: getTotalDistance/Duration(activityClass, timespan)
+activities -> activities++: filterByTimespan(timespan)
+activities --> activities--: filteredActivities
+activities --> ActivityGoal--: total
+
+ActivityGoal --> ActivityGoal--
+<-- ActivityGoal: isAchieved
+@enduml
