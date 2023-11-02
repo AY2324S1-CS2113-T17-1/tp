@@ -1,6 +1,7 @@
 package athleticli.data.activity;
 
 import athleticli.data.Goal.TimeSpan;
+import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -82,5 +83,51 @@ class ActivityListTest {
         int expected = 0;
         int actual = activityList.getTotalDuration(Run.class, TimeSpan.WEEKLY);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    void unparse_activity_unparsed() {
+        String expected = "[Activity]: Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01T06:00";
+        Activity activity = new Activity("Morning Run", LocalTime.of(1, 0), 10000,
+                LocalDateTime.of(2021, 9, 1, 6, 0));
+        String actual = activityList.unparse(activity);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void unparse_run_unparsed() {
+        String expected = "[Run]: Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01T06:00 elevation/60";
+        Run run = new Run("Morning Run", LocalTime.of(1, 0), 10000,
+                LocalDateTime.of(2021, 9, 1, 6, 0), 60);
+        String actual = activityList.unparse(run);
+        assertEquals(expected, actual);
+    }
+
+    @Test
+    void parse_activity_parsed() throws AthletiException {
+        Activity expected = new Activity("Morning Run", LocalTime.of(1, 0), 10000,
+                LocalDateTime.of(2021, 9, 1, 6, 0));
+        ActivityList activities = new ActivityList();
+        String unparsedActivity = activities.unparse(expected);
+        Activity actual = activities.parse(unparsedActivity);
+
+        assertEquals(expected.getCaption(), actual.getCaption());
+        assertEquals(expected.getMovingTime(), actual.getMovingTime());
+        assertEquals(expected.getDistance(), actual.getDistance());
+        assertEquals(expected.getStartDateTime(), actual.getStartDateTime());
+    }
+
+    @Test
+    void parse_run_parsed() throws AthletiException {
+        Run expected = new Run("Morning Run", LocalTime.of(1, 0), 10000,
+                LocalDateTime.of(2021, 9, 1, 6, 0), 60);
+        ActivityList activities = new ActivityList();
+        String unparsedActivity = activities.unparse(expected);
+        Run actual = (Run) activities.parse(unparsedActivity);
+
+        assertEquals(expected.getCaption(), actual.getCaption());
+        assertEquals(expected.getMovingTime(), actual.getMovingTime());
+        assertEquals(expected.getDistance(), actual.getDistance());
+        assertEquals(expected.getStartDateTime(), actual.getStartDateTime());
     }
 }

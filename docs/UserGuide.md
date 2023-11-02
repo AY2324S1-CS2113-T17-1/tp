@@ -52,8 +52,8 @@ You can record your activities in AtheltiCLI by adding different activities incl
 
 **Examples:**
 
-* `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
-* `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `add-activity Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00`
+* `add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 
 ### Deleting Activities:
 

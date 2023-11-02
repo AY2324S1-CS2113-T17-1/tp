@@ -1,5 +1,7 @@
 package athleticli.data.activity;
 
+import athleticli.parser.Parameter;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -63,6 +65,18 @@ public class Run extends Activity {
     }
 
     /**
+     * Returns a string representation of the run used for storing the data.
+     * @return a string representation of the run
+     */
+    @Override
+    public String unparse() {
+        String commandArgs = super.unparse();
+        commandArgs = commandArgs.replace(Parameter.ACTIVITY_STORAGE_INDICATOR, Parameter.RUN_STORAGE_INDICATOR);
+        commandArgs += " " + Parameter.ELEVATION_SEPARATOR + this.elevationGain;
+        return commandArgs;
+    }
+
+    /**
      * Returns a detailed summary of the run.
      * @return a multiline string representation of the run
      */
@@ -88,5 +102,7 @@ public class Run extends Activity {
     public int getElevationGain() {
         return elevationGain;
     }
+
+
 
 }
