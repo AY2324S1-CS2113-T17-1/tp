@@ -1,6 +1,6 @@
 package athleticli.data;
 
-import java.io.Serializable;
+import java.io.IOException;
 
 import athleticli.data.activity.ActivityGoalList;
 import athleticli.data.activity.ActivityList;
@@ -8,29 +8,54 @@ import athleticli.data.diet.DietGoalList;
 import athleticli.data.diet.DietList;
 import athleticli.data.sleep.SleepGoalList;
 import athleticli.data.sleep.SleepList;
+import athleticli.exceptions.AthletiException;
 
 /**
  * Defines the basic fields and methods of data.
  */
-public class Data implements Serializable {
-    private ActivityList activities;
-    private ActivityGoalList activityGoals;
-    private DietList diets;
-    private DietGoalList dietGoals;
-    private SleepList sleeps;
-    private SleepGoalList sleepGoals;
+public class Data {
+    private static Data dataInstance;
+    private ActivityList activities = new ActivityList();
+    private ActivityGoalList activityGoals = new ActivityGoalList();
+    private DietList diets = new DietList();
+    private DietGoalList dietGoals = new DietGoalList();
+    private SleepList sleeps = new SleepList();
+    private SleepGoalList sleepGoals = new SleepGoalList();
 
     /**
-     * Constructs an empty <code>Data</code> object.
+     * Returns the singleton instance of `Data`.
+     *
+     * @return  The singleton instance of `Data`.
      */
-    public Data() {
-        this.activities = new ActivityList();
-        this.activityGoals = new ActivityGoalList();
-        this.diets = new DietList();
-        this.dietGoals = new DietGoalList();
-        this.sleeps = new SleepList();
-        this.sleepGoals = new SleepGoalList();
-        this.dietGoals = new DietGoalList();
+    public static Data getInstance() {
+        if (dataInstance == null) {
+            dataInstance = new Data();
+        }
+        return dataInstance;
+    }
+
+    /**
+     * Loads data from files.
+     */
+    public void load() throws AthletiException {
+        activities.load();
+        activityGoals.load();
+        diets.load();
+        dietGoals.load();
+        sleeps.load();
+        sleepGoals.load();
+    }
+
+    /**
+     * Saves data to files.
+     */
+    public void save() throws IOException {
+        activities.save();
+        activityGoals.save();
+        diets.save();
+        dietGoals.save();
+        sleeps.save();
+        sleepGoals.save();
     }
 
     /**

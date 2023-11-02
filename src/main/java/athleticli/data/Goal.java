@@ -7,55 +7,55 @@ import java.time.LocalDate;
  */
 public abstract class Goal {
     /**
-     * Defines different types of timespans.
+     * Defines different types of time spans.
      */
-    public enum Timespan {
+    public enum TimeSpan {
         DAILY(1),
         WEEKLY(7),
         MONTHLY(30),
         YEARLY(365);
 
-        private final long days;
+        private final int days;
 
-        Timespan(long days) {
+        TimeSpan(int days) {
             this.days = days;
         }
 
         /**
-         * Returns the number of days in the timespan.
+         * Returns the number of days in the time span.
          *
-         * @return  The number of days in the timespan.
+         * @return  The number of days in the time span.
          */
-        public long getDays() {
+        public int getDays() {
             return days;
         }
     }
 
-    private Timespan timespan;
+    private TimeSpan timeSpan;
 
-    public Goal(Timespan timespan) {
-        this.timespan = timespan;
+    public Goal(TimeSpan timeSpan) {
+        this.timeSpan = timeSpan;
     }
 
     /**
-     * Returns the timespan of this goal.
+     * Returns the time span of this goal.
      *
-     * @return  The timespan of this goal.
+     * @return  The time span of this goal.
      */
-    public Timespan getTimespan() {
-        return timespan;
+    public TimeSpan getTimeSpan() {
+        return timeSpan;
     }
 
     /**
-     * Checks whether the date is between the timespan.
+     * Checks whether the date is between the time span.
      *
      * @param date     The date to be matched.
-     * @param timespan The timespan of the goal.
-     * @return         Whether the date is between the timespan.
+     * @param timeSpan The time span of the goal.
+     * @return         Whether the date is between the time span.
      */
-    public static boolean checkDate(LocalDate date, Timespan timespan) {
+    public static boolean checkDate(LocalDate date, TimeSpan timeSpan) {
         final LocalDate endDate = LocalDate.now();
-        final LocalDate startDate = endDate.minusDays(timespan.getDays() - 1);
+        final LocalDate startDate = endDate.minusDays(timeSpan.getDays() - 1);
         return !(date.isBefore(startDate) || date.isAfter(endDate));
     }
 

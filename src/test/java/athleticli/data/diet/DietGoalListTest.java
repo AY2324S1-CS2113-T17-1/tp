@@ -1,5 +1,8 @@
 package athleticli.data.diet;
 
+import athleticli.data.Data;
+import athleticli.data.Goal;
+import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,11 +13,13 @@ class DietGoalListTest {
     private static final int PROTEIN = 10000;
     private DietGoal proteinGoal;
     private DietGoalList dietGoals;
+    private Data data;
 
     @BeforeEach
     void setUp() {
         dietGoals = new DietGoalList();
-        proteinGoal = new DietGoal("protein", PROTEIN);
+        proteinGoal = new DietGoal(Goal.TimeSpan.WEEKLY, "protein", PROTEIN);
+        data = new Data();
     }
 
     @Test
@@ -57,8 +62,29 @@ class DietGoalListTest {
     }
 
     @Test
-    void testToString_oneExistingGoal_expectCorrectFormat() {
+    void toString_oneExistingGoal_expectCorrectFormat() {
         dietGoals.add(proteinGoal);
-        assertEquals("\t1. protein intake progress: (0/10000)\n", dietGoals.toString());
+        assertEquals("\t1. protein intake progress: (0/10000)\n", dietGoals.toString(data));
+    }
+
+    @Test
+    void unparse_oneDietGoal_expectCorrectFormat() {
+        String actualOutput = dietGoals.unparse(proteinGoal);
+        assertEquals("dietGoal WEEKLY protein 10000", actualOutput);
+    }
+
+    @Test
+    void parse_validInput_expectDietGoal() throws AthletiException {
+        String validInput = "dietGoal WEEKLY protein 10000";
+        DietGoal newProteinGoal = dietGoals.parse(validInput);
+        assert newProteinGoal instanceof DietGoal;
+    }
+
+    @Test
+    void parse_invalidInput_expectDietGoal() throws AthletiException {
+        String validInput = "dietGoal WEEKLYprotein10000";
+        assertThrows(AthletiException.class, () -> {
+            dietGoals.parse(validInput);
+        });
     }
 }

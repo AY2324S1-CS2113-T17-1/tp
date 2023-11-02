@@ -1,6 +1,7 @@
 package athleticli.commands.diet;
 
 import athleticli.data.Data;
+import athleticli.data.Goal;
 import athleticli.data.diet.DietGoal;
 import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
@@ -26,9 +27,9 @@ class EditDietGoalCommandTest {
     void setUp() {
         data = new Data();
 
-        dietGoalCarb = new DietGoal("carb", 10000);
-        dietGoalFats = new DietGoal("fats", 10000);
-        newDietGoalFats = new DietGoal("fats", 10);
+        dietGoalCarb = new DietGoal(Goal.TimeSpan.WEEKLY, "carb", 10000);
+        dietGoalFats = new DietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
+        newDietGoalFats = new DietGoal(Goal.TimeSpan.WEEKLY, "fats", 10);
 
         emptyInputDietGoals = new ArrayList<>();
         filledInputDietGoals = new ArrayList<>();

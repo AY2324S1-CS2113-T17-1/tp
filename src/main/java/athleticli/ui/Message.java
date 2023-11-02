@@ -1,5 +1,7 @@
 package athleticli.ui;
 
+import athleticli.parser.CommandName;
+
 public class Message {
     public static final String PROMPT = "> ";
     public static final String LINE = "____________________________________________________________\n";
@@ -67,8 +69,11 @@ public class Message {
     public static final String MESSAGE_FAT_INVALID = "The fat intake must be a non-negative integer!";
     public static final String MESSAGE_ACTIVITY_FIND = "I've found these activities:";
     public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
-    public static final String MESSAGE_ACTIVITY_GOAL_ADDED = "Alright, I've added this activity goal:";
     public static final String MESSAGE_ACTIVITY_DELETED = "Gotcha, I've deleted this activity:";
+    public static final String MESSAGE_ACTIVITY_GOAL_ADDED = "Alright, I've added this activity goal:";
+    public static final String MESSAGE_ACTIVITY_GOAL_EDITED = "Alright, I've edited this activity goal:";
+    public static final String MESSAGE_NO_SUCH_GOAL_EXISTS = "No such goal exists.";
+    public static final String MESSAGE_ACTIVITY_GOAL_LIST = "These are your activity goals:";
     public static final String MESSAGE_DIET_ADDED = "Well done! I've added this diet:";
     public static final String MESSAGE_ELEVATION_MISSING =
             "Please specify the elevation gain using \"elevation/\"!";
@@ -95,28 +100,30 @@ public class Message {
     public static final String MESSAGE_ACTIVITY_FIRST =
             "Now you have tracked your first activity. This is just the beginning!";
 
-    public static final String MESSAGE_DIETGOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
+    public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
             "must be a positive integer!";
-    public static final String MESSAGE_DIETGOAL_INVALID_NUTRIENT = "Key word to nutrients goals has to be one of the " +
-            "following: \"calories\", \"protein\", \"carb\", \"fats\"!";
-    public static final String MESSAGE_DIETGOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
+    public static final String MESSAGE_DIET_GOAL_INVALID_NUTRIENT = "Key word to nutrients goals has " +
+            "to be one of the following: \"calories\", \"protein\", \"carb\", \"fats\"!";
+    public static final String MESSAGE_DIET_GOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
             "Please edit the goal instead!";
-    public static final String MESSAGE_DIETGOAL_NOT_EXISTED = "Diet goal for %s is not present. " +
+    public static final String MESSAGE_DIET_GOAL_NOT_EXISTED = "Diet goal for %s is not present. " +
             "Please add the goal before editing it!";
-    public static final String MESSAGE_DIETGOAL_COUNT = "Now you have %d diet goal(s).";
-    public static final String MESSAGE_DIETGOAL_NONE = "There are no goals at the moment. Add a diet goal to start.";
-    public static final String MESSAGE_DIETGOAL_LIST_HEADER = "These are your goal(s):\n";
-    public static final String MESSAGE_DIETGOAL_INCORRECT_INTEGER_FORMAT = "Please provide a positive integer.\n";
-    public static final String MESSAGE_DIETGOAL_EMPTY_DIETGOALLIST = "There is no diet goals at the moment. " +
+    public static final String MESSAGE_DIET_GOAL_COUNT = "Now you have %d diet goal(s).";
+    public static final String MESSAGE_DIET_GOAL_NONE = "There are no goals at the moment. Add a diet goal to start.";
+    public static final String MESSAGE_DIET_GOAL_LIST_HEADER = "These are your goal(s):\n";
+    public static final String MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT = "Please provide a positive integer.\n";
+    public static final String MESSAGE_DIET_GOAL_EMPTY_DIET_GOAL_LIST = "There is no diet goals at the moment. " +
             "Please add one to continue.\n";
-    public static final String MESSAGE_DIETGOAL_DELETE_HEADER = "The following goal has been deleted:\n";
-    public static final String MESSAGE_DIETGOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
+    public static final String MESSAGE_DIET_GOAL_DELETE_HEADER = "The following goal has been deleted:\n";
+    public static final String MESSAGE_DIET_GOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
             "Please enter a value from 1 to %d.";
-    public static final String MESSAGE_DIETGOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
-            "to create or edit your diet goals:\n \"calories\", \"protein\", \"carb\", \"fats\" " +
-            "followed by the target value.\n" + "\te.g. calories/100";
-    public static final String MESSSAGE_DIETGOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
+    public static final String MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
+            "to create or edit your diet goals:\n <DAILY/WEEKLY> followed by \"calories\", \"protein\", " +
+            "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100";
+    public static final String MESSAGE_DIET_GOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
             "no repetitions for your diet goal nutrients.";
+    public static final String MESSAGE_DIET_GOAL_LOAD_ERROR = "Some error has been encountered " +
+            "while loading diet goals.";
 
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";
@@ -137,22 +144,24 @@ public class Message {
     public static final String MESSAGE_SLEEP_ADD_RETURN_2 = "Now you have %d sleep records in the list.";
     public static final String MESSAGE_SLEEP_FIND = "I've found these sleeps:";
 
-    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT = 
-        "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME = 
-        "Please specify both the start and end time of your sleep.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START = 
-        "Please specify the start time of your sleep before the end time.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_DELETE_NO_INDEX = 
-        "Please specify the index of the sleep record you want to delete.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX = 
-        "Please specify the index of the sleep record you want to edit.";
-    public static final String ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE = 
-        "The index of the sleep record you want to edit is out of bounds.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT =
+            "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
+            "Please specify both the start and end time of your sleep.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START =
+            "Please specify the start time of your sleep before the end time.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_DELETE_NO_INDEX =
+            "Please specify the index of the sleep record you want to delete.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX =
+            "Please specify the index of the sleep record you want to edit.";
+    public static final String ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE =
+            "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
-        "The index of the sleep record you want to delete is out of bounds.";
+            "The index of the sleep record you want to delete is out of bounds.";
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
+    public static final String MESSAGE_LOAD_EXCEPTION =
+            "An exception occurred when loading %s. Please fix or delete it and rerun AthletiCLI!";
 
     /* Help Messages */
     public static final String HELP_ADD_ACTIVITY = CommandName.COMMAND_ACTIVITY
