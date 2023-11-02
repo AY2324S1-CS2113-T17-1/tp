@@ -1,18 +1,36 @@
-/**
- * To be implemented in future version of AthletiCLI.
- */
 package athleticli.data.sleep;
+
+import athleticli.data.Data;
+import athleticli.data.StorableList;
 
 import static athleticli.storage.Config.PATH_SLEEP_GOAL;
 
-import athleticli.data.StorableList;
-
+/**
+ * Represents a list of sleep goals.
+ */
 public class SleepGoalList extends StorableList<SleepGoal> {
     /**
      * Constructs a sleep goal list.
      */
     public SleepGoalList() {
         super(PATH_SLEEP_GOAL);
+    }
+
+    /**
+     * Returns a string representation of the sleep goal list.
+     * 
+     * @param data The data containing the sleep goal list.
+     * @return A string representation of the sleep goal list.
+     */
+    public String toString(Data data) {
+        StringBuilder result = new StringBuilder();
+        for (int i = 0; i < size(); i++) {
+            result.append(i + 1).append(". ").append(get(i).toString(data));
+            if (i != size() - 1) {
+                result.append("\n");
+            }
+        }
+        return result.toString();
     }
 
     /**
