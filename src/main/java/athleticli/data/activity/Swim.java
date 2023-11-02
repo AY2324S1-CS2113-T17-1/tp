@@ -1,5 +1,7 @@
 package athleticli.data.activity;
 
+import athleticli.parser.Parameter;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -90,6 +92,18 @@ public class Swim extends Activity {
                 this.getCalories() + " kcal", columnWidth);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+    }
+
+    /**
+     * Returns a string representation of the swim used for storing the data.
+     * @return a string representation of the swim
+     */
+    @Override
+    public String unparse() {
+        String commandArgs = super.unparse();
+        commandArgs = commandArgs.replace(Parameter.ACTIVITY_STORAGE_INDICATOR, Parameter.SWIM_STORAGE_INDICATOR);
+        commandArgs += " " + Parameter.SWIMMING_STYLE_SEPARATOR + this.style;
+        return commandArgs;
     }
 
     public SwimmingStyle getStyle() {
