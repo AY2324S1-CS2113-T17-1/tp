@@ -591,6 +591,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `find-sleep`              | `find-sleep date/DATE`                                                              | DATE                                                   | `find-sleep date/2021-09-01`                             |
 
 ## Miscellaneous
+
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
 | `find`                    | `find DATE`                                                                         | DATE                                                   | `find 2023-11-01`                                        |
