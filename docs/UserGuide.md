@@ -116,7 +116,7 @@ You can edit your activities in AthletiCLI by editing the activity at the specif
 
 **Parameters:**
 
-- INDEX: The index of the activity to be edited - must be a positive number.
+- INDEX: The index of the activity to be edited \* must be a positive number.
 - See [adding activities](#adding-activities) for the other parameters.
 
 **Examples:**
@@ -218,7 +218,7 @@ You can edit your diet in AtheltiCLI by editing the diet at the specified index.
 
 **Parameters:**
 
-- INDEX: The index of the diet to be edited - must be a positive integer.
+- INDEX: The index of the diet to be edited \* must be a positive integer.
 - CALORIES: The total calories of the meal.
 - PROTEIN: The total protein of the meal.
 - CARB: The total carbohydrates of the meal.
@@ -245,7 +245,7 @@ You can delete your diet in AtheltiCLI by deleting the diet at the specified ind
 
 **Parameters:**
 
-- INDEX: The index of the diet to be deleted - must be a positive integer.
+- INDEX: The index of the diet to be deleted \* must be a positive integer.
 
 **Examples:**
 
