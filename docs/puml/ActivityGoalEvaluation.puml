@@ -16,7 +16,7 @@ ActivityGoal -> ActivityGoal++: getCurrentValue(data)
 ActivityGoal -> ActivityGoal++: getActivityClass()
 ActivityGoal --> ActivityGoal--: activityClass
 ActivityGoal -> Data++: getActivities()
-Data -> ActivityGoal--: activities
+Data --> ActivityGoal--: activities
 
 ActivityGoal -> activities++: getTotalDistance/Duration(activityClass, timespan)
 activities -> activities++: filterByTimespan(timespan)

@@ -6,7 +6,7 @@ skinparam SequenceMessageAlignment center
 !define LOGIC_COLOR #3333C4
 
 participant ":AthletiCLI" as AthletiCLI LOGIC_COLOR
-participant ":Parser" as Parser #lightblue
+participant "Parser" as Parser <<class>> #lightblue
 participant "a:Activity" as Activity #yellow
 participant "c:AddActivityCommand" as AddActivityCommand #lightgreen
 participant "data:Data" as Data #lightgrey
@@ -17,7 +17,7 @@ AthletiCLI -> Parser++: parseCommand(userInput)
 Parser -> Parser++: parseActivity(arguments)
 Parser -> Activity++: Activity()
 Activity --> Parser--: a
-Parser -> Parser: a
+Parser --> Parser: a
 Parser--
 Parser -> AddActivityCommand++: parseAddActivityCommand(a)
 AddActivityCommand --> Parser--: c
@@ -31,7 +31,7 @@ AddActivityCommand -> Data++: getActivities()
 Data --> AddActivityCommand--: activities
 AddActivityCommand -> activities++: add(a)
 activities --> AddActivityCommand--
-AddActivityCommand -> AthletiCLI--: message
+AddActivityCommand --> AthletiCLI--: message
 
 destroy AddActivityCommand
 @enduml
