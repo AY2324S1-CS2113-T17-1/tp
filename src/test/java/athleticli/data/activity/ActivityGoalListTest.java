@@ -5,7 +5,7 @@ import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ActivityGoalListTest {
     private ActivityGoalList activityGoalList;
@@ -21,7 +21,7 @@ class ActivityGoalListTest {
     }
 
     @Test
-    void unparse_RunningDistanceGoal_unparsed() {
+    void unparse_runningDistanceGoal_unparsed() {
         String expected = "sport/RUNNING type/DISTANCE period/WEEKLY target/10000";
         ActivityGoal goal = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
                 ActivityGoal.Sport.RUNNING, 10000);
@@ -30,7 +30,7 @@ class ActivityGoalListTest {
     }
 
     @Test
-    void unparse_SwimmingDurationGoal_unparsed() {
+    void unparse_swimmingDurationGoal_unparsed() {
         String expected = "sport/SWIMMING type/DURATION period/MONTHLY target/120";
         ActivityGoal goal = new ActivityGoal(TimeSpan.MONTHLY, ActivityGoal.GoalType.DURATION,
                 ActivityGoal.Sport.SWIMMING, 120);
@@ -39,7 +39,7 @@ class ActivityGoalListTest {
     }
 
     @Test
-    void parse_RunningDistanceGoal_parsed() throws AthletiException {
+    void parse_runningDistanceGoal_parsed() throws AthletiException {
         ActivityGoal expected = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
                 ActivityGoal.Sport.RUNNING, 10000);
         String unparsedActivity = activityGoalList.unparse(expected);
@@ -51,7 +51,7 @@ class ActivityGoalListTest {
     }
 
     @Test
-    void parse_SwimmingDurationGoal_parsed() throws AthletiException {
+    void parse_swimmingDurationGoal_parsed() throws AthletiException {
         ActivityGoal expected = new ActivityGoal(TimeSpan.MONTHLY, ActivityGoal.GoalType.DURATION,
                 ActivityGoal.Sport.SWIMMING, 120);
         String unparsedActivity = activityGoalList.unparse(expected);
