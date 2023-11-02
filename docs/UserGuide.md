@@ -191,7 +191,7 @@ You can record your diet in AtheltiCLI by adding your calorie, protein, carbohyd
 * PROTEIN: The total protein of the meal.
 * CARB: The total carbohydrates of the meal.
 * FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: YYYY-MM-DD HH:MM
+* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
 
 **Examples:**
 
@@ -397,6 +397,110 @@ This command takes in at least 2 arguments. You are able to edit multiple diet g
 
 
 You can create one or multiple nutrient goals with this command.
+
+
+## Sleep Management
+
+### Adding Sleep:
+
+`add-sleep`  
+
+You can record your sleep timings in AtheltiCLI by adding your sleep start and end time. It also automagically calculates for you the duration of your sleep, as well as the sleep date.
+
+**Syntax:**
+
+* `add-sleep start/START end/END`
+
+**Parameters:**
+
+* START: The start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+
+* END: The end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+
+**Examples:**
+
+Take note that all sleep entries have an assosciated date. 
+
+All sleep entries with a start time before 06:00 will be taken to represent the previous days sleep. 
+
+* `add-sleep start/2023-01-20 02:00 end/2023-01-20 08:00`  will be taken to represent the sleep record on `2022-01-19`, which is the day before, since the start time is before 06:00 on `2022-01-20`.
+
+* `add-sleep start/2022-01-20 22:00 end/2022-01-21 06:00` will be taken to represent the sleep record on `2022-01-20`, since the start time is after 06:00 on `2022-01-20`.
+
+### Listing Sleep:
+
+`list-sleep`
+
+You can see all your tracked sleep records in a list by using this command.
+
+**Syntax:** `list-sleep`
+
+**Example:** `list-sleep`
+
+### Deleting Sleep:
+
+`delete-sleep`  
+
+Accidentally added a sleep record? You can quickly delete sleep records by using the following command.
+The index must be a positive number and is not larger than the number of sleep records recorded.
+
+**Syntax:**
+
+* `delete-sleep INDEX`
+
+**Parameters:**
+
+* INDEX: The integer index of the sleep record you wish to delete. Refer to the list-sleep command for the index of the sleep record you wish to delete.
+
+**Examples:**
+
+Assuming that there are 5 sleep records in the list:
+
+* `delete-sleep 5`  will delete the 5th sleep record in the sleep records list.
+* `delete-sleep 1`  will delete the 1st sleep record in the sleep records list.
+
+### Editing Sleep:
+
+**Command:** `edit-sleep`  
+You can modify existing sleep records in AtheltiCLI by specifying the sleep's index and then providing the new start and end times.
+
+**Syntax:**
+
+* `edit-sleep INDEX start/START end/END`
+
+**Parameters:**
+
+* INDEX: The integer index of the sleep record you wish to edit.
+* START: The new start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* END: The new end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+
+**Examples:**
+
+Assuming that there are 5 sleep records in the list:
+
+* `edit-sleep 5 2023-01-20 02:00 2023-01-20 08:00`  will edit the 5th sleep record in the sleep records list to have a start time of `2023-01-20 02:00` and an end time of `2023-01-20 08:00`. 
+
+* `edit-sleep 1 2022-01-20 22:00 2022-01-21 06:00` will edit the 1st sleep record in the sleep records list to have a start time of `2022-01-20 22:00` and an end time of `2022-01-21 06:00`.
+
+### Finding Sleep:
+
+`find-sleep date/DATE`
+
+You can find your sleep record on a specific date in AtheltiCLI.
+
+**Syntax:**
+
+* `find-sleep date/DATE`
+
+**Parameters:**
+
+* DATE: The date of the sleep. It must follow the ISO Date Format: yyyy-MM-dd.
+
+**Examples:**
+
+* `find-sleep date/2021-09-01`
+
+---
 
 
 **Examples:**
