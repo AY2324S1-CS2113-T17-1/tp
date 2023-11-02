@@ -1,5 +1,6 @@
 package athleticli.data.diet;
 
+import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +8,6 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-
 
 public class DietListTest {
     private static final int CALORIES = 10000;
@@ -95,7 +95,34 @@ public class DietListTest {
         dietList.add(diet1);
         dietList.add(diet2);
         dietList.add(diet3);
-        assertEquals("1. " + diet1 + "\n2. " + diet2 + "\n3. " + diet3,
-                dietList.toString());
+        assertEquals("1. " + diet1 + "\n2. " + diet2 + "\n3. " + diet3, dietList.toString());
+    }
+
+    @Test
+    void unparse_oneExistingDiet_expectCorrectFormat() {
+        Diet diet = new Diet(CALORIES, CARB, PROTEIN, FAT, DATE_TIME);
+        assertEquals("calories/10000 protein/30000 carb/20000 fat/40000 datetime/2020-10-10T10:10",
+                dietList.unparse(diet));
+    }
+
+    @Test
+    void parse_oneExistingDiet_expectCorrectFormat() throws AthletiException {
+        Diet diet = new Diet(CALORIES, CARB, PROTEIN, FAT, DATE_TIME);
+        assertEquals(diet, dietList.parse(
+                "calories/10000 protein/30000 carb/20000 fat/40000 datetime/2020-10-10T10:10"));
+    }
+
+    @Test
+    void parse_oneExistingDietWithExtraSpaces_expectCorrectFormat() throws AthletiException {
+        Diet diet = new Diet(CALORIES, CARB, PROTEIN, FAT, DATE_TIME);
+        String commandArgs = "calories/10000 protein/30000 carb/20000 fat/40000 datetime/2020-10-10T10:10";
+        assertEquals(diet.toString(), dietList.parse(commandArgs).toString());
+    }
+
+    @Test
+    void parse_DietConstructorWithDietListParse_expectSameDiet() throws AthletiException {
+        Diet diet = new Diet(CALORIES, CARB, PROTEIN, FAT, DATE_TIME);
+        String commandArgs = dietList.unparse(diet);
+        assertEquals(diet.toString(), dietList.parse(commandArgs).toString());
     }
 }
