@@ -450,7 +450,8 @@ The index must be a positive number and is not larger than the number of sleep r
 
 **Parameters:**
 
-* INDEX: The integer index of the sleep record you wish to delete. Refer to the list-sleep command for the index of the sleep record you wish to delete.
+* INDEX: The index of the sleep record you wish to delete. It must be a positive number and is not larger than the number of sleep records recorded.
+Refer to the list-sleep command for the index of the sleep record you wish to delete.
 
 **Examples:**
 
@@ -461,7 +462,8 @@ Assuming that there are 5 sleep records in the list:
 
 ### Editing Sleep:
 
-**Command:** `edit-sleep`  
+`edit-sleep`  
+
 You can modify existing sleep records in AtheltiCLI by specifying the sleep's index and then providing the new start and end times.
 
 **Syntax:**
@@ -470,7 +472,7 @@ You can modify existing sleep records in AtheltiCLI by specifying the sleep's in
 
 **Parameters:**
 
-* INDEX: The integer index of the sleep record you wish to edit.
+* INDEX: The index of the sleep record you wish to edit. It must be a positive number and is not larger than the number of sleep records recorded.
 * START: The new start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
 * END: The new end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
 
