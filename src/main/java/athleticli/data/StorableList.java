@@ -23,7 +23,7 @@ public abstract class StorableList<T> extends ArrayList<T> {
      * Saves to a file.
      */
     public void save() throws IOException {
-        Storage.save(path, this.stream().map(this::unparse));
+        Storage.save(path, this.stream().map(item -> unparse(item) + "\n"));
     }
 
     /**
