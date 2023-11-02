@@ -20,6 +20,9 @@ components.
 ### Architecture
 
 Given below is a quick overview of main components and how they interact with each other.
+<p  align="center" width="100%">
+  <img width="80%" src="images/architectureDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
+</p>
 
 **Main components of the architecture**
 
