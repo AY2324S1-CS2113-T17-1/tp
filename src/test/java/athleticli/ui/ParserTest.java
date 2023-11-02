@@ -20,6 +20,10 @@ import athleticli.data.activity.ActivityGoal.GoalType;
 import athleticli.data.activity.ActivityGoal.Sport;
 import athleticli.data.Goal.TimeSpan;
 import athleticli.exceptions.AthletiException;
+import athleticli.parser.ActivityParser;
+import athleticli.parser.Parameter;
+import athleticli.parser.Parser;
+
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -28,21 +32,21 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
-import static athleticli.ui.Parser.checkEmptyDietArguments;
-import static athleticli.ui.Parser.checkMissingDietArguments;
-import static athleticli.ui.Parser.getValueForMarker;
-import static athleticli.ui.Parser.parseCalories;
-import static athleticli.ui.Parser.parseCarb;
-import static athleticli.ui.Parser.parseCommand;
-import static athleticli.ui.Parser.parseDate;
-import static athleticli.ui.Parser.parseDiet;
-import static athleticli.ui.Parser.parseDietEdit;
-import static athleticli.ui.Parser.parseDietGoalDelete;
-import static athleticli.ui.Parser.parseDietGoalSetEdit;
-import static athleticli.ui.Parser.parseDietIndex;
-import static athleticli.ui.Parser.parseFat;
-import static athleticli.ui.Parser.parseProtein;
-import static athleticli.ui.Parser.splitCommandWordAndArgs;
+import static athleticli.parser.DietParser.checkEmptyDietArguments;
+import static athleticli.parser.DietParser.checkMissingDietArguments;
+import static athleticli.parser.DietParser.getValueForMarker;
+import static athleticli.parser.DietParser.parseCalories;
+import static athleticli.parser.DietParser.parseCarb;
+import static athleticli.parser.Parser.parseCommand;
+import static athleticli.parser.Parser.parseDate;
+import static athleticli.parser.DietParser.parseDiet;
+import static athleticli.parser.DietParser.parseDietEdit;
+import static athleticli.parser.DietParser.parseDietGoalDelete;
+import static athleticli.parser.DietParser.parseDietGoalSetEdit;
+import static athleticli.parser.DietParser.parseDietIndex;
+import static athleticli.parser.DietParser.parseFat;
+import static athleticli.parser.DietParser.parseProtein;
+import static athleticli.parser.Parser.splitCommandWordAndArgs;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -656,89 +660,89 @@ class ParserTest {
     @Test
     void parseActivityIndex_validIndex_returnIndex() throws AthletiException {
         int expected = 5;
-        int actual = Parser.parseActivityIndex("5");
+        int actual = ActivityParser.parseActivityIndex("5");
         assertEquals(expected, actual);
     }
 
     @Test
     void parseActivityIndex_invalidIndex_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> Parser.parseActivityIndex("abc"));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseActivityIndex("abc"));
     }
 
     @Test
     void parseActivityEdit_validInput_returnActivityEdit() {
         String validInput = "1 Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00";
-        assertDoesNotThrow(() -> Parser.parseActivityEdit(validInput));
+        assertDoesNotThrow(() -> ActivityParser.parseActivityEdit(validInput));
     }
 
     @Test
     void parseActivityEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 Morning Run duration/60";
-        assertThrows(AthletiException.class, () -> Parser.parseActivityEdit(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseActivityEdit(invalidInput));
     }
 
     @Test
     void parseRunEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 Morning Run duration/60";
-        assertThrows(AthletiException.class, () -> Parser.parseRunEdit(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseRunEdit(invalidInput));
     }
 
     @Test
     void parseRunEdit_validInput_returnRunEdit() {
         String validInput =
                 "2 Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
-        assertDoesNotThrow(() -> Parser.parseRunEdit(validInput));
+        assertDoesNotThrow(() -> ActivityParser.parseRunEdit(validInput));
     }
 
     @Test
     void parseCycleEdit_validInput_returnRunEdit() {
         String validInput =
                 "2 Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
-        assertDoesNotThrow(() -> Parser.parseCycleEdit(validInput));
+        assertDoesNotThrow(() -> ActivityParser.parseCycleEdit(validInput));
     }
 
     @Test
     void parseCycleEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 Morning Run duration/60";
-        assertThrows(AthletiException.class, () -> Parser.parseCycleEdit(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseCycleEdit(invalidInput));
     }
 
     @Test
     void parseSwimEdit_validInput_noExceptionThrown() {
         String validInput =
                 "2 Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
-        assertDoesNotThrow(() -> Parser.parseSwimEdit(validInput));
+        assertDoesNotThrow(() -> ActivityParser.parseSwimEdit(validInput));
     }
 
     @Test
     void parseSwimEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 Morning Run duration/60";
-        assertThrows(AthletiException.class, () -> Parser.parseRunEdit(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseRunEdit(invalidInput));
     }
 
     @Test
     void parseActivityEditIndex_validInput_returnIndex() throws AthletiException {
         int expected = 5;
-        int actual = Parser.parseActivityEditIndex("5");
+        int actual = ActivityParser.parseActivityEditIndex("5");
         assertEquals(expected, actual);
     }
 
     @Test
     void parseActivityListDetail_flagPresent_returnTrue() throws AthletiException {
         String input = "list-activity -d";
-        assertTrue(Parser.parseActivityListDetail(input));
+        assertTrue(ActivityParser.parseActivityListDetail(input));
     }
 
     @Test
     void parseActivityListDetail_flagAbsent_returnFalse() throws AthletiException {
         String input = "list-activity";
-        assertFalse(Parser.parseActivityListDetail(input));
+        assertFalse(ActivityParser.parseActivityListDetail(input));
     }
 
     @Test
     void parseActivity_validInput_activityParsed() throws AthletiException {
         String validInput = "Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00";
-        Activity actual = Parser.parseActivity(validInput);
+        Activity actual = ActivityParser.parseActivity(validInput);
         LocalTime duration = LocalTime.parse("01:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         LocalDateTime time =
                 LocalDateTime.parse("2021-09-01 06:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
@@ -752,7 +756,7 @@ class ParserTest {
     @Test
     void parseActivityGoal_validInput_activityGoalParsed() throws AthletiException {
         String validInput = "sport/running type/distance period/weekly target/10000";
-        ActivityGoal actual = Parser.parseActivityGoal(validInput);
+        ActivityGoal actual = ActivityParser.parseActivityGoal(validInput);
         ActivityGoal expected = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
                 ActivityGoal.Sport.RUNNING, 10000);
         assertEquals(actual.getTimeSpan(), expected.getTimeSpan());
@@ -764,7 +768,7 @@ class ParserTest {
     @Test
     void parseSport_validInput_sportParsed() throws AthletiException {
         String validInput = "running";
-        Sport actual = Parser.parseSport(validInput);
+        Sport actual = ActivityParser.parseSport(validInput);
         Sport expected = Sport.RUNNING;
         assertEquals(actual, expected);
     }
@@ -772,13 +776,13 @@ class ParserTest {
     @Test
     void parseSport_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
-        assertThrows(AthletiException.class, () -> Parser.parseSport(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseSport(invalidInput));
     }
 
     @Test
     void parseGoalType_validInput_goalTypeParsed() throws AthletiException {
         String validInput = "distance";
-        GoalType actual = Parser.parseGoalType(validInput);
+        GoalType actual = ActivityParser.parseGoalType(validInput);
         GoalType expected = GoalType.DISTANCE;
         assertEquals(actual, expected);
     }
@@ -786,7 +790,7 @@ class ParserTest {
     @Test
     void parsePeriod_validInput_periodParsed() throws AthletiException {
         String validInput = "weekly";
-        TimeSpan actual = Parser.parsePeriod(validInput);
+        TimeSpan actual = ActivityParser.parsePeriod(validInput);
         TimeSpan expected = TimeSpan.WEEKLY;
         assertEquals(actual, expected);
     }
@@ -794,13 +798,13 @@ class ParserTest {
     @Test
     void parsePeriod_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
-        assertThrows(AthletiException.class, () -> Parser.parsePeriod(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parsePeriod(invalidInput));
     }
 
     @Test
     void parseTarget_validInput_targetParsed() throws AthletiException {
         String validInput = "10000";
-        int actual = Parser.parseTarget(validInput);
+        int actual = ActivityParser.parseTarget(validInput);
         int expected = 10000;
         assertEquals(actual, expected);
     }
@@ -808,23 +812,23 @@ class ParserTest {
     @Test
     void parseTarget_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
-        assertThrows(AthletiException.class, () -> Parser.parseTarget(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseTarget(invalidInput));
     }
 
     @Test
     void checkMissingActivityGoalArguments_missingSport_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> Parser.checkMissingActivityGoalArguments(-1, 1, 1, 1));
+        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingActivityGoalArguments(-1, 1, 1, 1));
     }
 
     @Test
     void checkMissingActivityGoalArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> Parser.checkMissingActivityGoalArguments(1, 1, 1, 1));
+        assertDoesNotThrow(() -> ActivityParser.checkMissingActivityGoalArguments(1, 1, 1, 1));
     }
 
     @Test
     void parseDuration_validInput_durationParsed() throws AthletiException {
         String validInput = "01:00:00";
-        LocalTime actual = Parser.parseDuration(validInput);
+        LocalTime actual = ActivityParser.parseDuration(validInput);
         LocalTime expected = LocalTime.parse("01:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         assertEquals(actual, expected);
     }
@@ -832,7 +836,7 @@ class ParserTest {
     @Test
     void parseDuration_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
-        assertThrows(AthletiException.class, () -> Parser.parseDuration(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDuration(invalidInput));
     }
 
     @Test
@@ -873,7 +877,7 @@ class ParserTest {
     @Test
     void parseDistance_validInput_distanceParsed() throws AthletiException {
         String validInput = "10000";
-        int actual = Parser.parseDistance(validInput);
+        int actual = ActivityParser.parseDistance(validInput);
         int expected = 10000;
         assertEquals(actual, expected);
     }
@@ -881,24 +885,24 @@ class ParserTest {
     @Test
     void parseDistance_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
-        assertThrows(AthletiException.class, () -> Parser.parseDistance(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDistance(invalidInput));
     }
 
     @Test
     void checkMissingActivityArguments_missingDuration_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> Parser.checkMissingActivityArguments(-1, 1, 1));
+        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingActivityArguments(-1, 1, 1));
     }
 
     @Test
     void checkMissingActivityArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> Parser.checkMissingActivityArguments(1, 1, 1));
+        assertDoesNotThrow(() -> ActivityParser.checkMissingActivityArguments(1, 1, 1));
     }
 
     @Test
     void parseRunCycle_validInput_activityParsed() throws AthletiException {
         String validInput =
                 "Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00 elevation/60";
-        Run actual = (Run) Parser.parseRunCycle(validInput, true);
+        Run actual = (Run) ActivityParser.parseRunCycle(validInput, true);
         LocalTime movingTime = LocalTime.parse("01:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         LocalDateTime time =
                 LocalDateTime.parse("2021-09-01 06:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
@@ -913,7 +917,7 @@ class ParserTest {
     @Test
     void parseElevation_validInput_elevationParsed() throws AthletiException {
         String validInput = "60";
-        int actual = Parser.parseElevation(validInput);
+        int actual = ActivityParser.parseElevation(validInput);
         int expected = 60;
         assertEquals(actual, expected);
     }
@@ -921,44 +925,44 @@ class ParserTest {
     @Test
     void parseElevation_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
-        assertThrows(AthletiException.class, () -> Parser.parseElevation(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseElevation(invalidInput));
     }
 
     @Test
     void checkMissingRunCycleArguments_missingElevation_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> Parser.checkMissingRunCycleArguments(1, 1, 1, -1));
+        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingRunCycleArguments(1, 1, 1, -1));
     }
 
     @Test
     void checkMissingRunCycleArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> Parser.checkMissingRunCycleArguments(1, 1, 1, 1));
+        assertDoesNotThrow(() -> ActivityParser.checkMissingRunCycleArguments(1, 1, 1, 1));
     }
 
     @Test
     void checkMissingSwimArguments_missingStyle_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> Parser.checkMissingSwimArguments(1, 1, 1, -1));
+        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingSwimArguments(1, 1, 1, -1));
     }
 
     @Test
     void checkMissingSwimArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> Parser.checkMissingSwimArguments(1, 1, 1, 1));
+        assertDoesNotThrow(() -> ActivityParser.checkMissingSwimArguments(1, 1, 1, 1));
     }
 
     @Test
     void checkEmptyActivityArguments_emptyCaption_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> Parser.checkEmptyActivityArguments("", " ", " ", " "));
+        assertThrows(AthletiException.class, () -> ActivityParser.checkEmptyActivityArguments("", " ", " ", " "));
     }
 
     @Test
     void checkEmptyActivityArguments_noEmptyArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> Parser.checkEmptyActivityArguments("1", "1", "1", "1"));
+        assertDoesNotThrow(() -> ActivityParser.checkEmptyActivityArguments("1", "1", "1", "1"));
     }
 
     @Test
     void parseSwim_validInput_swimParsed() throws AthletiException {
         String validInput =
                 "Evening Swim duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
-        Swim actual = (Swim) Parser.parseSwim(validInput);
+        Swim actual = (Swim) ActivityParser.parseSwim(validInput);
         LocalTime movingTime = LocalTime.parse("02:00:00", DateTimeFormatter.ofPattern("HH:mm:ss"));
         LocalDateTime time =
                 LocalDateTime.parse("2021-09-01 18:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
@@ -973,7 +977,7 @@ class ParserTest {
     @Test
     void parseSwimmingStyle_validInput_styleParsed() throws AthletiException {
         String validInput = "freestyle";
-        Swim.SwimmingStyle actual = Parser.parseSwimmingStyle(validInput);
+        Swim.SwimmingStyle actual = ActivityParser.parseSwimmingStyle(validInput);
         Swim.SwimmingStyle expected = Swim.SwimmingStyle.FREESTYLE;
         assertEquals(actual, expected);
     }

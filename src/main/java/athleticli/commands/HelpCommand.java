@@ -6,7 +6,7 @@ import java.util.Map;
 
 import athleticli.data.Data;
 import athleticli.exceptions.AthletiException;
-import athleticli.ui.CommandName;
+import athleticli.parser.CommandName;
 import athleticli.ui.Message;
 
 public class HelpCommand extends Command {
