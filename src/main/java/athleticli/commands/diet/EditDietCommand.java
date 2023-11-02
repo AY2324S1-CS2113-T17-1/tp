@@ -6,8 +6,8 @@ import athleticli.data.diet.Diet;
 import athleticli.data.diet.DietList;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
-import athleticli.ui.Parameter;
-import athleticli.ui.Parser;
+import athleticli.parser.Parameter;
+import athleticli.parser.Parser;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;

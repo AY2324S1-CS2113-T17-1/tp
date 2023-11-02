@@ -3,7 +3,7 @@ package athleticli.commands.diet;
 import athleticli.data.Data;
 import athleticli.data.diet.Diet;
 import athleticli.exceptions.AthletiException;
-import athleticli.ui.Parameter;
+import athleticli.parser.Parameter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
