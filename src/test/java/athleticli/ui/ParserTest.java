@@ -77,19 +77,19 @@ class ParserTest {
 
     @Test
     void parseCommand_addSleepCommand_expectAddSleepCommand() throws AthletiException {
-        final String addSleepCommandString = "add-sleep start/06-10-2021 10:00 end/07-10-2021 06:00";
+        final String addSleepCommandString = "add-sleep start/2023-10-06 10:00 end/2023-10-06 11:00";
         assertInstanceOf(AddSleepCommand.class, parseCommand(addSleepCommandString));
     }
 
     @Test
     void parseCommand_addSleepCommand_missingStartExpectAthletiException() {
-        final String addSleepCommandString = "add-sleep end/07-10-2021 06:00";
+        final String addSleepCommandString = "add-sleep end/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addSleepCommandString));
     }
 
     @Test
     void parseCommand_addSleepCommand_missingEndExpectAthletiException() {
-        final String addSleepCommandString = "add-sleep start/07-10-2021 06:00";
+        final String addSleepCommandString = "add-sleep start/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addSleepCommandString));
     }
 
@@ -107,7 +107,7 @@ class ParserTest {
 
     @Test
     void parseCommand_editSleepCommand_expectEditSleepCommand() throws AthletiException {
-        final String editSleepCommandString = "edit-sleep 1 start/06-10-2021 10:00 end/07-10-2021 06:00";
+        final String editSleepCommandString = "edit-sleep 1 start/2023-10-06 10:00 end/2023-10-06 11:00";
         assertInstanceOf(EditSleepCommand.class, parseCommand(editSleepCommandString));
     }
 

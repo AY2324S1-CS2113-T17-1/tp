@@ -14,7 +14,7 @@ import athleticli.ui.Message;
  */
 public class DeleteSleepCommand extends Command {
 
-    private int index;
+    private final int index;
     private final Logger logger = Logger.getLogger(DeleteSleepCommand.class.getName());
 
     /**

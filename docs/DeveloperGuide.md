@@ -140,6 +140,9 @@ These are the main components behind the architecture of the `add-activity` feat
 5. `Data`: holds current state of the activity list.
 6. `ActivityList`: maintains the list of all added activities.
 
+Here is a class diagram of the relationships between the data components `Activity`,`Data` and `ActivityList`:
+(tbd)
+
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
 **Step 1 - Input Capture:** The user issues an `add-activity ...` which is captured and passed to the Parser by the 
@@ -159,14 +162,58 @@ added to the list.
 **Step 5 - User Interaction:** Once the activity is successfully added, a confirmation message is displayed to the user.
 
 The following sequence diagram shows how the `add-activity` operation works:
-<p  align="center" width="100%">
-  <img width="80%" src="DeveloperGuide/AddActivity.png" alt="Sequence Diagram of add-activity`"/>
+<p  align="center" >
+  <img width="100%" src="images/AddActivity.svg" alt="Sequence Diagram of add-activity"/>
 </p>
 
+#### [Implemented] Tracking activity goals
+
+With the `set-activity-goal` feature, users can set periodic goals for their activities.
+The fulfillment of these goals is tracked automatically and can be evaluated by the user at any time.
+
+These are the key components and their roles in the architecture of the goal tracking:
+* `SetActivityGoalCommand`: encapsulates the execution of the `set-activity-goal` command. It adds 
+  the activity goal to the data.
+* `ActivityGoal`: represents the activity goal that is to be added and contains functionality to 
+  track the fulfillment of the goal. 
+* `ActivityList`: contains key functionality to retrieve and filter the activity list according to the specified 
+  properties of the goal.
+
+Given below is an example usage scenario and how the goal setting and tracking mechanism behaves at 
+each step.
+
+1. **Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
+   Parser by the running AthletiCLI instance.
+2. **Step 2 - Goal Parsing:** The Parser parses the raw input to obtain the sports, target and timespan of the goal. 
+   Given that all these parameters are provided correctly and no exception is thrown, a new activity goal object is 
+   created.
+3. **Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
+   added activity goal attached to it. The command implements the `SetActivityGoalCommand#execute()` operation and is 
+   passed to the AthletiCLI instance.
+4. **Step 4 - Goal Addition:** The AthletiCLI instance executes the `SetActivityGoalCommand` object. The command will 
+   access the data and retrieve the currently stored list of activity goals stored inside it. The new `ActivityGoal` 
+   object is added to the list.
+
+The following sequence diagram shows how the `set-activity-goal` operation works:
+<p  align="center" >
+  <img width="100%" src="images/AddActivityGoal.svg" alt="Sequence Diagram of set-activity-goal"/>
+</p>
+
+Assume that the user has set a goal to run 10km per week and has already tracked two running activities of 5km each.
+The following describes how the goal evaluation works after being invoked by the user, e.g., with a list-activity-goal command:
+
+5. **Step 5 - Goal Evaluation:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
+activity list with the two tracked activities from the data and calls the total distance calculation function. It filters the 
+   activity list according to the specified timespan and sports of the goal. The current value obtained by this, 
+   10km in the example, is returned to the `ActivityGoal` object, which then compares it to the target value of the goal. This mechanism is visualized in the following sequence diagram:
+
+<p  align="center" >
+    <img width="100%" src="images/ActivityGoalEvaluation.svg" alt="Sequence Diagram of activity goal evaluation"/>
+</p>
 
 ### Sleep Management in AthletiCLI
 
-#### [Implemented] Adding, Editing, Deleting, Listing Sleep
+#### [Implemented] Finding, Adding, Editing, Deleting, Listing Sleep
 
 1. **Input Processing**: The user's input is passed through AthletiCLI to the Parser Class. Examples of user inputs include:
     - "add-sleep hours/8 datetime/2021-09-01 06:00" for adding sleep.
@@ -182,6 +229,12 @@ The following sequence diagram shows how the `add-activity` operation works:
 
 5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
 
+The following class diagram shows how sleep and sleep-related classes are constructed in AthletiCLI:
+
+<p  align="center" width="100%">
+  <img width="80%" src="images/SleepAndSleepListClassDiagram.svg" alt="Class Diagram of Sleep and SleepList"/>
+
+</p>
 
 
 ## Product scope
@@ -203,26 +256,30 @@ By providing a comprehensive view of various performance-related factors over ti
 
 ## User Stories
 
-| Version | As a ...                        | I want to ...                                    | So that I can ...                                                                      |
-|---------|---------------------------------|--------------------------------------------------|----------------------------------------------------------------------------------------|
-| v1.0    | health-conscious user           | add my dietary information                       | keep track of my daily calorie and nutrient intake                                     |
-| v1.0    | organized user                  | delete a dietary entry                           | remove outdated or incorrect data from my diet records                                 |
-| v1.0    | fitness enthusiast              | view all my diet records                         | have a clear overview of my dietary habits and make informed decisions on my diet      |
-| v1.0    | new user                        | see usage instructions                           | refer to them when I forget how to use the application                                 |
-| v1.0    | motivated weight-conscious user | set diet goals                                   | have the motivation to work towards keeping weight in check.                           |
-| v1.0    | forgetful user                  | see all my diet goals                            | remind myself of all the diet goals I have set.                                        |
-| v1.0    | regretful user                  | remove my diet goals                             | I can rescind the strict goals I set previously when I find the goals too far fetched. |
-| v1.0    | motivated user                  | update my diet goals                             | I can work towards better version of myself by setting stricter goals.                 |
-| v1.0    | sleep deprived user             | add my sleep information                         | keep track of my sleep habits and identify areas for improvement                       |
-| v1.0    | sleep deprived user             | delete a sleep entry                             | remove outdated or incorrect data from my sleep records                                |
-| v1.0    | sleep deprived user             | view all my sleep records                        | have a clear overview of my sleep habits and make informed decisions on my sleep       |
-| v1.0    | sleep deprived user             | edit my sleep entries                            | correct any mistakes or update my sleep information as needed                          |
-| v2.0    | user                            | find a to-do item by name                        | locate a to-do without having to go through the entire list                            |
-| v2.0    | meticulous user                 | edit my dietary entries                          | correct any mistakes or update my diet information as needed                           |
-| v2.0    | active user                     | set activity goals                               | work towards a specific fitness target for different sports activities.                |
-| v2.0    | adaptable athlete               | edit my activity goals                           | modify my fitness targets to align with my current fitness level and schedule.         |
-| v2.0    | organized athlete               | list all my activity goals                       | have a clear overview of my set targets and track my progress easily.                  |
-| v2.0    | meticulous user                 | find my diets by date                            | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
+| Version | As a ...                        | I want to ...                                                     | So that I can ...                                                                      |
+|---------|---------------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------------------------|
+| v1.0    | fitness enthusiastic user       | add different activities including running, swimming and cycling) | keep track of my fitness activities and athletic performance.                          |
+| v1.0    | analytical user                 | view my activity details at any point in time                     | track my progress and make informed decisions about my fitness routine.                |
+| v1.0    | clumsy user                     | delete any tracked activity                                       | I can correct any mistakes or remove accidentally added activities.                    |
+| v1.0    | detail-oriented user            | modify any of my tracked activities                               | ensure accuracy in my fitness records.                                                 |
+| v1.0    | health-conscious user           | add my dietary information                                        | keep track of my daily calorie and nutrient intake                                     |
+| v1.0    | organized user                  | delete a dietary entry                                            | remove outdated or incorrect data from my diet records                                 |
+| v1.0    | fitness enthusiast              | view all my diet records                                          | have a clear overview of my dietary habits and make informed decisions on my diet      |
+| v1.0    | new user                        | see usage instructions                                            | refer to them when I forget how to use the application                                 |
+| v1.0    | motivated weight-conscious user | set diet goals                                                    | have the motivation to work towards keeping weight in check.                           |
+| v1.0    | forgetful user                  | see all my diet goals                                             | remind myself of all the diet goals I have set.                                        |
+| v1.0    | regretful user                  | remove my diet goals                                              | I can rescind the strict goals I set previously when I find the goals too far fetched. |
+| v1.0    | motivated user                  | update my diet goals                                              | I can work towards better version of myself by setting stricter goals.                 |
+| v1.0    | sleep deprived user             | add my sleep information                                          | keep track of my sleep habits and identify areas for improvement                       |
+| v1.0    | sleep deprived user             | delete a sleep entry                                              | remove outdated or incorrect data from my sleep records                                |
+| v1.0    | sleep deprived user             | view all my sleep records                                         | have a clear overview of my sleep habits and make informed decisions on my sleep       |
+| v1.0    | sleep deprived user             | edit my sleep entries                                             | correct any mistakes or update my sleep information as needed                          |
+| v2.0    | user                            | find a to-do item by name                                         | locate a to-do without having to go through the entire list                            |
+| v2.0    | meticulous user                 | edit my dietary entries                                           | correct any mistakes or update my diet information as needed                           |
+| v2.0    | active user                     | set activity goals                                                | work towards a specific fitness target for different sports activities.                |
+| v2.0    | adaptable athlete               | edit my activity goals                                            | modify my fitness targets to align with my current fitness level and schedule.         |
+| v2.0    | organized athlete               | list all my activity goals                                        | have a clear overview of my set targets and track my progress easily.                  |
+| v2.0    | meticulous user                 | find my diets by date                                             | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
 | v2.0    | motivated user                  | keep track of my diet goals for a period of time | I can monitor my diet progress on a weekly basis and make adjustments if needed.       |                                         |
 
 ## Non-Functional Requirements
