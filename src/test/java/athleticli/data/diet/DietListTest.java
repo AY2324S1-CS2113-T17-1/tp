@@ -120,7 +120,7 @@ public class DietListTest {
     }
 
     @Test
-    void parse_DietConstructorWithDietListParse_expectSameDiet() throws AthletiException {
+    void parse_dietConstructorWithDietListParse_expectSameDiet() throws AthletiException {
         Diet diet = new Diet(CALORIES, CARB, PROTEIN, FAT, DATE_TIME);
         String commandArgs = dietList.unparse(diet);
         assertEquals(diet.toString(), dietList.parse(commandArgs).toString());
