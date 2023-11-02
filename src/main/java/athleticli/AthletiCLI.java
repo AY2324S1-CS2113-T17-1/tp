@@ -10,7 +10,7 @@ import athleticli.commands.Command;
 import athleticli.commands.SaveCommand;
 import athleticli.data.Data;
 import athleticli.exceptions.AthletiException;
-import athleticli.ui.Parser;
+import athleticli.parser.Parser;
 import athleticli.ui.Ui;
 
 /**

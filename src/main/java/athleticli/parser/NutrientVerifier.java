@@ -1,4 +1,4 @@
-package athleticli.ui;
+package athleticli.parser;
 
 import java.util.Set;
 
