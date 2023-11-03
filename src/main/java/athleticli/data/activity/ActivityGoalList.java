@@ -6,7 +6,7 @@ import athleticli.exceptions.AthletiException;
 import athleticli.parser.ActivityParser;
 import athleticli.parser.Parameter;
 
-import static athleticli.storage.Config.PATH_ACTIVITY_GOAL;
+import static athleticli.common.Config.PATH_ACTIVITY_GOAL;
 
 /**
  * Represents a list of activity goals.
