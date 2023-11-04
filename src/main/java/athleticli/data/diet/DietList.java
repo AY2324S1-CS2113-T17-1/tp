@@ -3,8 +3,8 @@ package athleticli.data.diet;
 import athleticli.data.Findable;
 import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
-import athleticli.ui.Parameter;
-import athleticli.ui.Parser;
+import athleticli.parser.Parameter;
+import athleticli.parser.DietParser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -65,7 +65,7 @@ public class DietList extends StorableList<Diet> implements Findable {
      */
     @Override
     public Diet parse(String s) throws AthletiException {
-        return Parser.parseDiet(s);
+        return DietParser.parseDiet(s);
     }
 
     /**

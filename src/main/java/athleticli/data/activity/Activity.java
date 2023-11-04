@@ -1,5 +1,7 @@
 package athleticli.data.activity;
 
+import athleticli.parser.Parameter;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -142,5 +144,18 @@ public class Activity {
      */
     public String formatTwoColumns(String left, String right, int columnWidth) {
         return String.format("%-" + columnWidth + "s%s", left, right);
+    }
+
+    /**
+     * Returns a string representation of the activity used for storing the data.
+     * @return a string representation of the activity
+     */
+    public String unparse() {
+        String commandArgs = Parameter.ACTIVITY_STORAGE_INDICATOR;
+        commandArgs += " " + this.getCaption();
+        commandArgs += " " + Parameter.DURATION_SEPARATOR + this.getMovingTime().format(TIME_FORMATTER);
+        commandArgs += " " + Parameter.DISTANCE_SEPARATOR + this.getDistance();
+        commandArgs += " " + Parameter.DATETIME_SEPARATOR + this.getStartDateTime();
+        return commandArgs;
     }
 }

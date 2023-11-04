@@ -212,4 +212,6 @@ public class Message {
             + " DATE";
     public static final String HELP_DETAILS =
             "Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.";
+    public static final String ACTIVITY_STORAGE_INVALID_INDICATOR = "Invalid activity indicator, file corrupted.";
+    public static final String ACTIVITY_STORAGE_INVALID_FORMAT = "Invalid activity format, file corrupted.";
 }

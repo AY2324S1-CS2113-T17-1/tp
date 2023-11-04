@@ -1,5 +1,7 @@
 package athleticli.data.activity;
 
+import athleticli.parser.Parameter;
+
 import java.time.LocalDateTime;
 import java.util.Locale;
 import java.time.LocalTime;
@@ -79,6 +81,18 @@ public class Cycle extends Activity {
                         "tbd", columnWidth);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+    }
+
+    /**
+     * Returns a string representation of the cycle used for storing the data.
+     * @return a string representation of the cycle
+     */
+    @Override
+    public String unparse() {
+        String commandArgs = super.unparse();
+        commandArgs = commandArgs.replace(Parameter.ACTIVITY_STORAGE_INDICATOR, Parameter.CYCLE_STORAGE_INDICATOR);
+        commandArgs += " " + Parameter.ELEVATION_SEPARATOR + this.elevationGain;
+        return commandArgs;
     }
 
     public int getElevationGain() {

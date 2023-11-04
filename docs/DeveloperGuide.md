@@ -20,6 +20,9 @@ components.
 ### Architecture
 
 Given below is a quick overview of main components and how they interact with each other.
+<p  align="center" width="100%">
+  <img width="80%" src="images/architectureDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
+</p>
 
 **Main components of the architecture**
 
@@ -27,7 +30,8 @@ Given below is a quick overview of main components and how they interact with ea
 
 The bulk of the AthletiCLI’s work is done by the following components, with each of them corresponds to a package:
 
-* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI and other UI-related sub-components (e.g., `Parser`) of AthletiCLI.
+* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI and other UI-related sub-components of AthletiCLI.
+* [`Parser`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/parser): Parses the commands input by the users.
 * [`Storage`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/storage): Reads data from, and writes data to, the hard disk.
 * [`Data`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/data): Holds the data of AthletiCLI in memory.
 * [`Commands`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/commands): The command executors.
@@ -56,7 +60,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 ![](images/HelpAddDiet.svg)
 
-This diagram involves the interaction between `AthletiCLI`, `UI` (including the parser), `Commands` components and the user.
+This diagram involves the interaction between `AthletiCLI`, `UI`, `Parser`, `Commands` components and the user.
 
 The `Storage` component only interacts with the `Data` component. The _Sequence Diagram_ below shows how they interact with each other for the scenario where a `save` command is executed.
 
