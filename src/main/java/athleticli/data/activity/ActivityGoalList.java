@@ -20,23 +20,6 @@ public class ActivityGoalList extends StorableList<ActivityGoal> {
     }
 
     /**
-     * Returns a string representation of the activity goal list.
-     *
-     * @param data The data containing the activity goal list.
-     * @return A string representation of the activity goal list.
-     */
-    public String toString(Data data) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < size(); i++) {
-            result.append(i + 1).append(". ").append(get(i).toString(data));
-            if (i != size() - 1) {
-                result.append("\n");
-            }
-        }
-        return result.toString();
-    }
-
-    /**
      * Parses an activity goal from a string.
      *
      * @param arguments The string to be parsed.
