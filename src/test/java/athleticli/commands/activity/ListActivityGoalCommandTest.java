@@ -42,8 +42,14 @@ class ListActivityGoalCommandTest {
         activityGoals.add(goal2);
         activityGoals.add(goal3);
         activityGoals.add(goal4);
-        String[] expected = command.execute(data);
-        String[] actual = new String[]{Message.MESSAGE_ACTIVITY_GOAL_LIST, activityGoals.toString(data)};
+        String[] actual = command.execute(data);
+        String[] expected = {
+            Message.MESSAGE_ACTIVITY_GOAL_LIST,
+            "1. " + goal1.toString(data),
+            "2. " + goal2.toString(data),
+            "3. " + goal3.toString(data),
+            "4. " + goal4.toString(data)
+        };
         assertArrayEquals(expected, actual);
     }
 }

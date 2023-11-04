@@ -1,6 +1,5 @@
 package athleticli.data.activity;
 
-import athleticli.data.Data;
 import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
 import athleticli.parser.ActivityParser;
