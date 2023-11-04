@@ -10,8 +10,8 @@ import java.util.ArrayList;
  * Represents a diet goal.
  */
 public class DietGoal extends Goal {
-    private String nutrient;
-    private int targetValue;
+    protected String nutrient;
+    protected int targetValue;
 
     /**
      * Constructs a diet goal with no current value.
@@ -126,12 +126,27 @@ public class DietGoal extends Goal {
     }
 
     /**
+     * Returns the symbol to indicate if a diet goal is achieved.
+     *
+     * @param data A storage class to retrieve diet information.
+     * @return A string symbol indicating that the goal is achieved.
+     */
+    protected String getSymbol(Data data) {
+        if (isAchieved(data)) {
+            return "[Achieved]";
+        }
+        return "";
+    }
+
+    /**
      * Returns the string representation of the diet goal.
      *
      * @param data A storage class to retrieve diet information.
      * @return The string representation of the diet goal.
      */
     public String toString(Data data) {
-        return nutrient + " intake progress: (" + getCurrentValue(data) + "/" + targetValue + ")\n";
+        return getSymbol(data) + " " + getTimeSpan().name() + " " + nutrient
+                + " intake progress: (" + getCurrentValue(data) + "/"
+                + targetValue + ")\n";
     }
 }
