@@ -297,13 +297,16 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
 **Syntax:**
 
-* `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
+* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
 
 **Parameters:**
 
 * DAILY/WEEKLY: Determines if the goal is set for a day or set for the week. It accepts 2 values.
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
+* * unhealthy: This determines if you are trying to get more of this nutrient or less of it.
+    If this flag is placed, it means that you are trying to reduce the intake. Hence, exceeding the target value means
+    that you have not achieved your goal. If this flag is absent, it means that you are trying to increase the intake.
 * CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer.
 * PROTEIN: Your target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
@@ -362,13 +365,16 @@ This command takes in at least 2 arguments. You are able to edit multiple diet g
 
 **Syntax:**
 
-* `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
+* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
 
 **Parameters:**
 
 * DAILY/WEEKLY: This determines if the goal you want to edit is a daily goal or a weekly goal. It accepts 2 values.
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
+* unhealthy: This determines if you are trying to get more of this nutrient or less of it. 
+If this flag is placed, it means that you are trying to reduce the intake. Hence, exceeding the target value means 
+that you have not achieved your goal. If this flag is absent, it means that you are trying to increase the intake.
 * CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer.
 * PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
