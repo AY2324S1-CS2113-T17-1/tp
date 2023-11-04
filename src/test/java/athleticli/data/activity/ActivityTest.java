@@ -1,7 +1,6 @@
 package athleticli.data.activity;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -38,10 +37,9 @@ public class ActivityTest {
     }
 
     @Test
-    @Disabled // Github gradle check fails on this test
     public void testToDetailedString() {
         String expected = "[Activity - Sunday = Runday - October 10, 2023 at 11:21 PM]\n" +
-                "\tDistance: 18.12 km                     Time: 1h 24m\n" +
+                "\tDistance: 18.12 km                     Time: 01:24:00\n" +
                 "\tCalories: 0 kcal                       ...";
         String actual = activity.toDetailedString();
         assertEquals(expected, actual);
