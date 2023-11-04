@@ -2,6 +2,9 @@ package athleticli.data.diet;
 
 import athleticli.data.Data;
 
+/**
+ * UnhealthyDietGoal tracks nutrients goal that the user wants to reduce his/her intake on.
+ */
 public class UnhealthyDietGoal extends DietGoal {
 
     private final boolean isHealthy;

@@ -6,7 +6,6 @@ import athleticli.data.Data;
 import athleticli.data.diet.DietGoal;
 import athleticli.data.diet.DietGoalList;
 import athleticli.data.diet.HealthyDietGoal;
-import athleticli.data.diet.UnhealthyDietGoal;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 

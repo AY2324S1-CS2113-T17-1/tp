@@ -2,6 +2,9 @@ package athleticli.data.diet;
 
 import athleticli.data.Data;
 
+/**
+ * HealthyDietGoal tracks nutrients goal that the user wants to increase his/her intake on.
+ */
 public class HealthyDietGoal extends DietGoal {
 
     private final boolean isHealthy;
