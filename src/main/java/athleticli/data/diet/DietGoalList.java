@@ -6,7 +6,7 @@ import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
-import static athleticli.storage.Config.PATH_DIET_GOAL;
+import static athleticli.common.Config.PATH_DIET_GOAL;
 
 /**
  * Represents a list of diet goals.
