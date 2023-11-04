@@ -85,7 +85,7 @@ public class ActivityParser {
             endIndex = (distanceIndex != -1) ? distanceIndex : (datetimeIndex != -1) ? datetimeIndex :
                     arguments.length();
             duration = arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(),
-                    distanceIndex).trim();
+                    endIndex).trim();
             checkEmptyDurationArgument(duration);
             final LocalTime durationParsed = parseDuration(duration);
             activityChanges.setDuration(durationParsed);
@@ -94,7 +94,7 @@ public class ActivityParser {
         if (distanceIndex != -1) {
             endIndex = (datetimeIndex != -1) ? datetimeIndex : arguments.length();
             distance = arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(),
-                    datetimeIndex).trim();
+                    endIndex).trim();
             checkEmptyDistanceArgument(distance);
             final int distanceParsed = parseDistance(distance);
             activityChanges.setDistance(distanceParsed);
@@ -152,7 +152,7 @@ public class ActivityParser {
             endIndex = (distanceIndex != -1) ? distanceIndex : (datetimeIndex != -1) ? datetimeIndex : (elevationIndex != -1) ? elevationIndex :
                     arguments.length();
             duration = arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(),
-                    distanceIndex).trim();
+                    endIndex).trim();
             checkEmptyDurationArgument(duration);
             final LocalTime durationParsed = parseDuration(duration);
             activityChanges.setDuration(durationParsed);
@@ -161,7 +161,7 @@ public class ActivityParser {
         if (distanceIndex != -1) {
             endIndex = (datetimeIndex != -1) ? datetimeIndex : (elevationIndex != -1) ? elevationIndex : arguments.length();
             distance = arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(),
-                    datetimeIndex).trim();
+                    endIndex).trim();
             checkEmptyDistanceArgument(distance);
             final int distanceParsed = parseDistance(distance);
             activityChanges.setDistance(distanceParsed);
@@ -226,10 +226,9 @@ public class ActivityParser {
 
         if (durationIndex != -1) {
             endIndex = (distanceIndex != -1) ? distanceIndex : (datetimeIndex != -1) ? datetimeIndex : (swimmingStyleIndex != -1) ?
-                    swimmingStyleIndex :
-                    arguments.length();
+                    swimmingStyleIndex : arguments.length();
             duration = arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(),
-                    distanceIndex).trim();
+                    endIndex).trim();
             checkEmptyDurationArgument(duration);
             final LocalTime durationParsed = parseDuration(duration);
             activityChanges.setDuration(durationParsed);
@@ -238,7 +237,7 @@ public class ActivityParser {
         if (distanceIndex != -1) {
             endIndex = (datetimeIndex != -1) ? datetimeIndex : (swimmingStyleIndex != -1) ? swimmingStyleIndex : arguments.length();
             distance = arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(),
-                    datetimeIndex).trim();
+                    endIndex).trim();
             checkEmptyDistanceArgument(distance);
             final int distanceParsed = parseDistance(distance);
             activityChanges.setDistance(distanceParsed);
