@@ -49,8 +49,8 @@ class SetDietGoalCommandTest {
     void execute_oneNewInputDietGoal_expectCorrectMessage() {
         try {
             SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
-            String[] expectedString = {"These are your goal(s):\n", "\t1. fats intake progress: " +
-                    "(0/10000)\n\n" + "\t2. carb intake progress: (0/10000)\n", "Now you have 2 diet goal(s)."};
+            String[] expectedString = {"These are your goal(s):\n", "\t1. WEEKLY fats intake progress: " +
+                    "(0/10000)\n\n" + "\t2. WEEKLY carb intake progress: (0/10000)\n", "Now you have 2 diet goal(s)."};
             String[] actualString = setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, actualString);
         } catch (AthletiException e) {

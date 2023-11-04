@@ -62,8 +62,8 @@ class EditDietGoalCommandTest {
         try {
             SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
             EditDietGoalCommand editDietGoalCommand = new EditDietGoalCommand(filledChangedInputDietGoals);
-            String[] expectedString = {"These are your goal(s):\n", "\t1. fats intake progress: " +
-                    "(0/10)\n\n" + "\t2. carb intake progress: (0/10000)\n", "Now you have 2 diet goal(s)."};
+            String[] expectedString = {"These are your goal(s):\n", "\t1. WEEKLY fats intake progress: " +
+                    "(0/10)\n\n" + "\t2. WEEKLY carb intake progress: (0/10000)\n", "Now you have 2 diet goal(s)."};
 
             setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, editDietGoalCommand.execute(data));

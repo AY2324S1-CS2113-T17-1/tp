@@ -36,8 +36,8 @@ class DeleteDietGoalCommandTest {
             setDietGoalCommand.execute(data);
             System.out.println(data.getDietGoals());
             DeleteDietGoalCommand deleteDietGoalCommand = new DeleteDietGoalCommand(1);
-            String[] expectedString = new String[]{"The following goal has been deleted:\n", "fats intake progress: " +
-                    "(0/10000)\n",};
+            String[] expectedString = new String[]{"The following goal has been deleted:\n", "WEEKLY"
+                    + " fats intake progress: " + "(0/10000)\n",};
             assertArrayEquals(expectedString, deleteDietGoalCommand.execute(data));
         } catch (AthletiException e) {
             fail(e);

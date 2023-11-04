@@ -79,6 +79,6 @@ class DietGoalTest {
 
     @Test
     void testToString_initializeCommonArgs_expectCorrectFormat() {
-        assertEquals("protein intake progress: (0/10000)\n", proteinGoal.toString(data));
+        assertEquals("WEEKLY protein intake progress: (0/10000)\n", proteinGoal.toString(data));
     }
 }
