@@ -345,7 +345,7 @@ This index will be referenced via `list-diet-goal` command.
 
 ### Listing Diet Goals:
 
-`list-diet-goals`
+`list-diet-goal`
 
 You can list all your diet goals in AtheltiCLI.
 
@@ -380,6 +380,11 @@ This command takes in at least 2 arguments. You are able to edit multiple diet g
 * FAT: Your target value for fats intake, in terms of milligrams.
 
 You can create one or multiple nutrient goals with this command.
+
+**Examples:**
+
+* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fat/100` Edits multiple nutrients goals if all of them exists.
+* `edit-diet-goal WEEKLY calories/5000` Edits a single calories goal if the goal exists.
 
 
 ## Sleep Management
@@ -486,12 +491,6 @@ You can find your sleep record on a specific date in AtheltiCLI.
 * `find-sleep date/2021-09-01`
 
 ---
-
-
-**Examples:**
-
-* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fat/100` Edits multiple nutrients goals if all of them exists.
-* `edit-diet-goal WEEKLY calories/5000` Edits a single calories goal if the goal exists.
 
 ## Miscellaneous
 
