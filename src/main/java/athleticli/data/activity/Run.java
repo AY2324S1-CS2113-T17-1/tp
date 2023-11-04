@@ -91,7 +91,7 @@ public class Run extends Activity {
         String header = "[Run - " + this.getCaption() + " - " + startDateTimeOutput + "]";
         String firstRow = formatTwoColumns("\t" + distanceOutput, "Avg Pace: " + paceOutput,
                 columnWidth);
-        String secondRow = formatTwoColumns("\tMoving Time: " + movingTimeOutput, "Elevation Gain: " +
+        String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Elevation Gain: " +
                 elevationGain + " m", columnWidth);
         String thirdRow = formatTwoColumns("\tCalories: " + this.getCalories() + " kcal", "Steps: " +
                         this.steps, columnWidth);
