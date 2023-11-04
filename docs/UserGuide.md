@@ -361,7 +361,8 @@ You can list all your diet goals in AtheltiCLI.
 
 You can edit the target value of your diet goals in AtheltiCLI, redefining the target value for the specified nutrient.
 
-This command takes in at least 2 arguments. You are able to edit multiple diet goals target value of the same time frame at once. No repetition is allowed.
+This command takes in at least 2 arguments. You are able to edit multiple diet goals target value of the same time frame at once. 
+No repetition is allowed. The diet goal needs to be present before any edits is allowed.
 
 **Syntax:**
 
