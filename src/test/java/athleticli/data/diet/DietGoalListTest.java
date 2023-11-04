@@ -11,14 +11,14 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class DietGoalListTest {
     private static final int PROTEIN = 10000;
-    private DietGoal proteinGoal;
+    private HealthyDietGoal proteinGoal;
     private DietGoalList dietGoals;
     private Data data;
 
     @BeforeEach
     void setUp() {
         dietGoals = new DietGoalList();
-        proteinGoal = new DietGoal(Goal.TimeSpan.WEEKLY, "protein", PROTEIN);
+        proteinGoal = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "protein", PROTEIN);
         data = new Data();
     }
 
@@ -64,20 +64,20 @@ class DietGoalListTest {
     @Test
     void toString_oneExistingGoal_expectCorrectFormat() {
         dietGoals.add(proteinGoal);
-        assertEquals("\t1. protein intake progress: (0/10000)\n", dietGoals.toString(data));
+        assertEquals("\t1. [HEALTHY]  WEEKLY protein intake progress: (0/10000)\n", dietGoals.toString(data));
     }
 
     @Test
     void unparse_oneDietGoal_expectCorrectFormat() {
         String actualOutput = dietGoals.unparse(proteinGoal);
-        assertEquals("dietGoal WEEKLY protein 10000", actualOutput);
+        assertEquals("dietGoal WEEKLY protein 10000 ", actualOutput);
     }
 
     @Test
     void parse_validInput_expectDietGoal() throws AthletiException {
-        String validInput = "dietGoal WEEKLY protein 10000";
+        String validInput = "dietGoal WEEKLY protein 10000 healthy";
         DietGoal newProteinGoal = dietGoals.parse(validInput);
-        assert newProteinGoal instanceof DietGoal;
+        assert newProteinGoal instanceof HealthyDietGoal;
     }
 
     @Test
