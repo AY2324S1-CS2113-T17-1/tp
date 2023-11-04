@@ -287,20 +287,13 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 ### Adding Diet Goals:
 
-`set-diet-goal [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT]`
+`set-diet-goal`
 
 You can create a new daily or weekly diet goal to track your nutrients intake with AtheltiCLI by adding the nutrients you wish to track and the target value for your nutrient goals.
 
 You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
-**Parameters:**
-
-* CALORIES: Your calories target value in calories.
-* PROTEIN: Your protein target value in milligrams.
-* CARB: Your carbohydrates target value in milligrams.
-* FAT: Your fats target value in milligrams.
-
-`Note: At least one of the parameters must be present!`
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
 
 **Syntax:**
 
@@ -311,10 +304,12 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 * DAILY/WEEKLY: Determines if the goal is set for a day or set for the week. It accepts 2 values.
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
-* CALORIES: Your target value for calories intake, in terms of calories.
-* PROTEIN: Your target for protein intake, in terms of milligrams.
-* CARB: Your target value for carbohydrate intake, in terms of milligrams.
-* FAT: Your target value for fats intake, in terms of milligrams.
+* CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer.
+* PROTEIN: Your target for protein intake, in terms of milligrams. The target value must be a positive integer.
+* CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
+* FAT: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
+
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
 
 You can create one or multiple nutrient goals at once with this command.
 
@@ -374,17 +369,21 @@ This command takes in at least 2 arguments. You are able to edit multiple diet g
 * DAILY/WEEKLY: This determines if the goal you want to edit is a daily goal or a weekly goal. It accepts 2 values.
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
-* CALORIES: Your target value for calories intake, in terms of cal.
-* PROTEIN: The target for protein intake, in terms of milligrams.
-* CARBS: Your target value for carbohydrate intake, in terms of milligrams.
-* FAT: Your target value for fats intake, in terms of milligrams.
+* CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer.
+* PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer.
+* CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
+* FAT: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
+
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
 
 You can create one or multiple nutrient goals with this command.
 
 **Examples:**
 
-* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fat/100` Edits multiple nutrients goals if all of them exists.
-* `edit-diet-goal WEEKLY calories/5000` Edits a single calories goal if the goal exists.
+* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fat/100` 
+Edits multiple nutrients goals if all of them exists.
+* `edit-diet-goal WEEKLY calories/5000` 
+Edits a single calories goal if the goal exists.
 
 
 ## Sleep Management
