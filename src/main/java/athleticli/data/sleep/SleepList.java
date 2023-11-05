@@ -1,6 +1,6 @@
 package athleticli.data.sleep;
 
-import static athleticli.storage.Config.PATH_SLEEP;
+import static athleticli.common.Config.PATH_SLEEP;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

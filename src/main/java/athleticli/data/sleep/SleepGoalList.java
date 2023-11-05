@@ -1,13 +1,9 @@
 package athleticli.data.sleep;
 
-import athleticli.data.Data;
-import athleticli.data.StorableList;
-
 import static athleticli.storage.Config.PATH_SLEEP_GOAL;
 
-/**
- * Represents a list of sleep goals.
- */
+import athleticli.data.StorableList;
+
 public class SleepGoalList extends StorableList<SleepGoal> {
     /**
      * Constructs a sleep goal list.

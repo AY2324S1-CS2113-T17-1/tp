@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+'!include style.puml
+hide footbox
+
+actor User
+'box  #white
+'frame     ""f"
+'participant user2
+'participant AthletiCLI
+'participant Ui
+'participant Parser
+'participant Data
+'participant Storage
+'participant Command
+frame "AthletiCLI App"{
+rectangle AthletiCLI
+rectangle Ui
+rectangle Parser
+rectangle Data
+rectangle Storage
+rectangle Command
+'end rectangle
+
+}
+'end frame
+'end box
+
+User -d-> Ui
+Ui -r-> AthletiCLI
+AthletiCLI -d-> Parser
+AthletiCLI -d-> Command
+AthletiCLI -d-> Data
+Command -u-> Data
+Parser -r-> Data
+Data -d-> Storage
+
+
+@enduml

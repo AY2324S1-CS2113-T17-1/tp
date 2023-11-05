@@ -5,6 +5,7 @@ import athleticli.data.Data;
 
 import athleticli.data.diet.DietGoal;
 import athleticli.data.diet.DietGoalList;
+import athleticli.data.diet.HealthyDietGoal;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
@@ -42,7 +43,12 @@ public class EditDietGoalCommand extends Command {
             for (DietGoal dietGoal : currentDietGoals) {
                 boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
                 boolean isTimeSpanSimilar = userDietGoal.getTimeSpan().equals(dietGoal.getTimeSpan());
+                boolean isTypeSimilar = userDietGoal instanceof HealthyDietGoal
+                        == dietGoal instanceof HealthyDietGoal;
                 if (isNutrientSimilar && isTimeSpanSimilar) {
+                    if(!isTypeSimilar){
+                        throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
+                    }
                     isDietGoalExisted = true;
                 }
             }
