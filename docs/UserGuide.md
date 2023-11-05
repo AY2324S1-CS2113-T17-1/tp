@@ -35,6 +35,7 @@ covers dietary habits, sleep metrics, and more.
 `add-cycle`
 
 You can record your activities in AtheltiCLI by adding different activities including running, cycling, and swimming.
+A brief summary of the activity will be shown after adding the activity.
 
 **Syntax:**
 
