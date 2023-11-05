@@ -42,7 +42,7 @@ public class Message {
     public static final String MESSAGE_DIET_DATETIME_EMPTY = "The datetime of a diet cannot be empty!";
     public static final String MESSAGE_DIET_UPDATED = "Ok, I've updated this diet:";
     public static final String MESSAGE_DURATION_INVALID =
-            "The duration of an activity must be in the format \"hh:mm:ss\"!";
+            "The duration of an activity must be in the format \"HH:mm:ss\"!";
     public static final String MESSAGE_DISTANCE_INVALID =
             "The distance of an activity must be a positive integer!";
     public static final String MESSAGE_DISTANCE_NEGATIVE =
