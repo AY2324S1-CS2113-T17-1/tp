@@ -218,4 +218,5 @@ public class Message {
     public static final String ACTIVITY_STORAGE_INVALID_FORMAT = "Invalid activity format, file corrupted.";
     public static final String MESSAGE_ACTIVITY_EDIT_EMPTY = "You have not specified any changes to the activity.";
     public static final String MESSAGE_SWIMMINGSTYLE_EMPTY = "The swimming style of an activity cannot be empty!";
+    public static final String MESSAGE_ACTIVITY_INDEX_EMPTY = "The activity index cannot be empty!";
 }

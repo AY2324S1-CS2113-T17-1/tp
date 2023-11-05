@@ -25,6 +25,10 @@ public class ActivityParser {
      */
     public static int parseActivityIndex(String commandArgs) throws AthletiException {
         final String commandArgsTrimmed = commandArgs.trim();
+        if (commandArgsTrimmed.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_EMPTY);
+        }
+
         int index;
         try {
             index = Integer.parseInt(commandArgsTrimmed);
@@ -43,7 +47,7 @@ public class ActivityParser {
      */
     public static ActivityChanges parseActivityEdit(String arguments) throws AthletiException {
         try {
-            String activityArguments = arguments.split(" ", 2)[1];
+            String activityArguments = arguments.split("(?<=\\d)(?=\\D)", 2)[1];
             return parseActivityChanges(activityArguments);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
@@ -214,7 +218,7 @@ public class ActivityParser {
      */
     public static int parseActivityEditIndex(String arguments) throws AthletiException {
         try {
-            return parseActivityIndex(arguments.split(" ", 2)[0]);
+            return parseActivityIndex(arguments.split("(?<=\\d)(?=\\D)", 2)[0]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
         }
