@@ -138,15 +138,16 @@ The goals can track your daily, weekly, monthly, or yearly progress.
 
 **Syntax**
 
-* `set-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`
+* `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`
 
 **Parameters**
 
 * SPORT: The sport for which you want to set a goal. It must be one of the following: run, swim, cycle, general.
-* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
-* VALUE: The value of the target. It must be a positive number. For distance, it is in meters. For duration, it is in minutes.
+* TYPE: The metric for which you want to set a goal. It must be one of the following: distance, duration.
 * PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, 
   yearly. Only activities that are recorded within the period will be counted towards the goal.
+* TARGET: The target value. It must be a positive number. For distance, it is in meters. For duration, it is in
+  minutes.
 
 **Examples**
 
