@@ -63,7 +63,7 @@ class EditActivityCommandTest {
 
     @Test
     void execute_invalidIndex_exceptionThrown() {
-        EditActivityCommand editActivityCommand = new EditActivityCommand(activityChanges, 2);
+        EditActivityCommand editActivityCommand = new EditActivityCommand(activityChanges, 3);
         assertThrows(AthletiException.class, () -> editActivityCommand.execute(data));
     }
 }

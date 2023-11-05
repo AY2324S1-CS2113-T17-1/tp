@@ -2,7 +2,12 @@ package athleticli.commands.activity;
 
 import athleticli.commands.Command;
 import athleticli.data.Data;
-import athleticli.data.activity.*;
+import athleticli.data.activity.Activity;
+import athleticli.data.activity.ActivityChanges;
+import athleticli.data.activity.ActivityList;
+import athleticli.data.activity.Cycle;
+import athleticli.data.activity.Run;
+import athleticli.data.activity.Swim;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 

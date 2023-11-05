@@ -3,11 +3,14 @@ package athleticli.parser;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
-import java.util.HashMap;
-import java.util.Map;
 
 import athleticli.data.Goal;
-import athleticli.data.activity.*;
+import athleticli.data.activity.Activity;
+import athleticli.data.activity.ActivityChanges;
+import athleticli.data.activity.ActivityGoal;
+import athleticli.data.activity.Cycle;
+import athleticli.data.activity.Run;
+import athleticli.data.activity.Swim;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
@@ -138,7 +141,8 @@ public class ActivityParser {
      * @param separator         The separator used to identify the segment.
      * @throws AthletiException If the input is invalid or empty.
      */
-    public static void parseSegment(ActivityChanges activityChanges, String segment, String separator) throws AthletiException {
+    public static void parseSegment(ActivityChanges activityChanges, String segment, String separator)
+            throws AthletiException {
         switch (separator) {
         case Parameter.CAPTION_SEPARATOR:
             checkEmptyCaptionArgument(segment);
