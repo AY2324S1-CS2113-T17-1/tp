@@ -11,8 +11,8 @@ import java.time.LocalTime;
  */
 public class Cycle extends Activity {
 
-    private final int elevationGain;
-    private final double averageSpeed;
+    private int elevationGain;
+    private double averageSpeed;
 
     /**
      * Generates a new cycling activity with cycling specific stats.
@@ -97,5 +97,21 @@ public class Cycle extends Activity {
 
     public int getElevationGain() {
         return this.elevationGain;
+    }
+
+    public void setElevationGain(int elevationGain) {
+        this.elevationGain = elevationGain;
+    }
+
+    @Override
+    public void setDistance(int distance) {
+        super.setDistance(distance);
+        this.averageSpeed = this.calculateAverageSpeed();
+    }
+
+    @Override
+    public void setMovingTime(LocalTime movingTime) {
+        super.setMovingTime(movingTime);
+        this.averageSpeed = this.calculateAverageSpeed();
     }
 }

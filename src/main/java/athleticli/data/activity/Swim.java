@@ -10,8 +10,8 @@ import java.time.LocalTime;
  */
 public class Swim extends Activity {
     private final int laps;
-    private final SwimmingStyle style;
-    private final int averageLapTime;
+    private SwimmingStyle style;
+    private int averageLapTime;
 
     public enum SwimmingStyle {
         BUTTERFLY,
@@ -108,6 +108,22 @@ public class Swim extends Activity {
 
     public SwimmingStyle getStyle() {
         return style;
+    }
+
+    public void setStyle(SwimmingStyle style) {
+        this.style = style;
+    }
+
+    @Override
+    public void setDistance(int distance) {
+        super.setDistance(distance);
+        this.averageLapTime = this.calculateAverageLapTime();
+    }
+
+    @Override
+    public void setMovingTime(LocalTime movingTime) {
+        super.setMovingTime(movingTime);
+        this.averageLapTime = this.calculateAverageLapTime();
     }
 
 }

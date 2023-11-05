@@ -99,10 +99,8 @@ public class Parser {
             return new EditActivityCommand(ActivityParser.parseActivityEdit(commandArgs),
                     ActivityParser.parseActivityEditIndex(commandArgs));
         case CommandName.COMMAND_RUN_EDIT:
-            return new EditActivityCommand(ActivityParser.parseRunEdit(commandArgs),
-                    ActivityParser.parseActivityEditIndex(commandArgs));
         case CommandName.COMMAND_CYCLE_EDIT:
-            return new EditActivityCommand(ActivityParser.parseCycleEdit(commandArgs),
+            return new EditActivityCommand(ActivityParser.parseRunCycleEdit(commandArgs),
                     ActivityParser.parseActivityEditIndex(commandArgs));
         case CommandName.COMMAND_SWIM_EDIT:
             return new EditActivityCommand(ActivityParser.parseSwimEdit(commandArgs),
