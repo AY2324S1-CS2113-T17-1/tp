@@ -16,12 +16,12 @@ public class Activity {
     private static final int columnWidth = 40;
 
     private String description;
-    private final String caption;
-    private final LocalTime movingTime;
+    private String caption;
+    private LocalTime movingTime;
 
-    private final int distance;
+    private int distance;
     private int calories;
-    private final LocalDateTime startDateTime;
+    private LocalDateTime startDateTime;
 
     /**
      * Generates a new general sports activity with some basic stats.
@@ -154,5 +154,21 @@ public class Activity {
         commandArgs += " " + Parameter.DISTANCE_SEPARATOR + this.getDistance();
         commandArgs += " " + Parameter.DATETIME_SEPARATOR + this.getStartDateTime();
         return commandArgs;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    public void setMovingTime(LocalTime movingTime) {
+        this.movingTime = movingTime;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 }

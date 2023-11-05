@@ -9,8 +9,8 @@ import java.time.LocalTime;
  * Represents a running activity consisting of relevant evaluation data.
  */
 public class Run extends Activity {
-    private final int elevationGain;
-    private final double averagePace;
+    private int elevationGain;
+    private double averagePace;
     private final int steps;
 
     /**
@@ -91,7 +91,7 @@ public class Run extends Activity {
         String header = "[Run - " + this.getCaption() + " - " + startDateTimeOutput + "]";
         String firstRow = formatTwoColumns("\t" + distanceOutput, "Avg Pace: " + paceOutput,
                 columnWidth);
-        String secondRow = formatTwoColumns("\tMoving Time: " + movingTimeOutput, "Elevation Gain: " +
+        String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Elevation Gain: " +
                 elevationGain + " m", columnWidth);
         String thirdRow = formatTwoColumns("\tCalories: " + this.getCalories() + " kcal", "Steps: " +
                         this.steps, columnWidth);
@@ -103,6 +103,20 @@ public class Run extends Activity {
         return elevationGain;
     }
 
+    public void setElevationGain(int elevationGain) {
+        this.elevationGain = elevationGain;
+    }
 
+    @Override
+    public void setDistance(int distance) {
+        super.setDistance(distance);
+        this.averagePace = this.calculateAveragePace();
+    }
+
+    @Override
+    public void setMovingTime(LocalTime movingTime) {
+        super.setMovingTime(movingTime);
+        this.averagePace = this.calculateAveragePace();
+    }
 
 }

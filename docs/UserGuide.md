@@ -40,7 +40,7 @@ You can record your activities in AtheltiCLI by adding different activities incl
 
 * `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
 * `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
-* `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
+* `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE`
 * `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
 
 **Parameters:**
@@ -49,11 +49,14 @@ You can record your activities in AtheltiCLI by adding different activities incl
 * DURATION: The duration of the activity in minutes.
 * DISTANCE: The distance of the activity in meters. It must be a positive number.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* ELEVATION: The elevation gain of a run or cycle in meters. It must be a number.
+* STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
 
 **Examples:**
 
 * `add-activity Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00`
 * `add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2023-10-16 20:00 style/freestyle`
 
 ### Deleting Activities:
 
@@ -106,13 +109,14 @@ the detailed flag.
 `edit-cycle`
 
 You can edit your activities in AthletiCLI by editing the activity at the specified index.
+Specify the parameters you want to edit with the corresponding flags. At least one parameter must be specified.
 
 **Syntax:**
 
-* `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
-* `edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
-* `edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
-* `edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `edit-activity INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]`
+* `edit-run INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]`
+* `edit-swim INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [style/STYLE]`
+* `edit-cycle INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]`
 
 **Parameters:**
 
@@ -121,14 +125,15 @@ You can edit your activities in AthletiCLI by editing the activity at the specif
 
 **Examples:**
 
-* `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
-* `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `edit-activity 1 caption/Morning Run distance/10000`
+* `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`
 
 ### Setting Activity Goals:
 
 `set-activity-goal`
 
 You can set goals for your activities in AthletiCLI by setting the target distance or duration for a specific sport.
+The goals can be set to track your daily, weekly, monthly, or yearly progress.
 
 **Syntax**
 
@@ -139,6 +144,8 @@ You can set goals for your activities in AthletiCLI by setting the target distan
 * SPORT: The sport for which you want to set a goal. It must be one of the following: run, swim, cycle, general.
 * TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
 * VALUE: The value of the target. It must be a positive number. For distance, it is in meters. For duration, it is in minutes.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, 
+  yearly. Only activities that are recorded within the period will be counted towards the goal.
 
 **Examples**
 
