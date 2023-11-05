@@ -114,10 +114,15 @@ public class ActivityParser {
     private static void parseChangeArguments(ActivityChanges activityChanges, String arguments, String... separators)
             throws AthletiException {
         int numChanges = 0;
+        int previousIndex = -1;
         for (int i = 0; i < separators.length; i++) {
             String separator = separators[i];
             int startIndex = arguments.indexOf(separator);
             if (startIndex != -1) {
+                if (previousIndex > startIndex) {
+                    throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+                }
+                previousIndex = startIndex;
                 int endIndex = arguments.length();
                 for (int j = i + 1; j < separators.length; j++) {
                     if (i != j) {
@@ -597,6 +602,10 @@ public class ActivityParser {
         final int targetIndex = commandArgs.indexOf(Parameter.TARGET_SEPARATOR);
 
         checkMissingActivityGoalArguments(sportIndex, typeIndex, periodIndex, targetIndex);
+
+        if (sportIndex > typeIndex || typeIndex > periodIndex || periodIndex > targetIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
 
         final String sport = commandArgs.substring(sportIndex + Parameter.SPORT_SEPARATOR.length(), typeIndex).trim();
         final String type =
