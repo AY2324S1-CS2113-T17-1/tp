@@ -9,6 +9,9 @@ delete-activity 2
 delete-activity 0
 list-activity
 list-activity -d
+edit-cycle 1 distance/22000
+edit-cycle 1 caption/ elevation/20
+list-activity -d
 edit-activity 1 Morning Run duration/01:00:00 distance/12000 datetime/2021-09-01 06:00
 
 add-sleep start/2021-09-01 22:00 end/2021-09-02 06:00
