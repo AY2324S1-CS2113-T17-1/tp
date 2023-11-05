@@ -80,7 +80,7 @@ public class DietGoalList extends StorableList<DietGoal> {
          * diet goal has nutrient, target value, date. there rest are calculated on the spot.
          * */
         return "dietGoal " + dietGoal.getTimeSpan() + " " + dietGoal.getNutrient()
-                + " " + dietGoal.getTargetValue() + " " + dietGoal.getType();
+                + " " + dietGoal.getTargetValue() + " " + dietGoal.getType() + "\n";
 
     }
 }
