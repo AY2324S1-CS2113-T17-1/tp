@@ -62,7 +62,8 @@ You can record your activities in AtheltiCLI by adding different activities incl
 
 `delete-activity`
 
-Accidentally added an activity? You can quickly delete activities by using the following command.
+Accidentally added an activity? You can quickly delete any type of activity including run, swims and cycles by using 
+the following command.
 
 **Syntax:**
 
@@ -70,8 +71,8 @@ Accidentally added an activity? You can quickly delete activities by using the f
 
 **Parameters:**
 
-* INDEX: The index of the activity as shown in the displayed activity. Note, that the list is sorted by date and 
-  that the index must be a positive number which is not larger than the number of activities recorded.
+* INDEX: The index of the activity as shown in the displayed activity list. Note, that the list is sorted by 
+  date and that the index must be a positive number which is not larger than the number of activities recorded.
 
 **Examples:**
 
