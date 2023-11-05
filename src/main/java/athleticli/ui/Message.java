@@ -124,6 +124,8 @@ public class Message {
             "no repetitions for your diet goal nutrients.";
     public static final String MESSAGE_DIET_GOAL_LOAD_ERROR = "Some error has been encountered " +
             "while loading diet goals.";
+    public static final String MESSAGE_DIET_GOAL_TYPE_CLASH = "You cannot have healthy goals and unhealthy goals "
+            + "for the same nutrient.";
 
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";

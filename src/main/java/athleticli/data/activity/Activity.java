@@ -4,18 +4,15 @@ import athleticli.parser.Parameter;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+
+import static athleticli.common.Config.DATE_TIME_FORMATTER;
+import static athleticli.common.Config.TIME_FORMATTER;
 
 /**
  * Represents a physical activity consisting of basic sports data.
  */
 public class Activity {
-
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MMMM d, " +
-            "yyyy 'at' h:mm a", Locale.ENGLISH);
-    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss",
-            Locale.ENGLISH);
     private static final int columnWidth = 40;
 
     private String description;
