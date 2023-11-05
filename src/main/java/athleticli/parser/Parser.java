@@ -96,15 +96,15 @@ public class Parser {
         case CommandName.COMMAND_ACTIVITY_LIST:
             return new ListActivityCommand(ActivityParser.parseActivityListDetail(commandArgs));
         case CommandName.COMMAND_ACTIVITY_EDIT:
-            return new EditActivityCommand(ActivityParser.parseActivityEdit(commandArgs),
-                    ActivityParser.parseActivityEditIndex(commandArgs));
+            return new EditActivityCommand(ActivityParser.parseActivityEditIndex(commandArgs),
+                    ActivityParser.parseActivityEdit(commandArgs));
         case CommandName.COMMAND_RUN_EDIT:
         case CommandName.COMMAND_CYCLE_EDIT:
-            return new EditActivityCommand(ActivityParser.parseRunCycleEdit(commandArgs),
-                    ActivityParser.parseActivityEditIndex(commandArgs));
+            return new EditActivityCommand(ActivityParser.parseActivityEditIndex(commandArgs),
+                    ActivityParser.parseRunCycleEdit(commandArgs));
         case CommandName.COMMAND_SWIM_EDIT:
-            return new EditActivityCommand(ActivityParser.parseSwimEdit(commandArgs),
-                    ActivityParser.parseActivityEditIndex(commandArgs));
+            return new EditActivityCommand(ActivityParser.parseActivityEditIndex(commandArgs),
+                    ActivityParser.parseSwimEdit(commandArgs));
         case CommandName.COMMAND_ACTIVITY_FIND:
             return new FindActivityCommand(parseDate(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_SET:
