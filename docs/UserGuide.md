@@ -19,7 +19,7 @@ covers dietary habits, sleep metrics, and more.
 **Notes about Command Format**
 
 * Words in UPPER_CASE are parameters provided by the user.
-* Parameters can be in any order.
+* Parameters need to be specified in the given order unless specified otherwise.
 * Parameters enclosed in square brackets [] are optional.
 
 ## Activity Management
