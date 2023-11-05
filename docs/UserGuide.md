@@ -46,7 +46,7 @@ You can record your activities in AtheltiCLI by adding different activities incl
 **Parameters:**
 
 * CAPTION: A short description of the activity.
-* DURATION: The duration of the activity in minutes.
+* DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
 * DISTANCE: The distance of the activity in meters. It must be a positive number.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
 * ELEVATION: The elevation gain of a run or cycle in meters. It must be a number.
@@ -133,7 +133,7 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 `set-activity-goal`
 
 You can set goals for your activities in AthletiCLI by setting the target distance or duration for a specific sport.
-The goals can be set to track your daily, weekly, monthly, or yearly progress.
+The goals can track your daily, weekly, monthly, or yearly progress.
 
 **Syntax**
 
