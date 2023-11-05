@@ -40,7 +40,7 @@ You can record your activities in AtheltiCLI by adding different activities incl
 
 * `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
 * `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
-* `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
+* `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE`
 * `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
 
 **Parameters:**
@@ -49,11 +49,14 @@ You can record your activities in AtheltiCLI by adding different activities incl
 * DURATION: The duration of the activity in minutes.
 * DISTANCE: The distance of the activity in meters. It must be a positive number.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* ELEVATION: The elevation gain of a run or cycle in meters. It must be a number.
+* STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
 
 **Examples:**
 
 * `add-activity Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00`
 * `add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2023-10-16 20:00 style/freestyle`
 
 ### Deleting Activities:
 
@@ -112,7 +115,7 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 
 * `edit-activity INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]`
 * `edit-run INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]`
-* `edit-swim INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [laps/LAPS]`
+* `edit-swim INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [style/STYLE]`
 * `edit-cycle INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]`
 
 **Parameters:**
