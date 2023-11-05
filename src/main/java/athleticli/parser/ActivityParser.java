@@ -644,13 +644,13 @@ public class ActivityParser {
      * @param valueIndex        The position of the value separator.
      * @throws AthletiException If any of the arguments are missing.
      */
-    public static void checkMissingActivityGoalArguments(int sportIndex, int targetIndex, int periodIndex,
+    public static void checkMissingActivityGoalArguments(int sportIndex, int typeIndex, int periodIndex,
             int valueIndex) throws AthletiException {
         if (sportIndex == -1) {
             throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_SPORT_MISSING);
         }
-        if (targetIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TARGET_MISSING);
+        if (typeIndex == -1) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TYPE_MISSING);
         }
         if (periodIndex == -1) {
             throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_PERIOD_MISSING);
