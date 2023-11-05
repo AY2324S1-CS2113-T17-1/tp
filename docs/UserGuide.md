@@ -63,7 +63,6 @@ You can record your activities in AtheltiCLI by adding different activities incl
 `delete-activity`
 
 Accidentally added an activity? You can quickly delete activities by using the following command.
-The index must be a positive number and is not larger than the number of activities recorded.
 
 **Syntax:**
 
@@ -71,19 +70,20 @@ The index must be a positive number and is not larger than the number of activit
 
 **Parameters:**
 
-* INDEX: The index of the activity as shown in the displayed activity list.
+* INDEX: The index of the activity as shown in the displayed activity. Note, that the list is sorted by date and 
+  that the index must be a positive number which is not larger than the number of activities recorded.
 
 **Examples:**
 
 * `delete-activity 2` Deletes the second activity in the activity list.
-* `delete-activity 1` Deletes the first activity in the activity list.
+* `delete-activity 1` Deletes the most recent activity in the activity list.
 
 ### Listing Activities:
 
 `list-activity`
 
-You can see all your tracked activities in a list by using this command. For more detailed information, you can use
-the detailed flag.
+By using this command, you can see all your tracked activities in a list sorted by date. For more 
+detailed information about your activities, you can use the `-d` flag.
 
 **Syntax:**
 
@@ -91,7 +91,7 @@ the detailed flag.
 
 **Parameters:**
 
-* `-d`: Shows a detailed list of activities.
+* `-d`: Shows a detailed list of the activities.
 
 **Examples:**
 
@@ -120,7 +120,8 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 
 **Parameters:**
 
-* INDEX: The index of the activity to be edited - must be a positive number.
+* INDEX: The index of the activity to be edited - must be a positive number which is not larger than the number of 
+  activities recorded. Note, that the indices are allocated based on the date of the activity.
 * See [adding activities](#adding-activities) for the other parameters.
 
 **Examples:**
