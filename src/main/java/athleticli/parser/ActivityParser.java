@@ -48,66 +48,19 @@ public class ActivityParser {
     }
 
     /**
-     * Parses the provided activity arguments of the edit command.
-     * @param arguments         The raw user input containing the updated activity.
+     * Parses the provided swim arguments of the edit command.
+     * @param arguments         The raw user input containing the updated swim.
      * @return activityChanges  The parsed ActivityChanges object.
      * @throws AthletiException If the input format is invalid.
      */
-    public static ActivityChanges parseActivityChanges(String arguments) throws AthletiException {
+    public static ActivityChanges parseSwimChanges(String arguments) throws AthletiException {
         ActivityChanges activityChanges = new ActivityChanges();
-
-        final int captionIndex = arguments.indexOf(Parameter.CAPTION_SEPARATOR);
-        final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
-        final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
-        final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
-
-        final String datetime;
-        final String caption;
-        final String duration;
-        final String distance;
-
-        if (captionIndex == -1 && durationIndex == -1 && distanceIndex == -1 && datetimeIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_EMPTY);
-        }
-
-        int endIndex;
-
-        if (captionIndex != -1) {
-            endIndex = (durationIndex != -1) ? durationIndex : (distanceIndex != -1) ? distanceIndex :
-                    (datetimeIndex != -1) ? datetimeIndex : arguments.length();
-            caption = arguments.substring(captionIndex + Parameter.CAPTION_SEPARATOR.length(),
-                    endIndex).trim();
-            checkEmptyCaptionArgument(caption);
-            activityChanges.setCaption(caption);
-        }
-
-        if (durationIndex != -1) {
-            endIndex = (distanceIndex != -1) ? distanceIndex : (datetimeIndex != -1) ? datetimeIndex :
-                    arguments.length();
-            duration = arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(),
-                    endIndex).trim();
-            checkEmptyDurationArgument(duration);
-            final LocalTime durationParsed = parseDuration(duration);
-            activityChanges.setDuration(durationParsed);
-        }
-
-        if (distanceIndex != -1) {
-            endIndex = (datetimeIndex != -1) ? datetimeIndex : arguments.length();
-            distance = arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(),
-                    endIndex).trim();
-            checkEmptyDistanceArgument(distance);
-            final int distanceParsed = parseDistance(distance);
-            activityChanges.setDistance(distanceParsed);
-        }
-
-        if (datetimeIndex != -1) {
-            datetime = arguments.substring(datetimeIndex +
-                    Parameter.DATETIME_SEPARATOR.length()).trim();
-            checkEmptyDateTimeArgument(datetime);
-            final LocalDateTime datetimeParsed = Parser.parseDateTime(datetime);
-            activityChanges.setStartDateTime(datetimeParsed);
-        }
-
+        parseChangeArguments(activityChanges, arguments,
+                Parameter.CAPTION_SEPARATOR,
+                Parameter.DURATION_SEPARATOR,
+                Parameter.DISTANCE_SEPARATOR,
+                Parameter.DATETIME_SEPARATOR,
+                Parameter.SWIMMING_STYLE_SEPARATOR);
         return activityChanges;
     }
 
@@ -119,148 +72,101 @@ public class ActivityParser {
      */
     public static ActivityChanges parseRunCycleChanges(String arguments) throws AthletiException {
         ActivityChanges activityChanges = new ActivityChanges();
-
-        final int captionIndex = arguments.indexOf(Parameter.CAPTION_SEPARATOR);
-        final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
-        final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
-        final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
-        final int elevationIndex = arguments.indexOf(Parameter.ELEVATION_SEPARATOR);
-
-        final String caption;
-        final String duration;
-        final String distance;
-        final String datetime;
-        final String elevation;
-
-        if (captionIndex == -1 && durationIndex == -1 && distanceIndex == -1 && datetimeIndex == -1 &&
-                elevationIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_EMPTY);
-        }
-
-        int endIndex;
-
-        if (captionIndex != -1) {
-            endIndex = (durationIndex != -1) ? durationIndex : (distanceIndex != -1) ? distanceIndex :
-                    (datetimeIndex != -1) ? datetimeIndex : (elevationIndex != -1) ? elevationIndex : arguments.length();
-            caption = arguments.substring(captionIndex + Parameter.CAPTION_SEPARATOR.length(),
-                    endIndex).trim();
-            checkEmptyCaptionArgument(caption);
-            activityChanges.setCaption(caption);
-        }
-
-        if (durationIndex != -1) {
-            endIndex = (distanceIndex != -1) ? distanceIndex : (datetimeIndex != -1) ? datetimeIndex : (elevationIndex != -1) ? elevationIndex :
-                    arguments.length();
-            duration = arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(),
-                    endIndex).trim();
-            checkEmptyDurationArgument(duration);
-            final LocalTime durationParsed = parseDuration(duration);
-            activityChanges.setDuration(durationParsed);
-        }
-
-        if (distanceIndex != -1) {
-            endIndex = (datetimeIndex != -1) ? datetimeIndex : (elevationIndex != -1) ? elevationIndex : arguments.length();
-            distance = arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(),
-                    endIndex).trim();
-            checkEmptyDistanceArgument(distance);
-            final int distanceParsed = parseDistance(distance);
-            activityChanges.setDistance(distanceParsed);
-        }
-
-        if (datetimeIndex != -1) {
-            endIndex = (elevationIndex != -1) ? elevationIndex : arguments.length();
-            datetime = arguments.substring(datetimeIndex +
-                    Parameter.DATETIME_SEPARATOR.length(), endIndex).trim();
-            checkEmptyDateTimeArgument(datetime);
-            final LocalDateTime datetimeParsed = Parser.parseDateTime(datetime);
-            activityChanges.setStartDateTime(datetimeParsed);
-        }
-
-        if (elevationIndex != -1) {
-            elevation = arguments.substring(elevationIndex +
-                    Parameter.ELEVATION_SEPARATOR.length()).trim();
-            checkEmptyElevationArgument(elevation);
-            final int elevationParsed = parseElevation(elevation);
-            activityChanges.setElevation(elevationParsed);
-        }
-
+        parseChangeArguments(activityChanges, arguments,
+                Parameter.CAPTION_SEPARATOR,
+                Parameter.DURATION_SEPARATOR,
+                Parameter.DISTANCE_SEPARATOR,
+                Parameter.DATETIME_SEPARATOR,
+                Parameter.ELEVATION_SEPARATOR);
         return activityChanges;
     }
 
     /**
-     * Parses the provided swim arguments of the edit command.
-     * @param arguments         The raw user input containing the updated swim.
+     * Parses the provided activity arguments of the edit command.
+     * @param arguments         The raw user input containing the updated activity.
      * @return activityChanges  The parsed ActivityChanges object.
      * @throws AthletiException If the input format is invalid.
      */
-    public static ActivityChanges parseSwimChanges(String arguments) throws AthletiException {
+    public static ActivityChanges parseActivityChanges(String arguments) throws AthletiException {
         ActivityChanges activityChanges = new ActivityChanges();
+        parseChangeArguments(activityChanges, arguments,
+                Parameter.CAPTION_SEPARATOR,
+                Parameter.DURATION_SEPARATOR,
+                Parameter.DISTANCE_SEPARATOR,
+                Parameter.DATETIME_SEPARATOR);
+        return activityChanges;
+    }
 
-        final int captionIndex = arguments.indexOf(Parameter.CAPTION_SEPARATOR);
-        final int durationIndex = arguments.indexOf(Parameter.DURATION_SEPARATOR);
-        final int distanceIndex = arguments.indexOf(Parameter.DISTANCE_SEPARATOR);
-        final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
-        final int swimmingStyleIndex = arguments.indexOf(Parameter.SWIMMING_STYLE_SEPARATOR);
-
-        final String caption;
-        final String duration;
-        final String distance;
-        final String datetime;
-        final String swimmingStyle;
-
-        if (captionIndex == -1 && durationIndex == -1 && distanceIndex == -1 && datetimeIndex == -1 &&
-                swimmingStyleIndex == -1) {
+    /**
+     * Parses the provided arguments based on the list of separators
+     * @param activityChanges       The ActivityChanges object which contains the updates.
+     * @param arguments             The raw user arguments containing the updated parameters.
+     * @param separators            The list of separators to be used.
+     * @throws AthletiException     If the input format is invalid.
+     */
+    private static void parseChangeArguments(ActivityChanges activityChanges, String arguments, String... separators)
+            throws AthletiException {
+        int numChanges = 0;
+        for (int i = 0; i < separators.length; i++) {
+            String separator = separators[i];
+            int startIndex = arguments.indexOf(separator);
+            if (startIndex != -1) {
+                int endIndex = arguments.length();
+                for (int j = i + 1; j < separators.length; j++) {
+                    if (i != j) {
+                        int nextIndex = arguments.indexOf(separators[j], startIndex + separator.length());
+                        if (nextIndex != -1) {
+                            endIndex = nextIndex;
+                            break;
+                        }
+                    }
+                }
+                String segment = arguments.substring(startIndex + separator.length(), endIndex).trim();
+                parseSegment(activityChanges, segment, separator);
+                numChanges++;
+            }
+        }
+        if (numChanges == 0) {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_EMPTY);
         }
+    }
 
-        int endIndex;
-
-        if (captionIndex != -1) {
-            endIndex = (durationIndex != -1) ? durationIndex : (distanceIndex != -1) ? distanceIndex :
-                    (datetimeIndex != -1) ? datetimeIndex : (swimmingStyleIndex != -1) ? swimmingStyleIndex : arguments.length();
-            caption = arguments.substring(captionIndex + Parameter.CAPTION_SEPARATOR.length(),
-                    endIndex).trim();
-            checkEmptyCaptionArgument(caption);
-            activityChanges.setCaption(caption);
+    /**
+     * General method to parse a segment of the activity changes.
+     * @param activityChanges   The ActivityChanges object which keeps track of the updates.
+     * @param segment           The segment of the arguments to be parsed.
+     * @param separator         The separator used to identify the segment.
+     * @throws AthletiException If the input is invalid or empty.
+     */
+    public static void parseSegment(ActivityChanges activityChanges, String segment, String separator) throws AthletiException {
+        switch (separator) {
+        case Parameter.CAPTION_SEPARATOR:
+            checkEmptyCaptionArgument(segment);
+            activityChanges.setCaption(segment);
+            break;
+        case Parameter.DURATION_SEPARATOR:
+            checkEmptyDurationArgument(segment);
+            activityChanges.setDuration(parseDuration(segment));
+            break;
+        case Parameter.DISTANCE_SEPARATOR:
+            checkEmptyDistanceArgument(segment);
+            activityChanges.setDistance(parseDistance(segment));
+            break;
+        case Parameter.DATETIME_SEPARATOR:
+            checkEmptyDateTimeArgument(segment);
+            activityChanges.setStartDateTime(Parser.parseDateTime(segment));
+            break;
+        case Parameter.ELEVATION_SEPARATOR:
+            checkEmptyElevationArgument(segment);
+            activityChanges.setElevation(parseElevation(segment));
+            break;
+        case Parameter.SWIMMING_STYLE_SEPARATOR:
+            checkEmptySwimmingStyleArgument(segment);
+            activityChanges.setSwimmingStyle(parseSwimmingStyle(segment));
+            break;
+        default:
+            assert false: "Invalid separator detected during parsing of activity changes";
         }
-
-        if (durationIndex != -1) {
-            endIndex = (distanceIndex != -1) ? distanceIndex : (datetimeIndex != -1) ? datetimeIndex : (swimmingStyleIndex != -1) ?
-                    swimmingStyleIndex : arguments.length();
-            duration = arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(),
-                    endIndex).trim();
-            checkEmptyDurationArgument(duration);
-            final LocalTime durationParsed = parseDuration(duration);
-            activityChanges.setDuration(durationParsed);
-        }
-
-        if (distanceIndex != -1) {
-            endIndex = (datetimeIndex != -1) ? datetimeIndex : (swimmingStyleIndex != -1) ? swimmingStyleIndex : arguments.length();
-            distance = arguments.substring(distanceIndex + Parameter.DISTANCE_SEPARATOR.length(),
-                    endIndex).trim();
-            checkEmptyDistanceArgument(distance);
-            final int distanceParsed = parseDistance(distance);
-            activityChanges.setDistance(distanceParsed);
-        }
-
-        if (datetimeIndex != -1) {
-            endIndex = (swimmingStyleIndex != -1) ? swimmingStyleIndex : arguments.length();
-            datetime = arguments.substring(datetimeIndex +
-                    Parameter.DATETIME_SEPARATOR.length(), endIndex).trim();
-            checkEmptyDateTimeArgument(datetime);
-            final LocalDateTime datetimeParsed = Parser.parseDateTime(datetime);
-            activityChanges.setStartDateTime(datetimeParsed);
-        }
-
-        if (swimmingStyleIndex != -1) {
-            swimmingStyle = arguments.substring(swimmingStyleIndex +
-                    Parameter.ELEVATION_SEPARATOR.length()).trim();
-            checkEmptySwimmingStyleArgument(swimmingStyle);
-            final Swim.SwimmingStyle swimmingStyleParsed = parseSwimmingStyle(swimmingStyle);
-            activityChanges.setSwimmingStyle(swimmingStyleParsed);
-        }
-
-        return activityChanges;
     }
 
     /**
