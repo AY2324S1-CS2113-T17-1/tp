@@ -249,6 +249,10 @@ public class ActivityParser {
 
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
 
+        if (durationIndex > distanceIndex || distanceIndex > datetimeIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
+
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
                 arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex)
@@ -340,6 +344,10 @@ public class ActivityParser {
         final int elevationIndex = arguments.indexOf(Parameter.ELEVATION_SEPARATOR);
 
         checkMissingRunCycleArguments(durationIndex, distanceIndex, datetimeIndex, elevationIndex);
+
+        if (durationIndex > distanceIndex || distanceIndex > datetimeIndex || datetimeIndex > elevationIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
 
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
@@ -533,6 +541,10 @@ public class ActivityParser {
         final int swimmingStyleIndex = arguments.indexOf(Parameter.SWIMMING_STYLE_SEPARATOR);
 
         checkMissingSwimArguments(durationIndex, distanceIndex, datetimeIndex, swimmingStyleIndex);
+
+        if (durationIndex > distanceIndex || distanceIndex > datetimeIndex || datetimeIndex > swimmingStyleIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
 
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
