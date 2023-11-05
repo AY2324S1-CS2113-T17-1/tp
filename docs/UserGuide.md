@@ -106,13 +106,14 @@ the detailed flag.
 `edit-cycle`
 
 You can edit your activities in AthletiCLI by editing the activity at the specified index.
+Specify the parameters you want to edit with the corresponding flags. At least one parameter must be specified.
 
 **Syntax:**
 
-* `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
-* `edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
-* `edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
-* `edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `edit-activity INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]`
+* `edit-run INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]`
+* `edit-swim INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [laps/LAPS]`
+* `edit-cycle INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]`
 
 **Parameters:**
 
@@ -121,8 +122,8 @@ You can edit your activities in AthletiCLI by editing the activity at the specif
 
 **Examples:**
 
-* `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
-* `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `edit-activity 1 caption/Morning Run distance/10000`
+* `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`
 
 ### Setting Activity Goals:
 
