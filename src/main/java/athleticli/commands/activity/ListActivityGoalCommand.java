@@ -23,7 +23,13 @@ public class ListActivityGoalCommand extends Command {
      */
     @Override
     public String[] execute(Data data) {
-        ActivityGoalList activities = data.getActivityGoals();
-        return new String[]{Message.MESSAGE_ACTIVITY_GOAL_LIST, activities.toString(data)};
+        ActivityGoalList activityGoals = data.getActivityGoals();
+        int size = activityGoals.size();
+        String[] output = new String[size + 1];
+        output[0] = Message.MESSAGE_ACTIVITY_GOAL_LIST;
+        for (int i = 0; i < activityGoals.size(); i++) {
+            output[i + 1] = (i + 1) + ". " + activityGoals.get(i).toString(data);
+        }
+        return output;
     }
 }

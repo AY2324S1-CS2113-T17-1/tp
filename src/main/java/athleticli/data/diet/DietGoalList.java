@@ -6,7 +6,7 @@ import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
-import static athleticli.storage.Config.PATH_DIET_GOAL;
+import static athleticli.common.Config.PATH_DIET_GOAL;
 
 /**
  * Represents a list of diet goals.
@@ -59,7 +59,7 @@ public class DietGoalList extends StorableList<DietGoal> {
             } else if (dietGoalType.toLowerCase().equals("unhealthy")) {
                 return new UnhealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
                         dietGoalNutrientString, dietGoalTargetValue);
-            }else{
+            } else {
                 throw new AthletiException(Message.MESSAGE_DIET_GOAL_LOAD_ERROR);
             }
 

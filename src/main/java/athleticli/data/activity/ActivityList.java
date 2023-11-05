@@ -1,6 +1,6 @@
 package athleticli.data.activity;
 
-import static athleticli.storage.Config.PATH_ACTIVITY;
+import static athleticli.common.Config.PATH_ACTIVITY;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

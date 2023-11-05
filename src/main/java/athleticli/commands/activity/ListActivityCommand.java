@@ -45,7 +45,7 @@ public class ListActivityCommand extends Command {
         String[] output = new String[size + 1];
         output[0] = Message.MESSAGE_ACTIVITY_LIST;
         for (int i = 0; i < size; i++) {
-            output[i+1] = (i+1) + "." + activities.get(i).toString();
+            output[i + 1] = (i + 1) + "." + activities.get(i).toString();
         }
         return output;
     }
