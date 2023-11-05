@@ -61,8 +61,8 @@ public class Message {
             "\"running\", \"cycling\", \"swimming\", \"general\"!";
     public static final String MESSAGE_TYPE_INVALID = "The type of an activity must be either \"distance\" or " +
             "\"duration\"!";
-    public static final String MESSAGE_PERIOD_INVALID = "The period of an activity must be either \"weekly\" or " +
-            "\"monthly\"!";
+    public static final String MESSAGE_PERIOD_INVALID = "The period of an activity must be one of the " +
+            "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
     public static final String MESSAGE_PROTEIN_INVALID = "The protein intake must be a non-negative integer!";
     public static final String MESSAGE_CARB_INVALID =
             "The carbohydrate intake must be a non-negative integer!";
