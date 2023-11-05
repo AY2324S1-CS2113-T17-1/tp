@@ -20,7 +20,6 @@ public class SleepGoal extends Goal {
 
     private final GoalType goalType;
     private int targetDuration;
-    private LocalTime targetTime;
 
     /**
      * Constructs a sleep goal.
@@ -29,15 +28,9 @@ public class SleepGoal extends Goal {
      * @param targetValue The target duration of the sleep goal in minutes. (Used if goalType is DURATION)
      * @param targetTime  The target time of the sleep goal. (Used if goalType is STARTTIME or ENDTIME)
      */
-    public SleepGoal(Timespan timespan, GoalType goalType, int targetDuration) {
+    public SleepGoal(TimeSpan timespan, GoalType goalType, int targetDuration) {
         super(timespan);
         this.targetDuration = targetDuration;
-        this.goalType = goalType;
-    }
-
-    public SleepGoal(Timespan timespan, GoalType goalType, LocalTime targetTime) {
-        super(timespan);
-        this.targetTime = targetTime;
         this.goalType = goalType;
     }
 
@@ -62,18 +55,25 @@ public class SleepGoal extends Goal {
         int total;
         switch(goalType) {
         case DURATION:
-            total = sleeps.getTotalDuration(this.getTimespan());
-            break;
-        case STARTTIME:
-            total = sleeps.getStartTime(this.getTimespan(), targetTime);
-            break;
-        case ENDTIME:
-            total = sleeps.getEndTime(this.getTimespan(), targetTime);
+            total = sleeps.getTotalSleepDuration(this.getTimeSpan());
             break;
         default:
             throw new IllegalStateException("Unexpected value: " + goalType);
         }
         return total;
     }
+
+    public GoalType getGoalType() {
+        return goalType;
+    }
+
+    public int getTargetDuration() {
+        return targetDuration;
+    }
+
+    public void setTargetDuration(int targetDuration) {
+        this.targetDuration = targetDuration;
+    }
+
 
 }

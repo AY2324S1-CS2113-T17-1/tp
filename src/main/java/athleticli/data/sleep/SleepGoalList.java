@@ -1,9 +1,15 @@
 package athleticli.data.sleep;
 
-import static athleticli.storage.Config.PATH_SLEEP_GOAL;
-
 import athleticli.data.StorableList;
+import athleticli.exceptions.AthletiException;
+import athleticli.parser.ActivityParser;
+import athleticli.parser.Parameter;
 
+import static athleticli.common.Config.PATH_SLEEP_GOAL;
+
+/**
+ * Represents a list of sleep goals.
+ */
 public class SleepGoalList extends StorableList<SleepGoal> {
     /**
      * Constructs a sleep goal list.
@@ -13,32 +19,14 @@ public class SleepGoalList extends StorableList<SleepGoal> {
     }
 
     /**
-     * Returns a string representation of the sleep goal list.
-     * 
-     * @param data The data containing the sleep goal list.
-     * @return A string representation of the sleep goal list.
-     */
-    public String toString(Data data) {
-        StringBuilder result = new StringBuilder();
-        for (int i = 0; i < size(); i++) {
-            result.append(i + 1).append(". ").append(get(i).toString(data));
-            if (i != size() - 1) {
-                result.append("\n");
-            }
-        }
-        return result.toString();
-    }
-
-    /**
      * Parses a sleep goal from a string.
      *
      * @param s The string to be parsed.
      * @return The sleep goal parsed from the string.
      */
     @Override
-    public SleepGoal parse(String s) {
-        // TODO
-        return null;
+    public SleepGoal parse(String arguments) throws AthletiException {
+        return ActivityParser.parseSleepGoal(arguments);
     }
 
     /**
@@ -49,7 +37,10 @@ public class SleepGoalList extends StorableList<SleepGoal> {
      */
     @Override
     public String unparse(SleepGoal sleepGoal) {
-        // TODO
-        return null;
+        String commandArgs = "";
+        commandArgs += Parameter.TYPE_SEPARATOR + sleepGoal.getGoalType();
+        commandArgs += " " + Parameter.PERIOD_SEPARATOR + sleepGoal.getTimeSpan();
+        commandArgs += " " + Parameter.TARGET_SEPARATOR + sleepGoal.getTargetValue();
+        return commandArgs;
     }
 }

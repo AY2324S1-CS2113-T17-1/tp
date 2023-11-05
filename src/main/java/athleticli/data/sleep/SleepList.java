@@ -70,7 +70,7 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
      * @param timeSpan The time span to be matched.
      * @return The average sleep duration of the sleep list in seconds.
      */
-    public int getTotalSleepDuration(Class<?> sleepClass, Goal.TimeSpan timeSpan) {
+    public int getTotalSleepDuration(Goal.TimeSpan timeSpan) {
         ArrayList<Sleep> filteredSleepList = filterByTimespan(timeSpan);
         int totalSleepDuration = 0;
         for (Sleep sleep : filteredSleepList) {
