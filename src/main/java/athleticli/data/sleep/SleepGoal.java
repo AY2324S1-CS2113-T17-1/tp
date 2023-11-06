@@ -18,7 +18,7 @@ public class SleepGoal extends Goal {
     }
 
     private final GoalType goalType;
-    private int targetDuration;
+    private int target;
 
     /**
      * Constructs a sleep goal.
@@ -27,9 +27,9 @@ public class SleepGoal extends Goal {
      * @param targetValue The target duration of the sleep goal in minutes. (Used if goalType is DURATION)
      * @param targetTime  The target time of the sleep goal. (Used if goalType is STARTTIME or ENDTIME)
      */
-    public SleepGoal(TimeSpan timespan, GoalType goalType, int targetDuration) {
+    public SleepGoal(TimeSpan timespan, GoalType goalType, int target) {
         super(timespan);
-        this.targetDuration = targetDuration;
+        this.target = target;
         this.goalType = goalType;
     }
 
@@ -41,7 +41,7 @@ public class SleepGoal extends Goal {
     @Override
     public boolean isAchieved(Data data) throws IllegalStateException {
         int total = getCurrentValue(data);
-        return total >= targetDuration;
+        return total >= target;
     }
 
     /**
@@ -70,7 +70,7 @@ public class SleepGoal extends Goal {
     public String toString(Data data) {
         String goalTypeString = goalType.name();
         return(getTimeSpan().name().toLowerCase() + " " + goalTypeString.toLowerCase() + " " +
-            goalTypeString.toLowerCase() + " :" + getCurrentValue(data) + "/" + targetDuration + " minutes");
+            goalTypeString.toLowerCase() + " :" + getCurrentValue(data) + "/" + target + " minutes");
     }
 
     public GoalType getGoalType() {
@@ -78,10 +78,10 @@ public class SleepGoal extends Goal {
     }
 
     public int getTargetDuration() {
-        return targetDuration;
+        return target;
     }
 
-    public void setTargetDuration(int targetDuration) {
-        this.targetDuration = targetDuration;
+    public void setTargetDuration(int target) {
+        this.target = target;
     }
 }
