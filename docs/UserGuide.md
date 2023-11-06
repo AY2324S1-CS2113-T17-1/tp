@@ -1,18 +1,16 @@
+![AthletiCLI Banner with fitness imagery](images/AthletiCLI-Banner.png)
 ---
-layout: page
-title: User Guide
----
-
-**AthletiCLI** is your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the
+# AthletiCLI - User Guide
+*Your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the
 committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also
-covers dietary habits, sleep metrics, and more.
+covers dietary habits, sleep metrics, and more.*
 
-## Quick Start
+## 🚀 Quick Start
 
-* Ensure you have the required runtime environment installed on your computer.
-* Download the latest AthletiCLI from the official repository.
-* Copy the downloaded file to a folder you want to designate as the home for AthletiCLI.
-* Open a command terminal, cd into the folder where you copied the file, and run `java -jar AthletiCLI.jar` .
+* ✅ Ensure you have the required runtime environment installed on your computer.
+* ✅ Download the latest AthletiCLI from the official repository.
+* ✅ Copy the downloaded file to a folder you want to designate as the home for AthletiCLI.
+* ✅ Open a command terminal, cd into the folder where you copied the file, and run `java -jar AthletiCLI.jar` .
 
 ## Features
 
@@ -22,17 +20,11 @@ covers dietary habits, sleep metrics, and more.
 * Parameters need to be specified in the given order unless specified otherwise.
 * Parameters enclosed in square brackets [] are optional.
 
-## Activity Management
+## 🏃 Activity Management
 
-### Adding Activities:
+### ➕ Adding Activities:
 
-`add-activity`
-
-`add-run`
-
-`add-swim`
-
-`add-cycle`
+`add-activity` `add-run` `add-swim` `add-cycle`
 
 You can record your activities in AtheltiCLI by adding different activities including running, cycling, and swimming.
 A brief summary of the activity will be shown after adding the activity. Use the detailed list command to access the 
@@ -60,7 +52,7 @@ full activity insights.
 * `add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 * `add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2023-10-16 20:00 style/freestyle`
 
-### Deleting Activities:
+### ➖ Deleting Activities:
 
 `delete-activity`
 
@@ -81,7 +73,7 @@ the following command.
 * `delete-activity 2` Deletes the second activity in the activity list.
 * `delete-activity 1` Deletes the most recent activity in the activity list.
 
-### Listing Activities:
+### 📅 Listing Activities:
 
 `list-activity`
 
@@ -107,7 +99,7 @@ detailed information about your activities including evaluations like pace (runn
 * `list-activity` Shows a brief overview of all activities.
 * `list-activity -d` Shows a detailed summary of all activities.
 
-### Editing Activities:
+### ✍️ Editing Activities:
 
 `edit-activity`
 
@@ -138,7 +130,7 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 * `edit-activity 1 caption/Morning Run distance/10000`
 * `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`
 
-### Setting Activity Goals:
+### 🎯 Setting Activity Goals:
 
 `set-activity-goal`
 
@@ -164,7 +156,7 @@ The goals can track your daily, weekly, monthly, or yearly progress.
 * `set-activity-goal sport/swimming type/duration period/monthly target/120` Sets a goal of swimming for 2 hours per
   month.
 
-### Editing Activity Goals:
+### ✍️ Editing Activity Goals:
 
 `edit-activity-goal`
 
@@ -186,7 +178,7 @@ You can edit your already set goals by mentioning the sport, target, and period 
 * `edit-activity-goal sport/running type/distance period/weekly target/20000` Edits the goal of running 20km per week.
 * `edit-activity-goal sport/swimming type/duration period/monthly target/60` Edits the goal of swimming for 1 hour per month.
 
-### Listing Activity Goals:
+### 📅 Listing Activity Goals:
 
 `list-activity-goal`
 
@@ -200,9 +192,9 @@ You can list all your goals in AthletiCLI and see your progress towards them.
 
 * `list-activity-goal` Lists all your goals.
 
-## Diet Management
+## 🍏 Diet Management
 
-### Adding Diets:
+### ➕ Adding Diets:
 
 `add-diet`
 
@@ -224,7 +216,7 @@ You can record your diet in AtheltiCLI by adding your calorie, protein, carbohyd
 
 * `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
 
-### Editing Diets:
+### ✍️ Editing Diets:
 
 `edit-diet`
 
@@ -251,7 +243,7 @@ You can edit your diet in AtheltiCLI by editing the diet at the specified index.
 * `edit-diet 1 calories/500`
 * `edit-diet 1 protein/20`
 
-### Deleting Diets:
+### ➖ Deleting Diets:
 
 `delete-diet`
 
@@ -269,7 +261,7 @@ You can delete your diet in AtheltiCLI by deleting the diet at the specified ind
 
 * `delete-diet 1`
 
-### Listing Diets:
+### 📅 Listing Diets:
 
 `list-diet`
 
@@ -283,7 +275,7 @@ You can list all your diets in AtheltiCLI.
 
 * `list-diet`
 
-### Finding Diets:
+### 🔍 Finding Diets:
 
 `find-diet date/DATE`
 
@@ -301,9 +293,7 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 * `find-diet date/2021-09-01`
 
-## Diet Goal Management
-
-### Adding Diet Goals:
+### 🎯 Adding Diet Goals:
 
 `set-diet-goal`
 
@@ -340,7 +330,7 @@ You can create one or multiple nutrient goals at once with this command.
 
 * `set-diet-goal DAILY calories/500` Creates a single calories goal.
 
-### Deleting Diet Goals:
+### ➖ Deleting Diet Goals:
 
 `delete-diet-goal`
 
@@ -359,7 +349,7 @@ This index will be referenced via `list-diet-goal` command.
 
 * `delete-diet-goal 1` Deletes a diet goal that is located on the first index of the list.
 
-### Listing Diet Goals:
+### 📅 Listing Diet Goals:
 
 `list-diet-goal`
 
@@ -373,7 +363,7 @@ You can list all your diet goals in AtheltiCLI.
 
 * `list-diet-goal`
 
-### Editing Diet Goals:
+### ✍️ Editing Diet Goals:
 
 `edit-diet-goal`
 
@@ -410,9 +400,9 @@ Edits multiple nutrients goals if all of them exists.
 Edits a single calories goal if the goal exists.
 
 
-## Sleep Management
+## 🛌 Sleep Management
 
-### Adding Sleep:
+### ➕ Adding Sleep:
 
 `add-sleep`  
 
@@ -438,7 +428,7 @@ All sleep entries with a start time before 06:00 will be taken to represent the 
 
 * `add-sleep start/2022-01-20 22:00 end/2022-01-21 06:00` will be taken to represent the sleep record on `2022-01-20`, since the start time is after 06:00 on `2022-01-20`.
 
-### Listing Sleep:
+### 📅 Listing Sleep:
 
 `list-sleep`
 
@@ -448,7 +438,7 @@ You can see all your tracked sleep records in a list by using this command.
 
 **Example:** `list-sleep`
 
-### Deleting Sleep:
+### ➖ Deleting Sleep:
 
 `delete-sleep`  
 
@@ -471,7 +461,7 @@ Assuming that there are 5 sleep records in the list:
 * `delete-sleep 5`  will delete the 5th sleep record in the sleep records list.
 * `delete-sleep 1`  will delete the 1st sleep record in the sleep records list.
 
-### Editing Sleep:
+### ✍️ Editing Sleep:
 
 `edit-sleep`  
 
@@ -495,7 +485,7 @@ Assuming that there are 5 sleep records in the list:
 
 * `edit-sleep 1 2022-01-20 22:00 2022-01-21 06:00` will edit the 1st sleep record in the sleep records list to have a start time of `2022-01-20 22:00` and an end time of `2022-01-21 06:00`.
 
-### Finding Sleep:
+### 🔍 Finding Sleep:
 
 `find-sleep date/DATE`
 
@@ -517,7 +507,7 @@ You can find your sleep record on a specific date in AtheltiCLI.
 
 ## Miscellaneous
 
-### Finding Records:
+### 🔍 Finding Records:
 
 You can find all your records, including activities, sleeps, and diets, on a specific date in AtheltiCLI.
 
@@ -533,7 +523,7 @@ You can find all your records, including activities, sleeps, and diets, on a spe
 
 * `find 2023-11-01`
 
-### Saving Files:
+### 📦 Saving Files:
 
 You can save files while using AthletiCLI if you want to, rather than waiting until the AthletiCLI exits to automatically save them.
 
@@ -541,7 +531,7 @@ You can save files while using AthletiCLI if you want to, rather than waiting un
 
 * `save`
 
-### Exiting AthletiCLI:
+### 👋 Exiting AthletiCLI:
 
 You can use the `bye` command at any time to safely store the file and exit AthletiCLI.
 
@@ -549,7 +539,7 @@ You can use the `bye` command at any time to safely store the file and exit Athl
 
 * `bye`
 
-### Viewing Help Messages:
+### ℹ️ Viewing Help Messages:
 
 If you forget a command, you can always use the `help` command to see their syntax.
 
