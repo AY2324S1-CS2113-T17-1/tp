@@ -35,6 +35,8 @@ covers dietary habits, sleep metrics, and more.
 `add-cycle`
 
 You can record your activities in AtheltiCLI by adding different activities including running, cycling, and swimming.
+A brief summary of the activity will be shown after adding the activity. Use the detailed list command to access the 
+full activity insights.
 
 **Syntax:**
 
@@ -62,7 +64,8 @@ You can record your activities in AtheltiCLI by adding different activities incl
 
 `delete-activity`
 
-Accidentally added an activity? You can quickly delete activities by using the following command.
+Accidentally added an activity? You can quickly delete any type of activity including run, swims and cycles by using 
+the following command.
 
 **Syntax:**
 
@@ -70,8 +73,8 @@ Accidentally added an activity? You can quickly delete activities by using the f
 
 **Parameters:**
 
-* INDEX: The index of the activity as shown in the displayed activity. Note, that the list is sorted by date and 
-  that the index must be a positive number which is not larger than the number of activities recorded.
+* INDEX: The index of the activity as shown in the displayed activity list. Note, that the list is sorted by 
+  date and that the index must be a positive number which is not larger than the number of activities recorded.
 
 **Examples:**
 
@@ -83,7 +86,8 @@ Accidentally added an activity? You can quickly delete activities by using the f
 `list-activity`
 
 By using this command, you can see all your tracked activities in a list sorted by date. For more 
-detailed information about your activities, you can use the `-d` flag.
+detailed information about your activities including evaluations like pace (running), speed (cycling) or lap time 
+(swimming), you can use the `-d` flag.
 
 **Syntax:**
 
@@ -92,6 +96,11 @@ detailed information about your activities, you can use the `-d` flag.
 **Parameters:**
 
 * `-d`: Shows a detailed list of the activities.
+
+**Metrics:**
+* Pace: the average time taken to run 1km. Common performance metric for runners.
+* Speed: the average speed of the cycle in km/h. Common performance metric for cyclists.
+* Lap Time: the time taken to swim 1 lap (50m). Common performance metric for swimmers.
 
 **Examples:**
 
