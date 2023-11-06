@@ -62,6 +62,17 @@ public class SleepGoal extends Goal {
         return total;
     }
 
+    /**
+     * Returns the string representation of the sleep goal.
+     * @param data The data containing the sleep list.
+     * @return The string representation of the sleep goal.
+     */
+    public String toString(Data data) {
+        String goalTypeString = goalType.name();
+        return(getTimeSpan().name().toLowerCase() + " " + goalTypeString.toLowerCase() + " " +
+            goalTypeString.toLowerCase() + " :" + getCurrentValue(data) + "/" + targetDuration + " minutes");
+    }
+
     public GoalType getGoalType() {
         return goalType;
     }
