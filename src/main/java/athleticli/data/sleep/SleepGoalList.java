@@ -21,7 +21,7 @@ public class SleepGoalList extends StorableList<SleepGoal> {
     /**
      * Parses a sleep goal from a string.
      *
-     * @param s The string to be parsed.
+     * @param arguments The string to be parsed.
      * @return The sleep goal parsed from the string.
      */
     @Override
@@ -40,7 +40,7 @@ public class SleepGoalList extends StorableList<SleepGoal> {
         String commandArgs = "";
         commandArgs += Parameter.TYPE_SEPARATOR + sleepGoal.getGoalType();
         commandArgs += " " + Parameter.PERIOD_SEPARATOR + sleepGoal.getTimeSpan();
-        commandArgs += " " + Parameter.TARGET_SEPARATOR + sleepGoal.getTargetValue();
+        commandArgs += " " + Parameter.TARGET_SEPARATOR + sleepGoal.getTargetDuration();
         return commandArgs;
     }
 }

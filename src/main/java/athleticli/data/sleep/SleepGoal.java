@@ -3,7 +3,6 @@ package athleticli.data.sleep;
 import athleticli.data.Data;
 import athleticli.data.Goal;
 
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
@@ -74,6 +73,4 @@ public class SleepGoal extends Goal {
     public void setTargetDuration(int targetDuration) {
         this.targetDuration = targetDuration;
     }
-
-
 }
