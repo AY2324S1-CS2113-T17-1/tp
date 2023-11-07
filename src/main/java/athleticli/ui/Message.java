@@ -174,9 +174,10 @@ public class Message {
     public static final String ERRORMESSAGE_PARSER_SLEEP_MISSING_PARAMETERS =
             "Please specify the start and end time of your sleep.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TYPE =
-            "Please specify the type of your sleep goal as either \"duration\" or \"time\".";
+            "Please specify the type of your sleep goal as \"duration\".";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PERIOD =
-            "Please specify the period of your sleep goal as either \"daily\" or \"weekly\".";
+            "The period must be one of the " +
+            "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TARGET =
             "Please specify the target value of your sleep goal as a positive integer.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS =
