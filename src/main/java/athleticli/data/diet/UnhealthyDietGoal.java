@@ -7,8 +7,8 @@ import athleticli.data.Data;
  */
 public class UnhealthyDietGoal extends DietGoal {
 
+    public static final String TYPE = "unhealthy";
     private final boolean isHealthy;
-    public static final String type = "unhealthy";
 
     /**
      * Constructs a diet goal with no current value.
@@ -35,7 +35,7 @@ public class UnhealthyDietGoal extends DietGoal {
      */
     @Override
     public String getType() {
-        return type;
+        return TYPE;
     }
 
     /**
