@@ -8,6 +8,7 @@ import athleticli.data.Data;
 public class HealthyDietGoal extends DietGoal {
 
     private final boolean isHealthy;
+    public static final String type = "healthy";
 
     /**
      * Constructs a diet goal with no current value.
@@ -20,6 +21,17 @@ public class HealthyDietGoal extends DietGoal {
         super(timeSpan, nutrient, targetValue);
         isHealthy = true;
     }
+
+    /**
+     * Returns the type of diet goal of this class.
+     *
+     * @return the type of diet goal.
+     */
+    @Override
+    public String getType() {
+        return type;
+    }
+
 
     /**
      * Returns the string representation of healthy diet goal.
