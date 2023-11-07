@@ -25,6 +25,10 @@ public class ActivityParser {
      */
     public static int parseActivityIndex(String commandArgs) throws AthletiException {
         final String commandArgsTrimmed = commandArgs.trim();
+        if (commandArgsTrimmed.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_EMPTY);
+        }
+
         int index;
         try {
             index = Integer.parseInt(commandArgsTrimmed);
@@ -43,7 +47,7 @@ public class ActivityParser {
      */
     public static ActivityChanges parseActivityEdit(String arguments) throws AthletiException {
         try {
-            String activityArguments = arguments.split(" ", 2)[1];
+            String activityArguments = arguments.split("(?<=\\d)(?=\\D)", 2)[1];
             return parseActivityChanges(activityArguments);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
@@ -110,10 +114,15 @@ public class ActivityParser {
     private static void parseChangeArguments(ActivityChanges activityChanges, String arguments, String... separators)
             throws AthletiException {
         int numChanges = 0;
+        int previousIndex = -1;
         for (int i = 0; i < separators.length; i++) {
             String separator = separators[i];
             int startIndex = arguments.indexOf(separator);
             if (startIndex != -1) {
+                if (previousIndex > startIndex) {
+                    throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+                }
+                previousIndex = startIndex;
                 int endIndex = arguments.length();
                 for (int j = i + 1; j < separators.length; j++) {
                     if (i != j) {
@@ -214,7 +223,7 @@ public class ActivityParser {
      */
     public static int parseActivityEditIndex(String arguments) throws AthletiException {
         try {
-            return parseActivityIndex(arguments.split(" ", 2)[0]);
+            return parseActivityIndex(arguments.split("(?<=\\d)(?=\\D)", 2)[0]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
         }
@@ -244,6 +253,10 @@ public class ActivityParser {
         final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
 
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
+
+        if (durationIndex > distanceIndex || distanceIndex > datetimeIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
 
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
@@ -336,6 +349,10 @@ public class ActivityParser {
         final int elevationIndex = arguments.indexOf(Parameter.ELEVATION_SEPARATOR);
 
         checkMissingRunCycleArguments(durationIndex, distanceIndex, datetimeIndex, elevationIndex);
+
+        if (durationIndex > distanceIndex || distanceIndex > datetimeIndex || datetimeIndex > elevationIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
 
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
@@ -530,6 +547,10 @@ public class ActivityParser {
 
         checkMissingSwimArguments(durationIndex, distanceIndex, datetimeIndex, swimmingStyleIndex);
 
+        if (durationIndex > distanceIndex || distanceIndex > datetimeIndex || datetimeIndex > swimmingStyleIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
+
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
                 arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex)
@@ -582,6 +603,10 @@ public class ActivityParser {
 
         checkMissingActivityGoalArguments(sportIndex, typeIndex, periodIndex, targetIndex);
 
+        if (sportIndex > typeIndex || typeIndex > periodIndex || periodIndex > targetIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
+
         final String sport = commandArgs.substring(sportIndex + Parameter.SPORT_SEPARATOR.length(), typeIndex).trim();
         final String type =
                 commandArgs.substring(typeIndex + Parameter.TYPE_SEPARATOR.length(), periodIndex).trim();
@@ -614,23 +639,23 @@ public class ActivityParser {
     /**
      * Checks if the raw user input is missing any arguments for creating an activity goal.
      * @param sportIndex        The position of the sport separator.
-     * @param targetIndex       The position of the target separator.
+     * @param typeIndex         The position of the type separator.
      * @param periodIndex       The position of the period separator.
-     * @param valueIndex        The position of the value separator.
+     * @param targetIndex       The position of the target separator.
      * @throws AthletiException If any of the arguments are missing.
      */
-    public static void checkMissingActivityGoalArguments(int sportIndex, int targetIndex, int periodIndex,
-            int valueIndex) throws AthletiException {
+    public static void checkMissingActivityGoalArguments(int sportIndex, int typeIndex, int periodIndex,
+            int targetIndex) throws AthletiException {
         if (sportIndex == -1) {
             throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_SPORT_MISSING);
         }
-        if (targetIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TARGET_MISSING);
+        if (typeIndex == -1) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TYPE_MISSING);
         }
         if (periodIndex == -1) {
             throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_PERIOD_MISSING);
         }
-        if (valueIndex == -1) {
+        if (targetIndex == -1) {
             throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TARGET_MISSING);
         }
     }
