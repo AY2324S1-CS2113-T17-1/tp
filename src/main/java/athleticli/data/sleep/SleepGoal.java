@@ -24,10 +24,10 @@ public class SleepGoal extends Goal {
      * Constructs a sleep goal.
      * @param timespan    The timespan of the sleep goal.
      * @param goalType    The goal type of the sleep goal.
-     * @param targetValue The target duration of the sleep goal in minutes. (Used if goalType is DURATION)
+     * @param targetValue The target value of the sleep goal in minutes. (Used if goalType is DURATION)
      * @param targetTime  The target time of the sleep goal. (Used if goalType is STARTTIME or ENDTIME)
      */
-    public SleepGoal(TimeSpan timespan, GoalType goalType, int target) {
+    public SleepGoal(GoalType goalType, TimeSpan timespan, int target) {
         super(timespan);
         this.target = target;
         this.goalType = goalType;
@@ -70,18 +70,18 @@ public class SleepGoal extends Goal {
     public String toString(Data data) {
         String goalTypeString = goalType.name();
         return(getTimeSpan().name().toLowerCase() + " " + goalTypeString.toLowerCase() + " " +
-            goalTypeString.toLowerCase() + " :" + getCurrentValue(data) + "/" + target + " minutes");
+             ": " + getCurrentValue(data) + "/" + target + " minutes");
     }
 
     public GoalType getGoalType() {
         return goalType;
     }
 
-    public int getTargetDuration() {
+    public int getTargetValue() {
         return target;
     }
 
-    public void setTargetDuration(int target) {
+    public void setTargetValue(int target) {
         this.target = target;
     }
 }
