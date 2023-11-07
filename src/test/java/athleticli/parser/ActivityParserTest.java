@@ -34,7 +34,7 @@ public class ActivityParserTest {
 
     @Test
     void parseActivityEdit_validInput_returnActivityEdit() {
-        String validInput = "1 Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00";
+        String validInput = "1 Morning Run distance/10000 datetime/2021-09-01 06:00";
         assertDoesNotThrow(() -> ActivityParser.parseActivityEdit(validInput));
     }
 
@@ -47,27 +47,27 @@ public class ActivityParserTest {
     @Test
     void parseRunEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 Morning Run duration/60";
-        assertThrows(AthletiException.class, () -> ActivityParser.parseRunEdit(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseRunCycleEdit(invalidInput));
     }
 
     @Test
     void parseRunEdit_validInput_returnRunEdit() {
         String validInput =
-                "2 Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
-        assertDoesNotThrow(() -> ActivityParser.parseRunEdit(validInput));
+                "2 duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
+        assertDoesNotThrow(() -> ActivityParser.parseRunCycleEdit(validInput));
     }
 
     @Test
     void parseCycleEdit_validInput_returnRunEdit() {
         String validInput =
-                "2 Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000";
-        assertDoesNotThrow(() -> ActivityParser.parseCycleEdit(validInput));
+                "2 Evening Ride datetime/2021-09-01 18:00 elevation/1000";
+        assertDoesNotThrow(() -> ActivityParser.parseRunCycleEdit(validInput));
     }
 
     @Test
     void parseCycleEdit_invalidInput_throwAthletiException() {
-        String invalidInput = "1 Morning Run duration/60";
-        assertThrows(AthletiException.class, () -> ActivityParser.parseCycleEdit(invalidInput));
+        String invalidInput = "1 ";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseRunCycleEdit(invalidInput));
     }
 
     @Test
@@ -80,7 +80,7 @@ public class ActivityParserTest {
     @Test
     void parseSwimEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 Morning Run duration/60";
-        assertThrows(AthletiException.class, () -> ActivityParser.parseRunEdit(invalidInput));
+        assertThrows(AthletiException.class, () -> ActivityParser.parseRunCycleEdit(invalidInput));
     }
 
     @Test

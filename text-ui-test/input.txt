@@ -9,6 +9,9 @@ delete-activity 2
 delete-activity 0
 list-activity
 list-activity -d
+edit-cycle 1 distance/22000
+edit-cycle 1 caption/ elevation/20
+list-activity -d
 edit-activity 1 Morning Run duration/01:00:00 distance/12000 datetime/2021-09-01 06:00
 
 add-sleep start/2021-09-01 22:00 end/2021-09-02 06:00
@@ -47,6 +50,9 @@ set-diet-goal fats/1 calories/1 protein/1
 set-diet-goal weekly fats/-1 calories/-1 protein/-1
 set-diet-goal fats/1 calories/1 protein/1
 set-diet-goal daily fats/1 calories/1 protein/1
+set-diet-goal weekly unhealthy carb/1
+add-diet calories/150000 protein/500000 carb/05000 fat/2000 datetime/2023-11-04 10:00
+list-diet-goal
 delete-diet-goal 3
 delete-diet-goal 1 2
 delete-diet-goal -1
@@ -58,6 +64,11 @@ edit-diet-goal fats/fats
 edit-diet-goal daily fats/100
 edit-diet-goal fats/100
 edit-diet-goal carb/100
+set-diet-goal weekly carb/1
+delete-diet-goal 1
+edit-diet-goal weekly unhealthy carb/1000
+edit-diet-goal weekly carb/1
+delete-diet 1
 list-diet-goal
 
 help add-diet

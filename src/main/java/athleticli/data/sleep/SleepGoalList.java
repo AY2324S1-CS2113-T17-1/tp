@@ -3,7 +3,7 @@
  */
 package athleticli.data.sleep;
 
-import static athleticli.storage.Config.PATH_SLEEP_GOAL;
+import static athleticli.common.Config.PATH_SLEEP_GOAL;
 
 import athleticli.data.StorableList;
 

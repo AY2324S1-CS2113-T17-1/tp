@@ -61,7 +61,7 @@ covers dietary habits, sleep metrics, and more.
 **Notes about Command Format**
 
 * Words in UPPER_CASE are parameters provided by the user.
-* Parameters can be in any order.
+* Parameters need to be specified in the given order unless specified otherwise.
 * Parameters enclosed in square brackets [] are optional.
 
 ## Activity Management
@@ -77,32 +77,37 @@ covers dietary habits, sleep metrics, and more.
 `add-cycle`
 
 You can record your activities in AtheltiCLI by adding different activities including running, cycling, and swimming.
+A brief summary of the activity will be shown after adding the activity. Use the detailed list command to access the 
+full activity insights.
 
 **Syntax:**
 
 * `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
 * `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
-* `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
+* `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE`
 * `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
 
 **Parameters:**
 
 * CAPTION: A short description of the activity.
-* DURATION: The duration of the activity in minutes.
+* DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
 * DISTANCE: The distance of the activity in meters. It must be a positive number.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* ELEVATION: The elevation gain of a run or cycle in meters. It must be a number.
+* STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
 
 **Examples:**
 
 * `add-activity Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00`
 * `add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2023-10-16 20:00 style/freestyle`
 
 ### Deleting Activities:
 
 `delete-activity`
 
-Accidentally added an activity? You can quickly delete activities by using the following command.
-The index must be a positive number and is not larger than the number of activities recorded.
+Accidentally added an activity? You can quickly delete any type of activity including run, swims and cycles by using 
+the following command.
 
 **Syntax:**
 
@@ -110,19 +115,21 @@ The index must be a positive number and is not larger than the number of activit
 
 **Parameters:**
 
-* INDEX: The index of the activity as shown in the displayed activity list.
+* INDEX: The index of the activity as shown in the displayed activity list. Note, that the list is sorted by 
+  date and that the index must be a positive number which is not larger than the number of activities recorded.
 
 **Examples:**
 
 * `delete-activity 2` Deletes the second activity in the activity list.
-* `delete-activity 1` Deletes the first activity in the activity list.
+* `delete-activity 1` Deletes the most recent activity in the activity list.
 
 ### Listing Activities:
 
 `list-activity`
 
-You can see all your tracked activities in a list by using this command. For more detailed information, you can use
-the detailed flag.
+By using this command, you can see all your tracked activities in a list sorted by date. For more 
+detailed information about your activities including evaluations like pace (running), speed (cycling) or lap time 
+(swimming), you can use the `-d` flag.
 
 **Syntax:**
 
@@ -130,7 +137,12 @@ the detailed flag.
 
 **Parameters:**
 
-* `-d`: Shows a detailed list of activities.
+* `-d`: Shows a detailed list of the activities.
+
+**Metrics:**
+* Pace: the average time taken to run 1km. Common performance metric for runners.
+* Speed: the average speed of the cycle in km/h. Common performance metric for cyclists.
+* Lap Time: the time taken to swim 1 lap (50m). Common performance metric for swimmers.
 
 **Examples:**
 
@@ -148,39 +160,45 @@ the detailed flag.
 `edit-cycle`
 
 You can edit your activities in AthletiCLI by editing the activity at the specified index.
+Specify the parameters you want to edit with the corresponding flags. At least one parameter must be specified.
 
 **Syntax:**
 
-* `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`
-* `edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
-* `edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`
-* `edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`
+* `edit-activity INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]`
+* `edit-run INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]`
+* `edit-swim INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [style/STYLE]`
+* `edit-cycle INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]`
 
 **Parameters:**
 
-* INDEX: The index of the activity to be edited - must be a positive number.
+* INDEX: The index of the activity to be edited - must be a positive number which is not larger than the number of 
+  activities recorded. Note, that the indices are allocated based on the date of the activity.
 * See [adding activities](#adding-activities) for the other parameters.
 
 **Examples:**
 
-* `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00`
-* `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
+* `edit-activity 1 caption/Morning Run distance/10000`
+* `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`
 
 ### Setting Activity Goals:
 
 `set-activity-goal`
 
 You can set goals for your activities in AthletiCLI by setting the target distance or duration for a specific sport.
+The goals can track your daily, weekly, monthly, or yearly progress.
 
 **Syntax**
 
-* `set-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`
+* `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`
 
 **Parameters**
 
 * SPORT: The sport for which you want to set a goal. It must be one of the following: run, swim, cycle, general.
-* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
-* VALUE: The value of the target. It must be a positive number. For distance, it is in meters. For duration, it is in minutes.
+* TYPE: The metric for which you want to set a goal. It must be one of the following: distance, duration.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, 
+  yearly. Only activities that are recorded within the period will be counted towards the goal.
+* TARGET: The target value. It must be a positive number. For distance, it is in meters. For duration, it is in
+  minutes.
 
 **Examples**
 
@@ -596,21 +614,21 @@ If you forget a command, you can always use the `help` command to see their synt
 
 ## **Activity Management**
 
-| **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
-|---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
-| `add-activity`            | `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`        | CAPTION, DURATION, DISTANCE, DATETIME                  | `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
-| `add-run`                 | `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION` | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION      | -                                                        |
-| `add-swim`                | `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS` | CAPTION, DURATION, DISTANCE, DATETIME, LAPS            | -                                                        |
+| **Command**               | **Syntax**                                                                                    | **Parameters**                                         | **Examples**                                             |
+|---------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
+| `add-activity`            | `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`                  | CAPTION, DURATION, DISTANCE, DATETIME                  | `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
+| `add-run`                 | `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`   | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION      | -                                                        |
+| `add-swim`                | `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`            | CAPTION, DURATION, DISTANCE, DATETIME, LAPS            | -                                                        |
 | `add-cycle`               | `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION` | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION      | `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
-| `delete-activity`         | `delete-activity INDEX`                                                             | INDEX                                                  | `delete-activity 2`                                       |
-| `list-activity`           | `list-activity [-d]`                                                                | -d                                                     | `list-activity`, `list-activity -d`                        |
-| `edit-activity`           | `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME` | INDEX, CAPTION, DURATION, DISTANCE, DATETIME           | `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
-| `edit-run`                | Similar to `edit-activity` but with elevation.                                      | Same as `edit-activity` with ELEVATION                 | -                                                        |
-| `edit-swim`               | Similar to `edit-activity` but with laps.                                           | Same as `edit-activity` with LAPS                      | -                                                        |
-| `edit-cycle`              | Similar to `edit-activity` but with elevation.                                      | Same as `edit-activity` with ELEVATION                 | `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
-| `set-activity-goal`       | `set-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`             | SPORT, TARGET, PERIOD, VALUE                           | `set-activity-goal sport/running type/distance period/weekly target/10000` |
-| `edit-activity-goal`      | `edit-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`            | SPORT, TARGET, PERIOD, VALUE                           | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
-| `list-activity-goal`      | `list-activity-goal`                                                                | None                                                   | `list-activity-goal`                                       |
+| `delete-activity`         | `delete-activity INDEX`                                                                       | INDEX                                                  | `delete-activity 2`                                       |
+| `list-activity`           | `list-activity [-d]`                                                                          | -d                                                     | `list-activity`, `list-activity -d`                        |
+| `edit-activity`           | `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`           | INDEX, CAPTION, DURATION, DISTANCE, DATETIME           | `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
+| `edit-run`                | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION                 | -                                                        |
+| `edit-swim`               | Similar to `edit-activity` but with laps.                                                     | Same as `edit-activity` with LAPS                      | -                                                        |
+| `edit-cycle`              | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION                 | `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
+| `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                         | SPORT, TARGET, PERIOD, VALUE                           | `set-activity-goal sport/running type/distance period/weekly target/10000` |
+| `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TARGET, PERIOD, VALUE                           | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
+| `list-activity-goal`      | `list-activity-goal`                                                                          | None                                                   | `list-activity-goal`                                       |
 
 ## **Diet Management**
 

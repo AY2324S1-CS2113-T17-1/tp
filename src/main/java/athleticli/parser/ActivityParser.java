@@ -6,6 +6,7 @@ import java.time.format.DateTimeParseException;
 
 import athleticli.data.Goal;
 import athleticli.data.activity.Activity;
+import athleticli.data.activity.ActivityChanges;
 import athleticli.data.activity.ActivityGoal;
 import athleticli.data.activity.Cycle;
 import athleticli.data.activity.Run;
@@ -24,6 +25,10 @@ public class ActivityParser {
      */
     public static int parseActivityIndex(String commandArgs) throws AthletiException {
         final String commandArgsTrimmed = commandArgs.trim();
+        if (commandArgsTrimmed.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_EMPTY);
+        }
+
         int index;
         try {
             index = Integer.parseInt(commandArgsTrimmed);
@@ -36,43 +41,158 @@ public class ActivityParser {
     /**
      * Parses the provided updated activity for the edit command.
      *
-     * @param arguments The raw user input containing the updated activity.
+     * @param arguments             The raw user input containing the updated activity.
      * @return activity             The parsed Activity object.
-     * @throws AthletiException If the input format is invalid.
+     * @throws AthletiException     If the input format is invalid.
      */
-    public static Activity parseActivityEdit(String arguments) throws AthletiException {
+    public static ActivityChanges parseActivityEdit(String arguments) throws AthletiException {
         try {
-            return parseActivity(arguments.split(" ", 2)[1]);
+            String activityArguments = arguments.split("(?<=\\d)(?=\\D)", 2)[1];
+            return parseActivityChanges(activityArguments);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
         }
     }
 
     /**
-     * Parses the provided updated run for the edit command
-     *
-     * @param arguments The raw user input containing the updated run.
-     * @return activity             The parsed run object.
+     * Parses the provided swim arguments of the edit command.
+     * @param arguments         The raw user input containing the updated swim.
+     * @return activityChanges  The parsed ActivityChanges object.
      * @throws AthletiException If the input format is invalid.
      */
-    public static Activity parseRunEdit(String arguments) throws AthletiException {
-        try {
-            return parseRunCycle(arguments.split(" ", 2)[1], true);
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
+    public static ActivityChanges parseSwimChanges(String arguments) throws AthletiException {
+        ActivityChanges activityChanges = new ActivityChanges();
+        parseChangeArguments(activityChanges, arguments,
+                Parameter.CAPTION_SEPARATOR,
+                Parameter.DURATION_SEPARATOR,
+                Parameter.DISTANCE_SEPARATOR,
+                Parameter.DATETIME_SEPARATOR,
+                Parameter.SWIMMING_STYLE_SEPARATOR);
+        return activityChanges;
+    }
+
+    /**
+     * Parses the provided run or cycle arguments of the edit command.
+     * @param arguments         The raw user input containing the updated run or cycle.
+     * @return activityChanges  The parsed ActivityChanges object.
+     * @throws AthletiException If the input format is invalid.
+     */
+    public static ActivityChanges parseRunCycleChanges(String arguments) throws AthletiException {
+        ActivityChanges activityChanges = new ActivityChanges();
+        parseChangeArguments(activityChanges, arguments,
+                Parameter.CAPTION_SEPARATOR,
+                Parameter.DURATION_SEPARATOR,
+                Parameter.DISTANCE_SEPARATOR,
+                Parameter.DATETIME_SEPARATOR,
+                Parameter.ELEVATION_SEPARATOR);
+        return activityChanges;
+    }
+
+    /**
+     * Parses the provided activity arguments of the edit command.
+     * @param arguments         The raw user input containing the updated activity.
+     * @return activityChanges  The parsed ActivityChanges object.
+     * @throws AthletiException If the input format is invalid.
+     */
+    public static ActivityChanges parseActivityChanges(String arguments) throws AthletiException {
+        ActivityChanges activityChanges = new ActivityChanges();
+        parseChangeArguments(activityChanges, arguments,
+                Parameter.CAPTION_SEPARATOR,
+                Parameter.DURATION_SEPARATOR,
+                Parameter.DISTANCE_SEPARATOR,
+                Parameter.DATETIME_SEPARATOR);
+        return activityChanges;
+    }
+
+    /**
+     * Parses the provided arguments based on the list of separators
+     * @param activityChanges       The ActivityChanges object which contains the updates.
+     * @param arguments             The raw user arguments containing the updated parameters.
+     * @param separators            The list of separators to be used.
+     * @throws AthletiException     If the input format is invalid.
+     */
+    private static void parseChangeArguments(ActivityChanges activityChanges, String arguments, String... separators)
+            throws AthletiException {
+        int numChanges = 0;
+        int previousIndex = -1;
+        for (int i = 0; i < separators.length; i++) {
+            String separator = separators[i];
+            int startIndex = arguments.indexOf(separator);
+            if (startIndex != -1) {
+                if (previousIndex > startIndex) {
+                    throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+                }
+                previousIndex = startIndex;
+                int endIndex = arguments.length();
+                for (int j = i + 1; j < separators.length; j++) {
+                    if (i != j) {
+                        int nextIndex = arguments.indexOf(separators[j], startIndex + separator.length());
+                        if (nextIndex != -1) {
+                            endIndex = nextIndex;
+                            break;
+                        }
+                    }
+                }
+                String segment = arguments.substring(startIndex + separator.length(), endIndex).trim();
+                parseSegment(activityChanges, segment, separator);
+                numChanges++;
+            }
+        }
+        if (numChanges == 0) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_EMPTY);
         }
     }
 
     /**
-     * Parses the provided updated cycle for the edit command
-     *
-     * @param arguments The raw user input containing the updated cycle.
-     * @return activity             The parsed cycle object.
-     * @throws AthletiException If the input format is invalid.
+     * General method to parse a segment of the activity changes.
+     * @param activityChanges   The ActivityChanges object which keeps track of the updates.
+     * @param segment           The segment of the arguments to be parsed.
+     * @param separator         The separator used to identify the segment.
+     * @throws AthletiException If the input is invalid or empty.
      */
-    public static Activity parseCycleEdit(String arguments) throws AthletiException {
+    public static void parseSegment(ActivityChanges activityChanges, String segment, String separator)
+            throws AthletiException {
+        switch (separator) {
+        case Parameter.CAPTION_SEPARATOR:
+            checkEmptyCaptionArgument(segment);
+            activityChanges.setCaption(segment);
+            break;
+        case Parameter.DURATION_SEPARATOR:
+            checkEmptyDurationArgument(segment);
+            activityChanges.setDuration(parseDuration(segment));
+            break;
+        case Parameter.DISTANCE_SEPARATOR:
+            checkEmptyDistanceArgument(segment);
+            activityChanges.setDistance(parseDistance(segment));
+            break;
+        case Parameter.DATETIME_SEPARATOR:
+            checkEmptyDateTimeArgument(segment);
+            activityChanges.setStartDateTime(Parser.parseDateTime(segment));
+            break;
+        case Parameter.ELEVATION_SEPARATOR:
+            checkEmptyElevationArgument(segment);
+            activityChanges.setElevation(parseElevation(segment));
+            break;
+        case Parameter.SWIMMING_STYLE_SEPARATOR:
+            checkEmptySwimmingStyleArgument(segment);
+            activityChanges.setSwimmingStyle(parseSwimmingStyle(segment));
+            break;
+        default:
+            assert false: "Invalid separator detected during parsing of activity changes";
+        }
+    }
+
+    /**
+     * Parses the provided updated run or cycle for the edit command
+     *
+     * @param arguments             The raw user input containing the updated run or cycle.
+     * @return activity             The parsed run or cycle object.
+     * @throws AthletiException     If the input format is invalid.
+     */
+    public static ActivityChanges parseRunCycleEdit(String arguments) throws AthletiException {
         try {
-            return parseRunCycle(arguments.split(" ", 2)[1], false);
+            String activityArguments = arguments.split(" ", 2)[1];
+            return parseRunCycleChanges(activityArguments);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
         }
@@ -85,9 +205,10 @@ public class ActivityParser {
      * @return activity             The parsed swim object.
      * @throws AthletiException If the input format is invalid.
      */
-    public static Activity parseSwimEdit(String arguments) throws AthletiException {
+    public static ActivityChanges parseSwimEdit(String arguments) throws AthletiException {
         try {
-            return parseSwim(arguments.split(" ", 2)[1]);
+            String activityArguments = arguments.split(" ", 2)[1];
+            return parseSwimChanges(activityArguments);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
         }
@@ -102,7 +223,7 @@ public class ActivityParser {
      */
     public static int parseActivityEditIndex(String arguments) throws AthletiException {
         try {
-            return parseActivityIndex(arguments.split(" ", 2)[0]);
+            return parseActivityIndex(arguments.split("(?<=\\d)(?=\\D)", 2)[0]);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_ACTIVITY_EDIT_INVALID);
         }
@@ -132,6 +253,10 @@ public class ActivityParser {
         final int datetimeIndex = arguments.indexOf(Parameter.DATETIME_SEPARATOR);
 
         checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
+
+        if (durationIndex > distanceIndex || distanceIndex > datetimeIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
 
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
@@ -225,6 +350,10 @@ public class ActivityParser {
 
         checkMissingRunCycleArguments(durationIndex, distanceIndex, datetimeIndex, elevationIndex);
 
+        if (durationIndex > distanceIndex || distanceIndex > datetimeIndex || datetimeIndex > elevationIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
+
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
                 arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex)
@@ -238,7 +367,7 @@ public class ActivityParser {
         final String elevation =
                 arguments.substring(elevationIndex + Parameter.ELEVATION_SEPARATOR.length()).trim();
 
-        checkEmptyActivityArguments(caption, duration, distance, datetime, elevation);
+        checkEmptyRunCycleArguments(caption, duration, distance, datetime, elevation);
 
         final LocalTime durationParsed = parseDuration(duration);
         final int distanceParsed = parseDistance(distance);
@@ -297,15 +426,73 @@ public class ActivityParser {
      */
     public static void checkEmptyActivityArguments(String caption, String duration, String distance,
                                                    String datetime) throws AthletiException {
+        checkEmptyCaptionArgument(caption);
+        checkEmptyDurationArgument(duration);
+        checkEmptyDistanceArgument(distance);
+        checkEmptyDateTimeArgument(datetime);
+    }
+
+    /**
+     * Checks if the raw user input includes an empty caption argument.
+     *
+     * @param caption  The caption of the activity.
+     * @throws AthletiException If the argument is empty.
+     */
+    public static void checkEmptyCaptionArgument(String caption) throws AthletiException {
         if (caption.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_CAPTION_EMPTY);
         }
+    }
+
+    /**
+     * Checks if the raw user input includes an empty duration argument.
+     *
+     * @param duration  The caption of the activity.
+     * @throws AthletiException If the argument is empty.
+     */
+    public static void checkEmptyDurationArgument(String duration) throws AthletiException {
         if (duration.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DURATION_EMPTY);
         }
+    }
+
+    /**
+     * Checks if the raw user input includes an empty distance argument.
+     *
+     * @param distance  The distance of the activity.
+     * @throws AthletiException If the argument is empty.
+     */
+    public static void checkEmptyDistanceArgument(String distance) throws AthletiException {
         if (distance.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DISTANCE_EMPTY);
         }
+    }
+
+    /**
+     * Checks if the raw user input includes an empty elevation argument.
+     *
+     * @param elevation  The elevation of the cycle or run.
+     * @throws AthletiException If the argument is empty.
+     */
+    public static void checkEmptyElevationArgument(String elevation) throws AthletiException {
+        if (elevation.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_ELEVATION_EMPTY);
+        }
+    }
+
+    public static void checkEmptySwimmingStyleArgument(String swimmingStyle) throws AthletiException {
+        if (swimmingStyle.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_SWIMMINGSTYLE_EMPTY);
+        }
+    }
+
+    /**
+     * Checks if the raw user input includes an empty datetime argument.
+     *
+     * @param datetime The datetime of the activity.
+     * @throws AthletiException If the argument is empty.
+     */
+    public static void checkEmptyDateTimeArgument(String datetime) throws AthletiException {
         if (datetime.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DATETIME_EMPTY);
         }
@@ -321,13 +508,11 @@ public class ActivityParser {
      * @param elevation The elevation of the activity.
      * @throws AthletiException If any of the arguments are empty.
      */
-    public static void checkEmptyActivityArguments(String caption, String duration, String distance,
+    public static void checkEmptyRunCycleArguments(String caption, String duration, String distance,
                                                    String datetime,
                                                    String elevation) throws AthletiException {
         checkEmptyActivityArguments(caption, duration, distance, datetime);
-        if (elevation.isEmpty()) {
-            throw new AthletiException(Message.MESSAGE_ELEVATION_EMPTY);
-        }
+        checkEmptyElevationArgument(elevation);
     }
 
     /**
@@ -337,16 +522,14 @@ public class ActivityParser {
      * @param duration           The duration of the activity.
      * @param distance           The distance of the activity.
      * @param datetime           The datetime of the activity.
-     * @param swimmingStyleIndex The position of the swimming style separator.
+     * @param swimmingStyle      The position of the swimming style separator.
      * @throws AthletiException If any of the arguments are empty.
      */
-    public static void checkEmptyActivityArguments(String caption, String duration, String distance,
+    public static void checkEmptySwimArguments(String caption, String duration, String distance,
                                                    String datetime,
-                                                   int swimmingStyleIndex) throws AthletiException {
+                                                   String swimmingStyle) throws AthletiException {
         checkEmptyActivityArguments(caption, duration, distance, datetime);
-        if (swimmingStyleIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_SWIMMINGSTYLE_MISSING);
-        }
+        checkEmptySwimmingStyleArgument(swimmingStyle);
     }
 
     /**
@@ -364,6 +547,10 @@ public class ActivityParser {
 
         checkMissingSwimArguments(durationIndex, distanceIndex, datetimeIndex, swimmingStyleIndex);
 
+        if (durationIndex > distanceIndex || distanceIndex > datetimeIndex || datetimeIndex > swimmingStyleIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
+
         final String caption = arguments.substring(0, durationIndex).trim();
         final String duration =
                 arguments.substring(durationIndex + Parameter.DURATION_SEPARATOR.length(), distanceIndex)
@@ -377,7 +564,7 @@ public class ActivityParser {
         final String swimmingStyle =
                 arguments.substring(swimmingStyleIndex + Parameter.SWIMMING_STYLE_SEPARATOR.length()).trim();
 
-        checkEmptyActivityArguments(caption, duration, distance, datetime, swimmingStyleIndex);
+        checkEmptySwimArguments(caption, duration, distance, datetime, swimmingStyle);
 
         final LocalTime durationParsed = parseDuration(duration);
         final int distanceParsed = parseDistance(distance);
@@ -416,6 +603,10 @@ public class ActivityParser {
 
         checkMissingActivityGoalArguments(sportIndex, typeIndex, periodIndex, targetIndex);
 
+        if (sportIndex > typeIndex || typeIndex > periodIndex || periodIndex > targetIndex) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITY_ORDER_INVALID);
+        }
+
         final String sport = commandArgs.substring(sportIndex + Parameter.SPORT_SEPARATOR.length(), typeIndex).trim();
         final String type =
                 commandArgs.substring(typeIndex + Parameter.TYPE_SEPARATOR.length(), periodIndex).trim();
@@ -448,23 +639,23 @@ public class ActivityParser {
     /**
      * Checks if the raw user input is missing any arguments for creating an activity goal.
      * @param sportIndex        The position of the sport separator.
-     * @param targetIndex       The position of the target separator.
+     * @param typeIndex         The position of the type separator.
      * @param periodIndex       The position of the period separator.
-     * @param valueIndex        The position of the value separator.
+     * @param targetIndex       The position of the target separator.
      * @throws AthletiException If any of the arguments are missing.
      */
-    public static void checkMissingActivityGoalArguments(int sportIndex, int targetIndex, int periodIndex,
-            int valueIndex) throws AthletiException {
+    public static void checkMissingActivityGoalArguments(int sportIndex, int typeIndex, int periodIndex,
+            int targetIndex) throws AthletiException {
         if (sportIndex == -1) {
             throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_SPORT_MISSING);
         }
-        if (targetIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TARGET_MISSING);
+        if (typeIndex == -1) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TYPE_MISSING);
         }
         if (periodIndex == -1) {
             throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_PERIOD_MISSING);
         }
-        if (valueIndex == -1) {
+        if (targetIndex == -1) {
             throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TARGET_MISSING);
         }
     }

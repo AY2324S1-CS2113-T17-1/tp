@@ -6,7 +6,7 @@ import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
-import static athleticli.storage.Config.PATH_DIET_GOAL;
+import static athleticli.common.Config.PATH_DIET_GOAL;
 
 /**
  * Represents a list of diet goals.
@@ -50,10 +50,18 @@ public class DietGoalList extends StorableList<DietGoal> {
             String dietGoalTimeSpanString = dietGoalDetails[1];
             String dietGoalNutrientString = dietGoalDetails[2];
             String dietGoalTargetValueString = dietGoalDetails[3];
+            String dietGoalType = dietGoalDetails[4];
             int dietGoalTargetValue = Integer.parseInt(dietGoalTargetValueString);
+            if (dietGoalType.toLowerCase().equals("healthy")) {
+                return new HealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
+                        dietGoalNutrientString, dietGoalTargetValue);
 
-            return new DietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
-                    dietGoalNutrientString, dietGoalTargetValue);
+            } else if (dietGoalType.toLowerCase().equals("unhealthy")) {
+                return new UnhealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
+                        dietGoalNutrientString, dietGoalTargetValue);
+            } else {
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_LOAD_ERROR);
+            }
 
         } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_LOAD_ERROR);
@@ -72,7 +80,7 @@ public class DietGoalList extends StorableList<DietGoal> {
          * diet goal has nutrient, target value, date. there rest are calculated on the spot.
          * */
         return "dietGoal " + dietGoal.getTimeSpan() + " " + dietGoal.getNutrient()
-                + " " + dietGoal.getTargetValue();
+                + " " + dietGoal.getTargetValue() + " " + dietGoal.getType() + "\n";
 
     }
 }

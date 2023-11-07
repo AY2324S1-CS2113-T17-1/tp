@@ -9,7 +9,7 @@ import athleticli.parser.DietParser;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import static athleticli.storage.Config.PATH_DIET;
+import static athleticli.common.Config.PATH_DIET;
 
 
 /**

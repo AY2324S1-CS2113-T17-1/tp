@@ -47,7 +47,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The duration of an activity must be in the format "hh:mm:ss"!
+ OOPS!!! The duration of an activity must be in the format "HH:mm:ss"!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -100,7 +100,28 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Ok, I've updated this activity:
- [Activity] Morning Run | Distance: 12.00 km | Time: 1h 0m | September 1, 2021 at 6:00 AM
+ [Cycle] Evening Ride | Distance: 22.00 km | Speed: 11.00 km/h | Time: 2h 0m | October 26, 2023 at 6:00 PM
+ You have tracked a total of 2 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! The caption of an activity cannot be empty!
+____________________________________________________________
+
+> ____________________________________________________________
+ These are the activities you have tracked so far:
+ [Cycle - Evening Ride - October 26, 2023 at 6:00 PM]
+	Distance: 22.00 km                     Elevation Gain: 1000 m
+	Time: 02:00:00                         Avg Speed: 11.00 km/h
+	Calories: 0 kcal                       Max Speed: tbd
+ [Activity - Morning Run - October 26, 2023 at 6:00 AM]
+	Distance: 10.00 km                     Time: 01:00:00
+	Calories: 0 kcal                       ...
+____________________________________________________________
+
+> ____________________________________________________________
+ Ok, I've updated this activity:
+ [Cycle] Evening Ride | Distance: 12.00 km | Speed: 12.00 km/h | Time: 1h 0m | September 1, 2021 at 6:00 AM
  You have tracked a total of 2 activities. Keep pushing!
 ____________________________________________________________
 
@@ -269,7 +290,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The period of an activity must be either "weekly" or "monthly"!
+ OOPS!!! The period of an activity must be one of the following: "daily", "weekly", "monthly", "yearly"!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -277,25 +298,59 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The period of an activity must be either "weekly" or "monthly"!
+ OOPS!!! The period of an activity must be one of the following: "daily", "weekly", "monthly", "yearly"!
 ____________________________________________________________
 
 > ____________________________________________________________
  These are your goal(s):
 
- 	1. fats intake progress: (0/1)
+ 	1. [HEALTHY]  DAILY fats intake progress: (0/1)
 
-	2. calories intake progress: (0/1)
+	2. [HEALTHY]  DAILY calories intake progress: (0/1)
 
-	3. protein intake progress: (0/1)
+	3. [HEALTHY]  DAILY protein intake progress: (0/1)
 
  Now you have 3 diet goal(s).
 ____________________________________________________________
 
 > ____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  DAILY fats intake progress: (0/1)
+
+	2. [HEALTHY]  DAILY calories intake progress: (0/1)
+
+	3. [HEALTHY]  DAILY protein intake progress: (0/1)
+
+	4. [UNHEALTHY]  WEEKLY carb intake progress: (0/1)
+
+ Now you have 4 diet goal(s).
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this diet:
+ Calories: 150000 Protein: 500000 Carb: 5000 Fat: 2000 Date: November 4, 2023 at 10:00 AM
+ Now you have tracked your first diet. This is just the beginning!
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  DAILY fats intake progress: (0/1)
+
+	2. [HEALTHY]  DAILY calories intake progress: (0/1)
+
+	3. [HEALTHY]  DAILY protein intake progress: (0/1)
+
+	4. [UNHEALTHY] [Not Achieved] WEEKLY carb intake progress: (5000/1)
+
+ Now you have 4 diet goal(s).
+____________________________________________________________
+
+> ____________________________________________________________
  The following goal has been deleted:
 
- protein intake progress: (0/1)
+ [HEALTHY]  DAILY protein intake progress: (0/1)
 
 ____________________________________________________________
 
@@ -340,31 +395,64 @@ ____________________________________________________________
 > ____________________________________________________________
  These are your goal(s):
 
- 	1. fats intake progress: (0/100)
+ 	1. [HEALTHY]  DAILY fats intake progress: (0/100)
 
-	2. calories intake progress: (0/1)
+	2. [HEALTHY]  DAILY calories intake progress: (0/1)
+
+	3. [UNHEALTHY] [Not Achieved] WEEKLY carb intake progress: (5000/1)
+
+ Now you have 3 diet goal(s).
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Please input the following keywords to create or edit your diet goals:
+ <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+	e.g. WEEKLY calories/100
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! Diet goal for carb has already existed. Please edit the goal instead!
+____________________________________________________________
+
+> ____________________________________________________________
+ The following goal has been deleted:
+
+ [HEALTHY]  DAILY fats intake progress: (0/100)
+
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  DAILY calories intake progress: (0/1)
+
+	2. [UNHEALTHY] [Not Achieved] WEEKLY carb intake progress: (5000/1000)
 
  Now you have 2 diet goal(s).
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
-	e.g. WEEKLY calories/100
+ OOPS!!! You cannot have healthy goals and unhealthy goals for the same nutrient.
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
-	e.g. WEEKLY calories/100
+ Noted. I've removed this diet:
+ Calories: 150000 Protein: 500000 Carb: 5000 Fat: 2000 Date: November 4, 2023 at 10:00 AM
+ Now you have tracked a total of 0 diets. Keep grinding!
 ____________________________________________________________
 
 > ____________________________________________________________
  These are your goal(s):
 
- 	1. fats intake progress: (0/100)
+ 	1. [HEALTHY]  DAILY calories intake progress: (0/1)
 
-	2. calories intake progress: (0/1)
+	2. [UNHEALTHY]  WEEKLY carb intake progress: (0/1000)
 
  Now you have 2 diet goal(s).
 ____________________________________________________________

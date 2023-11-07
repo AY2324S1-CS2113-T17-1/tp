@@ -3,6 +3,7 @@ package athleticli.commands.diet;
 import athleticli.data.Data;
 import athleticli.data.Goal;
 import athleticli.data.diet.DietGoal;
+import athleticli.data.diet.HealthyDietGoal;
 import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,9 +28,9 @@ class EditDietGoalCommandTest {
     void setUp() {
         data = new Data();
 
-        dietGoalCarb = new DietGoal(Goal.TimeSpan.WEEKLY, "carb", 10000);
-        dietGoalFats = new DietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
-        newDietGoalFats = new DietGoal(Goal.TimeSpan.WEEKLY, "fats", 10);
+        dietGoalCarb = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "carb", 10000);
+        dietGoalFats = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
+        newDietGoalFats = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fats", 10);
 
         emptyInputDietGoals = new ArrayList<>();
         filledInputDietGoals = new ArrayList<>();
@@ -62,9 +63,9 @@ class EditDietGoalCommandTest {
         try {
             SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
             EditDietGoalCommand editDietGoalCommand = new EditDietGoalCommand(filledChangedInputDietGoals);
-            String[] expectedString = {"These are your goal(s):\n", "\t1. fats intake progress: " +
-                    "(0/10)\n\n" + "\t2. carb intake progress: (0/10000)\n", "Now you have 2 diet goal(s)."};
-
+            String[] expectedString = {"These are your goal(s):\n", "\t1. [HEALTHY]  "
+                    + "WEEKLY fats intake progress: (0/10)\n\n" + "\t2. [HEALTHY]  "
+                    + "WEEKLY carb intake progress: (0/10000)\n", "Now you have 2 diet goal(s)."};
             setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, editDietGoalCommand.execute(data));
         } catch (AthletiException e) {
