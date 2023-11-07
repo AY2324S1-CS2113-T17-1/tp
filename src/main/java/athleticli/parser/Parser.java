@@ -16,6 +16,9 @@ import athleticli.commands.diet.ListDietGoalCommand;
 import athleticli.commands.diet.SetDietGoalCommand;
 import athleticli.commands.sleep.FindSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
+import athleticli.commands.sleep.SetSleepGoalCommand;
+import athleticli.commands.sleep.EditSleepGoalCommand;
+import athleticli.commands.sleep.ListSleepGoalCommand;
 
 import athleticli.commands.activity.AddActivityCommand;
 import athleticli.commands.activity.DeleteActivityCommand;
@@ -82,6 +85,14 @@ public class Parser {
             return SleepParser.parseSleepDelete(commandArgs);
         case CommandName.COMMAND_SLEEP_FIND:
             return new FindSleepCommand(parseDate(commandArgs));
+        
+        case CommandName.COMMAND_SLEEP_GOAL_LIST:
+            return new ListSleepGoalCommand();
+        case CommandName.COMMAND_SLEEP_GOAL_SET:
+            return new SetSleepGoalCommand(SleepParser.parseSleepGoal(commandArgs));
+        case CommandName.COMMAND_SLEEP_GOAL_EDIT:
+            return new EditSleepGoalCommand(SleepParser.parseSleepGoal(commandArgs));
+        
         /* Activity Management */
         case CommandName.COMMAND_ACTIVITY:
             return new AddActivityCommand(ActivityParser.parseActivity(commandArgs));

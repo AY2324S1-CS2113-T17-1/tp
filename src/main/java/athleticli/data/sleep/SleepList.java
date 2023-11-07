@@ -10,6 +10,9 @@ import java.util.Comparator;
 import athleticli.data.Findable;
 import athleticli.data.StorableList;
 import athleticli.data.Goal;
+import athleticli.exceptions.AthletiException;
+import athleticli.parser.SleepParser;
+import athleticli.parser.Parameter;
 
 /**
  * Represents a list of sleep records.
@@ -66,11 +69,10 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
 
     /**
      * Returns the average sleep duration of the sleep list.
-     * @param sleepClass The class of the sleep.
      * @param timeSpan The time span to be matched.
      * @return The average sleep duration of the sleep list in seconds.
      */
-    public int getTotalSleepDuration(Class<?> sleepClass, Goal.TimeSpan timeSpan) {
+    public int getTotalSleepDuration(Goal.TimeSpan timeSpan) {
         ArrayList<Sleep> filteredSleepList = filterByTimespan(timeSpan);
         int totalSleepDuration = 0;
         for (Sleep sleep : filteredSleepList) {
@@ -87,9 +89,8 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
      * @return The sleep parsed from the string.
      */
     @Override
-    public Sleep parse(String s) {
-        // TODO
-        return null;
+    public Sleep parse(String s) throws AthletiException {
+        return SleepParser.parseSleep(s);
     }
 
     /**
@@ -100,7 +101,9 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
      */
     @Override
     public String unparse(Sleep sleep) {
-        // TODO
-        return null;
+        String commandArgs = "";
+        commandArgs += " " + Parameter.START_TIME_SEPARATOR + sleep.getStartDateTime();
+        commandArgs += " " + Parameter.END_TIME_SEPARATOR + sleep.getToDateTime();
+        return commandArgs;
     }
 }
