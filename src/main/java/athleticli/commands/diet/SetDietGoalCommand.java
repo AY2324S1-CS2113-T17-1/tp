@@ -36,8 +36,22 @@ public class SetDietGoalCommand extends Command {
     @Override
     public String[] execute(Data data) throws AthletiException {
         DietGoalList currentDietGoals = data.getDietGoals();
+        verifyNewGoalsNotExist(currentDietGoals);
+        addNewUserDietGoals(currentDietGoals);
+        return generateSetDietGoalSuccessMessage(data, currentDietGoals);
+    }
 
-        // Validates if the newly defined goal has already existed.
+    private static String[] generateSetDietGoalSuccessMessage(Data data, DietGoalList currentDietGoals) {
+        int dietGoalNum = currentDietGoals.size();
+        return new String[]{Message.MESSAGE_DIET_GOAL_LIST_HEADER, currentDietGoals.toString(data),
+                String.format(Message.MESSAGE_DIET_GOAL_COUNT, dietGoalNum)};
+    }
+
+    private void addNewUserDietGoals(DietGoalList currentDietGoals) {
+        currentDietGoals.addAll(userNewDietGoals);
+    }
+
+    private void verifyNewGoalsNotExist(DietGoalList currentDietGoals) throws AthletiException {
         for (DietGoal dietGoal : currentDietGoals) {
             for (DietGoal userDietGoal : userNewDietGoals) {
                 boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
@@ -52,12 +66,6 @@ public class SetDietGoalCommand extends Command {
                 }
             }
         }
-
-        // Add new diet goals to current diet goals
-        currentDietGoals.addAll(userNewDietGoals);
-        int dietGoalNum = currentDietGoals.size();
-        return new String[]{Message.MESSAGE_DIET_GOAL_LIST_HEADER, currentDietGoals.toString(data),
-                String.format(Message.MESSAGE_DIET_GOAL_COUNT, dietGoalNum)};
     }
 
 }
