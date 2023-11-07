@@ -46,17 +46,16 @@ public class DietGoalList extends StorableList<DietGoal> {
     public DietGoal parse(String s) throws AthletiException {
         try {
             String[] dietGoalDetails = s.split("\\s+");
-            System.out.println(dietGoalDetails);
             String dietGoalTimeSpanString = dietGoalDetails[1];
             String dietGoalNutrientString = dietGoalDetails[2];
             String dietGoalTargetValueString = dietGoalDetails[3];
             String dietGoalType = dietGoalDetails[4];
             int dietGoalTargetValue = Integer.parseInt(dietGoalTargetValueString);
-            if (dietGoalType.toLowerCase().equals("healthy")) {
+            if (dietGoalType.toLowerCase().equals(HealthyDietGoal.TYPE)) {
                 return new HealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
                         dietGoalNutrientString, dietGoalTargetValue);
 
-            } else if (dietGoalType.toLowerCase().equals("unhealthy")) {
+            } else if (dietGoalType.toLowerCase().equals(UnhealthyDietGoal.TYPE)) {
                 return new UnhealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
                         dietGoalNutrientString, dietGoalTargetValue);
             } else {
@@ -80,7 +79,7 @@ public class DietGoalList extends StorableList<DietGoal> {
          * diet goal has nutrient, target value, date. there rest are calculated on the spot.
          * */
         return "dietGoal " + dietGoal.getTimeSpan() + " " + dietGoal.getNutrient()
-                + " " + dietGoal.getTargetValue() + " " + dietGoal.getType() + "\n";
+                + " " + dietGoal.getTargetValue() + " " + dietGoal.getType();
 
     }
 }
