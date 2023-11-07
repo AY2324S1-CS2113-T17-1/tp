@@ -59,6 +59,18 @@ public class Data {
     }
 
     /**
+     * Clears all lists.
+     */
+    public void clear() {
+        activities.clear();
+        activityGoals.clear();
+        diets.clear();
+        dietGoals.clear();
+        sleeps.clear();
+        sleepGoals.clear();
+    }
+
+    /**
      * Get all the objects
      */
 
@@ -113,5 +125,4 @@ public class Data {
     public void setSleepGoals(SleepGoalList sleepGoals) {
         this.sleepGoals = sleepGoals;
     }
-  
 }
