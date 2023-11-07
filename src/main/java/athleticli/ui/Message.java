@@ -171,6 +171,8 @@ public class Message {
     
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_MISSING_PARAMETERS =
+            "Please specify the start and end time of your sleep.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TYPE =
             "Please specify the type of your sleep goal as either \"duration\" or \"time\".";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PERIOD =
