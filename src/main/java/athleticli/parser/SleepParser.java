@@ -127,7 +127,8 @@ public class SleepParser {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS);
         }
 
-        final String type = commandArgs.substring(goalTypeIndex + Parameter.TYPE_SEPARATOR.length(), periodIndex).trim();
+        final String type = commandArgs.substring(goalTypeIndex + Parameter.TYPE_SEPARATOR.length(), periodIndex)
+                .trim();
         final String period = commandArgs.substring(periodIndex + Parameter.PERIOD_SEPARATOR.length(), targetValueIndex)
                 .trim();
         final String target = commandArgs.substring(targetValueIndex + Parameter.TARGET_SEPARATOR.length()).trim();
