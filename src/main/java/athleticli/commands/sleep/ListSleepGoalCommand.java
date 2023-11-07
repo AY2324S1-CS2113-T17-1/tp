@@ -5,7 +5,7 @@ import athleticli.data.Data;
 import athleticli.data.sleep.SleepGoalList;
 import athleticli.ui.Message;
 
-public class ListSleepGoalCommand {
+public class ListSleepGoalCommand extends Command {
     /**
      * Constructor for ListSleepCommand.
      */
