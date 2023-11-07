@@ -27,7 +27,7 @@ public class EditActivityCommand extends Command {
      * @param index Index of the activity to be edited.
      * @param activityChanges Updated Activity.
      */
-    public EditActivityCommand(ActivityChanges activityChanges, int index) {
+    public EditActivityCommand(int index, ActivityChanges activityChanges) {
         this.index = index;
         assert index > 0 : "Index should be greater than 0";
         this.activityChanges = activityChanges;

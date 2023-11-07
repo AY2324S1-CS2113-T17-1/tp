@@ -14,9 +14,9 @@ public class Message {
     public static final String MESSAGE_DURATION_MISSING =
             "Please specify the activity duration using \"duration/\"!";
     public static final String MESSAGE_DISTANCE_MISSING =
-            "Please specify the activity duration using \"distance/\"!";
+            "Please specify the activity distance using \"distance/\"!";
     public static final String MESSAGE_DATETIME_MISSING =
-            "Please specify the activity duration using \"datetime/\"!";
+            "Please specify date and time of the activity using \"datetime/\"!";
     public static final String MESSAGE_CALORIES_MISSING =
             "Please specify the calories burned using \"calories/\"!";
     public static final String MESSAGE_ACTIVITYGOAL_SPORT_MISSING = "Please specify the sport using \"sport/\"!";
@@ -42,7 +42,7 @@ public class Message {
     public static final String MESSAGE_DIET_DATETIME_EMPTY = "The datetime of a diet cannot be empty!";
     public static final String MESSAGE_DIET_UPDATED = "Ok, I've updated this diet:";
     public static final String MESSAGE_DURATION_INVALID =
-            "The duration of an activity must be in the format \"hh:mm:ss\"!";
+            "The duration of an activity must be in the format \"HH:mm:ss\"!";
     public static final String MESSAGE_DISTANCE_INVALID =
             "The distance of an activity must be a positive integer!";
     public static final String MESSAGE_DISTANCE_NEGATIVE =
@@ -61,8 +61,8 @@ public class Message {
             "\"running\", \"cycling\", \"swimming\", \"general\"!";
     public static final String MESSAGE_TYPE_INVALID = "The type of an activity must be either \"distance\" or " +
             "\"duration\"!";
-    public static final String MESSAGE_PERIOD_INVALID = "The period of an activity must be either \"weekly\" or " +
-            "\"monthly\"!";
+    public static final String MESSAGE_PERIOD_INVALID = "The period of an activity must be one of the " +
+            "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
     public static final String MESSAGE_PROTEIN_INVALID = "The protein intake must be a non-negative integer!";
     public static final String MESSAGE_CARB_INVALID =
             "The carbohydrate intake must be a non-negative integer!";
@@ -218,4 +218,7 @@ public class Message {
     public static final String ACTIVITY_STORAGE_INVALID_FORMAT = "Invalid activity format, file corrupted.";
     public static final String MESSAGE_ACTIVITY_EDIT_EMPTY = "You have not specified any changes to the activity.";
     public static final String MESSAGE_SWIMMINGSTYLE_EMPTY = "The swimming style of an activity cannot be empty!";
+    public static final String MESSAGE_ACTIVITY_INDEX_EMPTY = "The activity index cannot be empty!";
+    public static final String MESSAGE_ACTIVITY_ORDER_INVALID = "The order of the parameters is wrong, please refer " +
+            "to the User Guide for the correct order.";
 }
