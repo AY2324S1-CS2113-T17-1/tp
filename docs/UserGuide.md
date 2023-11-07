@@ -2,6 +2,48 @@
 layout: page
 title: User Guide
 ---
+# User Guide
+
+## Table of Contents
+- [User Guide](#user-guide)
+    - [Table of Contents](#table-of-contents)
+    - [Introduction](#introduction)
+    - [Quick Start](#quick-start)
+    - [Features](#features)
+        - [Activity Management](#activity-management)
+          - [Adding Activities](#adding-activities)
+          - [Deleting Activities](#deleting-activities)
+          - [Listing Activities](#listing-activities)
+          - [Editing Activities](#editing-activities)
+          - [Setting Activity Goals](#setting-activity-goals)
+          - [Editing Activity Goals](#editing-activity-goals)
+          - [Listing Activity Goals](#listing-activity-goals)
+        - [Diet Management](#diet-management)
+            - [Adding Diets](#adding-diets)
+            - [Editing Diets](#editing-diets)
+            - [Deleting Diets](#deleting-diets)
+            - [Listing Diets](#listing-diets)
+            - [Adding Diet Goals](#adding-diet-goals)
+            - [Deleting Diet Goals](#deleting-diet-goals)
+            - [Listing Diet Goals](#listing-diet-goals)
+            - [Editing Diet Goals](#editing-diet-goals)
+        - [Sleep Management](#sleep-management)
+          - [Adding Sleep](#adding-sleep)
+          - [Listing Sleep](#listing-sleep)
+          - [Deleting Sleep](#deleting-sleep)
+          - [Editing Sleep](#editing-sleep)
+          - [Finding Sleep](#finding-sleep)
+        - [Miscellaneous](#miscellaneous)
+          - [Finding Records](#finding-records)
+          - [Saving Files](#saving-files)
+          - [Exiting AthlethiCLI](#exiting-athleticli)
+          - [Viewing Help Messages](#viewing-help-messages)
+    - [Summary of Commands](#summary-of-commands)
+      - [Activity Management](#activity-management-1)
+      - [Diet Management](#diet-management-1)
+      - [Sleep Management](#sleep-management-1)
+      - [Miscellaneous](#miscellaneous-1)
+
 
 **AthletiCLI** is your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the
 committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also
