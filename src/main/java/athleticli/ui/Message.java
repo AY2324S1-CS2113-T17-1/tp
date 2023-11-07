@@ -14,9 +14,9 @@ public class Message {
     public static final String MESSAGE_DURATION_MISSING =
             "Please specify the activity duration using \"duration/\"!";
     public static final String MESSAGE_DISTANCE_MISSING =
-            "Please specify the activity duration using \"distance/\"!";
+            "Please specify the activity distance using \"distance/\"!";
     public static final String MESSAGE_DATETIME_MISSING =
-            "Please specify the activity duration using \"datetime/\"!";
+            "Please specify date and time of the activity using \"datetime/\"!";
     public static final String MESSAGE_CALORIES_MISSING =
             "Please specify the calories burned using \"calories/\"!";
     public static final String MESSAGE_ACTIVITYGOAL_SPORT_MISSING = "Please specify the sport using \"sport/\"!";
@@ -185,8 +185,9 @@ public class Message {
     
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
-    public static final String MESSAGE_LOAD_EXCEPTION =
-            "An exception occurred when loading %s. Please fix or delete it and rerun AthletiCLI!";
+    public static final String MESSAGE_LOAD_EXCEPTION = "An exception occurred when loading %s.\n"
+            + "Please quit AthletiCLI with `bye` command and fix it manually,\n"
+            + "or start from empty lists by entering any other command.";
 
     /* Help Messages */
     public static final String HELP_ADD_ACTIVITY = CommandName.COMMAND_ACTIVITY
