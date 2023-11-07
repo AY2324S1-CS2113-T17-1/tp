@@ -2,7 +2,7 @@ package athleticli.data.sleep;
 
 import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
-import athleticli.parser.ActivityParser;
+import athleticli.parser.SleepParser;
 import athleticli.parser.Parameter;
 
 import static athleticli.common.Config.PATH_SLEEP_GOAL;
@@ -26,7 +26,7 @@ public class SleepGoalList extends StorableList<SleepGoal> {
      */
     @Override
     public SleepGoal parse(String arguments) throws AthletiException {
-        return ActivityParser.parseSleepGoal(arguments);
+        return SleepParser.parseSleepGoal(arguments.toLowerCase());
     }
 
     /**
@@ -40,7 +40,7 @@ public class SleepGoalList extends StorableList<SleepGoal> {
         String commandArgs = "";
         commandArgs += Parameter.TYPE_SEPARATOR + sleepGoal.getGoalType();
         commandArgs += " " + Parameter.PERIOD_SEPARATOR + sleepGoal.getTimeSpan();
-        commandArgs += " " + Parameter.TARGET_SEPARATOR + sleepGoal.getTargetDuration();
+        commandArgs += " " + Parameter.TARGET_SEPARATOR + sleepGoal.getTargetValue();
         return commandArgs;
     }
 }
