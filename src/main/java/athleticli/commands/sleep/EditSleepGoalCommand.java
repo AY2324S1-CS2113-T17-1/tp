@@ -33,7 +33,7 @@ public class EditSleepGoalCommand extends Command {
         for (SleepGoal goal : sleepGoals) {
             if (goal.getGoalType() == this.sleepGoal.getGoalType() &&
                     goal.getTimeSpan() == this.sleepGoal.getTimeSpan()) {
-                goal.setTargetDuration(this.sleepGoal.getTargetDuration());
+                goal.setTargetValue(this.sleepGoal.getTargetValue());
                 return new String[]{Message.MESSAGE_SLEEP_GOAL_EDITED, this.sleepGoal.toString(data)};
             }
         }
