@@ -25,4 +25,10 @@ public class Parameter {
     public static final String TYPE_SEPARATOR = "type/";
     public static final String PERIOD_SEPARATOR = "period/";
     public static final String TARGET_SEPARATOR = "target/";
+
+    public static final String NUTRIENTS_CALORIES = "calories";
+    public static final String NUTRIENTS_PROTEIN = "protein";
+    public static final String NUTRIENTS_FATS = "fats";
+    public static final String NUTRIENTS_CARB = "carb";
+
 }
