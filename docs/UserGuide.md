@@ -5,38 +5,13 @@
 *Designed for the committed athlete, this command-line interface (CLI) tool not only keeps track of your physical 
 activities but also covers dietary habits, sleep metrics, and more.*
 
-* Table of Contents
+Table of Contents
 - [Quick Start](#-quick-start)
 - [Features](#features)
   - [Activity Management](#-activity-management)
-    - [Adding Activities](#-adding-activities)
-    - [Deleting Activities](#-deleting-activities)
-    - [Listing Activities](#-listing-activities)
-    - [Editing Activities](#-editing-activities)
-    - [Setting Activity Goals](#-setting-activity-goals)
-    - [Editing Activity Goals](#-editing-activity-goals)
-    - [Listing Activity Goals](#-listing-activity-goals)
   - [Diet Management](#-diet-management)
-    - [Adding Diets](#-adding-diets)
-    - [Editing Diets](#-editing-diets)
-    - [Deleting Diets](#-deleting-diets)
-    - [Listing Diets](#-listing-diets)
-    - [Finding Diets](#-finding-diets)
-    - [Adding Diet Goals](#-adding-diet-goals)
-    - [Deleting Diet Goals](#-deleting-diet-goals)
-    - [Listing Diet Goals](#-listing-diet-goals)
-    - [Editing Diet Goals](#-editing-diet-goals)
   - [Sleep Management](#-sleep-management)
-    - [Adding Sleep](#-adding-sleep)
-    - [Listing Sleep](#-listing-sleep)
-    - [Deleting Sleep](#-deleting-sleep)
-    - [Editing Sleep](#-editing-sleep)
-    - [Finding Sleep](#-finding-sleep)
   - [Miscellaneous](#miscellaneous)
-    - [Finding Records](#-finding-records)
-    - [Saving Files](#-saving-files)
-    - [Exiting AthletiCLI](#-exiting-athleticli)
-    - [Viewing Help Messages](#-viewing-help-messages)
   - [Summary of Commands](#summary-of-commands)
 
 ## 🚀 Quick Start
@@ -56,7 +31,14 @@ activities but also covers dietary habits, sleep metrics, and more.*
 
 ## 🏃 Activity Management
 
-<<<<<<< HEAD
+- [Adding Activities](#-adding-activities)
+- [Deleting Activities](#-deleting-activities)
+- [Listing Activities](#-listing-activities)
+- [Editing Activities](#-editing-activities)
+- [Setting Activity Goals](#-setting-activity-goals)
+- [Editing Activity Goals](#-editing-activity-goals)
+- [Listing Activity Goals](#-listing-activity-goals)
+
 ### ➕ Adding Activities:
 
 `add-activity` `add-run` `add-swim` `add-cycle`
@@ -221,6 +203,16 @@ You can list all your goals in AthletiCLI and see your progress towards them.
 * `list-activity-goal` Lists all your goals.
 
 ## 🍏 Diet Management
+
+- [Adding Diets](#-adding-diets)
+- [Editing Diets](#-editing-diets)
+- [Deleting Diets](#-deleting-diets)
+- [Listing Diets](#-listing-diets)
+- [Finding Diets](#-finding-diets)
+- [Adding Diet Goals](#-adding-diet-goals)
+- [Deleting Diet Goals](#-deleting-diet-goals)
+- [Listing Diet Goals](#-listing-diet-goals)
+- [Editing Diet Goals](#-editing-diet-goals)
 
 ### ➕ Adding Diets:
 
@@ -430,6 +422,12 @@ Edits a single calories goal if the goal exists.
 
 
 ## 🛌 Sleep Management
+
+- [Adding Sleep](#-adding-sleep)
+- [Listing Sleep](#-listing-sleep)
+- [Deleting Sleep](#-deleting-sleep)
+- [Editing Sleep](#-editing-sleep)
+- [Finding Sleep](#-finding-sleep)
 
 ### ➕ Adding Sleep:
 
