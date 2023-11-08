@@ -52,18 +52,12 @@ public class SetDietGoalCommand extends Command {
     }
 
     private void verifyNewGoalsNotExist(DietGoalList currentDietGoals) throws AthletiException {
-        for (DietGoal dietGoal : currentDietGoals) {
-            for (DietGoal userDietGoal : userNewDietGoals) {
-                boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
-                boolean isTimeSpanSimilar = userDietGoal.getTimeSpan().equals(dietGoal.getTimeSpan());
-                boolean isTypeSimilar = userDietGoal instanceof HealthyDietGoal
-                        == dietGoal instanceof HealthyDietGoal;
-                if (isNutrientSimilar && isTimeSpanSimilar) {
-                    throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_ALREADY_EXISTED,
-                            dietGoal.getNutrient()));
-                } else if (isNutrientSimilar && !isTypeSimilar) {
-                    throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
-                }
+        for (DietGoal userDietGoal : userNewDietGoals) {
+            if (!currentDietGoals.isDietGoalUnique(userDietGoal)) {
+                throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_ALREADY_EXISTED,
+                        userDietGoal.getNutrient()));
+            } else if (!currentDietGoals.isDietGoalTypeValid(userDietGoal)) {
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
             }
         }
     }
