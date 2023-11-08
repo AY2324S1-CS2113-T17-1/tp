@@ -1,12 +1,15 @@
-/**
- * To be implemented in future version of AthletiCLI.
- */
 package athleticli.data.sleep;
+
+import athleticli.data.StorableList;
+import athleticli.exceptions.AthletiException;
+import athleticli.parser.SleepParser;
+import athleticli.parser.Parameter;
 
 import static athleticli.common.Config.PATH_SLEEP_GOAL;
 
-import athleticli.data.StorableList;
-
+/**
+ * Represents a list of sleep goals.
+ */
 public class SleepGoalList extends StorableList<SleepGoal> {
     /**
      * Constructs a sleep goal list.
@@ -18,13 +21,12 @@ public class SleepGoalList extends StorableList<SleepGoal> {
     /**
      * Parses a sleep goal from a string.
      *
-     * @param s The string to be parsed.
+     * @param arguments The string to be parsed.
      * @return The sleep goal parsed from the string.
      */
     @Override
-    public SleepGoal parse(String s) {
-        // TODO
-        return null;
+    public SleepGoal parse(String arguments) throws AthletiException {
+        return SleepParser.parseSleepGoal(arguments.toLowerCase());
     }
 
     /**
@@ -35,7 +37,10 @@ public class SleepGoalList extends StorableList<SleepGoal> {
      */
     @Override
     public String unparse(SleepGoal sleepGoal) {
-        // TODO
-        return null;
+        String commandArgs = "";
+        commandArgs += Parameter.TYPE_SEPARATOR + sleepGoal.getGoalType();
+        commandArgs += " " + Parameter.PERIOD_SEPARATOR + sleepGoal.getTimeSpan();
+        commandArgs += " " + Parameter.TARGET_SEPARATOR + sleepGoal.getTargetValue();
+        return commandArgs;
     }
 }
