@@ -252,6 +252,71 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
+ Alright, I've added this sleep goal:
+ yearly duration : 0/8 minutes
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've added this sleep goal:
+ monthly duration : 0/800 minutes
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've added this sleep goal:
+ daily duration : 0/800 minutes
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've added this sleep goal:
+ weekly duration : 0/8 minutes
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your sleep goals:
+ 1. yearly duration : 0/8 minutes
+ 2. monthly duration : 0/800 minutes
+ 3. daily duration : 0/800 minutes
+ 4. weekly duration : 0/8 minutes
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've added this sleep record:
+ [Sleep] | Date: 2023-11-04 | Start Time: November 4, 2023 at 10:00 AM | End Time: November 4, 2023 at 6:00 PM | Sleeping Duration: 8 Hours 
+ Now you have 3 sleep records in the list.
+____________________________________________________________
+
+> ____________________________________________________________
+ Got it. I've added this sleep record:
+ [Sleep] | Date: 2023-11-07 | Start Time: November 7, 2023 at 10:00 AM | End Time: November 7, 2023 at 6:00 PM | Sleeping Duration: 8 Hours 
+ Now you have 4 sleep records in the list.
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your sleep goals:
+ 1. yearly duration : 57600/8 minutes
+ 2. monthly duration : 57600/800 minutes
+ 3. daily duration : 28800/800 minutes
+ 4. weekly duration : 57600/8 minutes
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've edited this sleep goal:
+ monthly duration : 57600/8 minutes
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your sleep goals:
+ 1. yearly duration : 57600/8 minutes
+ 2. monthly duration : 57600/8 minutes
+ 3. daily duration : 28800/800 minutes
+ 4. weekly duration : 57600/8 minutes
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
  OOPS!!! I'm sorry, but I don't know what that means :-(
 ____________________________________________________________
 

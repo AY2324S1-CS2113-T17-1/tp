@@ -54,7 +54,7 @@ public class SleepListTest {
     @Test
     public void testGetTotalSleepDuration() {
         int expected = 8 * 60 * 60 * 2;
-        int actual = sleepList.getTotalSleepDuration(Sleep.class, TimeSpan.WEEKLY);
+        int actual = sleepList.getTotalSleepDuration(TimeSpan.WEEKLY);
         assertEquals(expected, actual);
     }
 }

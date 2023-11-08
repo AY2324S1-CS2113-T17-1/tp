@@ -139,6 +139,9 @@ public class Message {
     public static final String MESSAGE_DIET_FIND = "I've found these diets:";
     public static final String MESSAGE_DIET_NO_CHANGE_REQUESTED = "No change requested. Specify the appropriate " +
             "parameters to edit the diet.";
+
+
+    /* Sleep Messages */
     public static final String MESSAGE_SLEEP_DELETE_INVALID_INDEX = "Invalid index. Please enter a valid index.";
     public static final String MESSAGE_SLEEP_DELETE_RETURN = "Got it. I've deleted this sleep record at index %d: %s";
     public static final String MESSAGE_SLEEP_EDIT_RETURN = "Got it. I've changed this sleep record at index %d:";
@@ -148,6 +151,11 @@ public class Message {
     public static final String MESSAGE_SLEEP_ADD_RETURN_2 = "Now you have %d sleep records in the list.";
     public static final String MESSAGE_SLEEP_FIND = "I've found these sleeps:";
 
+    public static final String MESSAGE_SLEEP_GOAL_ADDED = "Alright, I've added this sleep goal:";
+    public static final String MESSAGE_SLEEP_GOAL_EDITED = "Alright, I've edited this sleep goal:";
+    public static final String MESSAGE_SLEEP_GOAL_LIST = "These are your sleep goals:";
+
+    /* Sleep Error Messages */
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT =
             "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
@@ -162,10 +170,26 @@ public class Message {
             "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
             "The index of the sleep record you want to delete is out of bounds.";
+    
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
+            "Please specify the type, period and target value of your sleep goal.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_MISSING_PARAMETERS =
+            "Please specify the start and end time of your sleep.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TYPE =
+            "Please specify the type of your sleep goal as \"duration\".";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PERIOD =
+            "The period must be one of the " +
+            "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TARGET =
+            "Please specify the target value of your sleep goal as a positive integer.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS =
+            "Please specify the type, period and target value of your sleep goal.";
+    
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
-    public static final String MESSAGE_LOAD_EXCEPTION =
-            "An exception occurred when loading %s. Please fix or delete it and rerun AthletiCLI!";
+    public static final String MESSAGE_LOAD_EXCEPTION = "An exception occurred when loading %s.\n"
+            + "Please quit AthletiCLI with `bye` command and fix it manually,\n"
+            + "or start from empty lists by entering any other command.";
 
     /* Help Messages */
     public static final String HELP_ADD_ACTIVITY = CommandName.COMMAND_ACTIVITY
