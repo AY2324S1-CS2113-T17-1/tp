@@ -295,7 +295,7 @@ ____________________________________________________________
  These are your sleep goals:
  1. yearly duration : 57600/8 minutes
  2. monthly duration : 57600/800 minutes
- 3. daily duration : 28800/800 minutes
+ 3. daily duration : 0/800 minutes
  4. weekly duration : 57600/8 minutes
 ____________________________________________________________
 
@@ -308,7 +308,7 @@ ____________________________________________________________
  These are your sleep goals:
  1. yearly duration : 57600/8 minutes
  2. monthly duration : 57600/8 minutes
- 3. daily duration : 28800/800 minutes
+ 3. daily duration : 0/800 minutes
  4. weekly duration : 57600/8 minutes
 ____________________________________________________________
 
