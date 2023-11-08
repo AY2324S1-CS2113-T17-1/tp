@@ -261,32 +261,37 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -376,20 +381,23 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -406,14 +414,16 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
 	e.g. WEEKLY calories/100
+	e.g. WEEKLY unhealthy fats/100
 ____________________________________________________________
 
 > ____________________________________________________________
