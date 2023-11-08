@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import athleticli.exceptions.AthletiException;
+
 import static athleticli.common.Config.DATE_TIME_FORMATTER;
 import static athleticli.common.Config.DATE_FORMATTER;
 
@@ -13,7 +15,7 @@ import static athleticli.common.Config.DATE_FORMATTER;
  */
 public class Sleep {
     private final LocalDateTime startDateTime;
-    private final LocalDateTime toDateTime;
+    private final LocalDateTime endDateTime;
 
     private LocalTime sleepingDuration;
 
@@ -24,10 +26,11 @@ public class Sleep {
      *
      * @param startDateTime Start time of the sleep.
      * @param toDateTime    End time of the sleep.
+     * @throws AthletiException If any invalid input is provided.
      */
-    public Sleep(LocalDateTime startDateTime, LocalDateTime toDateTime) {
+    public Sleep(LocalDateTime startDateTime, LocalDateTime toDateTime) throws AthletiException {
         this.startDateTime = startDateTime;
-        this.toDateTime = toDateTime;
+        this.endDateTime = toDateTime;
         this.sleepingDuration = calculateSleepingDuration();
         this.sleepDate = calculateSleepDate();
     }
@@ -36,8 +39,8 @@ public class Sleep {
         return startDateTime;
     }
 
-    public LocalDateTime getToDateTime() {
-        return toDateTime;
+    public LocalDateTime getEndDateTime() {
+        return endDateTime;
     }
 
     public LocalDate getSleepDate() {
@@ -53,10 +56,17 @@ public class Sleep {
      * Factor in the possibility of sleeping past midnight.
      *
      * @return sleeping duration.
+     * @throws AthletiException If any invalid input is provided.
      */
-    private LocalTime calculateSleepingDuration() {
-        Duration duration = Duration.between(startDateTime, toDateTime);
+    private LocalTime calculateSleepingDuration() throws AthletiException {
+        if (startDateTime == null || endDateTime == null) {
+            throw new AthletiException("Cannot calculate duration with null start/end time");
+        }
+        Duration duration = Duration.between(startDateTime, endDateTime);
         long seconds = duration.getSeconds();
+        if (duration.toMinutes() < 1 || duration.toDays() > 7) {
+            throw new AthletiException("Invalid sleep duration: less than 1 minute or more than 7 days");
+        }
         return LocalTime.ofSecondOfDay(seconds);
     }
 
@@ -82,7 +92,7 @@ public class Sleep {
     public String toString() {
         String sleepingDurationOutput = generateSleepingDurationStringOutput();
         String startDateTimeOutput = generateStartDateTimeStringOutput();
-        String toDateTimeOutput = generateToDateTimeStringOutput();
+        String toDateTimeOutput = generateEndDateTimeStringOutput();
         String sleepDateOutput = generateSleepDateStringOutput();
         return "[Sleep]" + " | " + sleepDateOutput + " | " + startDateTimeOutput +
             " | " + toDateTimeOutput + " | " + sleepingDurationOutput;
@@ -103,8 +113,8 @@ public class Sleep {
         return "Start Time: " + startDateTime.format(DATE_TIME_FORMATTER);
     }
 
-    public String generateToDateTimeStringOutput() {
-        return "End Time: " + toDateTime.format(DATE_TIME_FORMATTER);
+    public String generateEndDateTimeStringOutput() {
+        return "End Time: " + endDateTime.format(DATE_TIME_FORMATTER);
     }
 
     public String generateSleepDateStringOutput() {
