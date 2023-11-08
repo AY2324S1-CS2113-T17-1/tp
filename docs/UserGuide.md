@@ -1,9 +1,43 @@
 ![AthletiCLI Banner with fitness imagery](images/AthletiCLI-Banner.png)
 ---
 # AthletiCLI - User Guide
-*Your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the
-committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also
-covers dietary habits, sleep metrics, and more.*
+*Your all-in-one solution to track, analyse, and optimize your athletic performance.*
+*Designed for the committed athlete, this command-line interface (CLI) tool not only keeps track of your physical 
+activities but also covers dietary habits, sleep metrics, and more.*
+
+* Table of Contents
+- [Quick Start](#-quick-start)
+- [Features](#features)
+  - [Activity Management](#-activity-management)
+    - [Adding Activities](#-adding-activities)
+    - [Deleting Activities](#-deleting-activities)
+    - [Listing Activities](#-listing-activities)
+    - [Editing Activities](#-editing-activities)
+    - [Setting Activity Goals](#-setting-activity-goals)
+    - [Editing Activity Goals](#-editing-activity-goals)
+    - [Listing Activity Goals](#-listing-activity-goals)
+  - [Diet Management](#-diet-management)
+    - [Adding Diets](#-adding-diets)
+    - [Editing Diets](#-editing-diets)
+    - [Deleting Diets](#-deleting-diets)
+    - [Listing Diets](#-listing-diets)
+    - [Finding Diets](#-finding-diets)
+    - [Adding Diet Goals](#-adding-diet-goals)
+    - [Deleting Diet Goals](#-deleting-diet-goals)
+    - [Listing Diet Goals](#-listing-diet-goals)
+    - [Editing Diet Goals](#-editing-diet-goals)
+  - [Sleep Management](#-sleep-management)
+    - [Adding Sleep](#-adding-sleep)
+    - [Listing Sleep](#-listing-sleep)
+    - [Deleting Sleep](#-deleting-sleep)
+    - [Editing Sleep](#-editing-sleep)
+    - [Finding Sleep](#-finding-sleep)
+  - [Miscellaneous](#miscellaneous)
+    - [Finding Records](#-finding-records)
+    - [Saving Files](#-saving-files)
+    - [Exiting AthletiCLI](#-exiting-athleticli)
+    - [Viewing Help Messages](#-viewing-help-messages)
+  - [Summary of Commands](#summary-of-commands)
 
 ## 🚀 Quick Start
 
@@ -22,6 +56,7 @@ covers dietary habits, sleep metrics, and more.*
 
 ## 🏃 Activity Management
 
+<<<<<<< HEAD
 ### ➕ Adding Activities:
 
 `add-activity` `add-run` `add-swim` `add-cycle`
@@ -101,13 +136,7 @@ detailed information about your activities including evaluations like pace (runn
 
 ### ✍️ Editing Activities:
 
-`edit-activity`
-
-`edit-run`
-
-`edit-swim`
-
-`edit-cycle`
+`edit-activity` `edit-run` `edit-swim` `edit-cycle`
 
 You can edit your activities in AthletiCLI by editing the activity at the specified index.
 Specify the parameters you want to edit with the corresponding flags. At least one parameter must be specified.
@@ -151,7 +180,6 @@ The goals can track your daily, weekly, monthly, or yearly progress.
   minutes.
 
 **Examples**
-
 * `set-activity-goal sport/running type/distance period/weekly target/10000` Sets a goal of running 10km per week.
 * `set-activity-goal sport/swimming type/duration period/monthly target/120` Sets a goal of swimming for 2 hours per
   month.
@@ -369,7 +397,8 @@ You can list all your diet goals in AtheltiCLI.
 
 You can edit the target value of your diet goals in AtheltiCLI, redefining the target value for the specified nutrient.
 
-This command takes in at least 2 arguments. You are able to edit multiple diet goals target value of the same time frame at once. No repetition is allowed.
+This command takes in at least 2 arguments. You are able to edit multiple diet goals target value of the same time frame at once. 
+No repetition is allowed. The diet goal needs to be present before any edits is allowed.
 
 **Syntax:**
 
@@ -559,7 +588,7 @@ If you forget a command, you can always use the `help` command to see their synt
 
 # Summary of Commands
 
-## **Activity Management**
+## Activity Management
 
 | **Command**               | **Syntax**                                                                                    | **Parameters**                                   | **Examples**                                             |
 |---------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------|----------------------------------------------------------|
@@ -577,7 +606,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TYPE, PERIOD, TARGET                      | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
 | `list-activity-goal`      | `list-activity-goal`                                                                          | None                                             | `list-activity-goal`                                       |
 
-## **Diet Management**
+## Diet Management
 
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|

@@ -6,6 +6,8 @@ import athleticli.data.Goal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
+import athleticli.parser.Parameter;
+
 /**
  * Represents a diet goal.
  */
@@ -74,6 +76,10 @@ public abstract class DietGoal extends Goal {
         return updateCurrentValue(data);
     }
 
+    /**
+     * Returns the type of diet goal.
+     * @return the type of diet goal.
+     */
     public String getType() {
         return type;
     }
@@ -88,16 +94,16 @@ public abstract class DietGoal extends Goal {
             dietRecords = diets.find(date);
             for (Diet diet : dietRecords) {
                 switch (nutrient) {
-                case "fats":
+                case Parameter.NUTRIENTS_FATS:
                     currentValue += diet.getFat();
                     break;
-                case "calories":
+                case Parameter.NUTRIENTS_CALORIES:
                     currentValue += diet.getProtein();
                     break;
-                case "protein":
+                case Parameter.NUTRIENTS_PROTEIN:
                     currentValue += diet.getProtein();
                     break;
-                case "carb":
+                case Parameter.NUTRIENTS_CARB:
                     currentValue += diet.getCarb();
                     break;
                 default:

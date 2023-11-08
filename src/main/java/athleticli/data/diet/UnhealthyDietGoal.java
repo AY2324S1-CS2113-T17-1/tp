@@ -7,6 +7,7 @@ import athleticli.data.Data;
  */
 public class UnhealthyDietGoal extends DietGoal {
 
+    public static final String TYPE = "unhealthy";
     private final boolean isHealthy;
 
     /**
@@ -27,6 +28,22 @@ public class UnhealthyDietGoal extends DietGoal {
         return currentValue <= targetValue;
     }
 
+    /**
+     * Returns the type of diet goal of this class.
+     *
+     * @return the type of diet goal.
+     */
+    @Override
+    public String getType() {
+        return TYPE;
+    }
+
+    /**
+     * Returns string indicator to indicate if unhealthy goal has its limit reached.
+     *
+     * @param data A storage class to retrieve diet information.
+     * @return String indicator if the goal is not achieved.
+     */
     protected String getSymbol(Data data) {
         if (isAchieved(data)) {
             return "";
