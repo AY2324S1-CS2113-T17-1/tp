@@ -132,10 +132,8 @@ public class Activity {
 
         String header = "[Activity - " + this.getCaption() + " - " + startDateTimeOutput + "]";
         String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, columnWidth);
-        String secondRow = formatTwoColumns("\tCalories: " +
-                this.getCalories() + " kcal", "...", columnWidth);
 
-        return String.join(System.lineSeparator(), header, firstRow, secondRow);
+        return String.join(System.lineSeparator(), header, firstRow);
     }
 
     /**
