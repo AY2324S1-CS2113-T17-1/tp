@@ -41,7 +41,7 @@ full activity insights.
 
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
-* DISTANCE: The distance of the activity in meters. It must be a positive number.
+* DISTANCE: The distance of the activity in meters. It must be a positive number smaller than 1000000.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
 * ELEVATION: The elevation gain of a run or cycle in meters. It must be a number.
 * STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
@@ -561,21 +561,21 @@ If you forget a command, you can always use the `help` command to see their synt
 
 ## **Activity Management**
 
-| **Command**               | **Syntax**                                                                                    | **Parameters**                                         | **Examples**                                             |
-|---------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
-| `add-activity`            | `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`                  | CAPTION, DURATION, DISTANCE, DATETIME                  | `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
-| `add-run`                 | `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`   | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION      | -                                                        |
-| `add-swim`                | `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`            | CAPTION, DURATION, DISTANCE, DATETIME, LAPS            | -                                                        |
-| `add-cycle`               | `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION` | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION      | `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
-| `delete-activity`         | `delete-activity INDEX`                                                                       | INDEX                                                  | `delete-activity 2`                                       |
-| `list-activity`           | `list-activity [-d]`                                                                          | -d                                                     | `list-activity`, `list-activity -d`                        |
-| `edit-activity`           | `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`           | INDEX, CAPTION, DURATION, DISTANCE, DATETIME           | `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
-| `edit-run`                | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION                 | -                                                        |
-| `edit-swim`               | Similar to `edit-activity` but with laps.                                                     | Same as `edit-activity` with LAPS                      | -                                                        |
-| `edit-cycle`              | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION                 | `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
-| `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                         | SPORT, TARGET, PERIOD, VALUE                           | `set-activity-goal sport/running type/distance period/weekly target/10000` |
-| `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TARGET, PERIOD, VALUE                           | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
-| `list-activity-goal`      | `list-activity-goal`                                                                          | None                                                   | `list-activity-goal`                                       |
+| **Command**               | **Syntax**                                                                                    | **Parameters**                                   | **Examples**                                             |
+|---------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------|----------------------------------------------------------|
+| `add-activity`            | `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`                  | CAPTION, DURATION, DISTANCE, DATETIME            | `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
+| `add-run`                 | `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`   | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION | -                                                        |
+| `add-swim`                | `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`            | CAPTION, DURATION, DISTANCE, DATETIME, LAPS      | -                                                        |
+| `add-cycle`               | `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION` | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION | `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
+| `delete-activity`         | `delete-activity INDEX`                                                                       | INDEX                                            | `delete-activity 2`                                       |
+| `list-activity`           | `list-activity [-d]`                                                                          | -d                                               | `list-activity`, `list-activity -d`                        |
+| `edit-activity`           | `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`           | INDEX, CAPTION, DURATION, DISTANCE, DATETIME     | `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
+| `edit-run`                | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | -                                                        |
+| `edit-swim`               | Similar to `edit-activity` but with laps.                                                     | Same as `edit-activity` with LAPS                | -                                                        |
+| `edit-cycle`              | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
+| `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                         | SPORT, TYPE, PERIOD, TARGET                      | `set-activity-goal sport/running type/distance period/weekly target/10000` |
+| `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TYPE, PERIOD, TARGET                      | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
+| `list-activity-goal`      | `list-activity-goal`                                                                          | None                                             | `list-activity-goal`                                       |
 
 ## **Diet Management**
 

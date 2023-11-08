@@ -223,4 +223,6 @@ public class Message {
             "to the User Guide for the correct order.";
     public static final String MESSAGE_ACTIVITY_LIST_END = "\nTo see more performance details about an activity, use " +
             "the -d flag";
+    public static final String MESSAGE_DISTANCE_TOO_LARGE = "The distance of an activity cannot be larger than " +
+            "1000km! You are not Forrest Gump!";
 }

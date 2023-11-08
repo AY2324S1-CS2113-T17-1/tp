@@ -85,6 +85,8 @@ ____________________________________________________________
  These are the activities you have tracked so far:
  1.[Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | October 26, 2023 at 6:00 PM
  2.[Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | October 26, 2023 at 6:00 AM
+
+To see more performance details about an activity, use the -d flag
 ____________________________________________________________
 
 > ____________________________________________________________

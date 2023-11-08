@@ -3,6 +3,7 @@ package athleticli.commands.activity;
 import athleticli.data.Data;
 import athleticli.data.activity.Activity;
 import athleticli.data.activity.ActivityList;
+import athleticli.ui.Message;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +33,8 @@ class ListActivityCommandTest {
     void execute_detailedFalse_printsShortList() {
         ListActivityCommand listActivityCommand = new ListActivityCommand(false);
         String[] expected = {"These are the activities you have tracked so far:", "1." + new Activity(CAPTION, DURATION,
-                DISTANCE, DATE), "2." + new Activity(CAPTION, DURATION, DISTANCE, DATE)};
+            DISTANCE, DATE), "2." + new Activity(CAPTION, DURATION, DISTANCE, DATE),
+            Message.MESSAGE_ACTIVITY_LIST_END};
         String[] actual = listActivityCommand.execute(data);
         for (int i = 0; i < actual.length; i++) {
             assertEquals(expected[i], actual[i]);
@@ -56,7 +58,8 @@ class ListActivityCommandTest {
         ListActivityCommand listActivityCommand = new ListActivityCommand(false);
         String[] actual = listActivityCommand.printList(activities, activities.size());
         String[] expected = {"These are the activities you have tracked so far:", "1." + new Activity(CAPTION, DURATION,
-                DISTANCE, DATE), "2." + new Activity(CAPTION, DURATION, DISTANCE, DATE)};
+            DISTANCE, DATE), "2." + new Activity(CAPTION, DURATION, DISTANCE, DATE),
+            Message.MESSAGE_ACTIVITY_LIST_END};
         for (int i = 0; i < actual.length; i++) {
             assertEquals(expected[i], actual[i]);
         }
