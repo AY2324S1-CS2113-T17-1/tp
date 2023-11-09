@@ -93,10 +93,8 @@ public class Run extends Activity {
                 columnWidth);
         String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Elevation Gain: " +
                 elevationGain + " m", columnWidth);
-        String thirdRow = formatTwoColumns("\tCalories: " + this.getCalories() + " kcal", "Steps: " +
-                        this.steps, columnWidth);
 
-        return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+        return String.join(System.lineSeparator(), header, firstRow, secondRow);
     }
 
     public int getElevationGain() {

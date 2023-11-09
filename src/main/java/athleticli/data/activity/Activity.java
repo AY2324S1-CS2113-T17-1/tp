@@ -80,10 +80,16 @@ public class Activity {
      * @return a string representation of the distance
      */
     public String generateDistanceStringOutput() {
-        double distanceInKm = distance / 1000.0;
-        return "Distance: " + String.format(Locale.ENGLISH, "%.2f", distanceInKm)
-                + " km";
+        if (distance < 1000) {
+            return "Distance: " + distance + " m";
+        } else {
+            double distanceInKm = distance / 1000.0;
+            return "Distance: " + String.format(Locale.ENGLISH, "%.2f", distanceInKm)
+                    + " km";
+        }
     }
+
+
 
     /**
      * Returns moving time in user-friendly output format.
@@ -126,10 +132,8 @@ public class Activity {
 
         String header = "[Activity - " + this.getCaption() + " - " + startDateTimeOutput + "]";
         String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, columnWidth);
-        String secondRow = formatTwoColumns("\tCalories: " +
-                this.getCalories() + " kcal", "...", columnWidth);
 
-        return String.join(System.lineSeparator(), header, firstRow, secondRow);
+        return String.join(System.lineSeparator(), header, firstRow);
     }
 
     /**

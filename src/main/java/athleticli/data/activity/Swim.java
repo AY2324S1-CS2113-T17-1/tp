@@ -88,8 +88,7 @@ public class Swim extends Activity {
         String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, columnWidth);
         String secondRow = formatTwoColumns("\tLaps: " + this.getLaps(), "Style: "
                 + this.getStyle(), columnWidth);
-        String thirdRow = formatTwoColumns("\tAvg Lap Time: " + averageLapTime + " s", "Calories: " +
-                this.getCalories() + " kcal", columnWidth);
+        String thirdRow = formatTwoColumns("\tAvg Lap Time: " + averageLapTime + " s", "", columnWidth);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
     }

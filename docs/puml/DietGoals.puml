@@ -4,11 +4,11 @@ skinparam Style strictuml
 skinparam SequenceMessageAlignment center
 participant ":AthletiCLI" as AthletiCLI #lightblue
 participant ":Parser" as Parser #lightgreen
-participant ":dietGoal" as dietGoal #lightyellow
+participant ":DietGoal" as dietGoal #lightyellow
 participant ":SetDietGoalCommand" as SetDietGoalCommand #lightpink
-participant "temp:dietGoalList" as tempDietGoalList #yellow
+participant "temp:DietGoalList" as tempDietGoalList #yellow
 participant "data:Data" as dataData
-participant "data:dietGoalList" as dataDietGoalList #yellow
+participant "data:DietGoalList" as dataDietGoalList #yellow
 
 
 'autonumber
@@ -17,30 +17,33 @@ AthletiCLI -> Parser++ : ParseCommand("set-diet-goal fats/1")
 Parser -> Parser++ : ParseDietGoalSetEdit("fats/1")
 create tempDietGoalList
 Parser -> tempDietGoalList++ : dietGoalList()
-tempDietGoalList --> Parser-- : dietGoalList
+tempDietGoalList --> Parser-- : temp:DietGoalList
 
     loop number of valid new diet goals
     create dietGoal
-    Parser -> dietGoal++ : dietGoal()
-    dietGoal --> Parser-- : dietGoal
+    Parser -> dietGoal++ : DietGoal()
+    dietGoal --> Parser-- : :DietGoal
     end
 
-Parser --> Parser-- : dietGoalList
+Parser --> Parser-- : temp:DietGoalList
 create SetDietGoalCommand
 Parser -> SetDietGoalCommand++ : SetDietGoalCommand()
-SetDietGoalCommand --> Parser-- : SetDietGoalCommand
-Parser --> AthletiCLI-- : SetDietGoalCommand
+SetDietGoalCommand --> Parser-- : :SetDietGoalCommand
+Parser --> AthletiCLI-- : :SetDietGoalCommand
 AthletiCLI -> SetDietGoalCommand++ : execute()
 SetDietGoalCommand -> dataData++ : getDietGoals()
-dataData --> SetDietGoalCommand-- : data:dietGoalList
+dataData --> SetDietGoalCommand-- : data:DietGoalList
 
     loop number of valid new diet goals
     SetDietGoalCommand -> dataDietGoalList++ : add()
-    dataDietGoalList --> SetDietGoalCommand--
+
+   dataDietGoalList --
+
+
     end
 
 destroy tempDietGoalList
-SetDietGoalCommand --> AthletiCLI-- : messages
+SetDietGoalCommand --> AthletiCLI-- : messages:String
 
 destroy SetDietGoalCommand
 
