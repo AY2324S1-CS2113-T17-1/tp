@@ -1,4 +1,3 @@
-![AthletiCLI Banner with fitness imagery](images/AthletiCLI-Banner.png)
 ---
 layout: page
 title: User Guide
