@@ -1,7 +1,7 @@
 ![AthletiCLI Banner with fitness imagery](images/AthletiCLI-Banner.png)
 ---
 layout: page
-title: AthletiCLi User Guide
+title: User Guide
 ---
 *Your all-in-one solution to track, analyse, and optimize your athletic performance.*
 *Designed for the committed athlete, this command-line interface (CLI) tool not only keeps track of your physical 
