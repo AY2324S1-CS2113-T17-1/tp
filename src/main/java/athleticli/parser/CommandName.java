@@ -15,6 +15,9 @@ public class CommandName {
     public static final String COMMAND_SLEEP_DELETE = "delete-sleep";
     public static final String COMMAND_SLEEP_LIST = "list-sleep";
     public static final String COMMAND_SLEEP_FIND = "find-sleep";
+    public static final String COMMAND_SLEEP_GOAL_SET = "set-sleep-goal";
+    public static final String COMMAND_SLEEP_GOAL_EDIT = "edit-sleep-goal";
+    public static final String COMMAND_SLEEP_GOAL_LIST = "list-sleep-goal";
 
     /* Activity Management */
     public static final String COMMAND_RUN = "add-run";
