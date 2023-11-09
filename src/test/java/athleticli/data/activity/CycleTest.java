@@ -48,11 +48,11 @@ public class CycleTest {
     }
 
     @Test
-    @Disabled // Github gradle check fails on this test
+    @Disabled
     public void testToDetailedString() {
         String expected = "[Cycle - Cycling in the afternoon - October 7, 2023 at 2:00 PM]\n"
                 + "\tDistance: 40.46 km                     Elevation Gain: 101 m\n"
-                + "\tTime: 2h 13m                           Avg Speed: 18.25 km/h\n"
+                + "\tTime: 02:13:00                         Avg Speed: 18.25 km/h\n"
                 + "\tCalories: 0 kcal                       Max Speed: tbd";
         String actual = cycle.toDetailedString();
         assertEquals(expected, actual);

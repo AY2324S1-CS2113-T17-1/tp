@@ -1,5 +1,7 @@
 package athleticli.data.activity;
 
+import athleticli.parser.Parameter;
+
 import java.time.LocalDateTime;
 import java.util.Locale;
 import java.time.LocalTime;
@@ -9,8 +11,8 @@ import java.time.LocalTime;
  */
 public class Cycle extends Activity {
 
-    private final int elevationGain;
-    private final double averageSpeed;
+    private int elevationGain;
+    private double averageSpeed;
 
     /**
      * Generates a new cycling activity with cycling specific stats.
@@ -81,7 +83,35 @@ public class Cycle extends Activity {
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
     }
 
+    /**
+     * Returns a string representation of the cycle used for storing the data.
+     * @return a string representation of the cycle
+     */
+    @Override
+    public String unparse() {
+        String commandArgs = super.unparse();
+        commandArgs = commandArgs.replace(Parameter.ACTIVITY_STORAGE_INDICATOR, Parameter.CYCLE_STORAGE_INDICATOR);
+        commandArgs += " " + Parameter.ELEVATION_SEPARATOR + this.elevationGain;
+        return commandArgs;
+    }
+
     public int getElevationGain() {
         return this.elevationGain;
+    }
+
+    public void setElevationGain(int elevationGain) {
+        this.elevationGain = elevationGain;
+    }
+
+    @Override
+    public void setDistance(int distance) {
+        super.setDistance(distance);
+        this.averageSpeed = this.calculateAverageSpeed();
+    }
+
+    @Override
+    public void setMovingTime(LocalTime movingTime) {
+        super.setMovingTime(movingTime);
+        this.averageSpeed = this.calculateAverageSpeed();
     }
 }

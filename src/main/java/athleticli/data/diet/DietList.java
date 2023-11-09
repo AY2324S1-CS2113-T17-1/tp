@@ -1,12 +1,15 @@
 package athleticli.data.diet;
 
-import static athleticli.storage.Config.PATH_DIET;
-
 import athleticli.data.Findable;
 import athleticli.data.StorableList;
+import athleticli.exceptions.AthletiException;
+import athleticli.parser.Parameter;
+import athleticli.parser.DietParser;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import static athleticli.common.Config.PATH_DIET;
 
 
 /**
@@ -61,9 +64,8 @@ public class DietList extends StorableList<Diet> implements Findable {
      * @return The diet parsed from the string.
      */
     @Override
-    public Diet parse(String s) {
-        // TODO
-        return null;
+    public Diet parse(String s) throws AthletiException {
+        return DietParser.parseDiet(s);
     }
 
     /**
@@ -74,7 +76,12 @@ public class DietList extends StorableList<Diet> implements Findable {
      */
     @Override
     public String unparse(Diet diet) {
-        // TODO
-        return null;
+        String commandArgs = "";
+        commandArgs += Parameter.CALORIES_SEPARATOR + diet.getCalories();
+        commandArgs += " " + Parameter.PROTEIN_SEPARATOR + diet.getProtein();
+        commandArgs += " " + Parameter.CARB_SEPARATOR + diet.getCarb();
+        commandArgs += " " + Parameter.FAT_SEPARATOR + diet.getFat();
+        commandArgs += " " + Parameter.DATETIME_SEPARATOR + diet.getDateTime();
+        return commandArgs;
     }
 }

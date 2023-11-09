@@ -1,5 +1,7 @@
 package athleticli.data.activity;
 
+import athleticli.parser.Parameter;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -7,8 +9,8 @@ import java.time.LocalTime;
  * Represents a running activity consisting of relevant evaluation data.
  */
 public class Run extends Activity {
-    private final int elevationGain;
-    private final double averagePace;
+    private int elevationGain;
+    private double averagePace;
     private final int steps;
 
     /**
@@ -63,6 +65,18 @@ public class Run extends Activity {
     }
 
     /**
+     * Returns a string representation of the run used for storing the data.
+     * @return a string representation of the run
+     */
+    @Override
+    public String unparse() {
+        String commandArgs = super.unparse();
+        commandArgs = commandArgs.replace(Parameter.ACTIVITY_STORAGE_INDICATOR, Parameter.RUN_STORAGE_INDICATOR);
+        commandArgs += " " + Parameter.ELEVATION_SEPARATOR + this.elevationGain;
+        return commandArgs;
+    }
+
+    /**
      * Returns a detailed summary of the run.
      * @return a multiline string representation of the run
      */
@@ -77,7 +91,7 @@ public class Run extends Activity {
         String header = "[Run - " + this.getCaption() + " - " + startDateTimeOutput + "]";
         String firstRow = formatTwoColumns("\t" + distanceOutput, "Avg Pace: " + paceOutput,
                 columnWidth);
-        String secondRow = formatTwoColumns("\tMoving Time: " + movingTimeOutput, "Elevation Gain: " +
+        String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Elevation Gain: " +
                 elevationGain + " m", columnWidth);
         String thirdRow = formatTwoColumns("\tCalories: " + this.getCalories() + " kcal", "Steps: " +
                         this.steps, columnWidth);
@@ -87,6 +101,22 @@ public class Run extends Activity {
 
     public int getElevationGain() {
         return elevationGain;
+    }
+
+    public void setElevationGain(int elevationGain) {
+        this.elevationGain = elevationGain;
+    }
+
+    @Override
+    public void setDistance(int distance) {
+        super.setDistance(distance);
+        this.averagePace = this.calculateAveragePace();
+    }
+
+    @Override
+    public void setMovingTime(LocalTime movingTime) {
+        super.setMovingTime(movingTime);
+        this.averagePace = this.calculateAveragePace();
     }
 
 }

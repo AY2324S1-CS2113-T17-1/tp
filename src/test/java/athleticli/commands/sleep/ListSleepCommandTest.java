@@ -35,8 +35,10 @@ public class ListSleepCommandTest {
         ListSleepCommand command = new ListSleepCommand();
         String[] expected = {
             "Here are the sleep records in your list:\n",
-            "1. sleep record from 17-10-2023 22:00 to 18-10-2023 06:00",
-            "2. sleep record from 18-10-2023 22:00 to 19-10-2023 06:00"
+            "1. [Sleep] | Date: 2023-10-17 | Start Time: October 17, 2023 at 10:00 PM " +
+                "| End Time: October 18, 2023 at 6:00 AM | Sleeping Duration: 8 Hours ",
+            "2. [Sleep] | Date: 2023-10-18 | Start Time: October 18, 2023 at 10:00 PM " +
+                "| End Time: October 19, 2023 at 6:00 AM | Sleeping Duration: 8 Hours "
         };    
         String[] actual = command.execute(data);
         assertArrayEquals(expected, actual);

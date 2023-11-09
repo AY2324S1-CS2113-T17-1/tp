@@ -1,6 +1,6 @@
 package athleticli.data.activity;
 
-import static athleticli.storage.Config.PATH_ACTIVITY;
+import static athleticli.common.Config.PATH_ACTIVITY;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,6 +10,10 @@ import java.util.Comparator;
 import athleticli.data.Findable;
 import athleticli.data.StorableList;
 import athleticli.data.Goal;
+import athleticli.exceptions.AthletiException;
+import athleticli.parser.ActivityParser;
+import athleticli.parser.Parameter;
+import athleticli.ui.Message;
 
 public class ActivityList extends StorableList<Activity> implements Findable {
     /**
@@ -99,10 +103,28 @@ public class ActivityList extends StorableList<Activity> implements Findable {
      * @return The activity parsed from the string.
      */
     @Override
-    public Activity parse(String s) {
-        // TODO
-        return null;
+    public Activity parse(String s) throws AthletiException {
+        try {
+            String indicator = s.split(" ", 2)[0];
+            String arguments = s.split(" ", 2)[1];
+            switch (indicator) {
+            case Parameter.ACTIVITY_STORAGE_INDICATOR:
+                return ActivityParser.parseActivity(arguments);
+            case Parameter.RUN_STORAGE_INDICATOR:
+                return ActivityParser.parseRunCycle(arguments, true);
+            case Parameter.CYCLE_STORAGE_INDICATOR:
+                return ActivityParser.parseRunCycle(arguments, false);
+            case Parameter.SWIM_STORAGE_INDICATOR:
+                return ActivityParser.parseSwim(arguments);
+            default:
+                throw new AthletiException(Message.ACTIVITY_STORAGE_INVALID_INDICATOR);
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new AthletiException(Message.ACTIVITY_STORAGE_INVALID_FORMAT);
+        }
     }
+
+
 
     /**
      * Unparses an activity to a string.
@@ -112,7 +134,6 @@ public class ActivityList extends StorableList<Activity> implements Findable {
      */
     @Override
     public String unparse(Activity activity) {
-        // TODO
-        return null;
+        return activity.unparse();
     }
 }

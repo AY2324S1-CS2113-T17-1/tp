@@ -1,15 +1,12 @@
 package athleticli.data.diet;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Locale;
+import static athleticli.common.Config.DATE_TIME_FORMATTER;
 
 /**
  * Defines the basic fields and methods of a diet.
  */
 public class Diet {
-    public static final DateTimeFormatter DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("MMMM d, " + "yyyy 'at' h:mm a", Locale.ENGLISH);
     private int calories;
     private int protein;
     private int carb;

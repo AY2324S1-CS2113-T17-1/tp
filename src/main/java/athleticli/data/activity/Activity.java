@@ -1,28 +1,27 @@
 package athleticli.data.activity;
 
+import athleticli.parser.Parameter;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
+
+import static athleticli.common.Config.DATE_TIME_FORMATTER;
+import static athleticli.common.Config.TIME_FORMATTER;
 
 /**
  * Represents a physical activity consisting of basic sports data.
  */
 public class Activity {
-
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("MMMM d, " +
-            "yyyy 'at' h:mm a", Locale.ENGLISH);
-    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss",
-            Locale.ENGLISH);
     private static final int columnWidth = 40;
 
     private String description;
-    private final String caption;
-    private final LocalTime movingTime;
+    private String caption;
+    private LocalTime movingTime;
 
-    private final int distance;
+    private int distance;
     private int calories;
-    private final LocalDateTime startDateTime;
+    private LocalDateTime startDateTime;
 
     /**
      * Generates a new general sports activity with some basic stats.
@@ -142,5 +141,34 @@ public class Activity {
      */
     public String formatTwoColumns(String left, String right, int columnWidth) {
         return String.format("%-" + columnWidth + "s%s", left, right);
+    }
+
+    /**
+     * Returns a string representation of the activity used for storing the data.
+     * @return a string representation of the activity
+     */
+    public String unparse() {
+        String commandArgs = Parameter.ACTIVITY_STORAGE_INDICATOR;
+        commandArgs += " " + this.getCaption();
+        commandArgs += " " + Parameter.DURATION_SEPARATOR + this.getMovingTime().format(TIME_FORMATTER);
+        commandArgs += " " + Parameter.DISTANCE_SEPARATOR + this.getDistance();
+        commandArgs += " " + Parameter.DATETIME_SEPARATOR + this.getStartDateTime();
+        return commandArgs;
+    }
+
+    public void setCaption(String caption) {
+        this.caption = caption;
+    }
+
+    public void setMovingTime(LocalTime movingTime) {
+        this.movingTime = movingTime;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
+    }
+
+    public void setStartDateTime(LocalDateTime startDateTime) {
+        this.startDateTime = startDateTime;
     }
 }

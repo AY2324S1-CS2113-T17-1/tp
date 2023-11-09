@@ -35,24 +35,30 @@ public class SetDietGoalCommand extends Command {
     @Override
     public String[] execute(Data data) throws AthletiException {
         DietGoalList currentDietGoals = data.getDietGoals();
+        verifyNewGoalsNotExist(currentDietGoals);
+        addNewUserDietGoals(currentDietGoals);
+        return generateSetDietGoalSuccessMessage(data, currentDietGoals);
+    }
 
-        // Validates if the newly defined goal has already existed.
-        for (DietGoal dietGoal : currentDietGoals) {
-            for (DietGoal userDietGoal : userNewDietGoals) {
-                boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
-                boolean isTimeSpanSimilar = userDietGoal.getTimeSpan().equals(dietGoal.getTimeSpan());
-                if (isNutrientSimilar && isTimeSpanSimilar) {
-                    throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_ALREADY_EXISTED,
-                            dietGoal.getNutrient()));
-                }
-            }
-        }
-
-        // Add new diet goals to current diet goals
-        currentDietGoals.addAll(userNewDietGoals);
+    private static String[] generateSetDietGoalSuccessMessage(Data data, DietGoalList currentDietGoals) {
         int dietGoalNum = currentDietGoals.size();
         return new String[]{Message.MESSAGE_DIET_GOAL_LIST_HEADER, currentDietGoals.toString(data),
                 String.format(Message.MESSAGE_DIET_GOAL_COUNT, dietGoalNum)};
+    }
+
+    private void addNewUserDietGoals(DietGoalList currentDietGoals) {
+        currentDietGoals.addAll(userNewDietGoals);
+    }
+
+    private void verifyNewGoalsNotExist(DietGoalList currentDietGoals) throws AthletiException {
+        for (DietGoal userDietGoal : userNewDietGoals) {
+            if (!currentDietGoals.isDietGoalUnique(userDietGoal)) {
+                throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_ALREADY_EXISTED,
+                        userDietGoal.getNutrient()));
+            } else if (!currentDietGoals.isDietGoalTypeValid(userDietGoal)) {
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
+            }
+        }
     }
 
 }

@@ -4,13 +4,9 @@ skinparam Style strictuml
 skinparam SequenceMessageAlignment center
 
 !define LOGIC_COLOR #3333C4
-!define LOGIC_COLOR_T1 #7777DB
-!define LOGIC_COLOR_T2 #5252CE
-!define LOGIC_COLOR_T3 #1616B0
-!define LOGIC_COLOR_T4 #101086
 
 participant ":AthletiCLI" as AthletiCLI LOGIC_COLOR
-participant ":Parser" as Parser #lightblue
+participant "Parser" as Parser <<class>> #lightblue
 participant "a:Activity" as Activity #yellow
 participant "c:AddActivityCommand" as AddActivityCommand #lightgreen
 participant "data:Data" as Data #lightgrey
@@ -21,18 +17,21 @@ AthletiCLI -> Parser++: parseCommand(userInput)
 Parser -> Parser++: parseActivity(arguments)
 Parser -> Activity++: Activity()
 Activity --> Parser--: a
+Parser --> Parser: a
 Parser--
-Parser -> AddActivityCommand++: parseAddActivityCommand(arguments)
+Parser -> AddActivityCommand++: parseAddActivityCommand(a)
 AddActivityCommand --> Parser--: c
 Parser --> AthletiCLI--: c
 
 AthletiCLI -> AddActivityCommand++: execute(a, data)
 AddActivityCommand -> Data++: getActivities()
-Data --> activities++
-activities --> Data--: activities
+'Data --> activities++
+'activities --> Data--: activities
 
 Data --> AddActivityCommand--: activities
 AddActivityCommand -> activities++: add(a)
 activities --> AddActivityCommand--
-AddActivityCommand -> AthletiCLI--: message
+AddActivityCommand --> AthletiCLI--: message
+
+destroy AddActivityCommand
 @enduml

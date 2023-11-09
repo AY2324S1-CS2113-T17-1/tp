@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class DietGoalTest {
 
-    private DietGoal proteinGoal;
+    private DietGoalStub proteinGoal;
     private Data data;
     private Diet diet;
     private final int calories = 10000;
@@ -25,7 +25,7 @@ class DietGoalTest {
 
     @BeforeEach
     void setUp() {
-        proteinGoal = new DietGoal(Goal.TimeSpan.WEEKLY, "protein", 10000);
+        proteinGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, "protein", 10000);
         data = new Data();
         diet = new Diet(calories, protein, carb, fats, dateTime);
 
@@ -78,7 +78,8 @@ class DietGoalTest {
     }
 
     @Test
-    void testToString_initializeCommonArgs_expectCorrectFormat() {
-        assertEquals("protein intake progress: (0/10000)\n", proteinGoal.toString(data));
+    void toString_initializeCommonArgs_expectCorrectFormat() {
+        String expectedString = " WEEKLY protein intake progress: (0/10000)\n";
+        assertEquals(expectedString, proteinGoal.toString(data));
     }
 }

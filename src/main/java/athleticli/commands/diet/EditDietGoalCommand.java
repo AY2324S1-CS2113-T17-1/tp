@@ -35,24 +35,18 @@ public class EditDietGoalCommand extends Command {
     @Override
     public String[] execute(Data data) throws AthletiException {
         DietGoalList currentDietGoals = data.getDietGoals();
+        verifyAllGoalsEditedExist(currentDietGoals);
+        updateUserGoals(currentDietGoals);
+        return generateEditDietGoalSuccessMessage(data, currentDietGoals);
+    }
 
-        // Check if all the userUpdatedDietGoals has already existed.
-        for (DietGoal userDietGoal : userUpdatedDietGoals) {
-            boolean isDietGoalExisted = false;
-            for (DietGoal dietGoal : currentDietGoals) {
-                boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
-                boolean isTimeSpanSimilar = userDietGoal.getTimeSpan().equals(dietGoal.getTimeSpan());
-                if (isNutrientSimilar && isTimeSpanSimilar) {
-                    isDietGoalExisted = true;
-                }
-            }
-            if (!isDietGoalExisted) {
-                throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_NOT_EXISTED,
-                        userDietGoal.getNutrient()));
-            }
-        }
+    private static String[] generateEditDietGoalSuccessMessage(Data data, DietGoalList currentDietGoals) {
+        int dietGoalNum = currentDietGoals.size();
+        return new String[]{Message.MESSAGE_DIET_GOAL_LIST_HEADER, currentDietGoals.toString(data),
+                String.format(Message.MESSAGE_DIET_GOAL_COUNT, dietGoalNum)};
+    }
 
-        // Edit updated goals to current diet goals
+    private void updateUserGoals(DietGoalList currentDietGoals) {
         int newTargetValue;
         for (DietGoal userUpdatedDietGoal : userUpdatedDietGoals) {
             for (DietGoal currentDietGoal : currentDietGoals) {
@@ -64,8 +58,24 @@ public class EditDietGoalCommand extends Command {
                 currentDietGoal.setTargetValue(newTargetValue);
             }
         }
-        int dietGoalNum = currentDietGoals.size();
-        return new String[]{Message.MESSAGE_DIET_GOAL_LIST_HEADER, currentDietGoals.toString(data),
-                String.format(Message.MESSAGE_DIET_GOAL_COUNT, dietGoalNum)};
+    }
+
+    private void verifyAllGoalsEditedExist(DietGoalList currentDietGoals) throws AthletiException {
+        for (DietGoal userDietGoal : userUpdatedDietGoals) {
+            boolean isDietGoalExisted = false;
+            currentDietGoals.isDietGoalTypeValid(userDietGoal);
+
+            if (!currentDietGoals.isDietGoalUnique(userDietGoal)) {
+                if (!currentDietGoals.isDietGoalTypeValid(userDietGoal)) {
+                    throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
+                }
+                isDietGoalExisted = true;
+            }
+
+            if (!isDietGoalExisted) {
+                throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_NOT_EXISTED,
+                        userDietGoal.getNutrient()));
+            }
+        }
     }
 }

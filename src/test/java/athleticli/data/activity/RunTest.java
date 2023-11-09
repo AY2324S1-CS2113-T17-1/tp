@@ -54,11 +54,11 @@ public class RunTest {
     }
 
     @Test
-    @Disabled // Github gradle check fails on this test
+    @Disabled
     public void testToDetailedString() {
         String expected = "[Run - Night Run - October 10, 2023 at 11:21 PM]\n"
-                + "\tDistance: 18.12 km                     Avg Pace: 4:41 /km\n"
-                + "\tMoving Time: Time: 1h 25m              Elevation Gain: 60 m\n"
+                + "\tDistance: 18.12 km                     Avg Pace: 4:38 /km\n"
+                + "\tTime: 01:24:00                         Elevation Gain: 60 m\n"
                 + "\tCalories: 0 kcal                       Steps: 0";
         String actual = run.toDetailedString();
         assertEquals(expected, actual);

@@ -1,5 +1,7 @@
 package athleticli.data.activity;
 
+import athleticli.parser.Parameter;
+
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -8,8 +10,8 @@ import java.time.LocalTime;
  */
 public class Swim extends Activity {
     private final int laps;
-    private final SwimmingStyle style;
-    private final int averageLapTime;
+    private SwimmingStyle style;
+    private int averageLapTime;
 
     public enum SwimmingStyle {
         BUTTERFLY,
@@ -92,8 +94,36 @@ public class Swim extends Activity {
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
     }
 
+    /**
+     * Returns a string representation of the swim used for storing the data.
+     * @return a string representation of the swim
+     */
+    @Override
+    public String unparse() {
+        String commandArgs = super.unparse();
+        commandArgs = commandArgs.replace(Parameter.ACTIVITY_STORAGE_INDICATOR, Parameter.SWIM_STORAGE_INDICATOR);
+        commandArgs += " " + Parameter.SWIMMING_STYLE_SEPARATOR + this.style;
+        return commandArgs;
+    }
+
     public SwimmingStyle getStyle() {
         return style;
+    }
+
+    public void setStyle(SwimmingStyle style) {
+        this.style = style;
+    }
+
+    @Override
+    public void setDistance(int distance) {
+        super.setDistance(distance);
+        this.averageLapTime = this.calculateAverageLapTime();
+    }
+
+    @Override
+    public void setMovingTime(LocalTime movingTime) {
+        super.setMovingTime(movingTime);
+        this.averageLapTime = this.calculateAverageLapTime();
     }
 
 }

@@ -1,5 +1,7 @@
 package athleticli.ui;
 
+import athleticli.parser.CommandName;
+
 public class Message {
     public static final String PROMPT = "> ";
     public static final String LINE = "____________________________________________________________\n";
@@ -12,9 +14,9 @@ public class Message {
     public static final String MESSAGE_DURATION_MISSING =
             "Please specify the activity duration using \"duration/\"!";
     public static final String MESSAGE_DISTANCE_MISSING =
-            "Please specify the activity duration using \"distance/\"!";
+            "Please specify the activity distance using \"distance/\"!";
     public static final String MESSAGE_DATETIME_MISSING =
-            "Please specify the activity duration using \"datetime/\"!";
+            "Please specify date and time of the activity using \"datetime/\"!";
     public static final String MESSAGE_CALORIES_MISSING =
             "Please specify the calories burned using \"calories/\"!";
     public static final String MESSAGE_ACTIVITYGOAL_SPORT_MISSING = "Please specify the sport using \"sport/\"!";
@@ -40,7 +42,7 @@ public class Message {
     public static final String MESSAGE_DIET_DATETIME_EMPTY = "The datetime of a diet cannot be empty!";
     public static final String MESSAGE_DIET_UPDATED = "Ok, I've updated this diet:";
     public static final String MESSAGE_DURATION_INVALID =
-            "The duration of an activity must be in the format \"hh:mm:ss\"!";
+            "The duration of an activity must be in the format \"HH:mm:ss\"!";
     public static final String MESSAGE_DISTANCE_INVALID =
             "The distance of an activity must be a positive integer!";
     public static final String MESSAGE_DISTANCE_NEGATIVE =
@@ -59,8 +61,8 @@ public class Message {
             "\"running\", \"cycling\", \"swimming\", \"general\"!";
     public static final String MESSAGE_TYPE_INVALID = "The type of an activity must be either \"distance\" or " +
             "\"duration\"!";
-    public static final String MESSAGE_PERIOD_INVALID = "The period of an activity must be either \"weekly\" or " +
-            "\"monthly\"!";
+    public static final String MESSAGE_PERIOD_INVALID = "The period of an activity must be one of the " +
+            "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
     public static final String MESSAGE_PROTEIN_INVALID = "The protein intake must be a non-negative integer!";
     public static final String MESSAGE_CARB_INVALID =
             "The carbohydrate intake must be a non-negative integer!";
@@ -116,12 +118,16 @@ public class Message {
     public static final String MESSAGE_DIET_GOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
             "Please enter a value from 1 to %d.";
     public static final String MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
-            "to create or edit your diet goals:\n <DAILY/WEEKLY> followed by \"calories\", \"protein\", " +
-            "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100";
+            "to create or edit your diet goals:\n <DAILY/WEEKLY> [unhealthy] followed by \"calories\", \"protein\", " +
+            "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100\n"
+            +"\te.g. WEEKLY unhealthy fats/100";
+    ;
     public static final String MESSAGE_DIET_GOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
             "no repetitions for your diet goal nutrients.";
     public static final String MESSAGE_DIET_GOAL_LOAD_ERROR = "Some error has been encountered " +
             "while loading diet goals.";
+    public static final String MESSAGE_DIET_GOAL_TYPE_CLASH = "You cannot have healthy goals and unhealthy goals "
+            + "for the same nutrient.";
 
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";
@@ -133,6 +139,9 @@ public class Message {
     public static final String MESSAGE_DIET_FIND = "I've found these diets:";
     public static final String MESSAGE_DIET_NO_CHANGE_REQUESTED = "No change requested. Specify the appropriate " +
             "parameters to edit the diet.";
+
+
+    /* Sleep Messages */
     public static final String MESSAGE_SLEEP_DELETE_INVALID_INDEX = "Invalid index. Please enter a valid index.";
     public static final String MESSAGE_SLEEP_DELETE_RETURN = "Got it. I've deleted this sleep record at index %d: %s";
     public static final String MESSAGE_SLEEP_EDIT_RETURN = "Got it. I've changed this sleep record at index %d:";
@@ -142,6 +151,11 @@ public class Message {
     public static final String MESSAGE_SLEEP_ADD_RETURN_2 = "Now you have %d sleep records in the list.";
     public static final String MESSAGE_SLEEP_FIND = "I've found these sleeps:";
 
+    public static final String MESSAGE_SLEEP_GOAL_ADDED = "Alright, I've added this sleep goal:";
+    public static final String MESSAGE_SLEEP_GOAL_EDITED = "Alright, I've edited this sleep goal:";
+    public static final String MESSAGE_SLEEP_GOAL_LIST = "These are your sleep goals:";
+
+    /* Sleep Error Messages */
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT =
             "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
@@ -156,10 +170,26 @@ public class Message {
             "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
             "The index of the sleep record you want to delete is out of bounds.";
+    
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
+            "Please specify the type, period and target value of your sleep goal.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_MISSING_PARAMETERS =
+            "Please specify the start and end time of your sleep.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TYPE =
+            "Please specify the type of your sleep goal as \"duration\".";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PERIOD =
+            "The period must be one of the " +
+            "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TARGET =
+            "Please specify the target value of your sleep goal as a positive integer.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS =
+            "Please specify the type, period and target value of your sleep goal.";
+    
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
-    public static final String MESSAGE_LOAD_EXCEPTION =
-            "An exception occurred when loading %s. Please fix or delete it and rerun AthletiCLI!";
+    public static final String MESSAGE_LOAD_EXCEPTION = "An exception occurred when loading %s.\n"
+            + "Please quit AthletiCLI with `bye` command and fix it manually,\n"
+            + "or start from empty lists by entering any other command.";
 
     /* Help Messages */
     public static final String HELP_ADD_ACTIVITY = CommandName.COMMAND_ACTIVITY
@@ -210,4 +240,11 @@ public class Message {
             + " DATE";
     public static final String HELP_DETAILS =
             "Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.";
+    public static final String ACTIVITY_STORAGE_INVALID_INDICATOR = "Invalid activity indicator, file corrupted.";
+    public static final String ACTIVITY_STORAGE_INVALID_FORMAT = "Invalid activity format, file corrupted.";
+    public static final String MESSAGE_ACTIVITY_EDIT_EMPTY = "You have not specified any changes to the activity.";
+    public static final String MESSAGE_SWIMMINGSTYLE_EMPTY = "The swimming style of an activity cannot be empty!";
+    public static final String MESSAGE_ACTIVITY_INDEX_EMPTY = "The activity index cannot be empty!";
+    public static final String MESSAGE_ACTIVITY_ORDER_INVALID = "The order of the parameters is wrong, please refer " +
+            "to the User Guide for the correct order.";
 }
