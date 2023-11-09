@@ -1,18 +1,14 @@
 ![AthletiCLI Banner with fitness imagery](images/AthletiCLI-Banner.png)
 ---
-# AthletiCLI - User Guide
+layout: page
+title: AthletiCLi User Guide
+---
 *Your all-in-one solution to track, analyse, and optimize your athletic performance.*
 *Designed for the committed athlete, this command-line interface (CLI) tool not only keeps track of your physical 
 activities but also covers dietary habits, sleep metrics, and more.*
 
-Table of Contents
-- [Quick Start](#-quick-start)
-- [Features](#features)
-  - [Activity Management](#-activity-management)
-  - [Diet Management](#-diet-management)
-  - [Sleep Management](#-sleep-management)
-  - [Miscellaneous](#miscellaneous)
-  - [Summary of Commands](#summary-of-commands)
+* Table of Contents
+{:toc}
 
 ## 🚀 Quick Start
 
