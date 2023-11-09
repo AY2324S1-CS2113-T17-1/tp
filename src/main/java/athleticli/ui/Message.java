@@ -118,8 +118,10 @@ public class Message {
     public static final String MESSAGE_DIET_GOAL_OUT_OF_BOUND = "Unable to fetch diet goal. " +
             "Please enter a value from 1 to %d.";
     public static final String MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
-            "to create or edit your diet goals:\n <DAILY/WEEKLY> followed by \"calories\", \"protein\", " +
-            "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100";
+            "to create or edit your diet goals:\n <DAILY/WEEKLY> [unhealthy] followed by \"calories\", \"protein\", " +
+            "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100\n"
+            +"\te.g. WEEKLY unhealthy fats/100";
+    ;
     public static final String MESSAGE_DIET_GOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
             "no repetitions for your diet goal nutrients.";
     public static final String MESSAGE_DIET_GOAL_LOAD_ERROR = "Some error has been encountered " +
