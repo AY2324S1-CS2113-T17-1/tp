@@ -314,11 +314,11 @@ You can create a new daily or weekly diet goal to track your nutrients intake wi
 
 You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
 **Syntax:**
 
-* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FAT]`
+* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`
 
 **Parameters:**
 
@@ -331,9 +331,9 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 * CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer.
 * PROTEIN: Your target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
-* FAT: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
+* FATS: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
 You can create one or multiple nutrient goals at once with this command.
 
@@ -388,7 +388,7 @@ No repetition is allowed. The diet goal needs to be present before any edits is 
 
 **Syntax:**
 
-* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FAT]`
+* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`
 
 **Parameters:**
 
@@ -400,11 +400,11 @@ This flag is used to change goals that are set as unhealthy previously.
 * CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer.
 * PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
-* FAT: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
+* FATS: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
-You can create one or multiple nutrient goals with this command.
+You can edit one or multiple nutrient goals with this command.
 
 **Examples:**
 
@@ -613,8 +613,8 @@ If you forget a command, you can always use the `help` command to see their synt
 | `delete-diet`             | `delete-diet INDEX`                                                                               | INDEX                                                  | `delete-diet 1`                                           |
 | `list-diet`               | `list-diet`                                                                                       | None                                                   | `list-diet`                                               |
 | `find-diet`               | `find-diet date/DATE`                                                                             | DATE                                                   | `find-diet date/2021-09-01`                               |
-| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FAT]`      | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fats/600` |
-| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FAT]`    | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fats/600` |
+| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`     | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fats/600` |
+| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`   | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fats/600` |
 | `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                          | INDEX                                                  | `delete-diet-goal 1`                                      |
 | `list-diet-goal`          | `list-diet-goal`                                                                                  | None                                                   | `list-diet-goal`                                          |
 
