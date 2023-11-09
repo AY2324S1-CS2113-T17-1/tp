@@ -5,18 +5,18 @@ title: User Guide
 
 * Table of Contents
 {:toc}
-
+---
 **AthletiCLI** is your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the
 committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also
 covers dietary habits, sleep metrics, and more.
-
+---
 ## Quick Start
 
 * Ensure you have the required runtime environment installed on your computer.
 * Download the latest AthletiCLI from the official repository.
 * Copy the downloaded file to a folder you want to designate as the home for AthletiCLI.
 * Open a command terminal, cd into the folder where you copied the file, and run `java -jar AthletiCLI.jar` .
-
+---
 ## Features
 
 **Notes about Command Format**
@@ -24,7 +24,7 @@ covers dietary habits, sleep metrics, and more.
 * Words in UPPER_CASE are parameters provided by the user.
 * Parameters need to be specified in the given order unless specified otherwise.
 * Parameters enclosed in square brackets [] are optional.
-
+---
 ## Activity Management
 
 ### Adding Activities
@@ -202,7 +202,7 @@ You can list all your goals in AthletiCLI and see your progress towards them.
 **Examples**
 
 * `list-activity-goal` Lists all your goals.
-
+---
 ## Diet Management
 
 ### Adding Diets
@@ -318,7 +318,7 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
 **Syntax:**
 
-* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
+* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FAT]`
 
 **Parameters:**
 
@@ -356,7 +356,8 @@ This index will be referenced via `list-diet-goal` command.
 
 **Parameters:**
 
-* INDEX: The index of the diet goal to be deleted. It must be a positive integer.
+* INDEX: The index of the diet goal to be deleted. It must be a positive integer and 
+it is bounded by the number of diet goals available.
 
 **Examples:**
 
@@ -387,7 +388,7 @@ No repetition is allowed. The diet goal needs to be present before any edits is 
 
 **Syntax:**
 
-* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
+* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FAT]`
 
 **Parameters:**
 
@@ -395,8 +396,7 @@ No repetition is allowed. The diet goal needs to be present before any edits is 
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
 * unhealthy: This determines if you are trying to get more of this nutrient or less of it. 
-If this flag is placed, it means that you are trying to reduce the intake. Hence, exceeding the target value means 
-that you have not achieved your goal. If this flag is absent, it means that you are trying to increase the intake.
+This flag is used to change goals that are set as unhealthy previously.
 * CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer.
 * PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
@@ -408,11 +408,11 @@ You can create one or multiple nutrient goals with this command.
 
 **Examples:**
 
-* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fat/100` 
+* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fats/100` 
 Edits multiple nutrients goals if all of them exists.
 * `edit-diet-goal WEEKLY calories/5000` 
 Edits a single calories goal if the goal exists.
-
+---
 
 ## Sleep Management
 
@@ -570,10 +570,10 @@ If you forget a command, you can always use the `help` command to see their synt
 * `help` lists the syntax of all commands.
 * `help add-diet` shows the syntax of the `add-diet` command.
 
+---
+## Summary of Commands
 
-# Summary of Commands
-
-## Activity Management
+### Activity Management
 
 | **Command**               | **Syntax**                                                                                    | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
@@ -591,22 +591,22 @@ If you forget a command, you can always use the `help` command to see their synt
 | `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TARGET, PERIOD, VALUE                           | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
 | `list-activity-goal`      | `list-activity-goal`                                                                          | None                                                   | `list-activity-goal`                                       |
 
-## Diet Management
+### Diet Management
 
-| **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
-|---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
-| `add-diet`                | `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`    | CALORIES, PROTEIN, CARB, FAT, DATETIME                 | `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
+| **Command**               | **Syntax**                                                                                        | **Parameters**                                         | **Examples**                                             |
+|---------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
+| `add-diet`                | `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`                  | CALORIES, PROTEIN, CARB, FAT, DATETIME                 | `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
 | `edit-diet`               | `edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]` | INDEX, [CALORIES], [PROTEIN], [CARB], [FAT], [DATETIME] | `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
-| `delete-diet`             | `delete-diet INDEX`                                                                 | INDEX                                                  | `delete-diet 1`                                           |
-| `list-diet`               | `list-diet`                                                                         | None                                                   | `list-diet`                                               |
-| `find-diet`               | `find-diet date/DATE`                                                               | DATE                                                   | `find-diet date/2021-09-01`                               |
-| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]` | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fats/600` |
-| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]` | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fats/600` |
-| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                            | INDEX                                                  | `delete-diet-goal 1`                                      |
-| `list-diet-goal`          | `list-diet-goal`                                                                    | None                                                   | `list-diet-goal`                                          |
+| `delete-diet`             | `delete-diet INDEX`                                                                               | INDEX                                                  | `delete-diet 1`                                           |
+| `list-diet`               | `list-diet`                                                                                       | None                                                   | `list-diet`                                               |
+| `find-diet`               | `find-diet date/DATE`                                                                             | DATE                                                   | `find-diet date/2021-09-01`                               |
+| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FAT]`      | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fats/600` |
+| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FAT]`    | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fats/600` |
+| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                          | INDEX                                                  | `delete-diet-goal 1`                                      |
+| `list-diet-goal`          | `list-diet-goal`                                                                                  | None                                                   | `list-diet-goal`                                          |
 
 
-## Sleep Management
+### Sleep Management
 
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
@@ -616,7 +616,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `edit-sleep`              | `edit-sleep INDEX start/START end/END`                                               | INDEX, START, END                                      | `edit-sleep 1 2023-01-20 02:00 2023-01-20 08:00`         |
 | `find-sleep`              | `find-sleep date/DATE`                                                              | DATE                                                   | `find-sleep date/2021-09-01`                             |
 
-## Miscellaneous
+### Miscellaneous
 
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
