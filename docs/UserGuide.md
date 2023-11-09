@@ -571,6 +571,19 @@ If you forget a command, you can always use the `help` command to see their synt
 * `help add-diet` shows the syntax of the `add-diet` command.
 
 ---
+
+## FAQ
+  **Q: *Am I allowed to update the storage files?***
+
+  **A**: 
+  While it is generally advisable not to edit the contents of the storage file, you do have the option to make updates. 
+  Please exercise caution when doing so. Incorrect edits to the storage file can result in data loss. If AthleticCLI 
+  encounters incorrect format of the file contents, it will prompt you to exit using the 
+  [bye](#exiting-athleticli) command. 
+  Continuing with the program in such cases will lead to the deletion of all data in the file.
+  
+
+---
 ## Summary of Commands
 
 ### Activity Management
