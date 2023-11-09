@@ -21,9 +21,10 @@ public class AddSleepCommand extends Command {
      */
     public AddSleepCommand(Sleep sleep) {
         this.sleep = sleep;
+        logger.fine("Creating AddSleepCommand with sleep: " + sleep.toString());
         assert sleep.getStartDateTime() != null : "Start time cannot be null";
-        assert sleep.getToDateTime() != null : "End time cannot be null";
-        assert sleep.getStartDateTime().isBefore(sleep.getToDateTime()) : "Start time must be before end time";
+        assert sleep.getEndDateTime() != null : "End time cannot be null";
+        assert sleep.getStartDateTime().isBefore(sleep.getEndDateTime()) : "Start time must be before end time";
     }
 
     /**
