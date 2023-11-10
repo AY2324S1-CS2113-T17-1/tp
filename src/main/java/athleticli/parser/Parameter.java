@@ -29,6 +29,10 @@ public class Parameter {
     public static final String TIME_PREFIX = "Time: ";
     public static final String ELEVATION_PREFIX = "Elevation: ";
     public static final String PACE_PREFIX = "Pace: ";
+    public static final String LAPS_PREFIX = "Laps: ";
+    public static final String STYLE_PREFIX = "Style: ";
+    public static final String LAP_TIME_PREFIX = "Lap Time: ";
+    public static final String AVG_LAP_TIME_PREFIX = "Avg. Lap Time: ";
     public static final String SPEED_PREFIX = "Speed: ";
     public static final String AVG_SPEED_PREFIX = "Avg. Speed: ";
     public static final String ACTIVITY_OVERVIEW_SEPARATOR = " | ";
