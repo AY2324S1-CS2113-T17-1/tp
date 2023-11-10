@@ -42,11 +42,12 @@ public class ListActivityCommand extends Command {
      * @return              The message containing listing of activities which will be shown to the user.
      */
     public String[] printList(ActivityList activities, int size) {
-        String[] output = new String[size + 1];
+        String[] output = new String[size + 2];
         output[0] = Message.MESSAGE_ACTIVITY_LIST;
         for (int i = 0; i < size; i++) {
             output[i + 1] = (i + 1) + "." + activities.get(i).toString();
         }
+        output[size + 1] = Message.MESSAGE_ACTIVITY_LIST_END;
         return output;
     }
 

@@ -1,5 +1,6 @@
 package athleticli.parser;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
@@ -302,16 +303,19 @@ public class ActivityParser {
      * @throws AthletiException If the input is not an integer.
      */
     public static int parseDistance(String distance) throws AthletiException {
-        int distanceParsed;
+        BigInteger distanceParsed;
         try {
-            distanceParsed = Integer.parseInt(distance);
+            distanceParsed = new BigInteger(distance);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DISTANCE_INVALID);
         }
-        if (distanceParsed < 0) {
+        if (distanceParsed.compareTo(BigInteger.ZERO) < 0) {
             throw new AthletiException(Message.MESSAGE_DISTANCE_NEGATIVE);
         }
-        return distanceParsed;
+        if (distanceParsed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
+            throw new AthletiException(Message.MESSAGE_DISTANCE_TOO_LARGE);
+        }
+        return distanceParsed.intValue();
     }
 
     /**

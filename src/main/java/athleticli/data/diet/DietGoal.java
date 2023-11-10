@@ -151,6 +151,32 @@ public abstract class DietGoal extends Goal {
     }
 
     /**
+     * Checks if the other diet goals are of the same type.
+     * @param dietGoal
+     * @return
+     */
+    public boolean isSameType(DietGoal dietGoal){
+        return dietGoal.getType().equals(getType());
+    }
+
+    /**
+     * Checks if the other diet goals are of the same nutrient.
+     * @param dietGoal
+     * @return
+     */
+    public boolean isSameNutrient(DietGoal dietGoal){
+        return dietGoal.getNutrient().equals(getNutrient());
+    }
+    /**
+     * Checks if the other diet goals are of the same time span.
+     * @param dietGoal
+     * @return
+     */
+    public boolean isSameTimeSpan(DietGoal dietGoal){
+        return dietGoal.getTimeSpan().getDays() == getTimeSpan().getDays();
+    }
+
+    /**
      * Returns the string representation of the diet goal.
      *
      * @param data A storage class to retrieve diet information.

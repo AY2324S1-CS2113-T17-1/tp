@@ -5,7 +5,6 @@ import athleticli.data.Data;
 
 import athleticli.data.diet.DietGoal;
 import athleticli.data.diet.DietGoalList;
-import athleticli.data.diet.HealthyDietGoal;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
@@ -64,18 +63,15 @@ public class EditDietGoalCommand extends Command {
     private void verifyAllGoalsEditedExist(DietGoalList currentDietGoals) throws AthletiException {
         for (DietGoal userDietGoal : userUpdatedDietGoals) {
             boolean isDietGoalExisted = false;
-            for (DietGoal dietGoal : currentDietGoals) {
-                boolean isNutrientSimilar = userDietGoal.getNutrient().equals(dietGoal.getNutrient());
-                boolean isTimeSpanSimilar = userDietGoal.getTimeSpan().equals(dietGoal.getTimeSpan());
-                boolean isTypeSimilar = userDietGoal instanceof HealthyDietGoal
-                        == dietGoal instanceof HealthyDietGoal;
-                if (isNutrientSimilar && isTimeSpanSimilar) {
-                    if (!isTypeSimilar) {
-                        throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
-                    }
-                    isDietGoalExisted = true;
+            currentDietGoals.isDietGoalTypeValid(userDietGoal);
+
+            if (!currentDietGoals.isDietGoalUnique(userDietGoal)) {
+                if (!currentDietGoals.isDietGoalTypeValid(userDietGoal)) {
+                    throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
                 }
+                isDietGoalExisted = true;
             }
+
             if (!isDietGoalExisted) {
                 throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_NOT_EXISTED,
                         userDietGoal.getNutrient()));

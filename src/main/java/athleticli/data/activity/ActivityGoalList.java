@@ -1,5 +1,6 @@
 package athleticli.data.activity;
 
+import athleticli.data.Goal;
 import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
 import athleticli.parser.ActivityParser;
@@ -43,5 +44,23 @@ public class ActivityGoalList extends StorableList<ActivityGoal> {
         commandArgs += " " + Parameter.PERIOD_SEPARATOR + activityGoal.getTimeSpan();
         commandArgs += " " + Parameter.TARGET_SEPARATOR + activityGoal.getTargetValue();
         return commandArgs;
+    }
+
+    /**
+     * Finds a duplicate activity goal with the same goal type, sport and timespan.
+     *
+     * @param goalType The goal type of the activity goal.
+     * @param sport    The sport of the activity goal.
+     * @param timeSpan The time span of the activity goal.
+     * @return Whether the activity goal is a duplicate.
+     */
+    public boolean findDuplicate(ActivityGoal.GoalType goalType, ActivityGoal.Sport sport, Goal.TimeSpan timeSpan) {
+        for (ActivityGoal activityGoal : this) {
+            if (activityGoal.getGoalType() == goalType && activityGoal.getSport() == sport &&
+                    activityGoal.getTimeSpan() == timeSpan) {
+                return true;
+            }
+        }
+        return false;
     }
 }

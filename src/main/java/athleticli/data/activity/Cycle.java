@@ -77,10 +77,8 @@ public class Cycle extends Activity {
                         elevationGain + " m", columnWidth);
         String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Avg Speed: " +
                         speedOutput, columnWidth);
-        String thirdRow = formatTwoColumns("\tCalories: " + this.getCalories() + " kcal", "Max Speed: " +
-                        "tbd", columnWidth);
 
-        return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
+        return String.join(System.lineSeparator(), header, firstRow, secondRow);
     }
 
     /**
