@@ -2,6 +2,7 @@ package athleticli.parser;
 
 
 public class Parameter {
+    public static final String SPACE = " ";
     public static final String DURATION_SEPARATOR = "duration/";
     public static final String CAPTION_SEPARATOR = "caption/";
     public static final String DISTANCE_SEPARATOR = "distance/";
@@ -13,6 +14,13 @@ public class Parameter {
     public static final String CYCLE_STORAGE_INDICATOR = "[Cycle]:";
     public static final String SWIM_STORAGE_INDICATOR = "[Swim]:";
     public static final String DETAIL_FLAG = "-d";
+    public static final String DISTANCE_UNIT_METERS = " m";
+    public static final String DISTANCE_UNIT_KILOMETERS = " km";
+    public static final String TIME_UNIT_HOURS = "h";
+    public static final String TIME_UNIT_MINUTES = "m";
+    public static final String TIME_UNIT_SECONDS = "s";
+    public static final String DISTANCE_PREFIX = "Distance: ";
+    public static final String TIME_PREFIX = "Time: ";
 
     public static final String CALORIES_SEPARATOR = "calories/";
     public static final String PROTEIN_SEPARATOR = "protein/";
