@@ -37,10 +37,12 @@ public class EditSleepCommand extends Command {
     public String[] execute(Data data) throws AthletiException {
         SleepList sleeps = data.getSleeps();
         try {
+            final Sleep oldSleep = sleeps.get(index-1);
             sleeps.set(index-1, newSleep);
             logger.info("Activity at index " + index + " successfully edited");
-            return new String[]{Message.MESSAGE_SLEEP_EDITED, newSleep.toString(),
-                    String.format(Message.MESSAGE_SLEEP_COUNT, sleeps.size())};
+            return new String[]{Message.MESSAGE_SLEEP_EDITED, 
+                "original: " + oldSleep,
+                "new: " + newSleep};
         } catch (IndexOutOfBoundsException e) {
             throw new AthletiException(Message.ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE);
         }
