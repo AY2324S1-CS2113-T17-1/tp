@@ -109,7 +109,15 @@ detailed information about your activities including evaluations like pace (runn
 **Examples:**
 
 * `list-activity` Shows a brief overview of all activities.
+<p>
+  <img width="100%" src="images/listActivityShowcase.png" alt="List returned by `list-activity`"/>
+</p>
+
 * `list-activity -d` Shows a detailed summary of all activities.
+<p>
+  <img width="60%" src="images/listActivityDetailedShowcase.png" alt="Detailed list returned by `list-activity -d`"/>
+</p>
+
 
 ### ✍️ Editing Activities:
 
