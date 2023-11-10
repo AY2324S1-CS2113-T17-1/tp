@@ -26,6 +26,7 @@ import athleticli.commands.activity.EditActivityCommand;
 import athleticli.commands.activity.FindActivityCommand;
 import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.activity.SetActivityGoalCommand;
+import athleticli.commands.activity.DeleteActivityGoalCommand;
 import athleticli.commands.activity.EditActivityGoalCommand;
 import athleticli.commands.activity.ListActivityGoalCommand;
 import athleticli.exceptions.AthletiException;
@@ -34,6 +35,9 @@ import athleticli.ui.Message;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Defines the basic methods for command parser.
@@ -120,6 +124,8 @@ public class Parser {
             return new FindActivityCommand(parseDate(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_SET:
             return new SetActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_GOAL_DELETE:
+            return new DeleteActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_EDIT:
             return new EditActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_LIST:
@@ -171,6 +177,35 @@ public class Parser {
         } catch (DateTimeParseException e) {
             throw new AthletiException(Message.MESSAGE_DATE_INVALID);
         }
+    }
+
+    /**
+     * Parses the value for a specific marker in a given argument string.
+     *
+     * @param arguments The raw user input containing the arguments.
+     * @param marker    The marker whose value is to be retrieved.
+     * @return The value associated with the given marker, or an empty string if the marker is not found.
+     */
+    public static String getValueForMarker(String arguments, String marker) {
+        String patternString = "";
+
+        if (marker.equals(Parameter.DATETIME_SEPARATOR)) {
+            // Special handling for datetime to capture the date and time
+            patternString = marker + "(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})";
+        } else {
+            // For other markers, capture a sequence of non-whitespace characters
+            patternString = marker + "(\\S+)";
+        }
+
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(patternString);
+        java.util.regex.Matcher matcher = pattern.matcher(arguments);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+
+        // Return empty string if no match is found
+        return "";
     }
 
 }
