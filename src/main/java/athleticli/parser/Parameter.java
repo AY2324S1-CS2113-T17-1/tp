@@ -27,7 +27,7 @@ public class Parameter {
     public static final String TIME_UNIT_SECONDS = "s";
     public static final String DISTANCE_PREFIX = "Distance: ";
     public static final String TIME_PREFIX = "Time: ";
-    public static final String ELEVATION_PREFIX = "Elevation: ";
+    public static final String ELEVATION_PREFIX = "Elevation Gain: ";
     public static final String PACE_PREFIX = "Pace: ";
     public static final String LAPS_PREFIX = "Laps: ";
     public static final String STYLE_PREFIX = "Style: ";
@@ -38,7 +38,7 @@ public class Parameter {
     public static final String ACTIVITY_OVERVIEW_SEPARATOR = " | ";
     public static final int KILOMETER_IN_METERS = 1000;
     public static final int HOUR_IN_SECONDS = 3600;
-    public static final int MINUTES_IN_SECONDS = 60;
+    public static final int MINUTE_IN_SECONDS = 60;
 
     public static final String CALORIES_SEPARATOR = "calories/";
     public static final String PROTEIN_SEPARATOR = "protein/";

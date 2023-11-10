@@ -130,6 +130,7 @@ public class Cycle extends Activity {
 
     /**
      * Sets the distance of the cycle and recalculates the average speed.
+     *
      * @param distance Distance in meters
      */
     @Override
@@ -140,6 +141,7 @@ public class Cycle extends Activity {
 
     /**
      * Sets the moving time of the cycle and recalculates the average speed.
+     *
      * @param movingTime Moving time in LocalTime format
      */
     @Override

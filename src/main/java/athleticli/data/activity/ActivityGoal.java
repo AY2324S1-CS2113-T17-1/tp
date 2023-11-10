@@ -2,6 +2,7 @@ package athleticli.data.activity;
 
 import athleticli.data.Data;
 import athleticli.data.Goal;
+import athleticli.parser.Parameter;
 
 /**
  * Represents an activity goal.
@@ -73,8 +74,7 @@ public class ActivityGoal extends Goal {
      * @return Minutes converted from the given seconds.
      */
     private int convertToMinutes(int seconds) {
-        final int SECONDS_PER_MINUTE = 60;
-        return seconds / SECONDS_PER_MINUTE;
+        return seconds / Parameter.MINUTE_IN_SECONDS;
     }
 
     public void setTargetValue(int targetValue) {

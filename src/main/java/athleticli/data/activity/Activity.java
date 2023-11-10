@@ -8,7 +8,17 @@ import java.util.Locale;
 
 import static athleticli.common.Config.DATE_TIME_FORMATTER;
 import static athleticli.common.Config.TIME_FORMATTER;
-import static athleticli.parser.Parameter.*;
+import static athleticli.parser.Parameter.ACTIVITY_INDICATOR;
+import static athleticli.parser.Parameter.ACTIVITY_OVERVIEW_SEPARATOR;
+import static athleticli.parser.Parameter.DISTANCE_PREFIX;
+import static athleticli.parser.Parameter.DISTANCE_UNIT_KILOMETERS;
+import static athleticli.parser.Parameter.DISTANCE_UNIT_METERS;
+import static athleticli.parser.Parameter.KILOMETER_IN_METERS;
+import static athleticli.parser.Parameter.SPACE;
+import static athleticli.parser.Parameter.TIME_PREFIX;
+import static athleticli.parser.Parameter.TIME_UNIT_HOURS;
+import static athleticli.parser.Parameter.TIME_UNIT_MINUTES;
+import static athleticli.parser.Parameter.TIME_UNIT_SECONDS;
 
 /**
  * Represents a physical activity consisting of basic sports data.

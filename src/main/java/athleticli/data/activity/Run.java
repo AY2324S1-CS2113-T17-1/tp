@@ -35,7 +35,7 @@ public class Run extends Activity {
      * @return average pace of the run in minutes per km. Return 0 if the distance is zero.
      */
     public double calculateAveragePace() {
-        double time = getMovingTime().toSecondOfDay() / (double) Parameter.MINUTES_IN_SECONDS;
+        double time = getMovingTime().toSecondOfDay() / (double) Parameter.MINUTE_IN_SECONDS;
         double distance = getDistance() / (double) Parameter.KILOMETER_IN_METERS;
 
         if (distance == 0) {
@@ -51,9 +51,9 @@ public class Run extends Activity {
      * @return average pace of run in mm:ss format
      */
     public String convertAveragePaceToString() {
-        int totalSeconds = (int) Math.round(averagePace * Parameter.MINUTES_IN_SECONDS);
-        int minutes = totalSeconds / Parameter.MINUTES_IN_SECONDS;
-        int seconds = totalSeconds % Parameter.MINUTES_IN_SECONDS;
+        int totalSeconds = (int) Math.round(averagePace * Parameter.MINUTE_IN_SECONDS);
+        int minutes = totalSeconds / Parameter.MINUTE_IN_SECONDS;
+        int seconds = totalSeconds % Parameter.MINUTE_IN_SECONDS;
         return String.format(PACE_PRINT_FORMAT, minutes, seconds);
     }
 
@@ -122,6 +122,7 @@ public class Run extends Activity {
 
     /**
      * Sets the distance of the run and recalculates the average pace.
+     *
      * @param distance Distance in meters
      */
     @Override
@@ -132,6 +133,7 @@ public class Run extends Activity {
 
     /**
      * Sets the moving time of the run and recalculates the average pace.
+     *
      * @param movingTime Moving time
      */
     @Override
