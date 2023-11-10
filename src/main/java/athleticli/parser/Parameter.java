@@ -3,6 +3,10 @@ package athleticli.parser;
 
 public class Parameter {
     public static final String SPACE = " ";
+    public static final String ACTIVITY_INDICATOR = "[Activity]";
+    public static final String RUN_INDICATOR = "[Run]";
+    public static final String CYCLE_INDICATOR = "[Cycle]";
+    public static final String SWIM_INDICATOR = "[Swim]";
     public static final String DURATION_SEPARATOR = "duration/";
     public static final String CAPTION_SEPARATOR = "caption/";
     public static final String DISTANCE_SEPARATOR = "distance/";
@@ -16,11 +20,18 @@ public class Parameter {
     public static final String DETAIL_FLAG = "-d";
     public static final String DISTANCE_UNIT_METERS = " m";
     public static final String DISTANCE_UNIT_KILOMETERS = " km";
+    public static final String SPEED_UNIT_KILOMETERS_PER_HOUR = " km/h";
     public static final String TIME_UNIT_HOURS = "h";
     public static final String TIME_UNIT_MINUTES = "m";
     public static final String TIME_UNIT_SECONDS = "s";
     public static final String DISTANCE_PREFIX = "Distance: ";
     public static final String TIME_PREFIX = "Time: ";
+    public static final String ELEVATION_PREFIX = "Elevation: ";
+    public static final String SPEED_PREFIX = "Speed: ";
+    public static final String AVG_SPEED_PREFIX = "Avg. Speed: ";
+    public static final String ACTIVITY_OVERVIEW_SEPARATOR = " | ";
+    public static final int KILOMETER_IN_METERS = 1000;
+    public static final int HOUR_IN_SECONDS = 3600;
 
     public static final String CALORIES_SEPARATOR = "calories/";
     public static final String PROTEIN_SEPARATOR = "protein/";

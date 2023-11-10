@@ -86,13 +86,11 @@ public class Run extends Activity {
         String distanceOutput = generateDistanceStringOutput();
         String paceOutput = this.convertAveragePaceToString() + " /km";
 
-        int columnWidth = getColumnWidth();
-
         String header = "[Run - " + this.getCaption() + " - " + startDateTimeOutput + "]";
         String firstRow = formatTwoColumns("\t" + distanceOutput, "Avg Pace: " + paceOutput,
-                columnWidth);
+                COLUMN_WIDTH);
         String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Elevation Gain: " +
-                elevationGain + " m", columnWidth);
+                elevationGain + " m", COLUMN_WIDTH);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow);
     }

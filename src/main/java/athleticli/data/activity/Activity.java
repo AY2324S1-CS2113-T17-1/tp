@@ -8,23 +8,14 @@ import java.util.Locale;
 
 import static athleticli.common.Config.DATE_TIME_FORMATTER;
 import static athleticli.common.Config.TIME_FORMATTER;
-import static athleticli.parser.Parameter.DISTANCE_PREFIX;
-import static athleticli.parser.Parameter.DISTANCE_UNIT_KILOMETERS;
-import static athleticli.parser.Parameter.DISTANCE_UNIT_METERS;
-import static athleticli.parser.Parameter.SPACE;
-import static athleticli.parser.Parameter.TIME_PREFIX;
-import static athleticli.parser.Parameter.TIME_UNIT_HOURS;
-import static athleticli.parser.Parameter.TIME_UNIT_MINUTES;
-import static athleticli.parser.Parameter.TIME_UNIT_SECONDS;
+import static athleticli.parser.Parameter.*;
 
 /**
  * Represents a physical activity consisting of basic sports data.
  */
 public class Activity {
-    private static final int columnWidth = 40;
-    private static final int KILOMETER_IN_METERS = 1000;
+    public static final int COLUMN_WIDTH = 40;
     private static final String DISTANCE_PRINT_FORMAT = "%.2f";
-    private static final String OVERVIEW_SEPARATOR = " | ";
     private String caption;
     private LocalTime movingTime;
     private int distance;
@@ -61,10 +52,6 @@ public class Activity {
         return startDateTime;
     }
 
-    public int getColumnWidth() {
-        return columnWidth;
-    }
-
     /**
      * Returns a single line summary of the activity.
      *
@@ -76,8 +63,9 @@ public class Activity {
         String distanceOutput = generateDistanceStringOutput();
         String startDateTimeOutput = generateStartDateTimeStringOutput();
 
-        String output = String.join(OVERVIEW_SEPARATOR, caption, distanceOutput, movingTimeOutput, startDateTimeOutput);
-        return "[Activity] " + output;
+        String output = String.join(ACTIVITY_OVERVIEW_SEPARATOR, caption, distanceOutput, movingTimeOutput,
+                startDateTimeOutput);
+        return ACTIVITY_INDICATOR + SPACE + output;
     }
 
     /**
@@ -146,8 +134,8 @@ public class Activity {
         String movingTimeOutput = generateMovingTimeStringOutput();
         String distanceOutput = generateDistanceStringOutput();
 
-        String header = "[Activity - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, columnWidth);
+        String header = "[Activity - " + getCaption() + " - " + startDateTimeOutput + "]";
+        String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, COLUMN_WIDTH);
 
         return String.join(System.lineSeparator(), header, firstRow);
     }

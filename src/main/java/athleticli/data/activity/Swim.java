@@ -83,12 +83,11 @@ public class Swim extends Activity {
         String movingTimeOutput = generateMovingTimeStringOutput();
         String distanceOutput = generateDistanceStringOutput();
 
-        int columnWidth = getColumnWidth();
         String header = "[Swim - " + this.getCaption() + " - " + startDateTimeOutput + "]";
-        String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, columnWidth);
+        String firstRow = formatTwoColumns("\t" + distanceOutput, movingTimeOutput, COLUMN_WIDTH);
         String secondRow = formatTwoColumns("\tLaps: " + this.getLaps(), "Style: "
-                + this.getStyle(), columnWidth);
-        String thirdRow = formatTwoColumns("\tAvg Lap Time: " + averageLapTime + " s", "", columnWidth);
+                + this.getStyle(), COLUMN_WIDTH);
+        String thirdRow = formatTwoColumns("\tAvg Lap Time: " + averageLapTime + " s", "", COLUMN_WIDTH);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow, thirdRow);
     }
