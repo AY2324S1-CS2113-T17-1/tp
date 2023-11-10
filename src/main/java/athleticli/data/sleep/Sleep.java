@@ -3,7 +3,6 @@ package athleticli.data.sleep;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import athleticli.exceptions.AthletiException;
 
@@ -17,7 +16,7 @@ public class Sleep {
     private final LocalDateTime startDateTime;
     private final LocalDateTime endDateTime;
 
-    private LocalTime sleepingDuration;
+    private Duration sleepingDuration;
 
     private final LocalDate sleepDate;
 
@@ -47,7 +46,7 @@ public class Sleep {
         return sleepDate;
     }
 
-    public LocalTime getSleepingTime() {
+    public Duration getSleepingDuration() {
         return sleepingDuration;
     }
 
@@ -58,16 +57,15 @@ public class Sleep {
      * @return sleeping duration.
      * @throws AthletiException If any invalid input is provided.
      */
-    private LocalTime calculateSleepingDuration() throws AthletiException {
+    private Duration calculateSleepingDuration() throws AthletiException {
         if (startDateTime == null || endDateTime == null) {
             throw new AthletiException("Cannot calculate duration with null start/end time");
         }
         Duration duration = Duration.between(startDateTime, endDateTime);
-        long seconds = duration.getSeconds();
-        if (duration.toMinutes() < 1 || duration.toDays() > 7) {
+        if (duration.toMinutes() < 1 || duration.toDays() >= 7) {
             throw new AthletiException("Invalid sleep duration: less than 1 minute or more than 7 days");
         }
-        return LocalTime.ofSecondOfDay(seconds);
+        return duration;
     }
 
     /**
@@ -99,12 +97,18 @@ public class Sleep {
     }
 
     public String generateSleepingDurationStringOutput() {
+        Duration tempDuration = sleepingDuration;
         String sleepingDurationOutput = "";
-        if (sleepingDuration.getHour() != 0) {
-            sleepingDurationOutput += sleepingDuration.getHour() + " Hours ";
+        if (tempDuration.toDays() != 0) {
+            sleepingDurationOutput += tempDuration.toDays() + " Days ";
+            tempDuration = tempDuration.minusDays(tempDuration.toDays());
         }
-        if (sleepingDuration.getMinute() != 0) {
-            sleepingDurationOutput += sleepingDuration.getMinute() + " Minutes";
+        if (tempDuration.toHours() != 0) {
+            sleepingDurationOutput += tempDuration.toHours() + " Hours ";
+            tempDuration = tempDuration.minusHours(tempDuration.toHours());
+        }
+        if (tempDuration.toMinutes() != 0) {
+            sleepingDurationOutput += tempDuration.toMinutes() + " Minutes ";
         }
         return "Sleeping Duration: " + sleepingDurationOutput;
     }

@@ -29,8 +29,7 @@ public class SleepTest {
 
     @Test
     public void testCalculateSleepingDuration() {
-        assertEquals(8, sleep.getSleepingTime().getHour());
-        assertEquals(0, sleep.getSleepingTime().getMinute());
+        assertEquals(8, sleep.getSleepingDuration().toHours());
     }
 
     @Test
