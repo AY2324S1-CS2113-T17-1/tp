@@ -125,7 +125,7 @@ public class Parser {
         case CommandName.COMMAND_ACTIVITY_GOAL_SET:
             return new SetActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_DELETE:
-            return new DeleteActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
+            return new DeleteActivityGoalCommand(ActivityParser.parseDeleteActivityGoal(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_EDIT:
             return new EditActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_LIST:

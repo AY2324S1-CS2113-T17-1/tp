@@ -15,6 +15,8 @@ import athleticli.data.activity.Swim;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+import static athleticli.parser.Parser.getValueForMarker;
+
 public class ActivityParser {
     //@@author  AlWo223
     /**
@@ -624,6 +626,33 @@ public class ActivityParser {
         final int targetParsed = parseTarget(target);
 
         return new ActivityGoal(periodParsed, typeParsed, sportParsed, targetParsed);
+    }
+
+    /**
+     * Parses the raw user input for deleting an activity goal and returns the corresponding activity goal
+     * object.
+     *
+     * @param commandArgs The raw user input containing the arguments.
+     * @return activityGoal     An object representing the activity goal.
+     * @throws AthletiException If the input format is invalid.
+     */
+    public static ActivityGoal parseDeleteActivityGoal(String commandArgs) throws AthletiException {
+        final String sport = getValueForMarker(commandArgs, Parameter.SPORT_SEPARATOR);
+        if (sport.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_SPORT_MISSING);
+        }
+        final String type = getValueForMarker(commandArgs, Parameter.TYPE_SEPARATOR);
+        if (type.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_TYPE_MISSING);
+        }
+        final String period = getValueForMarker(commandArgs, Parameter.PERIOD_SEPARATOR);
+        if (period.isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_ACTIVITYGOAL_PERIOD_MISSING);
+        }
+        final ActivityGoal.Sport sportParsed = parseSport(sport);
+        final ActivityGoal.GoalType typeParsed = parseGoalType(type);
+        final Goal.TimeSpan periodParsed = parsePeriod(period);
+        return new ActivityGoal(periodParsed, typeParsed, sportParsed, 0);
     }
 
     /**
