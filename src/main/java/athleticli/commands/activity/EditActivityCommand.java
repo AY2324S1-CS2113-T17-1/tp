@@ -72,7 +72,7 @@ public class EditActivityCommand extends Command {
                 Swim swim = (Swim) activity;
                 swim.setStyle(activityChanges.getSwimmingStyle());
             }
-
+            activities.sort();
             logger.log(java.util.logging.Level.INFO, "Activity at index " + index + "successfully edited");
             return new String[]{Message.MESSAGE_ACTIVITY_UPDATED, activity.toString(),
                     String.format(Message.MESSAGE_ACTIVITY_COUNT, activities.size())};

@@ -5,6 +5,8 @@ import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ActivityGoalListTest {
@@ -13,11 +15,6 @@ class ActivityGoalListTest {
     @BeforeEach
     void setUp() {
         activityGoalList = new ActivityGoalList();
-    }
-
-    @Test
-    void parse() {
-
     }
 
     @Test
@@ -60,6 +57,26 @@ class ActivityGoalListTest {
         assertEquals(expected.getSport(), actual.getSport());
         assertEquals(expected.getTargetValue(), actual.getTargetValue());
         assertEquals(expected.getTimeSpan(), actual.getTimeSpan());
+    }
+
+    @Test
+    void findDuplicate_noDuplicate_false() {
+        ActivityGoal goal = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
+                ActivityGoal.Sport.RUNNING, 10000);
+        activityGoalList.add(goal);
+        boolean actual = activityGoalList.findDuplicate(ActivityGoal.GoalType.DISTANCE, ActivityGoal.Sport.RUNNING,
+                TimeSpan.MONTHLY);
+        assertFalse(actual);
+    }
+
+    @Test
+    void findDuplicate_duplicate_true() {
+        ActivityGoal goal = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
+                ActivityGoal.Sport.RUNNING, 10000);
+        activityGoalList.add(goal);
+        boolean actual = activityGoalList.findDuplicate(ActivityGoal.GoalType.DISTANCE, ActivityGoal.Sport.RUNNING,
+                TimeSpan.WEEKLY);
+        assertTrue(actual);
     }
 
 }
