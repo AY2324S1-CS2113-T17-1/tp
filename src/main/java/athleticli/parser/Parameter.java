@@ -5,7 +5,6 @@ public class Parameter {
     /*  For Sleep and Activity */
     public static final String START_TIME_SEPARATOR = "start/";
     public static final String END_TIME_SEPARATOR = "end/";
-    public static final String INDEX_SEPARATOR = "index/";
 
     /* For Acitivity */
     public static final String SPORT_SEPARATOR = "sport/";
