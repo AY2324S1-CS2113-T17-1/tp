@@ -70,11 +70,12 @@ class ActivityGoalListTest {
     }
 
     @Test
-    void findDuplicate_Duplicate_true() {
+    void findDuplicate_duplicate_true() {
         ActivityGoal goal = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
                 ActivityGoal.Sport.RUNNING, 10000);
         activityGoalList.add(goal);
-        boolean actual = activityGoalList.findDuplicate(ActivityGoal.GoalType.DISTANCE, ActivityGoal.Sport.RUNNING, TimeSpan.WEEKLY);
+        boolean actual = activityGoalList.findDuplicate(ActivityGoal.GoalType.DISTANCE, ActivityGoal.Sport.RUNNING,
+                TimeSpan.WEEKLY);
         assertTrue(actual);
     }
 

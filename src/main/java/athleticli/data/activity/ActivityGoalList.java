@@ -56,7 +56,8 @@ public class ActivityGoalList extends StorableList<ActivityGoal> {
      */
     public boolean findDuplicate(ActivityGoal.GoalType goalType, ActivityGoal.Sport sport, Goal.TimeSpan timeSpan) {
         for (ActivityGoal activityGoal : this) {
-            if (activityGoal.getGoalType() == goalType && activityGoal.getSport() == sport && activityGoal.getTimeSpan() == timeSpan) {
+            if (activityGoal.getGoalType() == goalType && activityGoal.getSport() == sport &&
+                    activityGoal.getTimeSpan() == timeSpan) {
                 return true;
             }
         }
