@@ -44,12 +44,8 @@ public class SleepParser {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_DATETIME);
         }
 
-        if (startDatetime.isEqual(endDatetime)) {
-            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_START_END_SAME);
-        }
-
-        if (startDatetime.isAfter(endDatetime)) {
-            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START);
+        if (startDatetime.isEqual(endDatetime) || startDatetime.isAfter(endDatetime)) {
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_START_END_NON_CHRONOLOGICAL);
         }
 
         return new Sleep(startDatetime, endDatetime);

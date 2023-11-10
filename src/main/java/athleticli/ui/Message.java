@@ -169,10 +169,8 @@ public class Message {
     
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
             "Please specify both the start and end time of your sleep.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START =
-            "Please specify the start time of your sleep before the end time.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_START_END_SAME =
-            "Please specify the start time of your sleep before the end time.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_START_END_NON_CHRONOLOGICAL =
+            "Please specify the start time of your sleep chronologically before the end time.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATETIME =
             "Please specify the start and end time of your sleep in the format \"yyyy-MM-dd HH:mm\".";
     
