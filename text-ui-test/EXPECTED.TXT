@@ -207,22 +207,6 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The index of the sleep record you want to edit is out of bounds.
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! Please specify the index of the sleep record you want to edit as a positive integer.
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The index of the sleep record you want to edit is out of bounds.
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! Please specify the index of the sleep record you want to edit as a positive integer.
-____________________________________________________________
-
-> ____________________________________________________________
  Here are the sleep records in your list:
 
  1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
