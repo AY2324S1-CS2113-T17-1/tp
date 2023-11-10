@@ -32,6 +32,8 @@ public class CommandName {
     public static final String COMMAND_CYCLE_EDIT = "edit-cycle";
     public static final String COMMAND_SWIM_EDIT = "edit-swim";
     public static final String COMMAND_ACTIVITY_GOAL_SET = "set-activity-goal";
+    public static final String COMMAND_ACTIVITY_GOAL_DELETE = "delete-activity-goal";
+
     public static final String COMMAND_ACTIVITY_GOAL_EDIT = "edit-activity-goal";
     public static final String COMMAND_ACTIVITY_GOAL_LIST = "list-activity-goal";
 

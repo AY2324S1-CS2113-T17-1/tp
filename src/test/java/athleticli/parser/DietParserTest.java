@@ -2,7 +2,6 @@ package athleticli.parser;
 
 import static athleticli.parser.DietParser.checkEmptyDietArguments;
 import static athleticli.parser.DietParser.checkMissingDietArguments;
-import static athleticli.parser.DietParser.getValueForMarker;
 import static athleticli.parser.DietParser.parseCalories;
 import static athleticli.parser.DietParser.parseCarb;
 import static athleticli.parser.DietParser.parseDiet;
@@ -216,36 +215,6 @@ public class DietParserTest {
     void parseFat_negativeIntegerInput_throwAthletiException() {
         String nonIntegerInput = "-1";
         assertThrows(AthletiException.class, () -> parseFat(nonIntegerInput));
-    }
-
-    @Test
-    void getValueForMarker_validInput_returnValue() {
-        String validInput = "2 calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
-        String caloriesActual = getValueForMarker(validInput, Parameter.CALORIES_SEPARATOR);
-        String proteinActual = getValueForMarker(validInput, Parameter.PROTEIN_SEPARATOR);
-        String carbActual = getValueForMarker(validInput, Parameter.CARB_SEPARATOR);
-        String fatActual = getValueForMarker(validInput, Parameter.FAT_SEPARATOR);
-        String datetimeActual = getValueForMarker(validInput, Parameter.DATETIME_SEPARATOR);
-        assertEquals("1", caloriesActual);
-        assertEquals("2", proteinActual);
-        assertEquals("3", carbActual);
-        assertEquals("4", fatActual);
-        assertEquals("2023-10-06 10:00", datetimeActual);
-    }
-
-    @Test
-    void getValueForMarker_invalidInput_returnEmptyString() {
-        String invalidInput = "2 calorie/1 proteins/2 carbs/3 fats/4 datetime/2023-10-06";
-        String caloriesActual = getValueForMarker(invalidInput, Parameter.CALORIES_SEPARATOR);
-        String proteinActual = getValueForMarker(invalidInput, Parameter.PROTEIN_SEPARATOR);
-        String carbActual = getValueForMarker(invalidInput, Parameter.CARB_SEPARATOR);
-        String fatActual = getValueForMarker(invalidInput, Parameter.FAT_SEPARATOR);
-        String datetimeActual = getValueForMarker(invalidInput, Parameter.DATETIME_SEPARATOR);
-        assertEquals("", caloriesActual);
-        assertEquals("", proteinActual);
-        assertEquals("", carbActual);
-        assertEquals("", fatActual);
-        assertEquals("", datetimeActual);
     }
 
     @Test
