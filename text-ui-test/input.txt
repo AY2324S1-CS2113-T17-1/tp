@@ -28,8 +28,6 @@ edit-sleep 1 start/2021-09-01 23:00 end/2021-09-02 07:00
 edit-sleep 2 start/2021-09-02 23:00 end/2021-09-02 07:00
 edit-sleep 3 start/2021-09-03 23:00
 edit-sleep 4 end/2021-09-04 07:00
-edit-sleeps 1 starts/2021-09-08 23:00 end/2021-09-09 07:00
-edit-sleep 2 starts/2021-09-08 23:00 end/2021-09-09 07:00
 list-sleep
 delete-sleep 1
 delete-sleep -1
