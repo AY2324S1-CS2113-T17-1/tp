@@ -16,7 +16,7 @@ public class ActivityChanges {
     private SwimmingStyle swimmingStyle;
 
     /**
-     * Constructor for ActivityChanges.
+     * Constructs an empty ActivityChanges object.
      */
     public ActivityChanges() {
 
