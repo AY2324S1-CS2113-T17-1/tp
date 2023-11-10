@@ -73,7 +73,7 @@ public class Parser {
         final String commandArgs = commandTypeAndParams[1];
         switch (commandType) {
         
-            /* General */
+        /* General */
         case CommandName.COMMAND_BYE:
             return new ByeCommand();
         case CommandName.COMMAND_HELP:
