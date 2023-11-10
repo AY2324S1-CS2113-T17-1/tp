@@ -205,6 +205,27 @@ You can list all your goals in AthletiCLI and see your progress towards them.
 
 * `list-activity-goal` Lists all your goals.
 
+### ➖ Deleting Activity Goals:
+
+`delete-activity-goal`
+
+You can delete your goals in AthletiCLI by mentioning the sport, target, and period of the goal you want to delete.
+
+**Syntax**
+
+* `delete-activity-goal sport/SPORT target/TARGET period/PERIOD`
+
+**Parameters**
+
+* SPORT: The sport for which you want to set a goal. It must be one of the following: running, swimming, cycling, general.
+* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, yearly.
+
+**Examples**
+
+* `delete-activity-goal sport/running type/distance period/weekly` Deletes the goal of running distance per week.
+* `delete-activity-goal sport/swimming type/duration period/monthly` Deletes the goal of swimming duration per month.
+
 ## 🍏 Diet Management
 
 - [Adding Diets](#-adding-diets)
