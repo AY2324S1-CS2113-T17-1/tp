@@ -32,7 +32,6 @@ public class Cycle extends Activity {
 
     /**
      * Calculates the average speed of the cycle in km/h.
-     * The distance is expected in meters and the movingTime in seconds.
      *
      * @return average speed of the cycle in km/h. Return 0 if the movingTime is zero.
      */
@@ -141,7 +140,7 @@ public class Cycle extends Activity {
 
     /**
      * Sets the moving time of the cycle and recalculates the average speed.
-     * @param movingTime Moving time in minutes
+     * @param movingTime Moving time in LocalTime format
      */
     @Override
     public void setMovingTime(LocalTime movingTime) {
