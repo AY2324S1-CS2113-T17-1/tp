@@ -32,7 +32,8 @@ public class SleepParser {
         final String endDatetimeStr =
                 commandArgs.substring(endDatetimeIndex + Parameter.END_TIME_SEPARATOR.length()).trim();
 
-        if (startDatetimeStr == null || startDatetimeStr.isEmpty() || endDatetimeStr == null || endDatetimeStr.isEmpty()) {
+        if (startDatetimeStr == null || startDatetimeStr.isEmpty() 
+            || endDatetimeStr == null || endDatetimeStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
@@ -55,11 +56,7 @@ public class SleepParser {
     }
 
     public static int parseSleepIndex(String commandArgs) throws AthletiException {
-        final int indexSeparatorIndex = commandArgs.indexOf(Parameter.INDEX_SEPARATOR);
-        if (indexSeparatorIndex == -1) {
-            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_INDEX);
-        }
-        final String indexStr = commandArgs.substring(indexSeparatorIndex + Parameter.INDEX_SEPARATOR.length()).trim();
+        final String indexStr = commandArgs.split("(?<=\\d)(?=\\D)", 2)[0].trim();
         if (indexStr == null || indexStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_INDEX);
         }
