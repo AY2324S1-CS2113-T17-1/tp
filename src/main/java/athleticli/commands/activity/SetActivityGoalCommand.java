@@ -26,7 +26,7 @@ public class SetActivityGoalCommand extends Command {
     @Override
     public String[] execute(Data data) throws AthletiException {
         ActivityGoalList activityGoals = data.getActivityGoals();
-        if(activityGoals.findDuplicate(this.activityGoal.getGoalType(), this.activityGoal.getSport(),
+        if(activityGoals.isDuplicate(this.activityGoal.getGoalType(), this.activityGoal.getSport(),
                 this.activityGoal.getTimeSpan())) {
             throw new AthletiException(Message.MESSAGE_DUPLICATE_ACTIVITY_GOAL);
         }
