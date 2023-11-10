@@ -197,8 +197,8 @@ public class Parser {
             patternString = marker + "(\\S+)";
         }
 
-        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(patternString);
-        java.util.regex.Matcher matcher = pattern.matcher(arguments);
+        Pattern pattern = Pattern.compile(patternString);
+        Matcher matcher = pattern.matcher(arguments);
 
         if (matcher.find()) {
             return matcher.group(1);
