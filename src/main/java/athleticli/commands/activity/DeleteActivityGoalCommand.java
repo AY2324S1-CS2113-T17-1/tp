@@ -42,7 +42,7 @@ public class DeleteActivityGoalCommand extends Command {
     public String[] execute(Data data) throws AthletiException {
         ActivityGoalList activityGoals = data.getActivityGoals();
         String activityGoalString = "";
-        if (!activityGoals.findDuplicate(this.goalType, this.sport, this.timeSpan)) {
+        if (!activityGoals.isDuplicate(this.goalType, this.sport, this.timeSpan)) {
             throw new AthletiException(Message.MESSAGE_NO_SUCH_GOAL_EXISTS);
         }
         for (int i = 0; i < activityGoals.size(); i++) {
