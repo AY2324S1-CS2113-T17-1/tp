@@ -68,6 +68,34 @@ public class DietGoalList extends StorableList<DietGoal> {
     }
 
     /**
+     * Checks if the diet goals in the list follow the order where the longer the time span,
+     * the greater the target value.
+     *
+     * @return boolean value indicating that the target value is larger for similar diet goals with longer time span.
+     */
+    public boolean isTargetValueConsistentWithTimeSpan(DietGoal newDietGoal) {
+        DietGoal storedDietGoal;
+        for (int i = 0; i < size(); i++) {
+            storedDietGoal = get(i);
+            if (!storedDietGoal.isSameNutrient(newDietGoal)) {
+                continue;
+            }
+            boolean isTimeSpanGreater =
+                    storedDietGoal.getTimeSpan().getDays() > newDietGoal.getTimeSpan().getDays();
+            boolean isTimeSpanEqual = storedDietGoal.getTimeSpan().getDays() == newDietGoal.getTimeSpan().getDays();
+            boolean isTargetValueGreater = storedDietGoal.getTargetValue() > newDietGoal.getTargetValue();
+            //Goals with the same time span can take on different values due to goal editing.
+            if (isTimeSpanEqual) {
+                continue;
+            }
+            if (isTimeSpanGreater != isTargetValueGreater) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
      * Parses a diet goal from a string.
      *
      * @param s The string to be parsed.
