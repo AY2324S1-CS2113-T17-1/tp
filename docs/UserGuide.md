@@ -24,6 +24,9 @@ activities but also covers dietary habits, sleep metrics, and more.*
 * Parameters need to be specified in the given order unless specified otherwise.
 * Parameters enclosed in square brackets [] are optional.
 
+**Notes about lack of Goal Delete for Sleep and Activity**
+* Our team will be implementing the delete goal feature for sleep and activity in the next version of AthletiCLI.
+
 ## 🏃 Activity Management
 
 - [Adding Activities](#-adding-activities)
