@@ -16,6 +16,8 @@ public class Message {
             "Please specify the activity distance using \"distance/\"!";
     public static final String MESSAGE_DATETIME_MISSING =
             "Please specify date and time of the activity using \"datetime/\"!";
+    public static final String MESSAGE_EMPTY_ACTIVITY_LIST = "You have not tracked any activities yet! Time to do " +
+            "some sports!";
     public static final String MESSAGE_CALORIES_MISSING =
             "Please specify the calories burned using \"calories/\"!";
     public static final String MESSAGE_ACTIVITYGOAL_SPORT_MISSING = "Please specify the sport using \"sport/\"!";
