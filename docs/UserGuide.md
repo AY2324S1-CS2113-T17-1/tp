@@ -660,6 +660,8 @@ If you forget a command, you can always use the `help` command to see their synt
 
 ### Sleep Management
 
+#### Order of parameters is fixed, and are all non optional.
+
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
 | `add-sleep`               | `add-sleep start/START end/END`                                                      | START, END                                             | `add-sleep start/2023-01-20 02:00 end/2023-01-20 08:00` |
