@@ -296,7 +296,7 @@ ____________________________________________________________
  1. yearly duration : 57600/8 minutes
  2. monthly duration : 57600/800 minutes
  3. daily duration : 0/800 minutes
- 4. weekly duration : 57600/8 minutes
+ 4. weekly duration : 28800/8 minutes
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -309,7 +309,7 @@ ____________________________________________________________
  1. yearly duration : 57600/8 minutes
  2. monthly duration : 57600/8 minutes
  3. daily duration : 0/800 minutes
- 4. weekly duration : 57600/8 minutes
+ 4. weekly duration : 28800/8 minutes
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -412,7 +412,7 @@ ____________________________________________________________
 
 	3. [HEALTHY]  DAILY protein intake progress: (0/1)
 
-	4. [UNHEALTHY] [Not Achieved] WEEKLY carb intake progress: (5000/1)
+	4. [UNHEALTHY]  WEEKLY carb intake progress: (0/1)
 
  Now you have 4 diet goal(s).
 ____________________________________________________________
@@ -472,7 +472,7 @@ ____________________________________________________________
 
 	2. [HEALTHY]  DAILY calories intake progress: (0/1)
 
-	3. [UNHEALTHY] [Not Achieved] WEEKLY carb intake progress: (5000/1)
+	3. [UNHEALTHY]  WEEKLY carb intake progress: (0/1)
 
  Now you have 3 diet goal(s).
 ____________________________________________________________
@@ -507,7 +507,7 @@ ____________________________________________________________
 
  	1. [HEALTHY]  DAILY calories intake progress: (0/1)
 
-	2. [UNHEALTHY] [Not Achieved] WEEKLY carb intake progress: (5000/1000)
+	2. [UNHEALTHY]  WEEKLY carb intake progress: (0/1000)
 
  Now you have 2 diet goal(s).
 ____________________________________________________________
