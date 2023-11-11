@@ -170,8 +170,10 @@ that all parameters are provided correctly and no exception is thrown, a new act
 This diagram illustrates the activity parsing process in more detail:
 One of the key data component in the parsing process is the `ActivityChanges` object. It is used for storing the 
 different attributes of the activity that are to be added. Later, the `ActivityParser` will use the `ActivityChanges`
-to create the `Activity` object. This way of transferring data between the parser and the activity is more flexible 
-which becomes especially useful when editing activities of different types.
+to create the `Activity` object. 
+> This way of transferring data between the parser and the activity is more flexible which is suitable for future 
+extensions of the activity types and allows a more modular design. This design and most of the methods can be reused 
+for the `edit-activity` mechanism, which works in the same way with slight modifications due to optional parameters.
 
 <p align="center" >
   <img width="100%" src="images/ActivityParsing.svg" alt="Activity Parsing Process"/>
