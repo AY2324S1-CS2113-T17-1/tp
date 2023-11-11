@@ -60,5 +60,7 @@ public class Parameter {
     public static final String NUTRIENTS_PROTEIN = "protein";
     public static final String NUTRIENTS_FATS = "fats";
     public static final String NUTRIENTS_CARB = "carb";
+    public static final String UNHEALTHY_DIET_GOAL_FLAG = "unhealthy";
+    public static final String DIET_GOAL_COMMAND_VALUE_SEPARATOR = "/";
 
 }

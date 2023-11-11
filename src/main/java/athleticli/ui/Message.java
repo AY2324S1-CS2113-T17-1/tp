@@ -17,6 +17,8 @@ public class Message {
             "Please specify the activity distance using \"distance/\"!";
     public static final String MESSAGE_DATETIME_MISSING =
             "Please specify date and time of the activity using \"datetime/\"!";
+    public static final String MESSAGE_EMPTY_ACTIVITY_LIST = "You have not tracked any activities yet! Time to do " +
+            "some sports!";
     public static final String MESSAGE_CALORIES_MISSING =
             "Please specify the calories burned using \"calories/\"!";
     public static final String MESSAGE_ACTIVITYGOAL_SPORT_MISSING = "Please specify the sport using \"sport/\"!";
@@ -131,7 +133,9 @@ public class Message {
     public static final String MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
             "to create or edit your diet goals:\n <DAILY/WEEKLY> [unhealthy] followed by \"calories\", \"protein\", " +
             "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100\n"
-            +"\te.g. WEEKLY unhealthy fats/100";
+            + "\te.g. WEEKLY unhealthy fats/100";
+    public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_SCALING_WITH_TIME_SPAN =
+            "Please ensure your weekly diet goal target value is greater than your daily diet goal target value!";
     public static final String MESSAGE_DIET_GOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
             "no repetitions for your diet goal nutrients.";
     public static final String MESSAGE_DIET_GOAL_LOAD_ERROR = "Some error has been encountered " +
@@ -197,7 +201,7 @@ public class Message {
             "Please specify the type of your sleep goal as \"duration\".";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PERIOD =
             "The period must be one of the " +
-            "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
+                    "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TARGET =
             "Please specify the target value of your sleep goal as a positive integer.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS =
@@ -269,6 +273,8 @@ public class Message {
             "the -d flag";
     public static final String MESSAGE_DISTANCE_TOO_LARGE = "The distance of an activity cannot be larger than " +
             "1000km! You are not Forrest Gump!";
+    public static final String MESSAGE_ELEVATION_TOO_LARGE = "The elevation of an activity cannot be larger than " +
+            "10km! Mt. Everest is only 8.8km high!";
     public static final String MESSAGE_DUPLICATE_ACTIVITY_GOAL = "You already have a goal for this " +
             "sport, type and period! Please edit the existing goal instead.";
 }

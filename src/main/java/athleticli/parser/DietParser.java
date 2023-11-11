@@ -60,7 +60,7 @@ public class DietParser {
         boolean isHealthy = true;
 
         Goal.TimeSpan timespan = ActivityParser.parsePeriod(commandArgs[0]);
-        if (commandArgs[1].equalsIgnoreCase("unhealthy")) {
+        if (commandArgs[1].equalsIgnoreCase(Parameter.UNHEALTHY_DIET_GOAL_FLAG)) {
             isHealthy = false;
             nutrientStartingIndex += 1;
         }
@@ -69,7 +69,7 @@ public class DietParser {
         Set<String> recordedNutrients = new HashSet<>();
 
         for (int i = nutrientStartingIndex; i < commandArgs.length; i++) {
-            nutrientAndTargetValue = commandArgs[i].split("/");
+            nutrientAndTargetValue = commandArgs[i].split(Parameter.DIET_GOAL_COMMAND_VALUE_SEPARATOR);
             nutrient = nutrientAndTargetValue[0];
             targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
             if (targetValue <= 0) {
