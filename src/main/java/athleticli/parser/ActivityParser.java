@@ -501,13 +501,17 @@ public class ActivityParser {
      * @throws AthletiException If the input is not an integer.
      */
     public static int parseElevation(String elevation) throws AthletiException {
-        int elevationParsed;
+        final int ELEVATION_UPPER_BOUNDARY = 10000;
+        BigInteger elevationParsed;
         try {
-            elevationParsed = Integer.parseInt(elevation);
+            elevationParsed = new BigInteger(elevation);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_ELEVATION_INVALID);
         }
-        return elevationParsed;
+        if (elevationParsed.abs().compareTo(BigInteger.valueOf(ELEVATION_UPPER_BOUNDARY)) > 0) {
+            throw new AthletiException(Message.MESSAGE_ELEVATION_TOO_LARGE);
+        }
+        return elevationParsed.intValue();
     }
 
     /**
@@ -562,10 +566,9 @@ public class ActivityParser {
      * data entries for the activity.
      *
      * @param arguments The raw user input containing the arguments.
-     * @return An object representing the activity.
      * @throws AthletiException If the input format is invalid.
      */
-    public static ActivityChanges parseActivityArguments(ActivityChanges activityChanges, String arguments,
+    public static void parseActivityArguments(ActivityChanges activityChanges, String arguments,
                                                          String... separators) throws AthletiException {
         int firstSeparatorIndex = arguments.indexOf(separators[0]);
         if (firstSeparatorIndex == -1) {
@@ -595,7 +598,6 @@ public class ActivityParser {
             parseSegment(activityChanges, segment, separator);
         }
 
-        return activityChanges;
     }
 
     /**
