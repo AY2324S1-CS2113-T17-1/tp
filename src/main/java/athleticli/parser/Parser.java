@@ -204,25 +204,33 @@ public class Parser {
      * @return The value associated with the given marker, or an empty string if the marker is not found.
      */
     public static String getValueForMarker(String arguments, String marker) {
-        String patternString = "";
+        String patternString;
 
         if (marker.equals(Parameter.DATETIME_SEPARATOR)) {
-            // Special handling for datetime to capture the date and time
-            patternString = marker + "(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})";
+            // Capture one or two words following the DATETIME_SEPARATOR
+            patternString = Pattern.quote(marker) + "(\\S+)(?:\\s+(\\S+))?";
         } else {
-            // For other markers, capture a sequence of non-whitespace characters
-            patternString = marker + "(\\S+)";
+            patternString = Pattern.quote(marker) + "(\\S+)";
         }
 
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(arguments);
 
         if (matcher.find()) {
-            return matcher.group(1);
+            if (marker.equals(Parameter.DATETIME_SEPARATOR)) {
+                String firstPart = matcher.group(1);
+                String secondPart = matcher.group(2);
+                if (secondPart != null) {
+                    return firstPart + " " + secondPart;
+                } else {
+                    return firstPart;
+                }
+            } else {
+                return matcher.group(1);
+            }
         }
 
         // Return empty string if no match is found
         return "";
     }
-
 }
