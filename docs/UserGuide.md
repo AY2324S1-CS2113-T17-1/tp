@@ -321,13 +321,13 @@ You can list all your diets in AtheltiCLI.
 
 ### 🔍 Finding Diets:
 
-`find-diet date/DATE`
+`find-diet DATE`
 
 You can find all your diets on a specific date in AtheltiCLI.
 
 **Syntax:**
 
-* `find-diet date/DATE`
+* `find-diet DATE`
 
 **Parameters:**
 
@@ -335,7 +335,7 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 **Examples:**
 
-* `find-diet date/2021-09-01`
+* `find-diet 2021-09-01`
 
 ### 🎯 Adding Diet Goals:
 
@@ -698,7 +698,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `edit-diet`               | `edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]` | INDEX, [CALORIES], [PROTEIN], [CARB], [FAT], [DATETIME] | `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
 | `delete-diet`             | `delete-diet INDEX`                                                                               | INDEX                                                  | `delete-diet 1`                                           |
 | `list-diet`               | `list-diet`                                                                                       | None                                                   | `list-diet`                                               |
-| `find-diet`               | `find-diet date/DATE`                                                                             | DATE                                                   | `find-diet date/2021-09-01`                               |
+| `find-diet`               | `find-diet DATE`                                                                             | DATE                                                   | `find-diet 2021-09-01`                               |
 | `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`     | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fats/600` |
 | `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`   | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fats/600` |
 | `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                          | INDEX                                                  | `delete-diet-goal 1`                                      |
