@@ -85,7 +85,7 @@ ____________________________________________________________
  These are the activities you have tracked so far:
  1.[Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | October 26, 2023 at 6:00 PM
  2.[Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | October 26, 2023 at 6:00 AM
-
+ 
 To see more performance details about an activity, use the -d flag
 ____________________________________________________________
 
@@ -128,30 +128,26 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- Got it. I've added this sleep record:
+ Well done! I've added this sleep record:
  [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- Now you have 1 sleep records in the list.
+ You have tracked your first sleep record. This is just the beginning!
 ____________________________________________________________
 
 > ____________________________________________________________
- Got it. I've added this sleep record:
+ Well done! I've added this sleep record:
  [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- Now you have 2 sleep records in the list.
+ You have tracked a total of 2 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Please specify the start time of your sleep before the end time.
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! Please specify both the start and end time of your sleep.
+ OOPS!!! Please specify the start time of your sleep chronologically before the end time.
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -159,9 +155,13 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- Got it. I've added this sleep record:
+ OOPS!!! Please specify both the start and end time of your sleep.
+____________________________________________________________
+
+> ____________________________________________________________
+ Well done! I've added this sleep record:
  [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- Now you have 3 sleep records in the list.
+ You have tracked a total of 3 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -175,19 +175,19 @@ ____________________________________________________________
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 1. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
  2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- 3. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
- Got it. I've changed this sleep record at index 1:
- original: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- to new: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
+ Alright, I've changed this sleep record:
+ original: [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ new: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Please specify the start time of your sleep before the end time.
+ OOPS!!! Please specify the start time of your sleep chronologically before the end time.
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -203,26 +203,28 @@ ____________________________________________________________
 
  1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
  2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- 3. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
- Got it. I've deleted this sleep record at index 1: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
+ Gotcha, I've deleted this sleep record:
+ [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
+ You have tracked a total of 2 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The index of the sleep record you want to edit is out of bounds.
+ OOPS!!! The index of the sleep record you want to delete is out of bounds.
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Please specify the index of the sleep record you want to delete.
+ OOPS!!! Please specify the index of the sleep record you want to edit as a positive integer.
 ____________________________________________________________
 
 > ____________________________________________________________
  Here are the sleep records in your list:
 
  1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- 2. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -278,15 +280,15 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- Got it. I've added this sleep record:
+ Well done! I've added this sleep record:
  [Sleep] | Date: 2023-11-04 | Start Time: November 4, 2023 at 10:00 AM | End Time: November 4, 2023 at 6:00 PM | Sleeping Duration: 8 Hours 
- Now you have 3 sleep records in the list.
+ You have tracked a total of 3 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
- Got it. I've added this sleep record:
+ Well done! I've added this sleep record:
  [Sleep] | Date: 2023-11-07 | Start Time: November 7, 2023 at 10:00 AM | End Time: November 7, 2023 at 6:00 PM | Sleeping Duration: 8 Hours 
- Now you have 4 sleep records in the list.
+ You have tracked a total of 4 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -294,7 +296,7 @@ ____________________________________________________________
  1. yearly duration : 57600/8 minutes
  2. monthly duration : 57600/800 minutes
  3. daily duration : 0/800 minutes
- 4. weekly duration : 57600/8 minutes
+ 4. weekly duration : 28800/8 minutes
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -307,7 +309,7 @@ ____________________________________________________________
  1. yearly duration : 57600/8 minutes
  2. monthly duration : 57600/8 minutes
  3. daily duration : 0/800 minutes
- 4. weekly duration : 57600/8 minutes
+ 4. weekly duration : 28800/8 minutes
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -410,7 +412,7 @@ ____________________________________________________________
 
 	3. [HEALTHY]  DAILY protein intake progress: (0/1)
 
-	4. [UNHEALTHY] [Not Achieved] WEEKLY carb intake progress: (5000/1)
+	4. [UNHEALTHY]  WEEKLY carb intake progress: (0/1)
 
  Now you have 4 diet goal(s).
 ____________________________________________________________
@@ -470,7 +472,7 @@ ____________________________________________________________
 
 	2. [HEALTHY]  DAILY calories intake progress: (0/1)
 
-	3. [UNHEALTHY] [Not Achieved] WEEKLY carb intake progress: (5000/1)
+	3. [UNHEALTHY]  WEEKLY carb intake progress: (0/1)
 
  Now you have 3 diet goal(s).
 ____________________________________________________________
@@ -505,7 +507,7 @@ ____________________________________________________________
 
  	1. [HEALTHY]  DAILY calories intake progress: (0/1)
 
-	2. [UNHEALTHY] [Not Achieved] WEEKLY carb intake progress: (5000/1000)
+	2. [UNHEALTHY]  WEEKLY carb intake progress: (0/1000)
 
  Now you have 2 diet goal(s).
 ____________________________________________________________

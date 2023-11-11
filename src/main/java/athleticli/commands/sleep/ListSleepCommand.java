@@ -8,7 +8,6 @@ import athleticli.data.sleep.SleepList;
 import athleticli.ui.Message;
 
 public class ListSleepCommand extends Command {
-
     private static final Logger logger = Logger.getLogger(ListSleepCommand.class.getName());
 
     /**
@@ -22,25 +21,30 @@ public class ListSleepCommand extends Command {
         SleepList sleeps = data.getSleeps();
         final int size = sleeps.size();
         if (size == 0) {
-            logger.warning("Sleep list is empty");
+            logger.fine("Sleep list is empty");
             return new String[] {
                 Message.MESSAGE_SLEEP_LIST_EMPTY
             };
         }
-
         return printList(sleeps, size);
     }
 
+    /**
+     * Prints the list of sleep records.
+     * @param sleeps The current sleep list.
+     * @param size The size of the sleep list.
+     * @return The message containing list of sleep records which will be shown to the user.
+     */
     public String[] printList(SleepList sleeps, int size) {
         logger.fine("Printing sleep list");
-        String[] returnString = new String[size+1];
-        returnString[0] = Message.MESSAGE_SLEEP_LIST;
+        logger.info("Sleep count: " + sleeps.size());
+        logger.info("Sleep list: " + sleeps.toString());
+        String[] output = new String[size+1];
+        output[0] = Message.MESSAGE_SLEEP_LIST;
         for (int i = 0; i < size; i++) {
             assert sleeps.get(i) != null : "Sleep record cannot be null";
-            returnString[i+1] = (i + 1) + ". " + sleeps.get(i).toString();
+            output[i+1] = (i + 1) + ". " + sleeps.get(i).toString();
         }
-        
-        return returnString;
+        return output;
     }
-    
 }

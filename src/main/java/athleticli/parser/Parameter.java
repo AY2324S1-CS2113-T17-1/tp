@@ -3,10 +3,20 @@ package athleticli.parser;
 
 public class Parameter {
     public static final String SPACE = " ";
+
+    /*  For Sleep and Activity */
+    public static final String START_TIME_SEPARATOR = "start/";
+    public static final String END_TIME_SEPARATOR = "end/";
+
+    /* For Acitivity */
     public static final String ACTIVITY_INDICATOR = "[Activity]";
     public static final String RUN_INDICATOR = "[Run]";
     public static final String CYCLE_INDICATOR = "[Cycle]";
     public static final String SWIM_INDICATOR = "[Swim]";
+    public static final String SPORT_SEPARATOR = "sport/";
+    public static final String TYPE_SEPARATOR = "type/";
+    public static final String PERIOD_SEPARATOR = "period/";
+    public static final String TARGET_SEPARATOR = "target/";
     public static final String DURATION_SEPARATOR = "duration/";
     public static final String CAPTION_SEPARATOR = "caption/";
     public static final String DISTANCE_SEPARATOR = "distance/";
@@ -40,17 +50,11 @@ public class Parameter {
     public static final int HOUR_IN_SECONDS = 3600;
     public static final int MINUTE_IN_SECONDS = 60;
 
+    /* For Diet */
     public static final String CALORIES_SEPARATOR = "calories/";
     public static final String PROTEIN_SEPARATOR = "protein/";
     public static final String CARB_SEPARATOR = "carb/";
     public static final String FAT_SEPARATOR = "fat/";
-
-    public static final String START_TIME_SEPARATOR = "start/";
-    public static final String END_TIME_SEPARATOR = "end/";
-    public static final String SPORT_SEPARATOR = "sport/";
-    public static final String TYPE_SEPARATOR = "type/";
-    public static final String PERIOD_SEPARATOR = "period/";
-    public static final String TARGET_SEPARATOR = "target/";
 
     public static final String NUTRIENTS_CALORIES = "calories";
     public static final String NUTRIENTS_PROTEIN = "protein";

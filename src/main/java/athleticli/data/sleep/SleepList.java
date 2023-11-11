@@ -3,9 +3,9 @@ package athleticli.data.sleep;
 import static athleticli.common.Config.PATH_SLEEP;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.time.Duration;
 
 import athleticli.data.Findable;
 import athleticli.data.StorableList;
@@ -46,9 +46,8 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
      * Sorts the sleep entries in the list by date.
      */
     public void sort() {
-        this.sort(Comparator.comparing(Sleep::getToDateTime).reversed());
+        this.sort(Comparator.comparing(Sleep::getEndDateTime).reversed());
     }
-
 
     /**
      * Returns a list of sleeps within the time span.
@@ -70,14 +69,14 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
     /**
      * Returns the average sleep duration of the sleep list.
      * @param timeSpan The time span to be matched.
-     * @return The average sleep duration of the sleep list in seconds.
+     * @return The total sleep duration of the sleep list in seconds.
      */
     public int getTotalSleepDuration(Goal.TimeSpan timeSpan) {
         ArrayList<Sleep> filteredSleepList = filterByTimespan(timeSpan);
         int totalSleepDuration = 0;
         for (Sleep sleep : filteredSleepList) {
-            LocalTime sleepDuration = sleep.getSleepingTime();
-            totalSleepDuration += sleepDuration.toSecondOfDay();
+            Duration sleepDuration = sleep.getSleepingDuration();
+            totalSleepDuration += sleepDuration.getSeconds();
         }
         return totalSleepDuration;
     }
@@ -103,7 +102,7 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
     public String unparse(Sleep sleep) {
         String commandArgs = "";
         commandArgs += " " + Parameter.START_TIME_SEPARATOR + sleep.getStartDateTime();
-        commandArgs += " " + Parameter.END_TIME_SEPARATOR + sleep.getToDateTime();
+        commandArgs += " " + Parameter.END_TIME_SEPARATOR + sleep.getEndDateTime();
         return commandArgs;
     }
 }

@@ -141,13 +141,19 @@ public class Message {
 
 
     /* Sleep Messages */
-    public static final String MESSAGE_SLEEP_DELETE_INVALID_INDEX = "Invalid index. Please enter a valid index.";
-    public static final String MESSAGE_SLEEP_DELETE_RETURN = "Got it. I've deleted this sleep record at index %d: %s";
-    public static final String MESSAGE_SLEEP_EDIT_RETURN = "Got it. I've changed this sleep record at index %d:";
+    public static final String MESSAGE_SLEEP_COUNT = "You have tracked a total of %d sleep records. Keep it up!";
+    public static final String MESSAGE_SLEEP_FIRST = "You have tracked your first sleep record. This is just the " +
+            "beginning!";
+
+    public static final String MESSAGE_SLEEP_ADDED = "Well done! I've added this sleep record:";
+
+    public static final String MESSAGE_SLEEP_EDITED = "Alright, I've changed this sleep record:";
+
+    public static final String MESSAGE_SLEEP_DELETED = "Gotcha, I've deleted this sleep record:";
+
     public static final String MESSAGE_SLEEP_LIST = "Here are the sleep records in your list:\n";
     public static final String MESSAGE_SLEEP_LIST_EMPTY = "You have no sleep records in your list.";
-    public static final String MESSAGE_SLEEP_ADD_RETURN_1 = "Got it. I've added this sleep record:";
-    public static final String MESSAGE_SLEEP_ADD_RETURN_2 = "Now you have %d sleep records in the list.";
+    
     public static final String MESSAGE_SLEEP_FIND = "I've found these sleeps:";
 
     public static final String MESSAGE_SLEEP_GOAL_ADDED = "Alright, I've added this sleep goal:";
@@ -155,21 +161,23 @@ public class Message {
     public static final String MESSAGE_SLEEP_GOAL_LIST = "These are your sleep goals:";
 
     /* Sleep Error Messages */
-    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT =
-            "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
-            "Please specify both the start and end time of your sleep.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START =
-            "Please specify the start time of your sleep before the end time.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_DELETE_NO_INDEX =
-            "Please specify the index of the sleep record you want to delete.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX =
-            "Please specify the index of the sleep record you want to edit.";
     public static final String ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE =
             "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
             "The index of the sleep record you want to delete is out of bounds.";
     
+    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
+            "Please specify both the start and end time of your sleep.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_START_END_NON_CHRONOLOGICAL =
+            "Please specify the start time of your sleep chronologically before the end time.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATETIME =
+            "Please specify the start and end time of your sleep in the format \"yyyy-MM-dd HH:mm\".";
+    
+    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_INDEX =
+            "Please specify the index of the sleep record";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX =
+            "Please specify the index of the sleep record you want to edit as a positive integer.";
+       
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_MISSING_PARAMETERS =
