@@ -447,6 +447,8 @@ Edits a single calories goal if the goal exists.
 
 ## 🛌 Sleep Management
 
+Do note that that for sleep commands, the order of the parameters is fixed, and are all non optional.
+
 - [Adding Sleep](#-adding-sleep)
 - [Listing Sleep](#-listing-sleep)
 - [Deleting Sleep](#-deleting-sleep)
