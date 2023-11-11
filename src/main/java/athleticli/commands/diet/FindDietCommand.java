@@ -37,7 +37,6 @@ public class FindDietCommand extends FindCommand {
                 .filter(Diet.class::isInstance)
                 .map(Diet.class::cast)
                 .map(Diet::toString);
-        logger.info("Found " + resultStream.count() + " diets");
         return Stream.concat(Stream.of(Message.MESSAGE_DIET_FIND), resultStream)
                 .toArray(String[]::new);
     }
