@@ -1,10 +1,9 @@
 package athleticli.parser;
 
+import athleticli.commands.ByeCommand;
+import athleticli.commands.activity.DeleteActivityGoalCommand;
 import athleticli.commands.activity.EditActivityGoalCommand;
 import athleticli.commands.activity.ListActivityGoalCommand;
-import athleticli.commands.activity.DeleteActivityGoalCommand;
-
-import athleticli.commands.ByeCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
@@ -13,13 +12,11 @@ import athleticli.commands.diet.EditDietGoalCommand;
 import athleticli.commands.diet.ListDietCommand;
 import athleticli.commands.diet.ListDietGoalCommand;
 import athleticli.commands.diet.SetDietGoalCommand;
-import athleticli.commands.diet.FindDietCommand;
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
 import athleticli.exceptions.AthletiException;
-
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -175,18 +172,6 @@ class ParserTest {
     }
 
     @Test
-    void parseCommand_deleteDietCommand_expectDeleteDietCommand() throws AthletiException {
-        final String deleteDietCommandString = "delete-diet 1";
-        assertInstanceOf(DeleteDietCommand.class, parseCommand(deleteDietCommandString));
-    }
-
-    @Test
-    void parseCommand_listDietCommand_expectListDietCommand() throws AthletiException {
-        final String listDietCommandString = "list-diet";
-        assertInstanceOf(ListDietCommand.class, parseCommand(listDietCommandString));
-    }
-
-    @Test
     void parseCommand_addDietCommand_missingCaloriesExpectAthletiException() {
         final String addDietCommandString = "add-diet protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
@@ -318,6 +303,12 @@ class ParserTest {
     }
 
     @Test
+    void parseCommand_deleteDietCommand_expectDeleteDietCommand() throws AthletiException {
+        final String deleteDietCommandString = "delete-diet 1";
+        assertInstanceOf(DeleteDietCommand.class, parseCommand(deleteDietCommandString));
+    }
+
+    @Test
     void parseCommand_deleteDietCommand_invalidIndexExpectAthletiException() {
         final String deleteDietCommandString = "delete-diet abc";
         assertThrows(AthletiException.class, () -> parseCommand(deleteDietCommandString));
@@ -327,6 +318,65 @@ class ParserTest {
     void parseCommand_deleteDietCommand_emptyIndexExpectAthletiException() {
         final String deleteDietCommandString = "delete-diet";
         assertThrows(AthletiException.class, () -> parseCommand(deleteDietCommandString));
+    }
+
+    @Test
+    void parseCommand_listDietCommand_expectListDietCommand() throws AthletiException {
+        final String listDietCommandString = "list-diet";
+        assertInstanceOf(ListDietCommand.class, parseCommand(listDietCommandString));
+    }
+
+    @Test
+    void parseCommand_editDietCommand_expectEditDietCommand() throws AthletiException {
+        final String editDietCommandString =
+                "edit-diet 1 calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
+        assertInstanceOf(EditDietCommand.class, parseCommand(editDietCommandString));
+    }
+
+    @Test
+    void parseCommand_editDietCommand_invalidCaloriesExpectAthletiException() {
+        final String editDietCommandString =
+                "edit-diet 1 calories/abc protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(editDietCommandString));
+    }
+
+    @Test
+    void parseCommand_editDietCommand_invalidProteinExpectAthletiException() {
+        final String editDietCommandString =
+                "edit-diet 1 calories/1 protein/abc carb/3 fat/4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(editDietCommandString));
+    }
+
+    @Test
+    void parseCommand_editDietCommand_invalidCarbExpectAthletiException() {
+        final String editDietCommandString =
+                "edit-diet 1 calories/1 protein/2 carb/abc fat/4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(editDietCommandString));
+    }
+
+    @Test
+    void parseCommand_editDietCommand_invalidFatExpectAthletiException() {
+        final String editDietCommandString =
+                "edit-diet 1 calories/1 protein/2 carb/3 fat/abc datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(editDietCommandString));
+    }
+
+    @Test
+    void parseCommand_editDietCommandMissingAllArgs_expectAthletiException() {
+        final String editDietCommandString = "edit-diet 1";
+        assertThrows(AthletiException.class, () -> parseCommand(editDietCommandString));
+    }
+
+    @Test
+    void parseCommand_editDietCommand_invalidDateTimeFormatExpectAthletiException() {
+        final String editDietCommandString1 =
+                "edit-diet 1 calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06";
+        final String editDietCommandString2 = "edit-diet 1 calories/1 protein/2 carb/3 fat/4 datetime/10:00";
+        final String editDietCommandString3 =
+                "edit-diet 1 calories/1 protein/2 carb/3 fat/4 datetime/16-10-2023 10:00:00";
+        assertThrows(AthletiException.class, () -> parseCommand(editDietCommandString1));
+        assertThrows(AthletiException.class, () -> parseCommand(editDietCommandString2));
+        assertThrows(AthletiException.class, () -> parseCommand(editDietCommandString3));
     }
 
     @Test
@@ -614,7 +664,7 @@ class ParserTest {
 
     @Test
     void getValueForMarker_invalidInput_returnEmptyString() {
-        String invalidInput = "2 calorie/1 proteins/2 carbs/3 fats/4 datetime/2023-10-06";
+        String invalidInput = "2 calorie/1 proteins/2 carbs/3 fats/4 date/2023-10-06";
         String caloriesActual = getValueForMarker(invalidInput, Parameter.CALORIES_SEPARATOR);
         String proteinActual = getValueForMarker(invalidInput, Parameter.PROTEIN_SEPARATOR);
         String carbActual = getValueForMarker(invalidInput, Parameter.CARB_SEPARATOR);
@@ -626,5 +676,4 @@ class ParserTest {
         assertEquals("", fatActual);
         assertEquals("", datetimeActual);
     }
-
 }

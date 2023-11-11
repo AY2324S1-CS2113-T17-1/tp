@@ -328,19 +328,19 @@ public class DietParser {
         String fat = getValueForMarker(arguments, Parameter.FAT_SEPARATOR);
         String datetime = getValueForMarker(arguments, Parameter.DATETIME_SEPARATOR);
         if (!calories.isEmpty()) {
-            int caloriesParsed = Integer.parseInt(calories);
+            int caloriesParsed = parseCalories(calories);
             dietMap.put(Parameter.CALORIES_SEPARATOR, Integer.toString(caloriesParsed));
         }
         if (!protein.isEmpty()) {
-            int proteinParsed = Integer.parseInt(protein);
+            int proteinParsed = parseProtein(protein);
             dietMap.put(Parameter.PROTEIN_SEPARATOR, Integer.toString(proteinParsed));
         }
         if (!carb.isEmpty()) {
-            int carbParsed = Integer.parseInt(carb);
+            int carbParsed = parseCarb(carb);
             dietMap.put(Parameter.CARB_SEPARATOR, Integer.toString(carbParsed));
         }
         if (!fat.isEmpty()) {
-            int fatParsed = Integer.parseInt(fat);
+            int fatParsed = parseFat(fat);
             dietMap.put(Parameter.FAT_SEPARATOR, Integer.toString(fatParsed));
         }
         if (!datetime.isEmpty()) {
