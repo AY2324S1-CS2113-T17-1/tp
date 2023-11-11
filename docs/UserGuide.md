@@ -447,13 +447,16 @@ Edits a single calories goal if the goal exists.
 
 ## 🛌 Sleep Management
 
-Do note that that for sleep commands, the order of the parameters is fixed, and are all non optional.
+Do note that for sleep commands, the order of the parameters is fixed, and are all non-optional.
 
 - [Adding Sleep](#-adding-sleep)
 - [Listing Sleep](#-listing-sleep)
 - [Deleting Sleep](#-deleting-sleep)
 - [Editing Sleep](#-editing-sleep)
 - [Finding Sleep](#-finding-sleep)
+- [Adding Sleep Goals](#-adding-sleep-goals)
+- [Listing Sleep Goals](#-listing-sleep-goals)
+- [Editing Sleep Goals](#-editing-sleep-goals)
 
 ### ➕ Adding Sleep:
 
@@ -555,6 +558,50 @@ You can find your sleep record on a specific date in AtheltiCLI.
 **Examples:**
 
 * `find-sleep 2021-09-01`
+
+### 🎯 Setting Sleep Goals:
+
+`set-sleep-goal`
+
+You can set goals for your sleep AthletiCLI by setting the target duration specified in minutes. Tracking can be done for the past day, week, month or year.
+
+**NOTE: Only one sleep goal can be set for each time period.**
+
+**Syntax:**
+* `set-sleep-goal type/TYPE period/PERIOD target/TARGET`
+
+**Parameters:**
+* TYPE: The type of sleep goal. It must be the following: `duration`.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: `daily, weekly, monthly, yearly`. Only sleeps that are recorded within the period from the current timewill be counted towards the goal.
+* TARGET: The target value. It must be a positive number. For duration, it is in minutes.
+
+**Examples:**
+* `set-sleep-goal type/duration period/daily target/420` Sets a goal of sleeping 7 hours per day.
+* `set-sleep-goal type/duration period/weekly target/2940` Sets a goal of sleeping 49 hours per week. 
+
+### 📅 Editing Sleep Goals:
+
+`edit-sleep-goal`
+
+You can edit your already set sleep goals by mentioning the type, period, and target of the goal you want to edit.
+
+**Syntax:**
+* `edit-sleep-goal type/TYPE period/PERIOD target/TARGET`
+
+**Parameters:**
+* TYPE: The type of sleep goal. It must be the following: `duration`.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: `daily, weekly, monthly, yearly`. Only sleeps that are recorded within the period from the current timewill be counted towards the goal.
+* TARGET: The target value. It must be a positive number. For duration, it is in minutes.
+
+**Examples:**
+* `edit-sleep-goal type/duration period/daily target/360` Edits the daily goal to sleeping 6 hours per day.
+* `edit-sleep-goal type/duration period/weekly target/2520` Edits the weekly goal to sleeping 42 hours per week.
+
+### 📅 Listing Sleep Goals:
+
+`list-sleep-goal`
+
+You can list all your sleep goals in AthletiCLI and see your progress towards them.
 
 ---
 
@@ -669,6 +716,10 @@ If you forget a command, you can always use the `help` command to see their synt
 | `delete-sleep`            | `delete-sleep INDEX`                                                                | INDEX                                                  | `delete-sleep 1`                                         |
 | `edit-sleep`              | `edit-sleep INDEX start/START end/END`                                               | INDEX, START, END                                      | `edit-sleep 1 2023-01-20 02:00 2023-01-20 08:00`         |
 | `find-sleep`              | `find-sleep date/DATE`                                                              | DATE                                                   | `find-sleep date/2021-09-01`                             |
+| `set-sleep-goal`          | `set-sleep-goal type/TYPE period/PERIOD target/TARGET`                               | TYPE, PERIOD, TARGET                                   | `set-sleep-goal type/duration period/daily target/420`    |
+| `edit-sleep-goal`         | `edit-sleep-goal type/TYPE period/PERIOD target/TARGET`                              | TYPE, PERIOD, TARGET                                   | `edit-sleep-goal type/duration period/daily target/360`   |
+| `list-sleep-goal`         | `list-sleep-goal`                                                                   | None                                                   | `list-sleep-goal`                                        |
+
 
 ### Miscellaneous
 
