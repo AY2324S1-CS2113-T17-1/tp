@@ -1,5 +1,6 @@
 package athleticli.parser;
 
+import static athleticli.parser.Parser.getValueForMarker;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -270,4 +271,58 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    //@@author  nihalzp
+    @Test
+    void parseDeleteActivityGoal_validInput_activityGoalParsed() throws AthletiException {
+        String validInput = "sport/running type/distance period/weekly";
+        ActivityGoal actual = ActivityParser.parseDeleteActivityGoal(validInput);
+        ActivityGoal expected = new ActivityGoal(Goal.TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
+                ActivityGoal.Sport.RUNNING, 0);
+        assertEquals(actual.getTimeSpan(), expected.getTimeSpan());
+        assertEquals(actual.getGoalType(), expected.getGoalType());
+        assertEquals(actual.getSport(), expected.getSport());
+        assertEquals(actual.getTargetValue(), expected.getTargetValue());
+    }
+
+    @Test
+    void parseDeleteActivityGoal_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingSport_throwAthletiException() {
+        String invalidInput = "type/distance period/weekly";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingType_throwAthletiException() {
+        String invalidInput = "sport/running period/weekly";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingPeriod_throwAthletiException() {
+        String invalidInput = "sport/running type/distance";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingSportAndType_throwAthletiException() {
+        String invalidInput = "period/weekly";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingSportAndPeriod_throwAthletiException() {
+        String invalidInput = "type/distance";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingTypeAndPeriod_throwAthletiException() {
+        String invalidInput = "sport/running";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
 }

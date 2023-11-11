@@ -428,6 +428,7 @@ public class ActivityParser {
         return new ActivityGoal(periodParsed, typeParsed, sportParsed, targetParsed);
     }
 
+    //@@author  nihalzp
     /**
      * Parses the raw user input for deleting an activity goal and returns the corresponding activity goal
      * object.
@@ -454,6 +455,7 @@ public class ActivityParser {
         final Goal.TimeSpan periodParsed = parsePeriod(period);
         return new ActivityGoal(periodParsed, typeParsed, sportParsed, 0);
     }
+    //@@author  AlWo223
 
     /**
      * Parses the sport input provided by the user.
