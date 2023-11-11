@@ -13,7 +13,7 @@ import java.util.logging.Logger;
  * Executes the add diet commands provided by the user.
  */
 public class DeleteDietCommand extends Command {
-    private static final Logger logger = Logger.getLogger("DeleteDietCommand");
+    private static final Logger logger = Logger.getLogger(DeleteDietCommand.class.getName());
     private final int index;
 
     /**

@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * Finds diets matching the date.
  */
 public class FindDietCommand extends FindCommand {
-    private static final Logger logger = Logger.getLogger("FindDietCommand");
+    private static final Logger logger = Logger.getLogger(FindDietCommand.class.getName());
     public FindDietCommand(LocalDate date) {
         super(date);
     }

@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  * Executes the list diet commands provided by the user.
  */
 public class ListDietCommand extends Command {
-    private static final Logger logger = Logger.getLogger("ListDietCommand");
+    private static final Logger logger = Logger.getLogger(ListDietCommand.class.getName());
 
     /**
      * Constructor for ListDietCommand.

@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * Executes the edit diet command provided by the user.
  */
 public class EditDietCommand extends Command {
-    private static final Logger logger = Logger.getLogger("EditDietCommand");
+    private static final Logger logger = Logger.getLogger(EditDietCommand.class.getName());
     private final int index;
     private final HashMap<String, String> dietMap;
 
