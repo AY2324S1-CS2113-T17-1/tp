@@ -1,6 +1,5 @@
 package athleticli.parser;
 
-import static athleticli.parser.Parser.getValueForMarker;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -10,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import athleticli.data.Goal;
