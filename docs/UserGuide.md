@@ -534,9 +534,9 @@ You can modify existing sleep records in AtheltiCLI by specifying the sleep's in
 
 Assuming that there are 5 sleep records in the list:
 
-* `edit-sleep 5 2023-01-20 02:00 2023-01-20 08:00`  will edit the 5th sleep record in the sleep records list to have a start time of `2023-01-20 02:00` and an end time of `2023-01-20 08:00`. 
+* `edit-sleep 5 start/2023-01-20 02:00 end/2023-01-20 08:00`  will edit the 5th sleep record in the sleep records list to have a start time of `2023-01-20 02:00` and an end time of `2023-01-20 08:00`. 
 
-* `edit-sleep 1 2022-01-20 22:00 2022-01-21 06:00` will edit the 1st sleep record in the sleep records list to have a start time of `2022-01-20 22:00` and an end time of `2022-01-21 06:00`.
+* `edit-sleep 1 start/2022-01-20 22:00 end/2022-01-21 06:00` will edit the 1st sleep record in the sleep records list to have a start time of `2022-01-20 22:00` and an end time of `2022-01-21 06:00`.
 
 ### 🔍 Finding Sleep:
 
