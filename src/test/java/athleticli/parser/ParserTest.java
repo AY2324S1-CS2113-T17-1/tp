@@ -375,13 +375,13 @@ class ParserTest {
     }
 
     @Test
-    void parseCommand_findDietCommand_missingDate_expectAthletiException() {
+    void parseCommand_findDietCommand_missingDateExpectAthletiException() {
         final String findDietCommandString = "find-diet";
         assertThrows(AthletiException.class, () -> parseCommand(findDietCommandString));
     }
 
     @Test
-    void parseCommand_findDietCommand_invalidDate_expectAthletiException() {
+    void parseCommand_findDietCommand_invalidDateExpectAthletiException() {
         final String findDietCommandString1 = "find-diet 2021-09-01 06:00";
         final String findDietCommandString2 = "find-diet 2021-09-01 06:00:00";
         final String findDietCommandString3 = "find-diet 2021-09-01 06:00:00.000";
