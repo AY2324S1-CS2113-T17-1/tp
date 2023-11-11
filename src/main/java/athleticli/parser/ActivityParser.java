@@ -21,8 +21,8 @@ public class ActivityParser {
     /**
      * Parses the index of an activity from a string input.
      *
-     * @param commandArgs       Raw user input containing the index.
-     * @return index            The parsed Integer index.
+     * @param commandArgs Raw user input containing the index.
+     * @return The parsed Integer index.
      * @throws AthletiException If the input is empty or not a valid integer.
      */
     public static int parseActivityIndex(String commandArgs) throws AthletiException {
@@ -100,8 +100,8 @@ public class ActivityParser {
     /**
      * Parses the provided swim arguments of the edit command.
      *
-     * @param arguments         The raw user input containing the updated swim.
-     * @return activityChanges  The parsed ActivityChanges object.
+     * @param arguments The raw user input containing the updated swim.
+     * @return The parsed ActivityChanges object.
      * @throws AthletiException If the input format is invalid.
      */
     public static ActivityChanges parseSwimChanges(String arguments) throws AthletiException {
@@ -118,8 +118,8 @@ public class ActivityParser {
     /**
      * Parses the provided run or cycle arguments of the edit command.
      *
-     * @param arguments         The raw user input containing the updated run or cycle.
-     * @return activityChanges  The parsed ActivityChanges object.
+     * @param arguments The raw user input containing the updated run or cycle.
+     * @return The parsed ActivityChanges object.
      * @throws AthletiException If the input format is invalid.
      */
     public static ActivityChanges parseRunCycleChanges(String arguments) throws AthletiException {
@@ -137,7 +137,7 @@ public class ActivityParser {
      * Parses the provided activity arguments of the edit command.
      *
      * @param arguments         The raw user input containing the updated activity.
-     * @return activityChanges  The parsed ActivityChanges object.
+     * @return                  The parsed ActivityChanges object.
      * @throws AthletiException If the input format is invalid.
      */
     public static ActivityChanges parseActivityChanges(String arguments) throws AthletiException {
@@ -193,7 +193,7 @@ public class ActivityParser {
      * @param startIndex The String position index to start searching from.
      * @param separators List of separators to search for.
      * @param currentSeparatorIndex Index of the current separator, refers to the list of separators.
-     * @return endIndex The String position index of the next separator.
+     * @return The String position index of the next separator.
      */
     private static int findNextSeparatorIndex(String arguments, int startIndex, String[] separators,
                                               int currentSeparatorIndex) {
@@ -253,7 +253,7 @@ public class ActivityParser {
      * Parses the index of an activity update for the edit command from the provided arguments.
      *
      * @param arguments The raw user input containing the index.
-     * @return index The parsed Integer index.
+     * @return The parsed Integer index.
      * @throws AthletiException If the input format is invalid.
      */
     public static int parseActivityEditIndex(String arguments) throws AthletiException {
@@ -268,7 +268,7 @@ public class ActivityParser {
      * Parses the raw user input for viewing the activity list and returns whether the user wants the detailed view
      *
      * @param commandArgs The raw user input containing the arguments.
-     * @return boolean Whether the user wants the detailed view.
+     * @return Whether the user wants the detailed view.
      */
     public static boolean parseActivityListDetail(String commandArgs) {
         return commandArgs.toLowerCase().contains(Parameter.DETAIL_FLAG);
@@ -278,7 +278,7 @@ public class ActivityParser {
      * Parses the raw activity duration input provided by the user.
      *
      * @param duration The raw user input containing the duration.
-     * @return durationParsed   The parsed LocalTime duration.
+     * @return The parsed LocalTime duration.
      * @throws AthletiException If the input is not an integer.
      */
     public static LocalTime parseDuration(String duration) throws AthletiException {
@@ -295,7 +295,7 @@ public class ActivityParser {
      * Parses the raw activity distance input provided by the user.
      *
      * @param distance The raw user input containing the distance.
-     * @return distanceParsed       The parsed Integer distance.
+     * @return The parsed Integer distance.
      * @throws AthletiException If the input is not an integer.
      */
     public static int parseDistance(String distance) throws AthletiException {
@@ -384,7 +384,7 @@ public class ActivityParser {
      * Parses the raw user input for a swimming style and returns the corresponding swimming style object.
      *
      * @param swimmingStyle The raw user input containing the swimming style.
-     * @return swimmingStyle    An object representing the swimming style.
+     * @return An object representing the swimming style.
      * @throws AthletiException If the input format is invalid.
      */
     public static Swim.SwimmingStyle parseSwimmingStyle(String swimmingStyle) throws AthletiException {
@@ -398,7 +398,7 @@ public class ActivityParser {
     /**
      * Parses the raw user input for adding an activity goal and returns the corresponding activity goal object.
      * @param commandArgs       The raw user input containing the arguments.
-     * @return activityGoal     An object representing the activity goal.
+     * @return An object representing the activity goal.
      * @throws AthletiException If the input format is invalid.
      */
     public static ActivityGoal parseActivityGoal(String commandArgs) throws AthletiException {
@@ -433,7 +433,7 @@ public class ActivityParser {
      * object.
      *
      * @param commandArgs The raw user input containing the arguments.
-     * @return activityGoal     An object representing the activity goal.
+     * @return An object representing the activity goal.
      * @throws AthletiException If the input format is invalid.
      */
     public static ActivityGoal parseDeleteActivityGoal(String commandArgs) throws AthletiException {
@@ -458,7 +458,7 @@ public class ActivityParser {
     /**
      * Parses the sport input provided by the user.
      * @param sport                 The raw user input containing the sport.
-     * @return sportParsed          The parsed Sport object.
+     * @return                      The parsed Sport object.
      * @throws AthletiException     If the input format is invalid.
      */
     public static ActivityGoal.Sport parseSport(String sport) throws AthletiException {
@@ -497,7 +497,7 @@ public class ActivityParser {
      * Parses the raw elevation input provided by the user.
      *
      * @param elevation The raw user input containing the elevation.
-     * @return elevationParsed      The parsed Integer elevation.
+     * @return The parsed Integer elevation.
      * @throws AthletiException If the input is not an integer.
      */
     public static int parseElevation(String elevation) throws AthletiException {
@@ -513,7 +513,7 @@ public class ActivityParser {
     /**
      * Parses the goal type input provided by the user.
      * @param type                The raw user input containing the goal type.
-     * @return goalParsed         The parsed GoalType object.
+     * @return                    The parsed GoalType object.
      * @throws AthletiException   If the input format is invalid.
      */
     public static ActivityGoal.GoalType parseGoalType(String type) throws AthletiException {
@@ -527,7 +527,7 @@ public class ActivityParser {
     /**
      * Parses the period input provided by the user
      * @param period            The raw user input containing the period.
-     * @return periodParsed     The parsed Period object.
+     * @return                  The parsed Period object.
      * @throws AthletiException If the input format is invalid.
      */
     public static Goal.TimeSpan parsePeriod(String period) throws AthletiException {
@@ -541,7 +541,7 @@ public class ActivityParser {
     /**
      * Parses the target input provided by the user.
      * @param target            The raw user input containing the target value.
-     * @return targetParsed     The parsed Integer target value.
+     * @return                  The parsed Integer target value.
      * @throws AthletiException If the input is not a positive number.
      */
     public static int parseTarget(String target) throws AthletiException {
@@ -557,6 +557,14 @@ public class ActivityParser {
         return targetParsed;
     }
 
+    /**
+     * Parses the raw user input for an activity and returns the corresponding ActivityChanges object containing the
+     * data entries for the activity.
+     *
+     * @param arguments The raw user input containing the arguments.
+     * @return An object representing the activity.
+     * @throws AthletiException If the input format is invalid.
+     */
     public static ActivityChanges parseActivityArguments(ActivityChanges activityChanges, String arguments,
                                                          String... separators) throws AthletiException {
         int firstSeparatorIndex = arguments.indexOf(separators[0]);
