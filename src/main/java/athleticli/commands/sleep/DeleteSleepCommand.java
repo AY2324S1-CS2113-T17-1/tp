@@ -10,10 +10,9 @@ import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 /**
- *  Executes the delete sleep commands provided by the user.
+ *  Executes the delete sleep command provided by the user.
  */
 public class DeleteSleepCommand extends Command {
-
     private final int index;
     private final Logger logger = Logger.getLogger(DeleteSleepCommand.class.getName());
 
@@ -32,27 +31,16 @@ public class DeleteSleepCommand extends Command {
      * @return The message which will be shown to the user.
      */
     public String[] execute(Data data) throws AthletiException {
-        SleepList sleepList = data.getSleeps();
-
-        //accessIndex is the index of the sleep in the list accounting for zero-indexing
-        int accessIndex = index - 1; 
-        if (accessIndex < 0 || accessIndex >= sleepList.size()) {
-            throw new AthletiException(Message.ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE);
+        SleepList sleeps = data.getSleeps();
+        if (index < 1 || index > sleeps.size()) {
+            throw new AthletiException(Message.ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE);
         }
-        assert accessIndex >= 0 : "Access index cannot be less than 0";
-        assert accessIndex < sleepList.size() : "Index cannot be more than size of sleep list";
-
-        Sleep oldSleep = sleepList.get(accessIndex);
-        sleepList.remove(accessIndex);
-        logger.fine("Deleted sleep: " + oldSleep);
-        
-        String returnMessage = String.format(Message.MESSAGE_SLEEP_DELETE_RETURN, index, oldSleep.toString());
-        return new String[] {
-            returnMessage
-        };
-
-    }
-
+        final Sleep sleep = sleeps.get(index-1);
+        logger.info("Deleting sleep: " + sleep.toString());
+        logger.info("Sleep count: " + sleeps.size());
+        logger.info("Sleep list: " + sleeps.toString());
+        sleeps.remove(sleep);
+        return new String[]{Message.MESSAGE_SLEEP_DELETED, sleep.toString(),
+                String.format(Message.MESSAGE_SLEEP_COUNT, sleeps.size())};
+    } 
 }
-
-

@@ -2,20 +2,19 @@
 layout: page
 title: User Guide
 ---
+*Your all-in-one solution to track, analyse, and optimize your athletic performance.*
+*Designed for the committed athlete, this command-line interface (CLI) tool not only keeps track of your physical 
+activities but also covers dietary habits, sleep metrics, and more.*
 
 * Table of Contents
 {:toc}
 
-**AthletiCLI** is your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the
-committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also
-covers dietary habits, sleep metrics, and more.
+## 🚀 Quick Start
 
-## Quick Start
-
-* Ensure you have the required runtime environment installed on your computer.
-* Download the latest AthletiCLI from the official repository.
-* Copy the downloaded file to a folder you want to designate as the home for AthletiCLI.
-* Open a command terminal, cd into the folder where you copied the file, and run `java -jar AthletiCLI.jar` .
+* ✅ Ensure you have the required runtime environment installed on your computer.
+* ✅ Download the latest AthletiCLI from the official repository.
+* ✅ Copy the downloaded file to a folder you want to designate as the home for AthletiCLI.
+* ✅ Open a command terminal, cd into the folder where you copied the file, and run `java -jar AthletiCLI.jar` .
 
 ## Features
 
@@ -25,17 +24,19 @@ covers dietary habits, sleep metrics, and more.
 * Parameters need to be specified in the given order unless specified otherwise.
 * Parameters enclosed in square brackets [] are optional.
 
-## Activity Management
+## 🏃 Activity Management
 
-### Adding Activities
+- [Adding Activities](#-adding-activities)
+- [Deleting Activities](#-deleting-activities)
+- [Listing Activities](#-listing-activities)
+- [Editing Activities](#-editing-activities)
+- [Setting Activity Goals](#-setting-activity-goals)
+- [Editing Activity Goals](#-editing-activity-goals)
+- [Listing Activity Goals](#-listing-activity-goals)
 
-`add-activity`
+### ➕ Adding Activities:
 
-`add-run`
-
-`add-swim`
-
-`add-cycle`
+`add-activity` `add-run` `add-swim` `add-cycle`
 
 You can record your activities in AtheltiCLI by adding different activities including running, cycling, and swimming.
 A brief summary of the activity will be shown after adding the activity. Use the detailed list command to access the 
@@ -52,7 +53,7 @@ full activity insights.
 
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
-* DISTANCE: The distance of the activity in meters. It must be a positive number.
+* DISTANCE: The distance of the activity in meters. It must be a positive number smaller than 1000000.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
 * ELEVATION: The elevation gain of a run or cycle in meters. It must be a number.
 * STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
@@ -63,7 +64,7 @@ full activity insights.
 * `add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 * `add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2023-10-16 20:00 style/freestyle`
 
-### Deleting Activities
+### ➖ Deleting Activities:
 
 `delete-activity`
 
@@ -84,7 +85,7 @@ the following command.
 * `delete-activity 2` Deletes the second activity in the activity list.
 * `delete-activity 1` Deletes the most recent activity in the activity list.
 
-### Listing Activities
+### 📅 Listing Activities:
 
 `list-activity`
 
@@ -108,17 +109,19 @@ detailed information about your activities including evaluations like pace (runn
 **Examples:**
 
 * `list-activity` Shows a brief overview of all activities.
+<p>
+  <img width="100%" src="images/listActivityShowcase.png" alt="List returned by `list-activity`"/>
+</p>
+
 * `list-activity -d` Shows a detailed summary of all activities.
+<p>
+  <img width="60%" src="images/listActivityDetailedShowcase.png" alt="Detailed list returned by `list-activity -d`"/>
+</p>
 
-### Editing Activities
 
-`edit-activity`
+### ✍️ Editing Activities:
 
-`edit-run`
-
-`edit-swim`
-
-`edit-cycle`
+`edit-activity` `edit-run` `edit-swim` `edit-cycle`
 
 You can edit your activities in AthletiCLI by editing the activity at the specified index.
 Specify the parameters you want to edit with the corresponding flags. At least one parameter must be specified.
@@ -141,7 +144,7 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 * `edit-activity 1 caption/Morning Run distance/10000`
 * `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`
 
-### Setting Activity Goals
+### 🎯 Setting Activity Goals:
 
 `set-activity-goal`
 
@@ -162,12 +165,11 @@ The goals can track your daily, weekly, monthly, or yearly progress.
   minutes.
 
 **Examples**
-
 * `set-activity-goal sport/running type/distance period/weekly target/10000` Sets a goal of running 10km per week.
 * `set-activity-goal sport/swimming type/duration period/monthly target/120` Sets a goal of swimming for 2 hours per
   month.
 
-### Editing Activity Goals
+### ✍️ Editing Activity Goals:
 
 `edit-activity-goal`
 
@@ -189,7 +191,7 @@ You can edit your already set goals by mentioning the sport, target, and period 
 * `edit-activity-goal sport/running type/distance period/weekly target/20000` Edits the goal of running 20km per week.
 * `edit-activity-goal sport/swimming type/duration period/monthly target/60` Edits the goal of swimming for 1 hour per month.
 
-### Listing Activity Goals
+### 📅 Listing Activity Goals:
 
 `list-activity-goal`
 
@@ -203,9 +205,40 @@ You can list all your goals in AthletiCLI and see your progress towards them.
 
 * `list-activity-goal` Lists all your goals.
 
-## Diet Management
+### ➖ Deleting Activity Goals:
 
-### Adding Diets
+`delete-activity-goal`
+
+You can delete your goals in AthletiCLI by mentioning the sport, target, and period of the goal you want to delete.
+
+**Syntax**
+
+* `delete-activity-goal sport/SPORT target/TARGET period/PERIOD`
+
+**Parameters**
+
+* SPORT: The sport for which you want to set a goal. It must be one of the following: running, swimming, cycling, general.
+* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, yearly.
+
+**Examples**
+
+* `delete-activity-goal sport/running type/distance period/weekly` Deletes the goal of running distance per week.
+* `delete-activity-goal sport/swimming type/duration period/monthly` Deletes the goal of swimming duration per month.
+
+## 🍏 Diet Management
+
+- [Adding Diets](#-adding-diets)
+- [Editing Diets](#-editing-diets)
+- [Deleting Diets](#-deleting-diets)
+- [Listing Diets](#-listing-diets)
+- [Finding Diets](#-finding-diets)
+- [Adding Diet Goals](#-adding-diet-goals)
+- [Deleting Diet Goals](#-deleting-diet-goals)
+- [Listing Diet Goals](#-listing-diet-goals)
+- [Editing Diet Goals](#-editing-diet-goals)
+
+### ➕ Adding Diets:
 
 `add-diet`
 
@@ -227,7 +260,7 @@ You can record your diet in AtheltiCLI by adding your calorie, protein, carbohyd
 
 * `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
 
-### Editing Diets
+### ✍️ Editing Diets:
 
 `edit-diet`
 
@@ -254,7 +287,7 @@ You can edit your diet in AtheltiCLI by editing the diet at the specified index.
 * `edit-diet 1 calories/500`
 * `edit-diet 1 protein/20`
 
-### Deleting Diets
+### ➖ Deleting Diets:
 
 `delete-diet`
 
@@ -272,7 +305,7 @@ You can delete your diet in AtheltiCLI by deleting the diet at the specified ind
 
 * `delete-diet 1`
 
-### Listing Diets
+### 📅 Listing Diets:
 
 `list-diet`
 
@@ -286,7 +319,7 @@ You can list all your diets in AtheltiCLI.
 
 * `list-diet`
 
-### Finding Diets
+### 🔍 Finding Diets:
 
 `find-diet date/DATE`
 
@@ -304,9 +337,7 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 * `find-diet date/2021-09-01`
 
-## Diet Goal Management
-
-### Adding Diet Goals
+### 🎯 Adding Diet Goals:
 
 `set-diet-goal`
 
@@ -314,11 +345,11 @@ You can create a new daily or weekly diet goal to track your nutrients intake wi
 
 You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
 **Syntax:**
 
-* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
+* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`
 
 **Parameters:**
 
@@ -331,9 +362,9 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 * CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer.
 * PROTEIN: Your target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
-* FAT: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
+* FATS: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
 You can create one or multiple nutrient goals at once with this command.
 
@@ -343,7 +374,7 @@ You can create one or multiple nutrient goals at once with this command.
 
 * `set-diet-goal DAILY calories/500` Creates a single calories goal.
 
-### Deleting Diet Goals
+### ➖ Deleting Diet Goals:
 
 `delete-diet-goal`
 
@@ -356,13 +387,14 @@ This index will be referenced via `list-diet-goal` command.
 
 **Parameters:**
 
-* INDEX: The index of the diet goal to be deleted. It must be a positive integer.
+* INDEX: The index of the diet goal to be deleted. It must be a positive integer and 
+it is bounded by the number of diet goals available.
 
 **Examples:**
 
 * `delete-diet-goal 1` Deletes a diet goal that is located on the first index of the list.
 
-### Listing Diet Goals
+### 📅 Listing Diet Goals:
 
 `list-diet-goal`
 
@@ -376,7 +408,7 @@ You can list all your diet goals in AtheltiCLI.
 
 * `list-diet-goal`
 
-### Editing Diet Goals
+### ✍️ Editing Diet Goals:
 
 `edit-diet-goal`
 
@@ -387,7 +419,7 @@ No repetition is allowed. The diet goal needs to be present before any edits is 
 
 **Syntax:**
 
-* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
+* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`
 
 **Parameters:**
 
@@ -395,28 +427,33 @@ No repetition is allowed. The diet goal needs to be present before any edits is 
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
 * unhealthy: This determines if you are trying to get more of this nutrient or less of it. 
-If this flag is placed, it means that you are trying to reduce the intake. Hence, exceeding the target value means 
-that you have not achieved your goal. If this flag is absent, it means that you are trying to increase the intake.
+This flag is used to change goals that are set as unhealthy previously.
 * CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer.
 * PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
-* FAT: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
+* FATS: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
-You can create one or multiple nutrient goals with this command.
+You can edit one or multiple nutrient goals with this command.
 
 **Examples:**
 
-* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fat/100` 
+* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fats/100` 
 Edits multiple nutrients goals if all of them exists.
 * `edit-diet-goal WEEKLY calories/5000` 
 Edits a single calories goal if the goal exists.
+---
 
+## 🛌 Sleep Management
 
-## Sleep Management
+- [Adding Sleep](#-adding-sleep)
+- [Listing Sleep](#-listing-sleep)
+- [Deleting Sleep](#-deleting-sleep)
+- [Editing Sleep](#-editing-sleep)
+- [Finding Sleep](#-finding-sleep)
 
-### Adding Sleep
+### ➕ Adding Sleep:
 
 `add-sleep`  
 
@@ -442,7 +479,7 @@ All sleep entries with a start time before 06:00 will be taken to represent the 
 
 * `add-sleep start/2022-01-20 22:00 end/2022-01-21 06:00` will be taken to represent the sleep record on `2022-01-20`, since the start time is after 06:00 on `2022-01-20`.
 
-### Listing Sleep
+### 📅 Listing Sleep:
 
 `list-sleep`
 
@@ -452,7 +489,7 @@ You can see all your tracked sleep records in a list by using this command.
 
 **Example:** `list-sleep`
 
-### Deleting Sleep
+### ➖ Deleting Sleep:
 
 `delete-sleep`  
 
@@ -475,7 +512,7 @@ Assuming that there are 5 sleep records in the list:
 * `delete-sleep 5`  will delete the 5th sleep record in the sleep records list.
 * `delete-sleep 1`  will delete the 1st sleep record in the sleep records list.
 
-### Editing Sleep
+### ✍️ Editing Sleep:
 
 `edit-sleep`  
 
@@ -499,7 +536,7 @@ Assuming that there are 5 sleep records in the list:
 
 * `edit-sleep 1 2022-01-20 22:00 2022-01-21 06:00` will edit the 1st sleep record in the sleep records list to have a start time of `2022-01-20 22:00` and an end time of `2022-01-21 06:00`.
 
-### Finding Sleep
+### 🔍 Finding Sleep:
 
 `find-sleep date/DATE`
 
@@ -521,7 +558,7 @@ You can find your sleep record on a specific date in AtheltiCLI.
 
 ## Miscellaneous
 
-### Finding Records
+### 🔍 Finding Records:
 
 You can find all your records, including activities, sleeps, and diets, on a specific date in AtheltiCLI.
 
@@ -537,7 +574,7 @@ You can find all your records, including activities, sleeps, and diets, on a spe
 
 * `find 2023-11-01`
 
-### Saving Files
+### 📦 Saving Files:
 
 You can save files while using AthletiCLI if you want to, rather than waiting until the AthletiCLI exits to automatically save them.
 
@@ -545,7 +582,7 @@ You can save files while using AthletiCLI if you want to, rather than waiting un
 
 * `save`
 
-### Exiting AthletiCLI
+### 👋 Exiting AthletiCLI:
 
 You can use the `bye` command at any time to safely store the file and exit AthletiCLI.
 
@@ -553,7 +590,7 @@ You can use the `bye` command at any time to safely store the file and exit Athl
 
 * `bye`
 
-### Viewing Help Messages
+### ℹ️ Viewing Help Messages:
 
 If you forget a command, you can always use the `help` command to see their syntax.
 
@@ -570,43 +607,56 @@ If you forget a command, you can always use the `help` command to see their synt
 * `help` lists the syntax of all commands.
 * `help add-diet` shows the syntax of the `add-diet` command.
 
+---
 
-# Summary of Commands
+## FAQ
+  **Q: *Am I allowed to update the storage files?***
 
-## Activity Management
+  **A**: 
+  While it is generally advisable not to edit the contents of the storage file, you do have the option to make updates. 
+  Please exercise caution when doing so. Incorrect edits to the storage file can result in data loss. If AthleticCLI 
+  encounters incorrect format of the file contents, it will prompt you to exit using the 
+  [bye](#exiting-athleticli) command. 
+  Continuing with the program in such cases will lead to the deletion of all data in the file.
+  
 
-| **Command**               | **Syntax**                                                                                    | **Parameters**                                         | **Examples**                                             |
-|---------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
-| `add-activity`            | `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`                  | CAPTION, DURATION, DISTANCE, DATETIME                  | `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
-| `add-run`                 | `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`   | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION      | -                                                        |
-| `add-swim`                | `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`            | CAPTION, DURATION, DISTANCE, DATETIME, LAPS            | -                                                        |
-| `add-cycle`               | `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION` | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION      | `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
-| `delete-activity`         | `delete-activity INDEX`                                                                       | INDEX                                                  | `delete-activity 2`                                       |
-| `list-activity`           | `list-activity [-d]`                                                                          | -d                                                     | `list-activity`, `list-activity -d`                        |
-| `edit-activity`           | `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`           | INDEX, CAPTION, DURATION, DISTANCE, DATETIME           | `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
-| `edit-run`                | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION                 | -                                                        |
-| `edit-swim`               | Similar to `edit-activity` but with laps.                                                     | Same as `edit-activity` with LAPS                      | -                                                        |
-| `edit-cycle`              | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION                 | `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
-| `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                         | SPORT, TARGET, PERIOD, VALUE                           | `set-activity-goal sport/running type/distance period/weekly target/10000` |
-| `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TARGET, PERIOD, VALUE                           | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
-| `list-activity-goal`      | `list-activity-goal`                                                                          | None                                                   | `list-activity-goal`                                       |
+---
+## Summary of Commands
 
-## Diet Management
+### Activity Management
 
-| **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
-|---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
-| `add-diet`                | `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`    | CALORIES, PROTEIN, CARB, FAT, DATETIME                 | `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
+| **Command**               | **Syntax**                                                                                    | **Parameters**                                   | **Examples**                                             |
+|---------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------|----------------------------------------------------------|
+| `add-activity`            | `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`                  | CAPTION, DURATION, DISTANCE, DATETIME            | `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
+| `add-run`                 | `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`   | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION | -                                                        |
+| `add-swim`                | `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`            | CAPTION, DURATION, DISTANCE, DATETIME, LAPS      | -                                                        |
+| `add-cycle`               | `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION` | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION | `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
+| `delete-activity`         | `delete-activity INDEX`                                                                       | INDEX                                            | `delete-activity 2`                                       |
+| `list-activity`           | `list-activity [-d]`                                                                          | -d                                               | `list-activity`, `list-activity -d`                        |
+| `edit-activity`           | `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`           | INDEX, CAPTION, DURATION, DISTANCE, DATETIME     | `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
+| `edit-run`                | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | -                                                        |
+| `edit-swim`               | Similar to `edit-activity` but with laps.                                                     | Same as `edit-activity` with LAPS                | -                                                        |
+| `edit-cycle`              | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
+| `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                         | SPORT, TYPE, PERIOD, TARGET                      | `set-activity-goal sport/running type/distance period/weekly target/10000` |
+| `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TYPE, PERIOD, TARGET                      | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
+| `list-activity-goal`      | `list-activity-goal`                                                                          | None                                             | `list-activity-goal`                                       |
+
+### Diet Management
+
+| **Command**               | **Syntax**                                                                                        | **Parameters**                                         | **Examples**                                             |
+|---------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
+| `add-diet`                | `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`                  | CALORIES, PROTEIN, CARB, FAT, DATETIME                 | `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
 | `edit-diet`               | `edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]` | INDEX, [CALORIES], [PROTEIN], [CARB], [FAT], [DATETIME] | `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
-| `delete-diet`             | `delete-diet INDEX`                                                                 | INDEX                                                  | `delete-diet 1`                                           |
-| `list-diet`               | `list-diet`                                                                         | None                                                   | `list-diet`                                               |
-| `find-diet`               | `find-diet date/DATE`                                                               | DATE                                                   | `find-diet date/2021-09-01`                               |
-| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]` | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fats/600` |
-| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]` | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fats/600` |
-| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                            | INDEX                                                  | `delete-diet-goal 1`                                      |
-| `list-diet-goal`          | `list-diet-goal`                                                                    | None                                                   | `list-diet-goal`                                          |
+| `delete-diet`             | `delete-diet INDEX`                                                                               | INDEX                                                  | `delete-diet 1`                                           |
+| `list-diet`               | `list-diet`                                                                                       | None                                                   | `list-diet`                                               |
+| `find-diet`               | `find-diet date/DATE`                                                                             | DATE                                                   | `find-diet date/2021-09-01`                               |
+| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`     | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fats/600` |
+| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`   | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fats/600` |
+| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                          | INDEX                                                  | `delete-diet-goal 1`                                      |
+| `list-diet-goal`          | `list-diet-goal`                                                                                  | None                                                   | `list-diet-goal`                                          |
 
 
-## Sleep Management
+### Sleep Management
 
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
@@ -616,7 +666,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `edit-sleep`              | `edit-sleep INDEX start/START end/END`                                               | INDEX, START, END                                      | `edit-sleep 1 2023-01-20 02:00 2023-01-20 08:00`         |
 | `find-sleep`              | `find-sleep date/DATE`                                                              | DATE                                                   | `find-sleep date/2021-09-01`                             |
 
-## Miscellaneous
+### Miscellaneous
 
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|

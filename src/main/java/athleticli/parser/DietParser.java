@@ -1,13 +1,5 @@
 package athleticli.parser;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import athleticli.data.Goal;
 import athleticli.data.diet.Diet;
 import athleticli.data.diet.DietGoal;
@@ -15,6 +7,14 @@ import athleticli.data.diet.HealthyDietGoal;
 import athleticli.data.diet.UnhealthyDietGoal;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+
+import static athleticli.parser.Parser.getValueForMarker;
 
 /**
  * Defines the methods for Diet parser and Diet Goal parser
@@ -49,7 +49,8 @@ public class DietParser {
         }
     }
 
-    private static ArrayList<DietGoal> initializeIntermediateDietGoals(String[] commandArgs) throws AthletiException {
+    private static ArrayList<DietGoal> initializeIntermediateDietGoals(
+            String[] commandArgs) throws AthletiException {
         String[] nutrientAndTargetValue;
         String nutrient;
         int targetValue;
@@ -57,7 +58,7 @@ public class DietParser {
         boolean isHealthy = true;
 
         Goal.TimeSpan timespan = ActivityParser.parsePeriod(commandArgs[0]);
-        if (commandArgs[1].toLowerCase().equals(Parameter.UNHEALTHY_DIET_GOAL_FLAG)) {
+        if (commandArgs[1].equalsIgnoreCase(Parameter.UNHEALTHY_DIET_GOAL_FLAG)) {
             isHealthy = false;
             nutrientStartingIndex += 1;
         }
@@ -134,7 +135,7 @@ public class DietParser {
         String carb =
                 commandArgs.substring(carbMarkerPos + Parameter.CARB_SEPARATOR.length(), fatMarkerPos).trim();
         String fat = commandArgs.substring(fatMarkerPos + Parameter.FAT_SEPARATOR.length(), datetimeMarkerPos)
-                .trim();
+                             .trim();
         String datetime =
                 commandArgs.substring(datetimeMarkerPos + Parameter.DATETIME_SEPARATOR.length()).trim();
 
@@ -310,35 +311,6 @@ public class DietParser {
             throw new AthletiException(Message.MESSAGE_DIET_INDEX_TYPE_INVALID);
         }
         return index;
-    }
-
-    /**
-     * Parses the value for a specific marker in a given argument string.
-     *
-     * @param arguments The raw user input containing the arguments.
-     * @param marker    The marker whose value is to be retrieved.
-     * @return The value associated with the given marker, or an empty string if the marker is not found.
-     */
-    public static String getValueForMarker(String arguments, String marker) {
-        String patternString = "";
-
-        if (marker.equals(Parameter.DATETIME_SEPARATOR)) {
-            // Special handling for datetime to capture the date and time
-            patternString = marker + "(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})";
-        } else {
-            // For other markers, capture a sequence of non-whitespace characters
-            patternString = marker + "(\\S+)";
-        }
-
-        Pattern pattern = Pattern.compile(patternString);
-        Matcher matcher = pattern.matcher(arguments);
-
-        if (matcher.find()) {
-            return matcher.group(1);
-        }
-
-        // Return empty string if no match is found
-        return "";
     }
 
     /**

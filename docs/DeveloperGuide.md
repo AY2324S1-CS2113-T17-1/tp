@@ -5,18 +5,22 @@ title: Developer Guide
 
 - Table of Contents
 {:toc}
-
+---
 ## Acknowledgements
 
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+[//]: # ({list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well})
 
+1. [AB-3 Developer Guide](https://se-education.org/addressbook-level3/DeveloperGuide.html)
+2. [PlantUML for sequence diagrams](https://plantuml.com/)
+
+---
 ## Design
 
 This section provides a high-level explanation of the design and implementation of AthletiCLI, 
 supported by UML diagrams and short code snippets to illustrate the flow of data and interactions between the 
 components.
 
-
+---
 ### Architecture
 
 Given below is a quick overview of main components and how they interact with each other.
@@ -67,6 +71,8 @@ The `Storage` component only interacts with the `Data` component. The _Sequence 
 ![](images/Save.svg)
 
 For simplicity, only 1 `StorableList` is drawn instead of the actual 6.
+
+---
 
 ## Implementation
 
@@ -122,12 +128,12 @@ temporary list into the data instance of DietGoalList which will be kept for rec
 **Step 8:** After executing the SetDietGoalCommand, SetDietGoalCommand returns a message that is passed to 
 AthletiCLI to be passed to UI(not shown) for display.
 
-#### [Proposed] Implementation of DietGoalList
+#### [Proposed] Implementation of DietGoalList Class
 
 The current implementation of DietGoalList is an ArrayList.
-It helps to store dietGoals, however it is not efficient in searching for a particular dietGoal.
+It helps to store diet goals, however it is not efficient in searching for a particular dietGoal.
 At any instance of time, there could only be the existence of one dietGoal.
-Verifying if there is an existence of a dietGoal using an ArrayList takes O(n) time, where n is the number of dietGoals.
+Verifying if there is an existence of a diet goal using an ArrayList takes O(n) time, where n is the number of dietGoals.
 The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
 for checking the presence of a dietGoal.
 
@@ -233,6 +239,9 @@ activity list with the two tracked activities from the data and calls the total 
 
 5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
 
+
+---
+
 The following class diagram shows how sleep and sleep-related classes are constructed in AthletiCLI:
 
 <p  align="center" width="100%">
@@ -240,6 +249,7 @@ The following class diagram shows how sleep and sleep-related classes are constr
 
 </p>
 
+---
 
 ## Product scope
 ### Target user profile
@@ -258,7 +268,10 @@ While the app includes robust capabilities for tracking physical training metric
 
 By providing a comprehensive view of various performance-related factors over time, AthletiCLI enables athletes to identify trends, refine their training and lifestyle habits, and optimize outcomes. The app is more than a tracking tool—it's a performance optimization platform that takes into account the full spectrum of an athlete's life. 
 
+---
+
 ## User Stories
+
 
 | Version | As a ...                        | I want to ...                                                     | So that I can ...                                                                      |
 |---------|---------------------------------|-------------------------------------------------------------------|----------------------------------------------------------------------------------------|
@@ -284,7 +297,9 @@ By providing a comprehensive view of various performance-related factors over ti
 | v2.0    | adaptable athlete               | edit my activity goals                                            | modify my fitness targets to align with my current fitness level and schedule.         |
 | v2.0    | organized athlete               | list all my activity goals                                        | have a clear overview of my set targets and track my progress easily.                  |
 | v2.0    | meticulous user                 | find my diets by date                                             | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
-| v2.0    | motivated user                  | keep track of my diet goals for a period of time | I can monitor my diet progress on a weekly basis and make adjustments if needed.       |                                         |
+| v2.0    | motivated user                  | keep track of my diet goals for a period of time                  | I can monitor my diet progress on a weekly basis and increase or reduce if needed.     |                                         |
+
+---
 
 ## Non-Functional Requirements
 
@@ -293,9 +308,16 @@ By providing a comprehensive view of various performance-related factors over ti
 3. AthletiCLI should be able to work offline.
 4. AthletiCLI should be easy to use.
 
+---
+
 ## Glossary
 
-* *glossary item* - Definition
+[//]: # (* *glossary item* - Definition)
+* **UI** - A short form for User Interface. A UI class refers to the class that is responsible for handling user input 
+and provide feedback to the users.
+
+
+---
 
 ## Instructions for manual testing
 

@@ -18,12 +18,13 @@ import java.util.logging.Logger;
  * Executes the edit activity command provided by the user.
  */
 public class EditActivityCommand extends Command {
-    private static Logger logger = Logger.getLogger("EditActivityCommand");
+    private static final Logger logger = Logger.getLogger("EditActivityCommand");
     private final int index;
     private final ActivityChanges activityChanges;
 
     /**
-     * Constructor for EditActivityCommand.
+     * Constructs EditActivityCommand.
+     *
      * @param index Index of the activity to be edited.
      * @param activityChanges Updated Activity.
      */
@@ -34,7 +35,8 @@ public class EditActivityCommand extends Command {
     }
 
     /**
-     * Executes the edit activity command.
+     * Edits the activity at the specified index.
+     *
      * @param data Data object containing the current list of activities.
      * @return String array containing the messages to be printed to the user.
      * @throws AthletiException If the index provided is out of bounds.
@@ -44,41 +46,46 @@ public class EditActivityCommand extends Command {
         logger.log(Level.INFO, "Editing activity at index " + index);
         ActivityList activities = data.getActivities();
         try {
+            // Adjusting index as user input is 1-based and list is 0-based
             Activity activity = activities.get(index-1);
 
-            if (activityChanges.getCaption() != null) {
-                activity.setCaption(activityChanges.getCaption());
-            }
-            if (activityChanges.getDistance() != 0) {
-                activity.setDistance(activityChanges.getDistance());
-            }
-            if (activityChanges.getDuration() != null) {
-                activity.setMovingTime(activityChanges.getDuration());
-            }
-            if (activityChanges.getStartDateTime() != null) {
-                activity.setStartDateTime(activityChanges.getStartDateTime());
-            }
-            if (activityChanges.getElevation() != 0) {
-                Class<?> activityClass = activity.getClass();
-                if (activityClass == Run.class) {
-                    Run run = (Run) activity;
-                    run.setElevationGain(activityChanges.getElevation());
-                } else {
-                    Cycle cycle = (Cycle) activity;
-                    cycle.setElevationGain(activityChanges.getElevation());
-                }
-            }
-            if (activityChanges.getSwimmingStyle() != null) {
-                Swim swim = (Swim) activity;
-                swim.setStyle(activityChanges.getSwimmingStyle());
-            }
+            applyActivityChanges(activity, activityChanges);
 
+            activities.sort();
             logger.log(java.util.logging.Level.INFO, "Activity at index " + index + "successfully edited");
-            return new String[]{Message.MESSAGE_ACTIVITY_UPDATED, activity.toString(),
-                    String.format(Message.MESSAGE_ACTIVITY_COUNT, activities.size())};
+            return new String[]{
+                Message.MESSAGE_ACTIVITY_UPDATED,
+                activity.toString(),
+                String.format(Message.MESSAGE_ACTIVITY_COUNT, activities.size())
+            };
         } catch (IndexOutOfBoundsException e) {
-            logger.log(java.util.logging.Level.WARNING, "Activity index out of bounds");
+            logger.log(Level.WARNING, "Activity index out of bounds");
             throw new AthletiException(Message.MESSAGE_ACTIVITY_INDEX_OUT_OF_BOUNDS);
+        }
+    }
+
+    private void applyActivityChanges(Activity activity, ActivityChanges activityChanges) {
+        if (activityChanges.getCaption() != null) {
+            activity.setCaption(activityChanges.getCaption());
+        }
+        if (activityChanges.getDistance() != 0) {
+            activity.setDistance(activityChanges.getDistance());
+        }
+        if (activityChanges.getDuration() != null) {
+            activity.setMovingTime(activityChanges.getDuration());
+        }
+        if (activityChanges.getStartDateTime() != null) {
+            activity.setStartDateTime(activityChanges.getStartDateTime());
+        }
+        if (activityChanges.getElevation() != 0) {
+            if (activity instanceof Run) {
+                ((Run) activity).setElevationGain(activityChanges.getElevation());
+            } else {
+                ((Cycle) activity).setElevationGain(activityChanges.getElevation());
+            }
+        }
+        if (activity instanceof Swim && activityChanges.getSwimmingStyle() != null) {
+            ((Swim) activity).setStyle(activityChanges.getSwimmingStyle());
         }
     }
 }

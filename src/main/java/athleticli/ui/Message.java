@@ -10,13 +10,14 @@ public class Message {
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
     public static final String[] MESSAGE_HELLO = {"Hello! I'm AthletiCLI!", "What can I do for you?"};
     public static final String MESSAGE_SAVE = "File saved successfully!";
-    public static final String MESSAGE_CAPTION_MISSING = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_MISSING =
             "Please specify the activity duration using \"duration/\"!";
     public static final String MESSAGE_DISTANCE_MISSING =
             "Please specify the activity distance using \"distance/\"!";
     public static final String MESSAGE_DATETIME_MISSING =
             "Please specify date and time of the activity using \"datetime/\"!";
+    public static final String MESSAGE_EMPTY_ACTIVITY_LIST = "You have not tracked any activities yet! Time to do " +
+            "some sports!";
     public static final String MESSAGE_CALORIES_MISSING =
             "Please specify the calories burned using \"calories/\"!";
     public static final String MESSAGE_ACTIVITYGOAL_SPORT_MISSING = "Please specify the sport using \"sport/\"!";
@@ -71,6 +72,7 @@ public class Message {
     public static final String MESSAGE_ACTIVITY_ADDED = "Well done! I've added this activity:";
     public static final String MESSAGE_ACTIVITY_DELETED = "Gotcha, I've deleted this activity:";
     public static final String MESSAGE_ACTIVITY_GOAL_ADDED = "Alright, I've added this activity goal:";
+    public static final String MESSAGE_ACTIVITY_GOAL_DELETED = "Alright, I've deleted this activity goal:";
     public static final String MESSAGE_ACTIVITY_GOAL_EDITED = "Alright, I've edited this activity goal:";
     public static final String MESSAGE_NO_SUCH_GOAL_EXISTS = "No such goal exists.";
     public static final String MESSAGE_ACTIVITY_GOAL_LIST = "These are your activity goals:";
@@ -120,11 +122,9 @@ public class Message {
     public static final String MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
             "to create or edit your diet goals:\n <DAILY/WEEKLY> [unhealthy] followed by \"calories\", \"protein\", " +
             "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100\n"
-            +"\te.g. WEEKLY unhealthy fats/100";
-
+            + "\te.g. WEEKLY unhealthy fats/100";
     public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_SCALING_WITH_TIME_SPAN =
             "Please ensure your weekly diet goal target value is greater than your daily diet goal target value!";
-
     public static final String MESSAGE_DIET_GOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
             "no repetitions for your diet goal nutrients.";
     public static final String MESSAGE_DIET_GOAL_LOAD_ERROR = "Some error has been encountered " +
@@ -145,13 +145,19 @@ public class Message {
 
 
     /* Sleep Messages */
-    public static final String MESSAGE_SLEEP_DELETE_INVALID_INDEX = "Invalid index. Please enter a valid index.";
-    public static final String MESSAGE_SLEEP_DELETE_RETURN = "Got it. I've deleted this sleep record at index %d: %s";
-    public static final String MESSAGE_SLEEP_EDIT_RETURN = "Got it. I've changed this sleep record at index %d:";
+    public static final String MESSAGE_SLEEP_COUNT = "You have tracked a total of %d sleep records. Keep it up!";
+    public static final String MESSAGE_SLEEP_FIRST = "You have tracked your first sleep record. This is just the " +
+            "beginning!";
+
+    public static final String MESSAGE_SLEEP_ADDED = "Well done! I've added this sleep record:";
+
+    public static final String MESSAGE_SLEEP_EDITED = "Alright, I've changed this sleep record:";
+
+    public static final String MESSAGE_SLEEP_DELETED = "Gotcha, I've deleted this sleep record:";
+
     public static final String MESSAGE_SLEEP_LIST = "Here are the sleep records in your list:\n";
     public static final String MESSAGE_SLEEP_LIST_EMPTY = "You have no sleep records in your list.";
-    public static final String MESSAGE_SLEEP_ADD_RETURN_1 = "Got it. I've added this sleep record:";
-    public static final String MESSAGE_SLEEP_ADD_RETURN_2 = "Now you have %d sleep records in the list.";
+
     public static final String MESSAGE_SLEEP_FIND = "I've found these sleeps:";
 
     public static final String MESSAGE_SLEEP_GOAL_ADDED = "Alright, I've added this sleep goal:";
@@ -159,21 +165,23 @@ public class Message {
     public static final String MESSAGE_SLEEP_GOAL_LIST = "These are your sleep goals:";
 
     /* Sleep Error Messages */
-    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATE_TIME_FORMAT =
-            "Invalid date-time format. Please use dd-MM-yyyy HH:mm.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
-            "Please specify both the start and end time of your sleep.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_END_BEFORE_START =
-            "Please specify the start time of your sleep before the end time.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_DELETE_NO_INDEX =
-            "Please specify the index of the sleep record you want to delete.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_EDIT_NO_INDEX =
-            "Please specify the index of the sleep record you want to edit.";
     public static final String ERRORMESSAGE_SLEEP_EDIT_INDEX_OOBE =
             "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
             "The index of the sleep record you want to delete is out of bounds.";
-    
+
+    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
+            "Please specify both the start and end time of your sleep.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_START_END_NON_CHRONOLOGICAL =
+            "Please specify the start time of your sleep chronologically before the end time.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATETIME =
+            "Please specify the start and end time of your sleep in the format \"yyyy-MM-dd HH:mm\".";
+
+    public static final String ERRORMESSAGE_PARSER_SLEEP_NO_INDEX =
+            "Please specify the index of the sleep record";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX =
+            "Please specify the index of the sleep record you want to edit as a positive integer.";
+
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_MISSING_PARAMETERS =
@@ -182,12 +190,12 @@ public class Message {
             "Please specify the type of your sleep goal as \"duration\".";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PERIOD =
             "The period must be one of the " +
-            "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
+                    "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TARGET =
             "Please specify the target value of your sleep goal as a positive integer.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";
-    
+
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
     public static final String MESSAGE_LOAD_EXCEPTION = "An exception occurred when loading %s.\n"
@@ -250,4 +258,12 @@ public class Message {
     public static final String MESSAGE_ACTIVITY_INDEX_EMPTY = "The activity index cannot be empty!";
     public static final String MESSAGE_ACTIVITY_ORDER_INVALID = "The order of the parameters is wrong, please refer " +
             "to the User Guide for the correct order.";
+    public static final String MESSAGE_ACTIVITY_LIST_END = "\nTo see more performance details about an activity, use " +
+            "the -d flag";
+    public static final String MESSAGE_DISTANCE_TOO_LARGE = "The distance of an activity cannot be larger than " +
+            "1000km! You are not Forrest Gump!";
+    public static final String MESSAGE_ELEVATION_TOO_LARGE = "The elevation of an activity cannot be larger than " +
+            "10km! Mt. Everest is only 8.8km high!";
+    public static final String MESSAGE_DUPLICATE_ACTIVITY_GOAL = "You already have a goal for this " +
+            "sport, type and period! Please edit the existing goal instead.";
 }
