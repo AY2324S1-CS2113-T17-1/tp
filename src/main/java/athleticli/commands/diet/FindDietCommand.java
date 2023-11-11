@@ -9,11 +9,14 @@ import athleticli.data.diet.Diet;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+import java.util.logging.Logger;
+
 
 /**
  * Finds diets matching the date.
  */
 public class FindDietCommand extends FindCommand {
+    private static final Logger logger = Logger.getLogger("FindDietCommand");
     public FindDietCommand(LocalDate date) {
         super(date);
     }
@@ -27,12 +30,14 @@ public class FindDietCommand extends FindCommand {
      */
     @Override
     public String[] execute(Data data) throws AthletiException {
+        logger.info("Finding diets on " + date);
         var resultStream = data.getDiets()
                 .find(date)
                 .stream()
                 .filter(Diet.class::isInstance)
                 .map(Diet.class::cast)
                 .map(Diet::toString);
+        logger.info("Found " + resultStream.count() + " diets");
         return Stream.concat(Stream.of(Message.MESSAGE_DIET_FIND), resultStream)
                 .toArray(String[]::new);
     }
