@@ -1,13 +1,19 @@
 package athleticli.parser;
 
+import athleticli.commands.activity.EditActivityGoalCommand;
+import athleticli.commands.activity.ListActivityGoalCommand;
+import athleticli.commands.activity.DeleteActivityGoalCommand;
+
 import athleticli.commands.ByeCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
+import athleticli.commands.diet.EditDietCommand;
 import athleticli.commands.diet.EditDietGoalCommand;
 import athleticli.commands.diet.ListDietCommand;
 import athleticli.commands.diet.ListDietGoalCommand;
 import athleticli.commands.diet.SetDietGoalCommand;
+import athleticli.commands.diet.FindDietCommand;
 import athleticli.commands.sleep.AddSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.EditSleepCommand;
@@ -358,6 +364,238 @@ class ParserTest {
         assertThrows(AthletiException.class, () -> parseDate(invalidInput));
     }
 
+    @Test
+    void parseCommand_editActivityGoalCommand_expectEditActivityGoalCommand() throws AthletiException {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/distance period/weekly target/20000";
+        assertInstanceOf(EditActivityGoalCommand.class, parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandMissingSport_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal type/distance period/weekly target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandMissingType_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running period/weekly target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandMissingPeriod_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/distance target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandMissingTarget_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/distance period/weekly";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandEmptySport_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/ type/distance period/weekly target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandEmptyType_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/ period/weekly target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandEmptyPeriod_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/distance period/ target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandEmptyTarget_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/distance period/weekly target/";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidSport_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/abc type/distance period/weekly target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidType_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/abc period/weekly target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidPeriod_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/distance period/abc target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidTarget_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/distance period/weekly target/abc";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidSportAndType_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/abc type/abc period/weekly target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidSportAndPeriod_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/abc type/distance period/abc target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidSportAndTarget_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/abc type/distance period/weekly target/abc";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidTypeAndPeriod_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/abc period/abc target/20000";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidTypeAndTarget_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/abc period/weekly target/abc";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_editActivityGoalCommandInvalidPeriodAndTarget_expectAthletiException() {
+        final String editActivityGoalCommandString =
+                "edit-activity-goal sport/running type/distance period/abc target/abc";
+        assertThrows(AthletiException.class, () -> parseCommand(editActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_listActivityGoalCommand_expectListActivityGoalCommand() throws AthletiException {
+        final String listActivityGoalCommandString = "list-activity-goal";
+        assertInstanceOf(ListActivityGoalCommand.class, parseCommand(listActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommand_expectDeleteActivityGoalCommand() throws AthletiException {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/running type/distance period/weekly";
+        assertInstanceOf(DeleteActivityGoalCommand.class, parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandMissingSport_expectAthletiException() {
+        final String deleteActivityGoalCommandString = "delete-activity-goal type/distance period/weekly";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandMissingType_expectAthletiException() {
+        final String deleteActivityGoalCommandString = "delete-activity-goal sport/running period/weekly";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandMissingPeriod_expectAthletiException() {
+        final String deleteActivityGoalCommandString = "delete-activity-goal sport/running type/distance";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandEmptySport_expectAthletiException() {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/ type/distance period/weekly";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandEmptyType_expectAthletiException() {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/running type/ period/weekly";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandEmptyPeriod_expectAthletiException() {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/running type/distance period/";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandInvalidSport_expectAthletiException() {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/abc type/distance period/weekly";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandInvalidType_expectAthletiException() {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/running type/abc period/weekly";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandInvalidPeriod_expectAthletiException() {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/running type/distance period/abc";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandInvalidSportAndType_expectAthletiException() {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/abc type/abc period/weekly";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandInvalidSportAndPeriod_expectAthletiException() {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/abc type/distance period/abc";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandInvalidTypeAndPeriod_expectAthletiException() {
+        final String deleteActivityGoalCommandString =
+                "delete-activity-goal sport/running type/abc period/abc";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseCommand_deleteActivityGoalCommandInvalidSportAndTypeAndPeriod_expectAthletiException() {
+        final String deleteActivityGoalCommandString = "delete-activity-goal sport/abc type/abc period/abc";
+        assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
 
     @Test
     void getValueForMarker_validInput_returnValue() {
