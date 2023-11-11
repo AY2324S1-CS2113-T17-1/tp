@@ -9,6 +9,7 @@ import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
 import athleticli.commands.diet.EditDietCommand;
 import athleticli.commands.diet.EditDietGoalCommand;
+import athleticli.commands.diet.FindDietCommand;
 import athleticli.commands.diet.ListDietCommand;
 import athleticli.commands.diet.ListDietGoalCommand;
 import athleticli.commands.diet.SetDietGoalCommand;
@@ -365,6 +366,34 @@ class ParserTest {
     void parseCommand_editDietCommandMissingAllArgs_expectAthletiException() {
         final String editDietCommandString = "edit-diet 1";
         assertThrows(AthletiException.class, () -> parseCommand(editDietCommandString));
+    }
+
+    @Test
+    void parseCommand_findDietCommand_expectFindDietCommand() throws AthletiException {
+        final String findDietCommandString = "find-diet 2021-09-01";
+        assertInstanceOf(FindDietCommand.class, parseCommand(findDietCommandString));
+    }
+
+    @Test
+    void parseCommand_findDietCommand_missingDate_expectAthletiException() {
+        final String findDietCommandString = "find-diet";
+        assertThrows(AthletiException.class, () -> parseCommand(findDietCommandString));
+    }
+
+    @Test
+    void parseCommand_findDietCommand_invalidDate_expectAthletiException() {
+        final String findDietCommandString1 = "find-diet 2021-09-01 06:00";
+        final String findDietCommandString2 = "find-diet 2021-09-01 06:00:00";
+        final String findDietCommandString3 = "find-diet 2021-09-01 06:00:00.000";
+        final String findDietCommandString4 = "find-diet 01-09-2021";
+        final String findDietCommandString5 = "find-diet 09-30-2021";
+        final String findDietCommandString6 = "find-diet abc";
+        assertThrows(AthletiException.class, () -> parseCommand(findDietCommandString1));
+        assertThrows(AthletiException.class, () -> parseCommand(findDietCommandString2));
+        assertThrows(AthletiException.class, () -> parseCommand(findDietCommandString3));
+        assertThrows(AthletiException.class, () -> parseCommand(findDietCommandString4));
+        assertThrows(AthletiException.class, () -> parseCommand(findDietCommandString5));
+        assertThrows(AthletiException.class, () -> parseCommand(findDietCommandString6));
     }
 
     @Test
