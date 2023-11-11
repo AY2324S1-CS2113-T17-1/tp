@@ -144,6 +144,24 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 * `edit-activity 1 caption/Morning Run distance/10000`
 * `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`
 
+### 🔍 Finding Activities:
+
+`find-activity`
+
+You can find all your activities on a specific date in AtheltiCLI.
+
+**Syntax:**
+
+* `find-activity DATE`
+
+**Parameters:**
+
+* DATE: The date of the activity. It must follow the ISO Date Format: yyyy-MM-dd.
+
+**Example:**
+
+* `find-activity 2021-09-01`
+
 ### 🎯 Setting Activity Goals:
 
 `set-activity-goal`
@@ -686,6 +704,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `edit-run`                | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | -                                                        |
 | `edit-swim`               | Similar to `edit-activity` but with laps.                                                     | Same as `edit-activity` with LAPS                | -                                                        |
 | `edit-cycle`              | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
+| `find-activity`           | `find-activity DATE`                                                                          | DATE                                             | `find-activity 2021-09-01`                                |
 | `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                         | SPORT, TYPE, PERIOD, TARGET                      | `set-activity-goal sport/running type/distance period/weekly target/10000` |
 | `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TYPE, PERIOD, TARGET                      | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
 | `list-activity-goal`      | `list-activity-goal`                                                                          | None                                             | `list-activity-goal`                                       |
