@@ -93,7 +93,7 @@ ____________________________________________________________
  These are the activities you have tracked so far:
  [Cycle - Evening Ride - October 26, 2023 at 6:00 PM]
 	Distance: 20.00 km                     Elevation Gain: 1000 m
-	Time: 02:00:00                         Avg Speed: 10.00 km/h
+	Time: 02:00:00                         Avg. Speed: 10.00 km/h
  [Activity - Morning Run - October 26, 2023 at 6:00 AM]
 	Distance: 10.00 km                     Time: 01:00:00
 ____________________________________________________________
@@ -112,7 +112,7 @@ ____________________________________________________________
  These are the activities you have tracked so far:
  [Cycle - Evening Ride - October 26, 2023 at 6:00 PM]
 	Distance: 22.00 km                     Elevation Gain: 1000 m
-	Time: 02:00:00                         Avg Speed: 11.00 km/h
+	Time: 02:00:00                         Avg. Speed: 11.00 km/h
  [Activity - Morning Run - October 26, 2023 at 6:00 AM]
 	Distance: 10.00 km                     Time: 01:00:00
 ____________________________________________________________

@@ -2,6 +2,7 @@ package athleticli.commands.activity;
 
 import athleticli.commands.Command;
 import athleticli.data.Data;
+import athleticli.data.activity.Activity;
 import athleticli.data.activity.ActivityList;
 import athleticli.ui.Message;
 
@@ -12,7 +13,8 @@ public class ListActivityCommand extends Command {
     private final boolean isDetailed;
 
     /**
-     * Constructor for ListActivityCommand.
+     * Constructs instance of ListActivityCommand.
+     *
      * @param isDetailed Whether the list should be detailed.
      */
     public ListActivityCommand(boolean isDetailed) {
@@ -20,14 +22,17 @@ public class ListActivityCommand extends Command {
     }
 
     /**
-     * Lists the activities.
-     * @param data      The current data containing the activity list.
-     * @return          The message containing listing of activities which will be shown to the user.
+     * Lists the activities in either a detailed or summary format.
+     *
+     * @param data      Current data containing the activity list.
+     * @return          The message containing listing of activities which will be shown to the user. The format is
+     *                  based on the 'isDetailed' flag.
      */
     @Override
     public String[] execute(Data data) {
         ActivityList activities = data.getActivities();
         final int size = activities.size();
+
         if (isDetailed) {
             return printDetailedList(activities, size);
         } else {
@@ -37,6 +42,7 @@ public class ListActivityCommand extends Command {
 
     /**
      * Prints the list of activities.
+     *
      * @param activities    The current activity list.
      * @param size          The size of the activity list.
      * @return              The message containing listing of activities which will be shown to the user.
@@ -44,15 +50,19 @@ public class ListActivityCommand extends Command {
     public String[] printList(ActivityList activities, int size) {
         String[] output = new String[size + 2];
         output[0] = Message.MESSAGE_ACTIVITY_LIST;
-        for (int i = 0; i < size; i++) {
-            output[i + 1] = (i + 1) + "." + activities.get(i).toString();
+
+        int index = 1;
+        for (Activity activity : activities) {
+            output[index++] = index-1 + "." + activity.toString();
         }
-        output[size + 1] = Message.MESSAGE_ACTIVITY_LIST_END;
+
+        output[index] = Message.MESSAGE_ACTIVITY_LIST_END;
         return output;
     }
 
     /**
      * Prints the detailed list of activities.
+     *
      * @param activities    The current activity list.
      * @param size          The size of the activity list.
      * @return              The message containing listing of activities which will be shown to the user.
@@ -60,8 +70,9 @@ public class ListActivityCommand extends Command {
     public String[] printDetailedList(ActivityList activities, int size) {
         String[] output = new String[size + 1];
         output[0] = Message.MESSAGE_ACTIVITY_LIST;
-        for (int i = 0; i < size; i++) {
-            output[i+1] = activities.get(i).toDetailedString();
+        int index = 1;
+        for (Activity activity : activities) {
+            output[index++] = activity.toDetailedString();
         }
         return output;
     }

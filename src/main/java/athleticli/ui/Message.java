@@ -10,7 +10,6 @@ public class Message {
     public static final String MESSAGE_BYE = "Bye. Hope to see you again soon!";
     public static final String[] MESSAGE_HELLO = {"Hello! I'm AthletiCLI!", "What can I do for you?"};
     public static final String MESSAGE_SAVE = "File saved successfully!";
-    public static final String MESSAGE_CAPTION_MISSING = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_MISSING =
             "Please specify the activity duration using \"duration/\"!";
     public static final String MESSAGE_DISTANCE_MISSING =
@@ -122,7 +121,6 @@ public class Message {
             "to create or edit your diet goals:\n <DAILY/WEEKLY> [unhealthy] followed by \"calories\", \"protein\", " +
             "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100\n"
             +"\te.g. WEEKLY unhealthy fats/100";
-    ;
     public static final String MESSAGE_DIET_GOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
             "no repetitions for your diet goal nutrients.";
     public static final String MESSAGE_DIET_GOAL_LOAD_ERROR = "Some error has been encountered " +

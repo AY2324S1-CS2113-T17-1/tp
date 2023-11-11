@@ -217,16 +217,6 @@ public class ActivityParserTest {
     }
 
     @Test
-    void checkMissingActivityArguments_missingDuration_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingActivityArguments(-1, 1, 1));
-    }
-
-    @Test
-    void checkMissingActivityArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> ActivityParser.checkMissingActivityArguments(1, 1, 1));
-    }
-
-    @Test
     void parseRunCycle_validInput_activityParsed() throws AthletiException {
         String validInput =
                 "Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00 elevation/60";
@@ -257,31 +247,6 @@ public class ActivityParserTest {
     }
 
     @Test
-    void checkMissingRunCycleArguments_missingElevation_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingRunCycleArguments(1, 1, 1, -1));
-    }
-
-    @Test
-    void checkMissingRunCycleArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> ActivityParser.checkMissingRunCycleArguments(1, 1, 1, 1));
-    }
-
-    @Test
-    void checkMissingSwimArguments_missingStyle_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingSwimArguments(1, 1, 1, -1));
-    }
-
-    @Test
-    void checkMissingSwimArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> ActivityParser.checkMissingSwimArguments(1, 1, 1, 1));
-    }
-
-    @Test
-    void checkEmptyActivityArguments_emptyCaption_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> ActivityParser.checkEmptyActivityArguments("", " ", " ", " "));
-    }
-
-    @Test
     void parseSwim_validInput_swimParsed() throws AthletiException {
         String validInput =
                 "Evening Swim duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
@@ -305,8 +270,4 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
-    @Test
-    void checkEmptyActivityArguments_noEmptyArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> ActivityParser.checkEmptyActivityArguments("1", "1", "1", "1"));
-    }
 }

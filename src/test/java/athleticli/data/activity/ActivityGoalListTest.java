@@ -64,7 +64,7 @@ class ActivityGoalListTest {
         ActivityGoal goal = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
                 ActivityGoal.Sport.RUNNING, 10000);
         activityGoalList.add(goal);
-        boolean actual = activityGoalList.findDuplicate(ActivityGoal.GoalType.DISTANCE, ActivityGoal.Sport.RUNNING,
+        boolean actual = activityGoalList.isDuplicate(ActivityGoal.GoalType.DISTANCE, ActivityGoal.Sport.RUNNING,
                 TimeSpan.MONTHLY);
         assertFalse(actual);
     }
@@ -74,7 +74,7 @@ class ActivityGoalListTest {
         ActivityGoal goal = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
                 ActivityGoal.Sport.RUNNING, 10000);
         activityGoalList.add(goal);
-        boolean actual = activityGoalList.findDuplicate(ActivityGoal.GoalType.DISTANCE, ActivityGoal.Sport.RUNNING,
+        boolean actual = activityGoalList.isDuplicate(ActivityGoal.GoalType.DISTANCE, ActivityGoal.Sport.RUNNING,
                 TimeSpan.WEEKLY);
         assertTrue(actual);
     }

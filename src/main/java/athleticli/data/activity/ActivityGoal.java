@@ -2,10 +2,14 @@ package athleticli.data.activity;
 
 import athleticli.data.Data;
 import athleticli.data.Goal;
+import athleticli.parser.Parameter;
 
+/**
+ * Represents an activity goal.
+ */
 public class ActivityGoal extends Goal {
     public enum GoalType {
-        DISTANCE, DURATION // can be extended
+        DISTANCE, DURATION
     }
     public enum Sport {
         RUNNING, CYCLING, SWIMMING, GENERAL
@@ -17,10 +21,11 @@ public class ActivityGoal extends Goal {
 
     /**
      * Constructs an activity goal.
-     * @param timeSpan    The time span of the activity goal.
-     * @param goalType    The goal type of the activity goal.
-     * @param sport       The sport of the activity goal.
-     * @param targetValue The target value of the activity goal.
+     *
+     * @param timeSpan    Time span of the activity goal.
+     * @param goalType    Goal type of the activity goal.
+     * @param sport       Sport related to the activity goal.
+     * @param targetValue Target value of the activity goal.
      */
     public ActivityGoal(TimeSpan timeSpan, GoalType goalType, Sport sport, int targetValue) {
         super(timeSpan);
@@ -31,36 +36,45 @@ public class ActivityGoal extends Goal {
 
     /**
      * Examines whether the activity goal is achieved.
-     * @param data The data containing the activity list.
+     *
+     * @param data Data containing the activity list.
      * @return Whether the activity goal is achieved.
      */
     @Override
     public boolean isAchieved(Data data) throws IllegalStateException {
-        int total = getCurrentValue(data);
-        return total >= targetValue;
+        return getCurrentValue(data) >= targetValue;
     }
 
     /**
      * Returns the current value of the activity goal metric.
-     * @param data The data containing the activity list.
-     * @return The current value of the activity goal metric.
+     *
+     * @param data Data containing the activity list.
+     * @return Current value of the activity goal metric.
+     * @throws IllegalStateException If the goal type is not supported.
      */
-    public int getCurrentValue(Data data) throws IllegalStateException {
+    public int getCurrentValue(Data data) {
         ActivityList activities = data.getActivities();
         Class<?> activityClass = getActivityClass();
-        int total;
-        switch(goalType) {
+
+        switch (goalType) {
         case DISTANCE:
-            total = activities.getTotalDistance(activityClass, this.getTimeSpan());
-            break;
+            return activities.getTotalDistance(activityClass, this.getTimeSpan());
         case DURATION:
-            total = activities.getTotalDuration(activityClass, this.getTimeSpan());
-            total = total / 60;
-            break;
+            int totalDuration = activities.getTotalDuration(activityClass, this.getTimeSpan());
+            return convertToMinutes(totalDuration);
         default:
             throw new IllegalStateException("Unexpected value: " + goalType);
         }
-        return total;
+    }
+
+    /**
+     * Converts the given seconds to minutes.
+     *
+     * @param seconds Seconds to be converted.
+     * @return Minutes converted from the given seconds.
+     */
+    private int convertToMinutes(int seconds) {
+        return seconds / Parameter.MINUTE_IN_SECONDS;
     }
 
     public void setTargetValue(int targetValue) {
@@ -69,6 +83,7 @@ public class ActivityGoal extends Goal {
 
     /**
      * Returns the class of the activity associated with the activity goal.
+     *
      * @return The class of the activity.
      */
     public Class<?> getActivityClass() {
@@ -79,20 +94,26 @@ public class ActivityGoal extends Goal {
             return Cycle.class;
         case SWIMMING:
             return Swim.class;
-        default:
+        case GENERAL:
             return Activity.class;
+        default:
+            throw new IllegalStateException("Unexpected value: " + this.sport);
         }
     }
 
     /**
      * Returns the string representation of the activity goal including progress information.
+     *
+     * @param data Data containing the activity list.
      * @return The string representation of the activity goal.
      */
     public String toString(Data data) {
-        String goalTypeString = goalType.name();
-        String sportString = sport.name();
-        return (getTimeSpan().name().toLowerCase() + " " + sportString.toLowerCase() + " " +
-                goalTypeString.toLowerCase() + ": " + getCurrentValue(data) + " / " + targetValue);
+        String goalTypeString = goalType.name().toLowerCase();
+        String sportString = sport.name().toLowerCase();
+        String timeSpanString = getTimeSpan().name().toLowerCase();
+
+        return String.format("%s %s %s: %d / %d", timeSpanString, sportString, goalTypeString,
+                getCurrentValue(data), targetValue);
     }
 
     public GoalType getGoalType() {
