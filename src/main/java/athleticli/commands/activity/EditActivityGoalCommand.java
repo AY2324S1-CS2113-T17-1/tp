@@ -8,10 +8,13 @@ import athleticli.data.activity.ActivityGoalList;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+import java.util.logging.Logger;
+
 /**
  * Represents a command which edits an activity goal.
  */
 public class EditActivityGoalCommand extends Command {
+    private static final Logger logger = Logger.getLogger(EditActivityGoalCommand.class.getName());
     private final ActivityGoal activityGoal;
 
     /**
@@ -32,15 +35,19 @@ public class EditActivityGoalCommand extends Command {
      */
     @Override
     public String[] execute(Data data) throws athleticli.exceptions.AthletiException {
+        logger.info("Editing activity goal with goal type " + this.activityGoal.getGoalType() + " and sport " +
+                            this.activityGoal.getSport() + " and time span " + this.activityGoal.getTimeSpan());
         ActivityGoalList activityGoals = data.getActivityGoals();
         for (ActivityGoal goal : activityGoals) {
             if (goal.getSport() == this.activityGoal.getSport() &&
                         goal.getGoalType() == this.activityGoal.getGoalType() &&
                         goal.getTimeSpan() == this.activityGoal.getTimeSpan()) {
                 goal.setTargetValue(this.activityGoal.getTargetValue());
+                logger.info("Activity goal edited successfully");
                 return new String[]{Message.MESSAGE_ACTIVITY_GOAL_EDITED, this.activityGoal.toString(data)};
             }
         }
+        logger.warning("No such goal exists");
         throw new AthletiException(Message.MESSAGE_NO_SUCH_GOAL_EXISTS);
     }
 }

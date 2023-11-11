@@ -7,10 +7,13 @@ import athleticli.data.diet.Diet;
 import athleticli.data.diet.DietList;
 import athleticli.ui.Message;
 
+import java.util.logging.Logger;
+
 /**
  * Executes the add diet commands provided by the user.
  */
 public class AddDietCommand extends Command {
+    private static final Logger logger = Logger.getLogger(AddDietCommand.class.getName());
     private final Diet diet;
 
     /**
@@ -30,6 +33,7 @@ public class AddDietCommand extends Command {
      */
     @Override
     public String[] execute(Data data) {
+        logger.info("Adding diet" + diet.toString());
         DietList diets = data.getDiets();
         diets.add(this.diet);
         int size = diets.size();
@@ -37,8 +41,9 @@ public class AddDietCommand extends Command {
         if (size > 1) {
             countMessage = String.format(Message.MESSAGE_DIET_COUNT, size);
         } else {
-            countMessage = String.format(Message.MESSAGE_DIET_FIRST, size);
+            countMessage = Message.MESSAGE_DIET_FIRST;
         }
+        logger.info("Diet added successfully");
         return new String[]{Message.MESSAGE_DIET_ADDED, this.diet.toString(), countMessage};
     }
 }

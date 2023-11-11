@@ -321,13 +321,13 @@ You can list all your diets in AtheltiCLI.
 
 ### 🔍 Finding Diets:
 
-`find-diet date/DATE`
+`find-diet DATE`
 
 You can find all your diets on a specific date in AtheltiCLI.
 
 **Syntax:**
 
-* `find-diet date/DATE`
+* `find-diet DATE`
 
 **Parameters:**
 
@@ -335,7 +335,7 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 **Examples:**
 
-* `find-diet date/2021-09-01`
+* `find-diet 2021-09-01`
 
 ### 🎯 Adding Diet Goals:
 
