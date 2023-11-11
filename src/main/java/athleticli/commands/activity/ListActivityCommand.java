@@ -33,6 +33,10 @@ public class ListActivityCommand extends Command {
         ActivityList activities = data.getActivities();
         final int size = activities.size();
 
+        if (size == 0) {
+            return new String[]{Message.MESSAGE_EMPTY_ACTIVITY_LIST};
+        }
+
         if (isDetailed) {
             return printDetailedList(activities, size);
         } else {

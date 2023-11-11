@@ -161,6 +161,14 @@ public class DietParserTest {
     }
 
     @Test
+    void parseCalories_bigIntegerInput_throwAthletiException() {
+        String bigIntegerInput1 = "1000001";
+        String bigIntegerInput2 = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> parseCalories(bigIntegerInput1));
+        assertThrows(AthletiException.class, () -> parseCalories(bigIntegerInput2));
+    }
+
+    @Test
     void parseProtein_validProtein_returnProtein() throws AthletiException {
         int expected = 5;
         int actual = parseProtein("5");
@@ -177,6 +185,14 @@ public class DietParserTest {
     void parseProtein_negativeIntegerInput_throwAthletiException() {
         String nonIntegerInput = "-1";
         assertThrows(AthletiException.class, () -> parseProtein(nonIntegerInput));
+    }
+
+    @Test
+    void parseProtein_bigIntegerInput_throwAthletiException() {
+        String bigIntegerInput1 = "1000001";
+        String bigIntegerInput2 = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> parseProtein(bigIntegerInput1));
+        assertThrows(AthletiException.class, () -> parseProtein(bigIntegerInput2));
     }
 
     @Test
@@ -199,6 +215,14 @@ public class DietParserTest {
     }
 
     @Test
+    void parseCarb_bigIntegerInput_throwAthletiException() {
+        String bigIntegerInput1 = "1000001";
+        String bigIntegerInput2 = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> parseCarb(bigIntegerInput1));
+        assertThrows(AthletiException.class, () -> parseCarb(bigIntegerInput2));
+    }
+
+    @Test
     void parseFat_validFat_returnFat() throws AthletiException {
         int expected = 5;
         int actual = parseFat("5");
@@ -215,6 +239,14 @@ public class DietParserTest {
     void parseFat_negativeIntegerInput_throwAthletiException() {
         String nonIntegerInput = "-1";
         assertThrows(AthletiException.class, () -> parseFat(nonIntegerInput));
+    }
+
+    @Test
+    void parseFat_bigIntegerInput_throwAthletiException() {
+        String bigIntegerInput1 = "1000001";
+        String bigIntegerInput2 = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> parseFat(bigIntegerInput1));
+        assertThrows(AthletiException.class, () -> parseFat(bigIntegerInput2));
     }
 
     @Test
@@ -264,6 +296,12 @@ public class DietParserTest {
     void parseDietIndex_nonPositiveIntegerInput_throwAthletiException() {
         String nonIntegerInput = "0";
         assertThrows(AthletiException.class, () -> parseDietIndex(nonIntegerInput));
+    }
+
+    @Test
+    void parseDietIndex_bigIntegerInput_throwAthletiException() {
+        String bigIntegerInput = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> parseDietIndex(bigIntegerInput));
     }
 
     @Test

@@ -428,6 +428,7 @@ public class ActivityParser {
         return new ActivityGoal(periodParsed, typeParsed, sportParsed, targetParsed);
     }
 
+    //@@author  nihalzp
     /**
      * Parses the raw user input for deleting an activity goal and returns the corresponding activity goal
      * object.
@@ -454,6 +455,7 @@ public class ActivityParser {
         final Goal.TimeSpan periodParsed = parsePeriod(period);
         return new ActivityGoal(periodParsed, typeParsed, sportParsed, 0);
     }
+    //@@author  AlWo223
 
     /**
      * Parses the sport input provided by the user.
@@ -501,13 +503,17 @@ public class ActivityParser {
      * @throws AthletiException If the input is not an integer.
      */
     public static int parseElevation(String elevation) throws AthletiException {
-        int elevationParsed;
+        final int ELEVATION_UPPER_BOUNDARY = 10000;
+        BigInteger elevationParsed;
         try {
-            elevationParsed = Integer.parseInt(elevation);
+            elevationParsed = new BigInteger(elevation);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_ELEVATION_INVALID);
         }
-        return elevationParsed;
+        if (elevationParsed.abs().compareTo(BigInteger.valueOf(ELEVATION_UPPER_BOUNDARY)) > 0) {
+            throw new AthletiException(Message.MESSAGE_ELEVATION_TOO_LARGE);
+        }
+        return elevationParsed.intValue();
     }
 
     /**
@@ -545,16 +551,19 @@ public class ActivityParser {
      * @throws AthletiException If the input is not a positive number.
      */
     public static int parseTarget(String target) throws AthletiException {
-        int targetParsed;
+        BigInteger targetParsed;
         try {
-            targetParsed = Integer.parseInt(target);
+            targetParsed = new BigInteger(target);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_TARGET_INVALID);
         }
-        if (targetParsed < 0) {
+        if (targetParsed.compareTo(BigInteger.ZERO) < 0) {
             throw new AthletiException(Message.MESSAGE_TARGET_NEGATIVE);
         }
-        return targetParsed;
+        if (targetParsed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
+            throw new AthletiException(Message.MESSAGE_TARGET_TOO_LARGE);
+        }
+        return targetParsed.intValue();
     }
 
     /**
@@ -562,10 +571,9 @@ public class ActivityParser {
      * data entries for the activity.
      *
      * @param arguments The raw user input containing the arguments.
-     * @return An object representing the activity.
      * @throws AthletiException If the input format is invalid.
      */
-    public static ActivityChanges parseActivityArguments(ActivityChanges activityChanges, String arguments,
+    public static void parseActivityArguments(ActivityChanges activityChanges, String arguments,
                                                          String... separators) throws AthletiException {
         int firstSeparatorIndex = arguments.indexOf(separators[0]);
         if (firstSeparatorIndex == -1) {
@@ -595,7 +603,6 @@ public class ActivityParser {
             parseSegment(activityChanges, segment, separator);
         }
 
-        return activityChanges;
     }
 
     /**
