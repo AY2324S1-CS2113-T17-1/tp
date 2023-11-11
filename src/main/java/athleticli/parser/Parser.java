@@ -5,6 +5,7 @@ import athleticli.commands.Command;
 import athleticli.commands.FindCommand;
 import athleticli.commands.HelpCommand;
 import athleticli.commands.SaveCommand;
+
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
@@ -14,8 +15,12 @@ import athleticli.commands.diet.FindDietCommand;
 import athleticli.commands.diet.ListDietCommand;
 import athleticli.commands.diet.ListDietGoalCommand;
 import athleticli.commands.diet.SetDietGoalCommand;
-import athleticli.commands.sleep.FindSleepCommand;
+
+import athleticli.commands.sleep.AddSleepCommand;
+import athleticli.commands.sleep.EditSleepCommand;
+import athleticli.commands.sleep.DeleteSleepCommand;
 import athleticli.commands.sleep.ListSleepCommand;
+import athleticli.commands.sleep.FindSleepCommand;
 import athleticli.commands.sleep.SetSleepGoalCommand;
 import athleticli.commands.sleep.EditSleepGoalCommand;
 import athleticli.commands.sleep.ListSleepGoalCommand;
@@ -26,14 +31,19 @@ import athleticli.commands.activity.EditActivityCommand;
 import athleticli.commands.activity.FindActivityCommand;
 import athleticli.commands.activity.ListActivityCommand;
 import athleticli.commands.activity.SetActivityGoalCommand;
+import athleticli.commands.activity.DeleteActivityGoalCommand;
 import athleticli.commands.activity.EditActivityGoalCommand;
 import athleticli.commands.activity.ListActivityGoalCommand;
+
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Defines the basic methods for command parser.
@@ -66,6 +76,8 @@ public class Parser {
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
         switch (commandType) {
+        
+        /* General */
         case CommandName.COMMAND_BYE:
             return new ByeCommand();
         case CommandName.COMMAND_HELP:
@@ -74,18 +86,21 @@ public class Parser {
             return new SaveCommand();
         case CommandName.COMMAND_FIND:
             return new FindCommand(parseDate(commandArgs));
+        
         /* Sleep Management */
         case CommandName.COMMAND_SLEEP_ADD:
-            return SleepParser.parseSleepAdd(commandArgs);
+            return new AddSleepCommand(SleepParser.parseSleep(commandArgs));
         case CommandName.COMMAND_SLEEP_LIST:
             return new ListSleepCommand();
         case CommandName.COMMAND_SLEEP_EDIT:
-            return SleepParser.parseSleepEdit(commandArgs);
+            return new EditSleepCommand(SleepParser.parseSleepIndex(commandArgs),
+                    SleepParser.parseSleep(commandArgs));
         case CommandName.COMMAND_SLEEP_DELETE:
-            return SleepParser.parseSleepDelete(commandArgs);
+            return new DeleteSleepCommand(SleepParser.parseSleepIndex(commandArgs));
         case CommandName.COMMAND_SLEEP_FIND:
             return new FindSleepCommand(parseDate(commandArgs));
         
+        /*  Sleep Goal Management */
         case CommandName.COMMAND_SLEEP_GOAL_LIST:
             return new ListSleepGoalCommand();
         case CommandName.COMMAND_SLEEP_GOAL_SET:
@@ -118,21 +133,18 @@ public class Parser {
                     ActivityParser.parseSwimEdit(commandArgs));
         case CommandName.COMMAND_ACTIVITY_FIND:
             return new FindActivityCommand(parseDate(commandArgs));
+       
+        /* Activity Goal Management */
         case CommandName.COMMAND_ACTIVITY_GOAL_SET:
             return new SetActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
+        case CommandName.COMMAND_ACTIVITY_GOAL_DELETE:
+            return new DeleteActivityGoalCommand(ActivityParser.parseDeleteActivityGoal(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_EDIT:
             return new EditActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_LIST:
             return new ListActivityGoalCommand();
+        
         /* Diet Management */
-        case CommandName.COMMAND_DIET_GOAL_SET:
-            return new SetDietGoalCommand(DietParser.parseDietGoalSetEdit(commandArgs));
-        case CommandName.COMMAND_DIET_GOAL_EDIT:
-            return new EditDietGoalCommand(DietParser.parseDietGoalSetEdit(commandArgs));
-        case CommandName.COMMAND_DIET_GOAL_LIST:
-            return new ListDietGoalCommand();
-        case CommandName.COMMAND_DIET_GOAL_DELETE:
-            return new DeleteDietGoalCommand(DietParser.parseDietGoalDelete(commandArgs));
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(DietParser.parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_EDIT:
@@ -143,6 +155,17 @@ public class Parser {
             return new ListDietCommand();
         case CommandName.COMMAND_DIET_FIND:
             return new FindDietCommand(parseDate(commandArgs));
+        
+        /* Diet Goal Management */
+        case CommandName.COMMAND_DIET_GOAL_SET:
+            return new SetDietGoalCommand(DietParser.parseDietGoalSetEdit(commandArgs));
+        case CommandName.COMMAND_DIET_GOAL_EDIT:
+            return new EditDietGoalCommand(DietParser.parseDietGoalSetEdit(commandArgs));
+        case CommandName.COMMAND_DIET_GOAL_LIST:
+            return new ListDietGoalCommand();
+        case CommandName.COMMAND_DIET_GOAL_DELETE:
+            return new DeleteDietGoalCommand(DietParser.parseDietGoalDelete(commandArgs));
+        
         default:
             throw new AthletiException(Message.MESSAGE_UNKNOWN_COMMAND);
         }
@@ -171,6 +194,35 @@ public class Parser {
         } catch (DateTimeParseException e) {
             throw new AthletiException(Message.MESSAGE_DATE_INVALID);
         }
+    }
+
+    /**
+     * Parses the value for a specific marker in a given argument string.
+     *
+     * @param arguments The raw user input containing the arguments.
+     * @param marker    The marker whose value is to be retrieved.
+     * @return The value associated with the given marker, or an empty string if the marker is not found.
+     */
+    public static String getValueForMarker(String arguments, String marker) {
+        String patternString = "";
+
+        if (marker.equals(Parameter.DATETIME_SEPARATOR)) {
+            // Special handling for datetime to capture the date and time
+            patternString = marker + "(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})";
+        } else {
+            // For other markers, capture a sequence of non-whitespace characters
+            patternString = marker + "(\\S+)";
+        }
+
+        Pattern pattern = Pattern.compile(patternString);
+        Matcher matcher = pattern.matcher(arguments);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+
+        // Return empty string if no match is found
+        return "";
     }
 
 }

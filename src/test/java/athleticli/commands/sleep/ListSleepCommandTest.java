@@ -10,15 +10,15 @@ import org.junit.jupiter.api.Test;
 import athleticli.data.Data;
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
+import athleticli.exceptions.AthletiException;
 
 public class ListSleepCommandTest {
-
     private Data data;
     private Sleep sleep1;
     private Sleep sleep2;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws AthletiException {
         data = new Data();
         SleepList sleepList = new SleepList();
         sleep1 = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0), 
@@ -54,5 +54,4 @@ public class ListSleepCommandTest {
         String[] actual = command.execute(data);
         assertArrayEquals(expected, actual);
     }
-
 }
