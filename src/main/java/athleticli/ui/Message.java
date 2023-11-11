@@ -16,6 +16,8 @@ public class Message {
             "Please specify the activity distance using \"distance/\"!";
     public static final String MESSAGE_DATETIME_MISSING =
             "Please specify date and time of the activity using \"datetime/\"!";
+    public static final String MESSAGE_EMPTY_ACTIVITY_LIST = "You have not tracked any activities yet! Time to do " +
+            "some sports!";
     public static final String MESSAGE_CALORIES_MISSING =
             "Please specify the calories burned using \"calories/\"!";
     public static final String MESSAGE_ACTIVITYGOAL_SPORT_MISSING = "Please specify the sport using \"sport/\"!";
@@ -258,6 +260,8 @@ public class Message {
             "the -d flag";
     public static final String MESSAGE_DISTANCE_TOO_LARGE = "The distance of an activity cannot be larger than " +
             "1000km! You are not Forrest Gump!";
+    public static final String MESSAGE_ELEVATION_TOO_LARGE = "The elevation of an activity cannot be larger than " +
+            "10km! Mt. Everest is only 8.8km high!";
     public static final String MESSAGE_DUPLICATE_ACTIVITY_GOAL = "You already have a goal for this " +
             "sport, type and period! Please edit the existing goal instead.";
 }
