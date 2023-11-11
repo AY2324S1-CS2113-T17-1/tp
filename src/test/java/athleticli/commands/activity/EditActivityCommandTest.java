@@ -46,7 +46,7 @@ class EditActivityCommandTest {
 
     @Test
     void execute_validIndex_activityEdited() throws AthletiException {
-        EditActivityCommand editActivityCommand = new EditActivityCommand(2, activityChanges);
+        EditActivityCommand editActivityCommand = new EditActivityCommand(2, activityChanges, Run.class);
         editActivityCommand.execute(data);
         String[] expected = {"Ok, I've updated this activity:", updatedRun.toString(), "You have tracked a total of 2" +
                 " " +
@@ -63,7 +63,7 @@ class EditActivityCommandTest {
 
     @Test
     void execute_invalidIndex_exceptionThrown() {
-        EditActivityCommand editActivityCommand = new EditActivityCommand(3, activityChanges);
+        EditActivityCommand editActivityCommand = new EditActivityCommand(3, activityChanges, Run.class);
         assertThrows(AthletiException.class, () -> editActivityCommand.execute(data));
     }
 }

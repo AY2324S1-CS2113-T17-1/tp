@@ -260,4 +260,6 @@ public class Message {
             "1000km! You are not Forrest Gump!";
     public static final String MESSAGE_DUPLICATE_ACTIVITY_GOAL = "You already have a goal for this " +
             "sport, type and period! Please edit the existing goal instead.";
+    public static final String MESSAGE_ACTIVITY_TYPE_MISMATCH = "The edit command does not match the type of " +
+            "the activity you are trying to edit!";
 }
