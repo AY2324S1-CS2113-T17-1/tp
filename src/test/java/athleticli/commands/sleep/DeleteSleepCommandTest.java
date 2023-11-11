@@ -20,7 +20,7 @@ public class DeleteSleepCommandTest {
     private Sleep sleep2;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws AthletiException {
         data = new Data();
         SleepList sleepList = new SleepList();
         sleep1 = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0), 
@@ -36,11 +36,13 @@ public class DeleteSleepCommandTest {
     public void testExecuteWithValidIndex() throws AthletiException {
         DeleteSleepCommand command = new DeleteSleepCommand(1);
         String[] expected = {
-            "Got it. I've deleted this sleep record at index 1: [Sleep] | Date: 2023-10-17 " +
-                "| Start Time: October 17, 2023 at 10:00 PM | End Time: October 18, 2023 at 6:00 AM | " +
-                "Sleeping Duration: 8 Hours "
+            "Gotcha, I've deleted this sleep record:",
+            "[Sleep] | Date: 2023-10-17 | Start Time: October 17, 2023 at 10:00 PM " +
+                "| End Time: October 18, 2023 at 6:00 AM | Sleeping Duration: 8 Hours ",
+            "You have tracked a total of 1 sleep records. Keep it up!"
         };
-        assertArrayEquals(expected, command.execute(data));
+        String[] actual = command.execute(data);
+        assertArrayEquals(expected, actual);
     }
 
     @Test

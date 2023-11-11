@@ -1,6 +1,8 @@
 package athleticli.data.sleep;
 
 import athleticli.data.Goal.TimeSpan;
+import athleticli.exceptions.AthletiException;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +19,7 @@ public class SleepListTest {
     private Sleep sleepSecond;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws AthletiException {
         sleepList = new SleepList();
         LocalDateTime dateSecond = LocalDateTime.now();
         LocalDateTime dateFirst = LocalDateTime.now().minusDays(1);
