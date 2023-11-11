@@ -151,17 +151,35 @@ These are the main components behind the architecture of the `add-activity` feat
 6. `ActivityList`: maintains the list of all added activities.
 
 Here is a class diagram of the relationships between the data components `Activity`,`Data` and `ActivityList`:
-(tbd)
+
+<p align="center" >
+  <img width="50%" src="images/ActivityInheritance.svg" alt="Activity Data Components"/>
+</p>
+
+There exist three types of specific activities that inherit from the 'Activity' class: Run, Swim and Cycle. Each of 
+these classes has their own attributes and methods. The 'ActivityList' contains a list of all the activity instances.
 
 Given below is an example usage scenario and how the add mechanism behaves at each step.
 
-**Step 1 - Input Capture:** The user issues an `add-activity ...` which is captured and passed to the Parser by the 
-running AthletiCLI instance.
+**Step 1 - Input Capture:** The user issues an `add-activity ...` (or `add-run` etc., respectively) which is captured 
+and passed to the Parser by the running AthletiCLI instance.
 
-**Step 2 - Activity Parsing:** The Parser parses the raw input to obtain the arguments of the activity. Given that all 
-parameters are provided correctly and no exception is thrown, a new activity object is created.
+**Step 2 - Activity Parsing:** The ActivityParser parses the raw input to obtain the arguments of the activity. Given 
+that all parameters are provided correctly and no exception is thrown, a new activity object is created.
 
-**Step 3 - Command Parsing:** In addition the parser will create an `AddActivityCommand` object with the newly added 
+This diagram illustrates the activity parsing process in more detail:
+One of the key data component in the parsing process is the `ActivityChanges` object. It is used for storing the 
+different attributes of the activity that are to be added. Later, the `ActivityParser` will use the `ActivityChanges`
+to create the `Activity` object. 
+> This way of transferring data between the parser and the activity is more flexible which is suitable for future 
+extensions of the activity types and allows a more modular design. This design and most of the methods can be reused 
+for the `edit-activity` mechanism, which works in the same way with slight modifications due to optional parameters.
+
+<p align="center" >
+  <img width="100%" src="images/ActivityParsing.svg" alt="Activity Parsing Process"/>
+</p>
+
+**Step 3 - Command Parsing:** Afterwards the parser will create an `AddActivityCommand` object with the newly added 
 activity attached to it. The command implements the `AddActivityCommand#execute()` operation and is passed to 
 the AthletiCLI instance.
 
@@ -220,6 +238,11 @@ activity list with the two tracked activities from the data and calls the total 
 <p  align="center" >
     <img width="100%" src="images/ActivityGoalEvaluation.svg" alt="Sequence Diagram of activity goal evaluation"/>
 </p>
+
+### [Implemented] Activity Editing
+... tbd
+
+### [Implemented] Data Storing (Activity example)
 
 ### Sleep Management in AthletiCLI
 
