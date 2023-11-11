@@ -547,16 +547,19 @@ public class ActivityParser {
      * @throws AthletiException If the input is not a positive number.
      */
     public static int parseTarget(String target) throws AthletiException {
-        int targetParsed;
+        BigInteger targetParsed;
         try {
-            targetParsed = Integer.parseInt(target);
+            targetParsed = new BigInteger(target);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_TARGET_INVALID);
         }
-        if (targetParsed < 0) {
+        if (targetParsed.compareTo(BigInteger.ZERO) < 0) {
             throw new AthletiException(Message.MESSAGE_TARGET_NEGATIVE);
         }
-        return targetParsed;
+        if (targetParsed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
+            throw new AthletiException(Message.MESSAGE_TARGET_TOO_LARGE);
+        }
+        return targetParsed.intValue();
     }
 
     /**

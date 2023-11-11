@@ -180,6 +180,12 @@ public class ActivityParserTest {
     }
 
     @Test
+    void parseTarget_bigIntegerInput_throwAthletiException() {
+        String bigIntegerInput1 = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseTarget(bigIntegerInput1));
+    }
+
+    @Test
     void checkMissingActivityGoalArguments_missingSport_throwAthletiException() {
         assertThrows(AthletiException.class, () -> ActivityParser.checkMissingActivityGoalArguments(-1, 1, 1, 1));
     }
