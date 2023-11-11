@@ -24,10 +24,11 @@ public class Message {
     public static final String MESSAGE_ACTIVITYGOAL_TARGET_MISSING = "Please specify the target value using " +
             "\"target/\"!";
     public static final String MESSAGE_PROTEIN_MISSING =
-            "Please specify the protein intake using \"protein/\"!";
+            "Please specify the protein intake using \"protein/\"! Use \"protein/0\" if no protein was consumed.";
     public static final String MESSAGE_CARB_MISSING =
-            "Please specify the carbohydrate intake using \"carb/\"!";
-    public static final String MESSAGE_FAT_MISSING = "Please specify the fat intake using \"fat/\"!";
+            "Please specify the carbohydrate intake using \"carb/\"! Use \"carb/0\" if no carbohydrate was consumed.";
+    public static final String MESSAGE_FAT_MISSING = "Please specify the fat intake using \"fat/\"! Use \"fat/0\" if " +
+            "no fat was consumed.";
     public static final String MESSAGE_DIET_DATETIME_MISSING =
             "Please specify the datetime of the diet using \"datetime/\"!";
     public static final String MESSAGE_CAPTION_EMPTY = "The caption of an activity cannot be empty!";
