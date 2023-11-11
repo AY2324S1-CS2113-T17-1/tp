@@ -127,17 +127,11 @@ public class DietParser {
         checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos, fatMarkerPos,
                 datetimeMarkerPos);
 
-        String calories = commandArgs.substring(caloriesMarkerPos + Parameter.CALORIES_SEPARATOR.length(),
-                proteinMarkerPos).trim();
-        String protein =
-                commandArgs.substring(proteinMarkerPos + Parameter.PROTEIN_SEPARATOR.length(), carbMarkerPos)
-                        .trim();
-        String carb =
-                commandArgs.substring(carbMarkerPos + Parameter.CARB_SEPARATOR.length(), fatMarkerPos).trim();
-        String fat = commandArgs.substring(fatMarkerPos + Parameter.FAT_SEPARATOR.length(), datetimeMarkerPos)
-                             .trim();
-        String datetime =
-                commandArgs.substring(datetimeMarkerPos + Parameter.DATETIME_SEPARATOR.length()).trim();
+        final String calories = getValueForMarker(commandArgs, Parameter.CALORIES_SEPARATOR);
+        final String protein = getValueForMarker(commandArgs, Parameter.PROTEIN_SEPARATOR);
+        final String carb = getValueForMarker(commandArgs, Parameter.CARB_SEPARATOR);
+        final String fat = getValueForMarker(commandArgs, Parameter.FAT_SEPARATOR);
+        final String datetime = getValueForMarker(commandArgs, Parameter.DATETIME_SEPARATOR);
 
         checkEmptyDietArguments(calories, protein, carb, fat, datetime);
 
