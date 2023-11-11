@@ -315,78 +315,6 @@ public class ActivityParser {
     }
 
     /**
-     * Checks if the raw user input is missing any arguments for creating an activity.
-     *
-     * @param durationIndex The position of the duration separator.
-     * @param distanceIndex The position of the distance separator.
-     * @param datetimeIndex The position of the datetime separator.
-     * @throws AthletiException If any of the arguments are missing.
-     */
-    public static void checkMissingActivityArguments(int durationIndex, int distanceIndex,
-                                                     int datetimeIndex) throws AthletiException {
-        if (durationIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_DURATION_MISSING);
-        }
-        if (distanceIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_DISTANCE_MISSING);
-        }
-        if (datetimeIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_DATETIME_MISSING);
-        }
-    }
-
-    /**
-     * Checks if the raw user input is missing any arguments for creating a run or cycle.
-     *
-     * @param durationIndex  The position of the duration separator.
-     * @param distanceIndex  The position of the distance separator.
-     * @param datetimeIndex  The position of the datetime separator.
-     * @param elevationIndex The position of the elevation separator.
-     * @throws AthletiException If any of the arguments are missing.
-     */
-    public static void checkMissingRunCycleArguments(int durationIndex, int distanceIndex, int datetimeIndex,
-                                                     int elevationIndex) throws AthletiException {
-        checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
-        if (elevationIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_ELEVATION_MISSING);
-        }
-    }
-
-    /**
-     * Checks if the raw user input is missing any arguments for creating a swim.
-     *
-     * @param durationIndex      The position of the duration separator.
-     * @param distanceIndex      The position of the distance separator.
-     * @param datetimeIndex      The position of the datetime separator.
-     * @param swimmingStyleIndex The position of the swimming style separator.
-     * @throws AthletiException If any of the arguments are missing.
-     */
-    public static void checkMissingSwimArguments(int durationIndex, int distanceIndex, int datetimeIndex,
-                                                 int swimmingStyleIndex) throws AthletiException {
-        checkMissingActivityArguments(durationIndex, distanceIndex, datetimeIndex);
-        if (swimmingStyleIndex == -1) {
-            throw new AthletiException(Message.MESSAGE_SWIMMINGSTYLE_MISSING);
-        }
-    }
-
-    /**
-     * Checks if the raw user input includes any empty arguments for creating an activity.
-     *
-     * @param caption  The caption of the activity.
-     * @param duration The duration of the activity.
-     * @param distance The distance of the activity.
-     * @param datetime The datetime of the activity.
-     * @throws AthletiException If any of the arguments are empty.
-     */
-    public static void checkEmptyActivityArguments(String caption, String duration, String distance,
-                                                   String datetime) throws AthletiException {
-        checkEmptyCaptionArgument(caption);
-        checkEmptyDurationArgument(duration);
-        checkEmptyDistanceArgument(distance);
-        checkEmptyDateTimeArgument(datetime);
-    }
-
-    /**
      * Checks if the raw user input includes an empty caption argument.
      *
      * @param caption  The caption of the activity.
@@ -662,6 +590,12 @@ public class ActivityParser {
         return activityChanges;
     }
 
+    /**
+     * Checks if argument related to the separator is missing and throws parameter specific exception.
+     * @param separatorIndex The position of the separator, refers to the list of separators.
+     * @param separator The separator.
+     * @throws AthletiException If any of the arguments are missing.
+     */
     public static void checkMissingActivityArgument(int separatorIndex, String separator) throws AthletiException {
         if (separatorIndex == -1) {
             switch (separator) {
