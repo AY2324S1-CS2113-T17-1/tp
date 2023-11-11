@@ -37,7 +37,7 @@ public class AddDietCommand extends Command {
         if (size > 1) {
             countMessage = String.format(Message.MESSAGE_DIET_COUNT, size);
         } else {
-            countMessage = String.format(Message.MESSAGE_DIET_FIRST, size);
+            countMessage = Message.MESSAGE_DIET_FIRST;
         }
         return new String[]{Message.MESSAGE_DIET_ADDED, this.diet.toString(), countMessage};
     }
