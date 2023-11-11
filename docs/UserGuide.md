@@ -540,13 +540,13 @@ Assuming that there are 5 sleep records in the list:
 
 ### 🔍 Finding Sleep:
 
-`find-sleep date/DATE`
+`find-sleep DATE`
 
 You can find your sleep record on a specific date in AtheltiCLI.
 
 **Syntax:**
 
-* `find-sleep date/DATE`
+* `find-sleep DATE`
 
 **Parameters:**
 
@@ -554,7 +554,7 @@ You can find your sleep record on a specific date in AtheltiCLI.
 
 **Examples:**
 
-* `find-sleep date/2021-09-01`
+* `find-sleep 2021-09-01`
 
 ---
 
