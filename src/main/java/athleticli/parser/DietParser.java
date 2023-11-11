@@ -1,5 +1,6 @@
 package athleticli.parser;
 
+import athleticli.common.Config;
 import athleticli.data.Goal;
 import athleticli.data.diet.Diet;
 import athleticli.data.diet.DietGoal;
@@ -8,6 +9,7 @@ import athleticli.data.diet.UnhealthyDietGoal;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -210,16 +212,19 @@ public class DietParser {
      * @throws AthletiException
      */
     public static int parseCalories(String calories) throws AthletiException {
-        int caloriesParsed;
+        BigInteger caloriesParsed;
         try {
-            caloriesParsed = Integer.parseInt(calories);
+            caloriesParsed = new BigInteger(calories);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_CALORIES_INVALID);
         }
-        if (caloriesParsed < 0) {
+        if (caloriesParsed.signum() < 0) {
             throw new AthletiException(Message.MESSAGE_CALORIES_INVALID);
         }
-        return caloriesParsed;
+        if (caloriesParsed.compareTo(BigInteger.valueOf(Config.MAX_INPUT_NUMBER_ALLOWED)) > 0) {
+            throw new AthletiException(Message.MESSAGE_CALORIE_OVERFLOW);
+        }
+        return caloriesParsed.intValue();
     }
 
     /**
@@ -230,16 +235,19 @@ public class DietParser {
      * @throws AthletiException
      */
     public static int parseProtein(String protein) throws AthletiException {
-        int proteinParsed;
+        BigInteger proteinParsed;
         try {
-            proteinParsed = Integer.parseInt(protein);
+            proteinParsed = new BigInteger(protein);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_PROTEIN_INVALID);
         }
-        if (proteinParsed < 0) {
+        if (proteinParsed.signum() < 0) {
             throw new AthletiException(Message.MESSAGE_PROTEIN_INVALID);
         }
-        return proteinParsed;
+        if (proteinParsed.compareTo(BigInteger.valueOf(Config.MAX_INPUT_NUMBER_ALLOWED)) > 0) {
+            throw new AthletiException(Message.MESSAGE_PROTEIN_OVERFLOW);
+        }
+        return proteinParsed.intValue();
     }
 
     /**
@@ -250,16 +258,19 @@ public class DietParser {
      * @throws AthletiException
      */
     public static int parseCarb(String carb) throws AthletiException {
-        int carbParsed;
+        BigInteger carbParsed;
         try {
-            carbParsed = Integer.parseInt(carb);
+            carbParsed = new BigInteger(carb);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_CARB_INVALID);
         }
-        if (carbParsed < 0) {
+        if (carbParsed.signum() < 0) {
             throw new AthletiException(Message.MESSAGE_CARB_INVALID);
         }
-        return carbParsed;
+        if (carbParsed.compareTo(BigInteger.valueOf(Config.MAX_INPUT_NUMBER_ALLOWED)) > 0) {
+            throw new AthletiException(Message.MESSAGE_CARB_OVERFLOW);
+        }
+        return carbParsed.intValue();
     }
 
     /**
@@ -270,16 +281,19 @@ public class DietParser {
      * @throws AthletiException
      */
     public static int parseFat(String fat) throws AthletiException {
-        int fatParsed;
+        BigInteger fatParsed;
         try {
-            fatParsed = Integer.parseInt(fat);
+            fatParsed = new BigInteger(fat);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_FAT_INVALID);
         }
-        if (fatParsed < 0) {
+        if (fatParsed.signum() < 0) {
             throw new AthletiException(Message.MESSAGE_FAT_INVALID);
         }
-        return fatParsed;
+        if (fatParsed.compareTo(BigInteger.valueOf(Config.MAX_INPUT_NUMBER_ALLOWED)) > 0) {
+            throw new AthletiException(Message.MESSAGE_FAT_OVERFLOW);
+        }
+        return fatParsed.intValue();
     }
 
     /**
@@ -295,16 +309,19 @@ public class DietParser {
         }
 
         String[] words = commandArgs.trim().split("\\s+", 2);  // Split into parts
-        int index;
+        BigInteger indexParsed;
         try {
-            index = Integer.parseInt(words[0]);
+            indexParsed = new BigInteger(words[0]);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DIET_INDEX_TYPE_INVALID);
         }
-        if (index < 1) {
+        if (indexParsed.signum() < 0 || indexParsed.signum() == 0) {
             throw new AthletiException(Message.MESSAGE_DIET_INDEX_TYPE_INVALID);
         }
-        return index;
+        if (indexParsed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
+            throw new AthletiException(Message.MESSAGE_INVALID_DIET_INDEX);
+        }
+        return indexParsed.intValue();
     }
 
     /**
