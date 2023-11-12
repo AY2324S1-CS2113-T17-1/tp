@@ -187,7 +187,8 @@ You can find all your activities on a specific date in AtheltiCLI.
 
 `set-activity-goal`
 
-You can set goals for specific sports by defining target distance or duration over various periods.
+You can set goals for specific sports by defining target distance or duration over various periods. The goals can track
+your daily, weekly, monthly, or yearly progress.
 
 **Syntax**
 
@@ -199,12 +200,13 @@ You can set goals for specific sports by defining target distance or duration ov
 * TYPE: The metric for the goal. Options: distance, duration.
 * PERIOD: The period for the goal. Options: daily, weekly, monthly, yearly. Only activities that are recorded within
   the period will be counted towards the goal.
-* TARGET: The target value. For distance (in meters), for duration (in minutes).
+* TARGET: The target value. It must be a positive number. For distance, in meters. For duration, in minutes.
 
 **Examples**
 
-* `set-activity-goal sport/running type/distance period/weekly target/10000` - Sets a weekly running goal of 10 km.
-* `set-activity-goal sport/swimming type/duration period/monthly target/120` - Sets a monthly swimming goal of 2 hours.
+* `set-activity-goal sport/running type/distance period/weekly target/10000` Sets a goal of running 10km per week.
+* `set-activity-goal sport/swimming type/duration period/monthly target/120` Sets a goal of swimming for 2 hours 
+  per month.
 
 ---
 
@@ -227,9 +229,9 @@ You can edit your set goals by specifying the sport, target, and period.
 
 **Examples**
 
-* `edit-activity-goal sport/running type/distance period/weekly target/20000` - Edits to a weekly running goal of 20 km.
-* `edit-activity-goal sport/swimming type/duration period/monthly target/60` - Edits to a monthly swimming goal of 1
-  hour.
+* `edit-activity-goal sport/running type/distance period/weekly target/20000` Edits the goal of running 20km per week.
+* `edit-activity-goal sport/swimming type/duration period/monthly target/60` Edits the goal of swimming for 1 hour 
+  per month.
 
 ---
 
@@ -245,7 +247,7 @@ You can list all your set goals and view your progress towards them.
 
 **Examples**
 
-* `list-activity-goal`
+* `list-activity-goal` Lists all activity goals.
 <p>
   <img width="100%" src="images/listActivityGoalShowcase.png" alt="List returned by `list-activity-goal`"/>
 </p>
@@ -270,8 +272,8 @@ You can delete your set goals by specifying the sport, target, and period.
 
 **Examples**
 
-* `delete-activity-goal sport/running type/distance period/weekly` - Deletes the weekly running distance goal.
-* `delete-activity-goal sport/swimming type/duration period/monthly` - Deletes the monthly swimming duration goal.
+* `delete-activity-goal sport/running type/distance period/weekly` Deletes the weekly running distance goal.
+* `delete-activity-goal sport/swimming type/duration period/monthly` Deletes the monthly swimming duration goal.
 
 ---
 
@@ -291,7 +293,7 @@ You can delete your set goals by specifying the sport, target, and period.
 
 `add-diet`
 
-Your can record your diet by specifying calorie, protein, carbohydrate, and fat intake.
+You can record your diet by specifying calorie, protein, carbohydrate, and fat intake.
 
 **Syntax:**
 
@@ -307,8 +309,10 @@ Your can record your diet by specifying calorie, protein, carbohydrate, and fat 
 
 **Examples:**
 
-* `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
-* `add-diet calories/2000 datetime/2023-09-01 16:00 fat/10 carb/100 protein/200`
+* `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` Adds a diet entry with 500 calories, 
+  20mg of protein, 50mg of carbohydrates, and 10mg of fat on 1st September 2021 at 6am.
+* `add-diet calories/2000 datetime/2023-09-01 16:00 fat/10 carb/100 protein/200` Adds a diet entry with 2000 calories, 
+  200mg of protein, 100mg of carbohydrates, and 10mg of fat on 1st September 2023 at 4pm.
 
 ---
 
@@ -329,8 +333,8 @@ You can modify existing diet entries by specifying the index of the diet you wis
 
 **Examples:**
 
-- `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
-- `edit-diet 1 protein/215`
+- `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` Edits the first diet entry.
+- `edit-diet 1 protein/215` Edits the first diet entry to have 215mg of protein.
 
 *Note: Find the index of your diet entry in the listing section.*
 
@@ -352,7 +356,7 @@ You can remove a diet entry from your records.
 
 **Examples:**
 
-* `delete-diet 1`
+* `delete-diet 1` Deletes the first diet entry.
 
 ---
 
@@ -368,7 +372,7 @@ You can view a list of all your recorded diets.
 
 **Examples:**
 
-* `list-diet`
+* `list-diet` Lists all diets.
 <p>
   <img width="100%" src="images/listDietShowcase.png" alt="List returned by `list-diet`"/>
 </p>
@@ -391,7 +395,7 @@ You can locate diets recorded on a specific date.
 
 **Examples:**
 
-* `find-diet 2021-09-01`
+* `find-diet 2021-09-01` Finds diets recorded on 1st September 2021.
 
 ---
 
