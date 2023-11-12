@@ -58,7 +58,7 @@ public class DietParser {
         boolean isHealthy;
         String[] commandArgs = commandArgsString.split(Parameter.SPACE_SEPEARATOR);
 
-        Goal.TimeSpan timespan = ActivityParser.parsePeriod(commandArgs[Parameter.DIET_GOAL_TIME_SPAN_INDEX]);
+        Goal.TimeSpan timespan = parsePeriod(commandArgs[Parameter.DIET_GOAL_TIME_SPAN_INDEX]);
         if (commandArgs[Parameter.DIET_GOAL_UNHEALTHY_FLAG_INDEX].equalsIgnoreCase(
                 Parameter.UNHEALTHY_DIET_GOAL_FLAG)) {
             isHealthy = false;
@@ -134,6 +134,25 @@ public class DietParser {
             return deleteIndex;
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT);
+        }
+    }
+
+    /**
+     * Parses the period input provided by the user
+     * @param period            The raw user input containing the period.
+     * @return                  The parsed Period object.
+     * @throws AthletiException If the input format is invalid.
+     */
+    public static Goal.TimeSpan parsePeriod(String period) throws AthletiException {
+        try {
+            Goal.TimeSpan timePeriod = Goal.TimeSpan.valueOf(period.toUpperCase());
+            //Diet goal only support up to period that is less than or equal to DIET_GOAL_TIME_SPAN_LIMIT
+            if (timePeriod.getDays() > Parameter.DIET_GOAL_TIME_SPAN_LIMIT ){
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_PERIOD_INVALID);
+            }
+            return timePeriod.valueOf(period.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_PERIOD_INVALID);
         }
     }
 
