@@ -54,7 +54,7 @@ public class DietGoalList extends StorableList<DietGoal> {
 
     /**
      * Checks if a diet goal has clashing type as those existed in the list.
-     *
+     * The type of diet goals are 'healthy' and 'unhealthy'.
      * @param dietGoal
      * @return boolean value to indicate if the type is valid.
      */
@@ -83,14 +83,20 @@ public class DietGoalList extends StorableList<DietGoal> {
             boolean isTimeSpanGreater =
                     storedDietGoal.getTimeSpan().getDays() > newDietGoal.getTimeSpan().getDays();
             boolean isTimeSpanEqual = storedDietGoal.getTimeSpan().getDays() == newDietGoal.getTimeSpan().getDays();
+            boolean isTimeSpanLess = storedDietGoal.getTimeSpan().getDays() < newDietGoal.getTimeSpan().getDays();
             boolean isTargetValueGreater = storedDietGoal.getTargetValue() > newDietGoal.getTargetValue();
+            boolean isTargetValueLess = storedDietGoal.getTargetValue() < newDietGoal.getTargetValue();
             //Goals with the same time span can take on different values due to goal editing.
             if (isTimeSpanEqual) {
                 continue;
             }
-            if (isTimeSpanGreater != isTargetValueGreater) {
-                return false;
+            if (isTimeSpanGreater && isTargetValueGreater) {
+                continue;
             }
+            if(isTimeSpanLess && isTargetValueLess){
+                continue;
+            }
+            return false;
         }
         return true;
     }
@@ -117,7 +123,6 @@ public class DietGoalList extends StorableList<DietGoal> {
             if (dietGoalType.toLowerCase().equals(HealthyDietGoal.TYPE)) {
                 dietGoal = new HealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
                         dietGoalNutrientString, dietGoalTargetValue);
-
             } else if (dietGoalType.toLowerCase().equals(UnhealthyDietGoal.TYPE)) {
                 dietGoal = new UnhealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
                         dietGoalNutrientString, dietGoalTargetValue);
@@ -131,7 +136,6 @@ public class DietGoalList extends StorableList<DietGoal> {
                 throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
             }
             return dietGoal;
-
         } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_LOAD_ERROR);
         }
