@@ -8,6 +8,10 @@ import athleticli.data.Data;
 public class UnhealthyDietGoal extends DietGoal {
 
     public static final String TYPE = "unhealthy";
+    protected final String achievedSymbol;
+    protected final String unachievedSymbol;
+    protected final String unhealthyDietGoalSymbol;
+    protected final String unhealthyDietGoalStringRepresentation;
     private final boolean isHealthy;
 
     /**
@@ -20,6 +24,10 @@ public class UnhealthyDietGoal extends DietGoal {
     public UnhealthyDietGoal(TimeSpan timeSpan, String nutrient, int targetValue) {
         super(timeSpan, nutrient, targetValue);
         isHealthy = false;
+        achievedSymbol = "";
+        unachievedSymbol =  "[Not Achieved]";
+        unhealthyDietGoalSymbol = "[UNHEALTHY]";
+        unhealthyDietGoalStringRepresentation = "%s %s";
     }
 
     @Override
@@ -46,9 +54,9 @@ public class UnhealthyDietGoal extends DietGoal {
      */
     protected String getSymbol(Data data) {
         if (isAchieved(data)) {
-            return "";
+            return achievedSymbol;
         }
-        return "[Not Achieved]";
+        return unachievedSymbol;
     }
 
     /**
@@ -59,6 +67,7 @@ public class UnhealthyDietGoal extends DietGoal {
      */
     @Override
     public String toString(Data data) {
-        return "[UNHEALTHY] " + super.toString(data);
+        return String.format(unhealthyDietGoalStringRepresentation, unhealthyDietGoalSymbol,
+                super.toString(data));
     }
 }
