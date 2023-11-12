@@ -5,6 +5,9 @@ import athleticli.data.Data;
 import athleticli.data.sleep.SleepGoalList;
 import athleticli.ui.Message;
 
+/**
+ * Represents a command which lists all the sleep goals.
+ */
 public class ListSleepGoalCommand extends Command {
     /**
      * Constructor for ListSleepCommand.

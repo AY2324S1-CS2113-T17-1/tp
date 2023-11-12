@@ -8,7 +8,7 @@ import athleticli.data.sleep.SleepList;
 import athleticli.ui.Message;
 
 /**
- * Executes the add sleep commands provided by the user.
+ * Represents a command which adds a sleep entry.
  */
 public class AddSleepCommand extends Command {
     private final Sleep sleep;
@@ -43,7 +43,7 @@ public class AddSleepCommand extends Command {
         logger.info("Added sleep: " + this.sleep.toString());
         logger.info("Sleep count: " + sleeps.size());
         logger.info("Sleep list: " + sleeps.toString());
-        
+
         String countMessage;
         if (size > 1) {
             countMessage = String.format(Message.MESSAGE_SLEEP_COUNT, size);

@@ -9,6 +9,9 @@ import athleticli.data.sleep.Sleep;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+/**
+ * Represents a command which finds a sleep entry.
+ */
 public class FindSleepCommand extends FindCommand {
     public FindSleepCommand(LocalDate date) {
         super(date);

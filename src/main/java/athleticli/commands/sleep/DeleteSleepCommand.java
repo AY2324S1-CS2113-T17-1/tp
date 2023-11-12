@@ -10,7 +10,7 @@ import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 /**
- *  Executes the delete sleep command provided by the user.
+ *  Represents a command which deletes a sleep entry.
  */
 public class DeleteSleepCommand extends Command {
     private final int index;

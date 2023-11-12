@@ -10,7 +10,7 @@ import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 /**
- * Executes the edit sleep command provided by the user.
+ * Represents a command which edits a sleep entry.
  */
 public class EditSleepCommand extends Command {
     private static final Logger logger = Logger.getLogger(EditSleepCommand.class.getName());

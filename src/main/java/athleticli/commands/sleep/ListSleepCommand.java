@@ -7,6 +7,9 @@ import athleticli.data.Data;
 import athleticli.data.sleep.SleepList;
 import athleticli.ui.Message;
 
+/**
+ * Represents a command which lists all the sleep records.
+ */
 public class ListSleepCommand extends Command {
     private static final Logger logger = Logger.getLogger(ListSleepCommand.class.getName());
 

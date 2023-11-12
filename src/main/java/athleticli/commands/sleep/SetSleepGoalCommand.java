@@ -5,6 +5,10 @@ import athleticli.data.Data;
 import athleticli.data.sleep.SleepGoal;
 import athleticli.data.sleep.SleepGoalList;
 import athleticli.ui.Message;
+
+/**
+ * Represents a command which sets a sleep goal.
+ */
 public class SetSleepGoalCommand extends Command {
     private final SleepGoal sleepGoal;
 
