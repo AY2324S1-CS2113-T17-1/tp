@@ -7,7 +7,7 @@ import static athleticli.parser.DietParser.parseCarb;
 import static athleticli.parser.DietParser.parseDiet;
 import static athleticli.parser.DietParser.parseDietEdit;
 import static athleticli.parser.DietParser.parseDietGoalDelete;
-import static athleticli.parser.DietParser.parseDietGoalSetEdit;
+import static athleticli.parser.DietParser.parseDietGoalSetAndEdit;
 import static athleticli.parser.DietParser.parseDietIndex;
 import static athleticli.parser.DietParser.parseFat;
 import static athleticli.parser.DietParser.parseProtein;
@@ -318,43 +318,49 @@ public class DietParserTest {
     @Test
     void parseDietGoalSetEdit_unhealthyDietGoal_expectUnhealthyDietGoal() throws AthletiException {
         String oneValidOneInvalidGoalString = "WEEKLY unhealthy fats/20";
-        ArrayList<DietGoal> dietGoals = parseDietGoalSetEdit(oneValidOneInvalidGoalString);
+        ArrayList<DietGoal> dietGoals = parseDietGoalSetAndEdit(oneValidOneInvalidGoalString);
         assert dietGoals.get(0) instanceof UnhealthyDietGoal;
     }
     @Test
     void parseDietGoalSetEdit_noInput_throwAthletiException() {
-        String oneValidOneInvalidGoalString = " ";
-        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(oneValidOneInvalidGoalString));
+        String invalidGoalString = " ";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetAndEdit(invalidGoalString));
+    }
+
+    @Test
+    void parseDietGoalSetEdit_inputHasNoTimeSpan_throwAthletiException() {
+        String invalidGoalString = "fats/10";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetAndEdit(invalidGoalString));
     }
 
     @Test
     void parseDietGoalSetEdit_oneValidOneInvalidGoal_throwAthletiException() {
-        String oneValidOneInvalidGoalString = "calories/60 protein/protine";
-        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(oneValidOneInvalidGoalString));
+        String invalidGoalString = "calories/60 protein/protine";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetAndEdit(invalidGoalString));
     }
 
     @Test
     void parseDietGoalSetEdit_zeroTargetValue_throwAthletiException() {
-        String zeroTargetValueGoalString = "WEEKLY calories/0";
-        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(zeroTargetValueGoalString));
+        String invalidGoalString = "WEEKLY calories/0";
+        assertThrows(AthletiException.class, () -> parseDietGoalSetAndEdit(invalidGoalString));
     }
 
     @Test
     void parseDietGoalSetEdit_oneInvalidGoal_throwAthletiException() {
         String invalidGoalString = "WEEKLY calories/caloreis protein/protein";
-        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
+        assertThrows(AthletiException.class, () -> parseDietGoalSetAndEdit(invalidGoalString));
     }
 
     @Test
     void parseDietGoalSetEdit_repeatedDietGoal_throwAthletiException() {
         String invalidGoalString = "WEEKLY calories/1 calories/1";
-        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
+        assertThrows(AthletiException.class, () -> parseDietGoalSetAndEdit(invalidGoalString));
     }
 
     @Test
     void parseDietGoalSetEdit_invalidNutrient_throwAthletiException() {
         String invalidGoalString = "WEEKLY calorie/1";
-        assertThrows(AthletiException.class, () -> parseDietGoalSetEdit(invalidGoalString));
+        assertThrows(AthletiException.class, () -> parseDietGoalSetAndEdit(invalidGoalString));
     }
 
     @Test
