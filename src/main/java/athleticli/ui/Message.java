@@ -278,4 +278,6 @@ public class Message {
             "sport, type and period! Please edit the existing goal instead.";
     public static final String MESSAGE_ACTIVITY_TYPE_MISMATCH = "The edit command does not match the type of " +
             "the activity you are trying to edit!";
+    public static final String MESSAGE_DATE_FUTURE = "I like your optimism, but you cannot track activities in the " +
+            "future!";
 }

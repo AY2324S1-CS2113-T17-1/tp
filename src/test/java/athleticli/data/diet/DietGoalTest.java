@@ -3,6 +3,7 @@ package athleticli.data.diet;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.data.Data;
 import athleticli.data.Goal;
+import athleticli.parser.Parameter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +26,7 @@ class DietGoalTest {
 
     @BeforeEach
     void setUp() {
-        proteinGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, "protein", 10000);
+        proteinGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_PROTEIN, 10000);
         data = new Data();
         diet = new Diet(calories, protein, carb, fats, dateTime);
 
