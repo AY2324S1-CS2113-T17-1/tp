@@ -503,14 +503,14 @@ public class ActivityParser {
      * @throws AthletiException If the input is not an integer.
      */
     public static int parseElevation(String elevation) throws AthletiException {
-        final int ELEVATION_UPPER_BOUNDARY = 10000;
+        final int elevationUpperBoundary = 10000;
         BigInteger elevationParsed;
         try {
             elevationParsed = new BigInteger(elevation);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_ELEVATION_INVALID);
         }
-        if (elevationParsed.abs().compareTo(BigInteger.valueOf(ELEVATION_UPPER_BOUNDARY)) > 0) {
+        if (elevationParsed.abs().compareTo(BigInteger.valueOf(elevationUpperBoundary)) > 0) {
             throw new AthletiException(Message.MESSAGE_ELEVATION_TOO_LARGE);
         }
         return elevationParsed.intValue();
