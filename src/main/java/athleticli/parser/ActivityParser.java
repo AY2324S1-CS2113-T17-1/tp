@@ -428,6 +428,7 @@ public class ActivityParser {
         return new ActivityGoal(periodParsed, typeParsed, sportParsed, targetParsed);
     }
 
+    //@@author  nihalzp
     /**
      * Parses the raw user input for deleting an activity goal and returns the corresponding activity goal
      * object.
@@ -454,6 +455,7 @@ public class ActivityParser {
         final Goal.TimeSpan periodParsed = parsePeriod(period);
         return new ActivityGoal(periodParsed, typeParsed, sportParsed, 0);
     }
+    //@@author  AlWo223
 
     /**
      * Parses the sport input provided by the user.
@@ -549,16 +551,19 @@ public class ActivityParser {
      * @throws AthletiException If the input is not a positive number.
      */
     public static int parseTarget(String target) throws AthletiException {
-        int targetParsed;
+        BigInteger targetParsed;
         try {
-            targetParsed = Integer.parseInt(target);
+            targetParsed = new BigInteger(target);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_TARGET_INVALID);
         }
-        if (targetParsed < 0) {
+        if (targetParsed.compareTo(BigInteger.ZERO) < 0) {
             throw new AthletiException(Message.MESSAGE_TARGET_NEGATIVE);
         }
-        return targetParsed;
+        if (targetParsed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
+            throw new AthletiException(Message.MESSAGE_TARGET_TOO_LARGE);
+        }
+        return targetParsed.intValue();
     }
 
     /**
