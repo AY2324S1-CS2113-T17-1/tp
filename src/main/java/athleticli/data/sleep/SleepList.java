@@ -84,12 +84,12 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
     /**
      * Parses a sleep from a string.
      *
-     * @param s The string to be parsed.
+     * @param sleep The string to be parsed.
      * @return The sleep parsed from the string.
      */
     @Override
-    public Sleep parse(String s) throws AthletiException {
-        return SleepParser.parseSleep(s);
+    public Sleep parse(String sleep) throws AthletiException {
+        return SleepParser.parseSleep(sleep);
     }
 
     /**

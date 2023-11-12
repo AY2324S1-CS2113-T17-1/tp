@@ -18,6 +18,7 @@ public class DeleteSleepCommand extends Command {
 
     /**
      * Constructor for DeleteSleepCommand.
+     * 
      * @param index Index of the sleep to be deleted.
      */
     public DeleteSleepCommand(int index) {
@@ -28,6 +29,7 @@ public class DeleteSleepCommand extends Command {
 
     /**
      * Deletes the sleep record at the specified index.
+     * 
      * @param data The current data containing the sleep list.
      * @return The message which will be shown to the user.
      * @throws AthletiException If the index is out of bounds.

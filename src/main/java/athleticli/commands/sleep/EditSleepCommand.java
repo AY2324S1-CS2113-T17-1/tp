@@ -19,6 +19,7 @@ public class EditSleepCommand extends Command {
 
     /**
      * Constructor for EditSleepCommand.
+     * 
      * @param index Index of the sleep to be edited.
      * @param newSleep New sleep record to update the old one.
      */
@@ -31,6 +32,7 @@ public class EditSleepCommand extends Command {
     
     /**
      * Edits the sleep record at the specified index.
+     * 
      * @param data The current data containing the sleep list.
      * @return The message which will be shown to the user.
      * @throws AthletiException If the index is out of bounds.

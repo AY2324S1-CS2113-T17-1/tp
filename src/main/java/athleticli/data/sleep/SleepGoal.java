@@ -23,6 +23,7 @@ public class SleepGoal extends Goal {
 
     /**
      * Constructs a sleep goal.
+     * 
      * @param timeSpan    The time span of the sleep goal.
      * @param goalType    The goal type of the sleep goal.
      * @param targetValue The target value of the sleep goal in minutes. (Used if goalType is DURATION)
@@ -36,8 +37,10 @@ public class SleepGoal extends Goal {
 
     /**
      * Examines whether the sleep goal is achieved.
+     * 
      * @param data The data containing the sleep list.
      * @return Whether the sleep goal is achieved.
+     * @throws IllegalStateException if the goal type is invalid
      */
     @Override
     public boolean isAchieved(Data data) throws IllegalStateException {
@@ -47,8 +50,10 @@ public class SleepGoal extends Goal {
 
     /**
      * Returns the current value of the sleep goal metric.
+     * 
      * @param data The data containing the sleep list.
      * @return The current value of the sleep goal metric.
+     * @throws IllegalStateException if the goal type is invalid
      */
     public int getCurrentValue(Data data) throws IllegalStateException {
         SleepList sleeps = data.getSleeps();
@@ -65,6 +70,7 @@ public class SleepGoal extends Goal {
 
     /**
      * Returns the string representation of the sleep goal.
+     * 
      * @param data The data containing the sleep list.
      * @return The string representation of the sleep goal.
      */

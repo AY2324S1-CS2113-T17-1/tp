@@ -15,6 +15,7 @@ public class SetSleepGoalCommand extends Command {
 
     /**
      * Constructor for SetSleepGoalCommand.
+     * 
      * @param sleepGoal Sleep goal to be added.
      */
     public SetSleepGoalCommand(SleepGoal sleepGoal) {
@@ -23,8 +24,9 @@ public class SetSleepGoalCommand extends Command {
 
     /**
      * Updates the sleep goal list.
-     * @param data        The current data containing the sleep goal list.
-     * @return            The message which will be shown to the user.
+     * 
+     * @param data The current data containing the sleep goal list.
+     * @return The message which will be shown to the user.
      */
     @Override
     public String[] execute(Data data) throws AthletiException {

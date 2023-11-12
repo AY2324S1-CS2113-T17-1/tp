@@ -18,7 +18,8 @@ public class FindSleepCommand extends FindCommand {
     
     /**
      * Constructor for FindSleepCommand.
-     * @param date
+     * 
+     * @param date Date of the sleep to be found.
      */
     public FindSleepCommand(LocalDate date) {
         super(date);
@@ -41,7 +42,7 @@ public class FindSleepCommand extends FindCommand {
                 .map(Sleep::toString);
         
         logger.info("Found " + resultStream.count() + " sleep entries");
-        
+
         return Stream.concat(Stream.of(Message.MESSAGE_SLEEP_FIND), resultStream)
                 .toArray(String[]::new);
     }

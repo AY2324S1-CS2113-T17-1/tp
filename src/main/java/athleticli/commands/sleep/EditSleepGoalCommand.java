@@ -18,6 +18,7 @@ public class EditSleepGoalCommand extends Command {
 
     /**
      * Constructor for EditActivityGoalCommand.
+     * 
      * @param sleepGoal Activity goal to be edited.
      */
     public EditSleepGoalCommand(SleepGoal sleepGoal) {
@@ -47,7 +48,7 @@ public class EditSleepGoalCommand extends Command {
         }
 
         logger.warning("No such goal exists");
-        
+
         throw new AthletiException(Message.MESSAGE_NO_SUCH_GOAL_EXISTS);
     }
 }

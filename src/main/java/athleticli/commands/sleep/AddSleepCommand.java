@@ -28,7 +28,7 @@ public class AddSleepCommand extends Command {
     }
 
     /**
-     * Adds the sleep record to the sleep list.
+     * Adds the sleep record to the sleep list. Sorts the sleep list after adding.
      * 
      * @param data The current data containing the sleep list.
      * @return The message which will be shown to the user.

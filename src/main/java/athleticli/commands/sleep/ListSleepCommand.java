@@ -37,6 +37,7 @@ public class ListSleepCommand extends Command {
 
     /**
      * Prints the list of sleep records.
+     * 
      * @param sleeps The current sleep list.
      * @param size The size of the sleep list.
      * @return The message containing list of sleep records which will be shown to the user.
