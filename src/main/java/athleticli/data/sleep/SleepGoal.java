@@ -6,15 +6,13 @@ import athleticli.data.Goal;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
-
-
 public class SleepGoal extends Goal {
 
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm",
         Locale.ENGLISH);
 
     public enum GoalType {
-        DURATION, STARTTIME, ENDTIME
+        DURATION
     }
 
     private final GoalType goalType;
