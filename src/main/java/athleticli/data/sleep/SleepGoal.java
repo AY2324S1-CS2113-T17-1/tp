@@ -27,7 +27,6 @@ public class SleepGoal extends Goal {
      * @param timeSpan    The time span of the sleep goal.
      * @param goalType    The goal type of the sleep goal.
      * @param targetValue The target value of the sleep goal in minutes. (Used if goalType is DURATION)
-     * @param targetTime  The target time of the sleep goal. (Used if goalType is STARTTIME or ENDTIME)
      */
     public SleepGoal(GoalType goalType, TimeSpan timeSpan, int target) {
         super(timeSpan);
