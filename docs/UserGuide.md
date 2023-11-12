@@ -187,8 +187,7 @@ You can find all your activities on a specific date in AtheltiCLI.
 
 `set-activity-goal`
 
-You can set goals for your activities in AthletiCLI by setting the target distance or duration for a specific sport.
-The goals can track your daily, weekly, monthly, or yearly progress.
+You can set goals for specific sports by defining target distance or duration over various periods.
 
 **Syntax**
 
@@ -196,17 +195,16 @@ The goals can track your daily, weekly, monthly, or yearly progress.
 
 **Parameters**
 
-* SPORT: The sport for which you want to set a goal. It must be one of the following: run, swim, cycle, general.
-* TYPE: The metric for which you want to set a goal. It must be one of the following: distance, duration.
-* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, 
-  yearly. Only activities that are recorded within the period will be counted towards the goal.
-* TARGET: The target value. It must be a positive number. For distance, it is in meters. For duration, it is in
-  minutes.
+* SPORT: The sport for which to set a goal. Options: running, cycling, swimming, general.
+* TYPE: The metric for the goal. Options: distance, duration.
+* PERIOD: The period for the goal. Options: daily, weekly, monthly, yearly. Only activities that are recorded within
+  the period will be counted towards the goal.
+* TARGET: The target value. For distance (in meters), for duration (in minutes).
 
 **Examples**
-* `set-activity-goal sport/running type/distance period/weekly target/10000` Sets a goal of running 10km per week.
-* `set-activity-goal sport/swimming type/duration period/monthly target/120` Sets a goal of swimming for 2 hours per
-  month.
+
+* `set-activity-goal sport/running type/distance period/weekly target/10000` - Sets a weekly running goal of 10 km.
+* `set-activity-goal sport/swimming type/duration period/monthly target/120` - Sets a monthly swimming goal of 2 hours.
 
 ---
 
@@ -214,23 +212,24 @@ The goals can track your daily, weekly, monthly, or yearly progress.
 
 `edit-activity-goal`
 
-You can edit your already set goals by mentioning the sport, target, and period of the goal you want to edit.
+You can edit your set goals by specifying the sport, target, and period.
 
 **Syntax**
 
-* `edit-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`
+* `edit-activity-goal sport/SPORT target/TARGET period/PERIOD target/TARGET`
 
 **Parameters**
 
-* SPORT: The sport for which you want to set a goal. It must be one of the following: running, swimming, cycling, general.
-* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
-* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, yearly.
-* VALUE: The value of the target. It must be a positive number. For distance, it is in meters. For duration, it is in minutes.
+* SPORT: The sport of the goal. Options: running, cycling, swimming, general.
+* TYPE: The metric for the goal. Options: distance, duration.
+* PERIOD: The period for the goal. Options: daily, weekly, monthly, yearly.
+* TARGET: The new target value. For distance (in meters), for duration (in minutes).
 
 **Examples**
 
-* `edit-activity-goal sport/running type/distance period/weekly target/20000` Edits the goal of running 20km per week.
-* `edit-activity-goal sport/swimming type/duration period/monthly target/60` Edits the goal of swimming for 1 hour per month.
+* `edit-activity-goal sport/running type/distance period/weekly target/20000` - Edits to a weekly running goal of 20 km.
+* `edit-activity-goal sport/swimming type/duration period/monthly target/60` - Edits to a monthly swimming goal of 1
+  hour.
 
 ---
 
@@ -238,7 +237,7 @@ You can edit your already set goals by mentioning the sport, target, and period 
 
 `list-activity-goal`
 
-You can list all your goals in AthletiCLI and see your progress towards them.
+You can list all your set goals and view your progress towards them.
 
 **Syntax**
 
@@ -246,7 +245,7 @@ You can list all your goals in AthletiCLI and see your progress towards them.
 
 **Examples**
 
-* `list-activity-goal` Lists all your goals.
+* `list-activity-goal`
 
 ---
 
@@ -254,7 +253,7 @@ You can list all your goals in AthletiCLI and see your progress towards them.
 
 `delete-activity-goal`
 
-You can delete your goals in AthletiCLI by mentioning the sport, target, and period of the goal you want to delete.
+You can delete your set goals by specifying the sport, target, and period.
 
 **Syntax**
 
@@ -262,14 +261,14 @@ You can delete your goals in AthletiCLI by mentioning the sport, target, and per
 
 **Parameters**
 
-* SPORT: The sport for which you want to set a goal. It must be one of the following: running, swimming, cycling, general.
-* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
-* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, yearly.
+* SPORT: The sport of the goal. Options: running, cycling, swimming, general.
+* TYPE: The metric for the goal. Options: distance, duration.
+* PERIOD: The period for the goal. Options: daily, weekly, monthly, yearly.
 
 **Examples**
 
-* `delete-activity-goal sport/running type/distance period/weekly` Deletes the goal of running distance per week.
-* `delete-activity-goal sport/swimming type/duration period/monthly` Deletes the goal of swimming duration per month.
+* `delete-activity-goal sport/running type/distance period/weekly` - Deletes the weekly running distance goal.
+* `delete-activity-goal sport/swimming type/duration period/monthly` - Deletes the monthly swimming duration goal.
 
 ---
 
