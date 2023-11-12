@@ -3,6 +3,12 @@ layout: page
 title: Ming-Tian’s Portfolio
 ---
 
+## Overview
+
+**AthletiCLI** is your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also covers dietary habits, sleep metrics, and more.
+
+## Summary of Contributions
+
 Given below are my contributions to the project.
 
 * :computer: **Code contributed**: [RepoSense link](https://nus-cs2113-ay2324s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=skylee03&tabRepo=AY2324S1-CS2113-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
@@ -26,9 +32,10 @@ Given below are my contributions to the project.
   * Integrated a Jekyll theme ([Alembic](https://github.com/daviddarnes/alembic)) to the project website.
   * Integrated a Jekyll plugin ([Jemoji](https://github.com/jekyll/jemoji)) to the project website.
   * :green_book: User Guide:
-    * Added instructions on the commands I implemented.
+    * Added instructions on [miscellaneous commands](../UserGuide.html#miscellaneous).
   * :blue_book: Developer Guide:
     * Contributed to the sections of [design](../DeveloperGuide.html#design) and [implementation](../DeveloperGuide.html#implementation).
+    * Added sequence diagrams for [`help add-diet`](../images/HelpAddDiet.svg) and [`save`](../images/Save.svg).
     * Checked and unified the format of the DG. 
 * :family: **Community**:
   * :eyes: Reviewed PRs: [tP comments dashboard](https://nus-cs2113-ay2324s1.github.io/dashboards/contents/tp-comments.html)

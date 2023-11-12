@@ -32,17 +32,17 @@ public class ActivityGoalList extends StorableList<ActivityGoal> {
 
     /**
      * Unparses an activity goal to a string.
-     * Example output: "sport/running type/distance period/weekly target/8000"
+     * Example output: "sport/running type/distance period/weekly target/8000".
      *
      * @param activityGoal Activity goal to be parsed.
      * @return The string unparsed from the activity goal.
      */
     @Override
     public String unparse(ActivityGoal activityGoal) {
-        return Parameter.SPORT_SEPARATOR + activityGoal.getSport() +
-                Parameter.SPACE + Parameter.TYPE_SEPARATOR + activityGoal.getGoalType() +
-                Parameter.SPACE + Parameter.PERIOD_SEPARATOR + activityGoal.getTimeSpan() +
-                Parameter.SPACE + Parameter.TARGET_SEPARATOR + activityGoal.getTargetValue();
+        return Parameter.SPORT_SEPARATOR + activityGoal.getSport()
+                + Parameter.SPACE + Parameter.TYPE_SEPARATOR + activityGoal.getGoalType()
+                + Parameter.SPACE + Parameter.PERIOD_SEPARATOR + activityGoal.getTimeSpan()
+                + Parameter.SPACE + Parameter.TARGET_SEPARATOR + activityGoal.getTargetValue();
     }
 
     /**
@@ -54,8 +54,8 @@ public class ActivityGoalList extends StorableList<ActivityGoal> {
      * @return Whether the activity goal is a duplicate.
      */
     public boolean isDuplicate(ActivityGoal.GoalType goalType, ActivityGoal.Sport sport, Goal.TimeSpan timeSpan) {
-        return this.stream().anyMatch(activityGoal -> activityGoal.getGoalType() == goalType &&
-                activityGoal.getSport() == sport &&
-                activityGoal.getTimeSpan() == timeSpan);
+        return this.stream().anyMatch(activityGoal -> activityGoal.getGoalType() == goalType
+                && activityGoal.getSport() == sport
+                && activityGoal.getTimeSpan() == timeSpan);
     }
 }

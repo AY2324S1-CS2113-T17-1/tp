@@ -66,8 +66,8 @@ full activity insights.
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
 * DISTANCE: The distance of the activity in meters. It must be a positive number smaller than 1000000.
-* DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm 
-  and cannot be in the future.
+* DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm,
+  must be valid, and cannot be in the future.
 * ELEVATION: The elevation gain of a run or cycle in meters. It must be a positive number smaller than 10000.
 * STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
 
@@ -76,6 +76,8 @@ full activity insights.
 * `add-activity Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00`
 * `add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 * `add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2023-10-16 20:00 style/freestyle`
+
+---
 
 ### ➖ Deleting Activities:
 
@@ -97,6 +99,8 @@ the following command.
 
 * `delete-activity 2` Deletes the second activity in the activity list.
 * `delete-activity 1` Deletes the most recent activity in the activity list.
+
+---
 
 ### 📅 Listing Activities:
 
@@ -150,12 +154,14 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 
 * INDEX: The index of the activity to be edited as shown in the displayed activity list - must be a positive number 
   which is not larger than the number of activities recorded. Note, that the indices are allocated based on the date of the activity.
-* See [adding activities](#adding-activities) for the other parameters.
+* See [adding activities](#-adding-activities) for the other parameters.
 
 **Examples:**
 
 * `edit-activity 1 caption/Morning Run distance/10000`
 * `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`
+
+---
 
 ### 🔍 Finding Activities:
 
@@ -169,18 +175,21 @@ You can find all your activities on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the activity. It must follow the ISO Date Format: yyyy-MM-dd.
+* DATE: The date of the activity. It must follow the ISO Date Format: yyyy-MM-dd, must be valid and cannot be in 
+  the future.
 
 **Example:**
 
 * `find-activity 2021-09-01`
 
+---
+
 ### 🎯 Setting Activity Goals:
 
 `set-activity-goal`
 
-You can set goals for your activities in AthletiCLI by setting the target distance or duration for a specific sport.
-The goals can track your daily, weekly, monthly, or yearly progress.
+You can set goals for specific sports by defining target distance or duration over various periods. The goals can track
+your daily, weekly, monthly, or yearly progress.
 
 **Syntax**
 
@@ -188,45 +197,49 @@ The goals can track your daily, weekly, monthly, or yearly progress.
 
 **Parameters**
 
-* SPORT: The sport for which you want to set a goal. It must be one of the following: run, swim, cycle, general.
-* TYPE: The metric for which you want to set a goal. It must be one of the following: distance, duration.
-* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, 
-  yearly. Only activities that are recorded within the period will be counted towards the goal.
-* TARGET: The target value. It must be a positive number. For distance, it is in meters. For duration, it is in
-  minutes.
+* SPORT: The sport for which to set a goal. Options: running, cycling, swimming, general.
+* TYPE: The metric for the goal. Options: distance, duration.
+* PERIOD: The period for the goal. Options: daily, weekly, monthly, yearly. Only activities that are recorded within
+  the period will be counted towards the goal.
+* TARGET: The target value. It must be a positive number. For distance, in meters. For duration, in minutes.
 
 **Examples**
+
 * `set-activity-goal sport/running type/distance period/weekly target/10000` Sets a goal of running 10km per week.
-* `set-activity-goal sport/swimming type/duration period/monthly target/120` Sets a goal of swimming for 2 hours per
-  month.
+* `set-activity-goal sport/swimming type/duration period/monthly target/120` Sets a goal of swimming for 2 hours 
+  per month.
+
+---
 
 ### ✍️ Editing Activity Goals:
 
 `edit-activity-goal`
 
-You can edit your already set goals by mentioning the sport, target, and period of the goal you want to edit.
+You can edit your set goals by specifying the sport, target, and period.
 
 **Syntax**
 
-* `edit-activity-goal sport/SPORT target/TARGET period/PERIOD value/VALUE`
+* `edit-activity-goal sport/SPORT target/TARGET period/PERIOD target/TARGET`
 
 **Parameters**
 
-* SPORT: The sport for which you want to set a goal. It must be one of the following: running, swimming, cycling, general.
-* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
-* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, yearly.
-* VALUE: The value of the target. It must be a positive number. For distance, it is in meters. For duration, it is in minutes.
+* TARGET: The new target value. For distance (in meters), for duration (in minutes).
+* See [setting activity goals](#-setting-activity-goals) for the other parameters.
 
 **Examples**
 
-* `edit-activity-goal sport/running type/distance period/weekly target/20000` Edits the goal of running 20km per week.
-* `edit-activity-goal sport/swimming type/duration period/monthly target/60` Edits the goal of swimming for 1 hour per month.
+* `edit-activity-goal sport/running type/distance period/weekly target/20000` Adjusts the goal of running distance 
+  to 20km per week.
+* `edit-activity-goal sport/swimming type/duration period/monthly target/60` Adjusts the goal of swimming duration 
+  to 1 hour per month.
+
+---
 
 ### 📅 Listing Activity Goals:
 
 `list-activity-goal`
 
-You can list all your goals in AthletiCLI and see your progress towards them.
+You can list all your set goals and view your progress towards them.
 
 **Syntax**
 
@@ -234,13 +247,18 @@ You can list all your goals in AthletiCLI and see your progress towards them.
 
 **Examples**
 
-* `list-activity-goal` Lists all your goals.
+* `list-activity-goal` Lists all activity goals.
+<p>
+  <img width="100%" src="images/listActivityGoalShowcase.png" alt="List returned by `list-activity-goal`"/>
+</p>
+
+---
 
 ### ➖ Deleting Activity Goals:
 
 `delete-activity-goal`
 
-You can delete your goals in AthletiCLI by mentioning the sport, target, and period of the goal you want to delete.
+You can delete your set goals by specifying the sport, target, and period.
 
 **Syntax**
 
@@ -248,14 +266,14 @@ You can delete your goals in AthletiCLI by mentioning the sport, target, and per
 
 **Parameters**
 
-* SPORT: The sport for which you want to set a goal. It must be one of the following: running, swimming, cycling, general.
-* TARGET: The target for which you want to set a goal. It must be one of the following: distance, duration.
-* PERIOD: The period for which you want to set a goal. It must be one of the following: daily, weekly, monthly, yearly.
+* See [setting activity goals](#-setting-activity-goals) for the parameters.
 
 **Examples**
 
-* `delete-activity-goal sport/running type/distance period/weekly` Deletes the goal of running distance per week.
-* `delete-activity-goal sport/swimming type/duration period/monthly` Deletes the goal of swimming duration per month.
+* `delete-activity-goal sport/running type/distance period/weekly` Deletes the weekly running distance goal.
+* `delete-activity-goal sport/swimming type/duration period/monthly` Deletes the monthly swimming duration goal.
+
+---
 
 ## 🍏 Diet Management
 
@@ -273,7 +291,7 @@ You can delete your goals in AthletiCLI by mentioning the sport, target, and per
 
 `add-diet`
 
-You can record your diet in AtheltiCLI by adding your calorie, protein, carbohydrate,and fat intake of your meals.
+You can record your diet by specifying calorie, protein, carbohydrate, and fat intake.
 
 **Syntax:**
 
@@ -281,21 +299,27 @@ You can record your diet in AtheltiCLI by adding your calorie, protein, carbohyd
 
 **Parameters:**
 
-* CALORIES: The total calories of the meal.
-* PROTEIN: The total protein of the meal.
-* CARB: The total carbohydrates of the meal.
-* FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm and cannot be in the future.
+* CALORIES: Total calories (in cal) of the meal.
+* PROTEIN: Total protein (in milligrams) of the meal.
+* CARB: Total carbohydrates (in milligrams) of the meal.
+* FAT: Total fat (in milligrams) of the meal.
+* DATETIME: Date and time of the meal in ISO Date Time Format (yyyy-MM-dd HH:mm). It must be valid and cannot be in the 
+  future.
 
 **Examples:**
 
-* `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
+* `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` Adds a diet entry with 500 calories, 
+  20mg of protein, 50mg of carbohydrates, and 10mg of fat on 1st September 2021 at 6am.
+* `add-diet calories/2000 datetime/2023-09-01 16:00 fat/10 carb/100 protein/200` Adds a diet entry with 2000 calories, 
+  200mg of protein, 100mg of carbohydrates, and 10mg of fat on 1st September 2023 at 4pm.
+
+---
 
 ### ✍️ Editing Diets:
 
 `edit-diet`
 
-You can edit your diet in AtheltiCLI by editing the diet at the specified index.
+You can modify existing diet entries by specifying the index of the diet you wish to edit.
 
 **Syntax:**
 
@@ -303,26 +327,23 @@ You can edit your diet in AtheltiCLI by editing the diet at the specified index.
 
 **Parameters:**
 
-* INDEX: The index of the diet to be edited - must be a positive integer.
-* CALORIES: The total calories of the meal.
-* PROTEIN: The total protein of the meal.
-* CARB: The total carbohydrates of the meal.
-* FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm and cannot be in the future.
+* INDEX: Index of the diet entry (positive integer).
+* See [adding diets](#-adding-diets) for the other parameters.
 
 **Examples:**
 
-* `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
-* `edit-diet 1 datetime/2021-09-01 06:00 protein/20 carb/50 calories/500 fat/10`
-* `edit-diet 1 calories/500 protein/20 carb/50 fat/10`
-* `edit-diet 1 calories/500`
-* `edit-diet 1 protein/20`
+* `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` Edits the first diet entry.
+* `edit-diet 1 protein/215` Edits the first diet entry to have 215mg of protein.
+
+*Note: Find the index of your diet entry in the listing section.*
+
+---
 
 ### ➖ Deleting Diets:
 
 `delete-diet`
 
-You can delete your diet in AtheltiCLI by deleting the diet at the specified index.
+You can remove a diet entry from your records.
 
 **Syntax:**
 
@@ -330,17 +351,19 @@ You can delete your diet in AtheltiCLI by deleting the diet at the specified ind
 
 **Parameters:**
 
-* INDEX: The index of the diet to be deleted - must be a positive integer.
+* INDEX: Index of the diet to be deleted (positive integer).
 
 **Examples:**
 
-* `delete-diet 1`
+* `delete-diet 1` Deletes the first diet entry.
+
+---
 
 ### 📅 Listing Diets:
 
 `list-diet`
 
-You can list all your diets in AtheltiCLI.
+You can view a list of all your recorded diets.
 
 **Syntax:**
 
@@ -348,13 +371,18 @@ You can list all your diets in AtheltiCLI.
 
 **Examples:**
 
-* `list-diet`
+* `list-diet` Lists all diets.
+<p>
+  <img width="100%" src="images/listDietShowcase.png" alt="List returned by `list-diet`"/>
+</p>
+
+---
 
 ### 🔍 Finding Diets:
 
 `find-diet DATE`
 
-You can find all your diets on a specific date in AtheltiCLI.
+You can locate diets recorded on a specific date.
 
 **Syntax:**
 
@@ -362,11 +390,13 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the diet. It must follow the ISO Date Format yyyy-MM-dd and cannot be in the future.
+* DATE: Date of the diet in ISO Date Format (yyyy-MM-dd). It must be valid and cannot be in the future.
 
 **Examples:**
 
-* `find-diet 2021-09-01`
+* `find-diet 2021-09-01` Finds diets recorded on 1st September 2021.
+
+---
 
 ### 🎯 Adding Diet Goals:
 
@@ -405,6 +435,8 @@ You can create one or multiple nutrient goals at once with this command.
 
 * `set-diet-goal DAILY calories/500` Creates a single calories goal.
 
+---
+
 ### ➖ Deleting Diet Goals:
 
 `delete-diet-goal`
@@ -425,6 +457,8 @@ it is bounded by the number of diet goals available.
 
 * `delete-diet-goal 1` Deletes a diet goal that is located on the first index of the list.
 
+---
+
 ### 📅 Listing Diet Goals:
 
 `list-diet-goal`
@@ -438,6 +472,8 @@ You can list all your diet goals in AtheltiCLI.
 **Examples:**
 
 * `list-diet-goal`
+
+---
 
 ### ✍️ Editing Diet Goals:
 
@@ -474,6 +510,7 @@ You can edit one or multiple nutrient goals with this command.
 Edits multiple nutrients goals if all of them exists.
 * `edit-diet-goal WEEKLY calories/5000` 
 Edits a single calories goal if the goal exists.
+
 ---
 
 ## 🛌 Sleep Management
@@ -499,19 +536,23 @@ You can record your sleep timings in AtheltiCLI by adding your sleep start and e
 
 **Parameters:**
 
-* START: The start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* START: The start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm, must be valid 
+  and cannot be in the future.
 
-* END: The end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* END: The end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm, must be valid and 
+  cannot be in the future.
 
 **Examples:**
 
-Take note that all sleep entries have an assosciated date. 
+Take note that all sleep entries have an associated date. 
 
 All sleep entries with a start time before 06:00 will be taken to represent the previous days sleep. 
 
 * `add-sleep start/2023-01-20 02:00 end/2023-01-20 08:00`  will be taken to represent the sleep record on `2022-01-19`, which is the day before, since the start time is before 06:00 on `2022-01-20`.
 
 * `add-sleep start/2022-01-20 22:00 end/2022-01-21 06:00` will be taken to represent the sleep record on `2022-01-20`, since the start time is after 06:00 on `2022-01-20`.
+
+---
 
 ### 📅 Listing Sleep:
 
@@ -522,6 +563,8 @@ You can see all your tracked sleep records in a list by using this command.
 **Syntax:** `list-sleep`
 
 **Example:** `list-sleep`
+
+---
 
 ### ➖ Deleting Sleep:
 
@@ -546,6 +589,8 @@ Assuming that there are 5 sleep records in the list:
 * `delete-sleep 5`  will delete the 5th sleep record in the sleep records list.
 * `delete-sleep 1`  will delete the 1st sleep record in the sleep records list.
 
+---
+
 ### ✍️ Editing Sleep:
 
 `edit-sleep`  
@@ -559,8 +604,10 @@ You can modify existing sleep records in AtheltiCLI by specifying the sleep's in
 **Parameters:**
 
 * INDEX: The index of the sleep record you wish to edit. It must be a positive number and is not larger than the number of sleep records recorded.
-* START: The new start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
-* END: The new end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* START: The new start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm, must be 
+  valid and cannot be in the future.
+* END: The new end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm, must be valid and 
+  cannot be in the future.
 
 **Examples:**
 
@@ -569,6 +616,8 @@ Assuming that there are 5 sleep records in the list:
 * `edit-sleep 5 start/2023-01-20 02:00 end/2023-01-20 08:00`  will edit the 5th sleep record in the sleep records list to have a start time of `2023-01-20 02:00` and an end time of `2023-01-20 08:00`. 
 
 * `edit-sleep 1 start/2022-01-20 22:00 end/2022-01-21 06:00` will edit the 1st sleep record in the sleep records list to have a start time of `2022-01-20 22:00` and an end time of `2022-01-21 06:00`.
+
+---
 
 ### 🔍 Finding Sleep:
 
@@ -582,11 +631,14 @@ You can find your sleep record on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the sleep. It must follow the ISO Date Format: yyyy-MM-dd and cannot be in the future.
+* DATE: The date of the sleep. It must follow the ISO Date Format: yyyy-MM-dd, must be valid and cannot be in the 
+  future.
 
 **Examples:**
 
 * `find-sleep 2021-09-01`
+
+---
 
 ### 🎯 Setting Sleep Goals:
 
@@ -608,6 +660,8 @@ You can set goals for your sleep AthletiCLI by setting the target duration speci
 * `set-sleep-goal type/duration period/daily target/420` Sets a goal of sleeping 7 hours per day.
 * `set-sleep-goal type/duration period/weekly target/2940` Sets a goal of sleeping 49 hours per week. 
 
+---
+
 ### 📅 Editing Sleep Goals:
 
 `edit-sleep-goal`
@@ -625,6 +679,8 @@ You can edit your already set sleep goals by mentioning the type, period, and ta
 **Examples:**
 * `edit-sleep-goal type/duration period/daily target/360` Edits the daily goal to sleeping 6 hours per day.
 * `edit-sleep-goal type/duration period/weekly target/2520` Edits the weekly goal to sleeping 42 hours per week.
+
+---
 
 ### 📅 Listing Sleep Goals:
 
@@ -646,11 +702,14 @@ You can find all your records, including activities, sleeps, and diets, on a spe
 
 **Parameters:**
 
-* `DATE`: The date of the records. It must follow the ISO Date Format `yyyy-MM-dd` and cannot be in the future.
+* `DATE`: The date of the records. It must follow the ISO Date Format `yyyy-MM-dd`, must be valid and cannot be in 
+  the future.
 
 **Example:**
 
 * `find 2023-11-01`
+
+---
 
 ### 📦 Saving Files:
 
@@ -660,6 +719,8 @@ You can save files while using AthletiCLI if you want to, rather than waiting un
 
 * `save`
 
+---
+
 ### 👋 Exiting AthletiCLI:
 
 You can use the `bye` command at any time to safely store the file and exit AthletiCLI.
@@ -667,6 +728,8 @@ You can use the `bye` command at any time to safely store the file and exit Athl
 **Syntax:**
 
 * `bye`
+
+---
 
 ### ℹ️ Viewing Help Messages:
 
@@ -703,22 +766,23 @@ If you forget a command, you can always use the `help` command to see their synt
 
 ### Activity Management
 
-| **Command**               | **Syntax**                                                                                    | **Parameters**                                   | **Examples**                                             |
-|---------------------------|-----------------------------------------------------------------------------------------------|--------------------------------------------------|----------------------------------------------------------|
-| `add-activity`            | `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`                  | CAPTION, DURATION, DISTANCE, DATETIME            | `add-activity Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
-| `add-run`                 | `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`   | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION | -                                                        |
-| `add-swim`                | `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS`            | CAPTION, DURATION, DISTANCE, DATETIME, LAPS      | -                                                        |
-| `add-cycle`               | `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION` | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION | `add-cycle Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
-| `delete-activity`         | `delete-activity INDEX`                                                                       | INDEX                                            | `delete-activity 2`                                       |
-| `list-activity`           | `list-activity [-d]`                                                                          | -d                                               | `list-activity`, `list-activity -d`                        |
-| `edit-activity`           | `edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`           | INDEX, CAPTION, DURATION, DISTANCE, DATETIME     | `edit-activity 1 Morning Run duration/60 distance/10000 datetime/2021-09-01 06:00` |
-| `edit-run`                | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | -                                                        |
-| `edit-swim`               | Similar to `edit-activity` but with laps.                                                     | Same as `edit-activity` with LAPS                | -                                                        |
-| `edit-cycle`              | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
-| `find-activity`           | `find-activity DATE`                                                                          | DATE                                             | `find-activity 2021-09-01`                                |
-| `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                         | SPORT, TYPE, PERIOD, TARGET                      | `set-activity-goal sport/running type/distance period/weekly target/10000` |
-| `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TYPE, PERIOD, TARGET                      | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
-| `list-activity-goal`      | `list-activity-goal`                                                                          | None                                             | `list-activity-goal`                                       |
+| **Command**               | **Syntax**                                                                                          | **Parameters**                                   | **Examples**                                                                                      |
+|---------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------|---------------------------------------------------------------------------------------------------|
+| `add-activity`            | `add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME`                        | CAPTION, DURATION, DISTANCE, DATETIME            | `add-activity Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00`            |
+| `add-run`                 | `add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`         | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION | `add-run NY Marathon duration/03:33:17 distance/42125 datetime/2023-11-05 07:00`                  |
+| `add-swim`                | `add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE`                | CAPTION, DURATION, DISTANCE, DATETIME, STYLE     | `add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2023-10-16 20:00 style/freestyle`              |
+| `add-cycle`               | `add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION`       | CAPTION, DURATION, DISTANCE, DATETIME, ELEVATION | `add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
+| `delete-activity`         | `delete-activity INDEX`                                                                             | INDEX                                            | `delete-activity 2`                                                                               |
+| `list-activity`           | `list-activity [-d]`                                                                                | -d                                               | `list-activity`, `list-activity -d`                                                               |
+| `edit-activity`           | `edit-activity INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]` | INDEX, CAPTION, DURATION, DISTANCE, DATETIME     | `edit-activity 1 caption/Morning Run distance/10000`                |
+| `edit-run`                | Similar to `edit-activity` but with elevation.                                                      | Same as `edit-activity` with ELEVATION           | -                                                                                                 |
+| `edit-swim`               | Similar to `edit-activity` but with style.                                             <br/>             | Same as `edit-activity` with STYLE               | -                                                                                                 |
+| `edit-cycle`              | Similar to `edit-activity` but with elevation.                                                      | Same as `edit-activity` with ELEVATION           | `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`  |
+| `find-activity`           | `find-activity DATE`                                                                                | DATE                                             | `find-activity 2021-09-01`                                                                        |
+| `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                               | SPORT, TYPE, PERIOD, TARGET                      | `set-activity-goal sport/running type/distance period/weekly target/10000`                        |
+| `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                              | SPORT, TYPE, PERIOD, TARGET                      | `edit-activity-goal sport/running type/distance period/weekly target/20000`                       |
+| `list-activity-goal`      | `list-activity-goal`                                                                                | None                                             | `list-activity-goal`                                                                              |
+| `delete-activity-goal`    | `delete-activity-goal sport/SPORT type/TYPE period/PERIOD`                                    | SPORT, TYPE, PERIOD                              | `delete-activity-goal sport/running type/distance period/weekly` |
 
 ### Diet Management
 
