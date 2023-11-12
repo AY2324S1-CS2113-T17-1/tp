@@ -24,6 +24,18 @@ activities but also covers dietary habits, sleep metrics, and more.*
 * Parameters need to be specified in the given order unless specified otherwise.
 * Parameters enclosed in square brackets [] are optional.
 
+**Notes about lack of Goal Delete for Sleep and Activity**
+
+The absence of a "Goal Delete" feature for Sleep and Activity in the current version of AthletiCLI, while present for Diet, can be concisely justified as follows:
+
+1. **Diversity of Diet Goals:** The Diet section likely encompasses a wider range of goals compared to Sleep and Activity. With such variability, users might frequently need to delete diet goals, making a delete function more essential in this section.
+
+2. **Stability of Sleep and Activity Goals:** Goals related to sleep and activity are generally more consistent and less variable over time. This stability reduces the immediate need for a delete feature, as users are less likely to remove these goals frequently.
+
+3. **Focused Development Resources:** Given limited development resources and time, the team prioritized implementing the delete feature for the Diet section, where it was deemed most necessary due to the larger volume and variability of goals.
+
+4. **Planned for Future Implementation:** The absence of this feature in the current version for Sleep and Activity does not indicate it will never be implemented. It is planned for a future update, aligning with a phased development approach.
+
 ## 🏃 Activity Management
 
 - [Adding Activities](#-adding-activities)
@@ -54,8 +66,9 @@ full activity insights.
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
 * DISTANCE: The distance of the activity in meters. It must be a positive number smaller than 1000000.
-* DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
-* ELEVATION: The elevation gain of a run or cycle in meters. It must be a number.
+* DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm 
+  and cannot be in the future.
+* ELEVATION: The elevation gain of a run or cycle in meters. It must be a positive number smaller than 10000.
 * STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
 
 **Examples:**
@@ -135,14 +148,32 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 
 **Parameters:**
 
-* INDEX: The index of the activity to be edited - must be a positive number which is not larger than the number of 
-  activities recorded. Note, that the indices are allocated based on the date of the activity.
+* INDEX: The index of the activity to be edited as shown in the displayed activity list - must be a positive number 
+  which is not larger than the number of activities recorded. Note, that the indices are allocated based on the date of the activity.
 * See [adding activities](#adding-activities) for the other parameters.
 
 **Examples:**
 
 * `edit-activity 1 caption/Morning Run distance/10000`
 * `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`
+
+### 🔍 Finding Activities:
+
+`find-activity`
+
+You can find all your activities on a specific date in AtheltiCLI.
+
+**Syntax:**
+
+* `find-activity DATE`
+
+**Parameters:**
+
+* DATE: The date of the activity. It must follow the ISO Date Format: yyyy-MM-dd.
+
+**Example:**
+
+* `find-activity 2021-09-01`
 
 ### 🎯 Setting Activity Goals:
 
@@ -254,7 +285,7 @@ You can record your diet in AtheltiCLI by adding your calorie, protein, carbohyd
 * PROTEIN: The total protein of the meal.
 * CARB: The total carbohydrates of the meal.
 * FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm and cannot be in the future.
 
 **Examples:**
 
@@ -277,7 +308,7 @@ You can edit your diet in AtheltiCLI by editing the diet at the specified index.
 * PROTEIN: The total protein of the meal.
 * CARB: The total carbohydrates of the meal.
 * FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm and cannot be in the future.
 
 **Examples:**
 
@@ -331,7 +362,7 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the diet. It must follow the ISO Date Format: yyyy-MM-dd.
+* DATE: The date of the diet. It must follow the ISO Date Format yyyy-MM-dd and cannot be in the future.
 
 **Examples:**
 
@@ -447,13 +478,14 @@ Edits a single calories goal if the goal exists.
 
 ## 🛌 Sleep Management
 
-Do note that that for sleep commands, the order of the parameters is fixed, and are all non optional.
-
 - [Adding Sleep](#-adding-sleep)
 - [Listing Sleep](#-listing-sleep)
 - [Deleting Sleep](#-deleting-sleep)
 - [Editing Sleep](#-editing-sleep)
 - [Finding Sleep](#-finding-sleep)
+- [Adding Sleep Goals](#-adding-sleep-goals)
+- [Listing Sleep Goals](#-listing-sleep-goals)
+- [Editing Sleep Goals](#-editing-sleep-goals)
 
 ### ➕ Adding Sleep:
 
@@ -550,11 +582,55 @@ You can find your sleep record on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the sleep. It must follow the ISO Date Format: yyyy-MM-dd.
+* DATE: The date of the sleep. It must follow the ISO Date Format: yyyy-MM-dd and cannot be in the future.
 
 **Examples:**
 
 * `find-sleep 2021-09-01`
+
+### 🎯 Setting Sleep Goals:
+
+`set-sleep-goal`
+
+You can set goals for your sleep AthletiCLI by setting the target duration specified in minutes. Tracking can be done for the past day, week, month or year.
+
+**NOTE: Only one sleep goal can be set for each time period.**
+
+**Syntax:**
+* `set-sleep-goal type/TYPE period/PERIOD target/TARGET`
+
+**Parameters:**
+* TYPE: The type of sleep goal. It must be the following: `duration`.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: `daily, weekly, monthly, yearly`. Only sleeps that are recorded within the period from the current time will be counted towards the goal.
+* TARGET: The target value. It must be a positive number. For duration, it is in minutes.
+
+**Examples:**
+* `set-sleep-goal type/duration period/daily target/420` Sets a goal of sleeping 7 hours per day.
+* `set-sleep-goal type/duration period/weekly target/2940` Sets a goal of sleeping 49 hours per week. 
+
+### 📅 Editing Sleep Goals:
+
+`edit-sleep-goal`
+
+You can edit your already set sleep goals by mentioning the type, period, and target of the goal you want to edit.
+
+**Syntax:**
+* `edit-sleep-goal type/TYPE period/PERIOD target/TARGET`
+
+**Parameters:**
+* TYPE: The type of sleep goal. It must be the following: `duration`.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: `daily, weekly, monthly, yearly`. Only sleeps that are recorded within the period from the current timewill be counted towards the goal.
+* TARGET: The target value. It must be a positive number. For duration, it is in minutes.
+
+**Examples:**
+* `edit-sleep-goal type/duration period/daily target/360` Edits the daily goal to sleeping 6 hours per day.
+* `edit-sleep-goal type/duration period/weekly target/2520` Edits the weekly goal to sleeping 42 hours per week.
+
+### 📅 Listing Sleep Goals:
+
+`list-sleep-goal`
+
+You can list all your sleep goals in AthletiCLI and see your progress towards them.
 
 ---
 
@@ -570,7 +646,7 @@ You can find all your records, including activities, sleeps, and diets, on a spe
 
 **Parameters:**
 
-* `DATE`: The date of the records. It must follow the ISO Date Format: `yyyy-MM-dd`.
+* `DATE`: The date of the records. It must follow the ISO Date Format `yyyy-MM-dd` and cannot be in the future.
 
 **Example:**
 
@@ -639,6 +715,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `edit-run`                | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | -                                                        |
 | `edit-swim`               | Similar to `edit-activity` but with laps.                                                     | Same as `edit-activity` with LAPS                | -                                                        |
 | `edit-cycle`              | Similar to `edit-activity` but with elevation.                                                | Same as `edit-activity` with ELEVATION           | `edit-cycle 2 Evening Ride duration/120 distance/20000 datetime/2021-09-01 18:00 elevation/1000` |
+| `find-activity`           | `find-activity DATE`                                                                          | DATE                                             | `find-activity 2021-09-01`                                |
 | `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                         | SPORT, TYPE, PERIOD, TARGET                      | `set-activity-goal sport/running type/distance period/weekly target/10000` |
 | `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TYPE, PERIOD, TARGET                      | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
 | `list-activity-goal`      | `list-activity-goal`                                                                          | None                                             | `list-activity-goal`                                       |
@@ -651,7 +728,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `edit-diet`               | `edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]` | INDEX, [CALORIES], [PROTEIN], [CARB], [FAT], [DATETIME] | `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
 | `delete-diet`             | `delete-diet INDEX`                                                                               | INDEX                                                  | `delete-diet 1`                                           |
 | `list-diet`               | `list-diet`                                                                                       | None                                                   | `list-diet`                                               |
-| `find-diet`               | `find-diet date/DATE`                                                                             | DATE                                                   | `find-diet date/2021-09-01`                               |
+| `find-diet`               | `find-diet DATE`                                                                             | DATE                                                   | `find-diet 2021-09-01`                               |
 | `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`     | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fats/600` |
 | `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`   | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fats/600` |
 | `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                          | INDEX                                                  | `delete-diet-goal 1`                                      |
@@ -660,7 +737,6 @@ If you forget a command, you can always use the `help` command to see their synt
 
 ### Sleep Management
 
-#### Order of parameters is fixed, and are all non optional.
 
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
@@ -669,6 +745,10 @@ If you forget a command, you can always use the `help` command to see their synt
 | `delete-sleep`            | `delete-sleep INDEX`                                                                | INDEX                                                  | `delete-sleep 1`                                         |
 | `edit-sleep`              | `edit-sleep INDEX start/START end/END`                                               | INDEX, START, END                                      | `edit-sleep 1 2023-01-20 02:00 2023-01-20 08:00`         |
 | `find-sleep`              | `find-sleep date/DATE`                                                              | DATE                                                   | `find-sleep date/2021-09-01`                             |
+| `set-sleep-goal`          | `set-sleep-goal type/TYPE period/PERIOD target/TARGET`                               | TYPE, PERIOD, TARGET                                   | `set-sleep-goal type/duration period/daily target/420`    |
+| `edit-sleep-goal`         | `edit-sleep-goal type/TYPE period/PERIOD target/TARGET`                              | TYPE, PERIOD, TARGET                                   | `edit-sleep-goal type/duration period/daily target/360`   |
+| `list-sleep-goal`         | `list-sleep-goal`                                                                   | None                                                   | `list-sleep-goal`                                        |
+
 
 ### Miscellaneous
 
