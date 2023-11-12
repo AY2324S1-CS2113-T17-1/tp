@@ -76,6 +76,8 @@ full activity insights.
 * `add-cycle Evening Ride duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 elevation/1000`
 * `add-swim Evening Swim duration/01:00:00 distance/1000 datetime/2023-10-16 20:00 style/freestyle`
 
+---
+
 ### ➖ Deleting Activities:
 
 `delete-activity`
@@ -96,6 +98,8 @@ the following command.
 
 * `delete-activity 2` Deletes the second activity in the activity list.
 * `delete-activity 1` Deletes the most recent activity in the activity list.
+
+---
 
 ### 📅 Listing Activities:
 
@@ -130,6 +134,7 @@ detailed information about your activities including evaluations like pace (runn
   <img width="60%" src="images/listActivityDetailedShowcase.png" alt="Detailed list returned by `list-activity -d`"/>
 </p>
 
+---
 
 ### ✍️ Editing Activities:
 
@@ -156,6 +161,8 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 * `edit-activity 1 caption/Morning Run distance/10000`
 * `edit-cycle 2 datetime/2021-09-01 18:00 elevation/1000`
 
+---
+
 ### 🔍 Finding Activities:
 
 `find-activity`
@@ -173,6 +180,8 @@ You can find all your activities on a specific date in AtheltiCLI.
 **Example:**
 
 * `find-activity 2021-09-01`
+
+---
 
 ### 🎯 Setting Activity Goals:
 
@@ -199,6 +208,8 @@ The goals can track your daily, weekly, monthly, or yearly progress.
 * `set-activity-goal sport/swimming type/duration period/monthly target/120` Sets a goal of swimming for 2 hours per
   month.
 
+---
+
 ### ✍️ Editing Activity Goals:
 
 `edit-activity-goal`
@@ -221,6 +232,8 @@ You can edit your already set goals by mentioning the sport, target, and period 
 * `edit-activity-goal sport/running type/distance period/weekly target/20000` Edits the goal of running 20km per week.
 * `edit-activity-goal sport/swimming type/duration period/monthly target/60` Edits the goal of swimming for 1 hour per month.
 
+---
+
 ### 📅 Listing Activity Goals:
 
 `list-activity-goal`
@@ -234,6 +247,8 @@ You can list all your goals in AthletiCLI and see your progress towards them.
 **Examples**
 
 * `list-activity-goal` Lists all your goals.
+
+---
 
 ### ➖ Deleting Activity Goals:
 
@@ -256,6 +271,8 @@ You can delete your goals in AthletiCLI by mentioning the sport, target, and per
 * `delete-activity-goal sport/running type/distance period/weekly` Deletes the goal of running distance per week.
 * `delete-activity-goal sport/swimming type/duration period/monthly` Deletes the goal of swimming duration per month.
 
+---
+
 ## 🍏 Diet Management
 
 - [Adding Diets](#-adding-diets)
@@ -272,7 +289,7 @@ You can delete your goals in AthletiCLI by mentioning the sport, target, and per
 
 `add-diet`
 
-You can record your diet in AtheltiCLI by adding your calorie, protein, carbohydrate,and fat intake of your meals.
+Your can record your diet by specifying calorie, protein, carbohydrate, and fat intake.
 
 **Syntax:**
 
@@ -280,21 +297,24 @@ You can record your diet in AtheltiCLI by adding your calorie, protein, carbohyd
 
 **Parameters:**
 
-* CALORIES: The total calories of the meal.
-* PROTEIN: The total protein of the meal.
-* CARB: The total carbohydrates of the meal.
-* FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* CALORIES: Total calories (in cal) of the meal.
+* PROTEIN: Total protein (in milligrams) of the meal.
+* CARB: Total carbohydrates (in milligrams) of the meal.
+* FAT: Total fat (in milligrams) of the meal.
+* DATETIME: Date and time of the meal in ISO Date Time Format (yyyy-MM-dd HH:mm).
 
 **Examples:**
 
 * `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
+* `add-diet calories/2000 datetime/2023-09-01 16:00 fat/10 carb/100 protein/200`
+
+---
 
 ### ✍️ Editing Diets:
 
 `edit-diet`
 
-You can edit your diet in AtheltiCLI by editing the diet at the specified index.
+You can modify existing diet entries by specifying the index of the diet you wish to edit.
 
 **Syntax:**
 
@@ -302,26 +322,23 @@ You can edit your diet in AtheltiCLI by editing the diet at the specified index.
 
 **Parameters:**
 
-* INDEX: The index of the diet to be edited - must be a positive integer.
-* CALORIES: The total calories of the meal.
-* PROTEIN: The total protein of the meal.
-* CARB: The total carbohydrates of the meal.
-* FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+- INDEX: Index of the diet entry (positive integer).
+- Parameters as in `add-diet`.
 
 **Examples:**
 
-* `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
-* `edit-diet 1 datetime/2021-09-01 06:00 protein/20 carb/50 calories/500 fat/10`
-* `edit-diet 1 calories/500 protein/20 carb/50 fat/10`
-* `edit-diet 1 calories/500`
-* `edit-diet 1 protein/20`
+- `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00`
+- `edit-diet 1 protein/215`
+
+*Note: Find the index of your diet entry in the listing section.*
+
+---
 
 ### ➖ Deleting Diets:
 
 `delete-diet`
 
-You can delete your diet in AtheltiCLI by deleting the diet at the specified index.
+You can remove a diet entry from your records.
 
 **Syntax:**
 
@@ -329,17 +346,19 @@ You can delete your diet in AtheltiCLI by deleting the diet at the specified ind
 
 **Parameters:**
 
-* INDEX: The index of the diet to be deleted - must be a positive integer.
+- INDEX: Index of the diet to be deleted (positive integer).
 
 **Examples:**
 
 * `delete-diet 1`
 
+---
+
 ### 📅 Listing Diets:
 
 `list-diet`
 
-You can list all your diets in AtheltiCLI.
+You can view a list of all your recorded diets.
 
 **Syntax:**
 
@@ -349,11 +368,13 @@ You can list all your diets in AtheltiCLI.
 
 * `list-diet`
 
+---
+
 ### 🔍 Finding Diets:
 
 `find-diet DATE`
 
-You can find all your diets on a specific date in AtheltiCLI.
+You can locate diets recorded on a specific date.
 
 **Syntax:**
 
@@ -361,11 +382,13 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the diet. It must follow the ISO Date Format: yyyy-MM-dd.
+* DATE: Date of the diet in ISO Date Format (yyyy-MM-dd).
 
 **Examples:**
 
 * `find-diet 2021-09-01`
+
+---
 
 ### 🎯 Adding Diet Goals:
 
@@ -404,6 +427,8 @@ You can create one or multiple nutrient goals at once with this command.
 
 * `set-diet-goal DAILY calories/500` Creates a single calories goal.
 
+---
+
 ### ➖ Deleting Diet Goals:
 
 `delete-diet-goal`
@@ -424,6 +449,8 @@ it is bounded by the number of diet goals available.
 
 * `delete-diet-goal 1` Deletes a diet goal that is located on the first index of the list.
 
+---
+
 ### 📅 Listing Diet Goals:
 
 `list-diet-goal`
@@ -437,6 +464,8 @@ You can list all your diet goals in AtheltiCLI.
 **Examples:**
 
 * `list-diet-goal`
+
+---
 
 ### ✍️ Editing Diet Goals:
 
@@ -473,6 +502,7 @@ You can edit one or multiple nutrient goals with this command.
 Edits multiple nutrients goals if all of them exists.
 * `edit-diet-goal WEEKLY calories/5000` 
 Edits a single calories goal if the goal exists.
+
 ---
 
 ## 🛌 Sleep Management
@@ -512,6 +542,8 @@ All sleep entries with a start time before 06:00 will be taken to represent the 
 
 * `add-sleep start/2022-01-20 22:00 end/2022-01-21 06:00` will be taken to represent the sleep record on `2022-01-20`, since the start time is after 06:00 on `2022-01-20`.
 
+---
+
 ### 📅 Listing Sleep:
 
 `list-sleep`
@@ -521,6 +553,8 @@ You can see all your tracked sleep records in a list by using this command.
 **Syntax:** `list-sleep`
 
 **Example:** `list-sleep`
+
+---
 
 ### ➖ Deleting Sleep:
 
@@ -544,6 +578,8 @@ Assuming that there are 5 sleep records in the list:
 
 * `delete-sleep 5`  will delete the 5th sleep record in the sleep records list.
 * `delete-sleep 1`  will delete the 1st sleep record in the sleep records list.
+
+---
 
 ### ✍️ Editing Sleep:
 
@@ -569,6 +605,8 @@ Assuming that there are 5 sleep records in the list:
 
 * `edit-sleep 1 start/2022-01-20 22:00 end/2022-01-21 06:00` will edit the 1st sleep record in the sleep records list to have a start time of `2022-01-20 22:00` and an end time of `2022-01-21 06:00`.
 
+---
+
 ### 🔍 Finding Sleep:
 
 `find-sleep DATE`
@@ -586,6 +624,8 @@ You can find your sleep record on a specific date in AtheltiCLI.
 **Examples:**
 
 * `find-sleep 2021-09-01`
+
+---
 
 ### 🎯 Setting Sleep Goals:
 
@@ -607,6 +647,8 @@ You can set goals for your sleep AthletiCLI by setting the target duration speci
 * `set-sleep-goal type/duration period/daily target/420` Sets a goal of sleeping 7 hours per day.
 * `set-sleep-goal type/duration period/weekly target/2940` Sets a goal of sleeping 49 hours per week. 
 
+---
+
 ### 📅 Editing Sleep Goals:
 
 `edit-sleep-goal`
@@ -624,6 +666,8 @@ You can edit your already set sleep goals by mentioning the type, period, and ta
 **Examples:**
 * `edit-sleep-goal type/duration period/daily target/360` Edits the daily goal to sleeping 6 hours per day.
 * `edit-sleep-goal type/duration period/weekly target/2520` Edits the weekly goal to sleeping 42 hours per week.
+
+---
 
 ### 📅 Listing Sleep Goals:
 
@@ -651,6 +695,8 @@ You can find all your records, including activities, sleeps, and diets, on a spe
 
 * `find 2023-11-01`
 
+---
+
 ### 📦 Saving Files:
 
 You can save files while using AthletiCLI if you want to, rather than waiting until the AthletiCLI exits to automatically save them.
@@ -659,6 +705,8 @@ You can save files while using AthletiCLI if you want to, rather than waiting un
 
 * `save`
 
+---
+
 ### 👋 Exiting AthletiCLI:
 
 You can use the `bye` command at any time to safely store the file and exit AthletiCLI.
@@ -666,6 +714,8 @@ You can use the `bye` command at any time to safely store the file and exit Athl
 **Syntax:**
 
 * `bye`
+
+---
 
 ### ℹ️ Viewing Help Messages:
 
