@@ -41,7 +41,7 @@ public class AddSleepCommand extends Command {
         for (Sleep s : sleeps) {
             if (sleep.getStartDateTime().isBefore(s.getEndDateTime()) 
                 && sleep.getEndDateTime().isAfter(s.getStartDateTime())) {
-                throw new AthletiException("Sleep overlaps with existing sleep record");
+                throw new AthletiException(Message.ERRORMESSAGE_SLEEP_OVERLAP);
             }
         }
 

@@ -180,6 +180,8 @@ public class Message {
             "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
             "The index of the sleep record you want to delete is out of bounds.";
+    public static final String ERRORMESSAGE_SLEEP_OVERLAP =
+            "The sleep record you are trying to add overlaps with an existing sleep record.";
 
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
             "Please specify both the start and end time of your sleep.";
