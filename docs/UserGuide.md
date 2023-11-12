@@ -135,8 +135,8 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 
 **Parameters:**
 
-* INDEX: The index of the activity to be edited - must be a positive number which is not larger than the number of 
-  activities recorded. Note, that the indices are allocated based on the date of the activity.
+* INDEX: The index of the activity to be edited as shown in the displayed activity list - must be a positive number 
+  which is not larger than the number of activities recorded. Note, that the indices are allocated based on the date of the activity.
 * See [adding activities](#adding-activities) for the other parameters.
 
 **Examples:**
