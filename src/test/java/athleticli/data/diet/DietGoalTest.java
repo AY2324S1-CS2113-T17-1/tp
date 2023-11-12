@@ -16,6 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DietGoalTest {
 
     private DietGoalStub proteinGoal;
+    private DietGoalStub fatsGoal;
+    private DietGoalStub carbGoal;
+    private DietGoalStub caloriesGoal;
     private Data data;
     private Diet diet;
     private final int calories = 10000;
@@ -27,9 +30,11 @@ class DietGoalTest {
     @BeforeEach
     void setUp() {
         proteinGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_PROTEIN, 10000);
+        fatsGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_FATS, 10000);
+        carbGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_CARB, 10000);
+        caloriesGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_CALORIES, 10000);
         data = new Data();
         diet = new Diet(calories, protein, carb, fats, dateTime);
-
     }
 
     @Test
@@ -55,27 +60,24 @@ class DietGoalTest {
     }
 
     @Test
-    void getCurrentValue_initializeCommonArgs_expectZero() {
+    void getCurrentValue_newProteinGoal_expectZero() {
         assertEquals(0, proteinGoal.getCurrentValue(data));
     }
 
-    @Test
-    void setCurrentValue() {
-        AddDietCommand addDietCommand = new AddDietCommand(diet);
-        addDietCommand.execute(data);
-        assertEquals(20000, proteinGoal.getCurrentValue(data));
-    }
+
 
     @Test
-    void isAchieved_currentValueEqualToTargetValue_expectTrue() {
+    void isAchieved_currentValueGreaterThanAndEqualToTargetValue_expectTrue() {
         AddDietCommand addDietCommand = new AddDietCommand(diet);
         addDietCommand.execute(data);
-        assertTrue(proteinGoal.isAchieved(data));
+        boolean allGoalsAchieved = fatsGoal.isAchieved(data) && caloriesGoal.isAchieved(data)
+                && carbGoal.isAchieved(data) && proteinGoal.isAchieved(data);
+        assertTrue(allGoalsAchieved);
     }
 
     @Test
     void isAchieved_currentValueLesserThanTargetValue_expectFalse() {
-        assertFalse(proteinGoal.isAchieved(data));
+        assertFalse(caloriesGoal.isAchieved(data));
     }
 
     @Test

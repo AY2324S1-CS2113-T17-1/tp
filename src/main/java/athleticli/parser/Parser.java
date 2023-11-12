@@ -165,9 +165,9 @@ public class Parser {
 
         /* Diet Goal Management */
         case CommandName.COMMAND_DIET_GOAL_SET:
-            return new SetDietGoalCommand(DietParser.parseDietGoalSetEdit(commandArgs));
+            return new SetDietGoalCommand(DietParser.parseDietGoalSetAndEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_EDIT:
-            return new EditDietGoalCommand(DietParser.parseDietGoalSetEdit(commandArgs));
+            return new EditDietGoalCommand(DietParser.parseDietGoalSetAndEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_LIST:
             return new ListDietGoalCommand();
         case CommandName.COMMAND_DIET_GOAL_DELETE:

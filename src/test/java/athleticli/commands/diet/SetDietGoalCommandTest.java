@@ -4,8 +4,10 @@ import athleticli.data.Data;
 import athleticli.data.Goal;
 import athleticli.data.diet.DietGoal;
 import athleticli.data.diet.HealthyDietGoal;
+import athleticli.data.diet.UnhealthyDietGoal;
 import athleticli.exceptions.AthletiException;
 
+import athleticli.parser.Parameter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -19,19 +21,32 @@ class SetDietGoalCommandTest {
 
     private ArrayList<DietGoal> emptyInputDietGoals;
     private ArrayList<DietGoal> filledInputDietGoals;
-    private DietGoal dietGoalFats;
-    private DietGoal dietGoalCarb;
+    private ArrayList<DietGoal> filledUnhealthyInputDietGoals;
+    private ArrayList<DietGoal> filledNewHealthyInputDietGoals;
+    private DietGoal dietGoalFatsWeekly;
+    private DietGoal dietGoalFatsDaily;
+    private DietGoal dietGoalCarbWeekly;
+    private DietGoal unhealthyDietGoalFatsDaily;
     private Data data;
 
     @BeforeEach
     void setUp() {
         emptyInputDietGoals = new ArrayList<>();
-        dietGoalFats = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
-        dietGoalCarb = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "carb", 10000);
-        data = new Data();
         filledInputDietGoals = new ArrayList<>();
-        filledInputDietGoals.add(dietGoalFats);
-        filledInputDietGoals.add(dietGoalCarb);
+        filledUnhealthyInputDietGoals = new ArrayList<>();
+        filledNewHealthyInputDietGoals = new ArrayList<>();
+
+        dietGoalFatsWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_FATS, 10000);
+        dietGoalFatsDaily = new HealthyDietGoal(Goal.TimeSpan.DAILY, Parameter.NUTRIENTS_FATS, 1000000);
+        dietGoalCarbWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_CARB, 10000);
+        unhealthyDietGoalFatsDaily = new UnhealthyDietGoal(Goal.TimeSpan.DAILY,
+                Parameter.NUTRIENTS_FATS, 10000);
+        data = new Data();
+
+        filledInputDietGoals.add(dietGoalFatsWeekly);
+        filledInputDietGoals.add(dietGoalCarbWeekly);
+        filledUnhealthyInputDietGoals.add(unhealthyDietGoalFatsDaily);
+        filledNewHealthyInputDietGoals.add(dietGoalFatsDaily);
     }
 
     @Test
@@ -58,6 +73,23 @@ class SetDietGoalCommandTest {
         } catch (AthletiException e) {
             fail(e);
         }
+    }
+
+    @Test
+    void execute_dailyTargetValueGreaterThanOrEqualToWeekly_expectAthletiException() throws AthletiException {
+        SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
+        SetDietGoalCommand setDailyDietGoalCommand = new SetDietGoalCommand(filledNewHealthyInputDietGoals);
+        setDietGoalCommand.execute(data);
+
+        assertThrows(AthletiException.class, () -> setDailyDietGoalCommand.execute(data));
+    }
+
+    @Test
+    void execute_conflictingDietGoalTypes_expectAthletiException() throws AthletiException {
+        SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
+        SetDietGoalCommand setDietGoalCommandUnhealthyGoals = new SetDietGoalCommand(filledUnhealthyInputDietGoals);
+        setDietGoalCommandUnhealthyGoals.execute(data);
+        assertThrows(AthletiException.class, () -> setDietGoalCommand.execute(data));
     }
 
     @Test
