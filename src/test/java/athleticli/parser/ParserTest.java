@@ -424,6 +424,18 @@ class ParserTest {
     }
 
     @Test
+    void parseDateTime_futureDateTime_throwAthletiException() {
+        LocalDateTime futureDateTime = LocalDateTime.now().plusHours(1);
+        assertThrows(AthletiException.class, () -> Parser.parseDateTime(futureDateTime.toString()));
+    }
+
+    @Test
+    void parseDateTime_invalidYear_throwAthletiException() {
+        String invalidInput = "0000-01-01 00:01";
+        assertThrows(AthletiException.class, () -> Parser.parseDateTime(invalidInput));
+    }
+
+    @Test
     void parseDate_validInput_dateParsed() throws AthletiException {
         String validInput = "2021-09-01";
         LocalDate actual = parseDate(validInput);
@@ -440,6 +452,18 @@ class ParserTest {
     @Test
     void parseDate_invalidInputWithTime_throwAthletiException() {
         String invalidInput = "2021-09-01 06:00";
+        assertThrows(AthletiException.class, () -> parseDate(invalidInput));
+    }
+
+    @Test
+    void parseDate_futureDate_throwAthletiException() {
+        LocalDate futureDate = LocalDate.now().plusDays(1);
+        assertThrows(AthletiException.class, () -> parseDate(futureDate.toString()));
+    }
+
+    @Test
+    void parseDate_invalidYear_throwAthletiException() {
+        String invalidInput = "0000-01-01";
         assertThrows(AthletiException.class, () -> parseDate(invalidInput));
     }
 
