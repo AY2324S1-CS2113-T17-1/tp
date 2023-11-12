@@ -25,7 +25,6 @@ public class EditSleepCommand extends Command {
      */
     public EditSleepCommand(int index, Sleep newSleep) {
         this.index = index;
-        assert index > 0 : "Index should be greater than 0";
         this.newSleep = newSleep;
         logger.fine("Creating EditSleepCommand with index: " + index);
     }
