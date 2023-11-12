@@ -33,7 +33,17 @@ public class Message {
             "no fat was consumed.";
     public static final String MESSAGE_DIET_DATETIME_MISSING =
             "Please specify the datetime of the diet using \"datetime/\"!";
-    public static final String MESSAGE_CALORIE_OVERFLOW =
+    public static final String MESSAGE_CALORIES_ARG_DUPLICATE =
+            "Please do not specify the calories burned more than once!";
+    public static final String MESSAGE_PROTEIN_ARG_DUPLICATE =
+            "Please do not specify the protein intake more than once!";
+    public static final String MESSAGE_CARB_ARG_DUPLICATE =
+            "Please do not specify the carbohydrate intake more than once!";
+    public static final String MESSAGE_FAT_ARG_DUPLICATE =
+            "Please do not specify the fat intake more than once!";
+    public static final String MESSAGE_DIET_ARG_DATETIME_DUPLICATE =
+            "Please do not specify the datetime of the diet more than once!";
+    public static final String MESSAGE_CALORIES_OVERFLOW =
             "The calories consumed cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_PROTEIN_OVERFLOW =
             "The protein intake cannot be larger than " + Integer.MAX_VALUE + "!";
