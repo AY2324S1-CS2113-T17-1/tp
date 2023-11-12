@@ -1,6 +1,7 @@
 package athleticli.ui;
 
 import athleticli.parser.CommandName;
+import athleticli.common.Config;
 
 public class Message {
     public static final String PROMPT = "> ";
@@ -26,12 +27,21 @@ public class Message {
     public static final String MESSAGE_ACTIVITYGOAL_TARGET_MISSING = "Please specify the target value using " +
             "\"target/\"!";
     public static final String MESSAGE_PROTEIN_MISSING =
-            "Please specify the protein intake using \"protein/\"!";
+            "Please specify the protein intake using \"protein/\"! Use \"protein/0\" if no protein was consumed.";
     public static final String MESSAGE_CARB_MISSING =
-            "Please specify the carbohydrate intake using \"carb/\"!";
-    public static final String MESSAGE_FAT_MISSING = "Please specify the fat intake using \"fat/\"!";
+            "Please specify the carbohydrate intake using \"carb/\"! Use \"carb/0\" if no carbohydrate was consumed.";
+    public static final String MESSAGE_FAT_MISSING = "Please specify the fat intake using \"fat/\"! Use \"fat/0\" if " +
+            "no fat was consumed.";
     public static final String MESSAGE_DIET_DATETIME_MISSING =
             "Please specify the datetime of the diet using \"datetime/\"!";
+    public static final String MESSAGE_CALORIE_OVERFLOW =
+            "The calories consumed cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+    public static final String MESSAGE_PROTEIN_OVERFLOW =
+            "The protein intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+    public static final String MESSAGE_CARB_OVERFLOW =
+            "The carbohydrate intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+    public static final String MESSAGE_FAT_OVERFLOW =
+            "The fat intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
     public static final String MESSAGE_CAPTION_EMPTY = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_EMPTY = "The duration of an activity cannot be empty!";
     public static final String MESSAGE_DISTANCE_EMPTY = "The distance of an activity cannot be empty!";
@@ -52,6 +62,8 @@ public class Message {
             "You wanna make progress, not regress ;)";
     public static final String MESSAGE_TARGET_INVALID = "The target value of an activity goal must be a positive " +
             "integer!";
+    public static final String MESSAGE_TARGET_TOO_LARGE =
+            "The target value of an activity goal cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_DATETIME_INVALID =
             "The datetime must be in the format \"yyyy-MM-dd HH:mm\"!";
     public static final String MESSAGE_DATE_INVALID =
@@ -101,7 +113,6 @@ public class Message {
             "Now you have tracked a total of %d diets. Keep grinding!";
     public static final String MESSAGE_ACTIVITY_FIRST =
             "Now you have tracked your first activity. This is just the beginning!";
-
     public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
             "must be a positive integer!";
     public static final String MESSAGE_DIET_GOAL_INVALID_NUTRIENT = "Key word to nutrients goals has " +
@@ -122,7 +133,9 @@ public class Message {
     public static final String MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
             "to create or edit your diet goals:\n <DAILY/WEEKLY> [unhealthy] followed by \"calories\", \"protein\", " +
             "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100\n"
-            +"\te.g. WEEKLY unhealthy fats/100";
+            + "\te.g. WEEKLY unhealthy fats/100";
+    public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_SCALING_WITH_TIME_SPAN =
+            "Please ensure your weekly diet goal target value is greater than your daily diet goal target value!";
     public static final String MESSAGE_DIET_GOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
             "no repetitions for your diet goal nutrients.";
     public static final String MESSAGE_DIET_GOAL_LOAD_ERROR = "Some error has been encountered " +
@@ -155,7 +168,7 @@ public class Message {
 
     public static final String MESSAGE_SLEEP_LIST = "Here are the sleep records in your list:\n";
     public static final String MESSAGE_SLEEP_LIST_EMPTY = "You have no sleep records in your list.";
-    
+
     public static final String MESSAGE_SLEEP_FIND = "I've found these sleeps:";
 
     public static final String MESSAGE_SLEEP_GOAL_ADDED = "Alright, I've added this sleep goal:";
@@ -167,19 +180,19 @@ public class Message {
             "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
             "The index of the sleep record you want to delete is out of bounds.";
-    
+
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
             "Please specify both the start and end time of your sleep.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_START_END_NON_CHRONOLOGICAL =
             "Please specify the start time of your sleep chronologically before the end time.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATETIME =
             "Please specify the start and end time of your sleep in the format \"yyyy-MM-dd HH:mm\".";
-    
+
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_INDEX =
             "Please specify the index of the sleep record";
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX =
             "Please specify the index of the sleep record you want to edit as a positive integer.";
-       
+
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_MISSING_PARAMETERS =
@@ -188,12 +201,12 @@ public class Message {
             "Please specify the type of your sleep goal as \"duration\".";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PERIOD =
             "The period must be one of the " +
-            "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
+                    "following: \"daily\", \"weekly\", \"monthly\", \"yearly\"!";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TARGET =
             "Please specify the target value of your sleep goal as a positive integer.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";
-    
+
     public static final String MESSAGE_UNKNOWN_COMMAND = "I'm sorry, but I don't know what that means :-(";
     public static final String MESSAGE_IO_EXCEPTION = "An I/O exception occurred.";
     public static final String MESSAGE_LOAD_EXCEPTION = "An exception occurred when loading %s.\n"

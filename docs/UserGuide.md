@@ -321,13 +321,13 @@ You can list all your diets in AtheltiCLI.
 
 ### 🔍 Finding Diets:
 
-`find-diet date/DATE`
+`find-diet DATE`
 
 You can find all your diets on a specific date in AtheltiCLI.
 
 **Syntax:**
 
-* `find-diet date/DATE`
+* `find-diet DATE`
 
 **Parameters:**
 
@@ -335,7 +335,7 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 **Examples:**
 
-* `find-diet date/2021-09-01`
+* `find-diet 2021-09-01`
 
 ### 🎯 Adding Diet Goals:
 
@@ -447,6 +447,8 @@ Edits a single calories goal if the goal exists.
 
 ## 🛌 Sleep Management
 
+Do note that that for sleep commands, the order of the parameters is fixed, and are all non optional.
+
 - [Adding Sleep](#-adding-sleep)
 - [Listing Sleep](#-listing-sleep)
 - [Deleting Sleep](#-deleting-sleep)
@@ -532,19 +534,19 @@ You can modify existing sleep records in AtheltiCLI by specifying the sleep's in
 
 Assuming that there are 5 sleep records in the list:
 
-* `edit-sleep 5 2023-01-20 02:00 2023-01-20 08:00`  will edit the 5th sleep record in the sleep records list to have a start time of `2023-01-20 02:00` and an end time of `2023-01-20 08:00`. 
+* `edit-sleep 5 start/2023-01-20 02:00 end/2023-01-20 08:00`  will edit the 5th sleep record in the sleep records list to have a start time of `2023-01-20 02:00` and an end time of `2023-01-20 08:00`. 
 
-* `edit-sleep 1 2022-01-20 22:00 2022-01-21 06:00` will edit the 1st sleep record in the sleep records list to have a start time of `2022-01-20 22:00` and an end time of `2022-01-21 06:00`.
+* `edit-sleep 1 start/2022-01-20 22:00 end/2022-01-21 06:00` will edit the 1st sleep record in the sleep records list to have a start time of `2022-01-20 22:00` and an end time of `2022-01-21 06:00`.
 
 ### 🔍 Finding Sleep:
 
-`find-sleep date/DATE`
+`find-sleep DATE`
 
 You can find your sleep record on a specific date in AtheltiCLI.
 
 **Syntax:**
 
-* `find-sleep date/DATE`
+* `find-sleep DATE`
 
 **Parameters:**
 
@@ -552,7 +554,7 @@ You can find your sleep record on a specific date in AtheltiCLI.
 
 **Examples:**
 
-* `find-sleep date/2021-09-01`
+* `find-sleep 2021-09-01`
 
 ---
 
@@ -657,6 +659,8 @@ If you forget a command, you can always use the `help` command to see their synt
 
 
 ### Sleep Management
+
+#### Order of parameters is fixed, and are all non optional.
 
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
