@@ -25,6 +25,8 @@ public class AddSleepCommandTest {
         data = new Data();
         sleep = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0), 
                           LocalDateTime.of(2023, 10, 18, 6, 0));
+        sleep2 = new Sleep(LocalDateTime.of(2023, 10, 18, 22, 0),
+                          LocalDateTime.of(2023, 10, 19, 6, 0));
         addSleepCommand = new AddSleepCommand(sleep);
         addSleepCommand2 = new AddSleepCommand(sleep2);
         data.setSleeps(new SleepList());
