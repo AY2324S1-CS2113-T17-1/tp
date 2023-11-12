@@ -137,82 +137,98 @@ Verifying if there is an existence of a diet goal using an ArrayList takes O(n) 
 The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
 for checking the presence of a dietGoal.
 
+### Activity Management in AthletiCLI
 
 #### [Implemented] Adding activities
-The `add-activity` feature allows users to add a new activity into the application.
-These are the main components behind the architecture of the `add-activity` feature:
-1. `AthletiCLI`: faciliates the mechanism. It captures the input and calls the parser and execution.
-2. `Parser`: parses the user input and generates the appropriate command object and activity 
-   instance.
-3. `AddActivityCommand`: encapsulates the execution of the `add-activity` command. It adds 
-   the activity to the data.
-4. `Activity`: represents the activity that is to be added.
-5. `Data`: holds current state of the activity list.
-6. `ActivityList`: maintains the list of all added activities.
+The `add-activity` feature is a core functionality which allows users to record new activities in the application.
+The feature is designed in a modular and extendable way, ensuring seamless integration of future enhancements and 
+especially new activity types.
 
-Here is a class diagram of the relationships between the data components `Activity`,`Data` and `ActivityList`:
+The architecture of the `add-activity` feature is composed of the following main components.
+1. `AthletiCLI`: Facilitates the mechanism. It captures the user input and initiates the parsing and execution.
+2. `Parser` (`Activity Parser`): Interprets the user input, generating both the appropriate command object and 
+   the activity instance.
+3. `AddActivityCommand`: Encapsulates the execution of the `add-activity` command, adding the activity to the data.
+4. `ActivityChanges`: Contains the arguments of the activity to be added. It is used to transfer the data from the 
+   parser to the activity in a modular way.
+5. `Activity`: Represents the activity to be added. It is a superclass for specific activity types like Run, Swim and 
+   Cycle.
+6. `Data`: Manages the current state of the activity list.
+7. `ActivityList`: Maintains the list of all activities added to the application.
+
+
+Class Relationships:
+
+Below is a class diagram illustrating the relationships between the data components `Activity`,`Data` and 
+`ActivityList`:
 
 <p align="center" >
   <img width="50%" src="images/ActivityInheritance.svg" alt="Activity Data Components"/>
 </p>
 
-There exist three types of specific activities that inherit from the 'Activity' class: Run, Swim and Cycle. Each of 
-these classes has their own attributes and methods. The 'ActivityList' contains a list of all the activity instances.
+> The diagram shows the inheritance relationship between the `Activity` class and the specific activity types Run, 
+> Swim and Cycle, each with unique attributes and methods. This design becomes especially crucial in future 
+> development cycles with added parameters and activity types. The 'ActivityList' aggregates these instances.
 
-Given below is an example usage scenario and how the add mechanism behaves at each step.
+Usage Scenario and Process Flow:
+The process of adding an activity involves several steps, each handled by different components.
+Given below is an example usage scenario and how the add mechanism behaves.
 
-**Step 1 - Input Capture:** The user issues an `add-activity ...` (or `add-run` etc., respectively) which is captured 
-and passed to the Parser by the running AthletiCLI instance.
+**Step 1 - Input Capture:** The user issues an `add-activity ...` (or `add-run`, etc., respectively) which is 
+captured and forwarded to the Parser by the running AthletiCLI instance.
 
-**Step 2 - Activity Parsing:** The ActivityParser parses the raw input to obtain the arguments of the activity. Given 
-that all parameters are provided correctly and no exception is thrown, a new activity object is created.
+**Step 2 - Activity Parsing:** The ActivityParser interprets the raw input to obtain the arguments of the activity. 
+Given that all parameters are provided correctly and no exception is thrown, a new activity object is created.
 
 This diagram illustrates the activity parsing process in more detail:
-One of the key data component in the parsing process is the `ActivityChanges` object. It is used for storing the 
-different attributes of the activity that are to be added. Later, the `ActivityParser` will use the `ActivityChanges`
-to create the `Activity` object. 
+The `ActivityChanges` object plays a key role in the parsing process. It is used for storing the 
+different attributes of the activity that are to be added. Later, the `ActivityParser` 
+will use the `ActivityChanges` to create the `Activity` object. 
 > This way of transferring data between the parser and the activity is more flexible which is suitable for future 
-extensions of the activity types and allows a more modular design. This design and most of the methods can be reused 
+extensions of the activity types and allows for a more modular design. This design and most of the methods can be reused 
 for the `edit-activity` mechanism, which works in the same way with slight modifications due to optional parameters.
 
 <p align="center" >
   <img width="100%" src="images/ActivityParsing.svg" alt="Activity Parsing Process"/>
 </p>
 
-**Step 3 - Command Parsing:** Afterwards the parser will create an `AddActivityCommand` object with the newly added 
-activity attached to it. The command implements the `AddActivityCommand#execute()` operation and is passed to 
+**Step 3 - Command Parsing:** Afterwards the parser constructs an `AddActivityCommand` embedding the newly created 
+activity within it. The `AddActivityCommand` implements the `AddActivityCommand#execute()` operation and is passed to 
 the AthletiCLI instance.
 
-**Step 4 - Activity Addition:** The AthletiCLI instance executes the `AddActivityCommand` object. The command will 
-access the data and retrieve the currently stored list of activities stored inside it. The new `Activity` object is 
-added to the list.
+**Step 4 - Activity Addition:** The AthletiCLI instance executes the `AddActivityCommand` object. The command 
+accesses the data and retrieves the currently stored list of activities stored inside it. The new `Activity` object is 
+then added to the `ActivityList`.
 
-**Step 5 - User Interaction:** Once the activity is successfully added, a confirmation message is displayed to the user.
+**Step 5 - User Interaction:** Upon successful addition of the activity, a confirmation message is displayed to the 
+user.
 
-The following sequence diagram shows how the `add-activity` operation works:
+The following sequence diagram visually represents the flow and interactions of components during the `add-activity` 
+operation:
 <p  align="center" >
-  <img width="100%" src="images/AddActivity.svg" alt="Sequence Diagram of add-activity"/>
+  <img width="100%" src="images/AddActivity.svg" alt="Sequence Diagram: `add-activity` operation"/>
 </p>
 
 #### [Implemented] Tracking activity goals
 
-With the `set-activity-goal` feature, users can set periodic goals for their activities.
-The fulfillment of these goals is tracked automatically and can be evaluated by the user at any time.
+The `set-activity-goal` feature allows users to set and track periodic goals for their activities.
+The goal fulfillment is automatically monitored and can be reviewed by the user at any time.
 
 These are the key components and their roles in the architecture of the goal tracking:
-* `SetActivityGoalCommand`: encapsulates the execution of the `set-activity-goal` command. It adds 
+* `SetActivityGoalCommand`: Encapsulates the execution of the `set-activity-goal` command. It adds 
   the activity goal to the data.
-* `ActivityGoal`: represents the activity goal that is to be added and contains functionality to 
+* `ActivityGoal`: Represents the activity goal that is to be added and contains functionality to 
   track the fulfillment of the goal. 
-* `ActivityList`: contains key functionality to retrieve and filter the activity list according to the specified 
-  properties of the goal.
+* `ActivityList`: Contains key functionality to retrieve and filter the activity list according to the specified 
+  criteria of the goal.
 
 Given below is an example usage scenario and how the goal setting and tracking mechanism behaves at 
 each step.
 
 1. **Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
    Parser by the running AthletiCLI instance.
-2. **Step 2 - Goal Parsing:** The Parser parses the raw input to obtain the sports, target and timespan of the goal. 
+2. **Step 2 - Goal Parsing:** The `ActivityParser` parses the raw input to obtain the sports, target and timespan of the 
+   goal. 
    Given that all these parameters are provided correctly and no exception is thrown, a new activity goal object is 
    created.
 3. **Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
@@ -227,22 +243,25 @@ The following sequence diagram shows how the `set-activity-goal` operation works
   <img width="100%" src="images/AddActivityGoal.svg" alt="Sequence Diagram of set-activity-goal"/>
 </p>
 
-Assume that the user has set a goal to run 10km per week and has already tracked two running activities of 5km each.
-The following describes how the goal evaluation works after being invoked by the user, e.g., with a list-activity-goal command:
+Assume that the user has set a goal to run 10km per week and has already tracked two running activities of 5km each 
+within the last 7 days as well as three older sport activities. The object diagram below shows the state of the 
+scenario with the eligible activities for the goal highlighted in green.
 
-5. **Step 5 - Goal Evaluation:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
-activity list with the two tracked activities from the data and calls the total distance calculation function. It filters the 
-   activity list according to the specified timespan and sports of the goal. The current value obtained by this, 
-   10km in the example, is returned to the `ActivityGoal` object, which then compares it to the target value of the goal. This mechanism is visualized in the following sequence diagram:
+<p align="center" >
+  <img width="100%" src="images/ActivityObjectDiagram.svg" alt="Object Diagram of the scenario"/>
+</p>
+
+The following describes how the goal evaluation works after being invoked by the user, e.g., with a `list-activity-goal` command:
+
+5. **Step 5 - Goal Assessment:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
+activity list with the five tracked activities from the data and calls the total distance calculation function. It 
+   filters the activity list according to the specified timespan and sports of the goal. The current value obtained by this, 
+   10km in the example, is returned to the `ActivityGoal` object. This output is compared to the target value of the 
+   goal. This mechanism is visualized in the following sequence diagram:
 
 <p  align="center" >
     <img width="100%" src="images/ActivityGoalEvaluation.svg" alt="Sequence Diagram of activity goal evaluation"/>
 </p>
-
-### [Implemented] Activity Editing
-... tbd
-
-### [Implemented] Data Storing (Activity example)
 
 ### Sleep Management in AthletiCLI
 

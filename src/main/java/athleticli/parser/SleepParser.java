@@ -10,12 +10,14 @@ import athleticli.ui.Message;
 
 public class SleepParser {
     //@@author  DaDevChia
+
     /* Sleep Management */
+
     /**
      * Parses the raw user input for an add sleep command and returns the corresponding command object.
      *
      * @param commandArgs The raw user input containing the arguments.
-     * @return An object representing the slee0 add command.
+     * @return An object representing the sleep add command.
      * @throws AthletiException
      */
     public static Sleep parseSleep(String commandArgs) throws AthletiException {
@@ -24,6 +26,10 @@ public class SleepParser {
 
         if (startDatetimeIndex == -1 || endDatetimeIndex == -1) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
+        }
+
+        if (startDatetimeIndex > endDatetimeIndex) {
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_START_END_ORDER);
         }
 
         final String startDatetimeStr =
@@ -51,21 +57,43 @@ public class SleepParser {
         return new Sleep(startDatetime, endDatetime);
     }
 
+    /**
+     * Parses the raw user input the sleep index and returns the corresponding index.
+     * 
+     * @param commandArgs The raw user input containing the arguments.
+     * @return The index of the sleep to be edited.
+     * @throws AthletiException If the index is invalid.
+     */
     public static int parseSleepIndex(String commandArgs) throws AthletiException {
         final String indexStr = commandArgs.split("(?<=\\d)(?=\\D)", 2)[0].trim();
+        
         if (indexStr == null || indexStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_INDEX);
         }
+
         int index;
         try {
             index = Integer.parseInt(indexStr);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX);
         }
+
+        if (index <= 0) {
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX);
+        }
+
         return index;
     }
 
     /*  Sleep Goal Management */
+
+    /**
+     * Parses the raw user input for a sleep goal and returns the corresponding sleep goal object.
+     * 
+     * @param commandArgs The raw user input containing the arguments.
+     * @return An object representing the sleep goal.
+     * @throws AthletiException If the sleep goal is invalid.
+     */
     public static SleepGoal parseSleepGoal(String commandArgs) throws AthletiException {
         final int goalTypeIndex = commandArgs.indexOf(Parameter.TYPE_SEPARATOR);
         final int periodIndex = commandArgs.indexOf(Parameter.PERIOD_SEPARATOR);
@@ -76,7 +104,7 @@ public class SleepParser {
         }
 
         if (goalTypeIndex > periodIndex || periodIndex > targetValueIndex) {
-            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS);
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS_ORDER);
         }
 
         final String type = commandArgs.substring(goalTypeIndex + Parameter.TYPE_SEPARATOR.length(), periodIndex)
@@ -92,19 +120,29 @@ public class SleepParser {
         return new SleepGoal(goalType, timeSpan, targetParsed);
     }
 
+    /**
+     * Parses the raw user input for a sleep goal index and returns the corresponding index.
+     * 
+     * @param type The string representing the type of the sleep goal.
+     * @return The type of the sleep goal.
+     * @throws AthletiException If the type is invalid.
+     */
     private static SleepGoal.GoalType parseGoalType(String type) throws AthletiException {
         switch (type) {
         case "duration":
             return SleepGoal.GoalType.DURATION;
-        case "starttime":
-            return SleepGoal.GoalType.STARTTIME;
-        case "endtime":
-            return SleepGoal.GoalType.ENDTIME;
         default:
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TYPE);
         }
     }
 
+    /**
+     * Parses the raw user input for a sleep goal period and returns the corresponding period.
+     * 
+     * @param period The string representing the period of the sleep goal.
+     * @return The period of the sleep goal.
+     * @throws AthletiException If the period is invalid.
+     */
     private static Goal.TimeSpan parsePeriod(String period) throws AthletiException {
         try {
             return Goal.TimeSpan.valueOf(period.toUpperCase());
@@ -113,6 +151,13 @@ public class SleepParser {
         }
     }
 
+    /**
+     * Parses the raw user input for a sleep goal target and returns the corresponding target.
+     * 
+     * @param target The string representing the target of the sleep goal.
+     * @return The target of the sleep goal.
+     * @throws AthletiException If the target is invalid.
+     */
     private static int parseTarget(String target) throws AthletiException {
         int targetParsed;
         try {

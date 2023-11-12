@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Locale;
 
-import static athleticli.common.Config.DATE_TIME_FORMATTER;
+import static athleticli.common.Config.DATE_TIME_PRETTY_FORMATTER;
 import static athleticli.common.Config.TIME_FORMATTER;
 import static athleticli.parser.Parameter.ACTIVITY_INDICATOR;
 import static athleticli.parser.Parameter.ACTIVITY_OVERVIEW_SEPARATOR;
@@ -34,10 +34,10 @@ public class Activity {
     /**
      * Generates a new general sports activity with some basic stats.
      *
-     * @param movingTime Duration of the activity in minutes
-     * @param distance Distance covered in meters
-     * @param startDateTime Start date and time of the activity
-     * @param caption Caption of the activity chosen by the user (e.g., "Morning Run")
+     * @param movingTime Duration of the activity in minutes.
+     * @param distance Distance covered in meters.
+     * @param startDateTime Start date and time of the activity.
+     * @param caption Caption of the activity chosen by the user (e.g., "Morning Run").
      */
     public Activity(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime) {
         this.movingTime = movingTime;
@@ -65,7 +65,7 @@ public class Activity {
     /**
      * Returns a single line summary of the activity.
      *
-     * @return a string representation of the activity
+     * @return a string representation of the activity.
      */
     @Override
     public String toString() {
@@ -83,7 +83,7 @@ public class Activity {
      * Assumes distance is given in meters.
      * If the distance is less than 1 km, the distance is displayed in meters.
      *
-     * @return a string representation of the distance
+     * @return a string representation of the distance.
      */
     public String generateDistanceStringOutput() {
         StringBuilder output = new StringBuilder(DISTANCE_PREFIX);
@@ -101,7 +101,7 @@ public class Activity {
     /**
      * Returns moving time in user-friendly output format.
      *
-     * @return a string representation of the moving time
+     * @return a string representation of the moving time.
      */
     public String generateMovingTimeStringOutput() {
         return TIME_PREFIX + movingTime.format(TIME_FORMATTER);
@@ -111,7 +111,7 @@ public class Activity {
      * Returns a short representation of the moving time with the format depending on the duration.
      * Format is "Xh Ym" if hours are present, otherwise "Ym Zs".
      *
-     * @return a string representation of the moving time
+     * @return a string representation of the moving time.
      */
     public String generateShortMovingTimeStringOutput() {
         StringBuilder output = new StringBuilder(TIME_PREFIX);
@@ -128,16 +128,16 @@ public class Activity {
     /**
      * Returns start date and time in user-friendly output format.
      *
-     * @return a string representation of the start date and time
+     * @return a string representation of the start date and time.
      */
     public String generateStartDateTimeStringOutput() {
-        return startDateTime.format(DATE_TIME_FORMATTER);
+        return startDateTime.format(DATE_TIME_PRETTY_FORMATTER);
     }
 
     /**
      * Returns a detailed summary of the activity.
      *
-     * @return a multiline string representation of the activity
+     * @return a multiline string representation of the activity.
      */
     public String toDetailedString() {
         String startDateTimeOutput = generateStartDateTimeStringOutput();
@@ -154,10 +154,10 @@ public class Activity {
      * Formats two strings into two columns of equal width.
      * If a string is longer than the specified columnWidth, it will exceed the column.
      *
-     * @param left String to be placed in the left column
-     * @param right String to be placed in the right column
-     * @param columnWidth Width of each column, should be a positive Integer
-     * @return a formatted string with two columns of equal width
+     * @param left String to be placed in the left column.
+     * @param right String to be placed in the right column.
+     * @param columnWidth Width of each column, should be a positive Integer.
+     * @return a formatted string with two columns of equal width.
      */
     public String formatTwoColumns(String left, String right, int columnWidth) {
         return String.format("%-" + columnWidth + "s%s", left, right);
@@ -166,7 +166,7 @@ public class Activity {
     /**
      * Returns a string representation of the activity used for storing the data.
      *
-     * @return a string representation of the activity
+     * @return a string representation of the activity.
      */
     public String unparse() {
         return Parameter.ACTIVITY_STORAGE_INDICATOR + SPACE + getCaption() +

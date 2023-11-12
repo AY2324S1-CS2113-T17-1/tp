@@ -7,6 +7,9 @@ import athleticli.data.activity.ActivityGoalList;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
+/**
+ * Represents a command which adds an activity goal to the activity goal list.
+ */
 public class SetActivityGoalCommand extends Command {
     private final ActivityGoal activityGoal;
 

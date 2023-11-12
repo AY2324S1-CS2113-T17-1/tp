@@ -21,6 +21,7 @@ public class EditActivityCommand extends Command {
     private static final Logger logger = Logger.getLogger("EditActivityCommand");
     private final int index;
     private final ActivityChanges activityChanges;
+    private final Class<?> activityType;
 
     /**
      * Constructs EditActivityCommand.
@@ -28,10 +29,11 @@ public class EditActivityCommand extends Command {
      * @param index Index of the activity to be edited.
      * @param activityChanges Updated Activity.
      */
-    public EditActivityCommand(int index, ActivityChanges activityChanges) {
+    public EditActivityCommand(int index, ActivityChanges activityChanges, Class<?> activityType) {
         this.index = index;
         assert index > 0 : "Index should be greater than 0";
         this.activityChanges = activityChanges;
+        this.activityType = activityType;
     }
 
     /**
@@ -49,6 +51,10 @@ public class EditActivityCommand extends Command {
             // Adjusting index as user input is 1-based and list is 0-based
             Activity activity = activities.get(index-1);
 
+            if (!activityType.isInstance(activity)) {
+                throw new AthletiException(Message.MESSAGE_ACTIVITY_TYPE_MISMATCH);
+            }
+
             applyActivityChanges(activity, activityChanges);
 
             activities.sort();
@@ -64,6 +70,12 @@ public class EditActivityCommand extends Command {
         }
     }
 
+    /**
+     * Applies the changes to the activity object.
+     *
+     * @param activity Activity to be edited.
+     * @param activityChanges ActivityChanges object containing the changes to be applied.
+     */
     private void applyActivityChanges(Activity activity, ActivityChanges activityChanges) {
         if (activityChanges.getCaption() != null) {
             activity.setCaption(activityChanges.getCaption());
@@ -80,7 +92,7 @@ public class EditActivityCommand extends Command {
         if (activityChanges.getElevation() != 0) {
             if (activity instanceof Run) {
                 ((Run) activity).setElevationGain(activityChanges.getElevation());
-            } else {
+            } else if (activity instanceof Cycle) {
                 ((Cycle) activity).setElevationGain(activityChanges.getElevation());
             }
         }

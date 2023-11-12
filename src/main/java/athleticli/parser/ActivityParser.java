@@ -76,10 +76,10 @@ public class ActivityParser {
     }
 
     /**
-     * Parses the provided updated run or cycle for the edit command
+     * Parses the provided updated run or cycle for the edit command.
      *
      * @param arguments Raw user input containing the updated run or cycle.
-     * @return The parsed ActivityChanges object
+     * @return The parsed ActivityChanges object.
      * @throws AthletiException If the input format is invalid.
      */
     public static ActivityChanges parseRunCycleEdit(String arguments) throws AthletiException {
@@ -87,7 +87,7 @@ public class ActivityParser {
     }
 
     /**
-     * Parses the provided update swim for the edit command
+     * Parses the provided update swim for the edit command.
      *
      * @param arguments Raw user input containing the updated swim.
      * @return The parsed ActivityChanges object.
@@ -187,7 +187,7 @@ public class ActivityParser {
     }
 
     /**
-     * Finds the index of the next separator in the arguments String
+     * Finds the index of the next separator in the arguments String.
      *
      * @param arguments Raw user input containing the arguments.
      * @param startIndex The String position index to start searching from.
@@ -265,7 +265,7 @@ public class ActivityParser {
     }
 
     /**
-     * Parses the raw user input for viewing the activity list and returns whether the user wants the detailed view
+     * Parses the raw user input for viewing the activity list and returns whether the user wants the detailed view.
      *
      * @param commandArgs The raw user input containing the arguments.
      * @return Whether the user wants the detailed view.
@@ -371,11 +371,11 @@ public class ActivityParser {
     /**
      * Checks if the raw user input includes an empty datetime argument.
      *
-     * @param datetime The datetime of the activity.
+     * @param dateTime The datetime of the activity.
      * @throws AthletiException If the argument is empty.
      */
-    public static void checkEmptyDateTimeArgument(String datetime) throws AthletiException {
-        if (datetime.isEmpty()) {
+    public static void checkEmptyDateTimeArgument(String dateTime) throws AthletiException {
+        if (dateTime.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DATETIME_EMPTY);
         }
     }
@@ -397,6 +397,7 @@ public class ActivityParser {
 
     /**
      * Parses the raw user input for adding an activity goal and returns the corresponding activity goal object.
+     *
      * @param commandArgs       The raw user input containing the arguments.
      * @return An object representing the activity goal.
      * @throws AthletiException If the input format is invalid.
@@ -459,6 +460,7 @@ public class ActivityParser {
 
     /**
      * Parses the sport input provided by the user.
+     *
      * @param sport                 The raw user input containing the sport.
      * @return                      The parsed Sport object.
      * @throws AthletiException     If the input format is invalid.
@@ -473,6 +475,7 @@ public class ActivityParser {
 
     /**
      * Checks if the raw user input is missing any arguments for creating an activity goal.
+     *
      * @param sportIndex        The position of the sport separator.
      * @param typeIndex         The position of the type separator.
      * @param periodIndex       The position of the period separator.
@@ -503,14 +506,14 @@ public class ActivityParser {
      * @throws AthletiException If the input is not an integer.
      */
     public static int parseElevation(String elevation) throws AthletiException {
-        final int ELEVATION_UPPER_BOUNDARY = 10000;
+        final int elevationUpperBoundary = 10000;
         BigInteger elevationParsed;
         try {
             elevationParsed = new BigInteger(elevation);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_ELEVATION_INVALID);
         }
-        if (elevationParsed.abs().compareTo(BigInteger.valueOf(ELEVATION_UPPER_BOUNDARY)) > 0) {
+        if (elevationParsed.abs().compareTo(BigInteger.valueOf(elevationUpperBoundary)) > 0) {
             throw new AthletiException(Message.MESSAGE_ELEVATION_TOO_LARGE);
         }
         return elevationParsed.intValue();
@@ -518,6 +521,7 @@ public class ActivityParser {
 
     /**
      * Parses the goal type input provided by the user.
+     *
      * @param type                The raw user input containing the goal type.
      * @return                    The parsed GoalType object.
      * @throws AthletiException   If the input format is invalid.
@@ -531,7 +535,8 @@ public class ActivityParser {
     }
 
     /**
-     * Parses the period input provided by the user
+     * Parses the period input provided by the user.
+     *
      * @param period            The raw user input containing the period.
      * @return                  The parsed Period object.
      * @throws AthletiException If the input format is invalid.
@@ -546,6 +551,7 @@ public class ActivityParser {
 
     /**
      * Parses the target input provided by the user.
+     *
      * @param target            The raw user input containing the target value.
      * @return                  The parsed Integer target value.
      * @throws AthletiException If the input is not a positive number.
@@ -607,6 +613,7 @@ public class ActivityParser {
 
     /**
      * Checks if argument related to the separator is missing and throws parameter specific exception.
+     *
      * @param separatorIndex The position of the separator, refers to the list of separators.
      * @param separator The separator.
      * @throws AthletiException If any of the arguments are missing.

@@ -1,7 +1,6 @@
 package athleticli.ui;
 
 import athleticli.parser.CommandName;
-import athleticli.common.Config;
 
 public class Message {
     public static final String PROMPT = "> ";
@@ -34,14 +33,24 @@ public class Message {
             "no fat was consumed.";
     public static final String MESSAGE_DIET_DATETIME_MISSING =
             "Please specify the datetime of the diet using \"datetime/\"!";
-    public static final String MESSAGE_CALORIE_OVERFLOW =
-            "The calories consumed cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+    public static final String MESSAGE_CALORIES_ARG_DUPLICATE =
+            "Please do not specify the calories burned more than once!";
+    public static final String MESSAGE_PROTEIN_ARG_DUPLICATE =
+            "Please do not specify the protein intake more than once!";
+    public static final String MESSAGE_CARB_ARG_DUPLICATE =
+            "Please do not specify the carbohydrate intake more than once!";
+    public static final String MESSAGE_FAT_ARG_DUPLICATE =
+            "Please do not specify the fat intake more than once!";
+    public static final String MESSAGE_DIET_ARG_DATETIME_DUPLICATE =
+            "Please do not specify the datetime of the diet more than once!";
+    public static final String MESSAGE_CALORIES_OVERFLOW =
+            "The calories consumed cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_PROTEIN_OVERFLOW =
-            "The protein intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The protein intake cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_CARB_OVERFLOW =
-            "The carbohydrate intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The carbohydrate intake cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_FAT_OVERFLOW =
-            "The fat intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The fat intake cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_CAPTION_EMPTY = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_EMPTY = "The duration of an activity cannot be empty!";
     public static final String MESSAGE_DISTANCE_EMPTY = "The distance of an activity cannot be empty!";
@@ -65,9 +74,9 @@ public class Message {
     public static final String MESSAGE_TARGET_TOO_LARGE =
             "The target value of an activity goal cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_DATETIME_INVALID =
-            "The datetime must be in the format \"yyyy-MM-dd HH:mm\"!";
+            "The datetime must be valid and in the format \"yyyy-MM-dd HH:mm\"!";
     public static final String MESSAGE_DATE_INVALID =
-            "The date must be in the format \"yyyy-MM-dd\"!";
+            "The date must be valid and in the format \"yyyy-MM-dd\"!";
     public static final String MESSAGE_CALORIES_INVALID =
             "The calories burned must be a non-negative integer!";
     public static final String MESSAGE_SPORT_INVALID = "The sport of an activity must be one of the following: " +
@@ -106,8 +115,8 @@ public class Message {
     public static final String MESSAGE_ACTIVITY_COUNT =
             "You have tracked a total of %d activities. Keep pushing!";
     public static final String MESSAGE_ACTIVITY_LIST = "These are the activities you have tracked so far:";
-    public static final String MESSAGE_ACTIVITY_EDIT_INVALID = "Oops, the format of the edit command is wrong! Please" +
-            " provide the index and the updated entry!";
+    public static final String MESSAGE_ACTIVITY_EDIT_INVALID = "The format of the edit command is wrong! Please" +
+            " provide the index and the updated parameters!";
     public static final String MESSAGE_ACTIVITY_UPDATED = "Ok, I've updated this activity:";
     public static final String MESSAGE_DIET_COUNT =
             "Now you have tracked a total of %d diets. Keep grinding!";
@@ -119,12 +128,12 @@ public class Message {
             "to be one of the following: \"calories\", \"protein\", \"carb\", \"fats\"!";
     public static final String MESSAGE_DIET_GOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
             "Please edit the goal instead!";
-    public static final String MESSAGE_DIET_GOAL_NOT_EXISTED = "Diet goal for %s is not present. " +
+    public static final String MESSAGE_DIET_GOAL_NOT_EXISTED = "Diet goal for %s and time period %s is not present. " +
             "Please add the goal before editing it!";
     public static final String MESSAGE_DIET_GOAL_COUNT = "Now you have %d diet goal(s).";
     public static final String MESSAGE_DIET_GOAL_NONE = "There are no goals at the moment. Add a diet goal to start.";
     public static final String MESSAGE_DIET_GOAL_LIST_HEADER = "These are your goal(s):\n";
-    public static final String MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT = "Please provide a positive integer.\n";
+    public static final String MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT = "Please provide a positive integer.";
     public static final String MESSAGE_DIET_GOAL_EMPTY_DIET_GOAL_LIST = "There is no diet goals at the moment. " +
             "Please add one to continue.\n";
     public static final String MESSAGE_DIET_GOAL_DELETE_HEADER = "The following goal has been deleted:\n";
@@ -142,6 +151,8 @@ public class Message {
             "while loading diet goals.";
     public static final String MESSAGE_DIET_GOAL_TYPE_CLASH = "You cannot have healthy goals and unhealthy goals "
             + "for the same nutrient.";
+    public static final String MESSAGE_DIET_GOAL_PERIOD_INVALID = "The period of an activity must be one of the "
+            + "following: \"daily\", \"weekly\"!";
 
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";
@@ -180,11 +191,15 @@ public class Message {
             "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
             "The index of the sleep record you want to delete is out of bounds.";
-
+    public static final String ERRORMESSAGE_DUPLICATE_SLEEP_GOAL =
+            "You already have a goal for this type and period! Please edit the existing goal instead.";
+    
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
             "Please specify both the start and end time of your sleep.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_START_END_NON_CHRONOLOGICAL =
             "Please specify the start time of your sleep chronologically before the end time.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_START_END_ORDER =
+            "Please specify the /start before /end.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATETIME =
             "Please specify the start and end time of your sleep in the format \"yyyy-MM-dd HH:mm\".";
 
@@ -195,8 +210,8 @@ public class Message {
 
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_MISSING_PARAMETERS =
-            "Please specify the start and end time of your sleep.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS_ORDER =
+            "Please specify the type, period and target value of your sleep goal in the correct order.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TYPE =
             "Please specify the type of your sleep goal as \"duration\".";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PERIOD =
@@ -219,7 +234,7 @@ public class Message {
     public static final String HELP_ADD_RUN = CommandName.COMMAND_RUN
             + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
     public static final String HELP_ADD_SWIM = CommandName.COMMAND_SWIM
-            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
+            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE";
     public static final String HELP_ADD_CYCLE = CommandName.COMMAND_CYCLE
             + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
     public static final String HELP_DELETE_ACTIVITY = CommandName.COMMAND_ACTIVITY_DELETE
@@ -227,19 +242,28 @@ public class Message {
     public static final String HELP_LIST_ACTIVITY = CommandName.COMMAND_ACTIVITY_LIST
             + " [-d]";
     public static final String HELP_EDIT_ACTIVITY = CommandName.COMMAND_ACTIVITY_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]";
     public static final String HELP_EDIT_RUN = CommandName.COMMAND_RUN_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] " +
+            "[elevation/ELEVATION]";
     public static final String HELP_EDIT_SWIM = CommandName.COMMAND_SWIM_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [style/STYLE]";
     public static final String HELP_EDIT_CYCLE = CommandName.COMMAND_CYCLE_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] " +
+            "[elevation/ELEVATION]";
     public static final String HELP_FIND_ACTIVITY = CommandName.COMMAND_ACTIVITY_FIND
             + " DATE";
+    public static final String HELP_SET_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_SET
+            + " sport/SPORT type/TYPE period/PERIOD target/TARGET";
+    public static final String HELP_EDIT_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_EDIT
+            + " sport/SPORT type/TYPE period/PERIOD target/TARGET";
+    public static final String HELP_LIST_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_LIST;
+    public static final String HELP_DELETE_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_DELETE
+            + " sport/SPORT type/TYPE period/PERIOD";
     public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
             + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
     public static final String HELP_EDIT_DIET = CommandName.COMMAND_DIET_EDIT
-            + " INDEX calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
+            + " INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]";
     public static final String HELP_DELETE_DIET = CommandName.COMMAND_DIET_DELETE
             + " INDEX";
     public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;
@@ -277,4 +301,8 @@ public class Message {
             "10km! Mt. Everest is only 8.8km high!";
     public static final String MESSAGE_DUPLICATE_ACTIVITY_GOAL = "You already have a goal for this " +
             "sport, type and period! Please edit the existing goal instead.";
+    public static final String MESSAGE_ACTIVITY_TYPE_MISMATCH = "The edit command does not match the type of " +
+            "the activity you are trying to edit!";
+    public static final String MESSAGE_DATE_FUTURE =
+            "I like your optimism, but you cannot track events in the future!";
 }
