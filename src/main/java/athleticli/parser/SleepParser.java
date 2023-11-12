@@ -10,7 +10,7 @@ import athleticli.ui.Message;
 
 public class SleepParser {
     //@@author  DaDevChia
-    
+
     /* Sleep Management */
 
     /**
@@ -61,18 +61,22 @@ public class SleepParser {
      */
     public static int parseSleepIndex(String commandArgs) throws AthletiException {
         final String indexStr = commandArgs.split("(?<=\\d)(?=\\D)", 2)[0].trim();
+        
         if (indexStr == null || indexStr.isEmpty()) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_INDEX);
         }
+
         int index;
         try {
             index = Integer.parseInt(indexStr);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX);
         }
+
         if (index <= 0) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX);
         }
+
         return index;
     }
 
