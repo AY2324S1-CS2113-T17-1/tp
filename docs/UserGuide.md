@@ -246,6 +246,9 @@ You can list all your set goals and view your progress towards them.
 **Examples**
 
 * `list-activity-goal`
+<p>
+  <img width="100%" src="images/listActivityGoalShowcase.png" alt="List returned by `list-activity-goal`"/>
+</p>
 
 ---
 
@@ -366,6 +369,9 @@ You can view a list of all your recorded diets.
 **Examples:**
 
 * `list-diet`
+<p>
+  <img width="100%" src="images/listDietShowcase.png" alt="List returned by `list-diet`"/>
+</p>
 
 ---
 
