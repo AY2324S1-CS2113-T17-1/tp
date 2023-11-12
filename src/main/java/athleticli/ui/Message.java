@@ -64,9 +64,9 @@ public class Message {
     public static final String MESSAGE_TARGET_TOO_LARGE =
             "The target value of an activity goal cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_DATETIME_INVALID =
-            "The datetime must be in the format \"yyyy-MM-dd HH:mm\"!";
+            "The datetime must be valid and in the format \"yyyy-MM-dd HH:mm\"!";
     public static final String MESSAGE_DATE_INVALID =
-            "The date must be in the format \"yyyy-MM-dd\"!";
+            "The date must be valid and in the format \"yyyy-MM-dd\"!";
     public static final String MESSAGE_CALORIES_INVALID =
             "The calories burned must be a non-negative integer!";
     public static final String MESSAGE_SPORT_INVALID = "The sport of an activity must be one of the following: " +
