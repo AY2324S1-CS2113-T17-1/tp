@@ -5,7 +5,15 @@ import athleticli.commands.Command;
 import athleticli.commands.FindCommand;
 import athleticli.commands.HelpCommand;
 import athleticli.commands.SaveCommand;
-
+import athleticli.commands.activity.AddActivityCommand;
+import athleticli.commands.activity.DeleteActivityCommand;
+import athleticli.commands.activity.DeleteActivityGoalCommand;
+import athleticli.commands.activity.EditActivityCommand;
+import athleticli.commands.activity.EditActivityGoalCommand;
+import athleticli.commands.activity.FindActivityCommand;
+import athleticli.commands.activity.ListActivityCommand;
+import athleticli.commands.activity.ListActivityGoalCommand;
+import athleticli.commands.activity.SetActivityGoalCommand;
 import athleticli.commands.diet.AddDietCommand;
 import athleticli.commands.diet.DeleteDietCommand;
 import athleticli.commands.diet.DeleteDietGoalCommand;
@@ -15,26 +23,14 @@ import athleticli.commands.diet.FindDietCommand;
 import athleticli.commands.diet.ListDietCommand;
 import athleticli.commands.diet.ListDietGoalCommand;
 import athleticli.commands.diet.SetDietGoalCommand;
-
 import athleticli.commands.sleep.AddSleepCommand;
-import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.DeleteSleepCommand;
-import athleticli.commands.sleep.ListSleepCommand;
-import athleticli.commands.sleep.FindSleepCommand;
-import athleticli.commands.sleep.SetSleepGoalCommand;
+import athleticli.commands.sleep.EditSleepCommand;
 import athleticli.commands.sleep.EditSleepGoalCommand;
+import athleticli.commands.sleep.FindSleepCommand;
+import athleticli.commands.sleep.ListSleepCommand;
 import athleticli.commands.sleep.ListSleepGoalCommand;
-
-import athleticli.commands.activity.AddActivityCommand;
-import athleticli.commands.activity.DeleteActivityCommand;
-import athleticli.commands.activity.EditActivityCommand;
-import athleticli.commands.activity.FindActivityCommand;
-import athleticli.commands.activity.ListActivityCommand;
-import athleticli.commands.activity.SetActivityGoalCommand;
-import athleticli.commands.activity.DeleteActivityGoalCommand;
-import athleticli.commands.activity.EditActivityGoalCommand;
-import athleticli.commands.activity.ListActivityGoalCommand;
-
+import athleticli.commands.sleep.SetSleepGoalCommand;
 import athleticli.data.activity.Activity;
 import athleticli.data.activity.Cycle;
 import athleticli.data.activity.Run;
@@ -45,14 +41,18 @@ import athleticli.ui.Message;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static athleticli.common.Config.DATE_FORMATTER;
+import static athleticli.common.Config.DATE_TIME_FORMATTER;
 
 /**
  * Defines the basic methods for command parser.
  */
 public class Parser {
+    private static final String INVALID_YEAR = "0000";
+
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
      * while the second part is the command arguments. The second part can be empty.
@@ -80,7 +80,7 @@ public class Parser {
         final String commandType = commandTypeAndParams[0];
         final String commandArgs = commandTypeAndParams[1];
         switch (commandType) {
-        
+
         /* General */
         case CommandName.COMMAND_BYE:
             return new ByeCommand();
@@ -90,7 +90,7 @@ public class Parser {
             return new SaveCommand();
         case CommandName.COMMAND_FIND:
             return new FindCommand(parseDate(commandArgs));
-        
+
         /* Sleep Management */
         case CommandName.COMMAND_SLEEP_ADD:
             return new AddSleepCommand(SleepParser.parseSleep(commandArgs));
@@ -103,7 +103,7 @@ public class Parser {
             return new DeleteSleepCommand(SleepParser.parseSleepIndex(commandArgs));
         case CommandName.COMMAND_SLEEP_FIND:
             return new FindSleepCommand(parseDate(commandArgs));
-        
+
         /*  Sleep Goal Management */
         case CommandName.COMMAND_SLEEP_GOAL_LIST:
             return new ListSleepGoalCommand();
@@ -111,7 +111,7 @@ public class Parser {
             return new SetSleepGoalCommand(SleepParser.parseSleepGoal(commandArgs));
         case CommandName.COMMAND_SLEEP_GOAL_EDIT:
             return new EditSleepGoalCommand(SleepParser.parseSleepGoal(commandArgs));
-        
+
         /* Activity Management */
         case CommandName.COMMAND_ACTIVITY:
             return new AddActivityCommand(ActivityParser.parseActivity(commandArgs));
@@ -139,7 +139,7 @@ public class Parser {
                     ActivityParser.parseSwimEdit(commandArgs), Swim.class);
         case CommandName.COMMAND_ACTIVITY_FIND:
             return new FindActivityCommand(parseDate(commandArgs));
-       
+
         /* Activity Goal Management */
         case CommandName.COMMAND_ACTIVITY_GOAL_SET:
             return new SetActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
@@ -149,29 +149,30 @@ public class Parser {
             return new EditActivityGoalCommand(ActivityParser.parseActivityGoal(commandArgs));
         case CommandName.COMMAND_ACTIVITY_GOAL_LIST:
             return new ListActivityGoalCommand();
-        
+
         /* Diet Management */
         case CommandName.COMMAND_DIET_ADD:
             return new AddDietCommand(DietParser.parseDiet(commandArgs));
         case CommandName.COMMAND_DIET_EDIT:
-            return new EditDietCommand(DietParser.parseDietIndex(commandArgs), DietParser.parseDietEdit(commandArgs));
+            return new EditDietCommand(DietParser.parseDietIndex(commandArgs),
+                    DietParser.parseDietEdit(commandArgs));
         case CommandName.COMMAND_DIET_DELETE:
             return new DeleteDietCommand(DietParser.parseDietIndex(commandArgs));
         case CommandName.COMMAND_DIET_LIST:
             return new ListDietCommand();
         case CommandName.COMMAND_DIET_FIND:
             return new FindDietCommand(parseDate(commandArgs));
-        
+
         /* Diet Goal Management */
         case CommandName.COMMAND_DIET_GOAL_SET:
-            return new SetDietGoalCommand(DietParser.parseDietGoalSetEdit(commandArgs));
+            return new SetDietGoalCommand(DietParser.parseDietGoalSetAndEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_EDIT:
-            return new EditDietGoalCommand(DietParser.parseDietGoalSetEdit(commandArgs));
+            return new EditDietGoalCommand(DietParser.parseDietGoalSetAndEdit(commandArgs));
         case CommandName.COMMAND_DIET_GOAL_LIST:
             return new ListDietGoalCommand();
         case CommandName.COMMAND_DIET_GOAL_DELETE:
             return new DeleteDietGoalCommand(DietParser.parseDietGoalDelete(commandArgs));
-        
+
         default:
             throw new AthletiException(Message.MESSAGE_UNKNOWN_COMMAND);
         }
@@ -185,9 +186,12 @@ public class Parser {
      * @throws AthletiException If the input format is invalid.
      */
     public static LocalDateTime parseDateTime(String datetime) throws AthletiException {
+        if (datetime.startsWith(INVALID_YEAR)) {
+            throw new AthletiException(Message.MESSAGE_DATETIME_INVALID);
+        }
         LocalDateTime datetimeParsed;
         try {
-            datetimeParsed = LocalDateTime.parse(datetime.replace(" ", "T"));
+            datetimeParsed = LocalDateTime.parse(datetime.replace("T", " "), DATE_TIME_FORMATTER);
             if (datetimeParsed.isAfter(LocalDateTime.now())) {
                 throw new AthletiException(Message.MESSAGE_DATE_FUTURE);
             }
@@ -198,8 +202,11 @@ public class Parser {
     }
 
     public static LocalDate parseDate(String date) throws AthletiException {
+        if (date.startsWith(INVALID_YEAR)) {
+            throw new AthletiException(Message.MESSAGE_DATE_INVALID);
+        }
         try {
-            LocalDate dateParsed = LocalDate.parse(date);
+            LocalDate dateParsed = LocalDate.parse(date, DATE_FORMATTER);
             if (dateParsed.isAfter(LocalDate.now())) {
                 throw new AthletiException(Message.MESSAGE_DATE_FUTURE);
             }
@@ -207,6 +214,32 @@ public class Parser {
         } catch (DateTimeParseException e) {
             throw new AthletiException(Message.MESSAGE_DATE_INVALID);
         }
+    }
+
+    /**
+     * Parses the raw integer input provided by the user.
+     *
+     * @param integer         The raw user input containing the integer.
+     * @param invalidMessage  The message to be displayed if the input is invalid.
+     * @param overflowMessage The message to be displayed if the input is too large.
+     * @return integerParsed  The parsed integer.
+     * @throws AthletiException If the input format is invalid.
+     */
+    public static int parseNonNegativeInteger(String integer, String invalidMessage,
+                                              String overflowMessage) throws AthletiException {
+        java.math.BigInteger integerParsed;
+        try {
+            integerParsed = new java.math.BigInteger(integer);
+        } catch (NumberFormatException e) {
+            throw new AthletiException(invalidMessage);
+        }
+        if (integerParsed.signum() < 0) {
+            throw new AthletiException(invalidMessage);
+        }
+        if (integerParsed.compareTo(java.math.BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
+            throw new AthletiException(overflowMessage);
+        }
+        return integerParsed.intValue();
     }
 
     /**
