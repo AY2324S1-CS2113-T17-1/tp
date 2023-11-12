@@ -196,7 +196,11 @@ public class Parser {
 
     public static LocalDate parseDate(String date) throws AthletiException {
         try {
-            return LocalDate.parse(date);
+            LocalDate dateParsed = LocalDate.parse(date);
+            if (dateParsed.isAfter(LocalDate.now())) {
+                throw new AthletiException(Message.MESSAGE_DATE_FUTURE);
+            }
+            return dateParsed;
         } catch (DateTimeParseException e) {
             throw new AthletiException(Message.MESSAGE_DATE_INVALID);
         }

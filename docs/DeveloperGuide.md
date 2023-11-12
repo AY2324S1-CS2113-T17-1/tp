@@ -263,8 +263,6 @@ activity list with the five tracked activities from the data and calls the total
     <img width="100%" src="images/ActivityGoalEvaluation.svg" alt="Sequence Diagram of activity goal evaluation"/>
 </p>
 
-### [Implemented] Data Storing (Activity example)
-
 ### Sleep Management in AthletiCLI
 
 #### [Implemented] Finding, Adding, Editing, Deleting, Listing Sleep
