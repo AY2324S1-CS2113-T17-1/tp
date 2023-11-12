@@ -219,7 +219,7 @@ public class Message {
     public static final String HELP_ADD_RUN = CommandName.COMMAND_RUN
             + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
     public static final String HELP_ADD_SWIM = CommandName.COMMAND_SWIM
-            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
+            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE";
     public static final String HELP_ADD_CYCLE = CommandName.COMMAND_CYCLE
             + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
     public static final String HELP_DELETE_ACTIVITY = CommandName.COMMAND_ACTIVITY_DELETE
@@ -227,13 +227,15 @@ public class Message {
     public static final String HELP_LIST_ACTIVITY = CommandName.COMMAND_ACTIVITY_LIST
             + " [-d]";
     public static final String HELP_EDIT_ACTIVITY = CommandName.COMMAND_ACTIVITY_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]";
     public static final String HELP_EDIT_RUN = CommandName.COMMAND_RUN_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] " +
+            "[elevation/ELEVATION]";
     public static final String HELP_EDIT_SWIM = CommandName.COMMAND_SWIM_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [style/STYLE]";
     public static final String HELP_EDIT_CYCLE = CommandName.COMMAND_CYCLE_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] " +
+            "[elevation/ELEVATION]";
     public static final String HELP_FIND_ACTIVITY = CommandName.COMMAND_ACTIVITY_FIND
             + " DATE";
     public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
