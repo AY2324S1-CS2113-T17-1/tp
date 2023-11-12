@@ -245,10 +245,17 @@ public class Message {
             + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
     public static final String HELP_FIND_ACTIVITY = CommandName.COMMAND_ACTIVITY_FIND
             + " DATE";
+    public static final String HELP_SET_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_SET
+            + " sport/SPORT type/TYPE period/PERIOD target/TARGET";
+    public static final String HELP_EDIT_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_EDIT
+            + " sport/SPORT type/TYPE period/PERIOD target/TARGET";
+    public static final String HELP_LIST_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_LIST;
+    public static final String HELP_DELETE_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_DELETE
+            + " sport/SPORT type/TYPE period/PERIOD";
     public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
             + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
     public static final String HELP_EDIT_DIET = CommandName.COMMAND_DIET_EDIT
-            + " INDEX calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
+            + " INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]";
     public static final String HELP_DELETE_DIET = CommandName.COMMAND_DIET_DELETE
             + " INDEX";
     public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;
