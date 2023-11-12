@@ -18,11 +18,11 @@ public class Cycle extends Activity {
      * Generates a new cycling activity with cycling specific stats.
      * averageSpeed is calculated automatically based on the distance and movingTime.
      *
-     * @param movingTime duration of the activity in minutes
-     * @param distance distance covered in meters
-     * @param startDateTime start date and time of the activity
-     * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
-     * @param elevationGain elevation gain in meters
+     * @param movingTime duration of the activity in minutes.
+     * @param distance distance covered in meters.
+     * @param startDateTime start date and time of the activity.
+     * @param caption a caption of the activity chosen by the user (e.g., "Morning Run").
+     * @param elevationGain elevation gain in meters.
      */
     public Cycle(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
         super(caption, movingTime, distance, startDateTime);
@@ -49,7 +49,7 @@ public class Cycle extends Activity {
     /**
      * Returns a single line summary of the cycling activity.
      *
-     * @return a string representation of the cycle
+     * @return a string representation of the cycle.
      */
     @Override
     public String toString() {
@@ -71,7 +71,7 @@ public class Cycle extends Activity {
     /**
      * Returns a string representation of the average speed of the cycle.
      *
-     * @return a string representation of the average speed of the cycle
+     * @return a string representation of the average speed of the cycle.
      */
     public String generateSpeedStringOutput() {
         return String.format(Locale.ENGLISH, SPEED_PRINT_FORMAT, this.averageSpeed) +
@@ -81,7 +81,7 @@ public class Cycle extends Activity {
     /**
      * Returns a string representation of the elevation gain of the cycle.
      *
-     * @return a string representation of the elevation gain of the cycle
+     * @return a string representation of the elevation gain of the cycle.
      */
     public String generateElevationGainStringOutput() {
         return Parameter.ELEVATION_PREFIX + elevationGain + Parameter.DISTANCE_UNIT_METERS;
@@ -90,7 +90,7 @@ public class Cycle extends Activity {
     /**
      * Returns a detailed summary of the cycle.
      *
-     * @return a multiline string representation of the cycle
+     * @return a multiline string representation of the cycle.
      */
     public String toDetailedString() {
         String startDateTimeOutput = generateStartDateTimeStringOutput();
@@ -110,7 +110,7 @@ public class Cycle extends Activity {
     /**
      * Returns a string representation of the cycle used for storing the data.
      *
-     * @return a string representation of the cycle
+     * @return a string representation of the cycle.
      */
     @Override
     public String unparse() {
@@ -131,7 +131,7 @@ public class Cycle extends Activity {
     /**
      * Sets the distance of the cycle and recalculates the average speed.
      *
-     * @param distance Distance in meters
+     * @param distance Distance in meters.
      */
     @Override
     public void setDistance(int distance) {
@@ -142,7 +142,7 @@ public class Cycle extends Activity {
     /**
      * Sets the moving time of the cycle and recalculates the average speed.
      *
-     * @param movingTime Moving time in LocalTime format
+     * @param movingTime Moving time in LocalTime format.
      */
     @Override
     public void setMovingTime(LocalTime movingTime) {

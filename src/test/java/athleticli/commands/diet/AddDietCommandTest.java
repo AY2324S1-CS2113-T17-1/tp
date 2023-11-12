@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 
 /**
@@ -35,8 +35,6 @@ public class AddDietCommandTest {
         String[] expected = {"Well done! I've added this diet:", diet.toString(),
                              "Now you have tracked your " + "first diet. This is just the beginning!"};
         String[] actual = addDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 }

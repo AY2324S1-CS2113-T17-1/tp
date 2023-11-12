@@ -26,11 +26,11 @@ public class Swim extends Activity {
      * By default, calories is 0, i.e., not tracked.
      * averageLapTime is calculated automatically based on the movingTime and laps.
      *
-     * @param movingTime duration of the activity in HH:mm:ss format
-     * @param distance distance covered in meters
-     * @param startDateTime start date and time of the activity
-     * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
-     * @param style swimming style
+     * @param movingTime duration of the activity in HH:mm:ss format.
+     * @param distance distance covered in meters.
+     * @param startDateTime start date and time of the activity.
+     * @param caption a caption of the activity chosen by the user (e.g., "Morning Run").
+     * @param style swimming style.
      */
     public Swim(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, SwimmingStyle style) {
         super(caption, movingTime, distance, startDateTime);
@@ -55,7 +55,7 @@ public class Swim extends Activity {
     /**
      * Calculates the number of laps.
      *
-     * @return number of laps
+     * @return number of laps.
      */
     public int calculateLaps() {
         return this.getDistance() / METERS_PER_LAP;
@@ -64,7 +64,7 @@ public class Swim extends Activity {
     /**
      * Returns a short string representation of the swim.
      *
-     * @return a string representation of the swim
+     * @return a string representation of the swim.
      */
     @Override
     public String toString() {
@@ -86,7 +86,7 @@ public class Swim extends Activity {
     /**
      * Returns a detailed summary of the swim.
      *
-     * @return a multiline string representation of the swim
+     * @return a multiline string representation of the swim.
      */
     public String toDetailedString() {
         String startDateTimeOutput = generateStartDateTimeStringOutput();
@@ -108,7 +108,7 @@ public class Swim extends Activity {
     /**
      * Returns a string representation of the average lap time of a swim.
      *
-     * @return a string representation of the average lap time
+     * @return a string representation of the average lap time.
      */
     public String generateAverageLapTimeStringOutput() {
         return averageLapTime + Parameter.TIME_UNIT_SECONDS;
@@ -117,7 +117,7 @@ public class Swim extends Activity {
     /**
      * Returns a string representation of the number of laps of a swim.
      *
-     * @return a string representation of the number of laps of a swim
+     * @return a string representation of the number of laps of a swim.
      */
     public String generateLapsStringOutput() {
         return Parameter.LAPS_PREFIX + laps;
@@ -126,7 +126,7 @@ public class Swim extends Activity {
     /**
      * Returns a string representation of the swimming style.
      *
-     * @return a string representation of the swimming style
+     * @return a string representation of the swimming style.
      */
     public String generateStyleStringOutput() {
         return Parameter.STYLE_PREFIX + getStyle();
@@ -134,7 +134,7 @@ public class Swim extends Activity {
 
     /**
      * Returns a string representation of the swim used for storing the data.
-     * @return a string representation of the swim
+     * @return a string representation of the swim.
      */
     @Override
     public String unparse() {
@@ -155,7 +155,7 @@ public class Swim extends Activity {
     /**
      * Sets the distance of the swim and recalculates the total laps and average lap time.
      *
-     * @param distance Distance in meters
+     * @param distance Distance in meters.
      */
     @Override
     public void setDistance(int distance) {
@@ -167,7 +167,7 @@ public class Swim extends Activity {
     /**
      * Sets the moving time of the swim and recalculates the average lap time.
      *
-     * @param movingTime Moving time in LocalTime format
+     * @param movingTime Moving time in LocalTime format.
      */
     @Override
     public void setMovingTime(LocalTime movingTime) {

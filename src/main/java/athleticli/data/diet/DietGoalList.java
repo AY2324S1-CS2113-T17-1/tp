@@ -5,6 +5,7 @@ import athleticli.data.Goal;
 import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
 import athleticli.parser.NutrientVerifier;
+import athleticli.parser.Parameter;
 import athleticli.ui.Message;
 
 import static athleticli.common.Config.PATH_DIET_GOAL;
@@ -13,11 +14,15 @@ import static athleticli.common.Config.PATH_DIET_GOAL;
  * Represents a list of diet goals.
  */
 public class DietGoalList extends StorableList<DietGoal> {
+
+    private final String unparseMessage;
+
     /**
      * Constructs a diet goal list.
      */
     public DietGoalList() {
         super(PATH_DIET_GOAL);
+        unparseMessage = "dietGoal %s %s %s %s";
     }
 
     /**
@@ -54,6 +59,7 @@ public class DietGoalList extends StorableList<DietGoal> {
 
     /**
      * Checks if a diet goal has clashing type as those existed in the list.
+     * The type of diet goals are 'healthy' and 'unhealthy'.
      *
      * @param dietGoal
      * @return boolean value to indicate if the type is valid.
@@ -83,14 +89,20 @@ public class DietGoalList extends StorableList<DietGoal> {
             boolean isTimeSpanGreater =
                     storedDietGoal.getTimeSpan().getDays() > newDietGoal.getTimeSpan().getDays();
             boolean isTimeSpanEqual = storedDietGoal.getTimeSpan().getDays() == newDietGoal.getTimeSpan().getDays();
+            boolean isTimeSpanLess = storedDietGoal.getTimeSpan().getDays() < newDietGoal.getTimeSpan().getDays();
             boolean isTargetValueGreater = storedDietGoal.getTargetValue() > newDietGoal.getTargetValue();
+            boolean isTargetValueLess = storedDietGoal.getTargetValue() < newDietGoal.getTargetValue();
             //Goals with the same time span can take on different values due to goal editing.
             if (isTimeSpanEqual) {
                 continue;
             }
-            if (isTimeSpanGreater != isTargetValueGreater) {
-                return false;
+            if (isTimeSpanGreater && isTargetValueGreater) {
+                continue;
             }
+            if (isTimeSpanLess && isTargetValueLess) {
+                continue;
+            }
+            return false;
         }
         return true;
     }
@@ -111,29 +123,51 @@ public class DietGoalList extends StorableList<DietGoal> {
             String dietGoalTargetValueString = dietGoalDetails[3];
             String dietGoalType = dietGoalDetails[4];
             int dietGoalTargetValue = Integer.parseInt(dietGoalTargetValueString);
-            if (!NutrientVerifier.verify(dietGoalNutrientString)) {
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_NUTRIENT);
-            }
-            if (dietGoalType.toLowerCase().equals(HealthyDietGoal.TYPE)) {
-                dietGoal = new HealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
-                        dietGoalNutrientString, dietGoalTargetValue);
+            int dietGoalTimeSpanValue = Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()).getDays();
 
-            } else if (dietGoalType.toLowerCase().equals(UnhealthyDietGoal.TYPE)) {
-                dietGoal = new UnhealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
-                        dietGoalNutrientString, dietGoalTargetValue);
-            } else {
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_LOAD_ERROR);
-            }
-            if (!isDietGoalUnique(dietGoal)) {
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_REPEATED_NUTRIENT);
-            }
-            if (!isDietGoalTypeValid(dietGoal)) {
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
-            }
+            verifyParseParameters(dietGoalNutrientString, dietGoalTimeSpanValue);
+            dietGoal = createParseNewDietGoal(dietGoalType, dietGoalTimeSpanString,
+                    dietGoalNutrientString, dietGoalTargetValue);
+            validateParseDietGoal(dietGoal);
             return dietGoal;
 
         } catch (ArrayIndexOutOfBoundsException | IllegalArgumentException e) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_LOAD_ERROR);
+        }
+    }
+
+    private void validateParseDietGoal(DietGoal dietGoal) throws AthletiException {
+        if (!isDietGoalUnique(dietGoal)) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_REPEATED_NUTRIENT);
+        }
+        if (!isDietGoalTypeValid(dietGoal)) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
+        }
+    }
+
+    private static DietGoal createParseNewDietGoal(String dietGoalType, String dietGoalTimeSpanString,
+            String dietGoalNutrientString, int dietGoalTargetValue) throws AthletiException {
+        DietGoal dietGoal;
+        if (dietGoalType.toLowerCase().equals(HealthyDietGoal.TYPE)) {
+            dietGoal = new HealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
+                    dietGoalNutrientString, dietGoalTargetValue);
+        } else if (dietGoalType.toLowerCase().equals(UnhealthyDietGoal.TYPE)) {
+            dietGoal = new UnhealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
+                    dietGoalNutrientString, dietGoalTargetValue);
+        } else {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_LOAD_ERROR);
+        }
+        return dietGoal;
+    }
+
+    private static void verifyParseParameters(String dietGoalNutrientString, int dietGoalTimeSpanValue)
+            throws AthletiException {
+        if (!NutrientVerifier.verify(dietGoalNutrientString)) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_NUTRIENT);
+        }
+        //Diet goal only support up to period that is less than or equal to DIET_GOAL_TIME_SPAN_LIMIT
+        if (dietGoalTimeSpanValue > Parameter.DIET_GOAL_TIME_SPAN_LIMIT) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_PERIOD_INVALID);
         }
     }
 
@@ -148,8 +182,8 @@ public class DietGoalList extends StorableList<DietGoal> {
         /*
          * diet goal has nutrient, target value, date. there rest are calculated on the spot.
          * */
-        return "dietGoal " + dietGoal.getTimeSpan() + " " + dietGoal.getNutrient()
-                + " " + dietGoal.getTargetValue() + " " + dietGoal.getType();
+        return String.format(unparseMessage, dietGoal.getTimeSpan(), dietGoal.getNutrient(),
+                dietGoal.getTargetValue(), dietGoal.getType());
 
     }
 }

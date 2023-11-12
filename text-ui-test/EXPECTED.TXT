@@ -8,35 +8,40 @@ ____________________________________________________________
 Activity Management:
  add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
  add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
- add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
+ add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE
  add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
  delete-activity INDEX
  list-activity [-d]
- edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
- edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
- edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
- edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ edit-activity INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]
+ edit-run INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]
+ edit-swim INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [style/STYLE]
+ edit-cycle INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]
  find-activity DATE
- 
+ set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET
+ edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET
+ delete-activity-goal sport/SPORT type/TYPE period/PERIOD
+ list-activity-goal
+
 Diet Management:
  add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME
+ edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]
  delete-diet INDEX
  list-diet
  find-diet DATE
- 
+
 Sleep Management:
  add-sleep start/START end/END
  list-sleep
  delete-sleep INDEX
  edit-sleep INDEX start/START end/END
  find-sleep DATE
- 
+
 Misc:
  find DATE
  save
  bye
  help [COMMAND]
- 
+
 Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.
 ____________________________________________________________
 
@@ -85,7 +90,7 @@ ____________________________________________________________
  These are the activities you have tracked so far:
  1.[Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | October 26, 2023 at 6:00 PM
  2.[Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | October 26, 2023 at 6:00 AM
- 
+
 To see more performance details about an activity, use the -d flag
 ____________________________________________________________
 
@@ -129,21 +134,21 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
  You have tracked your first sleep record. This is just the beginning!
 ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
  You have tracked a total of 2 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -160,30 +165,30 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
  You have tracked a total of 3 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
+ OOPS!!! The datetime must be valid and in the format "yyyy-MM-dd HH:mm"!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
+ OOPS!!! The datetime must be valid and in the format "yyyy-MM-dd HH:mm"!
 ____________________________________________________________
 
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 1. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
 ____________________________________________________________
 
 > ____________________________________________________________
  Alright, I've changed this sleep record:
- original: [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- new: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
+ original: [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ new: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -201,19 +206,19 @@ ____________________________________________________________
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
- 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours
+ 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
 ____________________________________________________________
 
 > ____________________________________________________________
  Gotcha, I've deleted this sleep record:
- [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours 
+ [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours
  You have tracked a total of 2 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The index of the sleep record you want to delete is out of bounds.
+ OOPS!!! Please specify the index of the sleep record you want to edit as a positive integer.
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -223,8 +228,8 @@ ____________________________________________________________
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
- 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -281,13 +286,13 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2023-11-04 | Start Time: November 4, 2023 at 10:00 AM | End Time: November 4, 2023 at 6:00 PM | Sleeping Duration: 8 Hours 
+ [Sleep] | Date: 2023-11-04 | Start Time: November 4, 2023 at 10:00 AM | End Time: November 4, 2023 at 6:00 PM | Sleeping Duration: 8 Hours
  You have tracked a total of 3 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2023-11-07 | Start Time: November 7, 2023 at 10:00 AM | End Time: November 7, 2023 at 6:00 PM | Sleeping Duration: 8 Hours 
+ [Sleep] | Date: 2023-11-07 | Start Time: November 7, 2023 at 10:00 AM | End Time: November 7, 2023 at 6:00 PM | Sleeping Duration: 8 Hours
  You have tracked a total of 4 sleep records. Keep it up!
 ____________________________________________________________
 
@@ -360,7 +365,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The period of an activity must be one of the following: "daily", "weekly", "monthly", "yearly"!
+ OOPS!!! The period of an activity must be one of the following: "daily", "weekly"!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -368,7 +373,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The period of an activity must be one of the following: "daily", "weekly", "monthly", "yearly"!
+ OOPS!!! The period of an activity must be one of the following: "daily", "weekly"!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -399,7 +404,7 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this diet:
- Calories: 150000 Protein: 500000 Carb: 5000 Fat: 2000 Date: November 4, 2023 at 10:00 AM
+ Calories: 150000 cal | Protein: 500000 mg | Carb: 5000 mg | Fat: 2000 mg | November 4, 2023 at 10:00 AM
  Now you have tracked your first diet. This is just the beginning!
 ____________________________________________________________
 
@@ -426,22 +431,18 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please provide a positive integer.
-
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please provide a positive integer.
-
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please provide a positive integer.
-
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please provide a positive integer.
-
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -518,7 +519,7 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Noted. I've removed this diet:
- Calories: 150000 Protein: 500000 Carb: 5000 Fat: 2000 Date: November 4, 2023 at 10:00 AM
+ Calories: 150000 cal | Protein: 500000 mg | Carb: 5000 mg | Fat: 2000 mg | November 4, 2023 at 10:00 AM
  Now you have tracked a total of 0 diets. Keep grinding!
 ____________________________________________________________
 
@@ -542,19 +543,19 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this diet:
- Calories: 500 Protein: 20 Carb: 50 Fat: 10 Date: September 1, 2021 at 6:00 AM
+ Calories: 500 cal | Protein: 20 mg | Carb: 50 mg | Fat: 10 mg | September 1, 2021 at 6:00 AM
  Now you have tracked your first diet. This is just the beginning!
 ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this diet:
- Calories: 150 Protein: 50 Carb: 5 Fat: 2 Date: January 4, 2023 at 10:00 AM
+ Calories: 150 cal | Protein: 50 mg | Carb: 5 mg | Fat: 2 mg | January 4, 2023 at 10:00 AM
  Now you have tracked a total of 2 diets. Keep grinding!
 ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this diet:
- Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+ Calories: 1000 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
  Now you have tracked a total of 3 diets. Keep grinding!
 ____________________________________________________________
 
@@ -575,24 +576,24 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
+ OOPS!!! The datetime must be valid and in the format "yyyy-MM-dd HH:mm"!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
+ OOPS!!! The datetime must be valid and in the format "yyyy-MM-dd HH:mm"!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The datetime must be in the format "yyyy-MM-dd HH:mm"!
+ OOPS!!! The datetime must be valid and in the format "yyyy-MM-dd HH:mm"!
 ____________________________________________________________
 
 > ____________________________________________________________
- Usage: edit-diet INDEX calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME
+ Usage: edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]
 ____________________________________________________________
 
 > ____________________________________________________________
  Ok, I've updated this diet:
- Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+ Calories: 1000 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -601,15 +602,15 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Here are the diets in your list:
- 1. Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
-2. Calories: 150 Protein: 50 Carb: 5 Fat: 2 Date: January 4, 2023 at 10:00 AM
-3. Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+ 	1. Calories: 1000 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
+	2. Calories: 150 cal | Protein: 50 mg | Carb: 5 mg | Fat: 2 mg | January 4, 2023 at 10:00 AM
+	3. Calories: 1000 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
  Now you have tracked a total of 3 diets. Keep grinding!
 ____________________________________________________________
 
 > ____________________________________________________________
  Ok, I've updated this diet:
- Calories: 5 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+ Calories: 5 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -626,7 +627,7 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Noted. I've removed this diet:
- Calories: 150 Protein: 50 Carb: 5 Fat: 2 Date: January 4, 2023 at 10:00 AM
+ Calories: 150 cal | Protein: 50 mg | Carb: 5 mg | Fat: 2 mg | January 4, 2023 at 10:00 AM
  Now you have tracked a total of 2 diets. Keep grinding!
 ____________________________________________________________
 
@@ -636,8 +637,8 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Here are the diets in your list:
- 1. Calories: 5 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
-2. Calories: 1000 Protein: 100 Carb: 200 Fat: 500 Date: November 4, 2020 at 10:00 PM
+ 	1. Calories: 5 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
+	2. Calories: 1000 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
  Now you have tracked a total of 2 diets. Keep grinding!
 ____________________________________________________________
 
@@ -650,11 +651,11 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The date must be in the format "yyyy-MM-dd"!
+ OOPS!!! The date must be valid and in the format "yyyy-MM-dd"!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The date must be in the format "yyyy-MM-dd"!
+ OOPS!!! The date must be valid and in the format "yyyy-MM-dd"!
 ____________________________________________________________
 
 > ____________________________________________________________

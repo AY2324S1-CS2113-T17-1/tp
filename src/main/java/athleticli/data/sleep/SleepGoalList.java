@@ -1,5 +1,6 @@
 package athleticli.data.sleep;
 
+import athleticli.data.Goal;
 import athleticli.data.StorableList;
 import athleticli.exceptions.AthletiException;
 import athleticli.parser.SleepParser;
@@ -42,5 +43,17 @@ public class SleepGoalList extends StorableList<SleepGoal> {
         commandArgs += " " + Parameter.PERIOD_SEPARATOR + sleepGoal.getTimeSpan();
         commandArgs += " " + Parameter.TARGET_SEPARATOR + sleepGoal.getTargetValue();
         return commandArgs;
+    }
+
+    /**
+     * Checks if there is a duplicate sleep goal with the same goal type and timespan.
+     *
+     * @param goalType Goal type of the sleep goal.
+     * @param timeSpan Time span of the sleep goal.
+     * @return Whether the sleep goal is a duplicate.
+     */
+    public boolean isDuplicate(SleepGoal.GoalType goalType, Goal.TimeSpan timeSpan) {
+        return this.stream().anyMatch(sleepGoal -> sleepGoal.getGoalType() == goalType &&
+                sleepGoal.getTimeSpan() == timeSpan);
     }
 }

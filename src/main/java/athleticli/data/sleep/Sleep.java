@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 import athleticli.exceptions.AthletiException;
 
-import static athleticli.common.Config.DATE_TIME_FORMATTER;
+import static athleticli.common.Config.DATE_TIME_PRETTY_FORMATTER;
 import static athleticli.common.Config.DATE_FORMATTER;
 
 /**
@@ -16,7 +16,7 @@ public class Sleep {
     private final LocalDateTime startDateTime;
     private final LocalDateTime endDateTime;
 
-    private Duration sleepingDuration;
+    private final Duration sleepingDuration;
 
     private final LocalDate sleepDate;
 
@@ -25,7 +25,7 @@ public class Sleep {
      *
      * @param startDateTime Start time of the sleep.
      * @param toDateTime    End time of the sleep.
-     * @throws AthletiException If any invalid input is provided.
+     * @throws AthletiException If any invalid input is provided. 
      */
     public Sleep(LocalDateTime startDateTime, LocalDateTime toDateTime) throws AthletiException {
         this.startDateTime = startDateTime;
@@ -52,7 +52,6 @@ public class Sleep {
 
     /**
      * Calculate the sleeping duration based on start and end time.
-     * Factor in the possibility of sleeping past midnight.
      *
      * @return sleeping duration.
      * @throws AthletiException If any invalid input is provided.
@@ -71,7 +70,8 @@ public class Sleep {
     /**
      * Calculate the sleep date based on start time.
      * Factor in the possibility of sleeping past midnight.
-     * We are assuming that the user sleeps before 6am even if the user sleeps past midnight.
+     * We are assuming that user sleeps before 6am are counted as the previous day.
+     * 
      * @return sleep date.
      */
     private LocalDate calculateSleepDate() {
@@ -84,6 +84,7 @@ public class Sleep {
 
     /**
      * Returns a single line summary of the sleep record.
+     * 
      * @return String representation of the sleep record.
      */
     @Override
@@ -96,6 +97,12 @@ public class Sleep {
             " | " + toDateTimeOutput + " | " + sleepingDurationOutput;
     }
 
+
+    /**
+     * Returns a string representation of the sleeping duration.
+     * 
+     * @return String representation of the sleeping duration.
+     */
     public String generateSleepingDurationStringOutput() {
         Duration tempDuration = sleepingDuration;
         String sleepingDurationOutput = "";
@@ -113,14 +120,28 @@ public class Sleep {
         return "Sleeping Duration: " + sleepingDurationOutput;
     }
 
+    /**
+     * Returns a string representation of the start date time.
+     * 
+     * @return String representation of the start date time.
+     */
     public String generateStartDateTimeStringOutput() {
-        return "Start Time: " + startDateTime.format(DATE_TIME_FORMATTER);
+        return "Start Time: " + startDateTime.format(DATE_TIME_PRETTY_FORMATTER);
     }
 
+    /**
+     * Returns a string representation of the end date time.
+     * @return String representation of the end date time.
+     */
     public String generateEndDateTimeStringOutput() {
-        return "End Time: " + endDateTime.format(DATE_TIME_FORMATTER);
+        return "End Time: " + endDateTime.format(DATE_TIME_PRETTY_FORMATTER);
     }
 
+    /**
+     * Returns a string representation of the sleep date.
+     * 
+     * @return String representation of the sleep date.
+     */
     public String generateSleepDateStringOutput() {
         return "Date: " + sleepDate.format(DATE_FORMATTER);
     }

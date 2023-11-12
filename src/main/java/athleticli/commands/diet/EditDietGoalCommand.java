@@ -65,20 +65,23 @@ public class EditDietGoalCommand extends Command {
             boolean isDietGoalExisted = false;
             currentDietGoals.isDietGoalTypeValid(userDietGoal);
 
-            if (!currentDietGoals.isDietGoalUnique(userDietGoal)) {
-                if (!currentDietGoals.isDietGoalTypeValid(userDietGoal)) {
-                    throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
-                }
-                if (!currentDietGoals.isTargetValueConsistentWithTimeSpan(userDietGoal)) {
-                    throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_SCALING_WITH_TIME_SPAN);
-                }
-                isDietGoalExisted = true;
+            if (currentDietGoals.isDietGoalUnique(userDietGoal)) {
+                throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_NOT_EXISTED,
+                        userDietGoal.getNutrient(), userDietGoal.getTimeSpan().toString()));
             }
+            if (!currentDietGoals.isDietGoalTypeValid(userDietGoal)) {
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
+            }
+            if (!currentDietGoals.isTargetValueConsistentWithTimeSpan(userDietGoal)) {
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_SCALING_WITH_TIME_SPAN);
+            }
+            isDietGoalExisted = true;
 
             if (!isDietGoalExisted) {
                 throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_NOT_EXISTED,
-                        userDietGoal.getNutrient()));
+                        userDietGoal.getNutrient(), userDietGoal.getTimeSpan().toString()));
             }
         }
     }
 }
+

@@ -17,11 +17,11 @@ public class Run extends Activity {
      * Generates a new running activity with running specific stats.
      * averageSpeed is calculated automatically based on the distance and movingTime.
      *
-     * @param movingTime duration of the activity in minutes
-     * @param distance distance covered in meters
-     * @param startDateTime start date and time of the activity
-     * @param caption a caption of the activity chosen by the user (e.g., "Morning Run")
-     * @param elevationGain elevation gain in meters
+     * @param movingTime duration of the activity in minutes.
+     * @param distance distance covered in meters.
+     * @param startDateTime start date and time of the activity.
+     * @param caption a caption of the activity chosen by the user (e.g., "Morning Run").
+     * @param elevationGain elevation gain in meters.
      */
     public Run(String caption, LocalTime movingTime, int distance, LocalDateTime startDateTime, int elevationGain) {
         super(caption, movingTime, distance, startDateTime);
@@ -48,7 +48,7 @@ public class Run extends Activity {
     /**
      * Converts the average pace of the run to the user-friendly format mm:ss.
      *
-     * @return average pace of run in mm:ss format
+     * @return average pace of run in mm:ss format.
      */
     public String convertAveragePaceToString() {
         int totalSeconds = (int) Math.round(averagePace * Parameter.MINUTE_IN_SECONDS);
@@ -60,7 +60,7 @@ public class Run extends Activity {
     /**
      * Returns a single line summary of the running activity.
      *
-     * @return a string representation of the run
+     * @return a string representation of the run.
      */
     @Override
     public String toString() {
@@ -82,7 +82,7 @@ public class Run extends Activity {
     /**
      * Returns a string representation of the run used for storing the data.
      *
-     * @return a string representation of the run
+     * @return a string representation of the run.
      */
     @Override
     public String unparse() {
@@ -95,7 +95,7 @@ public class Run extends Activity {
     /**
      * Returns a detailed summary of the run.
      *
-     * @return a multiline string representation of the run
+     * @return a multiline string representation of the run.
      */
     public String toDetailedString() {
         String startDateTimeOutput = generateStartDateTimeStringOutput();
@@ -106,8 +106,8 @@ public class Run extends Activity {
         String header = "[Run - " + getCaption() + " - " + startDateTimeOutput + "]";
         String firstRow = formatTwoColumns("\t" + distanceOutput, "Avg Pace: " + paceOutput,
                 COLUMN_WIDTH);
-        String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Elevation Gain: " +
-                elevationGain + Parameter.DISTANCE_UNIT_METERS, COLUMN_WIDTH);
+        String secondRow = formatTwoColumns("\t" + movingTimeOutput, "Elevation Gain: "
+                + elevationGain + Parameter.DISTANCE_UNIT_METERS, COLUMN_WIDTH);
 
         return String.join(System.lineSeparator(), header, firstRow, secondRow);
     }
@@ -123,7 +123,7 @@ public class Run extends Activity {
     /**
      * Sets the distance of the run and recalculates the average pace.
      *
-     * @param distance Distance in meters
+     * @param distance Distance in meters.
      */
     @Override
     public void setDistance(int distance) {
@@ -134,12 +134,11 @@ public class Run extends Activity {
     /**
      * Sets the moving time of the run and recalculates the average pace.
      *
-     * @param movingTime Moving time
+     * @param movingTime Moving time.
      */
     @Override
     public void setMovingTime(LocalTime movingTime) {
         super.setMovingTime(movingTime);
         this.averagePace = this.calculateAveragePace();
     }
-
 }

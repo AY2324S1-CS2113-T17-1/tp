@@ -62,5 +62,12 @@ public class Parameter {
     public static final String NUTRIENTS_CARB = "carb";
     public static final String UNHEALTHY_DIET_GOAL_FLAG = "unhealthy";
     public static final String DIET_GOAL_COMMAND_VALUE_SEPARATOR = "/";
-
+    public static final String SPACE_SEPEARATOR = "\\s+";
+    public static final int DIET_GOAL_TIME_SPAN_INDEX = 0;
+    public static final int DIET_GOAL_UNHEALTHY_FLAG_INDEX = 1;
+    public static final int HEALTHY_DIET_GOAL_NUTRIENT_STARTING_INDEX = 1;
+    public static final int UNHEALTHY_DIET_GOAL_NUTRIENT_STARTING_INDEX = 2;
+    public static final int DIET_GOAL_NUTRIENT_STARTING_INDEX = 0;
+    public static final int DIET_GOAL_TARGET_VALUE_STARTING_INDEX = 1;
+    public static final int DIET_GOAL_TIME_SPAN_LIMIT = 7;
 }
