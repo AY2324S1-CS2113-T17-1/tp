@@ -39,9 +39,11 @@ public class AddSleepCommand extends Command {
         sleeps.add(this.sleep);
         sleeps.sort();
         int size = sleeps.size();
+
         logger.info("Added sleep: " + this.sleep.toString());
         logger.info("Sleep count: " + sleeps.size());
         logger.info("Sleep list: " + sleeps.toString());
+        
         String countMessage;
         if (size > 1) {
             countMessage = String.format(Message.MESSAGE_SLEEP_COUNT, size);
