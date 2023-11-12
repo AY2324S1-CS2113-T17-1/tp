@@ -22,6 +22,7 @@ public class DeleteSleepCommand extends Command {
      */
     public DeleteSleepCommand(int index) {
         this.index = index;
+        assert index > 0 : "Index should be greater than 0";
         logger.fine("Creating DeleteSleepCommand with index: " + index);
     }
 

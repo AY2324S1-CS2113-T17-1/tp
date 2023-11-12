@@ -62,6 +62,9 @@ public class SleepParser {
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX);
         }
+        if (index <= 0) {
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX);
+        }
         return index;
     }
 
