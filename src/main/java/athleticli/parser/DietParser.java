@@ -29,68 +29,95 @@ public class DietParser {
      * @return a list of diet goals for further checking in the Set Diet Goal Command.
      * @throws AthletiException Invalid input by the user.
      */
-    public static ArrayList<DietGoal> parseDietGoalSetEdit(String commandArgsString) throws AthletiException {
-        if (commandArgsString.trim().isEmpty()) {
-            throw new AthletiException(Message.MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT);
-        }
+    public static ArrayList<DietGoal> parseDietGoalSetAndEdit(String commandArgsString) throws AthletiException {
+        ArrayList<DietGoal> dietGoals;
         try {
-            String[] commandArgs;
-            if (!commandArgsString.contains(" ")) {
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT);
-            }
-
-            commandArgs = commandArgsString.split("\\s+");
-
-            ArrayList<DietGoal> dietGoals = initializeIntermediateDietGoals(commandArgs);
-
-            return dietGoals;
+            validateCommandArgsString(commandArgsString);
+            dietGoals = initializeTempDietGoals(commandArgsString);
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT);
         } catch (ArrayIndexOutOfBoundsException e) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT);
         }
+        return dietGoals;
     }
 
-    private static ArrayList<DietGoal> initializeIntermediateDietGoals(
-            String[] commandArgs) throws AthletiException {
-        String[] nutrientAndTargetValue;
-        String nutrient;
-        int targetValue;
-        int nutrientStartingIndex = 1;
-        boolean isHealthy = true;
-
-        Goal.TimeSpan timespan = ActivityParser.parsePeriod(commandArgs[0]);
-        if (commandArgs[1].equalsIgnoreCase(Parameter.UNHEALTHY_DIET_GOAL_FLAG)) {
-            isHealthy = false;
-            nutrientStartingIndex += 1;
+    private static void validateCommandArgsString(String commandArgsString) throws AthletiException {
+        if (commandArgsString.trim().isEmpty()) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT);
         }
+        if (!commandArgsString.contains(" ")) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT);
+        }
+    }
+
+    private static ArrayList<DietGoal> initializeTempDietGoals(
+            String commandArgsString) throws AthletiException {
+
+        int nutrientStartingIndex;
+        boolean isHealthy;
+        String[] commandArgs = commandArgsString.split(Parameter.SPACE_SEPEARATOR);
+
+        Goal.TimeSpan timespan = ActivityParser.parsePeriod(commandArgs[Parameter.DIET_GOAL_TIME_SPAN_INDEX]);
+        if (commandArgs[Parameter.DIET_GOAL_UNHEALTHY_FLAG_INDEX].equalsIgnoreCase(
+                Parameter.UNHEALTHY_DIET_GOAL_FLAG)) {
+            isHealthy = false;
+            nutrientStartingIndex = Parameter.UNHEALTHY_DIET_GOAL_NUTRIENT_STARTING_INDEX;
+        } else {
+            isHealthy = true;
+            nutrientStartingIndex = Parameter.HEALTHY_DIET_GOAL_NUTRIENT_STARTING_INDEX;
+        }
+        return createNewDietGoals(nutrientStartingIndex, commandArgs, isHealthy, timespan);
+    }
+
+    private static ArrayList<DietGoal> createNewDietGoals(int nutrientStartingIndex, String[] commandArgs,
+            boolean isHealthy, Goal.TimeSpan timespan) throws AthletiException {
 
         ArrayList<DietGoal> dietGoals = new ArrayList<>();
         Set<String> recordedNutrients = new HashSet<>();
 
+        String nutrient;
+        String[] nutrientAndTargetValue;
+        int targetValue;
+
         for (int i = nutrientStartingIndex; i < commandArgs.length; i++) {
+
             nutrientAndTargetValue = commandArgs[i].split(Parameter.DIET_GOAL_COMMAND_VALUE_SEPARATOR);
-            nutrient = nutrientAndTargetValue[0];
-            targetValue = Integer.parseInt(nutrientAndTargetValue[1]);
-            if (targetValue <= 0) {
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT);
-            }
-            if (!NutrientVerifier.verify(nutrient)) {
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_NUTRIENT);
-            }
-            if (recordedNutrients.contains(nutrient)) {
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_REPEATED_NUTRIENT);
-            }
-            DietGoal dietGoal;
-            if (isHealthy) {
-                dietGoal = new HealthyDietGoal(timespan, nutrient, targetValue);
-            } else {
-                dietGoal = new UnhealthyDietGoal(timespan, nutrient, targetValue);
-            }
+            nutrient = nutrientAndTargetValue[Parameter.DIET_GOAL_NUTRIENT_STARTING_INDEX];
+            targetValue = Integer.parseInt(nutrientAndTargetValue[Parameter.DIET_GOAL_TARGET_VALUE_STARTING_INDEX]);
+
+            validateDietGoalParameters(recordedNutrients, targetValue, nutrient);
+            DietGoal dietGoal = createNewDietGoal(isHealthy, timespan, nutrient, targetValue);
+
             dietGoals.add(dietGoal);
             recordedNutrients.add(nutrient);
         }
         return dietGoals;
+    }
+
+
+    private static void validateDietGoalParameters(Set<String> recordedNutrients, int targetValue, String nutrient)
+            throws AthletiException {
+        if (targetValue <= 0) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT);
+        }
+        if (!NutrientVerifier.verify(nutrient)) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_NUTRIENT);
+        }
+        if (recordedNutrients.contains(nutrient)) {
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_REPEATED_NUTRIENT);
+        }
+    }
+
+    private static DietGoal createNewDietGoal(boolean isHealthy, Goal.TimeSpan timespan, String nutrient,
+                                              int targetValue) {
+        DietGoal dietGoal;
+        if (isHealthy) {
+            dietGoal = new HealthyDietGoal(timespan, nutrient, targetValue);
+        } else {
+            dietGoal = new UnhealthyDietGoal(timespan, nutrient, targetValue);
+        }
+        return dietGoal;
     }
 
     /**
