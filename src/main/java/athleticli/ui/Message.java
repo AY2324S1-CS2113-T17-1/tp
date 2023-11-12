@@ -1,6 +1,7 @@
 package athleticli.ui;
 
 import athleticli.parser.CommandName;
+import athleticli.common.Config;
 
 public class Message {
     public static final String PROMPT = "> ";
@@ -26,12 +27,21 @@ public class Message {
     public static final String MESSAGE_ACTIVITYGOAL_TARGET_MISSING = "Please specify the target value using " +
             "\"target/\"!";
     public static final String MESSAGE_PROTEIN_MISSING =
-            "Please specify the protein intake using \"protein/\"!";
+            "Please specify the protein intake using \"protein/\"! Use \"protein/0\" if no protein was consumed.";
     public static final String MESSAGE_CARB_MISSING =
-            "Please specify the carbohydrate intake using \"carb/\"!";
-    public static final String MESSAGE_FAT_MISSING = "Please specify the fat intake using \"fat/\"!";
+            "Please specify the carbohydrate intake using \"carb/\"! Use \"carb/0\" if no carbohydrate was consumed.";
+    public static final String MESSAGE_FAT_MISSING = "Please specify the fat intake using \"fat/\"! Use \"fat/0\" if " +
+            "no fat was consumed.";
     public static final String MESSAGE_DIET_DATETIME_MISSING =
             "Please specify the datetime of the diet using \"datetime/\"!";
+    public static final String MESSAGE_CALORIE_OVERFLOW =
+            "The calories consumed cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+    public static final String MESSAGE_PROTEIN_OVERFLOW =
+            "The protein intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+    public static final String MESSAGE_CARB_OVERFLOW =
+            "The carbohydrate intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+    public static final String MESSAGE_FAT_OVERFLOW =
+            "The fat intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
     public static final String MESSAGE_CAPTION_EMPTY = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_EMPTY = "The duration of an activity cannot be empty!";
     public static final String MESSAGE_DISTANCE_EMPTY = "The distance of an activity cannot be empty!";
@@ -52,6 +62,8 @@ public class Message {
             "You wanna make progress, not regress ;)";
     public static final String MESSAGE_TARGET_INVALID = "The target value of an activity goal must be a positive " +
             "integer!";
+    public static final String MESSAGE_TARGET_TOO_LARGE =
+            "The target value of an activity goal cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_DATETIME_INVALID =
             "The datetime must be in the format \"yyyy-MM-dd HH:mm\"!";
     public static final String MESSAGE_DATE_INVALID =
@@ -101,7 +113,6 @@ public class Message {
             "Now you have tracked a total of %d diets. Keep grinding!";
     public static final String MESSAGE_ACTIVITY_FIRST =
             "Now you have tracked your first activity. This is just the beginning!";
-
     public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
             "must be a positive integer!";
     public static final String MESSAGE_DIET_GOAL_INVALID_NUTRIENT = "Key word to nutrients goals has " +
@@ -266,4 +277,8 @@ public class Message {
             "10km! Mt. Everest is only 8.8km high!";
     public static final String MESSAGE_DUPLICATE_ACTIVITY_GOAL = "You already have a goal for this " +
             "sport, type and period! Please edit the existing goal instead.";
+    public static final String MESSAGE_ACTIVITY_TYPE_MISMATCH = "The edit command does not match the type of " +
+            "the activity you are trying to edit!";
+    public static final String MESSAGE_DATE_FUTURE = "I like your optimism, but you cannot track activities in the " +
+            "future!";
 }

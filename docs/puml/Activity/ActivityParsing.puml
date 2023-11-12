@@ -1,0 +1,44 @@
+@startuml
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+participant Parser <<class>> #lightblue
+participant ActivityParser <<class>> #lightgreen
+participant "ac:ActivityChanges" as ActivityChanges #lightgrey
+participant "a:Activity" as Activity #lightgrey
+
+Parser++
+Parser -> ActivityParser++ : parseActivity(arguments)
+
+ActivityParser -> ActivityChanges++ : ActivityChanges()
+ActivityChanges --> ActivityParser-- : ac
+ActivityParser -> ActivityParser++ : parseActivityArguments(ac, arguments, separators)
+
+loop for each separator
+    ActivityParser -> ActivityParser : checkMissingActivityArgument(separatorIndex, separator)
+    ActivityParser -> ActivityParser++ : parseSegment(ac, segment, separator)
+    alt depending on separator
+        ActivityParser -> ActivityChanges++: setCaption(segment)
+        ActivityChanges --> ActivityParser--
+        ActivityParser -> ActivityChanges++ : setDuration(parseDuration(segment))
+        ActivityChanges --> ActivityParser--
+        ... other setters ...
+        ActivityParser -> ActivityChanges++ : setDistance(parseDistance(segment))
+        ActivityChanges --> ActivityParser--
+    end
+    ActivityParser --> ActivityParser -- :
+end
+ActivityParser --> ActivityParser -- :
+
+ActivityParser -> ActivityChanges++ : getCaption()
+ActivityChanges --> ActivityParser-- : caption
+... other getters ...
+ActivityParser -> ActivityChanges++ : getStartDateTime()
+ActivityChanges --> ActivityParser-- : startDateTime
+destroy ActivityChanges
+
+ActivityParser -> Activity++ : Activity(caption, duration, ...)
+Activity --> ActivityParser-- : a
+
+ActivityParser --> Parser-- : a
+
+@enduml

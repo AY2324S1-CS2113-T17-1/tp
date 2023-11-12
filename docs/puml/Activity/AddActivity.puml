@@ -6,7 +6,7 @@ skinparam SequenceMessageAlignment center
 !define LOGIC_COLOR #3333C4
 
 participant ":AthletiCLI" as AthletiCLI LOGIC_COLOR
-participant "Parser" as Parser <<class>> #lightblue
+participant "ActivityParser" as Parser <<class>> #lightblue
 participant "a:Activity" as Activity #yellow
 participant "c:AddActivityCommand" as AddActivityCommand #lightgreen
 participant "data:Data" as Data #lightgrey

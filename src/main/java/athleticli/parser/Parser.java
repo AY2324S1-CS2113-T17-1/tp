@@ -35,6 +35,10 @@ import athleticli.commands.activity.DeleteActivityGoalCommand;
 import athleticli.commands.activity.EditActivityGoalCommand;
 import athleticli.commands.activity.ListActivityGoalCommand;
 
+import athleticli.data.activity.Activity;
+import athleticli.data.activity.Cycle;
+import athleticli.data.activity.Run;
+import athleticli.data.activity.Swim;
 import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
@@ -68,7 +72,7 @@ public class Parser {
      *
      * @param rawUserInput The raw user input.
      * @return An object representing the command.
-     * @throws AthletiException
+     * @throws AthletiException If the command is invalid
      */
     public static Command parseCommand(String rawUserInput) throws AthletiException {
         assert rawUserInput != null : "`rawUserInput` should not be null";
@@ -123,14 +127,16 @@ public class Parser {
             return new ListActivityCommand(ActivityParser.parseActivityListDetail(commandArgs));
         case CommandName.COMMAND_ACTIVITY_EDIT:
             return new EditActivityCommand(ActivityParser.parseActivityEditIndex(commandArgs),
-                    ActivityParser.parseActivityEdit(commandArgs));
+                    ActivityParser.parseActivityEdit(commandArgs), Activity.class);
         case CommandName.COMMAND_RUN_EDIT:
+            return new EditActivityCommand(ActivityParser.parseActivityEditIndex(commandArgs),
+                    ActivityParser.parseRunCycleEdit(commandArgs), Run.class);
         case CommandName.COMMAND_CYCLE_EDIT:
             return new EditActivityCommand(ActivityParser.parseActivityEditIndex(commandArgs),
-                    ActivityParser.parseRunCycleEdit(commandArgs));
+                    ActivityParser.parseRunCycleEdit(commandArgs), Cycle.class);
         case CommandName.COMMAND_SWIM_EDIT:
             return new EditActivityCommand(ActivityParser.parseActivityEditIndex(commandArgs),
-                    ActivityParser.parseSwimEdit(commandArgs));
+                    ActivityParser.parseSwimEdit(commandArgs), Swim.class);
         case CommandName.COMMAND_ACTIVITY_FIND:
             return new FindActivityCommand(parseDate(commandArgs));
        
@@ -182,6 +188,9 @@ public class Parser {
         LocalDateTime datetimeParsed;
         try {
             datetimeParsed = LocalDateTime.parse(datetime.replace(" ", "T"));
+            if (datetimeParsed.isAfter(LocalDateTime.now())) {
+                throw new AthletiException(Message.MESSAGE_DATE_FUTURE);
+            }
         } catch (DateTimeParseException e) {
             throw new AthletiException(Message.MESSAGE_DATETIME_INVALID);
         }
@@ -190,7 +199,11 @@ public class Parser {
 
     public static LocalDate parseDate(String date) throws AthletiException {
         try {
-            return LocalDate.parse(date);
+            LocalDate dateParsed = LocalDate.parse(date);
+            if (dateParsed.isAfter(LocalDate.now())) {
+                throw new AthletiException(Message.MESSAGE_DATE_FUTURE);
+            }
+            return dateParsed;
         } catch (DateTimeParseException e) {
             throw new AthletiException(Message.MESSAGE_DATE_INVALID);
         }
@@ -204,25 +217,33 @@ public class Parser {
      * @return The value associated with the given marker, or an empty string if the marker is not found.
      */
     public static String getValueForMarker(String arguments, String marker) {
-        String patternString = "";
+        String patternString;
 
         if (marker.equals(Parameter.DATETIME_SEPARATOR)) {
-            // Special handling for datetime to capture the date and time
-            patternString = marker + "(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2})";
+            // Capture one or two words following the DATETIME_SEPARATOR
+            patternString = Pattern.quote(marker) + "(\\S+)(?:\\s+(\\S+))?";
         } else {
-            // For other markers, capture a sequence of non-whitespace characters
-            patternString = marker + "(\\S+)";
+            patternString = Pattern.quote(marker) + "(\\S+)";
         }
 
         Pattern pattern = Pattern.compile(patternString);
         Matcher matcher = pattern.matcher(arguments);
 
         if (matcher.find()) {
-            return matcher.group(1);
+            if (marker.equals(Parameter.DATETIME_SEPARATOR)) {
+                String firstPart = matcher.group(1);
+                String secondPart = matcher.group(2);
+                if (secondPart != null) {
+                    return firstPart + " " + secondPart;
+                } else {
+                    return firstPart;
+                }
+            } else {
+                return matcher.group(1);
+            }
         }
 
         // Return empty string if no match is found
         return "";
     }
-
 }

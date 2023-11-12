@@ -1,0 +1,40 @@
+@startuml
+skinparam classAttributeIconSize 0
+class Activity {
+  -caption
+  -duration
+  -movingTime
+  -distance
+  -startDateTime
+}
+
+class Run {
+-elevationGain
+-averagePace
+}
+
+class Cycle {
+-elevationGain
+-averageSpeed
+}
+
+class Swim {
+-laps
+-style
+-averageLapTime
+}
+
+class ActivityList {
+}
+
+class Data {
+}
+
+Activity <|-- Run
+Activity <|-- Cycle
+Activity <|-- Swim
+ActivityList o-- Activity : consists of * >
+Data o-- ActivityList : 1 >
+
+
+@enduml
