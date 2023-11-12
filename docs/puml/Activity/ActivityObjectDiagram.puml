@@ -1,0 +1,37 @@
+@startuml
+
+object "activities:ActivityList" as activities {
+}
+
+object "run1:Run" as run1 #lightgreen {
+    distance = 5000
+    startDateTime = 2023-11-11
+}
+
+object "run2:Run" as run2 #lightgreen {
+    distance = 5000
+    startDateTime = 2023-11-10
+}
+
+object "swim:Swim" as swim {
+    distance = 1000
+    startDateTime = 2023-10-11
+}
+
+object "cycle:Cycle" as cycle {
+    distance = 40000
+    startDateTime = 2023-10-10
+}
+
+object "activity:Activity" as activity {
+    distance = 100
+    startDateTime = 2023-10-09
+}
+
+activities --> run1
+activities --> run2
+activities --> swim
+activities --> cycle
+activities --> activity
+
+@enduml

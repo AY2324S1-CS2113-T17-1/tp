@@ -66,7 +66,8 @@ full activity insights.
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
 * DISTANCE: The distance of the activity in meters. It must be a positive number smaller than 1000000.
-* DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm 
+  and cannot be in the future.
 * ELEVATION: The elevation gain of a run or cycle in meters. It must be a positive number smaller than 10000.
 * STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
 
@@ -147,8 +148,8 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 
 **Parameters:**
 
-* INDEX: The index of the activity to be edited - must be a positive number which is not larger than the number of 
-  activities recorded. Note, that the indices are allocated based on the date of the activity.
+* INDEX: The index of the activity to be edited as shown in the displayed activity list - must be a positive number 
+  which is not larger than the number of activities recorded. Note, that the indices are allocated based on the date of the activity.
 * See [adding activities](#adding-activities) for the other parameters.
 
 **Examples:**
@@ -284,7 +285,7 @@ You can record your diet in AtheltiCLI by adding your calorie, protein, carbohyd
 * PROTEIN: The total protein of the meal.
 * CARB: The total carbohydrates of the meal.
 * FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm and cannot be in the future.
 
 **Examples:**
 
@@ -307,7 +308,7 @@ You can edit your diet in AtheltiCLI by editing the diet at the specified index.
 * PROTEIN: The total protein of the meal.
 * CARB: The total carbohydrates of the meal.
 * FAT: The total fat of the meal.
-* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* DATETIME: The date and time of the meal. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm and cannot be in the future.
 
 **Examples:**
 
@@ -361,7 +362,7 @@ You can find all your diets on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the diet. It must follow the ISO Date Format: yyyy-MM-dd.
+* DATE: The date of the diet. It must follow the ISO Date Format yyyy-MM-dd and cannot be in the future.
 
 **Examples:**
 
@@ -581,7 +582,7 @@ You can find your sleep record on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the sleep. It must follow the ISO Date Format: yyyy-MM-dd.
+* DATE: The date of the sleep. It must follow the ISO Date Format: yyyy-MM-dd and cannot be in the future.
 
 **Examples:**
 
@@ -645,7 +646,7 @@ You can find all your records, including activities, sleeps, and diets, on a spe
 
 **Parameters:**
 
-* `DATE`: The date of the records. It must follow the ISO Date Format: `yyyy-MM-dd`.
+* `DATE`: The date of the records. It must follow the ISO Date Format `yyyy-MM-dd` and cannot be in the future.
 
 **Example:**
 
