@@ -14,7 +14,10 @@ import athleticli.parser.Parameter;
 public abstract class DietGoal extends Goal {
     protected String nutrient;
     protected int targetValue;
-    protected String type;
+    protected final String type;
+    protected final String achievedSymbol;
+    protected final String unachievedSymbol;
+    private final String dietGoalStringRepresentation;
 
     /**
      * Constructs a diet goal with no current value.
@@ -28,6 +31,9 @@ public abstract class DietGoal extends Goal {
         this.nutrient = nutrient;
         this.targetValue = targetValue;
         type = "";
+        achievedSymbol = "[Achieved]";
+        unachievedSymbol = "";
+        dietGoalStringRepresentation = "%s %s %s intake progress: (%d/%d)\n";
     }
 
     /**
@@ -78,6 +84,7 @@ public abstract class DietGoal extends Goal {
 
     /**
      * Returns the type of diet goal.
+     *
      * @return the type of diet goal.
      */
     public String getType() {
@@ -145,34 +152,38 @@ public abstract class DietGoal extends Goal {
      */
     protected String getSymbol(Data data) {
         if (isAchieved(data)) {
-            return "[Achieved]";
+            return achievedSymbol;
         }
-        return "";
+        return unachievedSymbol;
     }
 
     /**
      * Checks if the other diet goals are of the same type.
+     *
      * @param dietGoal
      * @return
      */
-    public boolean isSameType(DietGoal dietGoal){
+    public boolean isSameType(DietGoal dietGoal) {
         return dietGoal.getType().equals(getType());
     }
 
     /**
      * Checks if the other diet goals are of the same nutrient.
+     *
      * @param dietGoal
      * @return
      */
-    public boolean isSameNutrient(DietGoal dietGoal){
+    public boolean isSameNutrient(DietGoal dietGoal) {
         return dietGoal.getNutrient().equals(getNutrient());
     }
+
     /**
      * Checks if the other diet goals are of the same time span.
+     *
      * @param dietGoal
      * @return
      */
-    public boolean isSameTimeSpan(DietGoal dietGoal){
+    public boolean isSameTimeSpan(DietGoal dietGoal) {
         return dietGoal.getTimeSpan().getDays() == getTimeSpan().getDays();
     }
 
@@ -183,8 +194,9 @@ public abstract class DietGoal extends Goal {
      * @return The string representation of the diet goal.
      */
     public String toString(Data data) {
-        return getSymbol(data) + " " + getTimeSpan().name() + " " + nutrient
-                + " intake progress: (" + getCurrentValue(data) + "/"
-                + targetValue + ")\n";
+        return String.format(dietGoalStringRepresentation, getSymbol(data), getTimeSpan().name(), nutrient,
+                getCurrentValue(data), targetValue);
+
+
     }
 }

@@ -9,6 +9,8 @@ public class HealthyDietGoal extends DietGoal {
 
     public static final String TYPE = "healthy";
     private final boolean isHealthy;
+    protected final String healthyDietGoalSymbol;
+    protected final String healthyDietGoalStringRepresentation;
 
     /**
      * Constructs a diet goal with no current value.
@@ -20,6 +22,8 @@ public class HealthyDietGoal extends DietGoal {
     public HealthyDietGoal(TimeSpan timeSpan, String nutrient, int targetValue) {
         super(timeSpan, nutrient, targetValue);
         isHealthy = true;
+        healthyDietGoalSymbol = "[HEALTHY]";
+        healthyDietGoalStringRepresentation = "%s %s";
     }
 
     /**
@@ -41,6 +45,7 @@ public class HealthyDietGoal extends DietGoal {
      */
     @Override
     public String toString(Data data) {
-        return "[HEALTHY] " + super.toString(data);
+        return String.format(healthyDietGoalStringRepresentation, healthyDietGoalSymbol,
+                super.toString(data));
     }
 }
