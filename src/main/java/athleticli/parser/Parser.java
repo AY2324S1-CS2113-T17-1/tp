@@ -53,6 +53,7 @@ import java.util.regex.Pattern;
  * Defines the basic methods for command parser.
  */
 public class Parser {
+    private static final String INVALID_YEAR = "0000";
     /**
      * Splits the raw user input into two parts, and then returns them. The first part is the command type,
      * while the second part is the command arguments. The second part can be empty.
@@ -185,6 +186,9 @@ public class Parser {
      * @throws AthletiException If the input format is invalid.
      */
     public static LocalDateTime parseDateTime(String datetime) throws AthletiException {
+        if (datetime.startsWith(INVALID_YEAR)) {
+            throw new AthletiException(Message.MESSAGE_DATETIME_INVALID);
+        }
         LocalDateTime datetimeParsed;
         try {
             datetimeParsed = LocalDateTime.parse(datetime.replace(" ", "T"));
@@ -195,6 +199,9 @@ public class Parser {
     }
 
     public static LocalDate parseDate(String date) throws AthletiException {
+        if (date.startsWith(INVALID_YEAR)) {
+            throw new AthletiException(Message.MESSAGE_DATE_INVALID);
+        }
         try {
             return LocalDate.parse(date);
         } catch (DateTimeParseException e) {
