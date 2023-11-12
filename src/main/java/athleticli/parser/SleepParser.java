@@ -55,6 +55,7 @@ public class SleepParser {
 
     /**
      * Parses the raw user input the sleep index and returns the corresponding index.
+     * 
      * @param commandArgs The raw user input containing the arguments.
      * @return The index of the sleep to be edited.
      * @throws AthletiException If the index is invalid.
@@ -84,6 +85,7 @@ public class SleepParser {
 
     /**
      * Parses the raw user input for a sleep goal and returns the corresponding sleep goal object.
+     * 
      * @param commandArgs The raw user input containing the arguments.
      * @return An object representing the sleep goal.
      * @throws AthletiException If the sleep goal is invalid.
@@ -116,6 +118,7 @@ public class SleepParser {
 
     /**
      * Parses the raw user input for a sleep goal index and returns the corresponding index.
+     * 
      * @param type The string representing the type of the sleep goal.
      * @return The type of the sleep goal.
      * @throws AthletiException If the type is invalid.
@@ -131,6 +134,7 @@ public class SleepParser {
 
     /**
      * Parses the raw user input for a sleep goal period and returns the corresponding period.
+     * 
      * @param period The string representing the period of the sleep goal.
      * @return The period of the sleep goal.
      * @throws AthletiException If the period is invalid.
@@ -145,6 +149,7 @@ public class SleepParser {
 
     /**
      * Parses the raw user input for a sleep goal target and returns the corresponding target.
+     * 
      * @param target The string representing the target of the sleep goal.
      * @return The target of the sleep goal.
      * @throws AthletiException If the target is invalid.
