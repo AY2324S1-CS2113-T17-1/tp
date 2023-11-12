@@ -1,7 +1,6 @@
 package athleticli.ui;
 
 import athleticli.parser.CommandName;
-import athleticli.common.Config;
 
 public class Message {
     public static final String PROMPT = "> ";
@@ -35,13 +34,13 @@ public class Message {
     public static final String MESSAGE_DIET_DATETIME_MISSING =
             "Please specify the datetime of the diet using \"datetime/\"!";
     public static final String MESSAGE_CALORIE_OVERFLOW =
-            "The calories consumed cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The calories consumed cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_PROTEIN_OVERFLOW =
-            "The protein intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The protein intake cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_CARB_OVERFLOW =
-            "The carbohydrate intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The carbohydrate intake cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_FAT_OVERFLOW =
-            "The fat intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The fat intake cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_CAPTION_EMPTY = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_EMPTY = "The duration of an activity cannot be empty!";
     public static final String MESSAGE_DISTANCE_EMPTY = "The distance of an activity cannot be empty!";

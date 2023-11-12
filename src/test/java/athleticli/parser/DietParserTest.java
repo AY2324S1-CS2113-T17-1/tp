@@ -162,10 +162,8 @@ public class DietParserTest {
 
     @Test
     void parseCalories_bigIntegerInput_throwAthletiException() {
-        String bigIntegerInput1 = "1000001";
-        String bigIntegerInput2 = "10000000000000000000000";
-        assertThrows(AthletiException.class, () -> parseCalories(bigIntegerInput1));
-        assertThrows(AthletiException.class, () -> parseCalories(bigIntegerInput2));
+        String bigIntegerInput = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> parseCalories(bigIntegerInput));
     }
 
     @Test
@@ -189,10 +187,8 @@ public class DietParserTest {
 
     @Test
     void parseProtein_bigIntegerInput_throwAthletiException() {
-        String bigIntegerInput1 = "1000001";
-        String bigIntegerInput2 = "10000000000000000000000";
-        assertThrows(AthletiException.class, () -> parseProtein(bigIntegerInput1));
-        assertThrows(AthletiException.class, () -> parseProtein(bigIntegerInput2));
+        String bigIntegerInput = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> parseProtein(bigIntegerInput));
     }
 
     @Test
@@ -216,10 +212,8 @@ public class DietParserTest {
 
     @Test
     void parseCarb_bigIntegerInput_throwAthletiException() {
-        String bigIntegerInput1 = "1000001";
-        String bigIntegerInput2 = "10000000000000000000000";
-        assertThrows(AthletiException.class, () -> parseCarb(bigIntegerInput1));
-        assertThrows(AthletiException.class, () -> parseCarb(bigIntegerInput2));
+        String bigIntegerInput = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> parseCarb(bigIntegerInput));
     }
 
     @Test
@@ -243,10 +237,8 @@ public class DietParserTest {
 
     @Test
     void parseFat_bigIntegerInput_throwAthletiException() {
-        String bigIntegerInput1 = "1000001";
-        String bigIntegerInput2 = "10000000000000000000000";
-        assertThrows(AthletiException.class, () -> parseFat(bigIntegerInput1));
-        assertThrows(AthletiException.class, () -> parseFat(bigIntegerInput2));
+        String bigIntegerInput = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> parseFat(bigIntegerInput));
     }
 
     @Test

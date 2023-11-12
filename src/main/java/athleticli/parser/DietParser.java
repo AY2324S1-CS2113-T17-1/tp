@@ -1,6 +1,5 @@
 package athleticli.parser;
 
-import athleticli.common.Config;
 import athleticli.data.Goal;
 import athleticli.data.diet.Diet;
 import athleticli.data.diet.DietGoal;
@@ -221,7 +220,7 @@ public class DietParser {
         if (caloriesParsed.signum() < 0) {
             throw new AthletiException(Message.MESSAGE_CALORIES_INVALID);
         }
-        if (caloriesParsed.compareTo(BigInteger.valueOf(Config.MAX_INPUT_NUMBER_ALLOWED)) > 0) {
+        if (caloriesParsed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
             throw new AthletiException(Message.MESSAGE_CALORIE_OVERFLOW);
         }
         return caloriesParsed.intValue();
@@ -244,7 +243,7 @@ public class DietParser {
         if (proteinParsed.signum() < 0) {
             throw new AthletiException(Message.MESSAGE_PROTEIN_INVALID);
         }
-        if (proteinParsed.compareTo(BigInteger.valueOf(Config.MAX_INPUT_NUMBER_ALLOWED)) > 0) {
+        if (proteinParsed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
             throw new AthletiException(Message.MESSAGE_PROTEIN_OVERFLOW);
         }
         return proteinParsed.intValue();
@@ -267,7 +266,7 @@ public class DietParser {
         if (carbParsed.signum() < 0) {
             throw new AthletiException(Message.MESSAGE_CARB_INVALID);
         }
-        if (carbParsed.compareTo(BigInteger.valueOf(Config.MAX_INPUT_NUMBER_ALLOWED)) > 0) {
+        if (carbParsed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
             throw new AthletiException(Message.MESSAGE_CARB_OVERFLOW);
         }
         return carbParsed.intValue();
@@ -290,7 +289,7 @@ public class DietParser {
         if (fatParsed.signum() < 0) {
             throw new AthletiException(Message.MESSAGE_FAT_INVALID);
         }
-        if (fatParsed.compareTo(BigInteger.valueOf(Config.MAX_INPUT_NUMBER_ALLOWED)) > 0) {
+        if (fatParsed.compareTo(BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
             throw new AthletiException(Message.MESSAGE_FAT_OVERFLOW);
         }
         return fatParsed.intValue();
