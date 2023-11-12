@@ -153,8 +153,8 @@ The architecture of the `add-activity` feature is composed of the following main
    parser to the activity in a modular way.
 5. `Activity`: Represents the activity to be added. It is a superclass for specific activity types like Run, Swim and 
    Cycle.
-6. `Data`: manages the current state of the activity list.
-7. `ActivityList`: maintains the list of all activities added to the application.
+6. `Data`: Manages the current state of the activity list.
+7. `ActivityList`: Maintains the list of all activities added to the application.
 
 
 Class Relationships:
@@ -170,7 +170,7 @@ Below is a class diagram illustrating the relationships between the data compone
 > Swim and Cycle, each with unique attributes and methods. This design becomes especially crucial in future 
 > development cycles with added parameters and activity types. The 'ActivityList' aggregates these instances.
 
-Usage Scenario and Process flow:
+Usage Scenario and Process Flow:
 The process of adding an activity involves several steps, each handled by different components.
 Given below is an example usage scenario and how the add mechanism behaves.
 
@@ -185,8 +185,8 @@ The `ActivityChanges` object plays a key role in the parsing process. It is used
 different attributes of the activity that are to be added. Later, the `ActivityParser` 
 will use the `ActivityChanges` to create the `Activity` object. 
 > This way of transferring data between the parser and the activity is more flexible which is suitable for future 
-extensions of the activity types and allows for a more modular design. This design and most of the methods can be 
-> reused for the `edit-activity` mechanism, which works in the same way with slight modifications due to optional parameters.
+extensions of the activity types and allows for a more modular design. This design and most of the methods can be reused 
+for the `edit-activity` mechanism, which works in the same way with slight modifications due to optional parameters.
 
 <p align="center" >
   <img width="100%" src="images/ActivityParsing.svg" alt="Activity Parsing Process"/>
