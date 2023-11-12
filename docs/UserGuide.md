@@ -777,6 +777,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `set-activity-goal`       | `set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                         | SPORT, TYPE, PERIOD, TARGET                      | `set-activity-goal sport/running type/distance period/weekly target/10000` |
 | `edit-activity-goal`      | `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`                        | SPORT, TYPE, PERIOD, TARGET                      | `edit-activity-goal sport/running type/distance period/weekly target/20000` |
 | `list-activity-goal`      | `list-activity-goal`                                                                          | None                                             | `list-activity-goal`                                       |
+| `delete-activity-goal`    | `delete-activity-goal sport/SPORT type/TYPE period/PERIOD`                                    | SPORT, TYPE, PERIOD                              | `delete-activity-goal sport/running type/distance period/weekly` |
 
 ### Diet Management
 
