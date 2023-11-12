@@ -25,7 +25,16 @@ activities but also covers dietary habits, sleep metrics, and more.*
 * Parameters enclosed in square brackets [] are optional.
 
 **Notes about lack of Goal Delete for Sleep and Activity**
-* Our team will be implementing the delete goal feature for sleep and activity in the next version of AthletiCLI.
+
+The absence of a "Goal Delete" feature for Sleep and Activity in the current version of AthletiCLI, while present for Diet, can be concisely justified as follows:
+
+1. **Diversity of Diet Goals:** The Diet section likely encompasses a wider range of goals compared to Sleep and Activity. With such variability, users might frequently need to delete diet goals, making a delete function more essential in this section.
+
+2. **Stability of Sleep and Activity Goals:** Goals related to sleep and activity are generally more consistent and less variable over time. This stability reduces the immediate need for a delete feature, as users are less likely to remove these goals frequently.
+
+3. **Focused Development Resources:** Given limited development resources and time, the team prioritized implementing the delete feature for the Diet section, where it was deemed most necessary due to the larger volume and variability of goals.
+
+4. **Planned for Future Implementation:** The absence of this feature in the current version for Sleep and Activity does not indicate it will never be implemented. It is planned for a future update, aligning with a phased development approach.
 
 ## 🏃 Activity Management
 
@@ -468,8 +477,6 @@ Edits a single calories goal if the goal exists.
 
 ## 🛌 Sleep Management
 
-Do note that for sleep commands, the order of the parameters is fixed, and are all non-optional.
-
 - [Adding Sleep](#-adding-sleep)
 - [Listing Sleep](#-listing-sleep)
 - [Deleting Sleep](#-deleting-sleep)
@@ -593,7 +600,7 @@ You can set goals for your sleep AthletiCLI by setting the target duration speci
 
 **Parameters:**
 * TYPE: The type of sleep goal. It must be the following: `duration`.
-* PERIOD: The period for which you want to set a goal. It must be one of the following: `daily, weekly, monthly, yearly`. Only sleeps that are recorded within the period from the current timewill be counted towards the goal.
+* PERIOD: The period for which you want to set a goal. It must be one of the following: `daily, weekly, monthly, yearly`. Only sleeps that are recorded within the period from the current time will be counted towards the goal.
 * TARGET: The target value. It must be a positive number. For duration, it is in minutes.
 
 **Examples:**
@@ -729,7 +736,6 @@ If you forget a command, you can always use the `help` command to see their synt
 
 ### Sleep Management
 
-#### Order of parameters is fixed, and are all non optional.
 
 | **Command**               | **Syntax**                                                                          | **Parameters**                                         | **Examples**                                             |
 |---------------------------|-------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
