@@ -8,14 +8,14 @@ ____________________________________________________________
 Activity Management:
  add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
  add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
- add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
+ add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE
  add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
  delete-activity INDEX
  list-activity [-d]
- edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
- edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
- edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
- edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ edit-activity INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]
+ edit-run INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]
+ edit-swim INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [style/STYLE]
+ edit-cycle INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]
  find-activity DATE
  set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET
  edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET

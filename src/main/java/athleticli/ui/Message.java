@@ -115,8 +115,8 @@ public class Message {
     public static final String MESSAGE_ACTIVITY_COUNT =
             "You have tracked a total of %d activities. Keep pushing!";
     public static final String MESSAGE_ACTIVITY_LIST = "These are the activities you have tracked so far:";
-    public static final String MESSAGE_ACTIVITY_EDIT_INVALID = "Oops, the format of the edit command is wrong! Please" +
-            " provide the index and the updated entry!";
+    public static final String MESSAGE_ACTIVITY_EDIT_INVALID = "The format of the edit command is wrong! Please" +
+            " provide the index and the updated parameters!";
     public static final String MESSAGE_ACTIVITY_UPDATED = "Ok, I've updated this activity:";
     public static final String MESSAGE_DIET_COUNT =
             "Now you have tracked a total of %d diets. Keep grinding!";
@@ -232,7 +232,7 @@ public class Message {
     public static final String HELP_ADD_RUN = CommandName.COMMAND_RUN
             + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
     public static final String HELP_ADD_SWIM = CommandName.COMMAND_SWIM
-            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
+            + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE";
     public static final String HELP_ADD_CYCLE = CommandName.COMMAND_CYCLE
             + " CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
     public static final String HELP_DELETE_ACTIVITY = CommandName.COMMAND_ACTIVITY_DELETE
@@ -240,13 +240,15 @@ public class Message {
     public static final String HELP_LIST_ACTIVITY = CommandName.COMMAND_ACTIVITY_LIST
             + " [-d]";
     public static final String HELP_EDIT_ACTIVITY = CommandName.COMMAND_ACTIVITY_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]";
     public static final String HELP_EDIT_RUN = CommandName.COMMAND_RUN_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] " +
+            "[elevation/ELEVATION]";
     public static final String HELP_EDIT_SWIM = CommandName.COMMAND_SWIM_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [style/STYLE]";
     public static final String HELP_EDIT_CYCLE = CommandName.COMMAND_CYCLE_EDIT
-            + " INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION";
+            + " INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] " +
+            "[elevation/ELEVATION]";
     public static final String HELP_FIND_ACTIVITY = CommandName.COMMAND_ACTIVITY_FIND
             + " DATE";
     public static final String HELP_SET_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_SET

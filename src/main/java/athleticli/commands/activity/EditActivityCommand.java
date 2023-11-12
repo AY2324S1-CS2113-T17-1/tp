@@ -70,6 +70,12 @@ public class EditActivityCommand extends Command {
         }
     }
 
+    /**
+     * Applies the changes to the activity object.
+     *
+     * @param activity Activity to be edited.
+     * @param activityChanges ActivityChanges object containing the changes to be applied.
+     */
     private void applyActivityChanges(Activity activity, ActivityChanges activityChanges) {
         if (activityChanges.getCaption() != null) {
             activity.setCaption(activityChanges.getCaption());
