@@ -4,6 +4,7 @@ import athleticli.commands.Command;
 import athleticli.data.Data;
 import athleticli.data.sleep.SleepGoal;
 import athleticli.data.sleep.SleepGoalList;
+import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 /**
@@ -26,11 +27,11 @@ public class SetSleepGoalCommand extends Command {
      * @return            The message which will be shown to the user.
      */
     @Override
-    public String[] execute(Data data) {
+    public String[] execute(Data data) throws AthletiException {
         SleepGoalList sleepGoals = data.getSleepGoals();
 
         if (sleepGoals.isDuplicate(sleepGoal.getGoalType(), sleepGoal.getTimeSpan())) {
-            return new String[]{Message.ERRORMESSAGE_DUPLICATE_SLEEP_GOAL};
+            throw new AthletiException(Message.ERRORMESSAGE_DUPLICATE_SLEEP_GOAL);
         }
 
         sleepGoals.add(this.sleepGoal);
