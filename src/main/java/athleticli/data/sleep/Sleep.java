@@ -96,6 +96,11 @@ public class Sleep {
             " | " + toDateTimeOutput + " | " + sleepingDurationOutput;
     }
 
+
+    /**
+     * Returns a string representation of the sleeping duration.
+     * @return String representation of the sleeping duration.
+     */
     public String generateSleepingDurationStringOutput() {
         Duration tempDuration = sleepingDuration;
         String sleepingDurationOutput = "";
@@ -113,14 +118,26 @@ public class Sleep {
         return "Sleeping Duration: " + sleepingDurationOutput;
     }
 
+    /**
+     * Returns a string representation of the start date time.
+     * @return String representation of the start date time.
+     */
     public String generateStartDateTimeStringOutput() {
         return "Start Time: " + startDateTime.format(DATE_TIME_FORMATTER);
     }
 
+    /**
+     * Returns a string representation of the end date time.
+     * @return String representation of the end date time.
+     */
     public String generateEndDateTimeStringOutput() {
         return "End Time: " + endDateTime.format(DATE_TIME_FORMATTER);
     }
 
+    /**
+     * Returns a string representation of the sleep date.
+     * @return String representation of the sleep date.
+     */
     public String generateSleepDateStringOutput() {
         return "Date: " + sleepDate.format(DATE_FORMATTER);
     }
