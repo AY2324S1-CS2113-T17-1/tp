@@ -34,15 +34,13 @@ public class FindSleepCommand extends FindCommand {
      */
     @Override
     public String[] execute(Data data) throws AthletiException {
+        logger.info("Finding sleeps on " + date);
         var resultStream = data.getSleeps()
                 .find(date)
                 .stream()
                 .filter(Sleep.class::isInstance)
                 .map(Sleep.class::cast)
                 .map(Sleep::toString);
-        
-        logger.info("Found " + resultStream.count() + " sleep entries");
-
         return Stream.concat(Stream.of(Message.MESSAGE_SLEEP_FIND), resultStream)
                 .toArray(String[]::new);
     }
