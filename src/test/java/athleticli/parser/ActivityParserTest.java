@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import athleticli.data.Goal;
@@ -179,6 +180,12 @@ public class ActivityParserTest {
     }
 
     @Test
+    void parseTarget_bigIntegerInput_throwAthletiException() {
+        String bigIntegerInput1 = "10000000000000000000000";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseTarget(bigIntegerInput1));
+    }
+
+    @Test
     void checkMissingActivityGoalArguments_missingSport_throwAthletiException() {
         assertThrows(AthletiException.class, () -> ActivityParser.checkMissingActivityGoalArguments(-1, 1, 1, 1));
     }
@@ -217,16 +224,6 @@ public class ActivityParserTest {
     }
 
     @Test
-    void checkMissingActivityArguments_missingDuration_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingActivityArguments(-1, 1, 1));
-    }
-
-    @Test
-    void checkMissingActivityArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> ActivityParser.checkMissingActivityArguments(1, 1, 1));
-    }
-
-    @Test
     void parseRunCycle_validInput_activityParsed() throws AthletiException {
         String validInput =
                 "Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00 elevation/60";
@@ -257,31 +254,6 @@ public class ActivityParserTest {
     }
 
     @Test
-    void checkMissingRunCycleArguments_missingElevation_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingRunCycleArguments(1, 1, 1, -1));
-    }
-
-    @Test
-    void checkMissingRunCycleArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> ActivityParser.checkMissingRunCycleArguments(1, 1, 1, 1));
-    }
-
-    @Test
-    void checkMissingSwimArguments_missingStyle_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> ActivityParser.checkMissingSwimArguments(1, 1, 1, -1));
-    }
-
-    @Test
-    void checkMissingSwimArguments_noMissingArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> ActivityParser.checkMissingSwimArguments(1, 1, 1, 1));
-    }
-
-    @Test
-    void checkEmptyActivityArguments_emptyCaption_throwAthletiException() {
-        assertThrows(AthletiException.class, () -> ActivityParser.checkEmptyActivityArguments("", " ", " ", " "));
-    }
-
-    @Test
     void parseSwim_validInput_swimParsed() throws AthletiException {
         String validInput =
                 "Evening Swim duration/02:00:00 distance/20000 datetime/2021-09-01 18:00 style/freestyle";
@@ -305,8 +277,58 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    //@@author  nihalzp
     @Test
-    void checkEmptyActivityArguments_noEmptyArguments_noExceptionThrown() {
-        assertDoesNotThrow(() -> ActivityParser.checkEmptyActivityArguments("1", "1", "1", "1"));
+    void parseDeleteActivityGoal_validInput_activityGoalParsed() throws AthletiException {
+        String validInput = "sport/running type/distance period/weekly";
+        ActivityGoal actual = ActivityParser.parseDeleteActivityGoal(validInput);
+        ActivityGoal expected = new ActivityGoal(Goal.TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
+                ActivityGoal.Sport.RUNNING, 0);
+        assertEquals(actual.getTimeSpan(), expected.getTimeSpan());
+        assertEquals(actual.getGoalType(), expected.getGoalType());
+        assertEquals(actual.getSport(), expected.getSport());
+        assertEquals(actual.getTargetValue(), expected.getTargetValue());
+    }
+
+    @Test
+    void parseDeleteActivityGoal_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingSport_throwAthletiException() {
+        String invalidInput = "type/distance period/weekly";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingType_throwAthletiException() {
+        String invalidInput = "sport/running period/weekly";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingPeriod_throwAthletiException() {
+        String invalidInput = "sport/running type/distance";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingSportAndType_throwAthletiException() {
+        String invalidInput = "period/weekly";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingSportAndPeriod_throwAthletiException() {
+        String invalidInput = "type/distance";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
+    }
+
+    @Test
+    void parseDeleteActivityGoal_missingTypeAndPeriod_throwAthletiException() {
+        String invalidInput = "sport/running";
+        assertThrows(AthletiException.class, () -> ActivityParser.parseDeleteActivityGoal(invalidInput));
     }
 }

@@ -3,7 +3,6 @@ package athleticli.data.activity;
 import static athleticli.common.Config.PATH_ACTIVITY;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -15,6 +14,9 @@ import athleticli.parser.ActivityParser;
 import athleticli.parser.Parameter;
 import athleticli.ui.Message;
 
+/**
+ * Represents a list of activities.
+ */
 public class ActivityList extends StorableList<Activity> implements Findable {
     /**
      * Constructs an empty activity list.
@@ -49,7 +51,8 @@ public class ActivityList extends StorableList<Activity> implements Findable {
 
     /**
      * Returns a list of activities within the time span.
-     * @param timeSpan The time span to be matched.
+     *
+     * @param timeSpan Time span to be matched.
      * @return A list of activities within the time span.
      */
     public ArrayList<Activity> filterByTimespan(Goal.TimeSpan timeSpan) {
@@ -65,23 +68,27 @@ public class ActivityList extends StorableList<Activity> implements Findable {
 
     /**
      * Returns the total distance of all activities in the list matching the specified activity class.
+     *
      * @param activityClass The activity class to be matched.
-     * @return The total distance of all activities in the list matching the specified activity class.
+     * @param timeSpan Timespan to be matched.
+     * @return The total distance of all activities in the list matching the specified activity class and timespan.
      */
     public int getTotalDistance(Class<?> activityClass, Goal.TimeSpan timeSpan) {
         ArrayList<Activity> filteredActivities = filterByTimespan(timeSpan);
-        int runningDistance = 0;
+        int totalDistance = 0;
         for (Activity activity : filteredActivities) {
             if (activityClass.isInstance(activity)) {
-                runningDistance += activity.getDistance();
+                totalDistance += activity.getDistance();
             }
         }
-        return runningDistance;
+        return totalDistance;
     }
 
     /**
      * Returns the total moving time in seconds of all activities in the list matching the specified activity class.
-     * @param activityClass The activity class to be matched.
+     *
+     * @param activityClass Activity class to be matched.
+     * @param timeSpan Timespan to be matched.
      * @return The total moving time of all activities in the list matching the specified activity class.
      */
     public int getTotalDuration(Class<?> activityClass, Goal.TimeSpan timeSpan) {
@@ -89,8 +96,7 @@ public class ActivityList extends StorableList<Activity> implements Findable {
         int movingTime = 0;
         for (Activity activity : filteredActivities) {
             if (activityClass.isInstance(activity)) {
-                LocalTime duration = activity.getMovingTime();
-                movingTime += duration.getHour() * 3600 + duration.getMinute() * 60 + duration.getSecond();
+                movingTime += activity.getMovingTime().toSecondOfDay();
             }
         }
         return movingTime;
@@ -101,12 +107,16 @@ public class ActivityList extends StorableList<Activity> implements Findable {
      *
      * @param s The string to be parsed.
      * @return The activity parsed from the string.
+     * @throws AthletiException If the string is invalid or an unknown indicator is found.
      */
     @Override
     public Activity parse(String s) throws AthletiException {
+        String[] parts = s.split(" ", 2);
+
         try {
-            String indicator = s.split(" ", 2)[0];
-            String arguments = s.split(" ", 2)[1];
+            String indicator = parts[0];
+            String arguments = parts[1];
+
             switch (indicator) {
             case Parameter.ACTIVITY_STORAGE_INDICATOR:
                 return ActivityParser.parseActivity(arguments);
@@ -123,8 +133,6 @@ public class ActivityList extends StorableList<Activity> implements Findable {
             throw new AthletiException(Message.ACTIVITY_STORAGE_INVALID_FORMAT);
         }
     }
-
-
 
     /**
      * Unparses an activity to a string.

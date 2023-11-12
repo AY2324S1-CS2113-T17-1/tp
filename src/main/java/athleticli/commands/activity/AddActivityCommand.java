@@ -14,6 +14,7 @@ public class AddActivityCommand extends Command {
 
     /**
      * Constructor for AddActivityCommand.
+     *
      * @param activity Activity to be added.
      */
     public AddActivityCommand(Activity activity){
@@ -21,23 +22,25 @@ public class AddActivityCommand extends Command {
     }
 
     /**
-     * Updates the activity list.
-     * @param data        The current data containing the activity list.
-     * @return            The message which will be shown to the user.
+     * Updates the activity list by adding a new activity, sorts the list and returns a message to the user.
+     *
+     * @param data Current data containing the activity list.
+     * @return An array of message which will be shown to the user.
      */
     @Override
     public String[] execute(Data data) {
         ActivityList activities = data.getActivities();
-        activities.add(this.activity);
+        activities.add(activity);
         activities.sort();
         int size = activities.size();
+
         String countMessage;
         if (size > 1) {
             countMessage = String.format(Message.MESSAGE_ACTIVITY_COUNT, size);
         } else {
             countMessage = Message.MESSAGE_ACTIVITY_FIRST;
         }
-        return new String[]{Message.MESSAGE_ACTIVITY_ADDED, this.activity.toString(), countMessage};
-    }
 
+        return new String[]{Message.MESSAGE_ACTIVITY_ADDED, activity.toString(), countMessage};
+    }
 }

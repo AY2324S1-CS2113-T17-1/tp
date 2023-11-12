@@ -44,7 +44,7 @@ public class SwimTest {
 
     @Test
     public void testToString() {
-        String expected = "[Swim] Afternoon Swim | Distance: 1.00 km | Avg Lap Time: 105s | Time: 35m 0s | " +
+        String expected = "[Swim] Afternoon Swim | Distance: 1.00 km | Lap Time: 105s | Time: 35m 0s | " +
                 "August 29, 2023 at 9:45 AM";
         assertEquals(expected, swim.toString());
     }

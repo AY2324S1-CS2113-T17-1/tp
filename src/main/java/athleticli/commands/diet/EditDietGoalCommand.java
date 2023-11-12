@@ -35,7 +35,7 @@ public class EditDietGoalCommand extends Command {
     @Override
     public String[] execute(Data data) throws AthletiException {
         DietGoalList currentDietGoals = data.getDietGoals();
-        verifyAllGoalsEditedExist(currentDietGoals);
+        verifyEditedGoalsValid(currentDietGoals);
         updateUserGoals(currentDietGoals);
         return generateEditDietGoalSuccessMessage(data, currentDietGoals);
     }
@@ -60,7 +60,7 @@ public class EditDietGoalCommand extends Command {
         }
     }
 
-    private void verifyAllGoalsEditedExist(DietGoalList currentDietGoals) throws AthletiException {
+    private void verifyEditedGoalsValid(DietGoalList currentDietGoals) throws AthletiException {
         for (DietGoal userDietGoal : userUpdatedDietGoals) {
             boolean isDietGoalExisted = false;
             currentDietGoals.isDietGoalTypeValid(userDietGoal);
@@ -68,6 +68,9 @@ public class EditDietGoalCommand extends Command {
             if (!currentDietGoals.isDietGoalUnique(userDietGoal)) {
                 if (!currentDietGoals.isDietGoalTypeValid(userDietGoal)) {
                     throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
+                }
+                if (!currentDietGoals.isTargetValueConsistentWithTimeSpan(userDietGoal)) {
+                    throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_SCALING_WITH_TIME_SPAN);
                 }
                 isDietGoalExisted = true;
             }

@@ -67,14 +67,14 @@ public class DietListTest {
     @Test
     void testToString_oneExistingDiet_expectCorrectFormat() {
         dietList.add(diet);
-        assertEquals("1. " + diet, dietList.toString());
+        assertEquals("\t1. " + diet, dietList.toString());
     }
 
     @Test
     void testToString_twoExistingDiets_expectCorrectFormat() {
         dietList.add(diet);
         dietList.add(diet);
-        assertEquals("1. " + diet.toString() + "\n2. " + diet.toString(), dietList.toString());
+        assertEquals("\t1. " + diet.toString() + "\n\t2. " + diet.toString(), dietList.toString());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class DietListTest {
         dietList.add(diet);
         dietList.add(diet);
         dietList.add(diet);
-        assertEquals("1. " + diet.toString() + "\n2. " + diet.toString() + "\n3. " + diet.toString(),
+        assertEquals("\t1. " + diet.toString() + "\n\t2. " + diet.toString() + "\n\t3. " + diet.toString(),
                 dietList.toString());
     }
 

@@ -4,6 +4,7 @@ import athleticli.data.Data;
 import athleticli.data.Goal.TimeSpan;
 import athleticli.data.activity.ActivityGoal;
 import athleticli.data.activity.Run;
+import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -40,11 +41,23 @@ class SetActivityGoalCommandTest {
     }
 
     @Test
-    void execute() {
+    void execute_noDuplicate_executed() throws AthletiException {
         String[] actual = setActivityGoalCommand.execute(data);
         String[] expected = {"Alright, I've added this activity goal:", activityGoal.toString(data)};
         for (int i = 0; i < actual.length; i++) {
             assertEquals(expected[i], actual[i]);
+        }
+    }
+
+    @Test
+    void execute_duplicate_exceptionThrown() {
+        try {
+            setActivityGoalCommand.execute(data);
+            setActivityGoalCommand.execute(data);
+        } catch (AthletiException e) {
+            String expected = "You already have a goal for this sport, type and period! Please edit the existing " +
+                    "goal instead.";
+            assertEquals(expected, e.getMessage());
         }
     }
 }
