@@ -217,6 +217,32 @@ public class Parser {
     }
 
     /**
+     * Parses the raw integer input provided by the user.
+     *
+     * @param integer         The raw user input containing the integer.
+     * @param invalidMessage  The message to be displayed if the input is invalid.
+     * @param overflowMessage The message to be displayed if the input is too large.
+     * @return integerParsed  The parsed integer.
+     * @throws AthletiException If the input format is invalid.
+     */
+    public static int parseNonNegativeInteger(String integer, String invalidMessage,
+                                              String overflowMessage) throws AthletiException {
+        java.math.BigInteger integerParsed;
+        try {
+            integerParsed = new java.math.BigInteger(integer);
+        } catch (NumberFormatException e) {
+            throw new AthletiException(invalidMessage);
+        }
+        if (integerParsed.signum() < 0) {
+            throw new AthletiException(invalidMessage);
+        }
+        if (integerParsed.compareTo(java.math.BigInteger.valueOf(Integer.MAX_VALUE)) > 0) {
+            throw new AthletiException(overflowMessage);
+        }
+        return integerParsed.intValue();
+    }
+
+    /**
      * Parses the value for a specific marker in a given argument string.
      *
      * @param arguments The raw user input containing the arguments.

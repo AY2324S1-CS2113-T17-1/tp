@@ -27,6 +27,7 @@ import java.time.format.DateTimeFormatter;
 import static athleticli.parser.Parser.getValueForMarker;
 import static athleticli.parser.Parser.parseCommand;
 import static athleticli.parser.Parser.parseDate;
+import static athleticli.parser.Parser.parseNonNegativeInteger;
 import static athleticli.parser.Parser.splitCommandWordAndArgs;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertInstanceOf;
@@ -300,6 +301,41 @@ class ParserTest {
     void parseCommand_addDietCommand_negativeFatExpectAthletiException() {
         final String addDietCommandString =
                 "add-diet calories/1 protein/2 carb/3 fat/-4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_duplicatedCaloriesExpectAthletiException() {
+        final String addDietCommandString =
+                "add-diet calories/1 calories/2 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_duplicatedProteinExpectAthletiException() {
+        final String addDietCommandString =
+                "add-diet calories/1 protein/2 protein/3 carb/3 fat/4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_duplicatedCarbExpectAthletiException() {
+        final String addDietCommandString =
+                "add-diet calories/1 protein/2 carb/3 carb/4 fat/4 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_duplicatedFatExpectAthletiException() {
+        final String addDietCommandString =
+                "add-diet calories/1 protein/2 carb/3 fat/4 fat/5 datetime/2023-10-06 10:00";
+        assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
+    }
+
+    @Test
+    void parseCommand_addDietCommand_duplicatedDateTimeExpectAthletiException() {
+        final String addDietCommandString =
+                "add-diet calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00 datetime/2023-10-06 11:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
@@ -698,6 +734,55 @@ class ParserTest {
     void parseCommand_deleteActivityGoalCommandInvalidSportAndTypeAndPeriod_expectAthletiException() {
         final String deleteActivityGoalCommandString = "delete-activity-goal sport/abc type/abc period/abc";
         assertThrows(AthletiException.class, () -> parseCommand(deleteActivityGoalCommandString));
+    }
+
+    @Test
+    void parseNonNegativeInteger_validInput_integerParsed() throws AthletiException {
+        String validInput = "123";
+        int actual = parseNonNegativeInteger(validInput, "invalid", "overflow");
+        assertEquals(123, actual);
+    }
+
+    @Test
+    void parseNonNegativeInteger_invalidInput_throwAthletiException() {
+        String invalidInput = "abc";
+        assertThrows(AthletiException.class,
+                () -> parseNonNegativeInteger(invalidInput, "invalid", "overflow"));
+    }
+
+    @Test
+    void parseNonNegativeInteger_negativeInput_throwAthletiException() {
+        String negativeInput = "-1";
+        assertThrows(AthletiException.class,
+                () -> parseNonNegativeInteger(negativeInput, "invalid", "overflow"));
+    }
+
+    @Test
+    void parseNonNegativeInteger_overflowInput_throwAthletiException() {
+        String overflowInput = "2147483648";
+        assertThrows(AthletiException.class,
+                () -> parseNonNegativeInteger(overflowInput, "invalid", "overflow"));
+    }
+
+    @Test
+    void parseNonNegativeInteger_zeroInput_integerParsed() throws AthletiException {
+        String zeroInput = "0";
+        int actual = parseNonNegativeInteger(zeroInput, "invalid", "overflow");
+        assertEquals(0, actual);
+    }
+
+    @Test
+    void parseNonNegativeInteger_emptyInput_throwAthletiException() {
+        String emptyInput = "";
+        assertThrows(AthletiException.class,
+                () -> parseNonNegativeInteger(emptyInput, "invalid", "overflow"));
+    }
+
+    @Test
+    void parseNonNegativeInteger_floatingPointInput_throwAthletiException() {
+        String floatingPointInput = "1.0";
+        assertThrows(AthletiException.class,
+                () -> parseNonNegativeInteger(floatingPointInput, "invalid", "overflow"));
     }
 
     @Test
