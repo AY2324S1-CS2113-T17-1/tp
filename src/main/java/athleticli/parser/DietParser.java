@@ -39,7 +39,7 @@ public class DietParser {
 
             commandArgs = commandArgsString.split("\\s+");
 
-            ArrayList<DietGoal> dietGoals = initializeIntermediateDietGoals(commandArgs);
+            ArrayList<DietGoal> dietGoals = initializeTemporaryDietGoals(commandArgs);
 
             return dietGoals;
         } catch (NumberFormatException e) {
@@ -49,7 +49,7 @@ public class DietParser {
         }
     }
 
-    private static ArrayList<DietGoal> initializeIntermediateDietGoals(
+    private static ArrayList<DietGoal> initializeTemporaryDietGoals(
             String[] commandArgs) throws AthletiException {
         String[] nutrientAndTargetValue;
         String nutrient;
