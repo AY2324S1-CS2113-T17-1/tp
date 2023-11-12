@@ -228,9 +228,10 @@ You can edit your set goals by specifying the sport, target, and period.
 
 **Examples**
 
-* `edit-activity-goal sport/running type/distance period/weekly target/20000` Edits the goal of running 20km per week.
-* `edit-activity-goal sport/swimming type/duration period/monthly target/60` Edits the goal of swimming for 1 hour 
-  per month.
+* `edit-activity-goal sport/running type/distance period/weekly target/20000` Adjusts the goal of running distance 
+  to 20km per week.
+* `edit-activity-goal sport/swimming type/duration period/monthly target/60` Adjusts the goal of swimming duration 
+  to 1 hour per month.
 
 ---
 
