@@ -146,7 +146,7 @@ public class DietGoalList extends StorableList<DietGoal> {
     }
 
     private static DietGoal createParseNewDietGoal(String dietGoalType, String dietGoalTimeSpanString,
-                                                   String dietGoalNutrientString, int dietGoalTargetValue) throws AthletiException {
+            String dietGoalNutrientString, int dietGoalTargetValue) throws AthletiException {
         DietGoal dietGoal;
         if (dietGoalType.toLowerCase().equals(HealthyDietGoal.TYPE)) {
             dietGoal = new HealthyDietGoal(Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()),
