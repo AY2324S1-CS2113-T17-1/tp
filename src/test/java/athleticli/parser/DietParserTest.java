@@ -1,90 +1,28 @@
 package athleticli.parser;
 
+import athleticli.data.diet.DietGoal;
+import athleticli.data.diet.UnhealthyDietGoal;
+import athleticli.exceptions.AthletiException;
+import org.junit.jupiter.api.Test;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import static athleticli.parser.DietParser.checkDuplicateDietArguments;
 import static athleticli.parser.DietParser.checkEmptyDietArguments;
 import static athleticli.parser.DietParser.checkMissingDietArguments;
-import static athleticli.parser.DietParser.parseCalories;
-import static athleticli.parser.DietParser.parseCarb;
+import static athleticli.parser.DietParser.isArgumentDuplicate;
+import static athleticli.parser.DietParser.isArgumentMissing;
 import static athleticli.parser.DietParser.parseDiet;
 import static athleticli.parser.DietParser.parseDietEdit;
 import static athleticli.parser.DietParser.parseDietGoalDelete;
 import static athleticli.parser.DietParser.parseDietGoalSetAndEdit;
 import static athleticli.parser.DietParser.parseDietIndex;
-import static athleticli.parser.DietParser.parseFat;
-import static athleticli.parser.DietParser.parseProtein;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import athleticli.data.diet.DietGoal;
-import athleticli.data.diet.UnhealthyDietGoal;
-import org.junit.jupiter.api.Test;
-
-import athleticli.exceptions.AthletiException;
-
 public class DietParserTest {
     //@@author  nihalzp
-    @Test
-    void checkMissingDietArguments_missingProtein_throwAthletiException() {
-        int caloriesMarkerPos = 1;
-        int proteinMarkerPos = -1;
-        int carbMarkerPos = 2;
-        int fatMarkerPos = 3;
-        int datetimeMarkerPos = 4;
-        assertThrows(AthletiException.class,
-                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
-                        fatMarkerPos, datetimeMarkerPos));
-    }
-
-    @Test
-    void checkMissingDietArguments_missingCalories_throwAthletiException() {
-        int caloriesMarkerPos = -1;
-        int proteinMarkerPos = 1;
-        int carbMarkerPos = 2;
-        int fatMarkerPos = 3;
-        int datetimeMarkerPos = 4;
-        assertThrows(AthletiException.class,
-                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
-                        fatMarkerPos, datetimeMarkerPos));
-    }
-
-    @Test
-    void checkMissingDietArguments_missingCarb_throwAthletiException() {
-        int caloriesMarkerPos = 1;
-        int proteinMarkerPos = 2;
-        int carbMarkerPos = -1;
-        int fatMarkerPos = 3;
-        int datetimeMarkerPos = 4;
-        assertThrows(AthletiException.class,
-                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
-                        fatMarkerPos, datetimeMarkerPos));
-    }
-
-    @Test
-    void checkMissingDietArguments_missingFat_throwAthletiException() {
-        int caloriesMarkerPos = 1;
-        int proteinMarkerPos = 2;
-        int carbMarkerPos = 3;
-        int fatMarkerPos = -1;
-        int datetimeMarkerPos = 4;
-        assertThrows(AthletiException.class,
-                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
-                        fatMarkerPos, datetimeMarkerPos));
-    }
-
-    @Test
-    void checkMissingDietArguments_missingDatetime_throwAthletiException() {
-        int caloriesMarkerPos = 1;
-        int proteinMarkerPos = 2;
-        int carbMarkerPos = 3;
-        int fatMarkerPos = 4;
-        int datetimeMarkerPos = -1;
-        assertThrows(AthletiException.class,
-                () -> checkMissingDietArguments(caloriesMarkerPos, proteinMarkerPos, carbMarkerPos,
-                        fatMarkerPos, datetimeMarkerPos));
-    }
-
     @Test
     void checkEmptyDietArguments_emptyCalories_throwAthletiException() {
         String emptyCalories = "";
@@ -145,113 +83,6 @@ public class DietParserTest {
                         emptyDatetime));
     }
 
-    @Test
-    void parseCalories_validCalories_returnCalories() throws AthletiException {
-        int expected = 5;
-        int actual = parseCalories("5");
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void parseCalories_nonIntegerInput_throwAthletiException() {
-        String nonIntegerInput = "nonInteger";
-        assertThrows(AthletiException.class, () -> parseCalories(nonIntegerInput));
-    }
-
-    @Test
-    void parseCalories_negativeIntegerInput_throwAthletiException() {
-        String nonIntegerInput = "-1";
-        assertThrows(AthletiException.class, () -> parseCalories(nonIntegerInput));
-    }
-
-    @Test
-    void parseCalories_bigIntegerInput_throwAthletiException() {
-        String bigIntegerInput1 = "1000001";
-        String bigIntegerInput2 = "10000000000000000000000";
-        assertThrows(AthletiException.class, () -> parseCalories(bigIntegerInput1));
-        assertThrows(AthletiException.class, () -> parseCalories(bigIntegerInput2));
-    }
-
-    @Test
-    void parseProtein_validProtein_returnProtein() throws AthletiException {
-        int expected = 5;
-        int actual = parseProtein("5");
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void parseProtein_nonIntegerInput_throwAthletiException() {
-        String nonIntegerInput = "nonInteger";
-        assertThrows(AthletiException.class, () -> parseProtein(nonIntegerInput));
-    }
-
-    @Test
-    void parseProtein_negativeIntegerInput_throwAthletiException() {
-        String nonIntegerInput = "-1";
-        assertThrows(AthletiException.class, () -> parseProtein(nonIntegerInput));
-    }
-
-    @Test
-    void parseProtein_bigIntegerInput_throwAthletiException() {
-        String bigIntegerInput1 = "1000001";
-        String bigIntegerInput2 = "10000000000000000000000";
-        assertThrows(AthletiException.class, () -> parseProtein(bigIntegerInput1));
-        assertThrows(AthletiException.class, () -> parseProtein(bigIntegerInput2));
-    }
-
-    @Test
-    void parseCarb_validCarb_returnCarb() throws AthletiException {
-        int expected = 5;
-        int actual = parseCarb("5");
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void parseCarb_nonIntegerInput_throwAthletiException() {
-        String nonIntegerInput = "nonInteger";
-        assertThrows(AthletiException.class, () -> parseCarb(nonIntegerInput));
-    }
-
-    @Test
-    void parseCarb_negativeIntegerInput_throwAthletiException() {
-        String nonIntegerInput = "-1";
-        assertThrows(AthletiException.class, () -> parseCarb(nonIntegerInput));
-    }
-
-    @Test
-    void parseCarb_bigIntegerInput_throwAthletiException() {
-        String bigIntegerInput1 = "1000001";
-        String bigIntegerInput2 = "10000000000000000000000";
-        assertThrows(AthletiException.class, () -> parseCarb(bigIntegerInput1));
-        assertThrows(AthletiException.class, () -> parseCarb(bigIntegerInput2));
-    }
-
-    @Test
-    void parseFat_validFat_returnFat() throws AthletiException {
-        int expected = 5;
-        int actual = parseFat("5");
-        assertEquals(expected, actual);
-    }
-
-    @Test
-    void parseFat_nonIntegerInput_throwAthletiException() {
-        String nonIntegerInput = "nonInteger";
-        assertThrows(AthletiException.class, () -> parseFat(nonIntegerInput));
-    }
-
-    @Test
-    void parseFat_negativeIntegerInput_throwAthletiException() {
-        String nonIntegerInput = "-1";
-        assertThrows(AthletiException.class, () -> parseFat(nonIntegerInput));
-    }
-
-    @Test
-    void parseFat_bigIntegerInput_throwAthletiException() {
-        String bigIntegerInput1 = "1000001";
-        String bigIntegerInput2 = "10000000000000000000000";
-        assertThrows(AthletiException.class, () -> parseFat(bigIntegerInput1));
-        assertThrows(AthletiException.class, () -> parseFat(bigIntegerInput2));
-    }
 
     @Test
     void parseDietEdit_validInput_returnDietEdit() throws AthletiException {
@@ -314,6 +145,115 @@ public class DietParserTest {
         assertThrows(AthletiException.class, () -> parseDiet(emptyInput));
     }
 
+    @Test
+    void isArgumentMissing_markerPresent_returnFalse() {
+        String commandArgs = "protein/1 carb/2 fat/3 datetime/2021-10-06 10:00";
+        String marker = "carb/";
+        assert (!isArgumentMissing(commandArgs, marker));
+    }
+
+    @Test
+    void isArgumentMissing_markerNotPresent_returnTrue() {
+        String commandArgs = "protein/1 carb/2 fat/3 datetime/2021-10-06 10:00";
+        String marker = "calories/";
+        assert (isArgumentMissing(commandArgs, marker));
+    }
+
+    @Test
+    void isArgumentDuplicate_markerDuplicated_returnTrue() {
+        String commandArgs = "protein/1 carb/2 protein/5 fat/3 datetime/2021-10-06 10:00";
+        String marker = "protein/";
+        assert (isArgumentDuplicate(commandArgs, marker));
+    }
+
+    @Test
+    void isArgumentDuplicate_markerNotDuplicated_returnFalse() {
+        String commandArgs = "protein/1 carb/2 calories/5 fat/3 datetime/2021-10-06 10:00";
+        String marker = "calories/";
+        assert (!isArgumentDuplicate(commandArgs, marker));
+    }
+
+    @Test
+    void isArgumentDuplicate_markerNotPresent_returnFalse() {
+        String commandArgs = "protein/1 carb/2 fat/3 datetime/2021-10-06 10:00";
+        String marker = "calories/";
+        assert (!isArgumentDuplicate(commandArgs, marker));
+    }
+
+    @Test
+    void checkMissingDietArguments_noMissingArguments_noExceptionThrown() throws AthletiException {
+        String noMissingArguments = "calories/1 protein/2 carb/3 fat/4 datetime/2021-10-06 10:00";
+        checkMissingDietArguments(noMissingArguments);
+    }
+
+    @Test
+    void checkMissingDietArguments_missingCalories_throwAthletiException() {
+        String missingCalories = "protein/1 carb/2 fat/3 datetime/2021-10-06 10:00";
+        assertThrows(AthletiException.class, () -> checkMissingDietArguments(missingCalories));
+    }
+
+    @Test
+    void checkMissingDietArguments_missingProtein_throwAthletiException() {
+        String missingProtein = "calories/1 carb/2 fat/3 datetime/2021-10-06 10:00";
+        assertThrows(AthletiException.class, () -> checkMissingDietArguments(missingProtein));
+    }
+
+    @Test
+    void checkMissingDietArguments_missingCarb_throwAthletiException() {
+        String missingCarb = "calories/1 protein/2 fat/3 datetime/2021-10-06 10:00";
+        assertThrows(AthletiException.class, () -> checkMissingDietArguments(missingCarb));
+    }
+
+    @Test
+    void checkMissingDietArguments_missingFat_throwAthletiException() {
+        String missingFat = "calories/1 protein/2 carb/3 datetime/2021-10-06 10:00";
+        assertThrows(AthletiException.class, () -> checkMissingDietArguments(missingFat));
+    }
+
+    @Test
+    void checkMissingDietArguments_missingDatetime_throwAthletiException() {
+        String missingDatetime = "calories/1 protein/2 carb/3 fat/4";
+        assertThrows(AthletiException.class, () -> checkMissingDietArguments(missingDatetime));
+    }
+
+
+    @Test
+    void checkDuplicateDietArguments_noDuplicateArguments_noExceptionThrown() throws AthletiException {
+        String noDuplicateArguments = "calories/1 protein/2 carb/3 fat/4 datetime/2021-10-06 10:00";
+        checkMissingDietArguments(noDuplicateArguments);
+    }
+
+    @Test
+    void checkDuplicateDietArguments_duplicateCalories_throwAthletiException() {
+        String duplicateCalories = "calories/1 calories/2 protein/2 carb/3 fat/4 datetime/2021-10-06 10:00";
+        assertThrows(AthletiException.class, () -> checkDuplicateDietArguments(duplicateCalories));
+    }
+
+    @Test
+    void checkDuplicateDietArguments_duplicateProtein_throwAthletiException() {
+        String duplicateProtein = "calories/1 protein/2 protein/2 carb/3 fat/4 datetime/2021-10-06 10:00";
+        assertThrows(AthletiException.class, () -> checkDuplicateDietArguments(duplicateProtein));
+    }
+
+    @Test
+    void checkDuplicateDietArguments_duplicateCarb_throwAthletiException() {
+        String duplicateCarb = "calories/1 protein/2 carb/3 carb/3 fat/4 datetime/2021-10-06 10:00";
+        assertThrows(AthletiException.class, () -> checkDuplicateDietArguments(duplicateCarb));
+    }
+
+    @Test
+    void checkDuplicateDietArguments_duplicateFat_throwAthletiException() {
+        String duplicateFat = "calories/1 protein/2 carb/3 fat/4 fat/4 datetime/2021-10-06 10:00";
+        assertThrows(AthletiException.class, () -> checkDuplicateDietArguments(duplicateFat));
+    }
+
+    @Test
+    void checkDuplicateDietArguments_duplicateDatetime_throwAthletiException() {
+        String duplicateDatetime =
+                "calories/1 protein/2 carb/3 fat/4 datetime/2021-10-06 10:00 " + "datetime/2021-10-06 10:00";
+        assertThrows(AthletiException.class, () -> checkDuplicateDietArguments(duplicateDatetime));
+    }
+
     //@@author  yicheng-toh
     @Test
     void parseDietGoalSetEdit_unhealthyDietGoal_expectUnhealthyDietGoal() throws AthletiException {
@@ -321,6 +261,7 @@ public class DietParserTest {
         ArrayList<DietGoal> dietGoals = parseDietGoalSetAndEdit(oneValidOneInvalidGoalString);
         assert dietGoals.get(0) instanceof UnhealthyDietGoal;
     }
+
     @Test
     void parseDietGoalSetEdit_noInput_throwAthletiException() {
         String invalidGoalString = " ";
@@ -374,6 +315,4 @@ public class DietParserTest {
         String nonIntegerInput = "0";
         assertThrows(AthletiException.class, () -> parseDietGoalDelete(nonIntegerInput));
     }
-
-
 }
