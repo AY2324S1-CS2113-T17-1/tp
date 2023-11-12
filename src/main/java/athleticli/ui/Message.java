@@ -277,4 +277,6 @@ public class Message {
             "10km! Mt. Everest is only 8.8km high!";
     public static final String MESSAGE_DUPLICATE_ACTIVITY_GOAL = "You already have a goal for this " +
             "sport, type and period! Please edit the existing goal instead.";
+    public static final String MESSAGE_ACTIVITY_TYPE_MISMATCH = "The edit command does not match the type of " +
+            "the activity you are trying to edit!";
 }
