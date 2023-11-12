@@ -22,8 +22,8 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
+import static athleticli.common.Config.DATE_TIME_FORMATTER;
 import static athleticli.parser.Parser.getValueForMarker;
 import static athleticli.parser.Parser.parseCommand;
 import static athleticli.parser.Parser.parseDate;
@@ -335,7 +335,8 @@ class ParserTest {
     @Test
     void parseCommand_addDietCommand_duplicatedDateTimeExpectAthletiException() {
         final String addDietCommandString =
-                "add-diet calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00 datetime/2023-10-06 11:00";
+                "add-diet calories/1 protein/2 carb/3 fat/4 datetime/2023-10-06 10:00 datetime/2023-10-06 " +
+                        "11:00";
         assertThrows(AthletiException.class, () -> parseCommand(addDietCommandString));
     }
 
@@ -448,8 +449,7 @@ class ParserTest {
     void parseDateTime_validInput_dateTimeParsed() throws AthletiException {
         String validInput = "2021-09-01 06:00";
         LocalDateTime actual = Parser.parseDateTime(validInput);
-        LocalDateTime expected =
-                LocalDateTime.parse("2021-09-01 06:00", DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+        LocalDateTime expected = LocalDateTime.parse("2021-09-01 06:00", DATE_TIME_FORMATTER);
         assertEquals(actual, expected);
     }
 
@@ -463,6 +463,12 @@ class ParserTest {
     void parseDateTime_futureDateTime_throwAthletiException() {
         LocalDateTime futureDateTime = LocalDateTime.now().plusHours(1);
         assertThrows(AthletiException.class, () -> Parser.parseDateTime(futureDateTime.toString()));
+    }
+
+    @Test
+    void parseDateTime_invalidInputWithSecond_throwAthletiException() {
+        String invalidInput = "2021-09-01 06:00:00";
+        assertThrows(AthletiException.class, () -> Parser.parseDateTime(invalidInput));
     }
 
     @Test
