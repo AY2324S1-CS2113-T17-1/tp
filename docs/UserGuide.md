@@ -66,8 +66,8 @@ full activity insights.
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
 * DISTANCE: The distance of the activity in meters. It must be a positive number smaller than 1000000.
-* DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm 
-  and cannot be in the future.
+* DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm,
+  must be valid, and cannot be in the future.
 * ELEVATION: The elevation gain of a run or cycle in meters. It must be a positive number smaller than 10000.
 * STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
 
@@ -154,7 +154,7 @@ Specify the parameters you want to edit with the corresponding flags. At least o
 
 * INDEX: The index of the activity to be edited as shown in the displayed activity list - must be a positive number 
   which is not larger than the number of activities recorded. Note, that the indices are allocated based on the date of the activity.
-* See [adding activities](#adding-activities) for the other parameters.
+* See [adding activities](#-adding-activities) for the other parameters.
 
 **Examples:**
 
@@ -175,7 +175,8 @@ You can find all your activities on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the activity. It must follow the ISO Date Format: yyyy-MM-dd.
+* DATE: The date of the activity. It must follow the ISO Date Format: yyyy-MM-dd, must be valid and cannot be in 
+  the future.
 
 **Example:**
 
@@ -222,10 +223,8 @@ You can edit your set goals by specifying the sport, target, and period.
 
 **Parameters**
 
-* SPORT: The sport of the goal. Options: running, cycling, swimming, general.
-* TYPE: The metric for the goal. Options: distance, duration.
-* PERIOD: The period for the goal. Options: daily, weekly, monthly, yearly.
 * TARGET: The new target value. For distance (in meters), for duration (in minutes).
+* See [setting activity goals](#-setting-activity-goals) for the other parameters.
 
 **Examples**
 
@@ -266,9 +265,7 @@ You can delete your set goals by specifying the sport, target, and period.
 
 **Parameters**
 
-* SPORT: The sport of the goal. Options: running, cycling, swimming, general.
-* TYPE: The metric for the goal. Options: distance, duration.
-* PERIOD: The period for the goal. Options: daily, weekly, monthly, yearly.
+* See [setting activity goals](#-setting-activity-goals) for the parameters.
 
 **Examples**
 
@@ -305,7 +302,8 @@ You can record your diet by specifying calorie, protein, carbohydrate, and fat i
 * PROTEIN: Total protein (in milligrams) of the meal.
 * CARB: Total carbohydrates (in milligrams) of the meal.
 * FAT: Total fat (in milligrams) of the meal.
-* DATETIME: Date and time of the meal in ISO Date Time Format (yyyy-MM-dd HH:mm). It cannot be in the future.
+* DATETIME: Date and time of the meal in ISO Date Time Format (yyyy-MM-dd HH:mm). It must be valid and cannot be in the 
+  future.
 
 **Examples:**
 
@@ -328,13 +326,13 @@ You can modify existing diet entries by specifying the index of the diet you wis
 
 **Parameters:**
 
-- INDEX: Index of the diet entry (positive integer).
-- Parameters as in `add-diet`.
+* INDEX: Index of the diet entry (positive integer).
+* See [adding diets](#-adding-diets) for the other parameters.
 
 **Examples:**
 
-- `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` Edits the first diet entry.
-- `edit-diet 1 protein/215` Edits the first diet entry to have 215mg of protein.
+* `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` Edits the first diet entry.
+* `edit-diet 1 protein/215` Edits the first diet entry to have 215mg of protein.
 
 *Note: Find the index of your diet entry in the listing section.*
 
@@ -352,7 +350,7 @@ You can remove a diet entry from your records.
 
 **Parameters:**
 
-- INDEX: Index of the diet to be deleted (positive integer).
+* INDEX: Index of the diet to be deleted (positive integer).
 
 **Examples:**
 
@@ -391,7 +389,7 @@ You can locate diets recorded on a specific date.
 
 **Parameters:**
 
-* DATE: Date of the diet in ISO Date Format (yyyy-MM-dd). It cannot be in the future.
+* DATE: Date of the diet in ISO Date Format (yyyy-MM-dd). It must be valid and cannot be in the future.
 
 **Examples:**
 
@@ -537,13 +535,15 @@ You can record your sleep timings in AtheltiCLI by adding your sleep start and e
 
 **Parameters:**
 
-* START: The start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* START: The start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm, must be valid 
+  and cannot be in the future.
 
-* END: The end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* END: The end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm, must be valid and 
+  cannot be in the future.
 
 **Examples:**
 
-Take note that all sleep entries have an assosciated date. 
+Take note that all sleep entries have an associated date. 
 
 All sleep entries with a start time before 06:00 will be taken to represent the previous days sleep. 
 
@@ -603,8 +603,10 @@ You can modify existing sleep records in AtheltiCLI by specifying the sleep's in
 **Parameters:**
 
 * INDEX: The index of the sleep record you wish to edit. It must be a positive number and is not larger than the number of sleep records recorded.
-* START: The new start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
-* END: The new end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm.
+* START: The new start time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm, must be 
+  valid and cannot be in the future.
+* END: The new end time of the sleep. It must follow the ISO Date Time Format: yyyy-MM-dd HH:mm, must be valid and 
+  cannot be in the future.
 
 **Examples:**
 
@@ -628,7 +630,8 @@ You can find your sleep record on a specific date in AtheltiCLI.
 
 **Parameters:**
 
-* DATE: The date of the sleep. It must follow the ISO Date Format: yyyy-MM-dd and cannot be in the future.
+* DATE: The date of the sleep. It must follow the ISO Date Format: yyyy-MM-dd, must be valid and cannot be in the 
+  future.
 
 **Examples:**
 
@@ -698,7 +701,8 @@ You can find all your records, including activities, sleeps, and diets, on a spe
 
 **Parameters:**
 
-* `DATE`: The date of the records. It must follow the ISO Date Format `yyyy-MM-dd` and cannot be in the future.
+* `DATE`: The date of the records. It must follow the ISO Date Format `yyyy-MM-dd`, must be valid and cannot be in 
+  the future.
 
 **Example:**
 
