@@ -14,18 +14,20 @@ public class ListSleepCommand extends Command {
      * Lists all the sleep records in the sleep list.
      *
      * @param data The current data containing the sleep list.
-     * @return The message which will be shown to the user.
+     * @return The message array which will be shown to the user.
      */
     public String[] execute(Data data) {
         logger.info("Executing ListSleepCommand");
         SleepList sleeps = data.getSleeps();
         final int size = sleeps.size();
+
         if (size == 0) {
             logger.fine("Sleep list is empty");
             return new String[] {
                 Message.MESSAGE_SLEEP_LIST_EMPTY
             };
         }
+        
         return printList(sleeps, size);
     }
 
@@ -39,6 +41,7 @@ public class ListSleepCommand extends Command {
         logger.fine("Printing sleep list");
         logger.info("Sleep count: " + sleeps.size());
         logger.info("Sleep list: " + sleeps.toString());
+
         String[] output = new String[size+1];
         output[0] = Message.MESSAGE_SLEEP_LIST;
         for (int i = 0; i < size; i++) {
