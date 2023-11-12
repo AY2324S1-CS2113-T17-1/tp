@@ -42,6 +42,9 @@ public class HelpCommand extends Command {
         Message.HELP_DELETE_SLEEP,
         Message.HELP_EDIT_SLEEP,
         Message.HELP_FIND_SLEEP,
+        Message.HELP_SET_SLEEP_GOAL,
+        Message.HELP_EDIT_SLEEP_GOAL,
+        Message.HELP_LIST_SLEEP_GOAL,
         /* Misc */
         "\nMisc:",
         Message.HELP_FIND,
