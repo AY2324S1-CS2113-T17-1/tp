@@ -160,7 +160,8 @@ public class DietGoalList extends StorableList<DietGoal> {
         return dietGoal;
     }
 
-    private static void verifyParseParameters(String dietGoalNutrientString, int dietGoalTimeSpanValue) throws AthletiException {
+    private static void verifyParseParameters(String dietGoalNutrientString, int dietGoalTimeSpanValue)
+            throws AthletiException {
         if (!NutrientVerifier.verify(dietGoalNutrientString)) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_NUTRIENT);
         }

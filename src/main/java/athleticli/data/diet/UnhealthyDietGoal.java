@@ -8,11 +8,11 @@ import athleticli.data.Data;
 public class UnhealthyDietGoal extends DietGoal {
 
     public static final String TYPE = "unhealthy";
-    private final boolean isHealthy;
     protected final String achievedSymbol;
     protected final String unachievedSymbol;
     protected final String unhealthyDietGoalSymbol;
     protected final String unhealthyDietGoalStringRepresentation;
+    private final boolean isHealthy;
 
     /**
      * Constructs a diet goal with no current value.
