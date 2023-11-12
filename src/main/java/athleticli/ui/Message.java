@@ -1,7 +1,6 @@
 package athleticli.ui;
 
 import athleticli.parser.CommandName;
-import athleticli.common.Config;
 
 public class Message {
     public static final String PROMPT = "> ";
@@ -34,14 +33,24 @@ public class Message {
             "no fat was consumed.";
     public static final String MESSAGE_DIET_DATETIME_MISSING =
             "Please specify the datetime of the diet using \"datetime/\"!";
-    public static final String MESSAGE_CALORIE_OVERFLOW =
-            "The calories consumed cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+    public static final String MESSAGE_CALORIES_ARG_DUPLICATE =
+            "Please do not specify the calories burned more than once!";
+    public static final String MESSAGE_PROTEIN_ARG_DUPLICATE =
+            "Please do not specify the protein intake more than once!";
+    public static final String MESSAGE_CARB_ARG_DUPLICATE =
+            "Please do not specify the carbohydrate intake more than once!";
+    public static final String MESSAGE_FAT_ARG_DUPLICATE =
+            "Please do not specify the fat intake more than once!";
+    public static final String MESSAGE_DIET_ARG_DATETIME_DUPLICATE =
+            "Please do not specify the datetime of the diet more than once!";
+    public static final String MESSAGE_CALORIES_OVERFLOW =
+            "The calories consumed cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_PROTEIN_OVERFLOW =
-            "The protein intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The protein intake cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_CARB_OVERFLOW =
-            "The carbohydrate intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The carbohydrate intake cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_FAT_OVERFLOW =
-            "The fat intake cannot be larger than " + Config.MAX_INPUT_NUMBER_ALLOWED + "!";
+            "The fat intake cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_CAPTION_EMPTY = "The caption of an activity cannot be empty!";
     public static final String MESSAGE_DURATION_EMPTY = "The duration of an activity cannot be empty!";
     public static final String MESSAGE_DISTANCE_EMPTY = "The distance of an activity cannot be empty!";
@@ -65,9 +74,9 @@ public class Message {
     public static final String MESSAGE_TARGET_TOO_LARGE =
             "The target value of an activity goal cannot be larger than " + Integer.MAX_VALUE + "!";
     public static final String MESSAGE_DATETIME_INVALID =
-            "The datetime must be in the format \"yyyy-MM-dd HH:mm\"!";
+            "The datetime must be valid and in the format \"yyyy-MM-dd HH:mm\"!";
     public static final String MESSAGE_DATE_INVALID =
-            "The date must be in the format \"yyyy-MM-dd\"!";
+            "The date must be valid and in the format \"yyyy-MM-dd\"!";
     public static final String MESSAGE_CALORIES_INVALID =
             "The calories burned must be a non-negative integer!";
     public static final String MESSAGE_SPORT_INVALID = "The sport of an activity must be one of the following: " +
@@ -238,10 +247,17 @@ public class Message {
             "[elevation/ELEVATION]";
     public static final String HELP_FIND_ACTIVITY = CommandName.COMMAND_ACTIVITY_FIND
             + " DATE";
+    public static final String HELP_SET_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_SET
+            + " sport/SPORT type/TYPE period/PERIOD target/TARGET";
+    public static final String HELP_EDIT_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_EDIT
+            + " sport/SPORT type/TYPE period/PERIOD target/TARGET";
+    public static final String HELP_LIST_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_LIST;
+    public static final String HELP_DELETE_ACTIVITY_GOAL = CommandName.COMMAND_ACTIVITY_GOAL_DELETE
+            + " sport/SPORT type/TYPE period/PERIOD";
     public static final String HELP_ADD_DIET = CommandName.COMMAND_DIET_ADD
             + " calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
     public static final String HELP_EDIT_DIET = CommandName.COMMAND_DIET_EDIT
-            + " INDEX calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME";
+            + " INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]";
     public static final String HELP_DELETE_DIET = CommandName.COMMAND_DIET_DELETE
             + " INDEX";
     public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;
@@ -281,6 +297,6 @@ public class Message {
             "sport, type and period! Please edit the existing goal instead.";
     public static final String MESSAGE_ACTIVITY_TYPE_MISMATCH = "The edit command does not match the type of " +
             "the activity you are trying to edit!";
-    public static final String MESSAGE_DATE_FUTURE = "I like your optimism, but you cannot track activities in the " +
-            "future!";
+    public static final String MESSAGE_DATE_FUTURE =
+            "I like your optimism, but you cannot track events in the future!";
 }

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 import athleticli.exceptions.AthletiException;
 
-import static athleticli.common.Config.DATE_TIME_FORMATTER;
+import static athleticli.common.Config.DATE_TIME_PRETTY_FORMATTER;
 import static athleticli.common.Config.DATE_FORMATTER;
 
 /**
@@ -114,11 +114,11 @@ public class Sleep {
     }
 
     public String generateStartDateTimeStringOutput() {
-        return "Start Time: " + startDateTime.format(DATE_TIME_FORMATTER);
+        return "Start Time: " + startDateTime.format(DATE_TIME_PRETTY_FORMATTER);
     }
 
     public String generateEndDateTimeStringOutput() {
-        return "End Time: " + endDateTime.format(DATE_TIME_FORMATTER);
+        return "End Time: " + endDateTime.format(DATE_TIME_PRETTY_FORMATTER);
     }
 
     public String generateSleepDateStringOutput() {

@@ -80,7 +80,8 @@ public class DietTest {
     @Test
     void toString_initializeCommonArgs_expectArgs() {
         String expected =
-                "Calories: 10000 Protein: 20000 Carb: 30000 Fat: 40000 Date: October 10, 2020 at 10:10 AM";
+                "Calories: 10000 cal | Protein: 20000 mg | Carb: 30000 mg | Fat: 40000 mg | October " +
+                        "10, 2020 at 10:10 AM";
         assertEquals(expected, diet.toString());
     }
 }

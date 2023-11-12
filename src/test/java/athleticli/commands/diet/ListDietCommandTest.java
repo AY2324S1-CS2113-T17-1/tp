@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 /**
  * Tests the list diet commands provided by the user.
@@ -32,11 +32,9 @@ public class ListDietCommandTest {
 
     @Test
     void execute() {
-        String[] expected = {"Here are the diets in your list:", "1. " + diet.toString(),
+        String[] expected = {"Here are the diets in your list:", "\t1. " + diet.toString(),
                              "Now you have tracked a total of 1 diets. Keep grinding!"};
         String[] actual = listDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 }

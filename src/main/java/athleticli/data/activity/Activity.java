@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Locale;
 
-import static athleticli.common.Config.DATE_TIME_FORMATTER;
+import static athleticli.common.Config.DATE_TIME_PRETTY_FORMATTER;
 import static athleticli.common.Config.TIME_FORMATTER;
 import static athleticli.parser.Parameter.ACTIVITY_INDICATOR;
 import static athleticli.parser.Parameter.ACTIVITY_OVERVIEW_SEPARATOR;
@@ -131,7 +131,7 @@ public class Activity {
      * @return a string representation of the start date and time.
      */
     public String generateStartDateTimeStringOutput() {
-        return startDateTime.format(DATE_TIME_FORMATTER);
+        return startDateTime.format(DATE_TIME_PRETTY_FORMATTER);
     }
 
     /**
