@@ -187,6 +187,8 @@ public class Message {
             "Please specify both the start and end time of your sleep.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_START_END_NON_CHRONOLOGICAL =
             "Please specify the start time of your sleep chronologically before the end time.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_START_END_ORDER =
+            "Please specify the /start before /end.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_DATETIME =
             "Please specify the start and end time of your sleep in the format \"yyyy-MM-dd HH:mm\".";
 
@@ -197,8 +199,8 @@ public class Message {
 
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";
-    public static final String ERRORMESSAGE_PARSER_SLEEP_MISSING_PARAMETERS =
-            "Please specify the start and end time of your sleep.";
+    public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS_ORDER =
+            "Please specify the type, period and target value of your sleep goal in the correct order.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TYPE =
             "Please specify the type of your sleep goal as \"duration\".";
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PERIOD =

@@ -28,6 +28,10 @@ public class SleepParser {
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME);
         }
 
+        if (startDatetimeIndex > endDatetimeIndex) {
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_INVALID_START_END_ORDER);
+        }
+
         final String startDatetimeStr =
                 commandArgs.substring(startDatetimeIndex + Parameter.START_TIME_SEPARATOR.length(), endDatetimeIndex)
                         .trim();
@@ -100,7 +104,7 @@ public class SleepParser {
         }
 
         if (goalTypeIndex > periodIndex || periodIndex > targetValueIndex) {
-            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS);
+            throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_PARAMETERS_ORDER);
         }
 
         final String type = commandArgs.substring(goalTypeIndex + Parameter.TYPE_SEPARATOR.length(), periodIndex)
