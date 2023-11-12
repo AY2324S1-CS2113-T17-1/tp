@@ -106,8 +106,8 @@ public class Message {
     public static final String MESSAGE_ACTIVITY_COUNT =
             "You have tracked a total of %d activities. Keep pushing!";
     public static final String MESSAGE_ACTIVITY_LIST = "These are the activities you have tracked so far:";
-    public static final String MESSAGE_ACTIVITY_EDIT_INVALID = "Oops, the format of the edit command is wrong! Please" +
-            " provide the index and the updated entry!";
+    public static final String MESSAGE_ACTIVITY_EDIT_INVALID = "The format of the edit command is wrong! Please" +
+            " provide the index and the updated parameters!";
     public static final String MESSAGE_ACTIVITY_UPDATED = "Ok, I've updated this activity:";
     public static final String MESSAGE_DIET_COUNT =
             "Now you have tracked a total of %d diets. Keep grinding!";
