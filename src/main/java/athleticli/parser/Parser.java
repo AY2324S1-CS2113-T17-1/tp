@@ -72,7 +72,7 @@ public class Parser {
      *
      * @param rawUserInput The raw user input.
      * @return An object representing the command.
-     * @throws AthletiException
+     * @throws AthletiException If the command is invalid
      */
     public static Command parseCommand(String rawUserInput) throws AthletiException {
         assert rawUserInput != null : "`rawUserInput` should not be null";
@@ -188,6 +188,9 @@ public class Parser {
         LocalDateTime datetimeParsed;
         try {
             datetimeParsed = LocalDateTime.parse(datetime.replace(" ", "T"));
+            if (datetimeParsed.isAfter(LocalDateTime.now())) {
+                throw new AthletiException(Message.MESSAGE_DATE_FUTURE);
+            }
         } catch (DateTimeParseException e) {
             throw new AthletiException(Message.MESSAGE_DATETIME_INVALID);
         }
