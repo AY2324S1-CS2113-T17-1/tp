@@ -6,6 +6,9 @@ import athleticli.data.Goal;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
+/**
+ * Represents a sleep goal.
+ */
 public class SleepGoal extends Goal {
 
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm",
