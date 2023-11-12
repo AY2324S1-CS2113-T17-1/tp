@@ -27,6 +27,7 @@ public class ListSleepGoalCommand extends Command {
      */
     @Override
     public String[] execute(Data data) {
+        logger.info("Listing sleep goals");
         SleepGoalList sleepGoals = data.getSleepGoals();
         int size = sleepGoals.size();
         String[] output = new String[size + 1];
@@ -34,6 +35,7 @@ public class ListSleepGoalCommand extends Command {
         for (int i = 0; i < sleepGoals.size(); i++) {
             output[i + 1] = (i + 1) + ". " + sleepGoals.get(i).toString(data);
         }
+        logger.info("Found " + size + " sleep goals");
         return output;
     }
 }

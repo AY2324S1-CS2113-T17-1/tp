@@ -39,6 +39,9 @@ public class FindSleepCommand extends FindCommand {
                 .filter(Sleep.class::isInstance)
                 .map(Sleep.class::cast)
                 .map(Sleep::toString);
+        
+        logger.info("Found " + resultStream.count() + " sleep entries");
+        
         return Stream.concat(Stream.of(Message.MESSAGE_SLEEP_FIND), resultStream)
                 .toArray(String[]::new);
     }

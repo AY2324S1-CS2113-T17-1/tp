@@ -35,6 +35,7 @@ public class EditSleepGoalCommand extends Command {
     public String[] execute(Data data) throws athleticli.exceptions.AthletiException {
         logger.info("Editing sleep goal with goal type " + this.sleepGoal.getGoalType() + " and time span " +
                 this.sleepGoal.getTimeSpan());
+        
         SleepGoalList sleepGoals = data.getSleepGoals();
         for (SleepGoal goal : sleepGoals) {
             if (goal.getGoalType() == this.sleepGoal.getGoalType() &&
@@ -44,7 +45,9 @@ public class EditSleepGoalCommand extends Command {
                 return new String[]{Message.MESSAGE_SLEEP_GOAL_EDITED, this.sleepGoal.toString(data)};
             }
         }
+
         logger.warning("No such goal exists");
+        
         throw new AthletiException(Message.MESSAGE_NO_SUCH_GOAL_EXISTS);
     }
 }
