@@ -23,8 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class DietParserTest {
     //@@author  nihalzp
-
-
     @Test
     void checkEmptyDietArguments_emptyCalories_throwAthletiException() {
         String emptyCalories = "";
