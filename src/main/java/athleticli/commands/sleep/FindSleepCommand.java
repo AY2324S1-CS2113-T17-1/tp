@@ -3,7 +3,6 @@ package athleticli.commands.sleep;
 import java.time.LocalDate;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
-import java.util.logging.Logger;
 
 import athleticli.commands.FindCommand;
 import athleticli.data.Data;
