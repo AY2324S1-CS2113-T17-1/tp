@@ -14,6 +14,27 @@ title: Developer Guide
 2. [PlantUML for sequence diagrams](https://plantuml.com/)
 
 ---
+## Setting Up and Getting Started
+
+First, fork this repo, and clone the fork into your computer.
+
+If you plan to use Intellij IDEA (highly recommended):
+
+1. Configure the JDK: Follow the guide [se-edu/guides IDEA: Configuring the JDK](https://se-education.org/guides/tutorials/intellijJdk.html)  
+to ensure Intellij is configured to use JDK 11.
+2. Import the project as a Gradle project: Follow the guide
+[se-edu/guides IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
+to import the project into IDEA.
+:exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
+3. Verify the setup:
+   * Run AthletiCLI and try a few commands.
+   * Run the tests to ensure they all pass.
+
+[//]: # (What is the exact command to run the main?)
+
+
+
+---
 ## Design
 
 This section provides a high-level explanation of the design and implementation of AthletiCLI, 
@@ -128,7 +149,7 @@ temporary list into the data instance of DietGoalList which will be kept for rec
 **Step 8:** After executing the SetDietGoalCommand, SetDietGoalCommand returns a message that is passed to 
 AthletiCLI to be passed to UI(not shown) for display.
 
-#### [Proposed] Implementation of DietGoalList Class
+#### [Proposed] Future Implementation of DietGoalList Class
 
 The current implementation of DietGoalList is an ArrayList.
 It helps to store diet goals, however it is not efficient in searching for a particular dietGoal.
