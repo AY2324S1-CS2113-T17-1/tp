@@ -180,7 +180,9 @@ public class Message {
             "The index of the sleep record you want to edit is out of bounds.";
     public static final String ERRORMESSAGE_SLEEP_DELETE_INDEX_OOBE =
             "The index of the sleep record you want to delete is out of bounds.";
-
+    public static final String ERRORMESSAGE_DUPLICATE_SLEEP_GOAL =
+            "You already have a goal for this type and period! Please edit the existing goal instead.";
+    
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_START_END_DATETIME =
             "Please specify both the start and end time of your sleep.";
     public static final String ERRORMESSAGE_PARSER_SLEEP_START_END_NON_CHRONOLOGICAL =

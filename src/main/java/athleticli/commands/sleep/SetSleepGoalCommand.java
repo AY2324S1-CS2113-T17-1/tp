@@ -27,6 +27,11 @@ public class SetSleepGoalCommand extends Command {
      */
     public String[] execute(Data data) {
         SleepGoalList sleepGoals = data.getSleepGoals();
+
+        if (sleepGoals.isDuplicate(sleepGoal.getGoalType(), sleepGoal.getTimeSpan())) {
+            return new String[]{Message.ERRORMESSAGE_DUPLICATE_SLEEP_GOAL};
+        }
+
         sleepGoals.add(this.sleepGoal);
         return new String[]{Message.MESSAGE_SLEEP_GOAL_ADDED, this.sleepGoal.toString(data)};
     }
