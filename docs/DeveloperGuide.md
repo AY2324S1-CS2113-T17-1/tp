@@ -345,3 +345,75 @@ and provide feedback to the users.
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+**Note**: This section serves to provide a quick start for manual testing on AthletiCLI. This list is not exhaustive.
+Developers are expected to conduct more extensive tests.
+
+### Initial Launch
+
+* ✅ Download the latest AthletiCLI from the official repository.
+* ✅ Copy the downloaded file to a folder you want to designate as the home for AthletiCLI.
+* ✅ Open a command terminal, cd into the folder where you copied the file, and run `java -jar AthletiCLI.jar`.
+
+### Activity Management
+
+#### Activity Records
+
+#### Activity Goals
+
+### Diet Management
+
+#### Diet Records
+
+#### Diet Goals
+
+1. Setting diet goals
+   * Prerequisite: There are no similar goals present
+   * Test case 1:
+     * There are no diet goals constructed.
+     * `set-diet-goal DAILY calories/500` creates a daily healthy calories goal with a target value of 500
+   * Test case 2:
+     * There are no diet goals constructed.
+     * `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly healthy nutrient goals: calories and fats.
+   * Test case 3:
+     * There is a daily healthy calories goal present.
+     * `set-diet-goal DAILY calories/500` will result in an error since the goal is already present.
+   * Test case 4:
+     * There is a daily healthy calories goal present.
+     * `set-diet-goal DAILY unhealthy calories/500` will result in an error as a nutrient goal cannot be healthy 
+     and unhealthy at the same time.
+   * Test case 5:
+     * There is a daily healthy calories goal present with a target value of 1000
+     * `set-diet-goal WEEKLY healthy calories/500` will result in an error since the value of the daily diet goal 
+     is greater than the value of weekly diet goal.
+2. Listing diet goals
+   * Test case 1:
+     * 'list-diet-goal' lists all the diet goals that are created and present in the diet goal records.
+3. Deleting diet goals
+   * Test case 1:
+     * There is one diet goal present in the diet goal records.
+     * `delete-diet-goal 1` removes the goal from the diet goal records.
+   * Test case 2:
+     * 'delete-diet-goal' without any index to delete the goal or non-positive integers provided 
+     or the value is greater than the number of diet goals present in the diet goal records, error will be thrown.
+4. Editing diet goals
+   * This is similar to setting diet goal, but the goal is required to be in the diet goals record first.
+   * Users are only allowed to edit the target value of the goal. There is no edit supported to edit diet goal 
+   types or diet goal time span.
+   * Test case 1:
+     * No goals present in the records.
+     * `edit-diet-goal WEEKLY calories/5000` will return an error since there are no associated goals to 
+     make an edit to the goal's target value.
+   * Test case 2: 
+     * Weekly healthy calories goal is present with a target value of 20.
+     * `edit-diet-goal WEEKLY calories/5000` will update the target value of weekly healthy calories goal to 5000.
+   * Similar to setting diet goals, the weekly goal values should always be greater than the daily goal values.
+### Sleep Management
+
+#### Sleep Records
+
+#### Sleep Goals
+
+### Exiting Program
+
+### Data Storage
