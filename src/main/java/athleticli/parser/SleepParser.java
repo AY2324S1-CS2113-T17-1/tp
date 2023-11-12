@@ -99,10 +99,6 @@ public class SleepParser {
         switch (type) {
         case "duration":
             return SleepGoal.GoalType.DURATION;
-        case "starttime":
-            return SleepGoal.GoalType.STARTTIME;
-        case "endtime":
-            return SleepGoal.GoalType.ENDTIME;
         default:
             throw new AthletiException(Message.ERRORMESSAGE_PARSER_SLEEP_GOAL_INVALID_TYPE);
         }
