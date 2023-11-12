@@ -1,6 +1,7 @@
 package athleticli.data.diet;
 
 import java.time.LocalDateTime;
+
 import static athleticli.common.Config.DATE_TIME_FORMATTER;
 
 /**
@@ -136,7 +137,7 @@ public class Diet {
 
     @Override
     public String toString() {
-        return "Calories: " + calories + " Protein: " + protein + " Carb: " + carb + " Fat: " + fat +
-                       " Date: " + dateTime.format(DATE_TIME_FORMATTER);
+        return "Calories: " + calories + " cal | Protein: " + protein + " mg | Carb: " + carb + " mg | Fat:" +
+                       " " + fat + " mg | " + dateTime.format(DATE_TIME_FORMATTER);
     }
 }
