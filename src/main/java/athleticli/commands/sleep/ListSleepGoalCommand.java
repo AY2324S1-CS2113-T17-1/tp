@@ -5,10 +5,14 @@ import athleticli.data.Data;
 import athleticli.data.sleep.SleepGoalList;
 import athleticli.ui.Message;
 
+import java.util.logging.Logger;
+
 /**
  * Represents a command which lists all the sleep goals.
  */
 public class ListSleepGoalCommand extends Command {
+    private static final Logger logger = Logger.getLogger(ListSleepGoalCommand.class.getName());
+
     /**
      * Constructor for ListSleepCommand.
      */
@@ -21,6 +25,7 @@ public class ListSleepGoalCommand extends Command {
      * @param data The current data containing the sleep goal list.
      * @return The message containing listing of sleep goals which will be shown to the user.
      */
+    @Override
     public String[] execute(Data data) {
         SleepGoalList sleepGoals = data.getSleepGoals();
         int size = sleepGoals.size();

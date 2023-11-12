@@ -11,8 +11,8 @@ import athleticli.ui.Message;
  * Represents a command which adds a sleep entry.
  */
 public class AddSleepCommand extends Command {
-    private final Sleep sleep;
     private final Logger logger = Logger.getLogger(AddSleepCommand.class.getName());
+    private final Sleep sleep;
 
     /**
      * Constructor for AddSleepCommand.

@@ -25,6 +25,7 @@ public class SetSleepGoalCommand extends Command {
      * @param data        The current data containing the sleep goal list.
      * @return            The message which will be shown to the user.
      */
+    @Override
     public String[] execute(Data data) {
         SleepGoalList sleepGoals = data.getSleepGoals();
 

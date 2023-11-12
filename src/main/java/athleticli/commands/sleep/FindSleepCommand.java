@@ -1,7 +1,9 @@
 package athleticli.commands.sleep;
 
 import java.time.LocalDate;
+import java.util.logging.Logger;
 import java.util.stream.Stream;
+import java.util.logging.Logger;
 
 import athleticli.commands.FindCommand;
 import athleticli.data.Data;
@@ -13,6 +15,12 @@ import athleticli.ui.Message;
  * Represents a command which finds a sleep entry.
  */
 public class FindSleepCommand extends FindCommand {
+    private final Logger logger = Logger.getLogger(FindSleepCommand.class.getName());
+    
+    /**
+     * Constructor for FindSleepCommand.
+     * @param date
+     */
     public FindSleepCommand(LocalDate date) {
         super(date);
     }

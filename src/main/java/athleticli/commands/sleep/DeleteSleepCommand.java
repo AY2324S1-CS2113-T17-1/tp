@@ -13,8 +13,8 @@ import athleticli.ui.Message;
  *  Represents a command which deletes a sleep entry.
  */
 public class DeleteSleepCommand extends Command {
+    private final Logger logger = Logger.getLogger(DeleteSleepCommand.class.getName());    
     private final int index;
-    private final Logger logger = Logger.getLogger(DeleteSleepCommand.class.getName());
 
     /**
      * Constructor for DeleteSleepCommand.

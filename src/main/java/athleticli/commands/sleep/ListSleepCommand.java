@@ -19,6 +19,7 @@ public class ListSleepCommand extends Command {
      * @param data The current data containing the sleep list.
      * @return The message array which will be shown to the user.
      */
+    @Override
     public String[] execute(Data data) {
         logger.info("Executing ListSleepCommand");
         SleepList sleeps = data.getSleeps();
