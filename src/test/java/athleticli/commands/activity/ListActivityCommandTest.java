@@ -12,6 +12,9 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests the ListActivityCommand class.
+ */
 class ListActivityCommandTest {
     private static final String CAPTION = "Night Run";
     private static final LocalTime DURATION = LocalTime.of(1, 24);
@@ -19,6 +22,9 @@ class ListActivityCommandTest {
     private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 10, 23, 21);
     private Data data;
 
+    /**
+     * Sets up the sample data for each test.
+     */
     @BeforeEach
     void setUp() {
         Activity activity = new Activity(CAPTION, DURATION, DISTANCE, DATE);
@@ -29,6 +35,9 @@ class ListActivityCommandTest {
         addActivityCommand.execute(data);
     }
 
+    /**
+     * Tests the execution method of the ListActivityCommand class. It should print a short list of activities.
+     */
     @Test
     void execute_detailedFalse_printsShortList() {
         ListActivityCommand listActivityCommand = new ListActivityCommand(false);
@@ -41,6 +50,9 @@ class ListActivityCommandTest {
         }
     }
 
+    /**
+     * Tests the execution method of the ListActivityCommand class. It should print a detailed list of activities.
+     */
     @Test
     void execute_detailedTrue_printsDetailedList() {
         ListActivityCommand listActivityCommand = new ListActivityCommand(true);
@@ -52,6 +64,9 @@ class ListActivityCommandTest {
         }
     }
 
+    /**
+     * Tests the printList method. It should print a short list of activities.
+     */
     @Test
     void printList_validInput() {
         ActivityList activities = data.getActivities();
@@ -65,6 +80,9 @@ class ListActivityCommandTest {
         }
     }
 
+    /**
+     * Tests the printDetailedList method. It should print a detailed list of activities.
+     */
     @Test
     void printDetailedList() {
         ActivityList activities = data.getActivities();

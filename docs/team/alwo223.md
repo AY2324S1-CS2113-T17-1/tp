@@ -1,64 +1,80 @@
-# Alexander Wolters Project Portfolio Page
+---
+layout: page
+title: Alexander Wolters’ Project Portfolio Page
+---
 
-# Project: AthletiCLI
+## Project: AthletiCLI
 
-## Overview
-**AthletiCLI** is an application used to track, analyse, and optimize the users athletic performance.
-It is designed for committed athletes who not only keep track of their physical activities but also dietary habits,
-sleep metrics, and more. The user interacts with it using a CLI. It is written in Java, and has about 10 kLoC.
+**AthletiCLI** is a Java-based application designed for dedicated athletes to track, analyse, and optimize their athletic 
+performance. This tool not only monitors physical activities but also dietary habits,
+sleep metrics, and more. The user interacts through a user-friendly CLI. The project comprises about 10 kLoC.
 
-## Summary of Contributions
-Given below are my contributions to the project.
-
-### New Feature: Added the ability to add and delete activities
-* What it does: Allows the user to add activities to the application with a variety of parameters. The user can also
-  delete added activities.
-* Justification: This feature is the core of the activity management as it allows the user to track their athletic 
-  performance and progress. It is also the basis for other features like the activity goal tracking.
-* Highlights: It was challenging to find an elegant and efficient implementation which keeps code redundancy to a 
-  minimum, as it had to combine three different object types with some similar but also unique parameters. This was 
-  achieved by using inheritance, generic parser functions and extensive refactoring which involved in-depth analysis.
-
-### New Feature: Added command to list all activities 
-* What it does: Allows the user to list all tracked activities in two different ways: either as a quick overview or 
-  with all details.
-* Justification: This feature allows the user to compare their performance and analyse their progress over time.
-* Highlights: The implementation included a sorting mechanism by date and time, which had to be applied during any 
-  data modifying operations.
-
-### New Feature: Added command to effortlessly edit activities
-* What it does: Allows the user to edit any parameter of an activity. 
-... (optinal parameters)
-
-### New Feature: Implemented a goal tracking mechanism for activities
-... (incl finding by date and timespan)
-
-### New Feature: Implemented storing capabilities for activities and activity goals
-* What it does: automatically stores all activities and activity goals in a file and loads them on startup of the 
-  application.
-* Justification: This feature improves the product significantly by allowing the user to close the application and 
-  reopen it without losing any data. This is especially important as the application is designed to track the 
-  progress over a longer period of time.
-* ...
+Below are my key contributions to the project.
 
 ### Code Contributed
-[RepoSense Link](https://nus-cs2113-ay2324s1.github.io/tp-dashboard/?search=alwo223&breakdown=true)
+
+View my code contributions on [RepoSense](https://nus-cs2113-ay2324s1.github.io/tp-dashboard/?search=alwo223&breakdown=true).
+
+### New Features
+  * **Added the ability to add, list and delete activities**
+    * Purpose: This feature is the core of activity management as it enables users to track their athletic 
+      performance and progress. It laid the groundwork for subsequent features like activity goal tracking.
+    * Highlights: Implementing an elegant, efficient and unified solution for the different activity types with 
+      unique parameters and commands was a complex challenge. This was achieved by leveraging inheritance, generic 
+      parser functions and extensive refactoring leading to a modular and efficient design. Therefore, this approach involved in-depth analysis and planning.
+  * **Added command to list all activities**
+    * Purpose: This feature allows users to view their activities chronologically and in different levels of detail, 
+      aiding in performance analysis and progress tracking.
+    * Highlights: The implementation included a sorting mechanism by date and time and ensured data consistency 
+      during any data modifying operations. 
+  * **Added command to effortlessly edit activities**
+    * Purpose: This feature is essential for the user to correct mistakes or update their activities without 
+      replacing the whole activity, thus enhancing the user experience.
+    * Highlights: Similar to the add command, this feature required a modular implementation approach to handle the 
+      different activity and to effectively reuse existing parser functions.
+  * **Implemented parsing and unparsing functionality for activity (goal) storing**
+    * Purpose: This features allows to store all activities and activity goals in a file and parse them on startup 
+      of the application. This feature improves the product significantly by allowing the user to close the application
+      and reopen it without losing any data.
+    * Highlights: The approach was developed in collaboration with @nihalzp. The storing functionality of other 
+      tracking components like sleep were based on this implementation. It involved some analysis of the existing code 
+      to efficiently reuse existing parser functions.
+  * **Implemented goal tracking mechanism and find feature for activities**
+    * Purpose: empowers users to set and monitor goal for different periods, sports and metrics. It is essential for the user to plan their training and to push themselves to improve. 
+      This also comes with the ability to find activities by date.
+    * Highlights: The implementation was adopted for other goal tracking mechanism like sleep and diet.
+
+### Review / Mentoring
+* [Reviewed PRs](https://github.com/AY2324S1-CS2113-T17-1/tp/issues?q=reviewed-by%3Aalwo223+) (examples: 
+[#288](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/288), 
+[#280](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/280),
+[#95](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/95),
+[#21](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/21))
+* [Issues reported / discussed](https://github.com/AY2324S1-CS2113-T17-1/tp/issues?q=author%3Aalwo223+type%3Aissue)
+* [Discussions in forum](https://github.com/AY2324S1-CS2113-T17-1/tp/discussions/110)
 
 ### Project Management
-...
+* Set up the GitHub repository and team organization for the project.
+* Maintained issue tracker, including generating suitable labels.
+* Responsible for ensuring proper testing of the implemented features.
+* Managed final release v2.1
+* Strictly following deadlines, git conventions and forking workflow.
 
 ### Documentation
 * User Guide:
-    * Added documentation for the features `add-activity`, `add-run`, `add-swim`, `add-cycle`, `delete-activity`,
-      `list-activity`, `edit-activity`, `set-activity-goal`
-    * ...
+  * Added documentation for the features `add-activity`, `add-run`, `add-swim`, `add-cycle`, `delete-activity`,
+    `list-activity`, `edit-activity`, `edit-run`, `edit-cycle`, `edit-swim`, `set-activity-goal`: [Activity 
+    Management](../UserGuide.html#activity-management)
+  * Improved overall visual appearance of the document: [#253](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/253)
 * Developer Guide:
-    * Explained implementation details of the `add-activity` feature as well as the `set-activity-goal` and tracking 
-      functionality
-      [#139](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/139) [#113](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/113)
-    * ...
+  * Explained all implementation details in DG related to Activity Management, including `add-activity` and 
+    `set-activity-goal` features, find by timespan, goal tracking mechanism, detailed parsing process, modular 
+    implementation approach and justification: [Activity Management](../DeveloperGuide.html#activity-management)
+  * Created UML diagrams: [Activity Inheritance](../images/ActivityInheritance.svg), 
+  [Activity Goal Evaluation](../images/ActivityGoalEvaluation.svg), 
+  [Activity Object Diagram](../images/ActivityObjectDiagram.svg), [Activity Parsing](../images/ActivityParsing.svg),
+  [add-activity](../images/AddActivity.svg), [set-activity-goal](../images/AddActivityGoal.svg)
 
 ### Community
-* PRs reviewed (with non-trivial review comments): [#139](https://github.com/nus-cs2113-AY2324S1/tp/pull/8#pullrequestreview-1709775159)
-* Reported bugs and suggestions for other teams in the class (examples: [#139](https://github.com/nus-cs2113-AY2324S1/tp/pull/8#pullrequestreview-1709775159), [#113](https://github.com/AY2324S1-CS2113-W12-3/tp/issues/113), [#110](https://github.com/AY2324S1-CS2113-W12-3/tp/issues/110),
-  [#96](https://github.com/AY2324S1-CS2113-W12-3/tp/issues/96), [#94](https://github.com/AY2324S1-CS2113-W12-3/tp/issues/94))
+* PRs reviewed (with non-trivial review comments): [#139](https://github.com/nus-cs2113-AY2324S1/tp/pull/8#pullrequestreview-1709775159), [tp comments dashboard](https://nus-cs2113-ay2324s1.github.io/dashboards/contents/tp-comments.html)
+* Reported bugs and suggestions for other teams in the class: [#139](https://github.com/nus-cs2113-AY2324S1/tp/pull/8#pullrequestreview-1709775159), [Issues created](https://github.com/AY2324S1-CS2113-W12-3/tp/issues?q=%22%5BPE-D%5D%5BTester+A%5D%22)

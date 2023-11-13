@@ -65,7 +65,7 @@ full activity insights.
 
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
-* DISTANCE: The distance of the activity in meters. It must be a positive number smaller than 1000000.
+* DISTANCE: The distance of the activity in meters. It must be a non-negative number smaller than 1000000.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm,
   must be valid, and cannot be in the future.
 * ELEVATION: The elevation gain of a run or cycle in meters. It must be a positive number smaller than 10000.
@@ -201,7 +201,8 @@ your daily, weekly, monthly, or yearly progress.
 * TYPE: The metric for the goal. Options: distance, duration.
 * PERIOD: The period for the goal. Options: daily, weekly, monthly, yearly. Only activities that are recorded within
   the period will be counted towards the goal.
-* TARGET: The target value. It must be a positive number. For distance, in meters. For duration, in minutes.
+* TARGET: The target value. It must be a non-negative number smaller than 2^31-1. For distance, in meters. For 
+  duration, in minutes.
 
 **Examples**
 
