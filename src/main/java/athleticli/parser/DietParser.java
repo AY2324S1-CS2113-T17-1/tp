@@ -71,20 +71,25 @@ public class DietParser {
     }
 
     private static ArrayList<DietGoal> createNewDietGoals(int nutrientStartingIndex, String[] commandArgs,
-            boolean isHealthy, Goal.TimeSpan timespan) throws AthletiException {
+        boolean isHealthy, Goal.TimeSpan timespan) throws AthletiException {
 
         ArrayList<DietGoal> dietGoals = new ArrayList<>();
         Set<String> recordedNutrients = new HashSet<>();
 
         String nutrient;
         String[] nutrientAndTargetValue;
+        String targetValueString;
         int targetValue;
 
         for (int i = nutrientStartingIndex; i < commandArgs.length; i++) {
 
             nutrientAndTargetValue = commandArgs[i].split(Parameter.DIET_GOAL_COMMAND_VALUE_SEPARATOR);
             nutrient = nutrientAndTargetValue[Parameter.DIET_GOAL_NUTRIENT_STARTING_INDEX];
-            targetValue = Integer.parseInt(nutrientAndTargetValue[Parameter.DIET_GOAL_TARGET_VALUE_STARTING_INDEX]);
+            targetValueString = nutrientAndTargetValue[Parameter.DIET_GOAL_TARGET_VALUE_STARTING_INDEX];
+            if (targetValueString.trim().length() > Parameter.DIET_GOAL_INTEGER_LENGTH_LIMIT) {
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_INTEGER);
+            }
+            targetValue = Integer.parseInt(targetValueString);
 
             validateDietGoalParameters(recordedNutrients, targetValue, nutrient);
             DietGoal dietGoal = createNewDietGoal(isHealthy, timespan, nutrient, targetValue);
@@ -113,7 +118,7 @@ public class DietParser {
     }
 
     private static DietGoal createNewDietGoal(boolean isHealthy, Goal.TimeSpan timespan, String nutrient,
-                                              int targetValue) {
+            int targetValue) {
         DietGoal dietGoal;
         if (isHealthy) {
             dietGoal = new HealthyDietGoal(timespan, nutrient, targetValue);
@@ -130,10 +135,14 @@ public class DietParser {
      */
     public static int parseDietGoalDelete(String deleteIndexString) throws AthletiException {
         try {
+            if (deleteIndexString.trim().length() > Parameter.DIET_GOAL_INTEGER_LENGTH_LIMIT){
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_INTEGER);
+            }
             int deleteIndex = Integer.parseInt(deleteIndexString.trim());
             if (deleteIndex <= 0) {
                 throw new AthletiException(Message.MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT);
             }
+
             return deleteIndex;
         } catch (NumberFormatException e) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT);
@@ -142,15 +151,16 @@ public class DietParser {
 
     /**
      * Parses the period input provided by the user
-     * @param period            The raw user input containing the period.
-     * @return                  The parsed Period object.
+     *
+     * @param period The raw user input containing the period.
+     * @return The parsed Period object.
      * @throws AthletiException If the input format is invalid.
      */
     public static Goal.TimeSpan parsePeriod(String period) throws AthletiException {
         try {
             Goal.TimeSpan timePeriod = Goal.TimeSpan.valueOf(period.toUpperCase());
             //Diet goal only support up to period that is less than or equal to DIET_GOAL_TIME_SPAN_LIMIT
-            if (timePeriod.getDays() > Parameter.DIET_GOAL_TIME_SPAN_LIMIT ){
+            if (timePeriod.getDays() > Parameter.DIET_GOAL_TIME_SPAN_LIMIT) {
                 throw new AthletiException(Message.MESSAGE_DIET_GOAL_PERIOD_INVALID);
             }
             return timePeriod.valueOf(period.toUpperCase());

@@ -153,12 +153,15 @@ public class Message {
             + "for the same nutrient.";
     public static final String MESSAGE_DIET_GOAL_PERIOD_INVALID = "The period of an activity must be one of the "
             + "following: \"daily\", \"weekly\"!";
+    public static final String MESSAGE_DIET_GOAL_INVALID_INTEGER = "Please ensure target value is a " +
+            "positive integer not more than 999999";
 
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";
     public static final String MESSAGE_INVALID_DIET_INDEX =
             "The diet index is invalid! Please enter a valid diet index!";
-    public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be a positive integer!";
+    public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be a " +
+            "positive integer less than 999999!";
     public static final String MESSAGE_DIET_DELETED = "Noted. I've removed this diet:";
     public static final String MESSAGE_DIET_LIST = "Here are the diets in your list:";
     public static final String MESSAGE_DIET_FIND = "I've found these diets:";
