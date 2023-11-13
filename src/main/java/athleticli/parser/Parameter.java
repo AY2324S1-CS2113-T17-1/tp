@@ -70,4 +70,5 @@ public class Parameter {
     public static final int DIET_GOAL_NUTRIENT_STARTING_INDEX = 0;
     public static final int DIET_GOAL_TARGET_VALUE_STARTING_INDEX = 1;
     public static final int DIET_GOAL_TIME_SPAN_LIMIT = 7;
+    public static final int DIET_GOAL_INTEGER_LENGTH_LIMIT = 6;
 }
