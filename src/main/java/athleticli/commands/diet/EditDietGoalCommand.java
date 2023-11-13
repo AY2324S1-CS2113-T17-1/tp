@@ -50,7 +50,14 @@ public class EditDietGoalCommand extends Command {
         int newTargetValue;
         for (DietGoal userUpdatedDietGoal : userUpdatedDietGoals) {
             for (DietGoal currentDietGoal : currentDietGoals) {
-                if (!userUpdatedDietGoal.getNutrient().equals(currentDietGoal.getNutrient())) {
+                boolean isSameDietGoalNutrient =
+                        userUpdatedDietGoal.getNutrient().equals(currentDietGoal.getNutrient());
+                boolean isSameTimeSpan = userUpdatedDietGoal.getTimeSpan().getDays()
+                        == currentDietGoal.getTimeSpan().getDays();
+                if (!isSameDietGoalNutrient) {
+                    continue;
+                }
+                if (!isSameTimeSpan) {
                     continue;
                 }
                 //update new target value to the current goal
