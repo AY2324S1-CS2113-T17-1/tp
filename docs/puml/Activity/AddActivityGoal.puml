@@ -5,29 +5,29 @@ skinparam SequenceMessageAlignment center
 
 !define LOGIC_COLOR #3333C4
 
-participant ":AthletiCLI" as AthletiCLI LOGIC_COLOR
+participant ":AthletiCLI" as AthletiCLI #orange
 participant "Parser" as Parser <<class>> #lightblue
-participant "g:ActivityGoal" as ActivityGoal #yellow
+participant "ActivityParser" as ActivityParser <<class>> #lightblue
+participant "goal:ActivityGoal" as ActivityGoal #yellow
 participant "c:SetActivityGoalCommand" as SetActivityGoalCommand #lightgreen
 participant "data:Data" as Data #lightgrey
-participant "activityGoals:ActivityGoalList" as activityGoals #lightgrey
+participant "goals:ActivityGoalList" as activityGoals #lightgrey
 
 AthletiCLI++
 AthletiCLI -> Parser++: parseCommand(userInput)
-Parser -> Parser++: parseActivityGoal(arguments)
-Parser -> ActivityGoal++: ActivityGoal()
-ActivityGoal --> Parser--: g
-Parser --> Parser: g
-Parser--
-Parser -> SetActivityGoalCommand++: SetActivityGoalCommand(g)
+Parser -> ActivityParser++: parseActivityGoal(arguments)
+ActivityParser -> ActivityGoal++: ActivityGoal()
+ActivityGoal --> ActivityParser--: goal
+ActivityParser --> Parser--: goal
+Parser -> SetActivityGoalCommand++: SetActivityGoalCommand(goal)
 SetActivityGoalCommand --> Parser--: c
 Parser --> AthletiCLI--: c
 
-AthletiCLI -> SetActivityGoalCommand++: execute(g, data)
+AthletiCLI -> SetActivityGoalCommand++: execute(goal, data)
 SetActivityGoalCommand -> Data++: getActivityGoals()
 
-Data --> SetActivityGoalCommand--: activityGoals
-SetActivityGoalCommand -> activityGoals++: add(g)
+Data --> SetActivityGoalCommand--: goals
+SetActivityGoalCommand -> activityGoals++: add(goal)
 activityGoals --> SetActivityGoalCommand--
 SetActivityGoalCommand --> AthletiCLI--: message
 
