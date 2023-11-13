@@ -755,15 +755,17 @@ Developers are expected to conduct more extensive tests.
 
 ### Miscellaneous
 
-1. Viewing Help Messages:
-   * Test case 1:
-     * Command: `help`
-     * Expected Outcome: A list containing the syntax of all commands is shown.
-   * Test case 2:
-     * Command: `help add-diet`
-     * Expected Outcome: The syntax of the `add-diet` command is shown.
+1.  Finding Records
+   * Test case:
+       * Command: `find-diet 2023-12-31`
+       * Expected Outcome: All records on 31st December 2023 are displayed.
 
-2. Exiting AthletiCLI:
+2. Saving Files
+   * Test case:
+       * Command: `save`
+       * Expected Outcome: Data are safely saved into the files.
+
+3. Exiting AthletiCLI:
    * Test case 1:
      * Immediately after detecting a format error in the saved files.
      * Command: `bye`
@@ -773,7 +775,10 @@ Developers are expected to conduct more extensive tests.
      * Command: `bye` 
      * Expected Outcome: AthletiCLI is exited and the files are safely saved.
 
-3. Saving Files
-   * Test case:
-       * Command: `save`
-       * Expected Outcome: Data are safely saved into the files.
+4. Viewing Help Messages:
+   * Test case 1:
+     * Command: `help`
+     * Expected Outcome: A list containing the syntax of all commands is shown.
+   * Test case 2:
+     * Command: `help add-diet`
+     * Expected Outcome: The syntax of the `add-diet` command is shown.
