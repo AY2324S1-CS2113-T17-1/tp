@@ -35,10 +35,11 @@ Which UML diagrams did you add/updated?
 This is only implemented due to  [skylee03 (Ming-Tian)](./skylee03.md)'s outstanding effort to convince the team.
 * Examples of PR reviewed: 
   * [PR for editing activities](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/59#discussion_r1362968136)
+* Provided full scale testing for diet functionalities. 
 #### Contributions beyond the project team
 
 * PE dry Run:
-  * [Pictures captured during PE dry run](https://github.com/yicheng-toh/ped/tree/main/files)
+  * [Screenshot captured during PE dry run](https://github.com/yicheng-toh/ped/tree/main/files)
 * DG review for other teams: 
   * [#6](https://github.com/nus-cs2113-AY2324S1/tp/pull/6), [#13](https://github.com/nus-cs2113-AY2324S1/tp/pull/13), 
   [#27](https://github.com/nus-cs2113-AY2324S1/tp/pull/27)
