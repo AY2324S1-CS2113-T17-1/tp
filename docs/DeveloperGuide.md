@@ -181,11 +181,12 @@ AthletiCLI to be passed to UI(not shown) for display.
 
 #### [Proposed] Future Implementation of DietGoalList Class
 
-The current implementation of DietGoalList is an ArrayList.
-It helps to store diet goals, however it is not efficient in searching for a particular dietGoal.
+The current implementation of DietGoalList is an ArrayList. This is because the number of nutrients currently is 4. O(n^2)
+operations can be treated as O(1). Furthermore, DietGoalListClass gets to inherits from superclass like its other goals' counterpart.
+However, it is not efficient in searching for a particular dietGoal especially when the number of goals and time span for goals increases.
 At any instance of time, there could only be the existence of one dietGoal.
 Verifying if there is an existence of a diet goal using an ArrayList takes O(n) time, where n is the number of dietGoals.
-The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
+The proposed change will be to change the underlying data structure to a hashmap in the future for amortised O(1) time complexity
 for checking the presence of a dietGoal.
 
 ### Activity Management in AthletiCLI
