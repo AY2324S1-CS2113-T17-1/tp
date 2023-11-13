@@ -87,7 +87,7 @@ public class DietParser {
             nutrient = nutrientAndTargetValue[Parameter.DIET_GOAL_NUTRIENT_STARTING_INDEX];
             targetValueString = nutrientAndTargetValue[Parameter.DIET_GOAL_TARGET_VALUE_STARTING_INDEX];
             if (targetValueString.trim().length() > Parameter.DIET_GOAL_INTEGER_LENGTH_LIMIT) {
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_INTEGER);
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_INVALID_INTEGER);
             }
             targetValue = Integer.parseInt(targetValueString);
 
@@ -136,7 +136,7 @@ public class DietParser {
     public static int parseDietGoalDelete(String deleteIndexString) throws AthletiException {
         try {
             if (deleteIndexString.trim().length() > Parameter.DIET_GOAL_INTEGER_LENGTH_LIMIT){
-                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INVALID_INTEGER);
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT);
             }
             int deleteIndex = Integer.parseInt(deleteIndexString.trim());
             if (deleteIndex <= 0) {

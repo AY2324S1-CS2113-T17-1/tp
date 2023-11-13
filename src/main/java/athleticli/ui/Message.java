@@ -133,7 +133,8 @@ public class Message {
     public static final String MESSAGE_DIET_GOAL_COUNT = "Now you have %d diet goal(s).";
     public static final String MESSAGE_DIET_GOAL_NONE = "There are no goals at the moment. Add a diet goal to start.";
     public static final String MESSAGE_DIET_GOAL_LIST_HEADER = "These are your goal(s):\n";
-    public static final String MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT = "Please provide a positive integer.";
+    public static final String MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT = "Please provide a positive "
+            + "integer not more than 999999.";
     public static final String MESSAGE_DIET_GOAL_EMPTY_DIET_GOAL_LIST = "There is no diet goals at the moment. " +
             "Please add one to continue.\n";
     public static final String MESSAGE_DIET_GOAL_DELETE_HEADER = "The following goal has been deleted:\n";
@@ -153,15 +154,14 @@ public class Message {
             + "for the same nutrient.";
     public static final String MESSAGE_DIET_GOAL_PERIOD_INVALID = "The period of an activity must be one of the "
             + "following: \"daily\", \"weekly\"!";
-    public static final String MESSAGE_DIET_GOAL_INVALID_INTEGER = "Please ensure target value is a " +
+    public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_INVALID_INTEGER = "Please ensure target value is a " +
             "positive integer not more than 999999";
 
     public static final String MESSAGE_DIET_FIRST =
             "Now you have tracked your first diet. This is just the beginning!";
     public static final String MESSAGE_INVALID_DIET_INDEX =
             "The diet index is invalid! Please enter a valid diet index!";
-    public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be a " +
-            "positive integer less than 999999!";
+    public static final String MESSAGE_DIET_INDEX_TYPE_INVALID = "The diet index must be a positive integer!";
     public static final String MESSAGE_DIET_DELETED = "Noted. I've removed this diet:";
     public static final String MESSAGE_DIET_LIST = "Here are the diets in your list:";
     public static final String MESSAGE_DIET_FIND = "I've found these diets:";
@@ -291,7 +291,7 @@ public class Message {
             + " INDEX start/START end/END";
     public static final String HELP_FIND_SLEEP = CommandName.COMMAND_SLEEP_FIND
             + " DATE";
-    
+
     public static final String HELP_SET_SLEEP_GOAL = CommandName.COMMAND_SLEEP_GOAL_SET
             + " type/TYPE period/PERIOD target/TARGET";
     public static final String HELP_EDIT_SLEEP_GOAL = CommandName.COMMAND_SLEEP_GOAL_EDIT

@@ -122,6 +122,10 @@ public class DietGoalList extends StorableList<DietGoal> {
             String dietGoalNutrientString = dietGoalDetails[2];
             String dietGoalTargetValueString = dietGoalDetails[3];
             String dietGoalType = dietGoalDetails[4];
+
+            if (dietGoalTargetValueString.trim().length() > Parameter.DIET_GOAL_INTEGER_LENGTH_LIMIT){
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_INCORRECT_INTEGER_FORMAT);
+            }
             int dietGoalTargetValue = Integer.parseInt(dietGoalTargetValueString);
             int dietGoalTimeSpanValue = Goal.TimeSpan.valueOf(dietGoalTimeSpanString.toUpperCase()).getDays();
 
@@ -142,6 +146,9 @@ public class DietGoalList extends StorableList<DietGoal> {
         }
         if (!isDietGoalTypeValid(dietGoal)) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
+        }
+        if (!isTargetValueConsistentWithTimeSpan(dietGoal)){
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_SCALING_WITH_TIME_SPAN);
         }
     }
 
