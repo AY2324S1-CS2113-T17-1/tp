@@ -92,7 +92,7 @@ public class DietParser {
             dietGoals.add(dietGoal);
             recordedNutrients.add(nutrient);
         }
-        if(dietGoals.isEmpty()){
+        if (dietGoals.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT);
         }
         return dietGoals;
