@@ -101,7 +101,7 @@ public class SleepList extends StorableList<Sleep> implements Findable<Sleep> {
     @Override
     public String unparse(Sleep sleep) {
         String commandArgs = "";
-        commandArgs += " " + Parameter.START_TIME_SEPARATOR + sleep.getStartDateTime();
+        commandArgs += Parameter.START_TIME_SEPARATOR + sleep.getStartDateTime();
         commandArgs += " " + Parameter.END_TIME_SEPARATOR + sleep.getEndDateTime();
         return commandArgs;
     }
