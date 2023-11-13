@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 import athleticli.parser.Parameter;
 
+import static java.lang.Math.min;
+
 /**
  * Represents a diet goal.
  */
@@ -18,6 +20,7 @@ public abstract class DietGoal extends Goal {
     protected final String achievedSymbol;
     protected final String unachievedSymbol;
     private final String dietGoalStringRepresentation;
+    private final int currentValueLimit;
 
     /**
      * Constructs a diet goal with no current value.
@@ -34,6 +37,7 @@ public abstract class DietGoal extends Goal {
         achievedSymbol = "[Achieved]";
         unachievedSymbol = "";
         dietGoalStringRepresentation = "%s %s %s intake progress: (%d/%d)\n";
+        currentValueLimit = 1000000;
     }
 
     /**
@@ -119,7 +123,7 @@ public abstract class DietGoal extends Goal {
                 }
             }
         }
-        return currentValue;
+        return min(currentValue, currentValueLimit);
     }
 
     private ArrayList<LocalDate> getPastDates(int numDays) {
