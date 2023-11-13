@@ -107,28 +107,30 @@ For simplicity, only 1 `StorableList` is drawn instead of the actual 6.
 
 #### [Implemented] Adding, Editing, Deleting, Listing, and Finding Diets
 
-Regardless of the operation you are performing on diets (setting up, editing, deleting, listing, or finding), the process follows a general five-step pattern in AthletiCLI:
+Regardless of the operation you are performing on diets (adding, editing, deleting, listing, or finding), the process
+follows a general five-step pattern in AthletiCLI:
 
-**Step 1 - Input Processing**: The user's input is passed through AthletiCLI to the Parser Class. Examples of user 
+**Step 1 - Input Processing:** The user's input is passed through AthletiCLI to the `Parser` class. Examples of user
 inputs include:
-    - `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for adding a diet.
-    - `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for editing a diet at index 1.
-    - `delete-diet 1` for deleting a diet at index 1.
-    - `list-diet` for listing all diets.
-    - `find-diet 2021-09-01` for finding all diets on 1st September 2021.
 
-**Step 2 - Command Identification**: The Parser Class identifies the type of diet operation and calls the appropriate
-`DietParser` method to parse the necessary parameters (if any). For example, the `add-diet` command will call the 
-`DietParser.parseDiet` method, which will return a `Diet` object.
+- `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for adding a diet.
+- `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for editing a diet at index 1.
+- `delete-diet 1` for deleting a diet at index 1.
+- `list-diet` for listing all diets.
+- `find-diet 2021-09-01` for finding all diets on 1st September 2021.
 
-**Step 3 - Command Creation**: An instance of the corresponding command class is created (e.g., AddDietCommand, 
-EditDietCommand, etc.) using returned object from the `DietParser` (if any) and returned to AthletiCLI.
+**Step 2 - Command Identification:** The `Parser` class identifies the type of diet operation and calls the
+appropriate `DietParser` method to parse the necessary parameters (if any). For example, the `add-diet` command will
+call the `DietParser.parseDiet` method, which will return a `Diet` object.
 
-**Step 4 - Command Execution**: AthletiCLI executes the command, interacting with the data instance of DietList to 
+**Step 3 - Command Creation**: An instance of the corresponding command class is created (e.g., `AddDietCommand`,
+`EditDietCommand`, etc.) using the returned object (if any) from the `DietParser` and returned to AthletiCLI.
+
+**Step 4 - Command Execution**: AthletiCLI executes the command, interacting with the data instance of DietList to
 perform the required operation. For example, the `AddDietCommand` will add the `Diet` object to the `DietList` object,
 while the `EditDietCommand` will edit the `Diet` object at the specified index in the `DietList` object.
 
-**Step 5 - Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for 
+**Step 5 - Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for
 display to the user. This is useful for informing the user of the success or failure of the operation.
 
 By following these general steps, AthletiCLI ensures a streamlined process for managing diet-related tasks.
