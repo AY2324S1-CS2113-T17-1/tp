@@ -417,7 +417,7 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 * DAILY/WEEKLY: Determines if the goal is set for a day or set for the week. It accepts 2 values.
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
-* * unhealthy: This determines if you are trying to get more of this nutrient or less of it.
+* unhealthy: This determines if you are trying to get more of this nutrient or less of it.
     If this flag is placed, it means that you are trying to reduce the intake. Hence, exceeding the target value means
     that you have not achieved your goal. If this flag is absent, it means that you are trying to increase the intake.
 * CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer.
@@ -425,15 +425,22 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 * CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
 * FATS: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
 
+You can create one or multiple nutrient goals at once with this command.
+
 **Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
-You can create one or multiple nutrient goals at once with this command.
+**Note: A diet goal cannot be healthy and unhealthy at the same time!**
+
+**Note: No repetitions are allowed for the diet goal of the same nutrient and the same time span.**
+
+**Note: The target value for a weekly goal must be greater than the target value of a daily goal of the same nutrient!**
+
 
 **Examples:**
 
-* `set-diet-goal WEEKLY calories/500 fats/600` Creates multiple 2 nutrient goals: calories and fats.
+* `set-diet-goal WEEKLY calories/500 fats/600` Creates multiple 2 nutrient goals if they have not been created: calories and fats.
 
-* `set-diet-goal DAILY calories/500` Creates a single calories goal.
+* `set-diet-goal DAILY calories/500` Creates a single calories goal if goal is not created.
 
 ---
 
@@ -455,7 +462,7 @@ it is bounded by the number of diet goals available.
 
 **Examples:**
 
-* `delete-diet-goal 1` Deletes a diet goal that is located on the first index of the list.
+* `delete-diet-goal 1` Deletes a diet goal that is located on the first index of the list if it exists.
 
 ---
 
@@ -501,6 +508,8 @@ This flag is used to change goals that are set as unhealthy previously.
 * FATS: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
 
 **Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
+
+**Note: The target value for a weekly goal must be greater than the target value of a daily goal of the same nutrient!**
 
 You can edit one or multiple nutrient goals with this command.
 
