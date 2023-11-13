@@ -272,6 +272,13 @@ public class Message {
     public static final String HELP_LIST_DIET = CommandName.COMMAND_DIET_LIST;
     public static final String HELP_FIND_DIET = CommandName.COMMAND_DIET_FIND
             + " DATE";
+    public static final String HELP_SET_DIET_GOAL = CommandName.COMMAND_DIET_GOAL_SET
+            + " <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]";
+    public static final String HELP_EDIT_DIET_GOAL = CommandName.COMMAND_DIET_GOAL_EDIT
+            + " <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]";
+    public static final String HELP_LIST_DIET_GOAL = CommandName.COMMAND_DIET_GOAL_LIST;
+    public static final String HELP_DELETE_DIET_GOAL = CommandName.COMMAND_DIET_GOAL_DELETE
+            + " INDEX";
     public static final String HELP_ADD_SLEEP = CommandName.COMMAND_SLEEP_ADD
             + " start/START end/END";
     public static final String HELP_LIST_SLEEP = CommandName.COMMAND_SLEEP_LIST;
