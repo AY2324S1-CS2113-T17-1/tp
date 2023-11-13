@@ -107,15 +107,34 @@ public class Sleep {
         Duration tempDuration = sleepingDuration;
         String sleepingDurationOutput = "";
         if (tempDuration.toDays() != 0) {
-            sleepingDurationOutput += tempDuration.toDays() + " Days ";
+
+            if (tempDuration.toDays() == 1) {
+                sleepingDurationOutput += tempDuration.toDays() + " Day ";
+            } else {
+                sleepingDurationOutput += tempDuration.toDays() + " Days ";
+            }
+
             tempDuration = tempDuration.minusDays(tempDuration.toDays());
         }
         if (tempDuration.toHours() != 0) {
-            sleepingDurationOutput += tempDuration.toHours() + " Hours ";
+            
+            if (tempDuration.toHours() == 1) {
+                sleepingDurationOutput += tempDuration.toHours() + " Hour ";
+            } else {
+                sleepingDurationOutput += tempDuration.toHours() + " Hours ";
+            }
+
             tempDuration = tempDuration.minusHours(tempDuration.toHours());
         }
         if (tempDuration.toMinutes() != 0) {
-            sleepingDurationOutput += tempDuration.toMinutes() + " Minutes ";
+            
+            if (tempDuration.toMinutes() == 1) {
+                sleepingDurationOutput += tempDuration.toMinutes() + " Minute ";
+            } else {
+                sleepingDurationOutput += tempDuration.toMinutes() + " Minutes ";
+            }
+
+            tempDuration = tempDuration.minusMinutes(tempDuration.toMinutes());
         }
         return "Sleeping Duration: " + sleepingDurationOutput;
     }

@@ -478,6 +478,12 @@ class ParserTest {
     }
 
     @Test
+    void parseDateTime_invalidLeapYear_throwAthletiException() {
+        String invalidInput = "2021-02-29 00:01";
+        assertThrows(AthletiException.class, () -> Parser.parseDateTime(invalidInput));
+    }
+
+    @Test
     void parseDate_validInput_dateParsed() throws AthletiException {
         String validInput = "2021-09-01";
         LocalDate actual = parseDate(validInput);
@@ -506,6 +512,12 @@ class ParserTest {
     @Test
     void parseDate_invalidYear_throwAthletiException() {
         String invalidInput = "0000-01-01";
+        assertThrows(AthletiException.class, () -> parseDate(invalidInput));
+    }
+
+    @Test
+    void parseDate_invalidLeapYear_throwAthletiException() {
+        String invalidInput = "2021-02-29";
         assertThrows(AthletiException.class, () -> parseDate(invalidInput));
     }
 

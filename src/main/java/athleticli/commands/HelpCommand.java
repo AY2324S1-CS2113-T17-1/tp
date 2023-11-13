@@ -35,6 +35,11 @@ public class HelpCommand extends Command {
         Message.HELP_DELETE_DIET,
         Message.HELP_LIST_DIET,
         Message.HELP_FIND_DIET,
+
+        Message.HELP_SET_DIET_GOAL,
+        Message.HELP_EDIT_DIET_GOAL,
+        Message.HELP_DELETE_DIET_GOAL,
+        Message.HELP_LIST_DIET_GOAL,
         /* Sleep Management */
         "\nSleep Management:",
         Message.HELP_ADD_SLEEP,
@@ -42,6 +47,9 @@ public class HelpCommand extends Command {
         Message.HELP_DELETE_SLEEP,
         Message.HELP_EDIT_SLEEP,
         Message.HELP_FIND_SLEEP,
+        Message.HELP_SET_SLEEP_GOAL,
+        Message.HELP_EDIT_SLEEP_GOAL,
+        Message.HELP_LIST_SLEEP_GOAL,
         /* Misc */
         "\nMisc:",
         Message.HELP_FIND,
@@ -73,12 +81,20 @@ public class HelpCommand extends Command {
             entry(CommandName.COMMAND_DIET_DELETE, Message.HELP_DELETE_DIET),
             entry(CommandName.COMMAND_DIET_LIST, Message.HELP_LIST_DIET),
             entry(CommandName.COMMAND_DIET_FIND, Message.HELP_FIND_DIET),
+
+            entry(CommandName.COMMAND_DIET_GOAL_SET, Message.HELP_SET_DIET_GOAL),
+            entry(CommandName.COMMAND_DIET_GOAL_EDIT, Message.HELP_EDIT_DIET_GOAL),
+            entry(CommandName.COMMAND_DIET_GOAL_DELETE, Message.HELP_DELETE_DIET_GOAL),
+            entry(CommandName.COMMAND_DIET_GOAL_LIST, Message.HELP_LIST_DIET_GOAL),
             /* Sleep Management */
             entry(CommandName.COMMAND_SLEEP_ADD, Message.HELP_ADD_SLEEP),
             entry(CommandName.COMMAND_SLEEP_LIST, Message.HELP_LIST_SLEEP),
             entry(CommandName.COMMAND_SLEEP_DELETE, Message.HELP_DELETE_SLEEP),
             entry(CommandName.COMMAND_SLEEP_EDIT, Message.HELP_EDIT_SLEEP),
             entry(CommandName.COMMAND_SLEEP_FIND, Message.HELP_FIND_SLEEP),
+            entry(CommandName.COMMAND_SLEEP_GOAL_SET, Message.HELP_SET_SLEEP_GOAL),
+            entry(CommandName.COMMAND_SLEEP_GOAL_EDIT, Message.HELP_EDIT_SLEEP_GOAL),
+            entry(CommandName.COMMAND_SLEEP_GOAL_LIST, Message.HELP_LIST_SLEEP_GOAL),
             /* Misc */
             entry(CommandName.COMMAND_FIND, Message.HELP_FIND),
             entry(CommandName.COMMAND_SAVE, Message.HELP_SAVE),
