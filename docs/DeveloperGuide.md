@@ -385,6 +385,7 @@ By providing a comprehensive view of various performance-related factors over ti
 | v2.0    | organized athlete               | list all my activity goals                                        | have a clear overview of my set targets and track my progress easily.                  |
 | v2.0    | meticulous user                 | find my diets by date                                             | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
 | v2.0    | motivated user                  | keep track of my diet goals for a period of time                  | I can monitor my diet progress on a weekly basis and increase or reduce if needed.     |                                         |
+| v2.0    | goal-oriented user              | delete a specific activity goal                                   | remove goals that are no longer relevant or achievable for me.                         |                                         |
 
 ---
 
