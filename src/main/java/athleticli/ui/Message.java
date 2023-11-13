@@ -64,12 +64,12 @@ public class Message {
     public static final String MESSAGE_DURATION_INVALID =
             "The duration of an activity must be in the format \"HH:mm:ss\"!";
     public static final String MESSAGE_DISTANCE_INVALID =
-            "The distance of an activity must be a positive integer!";
+            "The distance of an activity must be a non-negative integer!";
     public static final String MESSAGE_DISTANCE_NEGATIVE =
             "The distance of an activity cannot be negative!";
     public static final String MESSAGE_TARGET_NEGATIVE = "The target value cannot be negative. " +
             "You wanna make progress, not regress ;)";
-    public static final String MESSAGE_TARGET_INVALID = "The target value of an activity goal must be a positive " +
+    public static final String MESSAGE_TARGET_INVALID = "The target value of an activity goal must be a non-negative " +
             "integer!";
     public static final String MESSAGE_TARGET_TOO_LARGE =
             "The target value of an activity goal cannot be larger than " + Integer.MAX_VALUE + "!";
