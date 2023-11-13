@@ -80,10 +80,13 @@ The creation of such goal can be accomplished by indicating an optional flag `un
 
 #### Added UML diagrams:
 
+Class Diagram for AthletiCLI main class:
 ![](../images/MainClassDiagram.svg)
 
+Class Diagram for data class:
 ![](../images/DataClassDiagram.svg)
 
+Sequence diagram for creating a diet goal:
 ![](../images/DietGoalsSequenceDiagram.svg)
 
 ### Contributions to team-based tasks
