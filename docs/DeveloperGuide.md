@@ -157,13 +157,13 @@ This following sequence diagram show how the 'set-diet-goal' command works:
 
 ![](images/DietGoalsSequenceDiagram.svg)
 
-**Step 1:** The input from the user ("set-diet-goal WEEKLY fats/1") runs through AthletiCLI to the Parser Class.
+**Step 1:** The input from the user ("set-diet-goal WEEKLY fat/1") runs through AthletiCLI to the Parser Class.
 
 **Step 2:** The Parser Class will identify the request as setting up a diet goal and pass in the parameters
-"WEEKLY fats/1".
+"WEEKLY fat/1".
 
 **Step 3:** A temporary dietGoalList is created to store newly created diet goals. In this case, a weekly healthy goal 
-for fats with a target value of 1mg.
+for fat with a target value of 1mg.
 
 **Step 4:** The inputs are verified against our lists of approved diet goals.
 
@@ -274,16 +274,16 @@ These are the key components and their roles in the architecture of the goal tra
 Given below is an example usage scenario and how the goal setting and tracking mechanism behaves at 
 each step.
 
-1. **Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
+**Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
    Parser by the running AthletiCLI instance.
-2. **Step 2 - Goal Parsing:** The `ActivityParser` parses the raw input to obtain the sports, target and timespan of the 
+**Step 2 - Goal Parsing:** The `ActivityParser` parses the raw input to obtain the sports, target and timespan of the 
    goal. 
    Given that all these parameters are provided correctly and no exception is thrown, a new activity goal object is 
    created.
-3. **Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
+**Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
    added activity goal attached to it. The command implements the `SetActivityGoalCommand#execute()` operation and is 
    passed to the AthletiCLI instance.
-4. **Step 4 - Goal Addition:** The AthletiCLI instance executes the `SetActivityGoalCommand` object. The command will 
+**Step 4 - Goal Addition:** The AthletiCLI instance executes the `SetActivityGoalCommand` object. The command will 
    access the data and retrieve the currently stored list of activity goals stored inside it. The new `ActivityGoal` 
    object is added to the list.
 
@@ -311,7 +311,7 @@ retrieving the `ActivityGoalList` from the database and displaying the goals to 
 
 The following describes how the goal evaluation works after being invoked by the user, e.g., with a `list-activity-goal` command:
 
-5. **Step 5 - Goal Assessment:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
+**Step 5 - Goal Assessment:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
 activity list with the five tracked activities from the data and calls the total distance calculation function. It 
    filters the activity list according to the specified timespan and sports of the goal. The current value obtained by this, 
    10km in the example, is returned to the `ActivityGoal` object. This output is compared to the target value of the 
@@ -591,7 +591,7 @@ Developers are expected to conduct more extensive tests.
      * `set-diet-goal DAILY calories/500` creates a daily healthy calories goal with a target value of 500
    * Test case 2:
      * There are no diet goals constructed.
-     * `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly healthy nutrient goals: calories and fats.
+     * `set-diet-goal WEEKLY calories/500 fat/600` Creates 2 weekly healthy nutrient goals: calories and fat.
    * Test case 3:
      * There is a daily healthy calories goal present.
      * `set-diet-goal DAILY calories/500` will result in an error since the goal is already present.

@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Alexander Wolters’ Project Portfolio Page
+title: Alexander Wolters’ Portfolio
 ---
 
 ## Project: AthletiCLI
