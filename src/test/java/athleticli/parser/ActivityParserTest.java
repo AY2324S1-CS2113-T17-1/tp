@@ -19,8 +19,16 @@ import athleticli.data.activity.Run;
 import athleticli.data.activity.Swim;
 import athleticli.exceptions.AthletiException;
 
+/**
+ * Tests the ActivityParser class.
+ */
 public class ActivityParserTest {
     //@@author  AlWo223
+
+    /**
+     * Tests the parsing of the activity index for valid input.
+     * @throws AthletiException if the index is invalid.
+     */
     @Test
     void parseActivityIndex_validIndex_returnIndex() throws AthletiException {
         int expected = 5;
@@ -28,29 +36,44 @@ public class ActivityParserTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the parsing of the activity index for invalid input. An AthletiException should be thrown.
+     */
     @Test
     void parseActivityIndex_invalidIndex_throwAthletiException() {
         assertThrows(AthletiException.class, () -> ActivityParser.parseActivityIndex("abc"));
     }
 
+    /**
+     * Tests the parsing of valid edit-activity command, which should not throw an exception.
+     */
     @Test
     void parseActivityEdit_validInput_returnActivityEdit() {
         String validInput = "1 Morning Run distance/10000 datetime/2021-09-01 06:00";
         assertDoesNotThrow(() -> ActivityParser.parseActivityEdit(validInput));
     }
 
+    /**
+     * Tests the parsing of an invalid edit-activity command, which should throw an AthletiException.
+     */
     @Test
     void parseActivityEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 Morning Run duration/60";
         assertThrows(AthletiException.class, () -> ActivityParser.parseActivityEdit(invalidInput));
     }
 
+    /**
+     * Tests the parsing of an invalid edit-run command, which should throw an AthletiException.
+     */
     @Test
     void parseRunEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 Morning Run duration/60";
         assertThrows(AthletiException.class, () -> ActivityParser.parseRunCycleEdit(invalidInput));
     }
 
+    /**
+     * Tests the parsing of a valid edit-run command, which should not throw an exception.
+     */
     @Test
     void parseRunEdit_validInput_returnRunEdit() {
         String validInput =
@@ -58,6 +81,9 @@ public class ActivityParserTest {
         assertDoesNotThrow(() -> ActivityParser.parseRunCycleEdit(validInput));
     }
 
+    /**
+     * Tests the parsing of a valid edit-cycle command, which should not throw an exception.
+     */
     @Test
     void parseCycleEdit_validInput_returnRunEdit() {
         String validInput =
@@ -65,12 +91,18 @@ public class ActivityParserTest {
         assertDoesNotThrow(() -> ActivityParser.parseRunCycleEdit(validInput));
     }
 
+    /**
+     * Tests the parsing of an invalid edit-cycle command, which should throw an exception.
+     */
     @Test
     void parseCycleEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 ";
         assertThrows(AthletiException.class, () -> ActivityParser.parseRunCycleEdit(invalidInput));
     }
 
+    /**
+     * Tests the parsing of a valid edit-swim command, which should not throw an exception.
+     */
     @Test
     void parseSwimEdit_validInput_noExceptionThrown() {
         String validInput =
@@ -78,12 +110,20 @@ public class ActivityParserTest {
         assertDoesNotThrow(() -> ActivityParser.parseSwimEdit(validInput));
     }
 
+    /**
+     * Tests the parsing of an invalid edit-swim command, which should throw an exception.
+     */
     @Test
     void parseSwimEdit_invalidInput_throwAthletiException() {
         String invalidInput = "1 Morning Run duration/60";
         assertThrows(AthletiException.class, () -> ActivityParser.parseRunCycleEdit(invalidInput));
     }
 
+    /**
+     * Tests the correct parsing of a valid edit-activity index.
+     *
+     * @throws AthletiException If the index is invalid.
+     */
     @Test
     void parseActivityEditIndex_validInput_returnIndex() throws AthletiException {
         int expected = 5;
@@ -91,18 +131,33 @@ public class ActivityParserTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the parsing of the list-activity flag with the detail flag present.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseActivityListDetail_flagPresent_returnTrue() throws AthletiException {
         String input = "list-activity -d";
         assertTrue(ActivityParser.parseActivityListDetail(input));
     }
 
+    /**
+     * Tests the parsing of the list-activity flag with the detail flag absent.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseActivityListDetail_flagAbsent_returnFalse() throws AthletiException {
         String input = "list-activity";
         assertFalse(ActivityParser.parseActivityListDetail(input));
     }
 
+    /**
+     * Tests the parsing of the valid add-activity arguments.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseActivity_validInput_activityParsed() throws AthletiException {
         String validInput = "Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00";
@@ -117,6 +172,11 @@ public class ActivityParserTest {
         assertEquals(actual.getStartDateTime(), expected.getStartDateTime());
     }
 
+    /**
+     * Tests the parsing of the valid set-activity-goal arguments.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseActivityGoal_validInput_activityGoalParsed() throws AthletiException {
         String validInput = "sport/running type/distance period/weekly target/10000";
@@ -129,6 +189,11 @@ public class ActivityParserTest {
         assertEquals(actual.getTargetValue(), expected.getTargetValue());
     }
 
+    /**
+     * Tests the parsing of valid sport arguments.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseSport_validInput_sportParsed() throws AthletiException {
         String validInput = "running";
@@ -137,12 +202,20 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    /**
+     * Tests the parsing of aan invalid sport arguments. An AthletiException should be thrown.
+     */
     @Test
     void parseSport_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
         assertThrows(AthletiException.class, () -> ActivityParser.parseSport(invalidInput));
     }
 
+    /**
+     * Tests the parsing of a valid goal type argument.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseGoalType_validInput_goalTypeParsed() throws AthletiException {
         String validInput = "distance";
@@ -151,6 +224,11 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    /**
+     * Tests the parsing of a valid period argument.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parsePeriod_validInput_periodParsed() throws AthletiException {
         String validInput = "weekly";
@@ -159,12 +237,20 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    /**
+     * Tests the parsing of an invalid period argument. An AthletiException should be thrown.
+     */
     @Test
     void parsePeriod_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
         assertThrows(AthletiException.class, () -> ActivityParser.parsePeriod(invalidInput));
     }
 
+    /**
+     * Tests the parsing of a valid target argument.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseTarget_validInput_targetParsed() throws AthletiException {
         String validInput = "10000";
@@ -173,6 +259,9 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    /**
+     * Tests the parsing of an invalid target argument. An AthletiException should be thrown.
+     */
     @Test
     void parseTarget_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
@@ -185,16 +274,27 @@ public class ActivityParserTest {
         assertThrows(AthletiException.class, () -> ActivityParser.parseTarget(bigIntegerInput1));
     }
 
+    /**
+     * Tests the missing activity goal arguments check for the absence of the sport argument.
+     */
     @Test
     void checkMissingActivityGoalArguments_missingSport_throwAthletiException() {
         assertThrows(AthletiException.class, () -> ActivityParser.checkMissingActivityGoalArguments(-1, 1, 1, 1));
     }
 
+    /**
+     * Tests the missing activity goal arguments check for no missing arguments.
+     */
     @Test
     void checkMissingActivityGoalArguments_noMissingArguments_noExceptionThrown() {
         assertDoesNotThrow(() -> ActivityParser.checkMissingActivityGoalArguments(1, 1, 1, 1));
     }
 
+    /**
+     * Tests the parsing of a valid duration argument.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseDuration_validInput_durationParsed() throws AthletiException {
         String validInput = "01:00:00";
@@ -203,12 +303,20 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    /**
+     * Tests the parsing of an invalid duration argument. An AthletiException should be thrown.
+     */
     @Test
     void parseDuration_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
         assertThrows(AthletiException.class, () -> ActivityParser.parseDuration(invalidInput));
     }
 
+    /**
+     * Tests the parsing of a valid distance argument.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseDistance_validInput_distanceParsed() throws AthletiException {
         String validInput = "10000";
@@ -217,12 +325,19 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    /**
+     * Tests the parsing of an invalid distance argument. An AthletiException should be thrown.
+     */
     @Test
     void parseDistance_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
         assertThrows(AthletiException.class, () -> ActivityParser.parseDistance(invalidInput));
     }
 
+    /**
+     * Tests the parsing of valid add-run or add-cycle arguments.
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseRunCycle_validInput_activityParsed() throws AthletiException {
         String validInput =
@@ -239,6 +354,11 @@ public class ActivityParserTest {
         assertEquals(actual.getElevationGain(), expected.getElevationGain());
     }
 
+    /**
+     * Tests the parsing of a valid elevation argument.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseElevation_validInput_elevationParsed() throws AthletiException {
         String validInput = "60";
@@ -247,12 +367,20 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    /**
+     * Tests the parsing of an invalid elevation argument. An AthletiException should be thrown.
+     */
     @Test
     void parseElevation_invalidInput_throwAthletiException() {
         String invalidInput = "abc";
         assertThrows(AthletiException.class, () -> ActivityParser.parseElevation(invalidInput));
     }
 
+    /**
+     * Tests the parsing of valid add-swim arguments.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseSwim_validInput_swimParsed() throws AthletiException {
         String validInput =
@@ -269,6 +397,11 @@ public class ActivityParserTest {
         assertEquals(actual.getStyle(), expected.getStyle());
     }
 
+    /**
+     * Tests the parsing of a valid swimming style argument.
+     *
+     * @throws AthletiException If the input is invalid.
+     */
     @Test
     void parseSwimmingStyle_validInput_styleParsed() throws AthletiException {
         String validInput = "freestyle";
