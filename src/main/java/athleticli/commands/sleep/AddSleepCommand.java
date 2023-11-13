@@ -5,14 +5,15 @@ import athleticli.commands.Command;
 import athleticli.data.Data;
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
+import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 /**
- * Executes the add sleep commands provided by the user.
+ * Represents a command which adds a sleep entry.
  */
 public class AddSleepCommand extends Command {
-    private final Sleep sleep;
     private final Logger logger = Logger.getLogger(AddSleepCommand.class.getName());
+    private final Sleep sleep;
 
     /**
      * Constructor for AddSleepCommand.
@@ -28,20 +29,30 @@ public class AddSleepCommand extends Command {
     }
 
     /**
-     * Adds the sleep record to the sleep list.
+     * Adds the sleep record to the sleep list. Sorts the sleep list after adding.
      * 
      * @param data The current data containing the sleep list.
      * @return The message which will be shown to the user.
      */
     @Override
-    public String[] execute(Data data) {
+    public String[] execute(Data data) throws AthletiException {
         SleepList sleeps = data.getSleeps();
+
+        for (Sleep s : sleeps) {
+            if (sleep.getStartDateTime().isBefore(s.getEndDateTime()) 
+                && sleep.getEndDateTime().isAfter(s.getStartDateTime())) {
+                throw new AthletiException(Message.ERRORMESSAGE_SLEEP_OVERLAP);
+            }
+        }
+
         sleeps.add(this.sleep);
         sleeps.sort();
         int size = sleeps.size();
+
         logger.info("Added sleep: " + this.sleep.toString());
         logger.info("Sleep count: " + sleeps.size());
         logger.info("Sleep list: " + sleeps.toString());
+
         String countMessage;
         if (size > 1) {
             countMessage = String.format(Message.MESSAGE_SLEEP_COUNT, size);

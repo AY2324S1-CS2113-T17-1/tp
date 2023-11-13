@@ -1,0 +1,70 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+hide circle
+
+class AthletiCLI{
+    -logger:Logger
+    -ui:Ui
+    -data:Data
+    -runSaveCommand:Thread
+    -AthletiCLI(): void
+    -run(): void
+    +main(): void
+
+}
+class Ui{
+    - uiInstance: Ui
+    - in: Scanner
+    - out: PrintStream
+    - Ui(): Ui
+    + getInstance(): Ui
+    + getUserCommand(): String
+    + showMessages(messages: String): void
+    + showException(e: Exception): void
+    + showWelcome(): void
+
+}
+class Parser{
+     - INVALID_YEAR: String
+     + splitCommandWordAndArgs(rawUserInput: String): String[]
+     + parseCommand(rawUserInput: String):Command
+     + parseDateTime(datetime: String): LocalDateTime
+     + parseDate(date: String): LocalDate
+     + parseNonNegativeInteger(integer:String, invalidMessage: String, overflowMessage: String): int
+     + getValueForMarker(arguments: String, marker: String): String
+
+}
+class Data{
+    - dataInstance: Data
+    - activities: ActivityList
+    - activityGoals: ActivityGoalList
+    - diets: DietList
+    - dietGoals: DietGoalList
+    - sleeps: SleepList
+    - sleepGoals: SleepGoalList
+    + getInstance():Data
+    + load(): void
+    + save(): void
+    + clear(): void
+    + getActivities(): ActivityList
+    + getActivityGoalList(): ActivityGoalList
+    + getDiets():DietList
+    + getDietGoals(): DietGoalList
+    + getSleeps(): SleepList
+    + getSleepGoals(): SleepGoalList
+    + setActivities(activities: ActivityList): void
+    + setActivityGoalList(activityGoals: ActivityGoalList): void
+    + setDiets(diets: DietList): void
+    + setDietGoals(dietGoals: DietGoalList): void
+    + setSleeps(sleeps: SleepList): void
+    + setSleepGoals(sleepGoals: SleepGoalList): void
+
+}
+
+
+
+AthletiCLI "1" --> "1" Ui : sends display message to >
+AthletiCLI "1" --> "1" Parser : sends user command to >
+AthletiCLI "1" --> "1" Data :  saves data to >
+@enduml

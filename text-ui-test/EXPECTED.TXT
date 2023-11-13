@@ -8,40 +8,47 @@ ____________________________________________________________
 Activity Management:
  add-activity CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
  add-run CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
- add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
+ add-swim CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME style/STYLE
  add-cycle CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
  delete-activity INDEX
  list-activity [-d]
- edit-activity INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME
- edit-run INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
- edit-swim INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME laps/LAPS
- edit-cycle INDEX CAPTION duration/DURATION distance/DISTANCE datetime/DATETIME elevation/ELEVATION
+ edit-activity INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME]
+ edit-run INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]
+ edit-swim INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [style/STYLE]
+ edit-cycle INDEX [caption/CAPTION] [duration/DURATION] [distance/DISTANCE] [datetime/DATETIME] [elevation/ELEVATION]
  find-activity DATE
  set-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET
  edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET
  delete-activity-goal sport/SPORT type/TYPE period/PERIOD
  list-activity-goal
-
+ 
 Diet Management:
  add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME
  edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]
  delete-diet INDEX
  list-diet
  find-diet DATE
-
+ set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]
+ edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]
+ delete-diet-goal INDEX
+ list-diet-goal
+ 
 Sleep Management:
  add-sleep start/START end/END
  list-sleep
  delete-sleep INDEX
  edit-sleep INDEX start/START end/END
  find-sleep DATE
-
+ set-sleep-goal type/TYPE period/PERIOD target/TARGET
+ edit-sleep-goal type/TYPE period/PERIOD target/TARGET
+ list-sleep-goal
+ 
 Misc:
  find DATE
  save
  bye
  help [COMMAND]
-
+ 
 Please check our user guide (https://ay2324s1-cs2113-t17-1.github.io/tp/) for details.
 ____________________________________________________________
 
@@ -90,7 +97,7 @@ ____________________________________________________________
  These are the activities you have tracked so far:
  1.[Cycle] Evening Ride | Distance: 20.00 km | Speed: 10.00 km/h | Time: 2h 0m | October 26, 2023 at 6:00 PM
  2.[Activity] Morning Run | Distance: 10.00 km | Time: 1h 0m | October 26, 2023 at 6:00 AM
-
+ 
 To see more performance details about an activity, use the -d flag
 ____________________________________________________________
 
@@ -134,21 +141,21 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
  You have tracked your first sleep record. This is just the beginning!
 ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
  You have tracked a total of 2 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
- 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -165,7 +172,7 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
  You have tracked a total of 3 sleep records. Keep it up!
 ____________________________________________________________
 
@@ -180,15 +187,13 @@ ____________________________________________________________
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
- 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
- 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ 1. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
- Alright, I've changed this sleep record:
- original: [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
- new: [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours
+ OOPS!!! The sleep record you are trying to input overlaps with an existing sleep record.
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -206,30 +211,30 @@ ____________________________________________________________
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours
- 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
- 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ 1. [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 3. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
  Gotcha, I've deleted this sleep record:
- [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 11:00 PM | End Time: September 2, 2021 at 7:00 AM | Sleeping Duration: 8 Hours
+ [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
  You have tracked a total of 2 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The index of the sleep record you want to delete is out of bounds.
+ OOPS!!! Please specify the index of the sleep record as a positive integer.
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Please specify the index of the sleep record you want to edit as a positive integer.
+ OOPS!!! Please specify the index of the sleep record as a positive integer.
 ____________________________________________________________
 
 > ____________________________________________________________
  Here are the sleep records in your list:
 
- 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
- 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours
+ 1. [Sleep] | Date: 2021-09-02 | Start Time: September 2, 2021 at 10:00 PM | End Time: September 3, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
+ 2. [Sleep] | Date: 2021-09-01 | Start Time: September 1, 2021 at 10:00 PM | End Time: September 2, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -286,13 +291,13 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2023-11-04 | Start Time: November 4, 2023 at 10:00 AM | End Time: November 4, 2023 at 6:00 PM | Sleeping Duration: 8 Hours
+ [Sleep] | Date: 2023-11-04 | Start Time: November 4, 2023 at 10:00 AM | End Time: November 4, 2023 at 6:00 PM | Sleeping Duration: 8 Hours 
  You have tracked a total of 3 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
  Well done! I've added this sleep record:
- [Sleep] | Date: 2023-11-07 | Start Time: November 7, 2023 at 10:00 AM | End Time: November 7, 2023 at 6:00 PM | Sleeping Duration: 8 Hours
+ [Sleep] | Date: 2023-11-07 | Start Time: November 7, 2023 at 10:00 AM | End Time: November 7, 2023 at 6:00 PM | Sleeping Duration: 8 Hours 
  You have tracked a total of 4 sleep records. Keep it up!
 ____________________________________________________________
 
@@ -365,7 +370,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The period of an activity must be one of the following: "daily", "weekly", "monthly", "yearly"!
+ OOPS!!! The period of an activity must be one of the following: "daily", "weekly"!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -373,7 +378,7 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! The period of an activity must be one of the following: "daily", "weekly", "monthly", "yearly"!
+ OOPS!!! The period of an activity must be one of the following: "daily", "weekly"!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -431,22 +436,18 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please provide a positive integer.
-
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please provide a positive integer.
-
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please provide a positive integer.
-
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please provide a positive integer.
-
 ____________________________________________________________
 
 > ____________________________________________________________
