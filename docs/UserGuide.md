@@ -45,6 +45,7 @@ The absence of a "Goal Delete" feature for Sleep and Activity in the current ver
 - [Setting Activity Goals](#-setting-activity-goals)
 - [Editing Activity Goals](#-editing-activity-goals)
 - [Listing Activity Goals](#-listing-activity-goals)
+- [Deleting Activity Goals](#-deleting-activity-goals)
 
 ### ➕ Adding Activities:
 
@@ -135,6 +136,7 @@ detailed information about your activities including evaluations like pace (runn
   <img width="60%" src="images/listActivityDetailedShowcase.png" alt="Detailed list returned by `list-activity -d`"/>
 </p>
 
+---
 
 ### ✍️ Editing Activities:
 
