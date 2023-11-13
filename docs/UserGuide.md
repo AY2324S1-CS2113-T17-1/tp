@@ -138,7 +138,7 @@ detailed information about your activities including evaluations like pace (runn
 
 ---
 
-### ✍️ Editing Activities:
+### ⚙️ Editing Activities:
 
 `edit-activity` `edit-run` `edit-swim` `edit-cycle`
 
