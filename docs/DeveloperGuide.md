@@ -27,8 +27,8 @@ to ensure Intellij is configured to use JDK 11.
 to import the project into IDEA.
 :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
 3. Verify the setup:
-   * Run AthletiCLI and try a few commands.
-   * Run the tests to ensure they all pass.
+   * Run athlethicli.AthletiCLI and try a few commands.
+   * Run the tests using `./gradlew check` ensure they all pass.
 
 [//]: # (What is the exact command to run the main?)
 
