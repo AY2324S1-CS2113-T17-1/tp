@@ -72,6 +72,7 @@ search=alwo223&breakdown=true). The key enhancements are summarized below.
   [#2](../images/ActivityGoalEvaluation.svg), 
   [#3](../images/ActivityObjectDiagram.svg), [#4](../images/ActivityParsing.svg),
   [#5](../images/AddActivity.svg), [#6](../images/AddActivityGoal.svg)
+  * Provided test instructions for activity related features
 
 #### Community
 * PRs reviewed (with non-trivial review comments): [#139](https://github.com/nus-cs2113-AY2324S1/tp/pull/8#pullrequestreview-1709775159), [tp comments dashboard](https://nus-cs2113-ay2324s1.github.io/dashboards/contents/tp-comments.html)
