@@ -17,16 +17,22 @@ public class SleepListTest {
     private SleepList sleepList;
     private Sleep sleepFirst;
     private Sleep sleepSecond;
+    private Sleep sleepParse;
 
     @BeforeEach
     public void setup() throws AthletiException {
         sleepList = new SleepList();
         LocalDateTime dateSecond = LocalDateTime.now();
         LocalDateTime dateFirst = LocalDateTime.now().minusDays(1);
+        
         sleepFirst = new Sleep(dateFirst, dateFirst.plusHours(8));
         sleepSecond = new Sleep(dateSecond, dateSecond.plusHours(8));
+        sleepParse = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0),
+                LocalDateTime.of(2023, 10, 18, 6, 0));
+       
         sleepList.add(sleepFirst);
         sleepList.add(sleepSecond);
+        sleepList.add(sleepParse);
     }
 
     @Test
@@ -58,5 +64,24 @@ public class SleepListTest {
         int expected = 8 * 60 * 60 * 2;
         int actual = sleepList.getTotalSleepDuration(TimeSpan.WEEKLY);
         assertEquals(expected, actual);
+    }
+
+    @Test
+    public void parse_sleep_parsed() throws AthletiException {
+        String arguments = "start/2023-10-17 22:00 end/2023-10-18 06:00";
+        Sleep expected = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0),
+                LocalDateTime.of(2023, 10, 18, 6, 0));
+        Sleep actual = sleepList.parse(arguments);
+        assertEquals(expected.getStartDateTime(), actual.getStartDateTime());
+        assertEquals(expected.getEndDateTime(), actual.getEndDateTime());
+    }
+
+    @Test
+    public void unparse_sleep_unparsed() throws AthletiException {
+        String expected = "start/2023-10-17T22:00 end/2023-10-18T06:00";
+        Sleep actual = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0),
+                LocalDateTime.of(2023, 10, 18, 6, 0));
+        String actualString = sleepList.unparse(actual);
+        assertEquals(expected, actualString);
     }
 }
