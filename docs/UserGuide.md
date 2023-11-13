@@ -406,7 +406,6 @@ You can create a new daily or weekly diet goal to track your nutrients intake wi
 
 You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
 **Syntax:**
 
@@ -417,23 +416,50 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 * DAILY/WEEKLY: Determines if the goal is set for a day or set for the week. It accepts 2 values.
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
-* * unhealthy: This determines if you are trying to get more of this nutrient or less of it.
+* unhealthy: This determines if you are trying to get more of this nutrient or less of it.
     If this flag is placed, it means that you are trying to reduce the intake. Hence, exceeding the target value means
     that you have not achieved your goal. If this flag is absent, it means that you are trying to increase the intake.
+    It is considered achieved if you exceed the target value indicated.
 * CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer.
 * PROTEIN: Your target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
 * FATS: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
 
+You can create one or multiple nutrient goals at once with this command.
+
 **Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
-You can create one or multiple nutrient goals at once with this command.
+**Note: A diet goal of the same nutrient cannot be healthy and unhealthy at the same time!**
+
+**Note: No repetitions are allowed for the diet goal of the same nutrient and the same time span.**
+
+**Note: The target value for a weekly goal must be greater than the target value of a daily goal of the same nutrient!**
+
 
 **Examples:**
 
-* `set-diet-goal WEEKLY calories/500 fats/600` Creates multiple 2 nutrient goals: calories and fats.
+* `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly nutrient goals if they have not been created: 
+calories with a target value of 500 calories and fats of 600 mg.
 
-* `set-diet-goal DAILY calories/500` Creates a single calories goal.
+* `set-diet-goal DAILY calories/500` Creates a daily calories goal of target value of 500 calories if goal is not created.
+
+** `set-diet-goal DAILY unhealthy calories/500` Creates an unhealthy daily calories goal of target value of 
+500 calories if goal is not created.
+
+**Example of Usage:**
+
+```
+  > set-diet-goal WEEKLY calories/500 fats/600
+  _____________________________________________________________
+  These are your goal(s):
+  
+      1. [HEALTHY]  WEEKLY calories intake progress: (0/500)
+  
+      2. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+  
+  Now you have 2 diet goal(s).
+  _____________________________________________________________
+```
 
 ---
 
@@ -455,7 +481,29 @@ it is bounded by the number of diet goals available.
 
 **Examples:**
 
-* `delete-diet-goal 1` Deletes a diet goal that is located on the first index of the list.
+* `delete-diet-goal 1` Deletes a diet goal that is located on the first index of the list if it exists.
+
+**Example of Usage:**
+
+```
+____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  WEEKLY calories intake progress: (0/500)
+
+	2. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+
+ Now you have 2 diet goal(s).
+____________________________________________________________
+
+> delete-diet-goal 1
+____________________________________________________________
+ The following goal has been deleted:
+
+ [HEALTHY]  WEEKLY calories intake progress: (0/500)
+
+____________________________________________________________
+```
 
 ---
 
@@ -472,6 +520,19 @@ You can list all your diet goals in AtheltiCLI.
 **Examples:**
 
 * `list-diet-goal`
+
+**Example of Usage:**
+
+```
+> list-diet-goal
+____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+
+ Now you have 1 diet goal(s).
+____________________________________________________________
+```
 
 ---
 
@@ -494,7 +555,7 @@ No repetition is allowed. The diet goal needs to be present before any edits is 
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
 * unhealthy: This determines if you are trying to get more of this nutrient or less of it. 
-This flag is used to change goals that are set as unhealthy previously.
+This flag is used to change target values of goals that are set as unhealthy previously.
 * CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer.
 * PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
@@ -502,14 +563,37 @@ This flag is used to change goals that are set as unhealthy previously.
 
 **Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
+**Note: The target value for a weekly goal must be greater than the target value of a daily goal of the same nutrient!**
+
 You can edit one or multiple nutrient goals with this command.
 
 **Examples:**
 
 * `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fats/100` 
-Edits multiple nutrients goals if all of them exists.
+Edits multiple nutrients goals if all of them exists and the corresponding new target value is valid.
 * `edit-diet-goal WEEKLY calories/5000` 
-Edits a single calories goal if the goal exists.
+Edits a single calories goal target value to 5000 calories if the goal exists and new target value is valid.
+
+**Example of Usage:**
+
+```
+____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+
+ Now you have 1 diet goal(s).
+____________________________________________________________
+
+> edit-diet-goal WEEKLY fats/50
+____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  WEEKLY fats intake progress: (0/50)
+
+ Now you have 1 diet goal(s).
+____________________________________________________________
+```
 
 ---
 
