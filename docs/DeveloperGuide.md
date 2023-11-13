@@ -429,6 +429,51 @@ Developers are expected to conduct more extensive tests.
 ### Diet Management
 
 #### Diet Records
+1. Adding Diets
+    - Test case 1:
+        * Add a complete diet entry.
+        * Command: `add-diet calories/700 protein/25 carb/55 fat/15 datetime/2023-10-12 07:30`
+        * Expected Outcome: Diet entry is successfully added with 700 calories, 25mg protein, 55mg carb, and 15mg fat.
+    - Test case 2:
+        * Attempt to add a diet entry with a future datetime.
+        * Command: `add-diet calories/800 protein/30 carb/60 fat/20 datetime/3024-01-01 08:00`
+        * Expected Outcome: Error indicating the datetime cannot be in the future.
+
+2. Editing Diets
+    - Test case 1:
+        * Edit a specific diet entry.
+        * Command: `edit-diet 2 calories/900 protein/40 carb/70 fat/25 datetime/2023-10-13 09:00`
+        * Expected Outcome: The 2nd diet entry is updated with the new values.
+    - Test case 2:
+        * Edit a diet entry with only one parameter.
+        * Command: `edit-diet 3 fat/30`
+        * Expected Outcome: Only the fat value of the 3rd diet entry is updated.
+
+3. Deleting Diets
+    - Test case 1:
+        * Delete a specific diet entry.
+        * Command: `delete-diet 2`
+        * Expected Outcome: The 2nd diet entry is successfully deleted.
+    - Test case 2:
+        * Attempt to delete a non-existent diet entry.
+        * Command: `delete-diet 5`
+        * Expected Outcome: Error indicating the diet entry does not exist.
+
+4. Listing Diets
+    - Test case 1:
+        * List all diet entries.
+        * Command: `list-diet`
+        * Expected Outcome: All existing diet entries are displayed.
+
+5. Finding Diets
+    - Test case 1:
+        * Find diets recorded on a specific date.
+        * Command: `find-diet 2023-10-12`
+        * Expected Outcome: Diets recorded on 12th October 2023 are displayed.
+    - Test case 2:
+        * Find diets on a date with no entries.
+        * Command: `find-diet 2023-11-01`
+        * Expected Outcome: Message indicating no diets found on 1st November 2023.
 
 #### Diet Goals
 
