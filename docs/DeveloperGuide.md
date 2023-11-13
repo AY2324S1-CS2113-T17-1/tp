@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 <style>
-  img {
+  img :not(emoji) {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -34,7 +34,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 [se-edu/guides IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
 to import the project into IDEA.
 
-   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
+   :exclamation: **Note:** Importing a Gradle project is slightly different from importing a normal Java project.
 3. **Verify the setup**:
    * Run `athlethicli.AthletiCLI` and try a few commands.
    * Run the tests using `./gradlew check` and ensure they all pass.
@@ -165,10 +165,10 @@ This following sequence diagram show how the 'set-diet-goal' command works:
 **Step 3:** A temporary dietGoalList is created to store newly created diet goals. In this case, a weekly healthy goal 
 for fat with a target value of 1mg.
 
-**Step 4:** The inputs are verified against our lists of approved diet goals.
+**Step 4:** The inputs are validated against our lists of approved diet goals.
 
-**Step 5:** For each of the diet goals that are valid, a DietGoal object will be created and stored in the 
-temporary dietGoalList.
+**Step 5:** For each of the diet goals that are valid, if it is a healthy goal, a HealthyDietGoal object will be created and stored in the 
+temporary dietGoalList, else an UnhealthyDietGoal will be created instead.
 
 **Step 6:** The Parser then creates for an instance of SetDietGoalCommand and returns the instance to 
 AthletiCLI.
@@ -181,11 +181,12 @@ AthletiCLI to be passed to UI(not shown) for display.
 
 #### [Proposed] Future Implementation of DietGoalList Class
 
-The current implementation of DietGoalList is an ArrayList.
-It helps to store diet goals, however it is not efficient in searching for a particular dietGoal.
+The current implementation of DietGoalList is an ArrayList. This is because the number of nutrients currently is 4. O(n^2)
+operations can be treated as O(1). Furthermore, DietGoalListClass gets to inherits from superclass like its other goals' counterpart.
+However, it is not efficient in searching for a particular dietGoal especially when the number of goals and time span for goals increases.
 At any instance of time, there could only be the existence of one dietGoal.
 Verifying if there is an existence of a diet goal using an ArrayList takes O(n) time, where n is the number of dietGoals.
-The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
+The proposed change will be to change the underlying data structure to a hashmap in the future for amortised O(1) time complexity
 for checking the presence of a dietGoal.
 
 ### Activity Management in AthletiCLI
@@ -216,15 +217,16 @@ Below is a class diagram illustrating the relationships between the data compone
 
 <img width="400em" src="images/ActivityInheritance.svg" alt="Activity Data Components"/>
 
-> The diagram shows the inheritance relationship between the `Activity` class and the specific activity types Run, 
-> Swim and Cycle, each with unique attributes and methods. This design becomes especially crucial in future 
-> development cycles with added parameters and activity types. The 'ActivityList' aggregates these instances.
+> The diagram shows the inheritance relationship between the `Activity` class and the specific activity types `Run`, 
+> `Swim` and `Cycle`, each with unique attributes and methods. This design becomes especially crucial in future 
+> development cycles with added parameters and activity types. The `ActivityList` aggregates these instances.
 
 Usage Scenario and Process Flow:
-The process of adding an activity involves several steps, each handled by different components.
-Given below is an example usage scenario and how the add mechanism behaves.
 
-**Step 1 - Input Capture:** The user issues an `add-activity ...` (or `add-run`, etc., respectively) which is 
+The process of adding an activity involves several steps, each handled by different components.
+Given below is an example usage scenario on how the add mechanism behaves.
+
+**Step 1 - Input Capture:** The user issues an `add-activity ...` (or `add-run`, etc.) command which is 
 captured and forwarded to the Parser by the running AthletiCLI instance.
 
 **Step 2 - Activity Parsing:** The ActivityParser interprets the raw input to obtain the arguments of the activity. 
@@ -274,15 +276,18 @@ These are the key components and their roles in the architecture of the goal tra
 Given below is an example usage scenario and how the goal setting and tracking mechanism behaves at 
 each step.
 
-**Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
+**Step 1 - Input Capture:** The user issues a `set-activity-goal ...` command which is captured and passed to the 
    Parser by the running AthletiCLI instance.
+
 **Step 2 - Goal Parsing:** The `ActivityParser` parses the raw input to obtain the sports, target and timespan of the 
    goal. 
    Given that all these parameters are provided correctly and no exception is thrown, a new activity goal object is 
    created.
+
 **Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
    added activity goal attached to it. The command implements the `SetActivityGoalCommand#execute()` operation and is 
    passed to the AthletiCLI instance.
+
 **Step 4 - Goal Addition:** The AthletiCLI instance executes the `SetActivityGoalCommand` object. The command will 
    access the data and retrieve the currently stored list of activity goals stored inside it. The new `ActivityGoal` 
    object is added to the list.
@@ -295,18 +300,6 @@ Assume that the user has set a goal to run 10km per week and has already tracked
 within the last 7 days as well as three older sport activities. The object diagram below shows the state of the 
 scenario with the eligible activities for the goal highlighted in green.
 
-The `edit-activity-goal` and `delete-activity-goal` operations function similarly. They use the arguments `sport`, 
-`type`, and `period` to identify the specific goal to be edited or deleted. If there is no existing goal that 
-matches the specified criteria, an error message is displayed to the user.
-
-Similar to `set-activity-goal`, the operations `edit-activity-goal` and `delete-activity-goal` utilize 
-`ActivityGoal` objects to represent the goals being edited or deleted. During the execution of these commands, the 
-system quickly verifies whether the goal exists in the `ActivityGoalList`. If the goal is found, it is then edited 
-or deleted as requested.
-
-Finally, the `list-activity-goal` operation is designed similarly to the `list-activity` operation. It involves 
-retrieving the `ActivityGoalList` from the database and displaying the goals to the user.
-
 ![](images/ActivityObjectDiagram.svg)
 
 The following describes how the goal evaluation works after being invoked by the user, e.g., with a `list-activity-goal` command:
@@ -318,6 +311,18 @@ activity list with the five tracked activities from the data and calls the total
    goal. This mechanism is visualized in the following sequence diagram:
 
 ![](images/ActivityGoalEvaluation.svg)
+
+The `edit-activity-goal` and `delete-activity-goal` operations function similarly. They use the arguments `sport`,
+`type`, and `period` to identify the specific goal to be edited or deleted. If there is no existing goal that
+matches the specified criteria, an error message is displayed to the user.
+
+Similar to `set-activity-goal`, the operations `edit-activity-goal` and `delete-activity-goal` utilize
+`ActivityGoal` objects to represent the goals being edited or deleted. During the execution of these commands, the
+system quickly verifies whether the goal exists in the `ActivityGoalList`. If the goal is found, it is then edited
+or deleted as requested.
+
+Finally, the `list-activity-goal` operation is designed similarly to the `list-activity` operation. It involves
+retrieving the `ActivityGoalList` from the database and displaying the goals to the user.
 
 ### Sleep Management in AthletiCLI
 

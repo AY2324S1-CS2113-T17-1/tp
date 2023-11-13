@@ -295,7 +295,7 @@ You can delete your set goals by specifying the sport, target, and period.
 
 `add-diet`
 
-You can record your diet by specifying calorie, protein, carbohydrate, and fat intake.
+You can record your diet by specifying calories, protein, carbohydrate, and fat intake.
 
 **Syntax:**
 
@@ -410,10 +410,12 @@ You can create a new daily or weekly diet goal to track your nutrients intake wi
 
 You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
+Do note that you can only set up to the value 999999 and the maximum accumulated value from diets is 1000000. 
+
 
 **Syntax:**
 
-* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
+* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT]`
 
 **Parameters:**
 
@@ -424,10 +426,10 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
     If this flag is placed, it means that you are trying to reduce the intake. Hence, exceeding the target value means
     that you have not achieved your goal. If this flag is absent, it means that you are trying to increase the intake.
     It is considered achieved if you exceed the target value indicated.
-* CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer.
-* PROTEIN: Your target for protein intake, in terms of milligrams. The target value must be a positive integer.
-* CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
-* FAT: Your target value for fat intake, in terms of milligrams. The target value must be a positive integer.
+* CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer up to the value 999999.
+* PROTEIN: Your target for protein intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
+* CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
+* FAT: Your target value for fat intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
 
 You can create one or multiple nutrient goals at once with this command.
 
@@ -549,9 +551,11 @@ You can edit the target value of your diet goals in AtheltiCLI, redefining the t
 This command takes in at least 2 arguments. You are able to edit multiple diet goals target value of the same time frame at once. 
 No repetition is allowed. The diet goal needs to be present before any edits is allowed.
 
+Do note that you can only set up to the value 999999 and the maximum accumulated value from diets is 1000000.
+
 **Syntax:**
 
-* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
+* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT]`
 
 **Parameters:**
 
@@ -560,10 +564,12 @@ No repetition is allowed. The diet goal needs to be present before any edits is 
   WEEKLY goals account for what you eat for the week.
 * unhealthy: This determines if you are trying to get more of this nutrient or less of it. 
 This flag is used to change target values of goals that are set as unhealthy previously.
-* CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer.
-* PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer.
-* CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
-* :FAT Your target value for fat intake, in terms of milligrams. The target value must be a positive integer.
+
+* CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer up to the value 999999.
+* PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
+* CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
+* FAT: Your target value for fat intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
+
 
 **Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
 
@@ -874,17 +880,17 @@ If you forget a command, you can always use the `help` command to see their synt
 
 ### Diet Management
 
-| **Command**               | **Syntax**                                                                                        | **Parameters**                                         | **Examples**                                           |
-|---------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------------------------------|
-| `add-diet`                | `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`                  | CALORIES, PROTEIN, CARB, FAT, DATETIME                 | `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
-| `edit-diet`               | `edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]` | INDEX, [CALORIES], [PROTEIN], [CARB], [FAT], [DATETIME] | `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
-| `delete-diet`             | `delete-diet INDEX`                                                                               | INDEX                                                  | `delete-diet 1`                                         |
-| `list-diet`               | `list-diet`                                                                                       | None                                                   | `list-diet`                                             |
-| `find-diet`               | `find-diet DATE`                                                                             | DATE                                                   | `find-diet 2021-09-01`                             |
-| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`     | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fat/600` |
-| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`   | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fat/600` |
-| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                          | INDEX                                                  | `delete-diet-goal 1`                                    |
-| `list-diet-goal`          | `list-diet-goal`                                                                                  | None                                                   | `list-diet-goal`                                        |
+| **Command**               | **Syntax**                                                                                               | **Parameters**                                                  | **Examples**                                           |
+|---------------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|--------------------------------------------------------|
+| `add-diet`                | `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`                         | CALORIES, PROTEIN, CARB, FAT, DATETIME                          | `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
+| `edit-diet`               | `edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]`        | INDEX, [CALORIES], [PROTEIN], [CARB], [FAT], [DATETIME]         | `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
+| `delete-diet`             | `delete-diet INDEX`                                                                                      | INDEX                                                           | `delete-diet 1`                                         |
+| `list-diet`               | `list-diet`                                                                                              | None                                                            | `list-diet`                                             |
+| `find-diet`               | `find-diet DATE`                                                                                         | DATE                                                            | `find-diet 2021-09-01`                             |
+| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT]`   | DAILY/WEEKLY, [unhealthy], [CALORIES], [PROTEIN], [CARB], [FAT] | `set-diet-goal WEEKLY calories/500 fat/600` |
+| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT]` | DAILY/WEEKLY, [unhealthy], [CALORIES], [PROTEIN], [CARB], [FAT] | `edit-diet-goal WEEKLY calories/500 fat/600` |
+| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                                 | INDEX                                                           | `delete-diet-goal 1`                                    |
+| `list-diet-goal`          | `list-diet-goal`                                                                                         | None                                                            | `list-diet-goal`                                        |
 
 
 ### Sleep Management
