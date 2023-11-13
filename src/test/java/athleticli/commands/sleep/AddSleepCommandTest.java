@@ -13,10 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class AddSleepCommandTest {
-    private static final LocalDateTime START_DATE_TIME = LocalDateTime.of(2023, 10, 17, 22, 0);
-    private static final LocalDateTime END_DATE_TIME = LocalDateTime.of(2023, 10, 18, 6, 0);
-    private static final LocalDateTime START_DATE_TIME2 = LocalDateTime.of(2023, 10, 18, 22, 0);
-    private static final LocalDateTime END_DATE_TIME2 = LocalDateTime.of(2023, 10, 19, 6, 0);
+    
     private Data data;
     private Sleep sleep;
     private Sleep sleep2;
@@ -26,8 +23,10 @@ public class AddSleepCommandTest {
     @BeforeEach
     public void setup() throws AthletiException {
         data = new Data();
-        sleep = new Sleep(START_DATE_TIME, END_DATE_TIME);
-        sleep2 = new Sleep(START_DATE_TIME2, END_DATE_TIME2);
+        sleep = new Sleep(LocalDateTime.of(2023, 10, 17, 22, 0), 
+                          LocalDateTime.of(2023, 10, 18, 6, 0));
+        sleep2 = new Sleep(LocalDateTime.of(2023, 10, 18, 22, 0),
+                          LocalDateTime.of(2023, 10, 19, 6, 0));
         addSleepCommand = new AddSleepCommand(sleep);
         addSleepCommand2 = new AddSleepCommand(sleep2);
         data.setSleeps(new SleepList());

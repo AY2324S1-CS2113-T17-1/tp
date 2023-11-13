@@ -193,7 +193,7 @@ public class Message {
             "The index of the sleep record you want to delete is out of bounds.";
 
     public static final String ERRORMESSAGE_SLEEP_OVERLAP =
-            "The sleep record you are trying to add overlaps with an existing sleep record.";
+            "The sleep record you are trying to input overlaps with an existing sleep record.";
     public static final String ERRORMESSAGE_DUPLICATE_SLEEP_GOAL =
             "You already have a goal for this type and period! Please edit the existing goal instead.";
 
@@ -209,7 +209,7 @@ public class Message {
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_INDEX =
             "Please specify the index of the sleep record";
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX =
-            "Please specify the index of the sleep record you want to edit as a positive integer.";
+            "Please specify the index of the sleep record as a positive integer.";
 
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";

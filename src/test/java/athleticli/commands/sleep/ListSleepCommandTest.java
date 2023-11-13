@@ -13,6 +13,7 @@ import athleticli.data.sleep.SleepList;
 import athleticli.exceptions.AthletiException;
 
 public class ListSleepCommandTest {
+    
     private Data data;
     private Sleep sleep1;
     private Sleep sleep2;

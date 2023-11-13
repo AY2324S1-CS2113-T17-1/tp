@@ -38,6 +38,12 @@ public class EditSleepCommand extends Command {
      */
     public String[] execute(Data data) throws AthletiException {
         SleepList sleeps = data.getSleeps();
+        for (Sleep s : sleeps) {
+            if (newSleep.getStartDateTime().isBefore(s.getEndDateTime()) 
+                && newSleep.getEndDateTime().isAfter(s.getStartDateTime())) {
+                throw new AthletiException(Message.ERRORMESSAGE_SLEEP_OVERLAP);
+            }
+        }
         try {
             final Sleep oldSleep = sleeps.get(index-1);
             sleeps.set(index-1, newSleep);
