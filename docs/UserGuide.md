@@ -295,7 +295,7 @@ You can delete your set goals by specifying the sport, target, and period.
 
 `add-diet`
 
-You can record your diet by specifying calorie, protein, carbohydrate, and fat intake.
+You can record your diet by specifying calories, protein, carbohydrate, and fat intake.
 
 **Syntax:**
 
