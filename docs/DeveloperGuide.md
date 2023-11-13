@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 <style>
-  img {
+  img :not(emoji) {
     display: block;
     margin-left: auto;
     margin-right: auto;
@@ -34,7 +34,7 @@ If you plan to use IntelliJ IDEA (highly recommended):
 [se-edu/guides IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
 to import the project into IDEA.
 
-   **Note:** Importing a Gradle project is slightly different from importing a normal Java project.
+   :exclamation: **Note:** Importing a Gradle project is slightly different from importing a normal Java project.
 3. **Verify the setup**:
    * Run `athlethicli.AthletiCLI` and try a few commands.
    * Run the tests using `./gradlew check` and ensure they all pass.
