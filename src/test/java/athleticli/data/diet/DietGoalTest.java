@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DietGoalTest {
 
     private DietGoalStub proteinGoal;
-    private DietGoalStub fatsGoal;
+    private DietGoalStub fatGoal;
     private DietGoalStub carbGoal;
     private DietGoalStub caloriesGoal;
     private Data data;
@@ -24,17 +24,17 @@ class DietGoalTest {
     private final int calories = 10000;
     private final int protein = 20000;
     private final int carb = 30000;
-    private final int fats = 40000;
+    private final int fat = 40000;
     private final LocalDateTime dateTime = LocalDateTime.now();
 
     @BeforeEach
     void setUp() {
         proteinGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_PROTEIN, 10000);
-        fatsGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_FATS, 10000);
+        fatGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_FAT, 10000);
         carbGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_CARB, 10000);
         caloriesGoal = new DietGoalStub(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_CALORIES, 10000);
         data = new Data();
-        diet = new Diet(calories, protein, carb, fats, dateTime);
+        diet = new Diet(calories, protein, carb, fat, dateTime);
     }
 
     @Test
@@ -70,7 +70,7 @@ class DietGoalTest {
     void isAchieved_currentValueGreaterThanAndEqualToTargetValue_expectTrue() {
         AddDietCommand addDietCommand = new AddDietCommand(diet);
         addDietCommand.execute(data);
-        boolean allGoalsAchieved = fatsGoal.isAchieved(data) && caloriesGoal.isAchieved(data)
+        boolean allGoalsAchieved = fatGoal.isAchieved(data) && caloriesGoal.isAchieved(data)
                 && carbGoal.isAchieved(data) && proteinGoal.isAchieved(data);
         assertTrue(allGoalsAchieved);
     }

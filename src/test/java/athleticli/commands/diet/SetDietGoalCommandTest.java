@@ -23,10 +23,10 @@ class SetDietGoalCommandTest {
     private ArrayList<DietGoal> filledInputDietGoals;
     private ArrayList<DietGoal> filledUnhealthyInputDietGoals;
     private ArrayList<DietGoal> filledNewHealthyInputDietGoals;
-    private DietGoal dietGoalFatsWeekly;
-    private DietGoal dietGoalFatsDaily;
+    private DietGoal dietGoalFatWeekly;
+    private DietGoal dietGoalFatDaily;
     private DietGoal dietGoalCarbWeekly;
-    private DietGoal unhealthyDietGoalFatsDaily;
+    private DietGoal unhealthyDietGoalFatDaily;
     private Data data;
 
     @BeforeEach
@@ -36,17 +36,17 @@ class SetDietGoalCommandTest {
         filledUnhealthyInputDietGoals = new ArrayList<>();
         filledNewHealthyInputDietGoals = new ArrayList<>();
 
-        dietGoalFatsWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_FATS, 10000);
-        dietGoalFatsDaily = new HealthyDietGoal(Goal.TimeSpan.DAILY, Parameter.NUTRIENTS_FATS, 1000000);
+        dietGoalFatWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_FAT, 10000);
+        dietGoalFatDaily = new HealthyDietGoal(Goal.TimeSpan.DAILY, Parameter.NUTRIENTS_FAT, 1000000);
         dietGoalCarbWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, Parameter.NUTRIENTS_CARB, 10000);
-        unhealthyDietGoalFatsDaily = new UnhealthyDietGoal(Goal.TimeSpan.DAILY,
-                Parameter.NUTRIENTS_FATS, 10000);
+        unhealthyDietGoalFatDaily = new UnhealthyDietGoal(Goal.TimeSpan.DAILY,
+                Parameter.NUTRIENTS_FAT, 10000);
         data = new Data();
 
-        filledInputDietGoals.add(dietGoalFatsWeekly);
+        filledInputDietGoals.add(dietGoalFatWeekly);
         filledInputDietGoals.add(dietGoalCarbWeekly);
-        filledUnhealthyInputDietGoals.add(unhealthyDietGoalFatsDaily);
-        filledNewHealthyInputDietGoals.add(dietGoalFatsDaily);
+        filledUnhealthyInputDietGoals.add(unhealthyDietGoalFatDaily);
+        filledNewHealthyInputDietGoals.add(dietGoalFatDaily);
     }
 
     @Test
@@ -66,7 +66,7 @@ class SetDietGoalCommandTest {
         try {
             SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
             String[] expectedString = {"These are your goal(s):\n", "\t1. [HEALTHY]  "
-                    + "WEEKLY fats intake progress: (0/10000)\n\n" + "\t2. [HEALTHY]  "
+                    + "WEEKLY fat intake progress: (0/10000)\n\n" + "\t2. [HEALTHY]  "
                     + "WEEKLY carb intake progress: (0/10000)\n", "Now you have 2 diet goal(s)."};
             String[] actualString = setDietGoalCommand.execute(data);
             assertArrayEquals(expectedString, actualString);

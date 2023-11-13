@@ -110,7 +110,7 @@ public class DietParserTest {
 
     @Test
     void parseDietEdit_zeroValidInput_throwAthletiException() {
-        String invalidInput = "2 calorie/1 proteins/2 carbs/3 fats/4 datetime/2023-10-06";
+        String invalidInput = "2 calorie/1 proteins/2 carbs/3 fat/4 datetime/2023-10-06";
         assertThrows(AthletiException.class, () -> parseDietEdit(invalidInput));
     }
 
@@ -257,7 +257,7 @@ public class DietParserTest {
     //@@author  yicheng-toh
     @Test
     void parseDietGoalSetEdit_unhealthyDietGoal_expectUnhealthyDietGoal() throws AthletiException {
-        String oneValidOneInvalidGoalString = "WEEKLY unhealthy fats/20";
+        String oneValidOneInvalidGoalString = "WEEKLY unhealthy fat/20";
         ArrayList<DietGoal> dietGoals = parseDietGoalSetAndEdit(oneValidOneInvalidGoalString);
         assert dietGoals.get(0) instanceof UnhealthyDietGoal;
     }
@@ -270,7 +270,7 @@ public class DietParserTest {
 
     @Test
     void parseDietGoalSetEdit_inputHasNoTimeSpan_throwAthletiException() {
-        String invalidGoalString = "fats/10";
+        String invalidGoalString = "fat/10";
         assertThrows(AthletiException.class, () -> parseDietGoalSetAndEdit(invalidGoalString));
     }
 
