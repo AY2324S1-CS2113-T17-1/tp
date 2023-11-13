@@ -1,4 +1,4 @@
-remote_theme: daviddarnes/alembic@4.1.0
+remote_theme: skylee03/alembic@4.1.1
 plugins:
   - jekyll-remote-theme
   - jekyll-redirect-from
