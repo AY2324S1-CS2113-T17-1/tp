@@ -1,39 +1,39 @@
 package athleticli.data.diet;
 
+import athleticli.data.Data;
+import athleticli.data.Goal;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+
+import athleticli.parser.Parameter;
+
 /**
  * Represents a diet goal.
  */
-public class DietGoal {
-    private String nutrients;
-    private int targetValue;
-    private int currentValue;
-    private boolean isGoalAchieved;
+public abstract class DietGoal extends Goal {
+    protected String nutrient;
+    protected int targetValue;
+    protected final String TYPE;
+    protected final String achievedSymbol;
+    protected final String unachievedSymbol;
+    private final String dietGoalStringRepresentation;
 
     /**
      * Constructs a diet goal with no current value.
      *
-     * @param nutrients   The nutrients of the diet goal.
+     * @param timespan    The timespan of the diet goal.
+     * @param nutrient    The nutrients of the diet goal.
      * @param targetValue The target value of the diet goal.
      */
-    public DietGoal(String nutrients, int targetValue) {
-        this.nutrients = nutrients;
+    public DietGoal(TimeSpan timespan, String nutrient, int targetValue) {
+        super(timespan);
+        this.nutrient = nutrient;
         this.targetValue = targetValue;
-        currentValue = 0;
-        isGoalAchieved = false;
-    }
-
-    /**
-     * Constructs a diet goal with a current value.
-     *
-     * @param nutrients    The nutrients of the diet goal.
-     * @param targetValue  The target value of the diet goal.
-     * @param currentValue The current value of the diet goal.
-     */
-    public DietGoal(String nutrients, int targetValue, int currentValue) {
-        this.nutrients = nutrients;
-        this.targetValue = targetValue;
-        this.currentValue = currentValue;
-        isGoalAchieved = currentValue >= targetValue;
+        TYPE = "";
+        achievedSymbol = "[Achieved]";
+        unachievedSymbol = "";
+        dietGoalStringRepresentation = "%s %s %s intake progress: (%d/%d)\n";
     }
 
     /**
@@ -41,17 +41,17 @@ public class DietGoal {
      *
      * @return The nutrients of the diet goal.
      */
-    public String getNutrients() {
-        return nutrients;
+    public String getNutrient() {
+        return nutrient;
     }
 
     /**
      * Sets the nutrients of the diet goal.
      *
-     * @param nutrients The nutrients of the diet goal.
+     * @param nutrient The nutrient of the diet goal.
      */
-    public void setNutrients(String nutrients) {
-        this.nutrients = nutrients;
+    public void setNutrient(String nutrient) {
+        this.nutrient = nutrient;
     }
 
     /**
@@ -70,53 +70,133 @@ public class DietGoal {
      */
     public void setTargetValue(int targetValue) {
         this.targetValue = targetValue;
-        setIsGoalAchieved(currentValue >= targetValue);
     }
 
     /**
-     * Returns the current value of the diet goal.
+     * Returns the current value of the diet goal from dietList.
      *
+     * @param data A storage class to retrieve diet information.
      * @return The current value of the diet goal.
      */
-    public int getCurrentValue() {
+    public int getCurrentValue(Data data) {
+        return updateCurrentValue(data);
+    }
+
+    /**
+     * Returns the type of diet goal.
+     *
+     * @return the type of diet goal.
+     */
+    public String getType() {
+        return TYPE;
+    }
+
+    private int updateCurrentValue(Data data) {
+        int currentValue = 0;
+        DietList diets = data.getDiets();
+        int numDays = getTimeSpan().getDays();
+        ArrayList<LocalDate> dates = getPastDates(numDays);
+        ArrayList<Diet> dietRecords;
+        for (LocalDate date : dates) {
+            dietRecords = diets.find(date);
+            for (Diet diet : dietRecords) {
+                switch (nutrient) {
+                case Parameter.NUTRIENTS_FATS:
+                    currentValue += diet.getFat();
+                    break;
+                case Parameter.NUTRIENTS_CALORIES:
+                    currentValue += diet.getCalories();
+                    break;
+                case Parameter.NUTRIENTS_PROTEIN:
+                    currentValue += diet.getProtein();
+                    break;
+                case Parameter.NUTRIENTS_CARB:
+                    currentValue += diet.getCarb();
+                    break;
+                default:
+                    currentValue += 0;
+
+                }
+            }
+        }
         return currentValue;
     }
 
-    /**
-     * Sets the current value of the diet goal.
-     *
-     * @param currentValue The current value of the diet goal.
-     */
-    public void setCurrentValue(int currentValue) {
-        this.currentValue = currentValue;
-        setIsGoalAchieved(currentValue >= targetValue);
+    private ArrayList<LocalDate> getPastDates(int numDays) {
+        ArrayList<LocalDate> pastDates = new ArrayList<>();
+        LocalDate currentDate = LocalDate.now();
+
+        for (int i = 0; i < numDays; i++) {
+            LocalDate pastDate = currentDate.minusDays(i);
+            pastDates.add(pastDate);
+        }
+        return pastDates;
     }
 
     /**
      * Returns whether the diet goal is achieved.
      *
+     * @param data A storage class to retrieve diet information.
      * @return Whether the diet goal is achieved.
      */
-    public boolean getIsGoalAchieved() {
-        return isGoalAchieved;
+    public boolean isAchieved(Data data) {
+        int currentValue = getCurrentValue(data);
+        return currentValue >= targetValue;
     }
 
     /**
-     * Sets whether the diet goal is achieved.
+     * Returns the symbol to indicate if a diet goal is achieved.
      *
-     * @param isGoalAchieved Whether the diet goal is achieved.
+     * @param data A storage class to retrieve diet information.
+     * @return A string symbol indicating that the goal is achieved.
      */
-    private void setIsGoalAchieved(boolean isGoalAchieved) {
-        this.isGoalAchieved = isGoalAchieved;
+    protected String getSymbol(Data data) {
+        if (isAchieved(data)) {
+            return achievedSymbol;
+        }
+        return unachievedSymbol;
+    }
+
+    /**
+     * Checks if the other diet goals are of the same type.
+     *
+     * @param dietGoal
+     * @return
+     */
+    public boolean isSameType(DietGoal dietGoal) {
+        return dietGoal.getType().equals(getType());
+    }
+
+    /**
+     * Checks if the other diet goals are of the same nutrient.
+     *
+     * @param dietGoal
+     * @return
+     */
+    public boolean isSameNutrient(DietGoal dietGoal) {
+        return dietGoal.getNutrient().equals(getNutrient());
+    }
+
+    /**
+     * Checks if the other diet goals are of the same time span.
+     *
+     * @param dietGoal
+     * @return
+     */
+    public boolean isSameTimeSpan(DietGoal dietGoal) {
+        return dietGoal.getTimeSpan().getDays() == getTimeSpan().getDays();
     }
 
     /**
      * Returns the string representation of the diet goal.
      *
+     * @param data A storage class to retrieve diet information.
      * @return The string representation of the diet goal.
      */
-    @Override
-    public String toString() {
-        return nutrients + " intake progress: (" + currentValue + "/" + targetValue + ")\n";
+    public String toString(Data data) {
+        return String.format(dietGoalStringRepresentation, getSymbol(data), getTimeSpan().name(), nutrient,
+                getCurrentValue(data), targetValue);
+
+
     }
 }

@@ -1,5 +1,9 @@
 package athleticli.data.diet;
 
+import java.time.LocalDateTime;
+
+import static athleticli.common.Config.DATE_TIME_PRETTY_FORMATTER;
+
 /**
  * Defines the basic fields and methods of a diet.
  */
@@ -8,6 +12,7 @@ public class Diet {
     private int protein;
     private int carb;
     private int fat;
+    private LocalDateTime dateTime;
 
     /**
      * Constructs a <code>Diet</code> object.
@@ -16,12 +21,18 @@ public class Diet {
      * @param protein  Protein intake in grams.
      * @param carb     Carbohydrate intake in grams.
      * @param fat      Fat intake in grams.
+     * @param dateTime The date and time of the diet.
      */
-    public Diet(int calories, int protein, int carb, int fat) {
+    public Diet(int calories, int protein, int carb, int fat, LocalDateTime dateTime) {
+        assert calories >= 0 : "Calories cannot be negative";
         this.calories = calories;
+        assert protein >= 0 : "Protein cannot be negative";
         this.protein = protein;
+        assert carb >= 0 : "Carb cannot be negative";
         this.carb = carb;
+        assert fat >= 0 : "Fat cannot be negative";
         this.fat = fat;
+        this.dateTime = dateTime;
     }
 
     /**
@@ -39,6 +50,7 @@ public class Diet {
      * @param calories The caloric value of the diet in cal.
      */
     public void setCalories(int calories) {
+        assert calories >= 0 : "Calories cannot be negative";
         this.calories = calories;
     }
 
@@ -57,6 +69,7 @@ public class Diet {
      * @param protein Protein intake in grams.
      */
     public void setProtein(int protein) {
+        assert protein >= 0 : "Protein cannot be negative";
         this.protein = protein;
     }
 
@@ -75,6 +88,7 @@ public class Diet {
      * @param carb Carbohydrate intake in grams.
      */
     public void setCarb(int carb) {
+        assert carb >= 0 : "Carb cannot be negative";
         this.carb = carb;
     }
 
@@ -93,7 +107,26 @@ public class Diet {
      * @param fat Fat intake in grams.
      */
     public void setFat(int fat) {
+        assert fat >= 0 : "Fat cannot be negative";
         this.fat = fat;
+    }
+
+    /**
+     * Returns the date and time of the diet.
+     *
+     * @return The date and time of the diet.
+     */
+    public LocalDateTime getDateTime() {
+        return dateTime;
+    }
+
+    /**
+     * Sets the date and time of the diet.
+     *
+     * @param dateTime The date and time of the diet.
+     */
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     /**
@@ -101,8 +134,10 @@ public class Diet {
      *
      * @return A string representation of the diet.
      */
+
     @Override
     public String toString() {
-        return "Calories: " + calories + " Protein: " + protein + " Carb: " + carb + " Fat: " + fat;
+        return "Calories: " + calories + " cal | Protein: " + protein + " mg | Carb: " + carb + " mg | Fat:" +
+                       " " + fat + " mg | " + dateTime.format(DATE_TIME_PRETTY_FORMATTER);
     }
 }

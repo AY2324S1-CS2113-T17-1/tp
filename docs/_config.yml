@@ -1,0 +1,41 @@
+remote_theme: skylee03/alembic@4.1.1
+plugins:
+  - jekyll-remote-theme
+  - jekyll-redirect-from
+  - jemoji
+markdown: kramdown
+sass:
+  style: compressed
+encoding: utf-8
+lang: en-US
+title: "AthletiCLI"
+url: "https://ay2324s1-cs2113-t17-1.github.io/tp/"
+repo: "https://github.com/AY2324S1-CS2113-T17-1/tp"
+css_inline: true
+fonts:
+  preconnect_urls:
+    - https://fonts.gstatic.com
+  font_urls:
+    - https://fonts.googleapis.com/css2?family=Alegreya:wght@400;700&display=swap
+navigation_header:
+  - title: Home
+    url: /
+  - title: User Guide
+    url: /UserGuide.html
+  - title: Developer Guide
+    url: /DeveloperGuide.html
+  - title: About Us
+    url: /AboutUs.html
+  - title: GitHub
+    url: https://github.com/AY2324S1-CS2113-T17-1/tp
+navigation_footer:
+  - title: Home
+    url: /
+  - title: User Guide
+    url: /UserGuide.html
+  - title: Developer Guide
+    url: /DeveloperGuide.html
+  - title: About Us
+    url: /AboutUs.html
+  - title: GitHub
+    url: https://github.com/AY2324S1-CS2113-T17-1/tp

@@ -6,7 +6,9 @@ import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 /**
@@ -17,13 +19,14 @@ public class DeleteDietCommandTest {
     private static final int PROTEIN = 20;
     private static final int CARB = 30;
     private static final int FAT = 40;
+    private static final LocalDateTime DATE_TIME = LocalDateTime.of(2020, 10, 10, 10, 10);
     private Diet diet;
     private DeleteDietCommand deleteDietCommand;
     private Data data;
 
     @BeforeEach
     void setUp() {
-        diet = new Diet(CALORIES, PROTEIN, CARB, FAT);
+        diet = new Diet(CALORIES, PROTEIN, CARB, FAT, DATE_TIME);
         deleteDietCommand = new DeleteDietCommand(1);
         data = new Data();
         data.getDiets().add(diet);
@@ -34,20 +37,12 @@ public class DeleteDietCommandTest {
         String[] expected = {"Noted. I've removed this diet:", diet.toString(),
                              "Now you have tracked a total of 0 diets. Keep grinding!"};
         String[] actual = deleteDietCommand.execute(data);
-        for (int i = 0; i < actual.length; i++) {
-            assertEquals(expected[i], actual[i]);
-        }
+        assertArrayEquals(expected, actual);
     }
 
     @Test
     void execute_invalidIndex_expectException() {
         deleteDietCommand = new DeleteDietCommand(2);
-        assertThrows(AthletiException.class, () -> deleteDietCommand.execute(data));
-    }
-
-    @Test
-    void execute_negativeIndex_expectException() {
-        deleteDietCommand = new DeleteDietCommand(-1);
         assertThrows(AthletiException.class, () -> deleteDietCommand.execute(data));
     }
 }

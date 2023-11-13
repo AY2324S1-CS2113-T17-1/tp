@@ -1,0 +1,37 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+!define LOGIC_COLOR #3333C4
+
+participant ":AthletiCLI" as AthletiCLI LOGIC_COLOR
+participant "ActivityParser" as Parser <<class>> #lightblue
+participant "a:Activity" as Activity #yellow
+participant "c:AddActivityCommand" as AddActivityCommand #lightgreen
+participant "data:Data" as Data #lightgrey
+participant "activities:ActivityList" as activities #lightgrey
+
+AthletiCLI++
+AthletiCLI -> Parser++: parseCommand(userInput)
+Parser -> Parser++: parseActivity(arguments)
+Parser -> Activity++: Activity()
+Activity --> Parser--: a
+Parser --> Parser: a
+Parser--
+Parser -> AddActivityCommand++: parseAddActivityCommand(a)
+AddActivityCommand --> Parser--: c
+Parser --> AthletiCLI--: c
+
+AthletiCLI -> AddActivityCommand++: execute(a, data)
+AddActivityCommand -> Data++: getActivities()
+'Data --> activities++
+'activities --> Data--: activities
+
+Data --> AddActivityCommand--: activities
+AddActivityCommand -> activities++: add(a)
+activities --> AddActivityCommand--
+AddActivityCommand --> AthletiCLI--: message
+
+destroy AddActivityCommand
+@enduml

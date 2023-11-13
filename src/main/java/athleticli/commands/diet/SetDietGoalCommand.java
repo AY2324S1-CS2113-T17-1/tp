@@ -8,8 +8,6 @@ import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Executes the set-diet-goal commands provided by the user.
@@ -37,26 +35,32 @@ public class SetDietGoalCommand extends Command {
     @Override
     public String[] execute(Data data) throws AthletiException {
         DietGoalList currentDietGoals = data.getDietGoals();
-        Set<String> currentDietGoalsNutrients = new HashSet<>();
+        verifyNewGoalsValid(currentDietGoals);
+        addNewUserDietGoals(currentDietGoals);
+        return generateSetDietGoalSuccessMessage(data, currentDietGoals);
+    }
 
-        // Populate the set with current diet goal nutrients
-        for (DietGoal dietGoal : currentDietGoals) {
-            currentDietGoalsNutrients.add(dietGoal.getNutrients());
-        }
+    private static String[] generateSetDietGoalSuccessMessage(Data data, DietGoalList currentDietGoals) {
+        int dietGoalNum = currentDietGoals.size();
+        return new String[]{Message.MESSAGE_DIET_GOAL_LIST_HEADER, currentDietGoals.toString(data),
+                String.format(Message.MESSAGE_DIET_GOAL_COUNT, dietGoalNum)};
+    }
 
-        // Check against user new diet goals
+    private void addNewUserDietGoals(DietGoalList currentDietGoals) {
+        currentDietGoals.addAll(userNewDietGoals);
+    }
+
+    private void verifyNewGoalsValid(DietGoalList currentDietGoals) throws AthletiException {
         for (DietGoal userDietGoal : userNewDietGoals) {
-            String userNewNutrient = userDietGoal.getNutrients();
-            if (currentDietGoalsNutrients.contains(userNewNutrient)) {
-                throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_ALREADY_EXISTED, userNewNutrient));
+            if (!currentDietGoals.isDietGoalUnique(userDietGoal)) {
+                throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_ALREADY_EXISTED,
+                        userDietGoal.getNutrient()));
+            } else if (!currentDietGoals.isDietGoalTypeValid(userDietGoal)) {
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TYPE_CLASH);
+            } else if (!currentDietGoals.isTargetValueConsistentWithTimeSpan(userDietGoal)) {
+                throw new AthletiException(Message.MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_SCALING_WITH_TIME_SPAN);
             }
         }
-
-        // Add new diet goals to current diet goals
-        currentDietGoals.addAll(userNewDietGoals);
-        int dietGoalNum = currentDietGoals.size();
-        return new String[]{Message.MESSAGE_DIETGOAL_LIST_HEADER, currentDietGoals.toString(),
-                String.format(Message.MESSAGE_DIETGOAL_COUNT, dietGoalNum)};
     }
 
 }

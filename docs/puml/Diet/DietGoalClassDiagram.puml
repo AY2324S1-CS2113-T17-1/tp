@@ -1,0 +1,81 @@
+@startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+hide circle
+
+abstract class Goal{
+    - timeSpan:TimeSpan
+    + Goal(timeSpan: TimeSpan): Goal
+    + getTimeSpan():TimeSpan
+    + checkData(date: LocalDate, timeSpan: TimeSpan): boolean
+    + {abstract} isAcheived(data:Data): boolean
+
+}
+
+abstract class DietGoal{
+    # nutrient: String
+    # targetValue: int
+    # type: String
+    # achievedSymbol: String
+    # unachievedSymbol: String
+    - dietGoalStringRepresentation: String
+    + DietGoal(timeSpan: TimeSpan, nutrient: String, targetValue:int): DietGoal
+    + getNutrient(): String
+    + getTargetValue(): int
+    + getCurrentValue(data:Data): int
+    + getType(): String
+    + setTargetValue(targetValue: int): void
+    + isSameType(dietGoal: DietGoal): boolean
+    + isSameNutrient(dietGoal: DietGoal): boolean
+    + isSameTimeSpan(dietGoal: DietGoal): boolean
+    + toString(data: Data): String
+    # getSymbol(data: Data): String
+}
+
+class HealthyDietGoal{
+    + TYPE: String
+    # healthyDietGoalSymbol: String
+    # healthyDietGoalStringRepresentation: String
+    - isHealthy: boolean
+    + HealthyDietGoal(timeSpan: TimeSpan, nutrient: String, targetValue: int): HealthyDietGoal
+    + getType(): String
+    + toString(data: Data): String
+}
+
+class UnhealthyDietGoal{
+    + TYPE: String
+    # achievedSymbol
+    # unachievedSymbol
+    # unhealthyDietGoalSymbol: String
+    # unhealthyDietGoalStringRepresentation: String
+    - isHealthy: boolean
+    + UnhealthyDietGoal(timeSpan: TimeSpan, nutrient: String, targetValue: int): HealthyDietGoal
+    + isAcheived(data: Data): boolean
+    + getType(): String
+    + toString(data: Data): String
+    # getSymbol(): String
+
+}
+
+class DietGoalList{
+    - unparseMessage: String
+    + DietGoalList(): DietGoalList
+    + toString(data: Data): String
+    + isDietgoalUnique(dietGoal: DietGoal): boolean
+    + isDietGoalTypeValid(dietGoal: DietGoal): boolean
+    + isTargetValueConsistentWithTimeSpan(newDietGoal: DietGoal): boolean
+    + parse(s: String): DietGoal
+    - validateParseDietGoal(dietGoal: DietGoal): void
+    - createParseNewDietGoal(goalType: String, timeSpan: String, nutrient: String, targetValue: int): DietGoal
+
+
+}
+
+
+Goal <|-- DietGoal
+DietGoal <|-- HealthyDietGoal
+DietGoal <|-- UnhealthyDietGoal
+DietGoalList "1" o-l- "*" DietGoal :contains >
+
+
+@enduml

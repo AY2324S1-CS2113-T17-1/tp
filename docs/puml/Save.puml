@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+participant ":SaveCommand" as SaveCommand
+participant ":Data" as Data #lightblue
+participant ":StorableList" as StorableList #lightgreen
+participant "<<class>>\nStorage" as Storage #lightpink
+
+
+'autonumber
+SaveCommand -> Data++ : save()
+Data -> StorableList++ : save()
+StorableList -> Storage++ : save(path, items)
+Storage --> StorableList--
+StorableList --> Data--
+ref over Data : Save other lists
+Data --> SaveCommand
+
+@enduml

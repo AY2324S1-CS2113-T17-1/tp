@@ -29,7 +29,7 @@ public class DeleteDietGoalCommand extends Command {
      */
     public DeleteDietGoalCommand(int deleteIndex) {
         //deleteIndex that is less than or equal to zero would result in exception
-        assert deleteIndex >= 1: "'deleteIndex' should has the value of 1 minimally.";
+        assert deleteIndex >= 1: "'deleteIndex' should have the value of 1 minimally.";
         this.deleteIndex = deleteIndex;
         LogManager.getLogManager().reset();
         try {
@@ -49,17 +49,17 @@ public class DeleteDietGoalCommand extends Command {
         logger.log(Level.FINE, "Executing delete command for diet goals");
         DietGoalList dietGoals = data.getDietGoals();
         if (dietGoals.isEmpty()) {
-            throw new AthletiException(Message.MESSAGE_DIETGOAL_EMPTY_DIETGOALLIST);
+            throw new AthletiException(Message.MESSAGE_DIET_GOAL_EMPTY_DIET_GOAL_LIST);
         }
         try {
             DietGoal dietGoalRemoved = dietGoals.get(deleteIndex - 1);
             dietGoals.remove(deleteIndex - 1);
             logger.log(Level.FINE, String.format("Diet goals %s has been successfully removed",
-                    dietGoalRemoved.getNutrients()));
-            return new String[]{Message.MESSAGE_DIETGOAL_DELETE_HEADER,
-                    dietGoalRemoved.toString()};
-        } catch (ArrayIndexOutOfBoundsException e) {
-            throw new AthletiException(String.format(Message.MESSAGE_DIETGOAL_OUT_OF_BOUND, dietGoals.size()));
+                    dietGoalRemoved.getNutrient()));
+            return new String[]{Message.MESSAGE_DIET_GOAL_DELETE_HEADER,
+                    dietGoalRemoved.toString(data)};
+        } catch (IndexOutOfBoundsException e) {
+            throw new AthletiException(String.format(Message.MESSAGE_DIET_GOAL_OUT_OF_BOUND, dietGoals.size()));
         }
     }
 }
