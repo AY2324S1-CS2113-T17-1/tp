@@ -23,7 +23,7 @@ public class SleepGoalListTest {
     void parse_sleepDurationGoalDaily_parsed() throws AthletiException {
         String arguments = "type/duration period/daily target/50000";
         SleepGoal expected = new SleepGoal(SleepGoal.GoalType.DURATION, TimeSpan.DAILY, 50000);
-        SleepGoal actual = SleepParser.parseSleepGoal(arguments);
+        SleepGoal actual = sleepGoalList.parse(arguments);
         assertEquals(expected.getGoalType(), actual.getGoalType());
         assertEquals(expected.getTimeSpan(), actual.getTimeSpan());
         assertEquals(expected.getTargetValue(), actual.getTargetValue());
