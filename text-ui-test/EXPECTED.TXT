@@ -32,7 +32,7 @@ Diet Management:
  edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]
  delete-diet-goal INDEX
  list-diet-goal
-
+ 
 Sleep Management:
  add-sleep start/START end/END
  list-sleep
@@ -218,18 +218,16 @@ ____________________________________________________________
 
 > ____________________________________________________________
  Gotcha, I've deleted this sleep record:
- 
  [Sleep] | Date: 2021-09-05 | Start Time: September 5, 2021 at 10:00 PM | End Time: September 6, 2021 at 6:00 AM | Sleeping Duration: 8 Hours 
-
  You have tracked a total of 2 sleep records. Keep it up!
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Please specify the index of the sleep record you want to edit as a positive integer.
+ OOPS!!! Please specify the index of the sleep record as a positive integer.
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! Please specify the index of the sleep record you want to edit as a positive integer.
+ OOPS!!! Please specify the index of the sleep record as a positive integer.
 ____________________________________________________________
 
 > ____________________________________________________________
