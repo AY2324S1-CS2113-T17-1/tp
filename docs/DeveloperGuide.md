@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 <style>
-  img {
+  img :not(emoji) {
     display: block;
     margin-left: auto;
     margin-right: auto;
