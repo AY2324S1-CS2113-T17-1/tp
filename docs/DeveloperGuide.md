@@ -580,7 +580,7 @@ Developers are expected to conduct more extensive tests.
     - Test case 2:
         * Find diets on a date with no entries.
         * Command: `find-diet 2023-11-01`
-        * Expected Outcome: Message indicating no diets found on 1st November 2023.
+        * Expected Outcome: No diets are displayed.
 
 #### Diet Goals
 
