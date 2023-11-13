@@ -64,7 +64,7 @@ View my code contributions on [RepoSense](https://nus-cs2113-ay2324s1.github.io/
 * User Guide:
   * Added documentation for the features `add-activity`, `add-run`, `add-swim`, `add-cycle`, `delete-activity`,
     `list-activity`, `edit-activity`, `edit-run`, `edit-cycle`, `edit-swim`, `set-activity-goal`: [Activity 
-    Management]((../UserGuide.html#activity-management))
+    Management](../UserGuide.html#activity-management)
   * Improved overall visual appearance of the document: [#253](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/253)
 * Developer Guide:
   * Explained all implementation details in DG related to Activity Management, including `add-activity` and 
