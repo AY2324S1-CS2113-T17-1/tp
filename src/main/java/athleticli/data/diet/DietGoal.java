@@ -105,7 +105,7 @@ public abstract class DietGoal extends Goal {
                     currentValue += diet.getFat();
                     break;
                 case Parameter.NUTRIENTS_CALORIES:
-                    currentValue += diet.getProtein();
+                    currentValue += diet.getCalories();
                     break;
                 case Parameter.NUTRIENTS_PROTEIN:
                     currentValue += diet.getProtein();

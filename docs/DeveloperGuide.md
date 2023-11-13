@@ -78,6 +78,13 @@ The class diagram shows how the `Data` component is constructed with multiple cl
   <img width="80%" src="images/DataClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
 </p>
 
+### Parser Component
+
+The class diagram shows how the `Parser` component is constructed with multiple classes.
+
+<p  align="center" width="100%">
+  <img width="100%" src="images/ParserClassDiagram.png" alt="`parser` Class Diagram"/>
+
 **How the architecture components interact with each other**
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `help add-diet`.
@@ -98,26 +105,46 @@ For simplicity, only 1 `StorableList` is drawn instead of the actual 6.
 
 ### Diet Management in AthletiCLI
 
-#### [Implemented] Setting Up, Editing, Deleting, Listing, and Finding Diets
+#### [Implemented] Adding, Editing, Deleting, Listing, and Finding Diets
 
-Regardless of the operation you are performing on diets (setting up, editing, deleting, listing, or finding), the process follows a general five-step pattern in AthletiCLI:
+Regardless of the operation you are performing on diets (adding, editing, deleting, listing, or finding), the process
+follows a general five-step pattern in AthletiCLI:
 
-1. **Input Processing**: The user's input is passed through AthletiCLI to the Parser Class. Examples of user inputs include:
-    - `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for adding a diet.
-    - `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for editing a diet.
-    - `delete-diet 1` for deleting a diet.
-    - `list-diet` for listing all diets.
-    - `find-diet 2021-09-01` for finding diets of a particular date.
+**Step 1 - Input Processing:** The user's input is passed through AthletiCLI to the `Parser` class. Examples of user
+inputs include:
 
-2. **Command Identification**: The Parser Class identifies the type of diet operation and passes the necessary parameters.
+- `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for adding a diet.
+- `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` for editing a diet at index 1.
+- `delete-diet 1` for deleting a diet at index 1.
+- `list-diet` for listing all diets.
+- `find-diet 2021-09-01` for finding all diets on 1st September 2021.
 
-3. **Command Creation**: An instance of the corresponding command class is created (e.g., AddDietCommand, EditDietCommand, etc.) and returned to AthletiCLI.
+**Step 2 - Command Identification:** The `Parser` class identifies the type of diet operation and calls the
+appropriate `DietParser` method to parse the necessary parameters (if any). For example, the `add-diet` command will
+call the `DietParser.parseDiet` method, which will return a `Diet` object.
 
-4. **Command Execution**: AthletiCLI executes the command, interacting with the data instance of DietList to perform the required operation.
+**Step 3 - Command Creation**: An instance of the corresponding command class is created (e.g., `AddDietCommand`,
+`EditDietCommand`, etc.) using the returned object (if any) from the `DietParser` and returned to AthletiCLI.
 
-5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
+**Step 4 - Command Execution**: AthletiCLI executes the command, interacting with the data instance of DietList to
+perform the required operation. For example, the `AddDietCommand` will add the `Diet` object to the `DietList` object,
+while the `EditDietCommand` will edit the `Diet` object at the specified index in the `DietList` object.
+
+**Step 5 - Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for
+display to the user. This is useful for informing the user of the success or failure of the operation.
 
 By following these general steps, AthletiCLI ensures a streamlined process for managing diet-related tasks.
+
+Here is the sequence diagram for the `edit-diet` command to illustrate the five-step process:
+
+<p  align="center" width="100%">
+  <img width="100%" src="images/editDietSequenceDiagram.png" alt="'edit-diet' Sequence Diagram"/>
+
+> The diagram shows the interaction between the `AthletiCLI`, `Parser`, `Command`, and `Data` components.
+> The use of HashMaps in the `DietParser` class allows for a more flexible and extensible design, as it facilitates
+> the modification of necessary parameters without requiring the user to specify all parameters in the command. For 
+> example, the user can choose to edit only the calories and protein of a diet, without specifying the carb and fat values.
+
 
 #### [Implemented] Setting Up of Diet Goals
 
@@ -205,9 +232,9 @@ This diagram illustrates the activity parsing process in more detail:
 The `ActivityChanges` object plays a key role in the parsing process. It is used for storing the 
 different attributes of the activity that are to be added. Later, the `ActivityParser` 
 will use the `ActivityChanges` to create the `Activity` object. 
-> This way of transferring data between the parser and the activity is more flexible which is suitable for future 
-extensions of the activity types and allows for a more modular design. This design and most of the methods can be reused 
-for the `edit-activity` mechanism, which works in the same way with slight modifications due to optional parameters.
+> This way of transferring data between the parser and the activity is more flexible which is suitable for future
+> extensions of the activity types and allows for a more modular design. This design and most of the methods can be reused
+> for the `edit-activity` mechanism, which works in the same way with slight modifications due to optional parameters.
 
 <p align="center" >
   <img width="100%" src="images/ActivityParsing.svg" alt="Activity Parsing Process"/>
@@ -361,6 +388,7 @@ By providing a comprehensive view of various performance-related factors over ti
 | v2.0    | organized athlete               | list all my activity goals                                        | have a clear overview of my set targets and track my progress easily.                  |
 | v2.0    | meticulous user                 | find my diets by date                                             | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
 | v2.0    | motivated user                  | keep track of my diet goals for a period of time                  | I can monitor my diet progress on a weekly basis and increase or reduce if needed.     |                                         |
+| v2.0    | goal-oriented user              | delete a specific activity goal                                   | remove goals that are no longer relevant or achievable for me.                         |                                         |
 
 ---
 
@@ -401,9 +429,91 @@ Developers are expected to conduct more extensive tests.
 
 #### Activity Goals
 
+1. Setting Activity Goals
+    - Test case 1:
+        * Set a weekly running distance goal.
+        * Command: `set-activity-goal sport/running type/distance period/weekly target/15000`
+        * Expected Outcome: Weekly running goal of 15km is set successfully.
+    - Test case 2:
+        * Set a monthly swimming duration goal.
+        * Command: `set-activity-goal sport/swimming type/duration period/monthly target/300`
+        * Expected Outcome: Monthly swimming duration goal of 300 minutes is set successfully.
+
+2. Editing Activity Goals
+    - Test case 1:
+        * Edit an existing weekly cycling distance goal.
+        * Command: `edit-activity-goal sport/cycling type/distance period/weekly target/20000`
+        * Expected Outcome: Weekly cycling distance goal is updated to 20km.
+    - Test case 2:
+        * Edit a non-existent yearly running duration goal.
+        * Command: `edit-activity-goal sport/running type/duration period/yearly target/1000`
+        * Expected Outcome: Error indicating no existing yearly running duration goal.
+
+3. Listing Activity Goals
+    - Test case 1:
+        * List all set activity goals.
+        * Command: `list-activity-goal`
+        * Expected Outcome: All set activity goals along with their details are listed.
+
+4. Deleting Activity Goals
+    - Test case 1:
+        * Delete an existing monthly swimming duration goal.
+        * Command: `delete-activity-goal sport/swimming type/duration period/monthly`
+        * Expected Outcome: Monthly swimming duration goal is deleted successfully.
+    - Test case 2:
+        * Attempt to delete a non-existent daily general activity goal.
+        * Command: `delete-activity-goal sport/general type/distance period/daily`
+        * Expected Outcome: Error indicating no such daily general activity goal exists.
+
 ### Diet Management
 
 #### Diet Records
+
+1. Adding Diets
+    - Test case 1:
+        * Add a complete diet entry.
+        * Command: `add-diet calories/700 protein/25 carb/55 fat/15 datetime/2023-10-12 07:30`
+        * Expected Outcome: Diet entry is successfully added with 700 calories, 25mg protein, 55mg carb, and 15mg fat.
+    - Test case 2:
+        * Attempt to add a diet entry with a future datetime.
+        * Command: `add-diet calories/800 protein/30 carb/60 fat/20 datetime/3024-01-01 08:00`
+        * Expected Outcome: Error indicating the datetime cannot be in the future.
+
+2. Editing Diets
+    - Test case 1:
+        * Edit a specific diet entry.
+        * Command: `edit-diet 2 calories/900 protein/40 carb/70 fat/25 datetime/2023-10-13 09:00`
+        * Expected Outcome: The 2nd diet entry is updated with the new values.
+    - Test case 2:
+        * Edit a diet entry with only one parameter.
+        * Command: `edit-diet 3 fat/30`
+        * Expected Outcome: Only the fat value of the 3rd diet entry is updated.
+
+3. Deleting Diets
+    - Test case 1:
+        * Delete a specific diet entry.
+        * Command: `delete-diet 2`
+        * Expected Outcome: The 2nd diet entry is successfully deleted.
+    - Test case 2:
+        * Attempt to delete a non-existent diet entry.
+        * Command: `delete-diet 5`
+        * Expected Outcome: Error indicating the diet entry does not exist.
+
+4. Listing Diets
+    - Test case 1:
+        * List all diet entries.
+        * Command: `list-diet`
+        * Expected Outcome: All existing diet entries are displayed.
+
+5. Finding Diets
+    - Test case 1:
+        * Find diets recorded on a specific date.
+        * Command: `find-diet 2023-10-12`
+        * Expected Outcome: Diets recorded on 12th October 2023 are displayed.
+    - Test case 2:
+        * Find diets on a date with no entries.
+        * Command: `find-diet 2023-11-01`
+        * Expected Outcome: Message indicating no diets found on 1st November 2023.
 
 #### Diet Goals
 
