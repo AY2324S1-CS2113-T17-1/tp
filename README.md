@@ -1,64 +1,37 @@
-# AthletiCLI project template
+<div align="center">
+   <h1>AthletiCLI</h1>
+   <p>
+      Your all-in-one solution to track, analyse, and optimize your athletic performance.
+   </p>
+   <img src="https://raw.githubusercontent.com/AY2324S1-CS2113-T17-1/tp/master/docs/images/AthletiCLI-Banner.png"/>
+   <p>
+      <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/AY2324S1-CS2113-T17-1/tp">
+      <img alt="GitHub commit activity (branch)" src="https://img.shields.io/github/commit-activity/t/AY2324S1-CS2113-T17-1/tp">
+      <a href="https://github.com/AY2324S1-CS2113-T17-1/tp/actions"><img src="https://github.com/AY2324S1-CS2113-T17-1/tp/workflows/Java%20CI/badge.svg" alt=""></a>
+      <img alt="GitHub issues" src="https://img.shields.io/github/issues/AY2324S1-CS2113-T17-1/tp">
+      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/AY2324S1-CS2113-T17-1/tp">
+      <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/AY2324S1-CS2113-T17-1/tp/total">
+   </p>
+   <p>
+      :green_book: <a href="https://ay2324s1-cs2113-t17-1.github.io/tp/UserGuide.html">User Guide</a>
+      |
+      :blue_book: <a href="https://ay2324s1-cs2113-t17-1.github.io/tp/DeveloperGuide.html">Developer Guide</a>
+      |
+      :orange_book: <a href="https://ay2324s1-cs2113-t17-1.github.io/tp/AboutUs.html">About Us</a>
+   </p>
+</div>
 
-This is a project template for a greenfield Java project. It's named after the Java mascot _Duke_. Given below are instructions on how to use it.
+**AthletiCLI** is your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also covers dietary habits, sleep metrics, and more.
 
-## Setting up in Intellij
+* If you are interested in using AthletiCLI, head over to the [:green_book: User Guide](UserGuide.html).
+* If you are interested about developing AthletiCLI, the [:blue_book: Developer Guide](DeveloperGuide.html) is a good place to start.
+* If you would like to learn more about our development team, please visit the [:orange_book: About Us](AboutUs.html) page.
 
-Prerequisites: JDK 11 (use the exact version), update Intellij to the most recent version.
 
-1. **Ensure Intellij JDK 11 is defined as an SDK**, as described [here](https://www.jetbrains.com/help/idea/sdk.html#set-up-jdk) -- this step is not needed if you have used JDK 11 in a previous Intellij project.
-1. **Import the project _as a Gradle project_**, as described [here](https://se-education.org/guides/tutorials/intellijImportGradleProject.html).
-1. **Verify the set up**: After the importing is complete, locate the `src/main/java/seedu/duke/Duke.java` file, right-click it, and choose `Run Duke.main()`. If the setup is correct, you should see something like the below:
-   ```
-   > Task :compileJava
-   > Task :processResources NO-SOURCE
-   > Task :classes
-   
-   > Task :Duke.main()
-   Hello from
-    ____        _        
-   |  _ \ _   _| | _____ 
-   | | | | | | | |/ / _ \
-   | |_| | |_| |   <  __/
-   |____/ \__,_|_|\_\___|
-   
-   What is your name?
-   ```
-   Type some word and press enter to let the execution proceed to the end.
 
-## Build automation using Gradle
+## :rocket: Quick Start
 
-* This project uses Gradle for build automation and dependency management. It includes a basic build script as well (i.e. the `build.gradle` file).
-* If you are new to Gradle, refer to the [Gradle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/gradle.html).
-
-## Testing
-
-### I/O redirection tests
-
-* To run _I/O redirection_ tests (aka _Text UI tests_), navigate to the `text-ui-test` and run the `runtest(.bat/.sh)` script.
-
-### JUnit tests
-
-* A skeleton JUnit test (`src/test/java/seedu/duke/DukeTest.java`) is provided with this project template. 
-* If you are new to JUnit, refer to the [JUnit Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/junit.html).
-
-## Checkstyle
-
-* A sample CheckStyle rule configuration is provided in this project.
-* If you are new to Checkstyle, refer to the [Checkstyle Tutorial at se-education.org/guides](https://se-education.org/guides/tutorials/checkstyle.html).
-
-## CI using GitHub Actions
-
-The project uses [GitHub actions](https://github.com/features/actions) for CI. When you push a commit to this repo or PR against it, GitHub actions will run automatically to build and verify the code as updated by the commit/PR.
-
-## Documentation
-
-`/docs` folder contains a skeleton version of the project documentation.
-
-Steps for publishing documentation to the public: 
-1. If you are using this project template for an individual project, go your fork on GitHub.<br>
-   If you are using this project template for a team project, go to the team fork on GitHub.
-1. Click on the `settings` tab.
-1. Scroll down to the `GitHub Pages` section.
-1. Set the `source` as `master branch /docs folder`.
-1. Optionally, use the `choose a theme` button to choose a theme for your documentation.
+* :white_check_mark: Ensure you have the required runtime environment (JRE 11 or above) installed on your computer.
+* :white_check_mark: Download the latest [release](https://github.com/AY2324S1-CS2113-T17-1/tp/releases) of AthletiCLI.
+* :white_check_mark: Copy the downloaded file to a folder you want to designate as the home for AthletiCLI.
+* :white_check_mark: Open a command terminal, `cd` into the folder where you copied the file, and run `java -jar AthletiCLI.jar` .
