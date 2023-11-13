@@ -1,9 +1,9 @@
 ---
 layout: page
-title: Dylan Chia's Portfolio
+title: Dylan Chia's Project Portfolio Page (PPP)
 ---
 
-# Project: AthletiCLI, Dylan Chia's Project Portfolio Page
+# Project: AthletiCLI
 
 ## Overview
 Contributed to all sleep related features, including the `sleep` commands, `Sleep` class, `SleepParser` class, as well as the `SleepGoal` class. 
