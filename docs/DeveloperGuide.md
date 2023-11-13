@@ -3,6 +3,15 @@ layout: page
 title: Developer Guide
 ---
 
+<style>
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+
 - Table of Contents
 {:toc}
 ---
@@ -16,19 +25,19 @@ title: Developer Guide
 ---
 ## Setting Up and Getting Started
 
-First, fork this repo, and clone the fork into your computer.
+First, fork [this repo](https://github.com/AY2324S1-CS2113-T17-1/tp), and clone the fork into your computer.
 
-If you plan to use Intellij IDEA (highly recommended):
+If you plan to use IntelliJ IDEA (highly recommended):
 
-1. Configure the JDK: Follow the guide [se-edu/guides IDEA: Configuring the JDK](https://se-education.org/guides/tutorials/intellijJdk.html)  
-to ensure Intellij is configured to use JDK 11.
-2. Import the project as a Gradle project: Follow the guide
+1. **Configure the JDK**: Follow the guide [se-edu/guides IDEA: Configuring the JDK](https://se-education.org/guides/tutorials/intellijJdk.html) to ensure IntelliJ is configured to use JDK 11.
+2. **Import the project as a Gradle project**: Follow the guide
 [se-edu/guides IDEA: Importing a Gradle project](https://se-education.org/guides/tutorials/intellijImportGradleProject.html)
 to import the project into IDEA.
-:exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
-3. Verify the setup:
-   * Run athlethicli.AthletiCLI and try a few commands.
-   * Run the tests using `./gradlew check` ensure they all pass.
+
+   :exclamation: Note: Importing a Gradle project is slightly different from importing a normal Java project.
+3. **Verify the setup**:
+   * Run `athlethicli.AthletiCLI` and try a few commands.
+   * Run the tests using `./gradlew check` and ensure they all pass.
 
 
 
@@ -44,46 +53,43 @@ components.
 ### Architecture
 
 Given below is a quick overview of main components and how they interact with each other.
-<p  align="center" width="100%">
-  <img width="80%" src="images/architectureDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
-</p>
+
+<img width="200em" src="images/architectureDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
 
 **Main components of the architecture**
 
-**`AthletiCLI`** is in charge of the app launch and shut down.
+[`AthletiCLI`](https://github.com/AY2324S1-CS2113-T17-1/tp/blob/master/src/main/java/athleticli/AthletiCLI.java) is in charge of the app launch and shut down.
 
 The bulk of the AthletiCLI’s work is done by the following components, with each of them corresponds to a package:
 
-* [`UI`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): The UI and other UI-related sub-components of AthletiCLI.
+* [`Ui`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/ui): Interacts with the user via the command line.
 * [`Parser`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/parser): Parses the commands input by the users.
 * [`Storage`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/storage): Reads data from, and writes data to, the hard disk.
 * [`Data`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/data): Holds the data of AthletiCLI in memory.
-* [`Commands`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/commands): The command executors.
+* [`Commands`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/commands): Contains multiple command executors.
 
-[`Exceptions`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/exceptions) represents exceptions used by multiple other components.
+Other components:
+
+* [`Exceptions`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/exceptions): Represents exceptions used by multiple other components.
+* [`Common`](https://github.com/AY2324S1-CS2113-T17-1/tp/tree/master/src/main/java/athleticli/common): Contains configurations that shared by other components.
 
 ### Overview
 
 The class diagram shows the relationship between `AthletiCLI`, `Ui`, `Parser`, and `Data`.
 
-<p  align="center" width="100%">
-  <img width="80%" src="images/MainClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
-</p>
+![](images/MainClassDiagram.svg)
 
 ### Data Component
 
 The class diagram shows how the `Data` component is constructed with multiple classes.
 
-<p  align="center" width="100%">
-  <img width="80%" src="images/DataClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
-</p>
+![](images/DataClassDiagram.svg)
 
 ### Parser Component
 
 The class diagram shows how the `Parser` component is constructed with multiple classes.
 
-<p  align="center" width="100%">
-  <img width="100%" src="images/ParserClassDiagram.png" alt="`parser` Class Diagram"/>
+![](images/ParserClassDiagram.png)
 
 **How the architecture components interact with each other**
 
@@ -91,7 +97,7 @@ The _Sequence Diagram_ below shows how the components interact with each other f
 
 ![](images/HelpAddDiet.svg)
 
-This diagram involves the interaction between `AthletiCLI`, `UI`, `Parser`, `Commands` components and the user.
+This diagram involves the interaction between `AthletiCLI`, `Ui`, `Parser`, `Commands` components and the user.
 
 The `Storage` component only interacts with the `Data` component. The _Sequence Diagram_ below shows how they interact with each other for the scenario where a `save` command is executed.
 
@@ -137,8 +143,7 @@ By following these general steps, AthletiCLI ensures a streamlined process for m
 
 Here is the sequence diagram for the `edit-diet` command to illustrate the five-step process:
 
-<p  align="center" width="100%">
-  <img width="100%" src="images/editDietSequenceDiagram.png" alt="'edit-diet' Sequence Diagram"/>
+![](images/editDietSequenceDiagram.png)
 
 > The diagram shows the interaction between the `AthletiCLI`, `Parser`, `Command`, and `Data` components.
 > The use of HashMaps in the `DietParser` class allows for a more flexible and extensible design, as it facilitates
@@ -150,9 +155,7 @@ Here is the sequence diagram for the `edit-diet` command to illustrate the five-
 
 This following sequence diagram show how the 'set-diet-goal' command works:
 
-<p  align="center" width="100%">
-  <img width="100%" src="images/DietGoalsSequenceDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
-</p>
+![](images/DietGoalsSequenceDiagram.svg)
 
 **Step 1:** The input from the user ("set-diet-goal WEEKLY fats/1") runs through AthletiCLI to the Parser Class.
 
@@ -188,6 +191,7 @@ for checking the presence of a dietGoal.
 ### Activity Management in AthletiCLI
 
 #### [Implemented] Adding activities
+
 The `add-activity` feature is a core functionality which allows users to record new activities in the application.
 The feature is designed in a modular and extendable way, ensuring seamless integration of future enhancements and 
 especially new activity types.
@@ -210,9 +214,7 @@ Class Relationships:
 Below is a class diagram illustrating the relationships between the data components `Activity`,`Data` and 
 `ActivityList`:
 
-<p align="center" >
-  <img width="50%" src="images/ActivityInheritance.svg" alt="Activity Data Components"/>
-</p>
+<img width="400em" src="images/ActivityInheritance.svg" alt="Activity Data Components"/>
 
 > The diagram shows the inheritance relationship between the `Activity` class and the specific activity types Run, 
 > Swim and Cycle, each with unique attributes and methods. This design becomes especially crucial in future 
@@ -253,9 +255,8 @@ user.
 
 The following sequence diagram visually represents the flow and interactions of components during the `add-activity` 
 operation:
-<p  align="center" >
-  <img width="100%" src="images/AddActivity.svg" alt="Sequence Diagram: `add-activity` operation"/>
-</p>
+
+![](images/AddActivity.svg)
 
 #### [Implemented] Tracking activity goals
 
@@ -287,17 +288,14 @@ each step.
    object is added to the list.
 
 The following sequence diagram shows how the `set-activity-goal` operation works:
-<p  align="center" >
-  <img width="100%" src="images/AddActivityGoal.svg" alt="Sequence Diagram of set-activity-goal"/>
-</p>
+
+![](images/AddActivityGoal.svg)
 
 Assume that the user has set a goal to run 10km per week and has already tracked two running activities of 5km each 
 within the last 7 days as well as three older sport activities. The object diagram below shows the state of the 
 scenario with the eligible activities for the goal highlighted in green.
 
-<p align="center" >
-  <img width="100%" src="images/ActivityObjectDiagram.svg" alt="Object Diagram of the scenario"/>
-</p>
+![](images/ActivityObjectDiagram.svg)
 
 The following describes how the goal evaluation works after being invoked by the user, e.g., with a `list-activity-goal` command:
 
@@ -307,9 +305,7 @@ activity list with the five tracked activities from the data and calls the total
    10km in the example, is returned to the `ActivityGoal` object. This output is compared to the target value of the 
    goal. This mechanism is visualized in the following sequence diagram:
 
-<p  align="center" >
-    <img width="100%" src="images/ActivityGoalEvaluation.svg" alt="Sequence Diagram of activity goal evaluation"/>
-</p>
+![](images/ActivityGoalEvaluation.svg)
 
 ### Sleep Management in AthletiCLI
 
@@ -334,14 +330,12 @@ activity list with the five tracked activities from the data and calls the total
 
 The following class diagram shows how sleep and sleep-related classes are constructed in AthletiCLI:
 
-<p  align="center" width="100%">
-  <img width="80%" src="images/SleepAndSleepListClassDiagram.svg" alt="Class Diagram of Sleep and SleepList"/>
-
-</p>
+![](images/SleepAndSleepListClassDiagram.svg)
 
 ---
 
 ## Product scope
+
 ### Target user profile
 
 AthletiCLI is designed for athletic individuals who are committed to optimizing their performance. 
@@ -412,7 +406,9 @@ and provide feedback to the users.
 
 ## Instructions for manual testing
 
+{::comment}
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+{:/comment}
 
 **Note**: This section serves to provide a quick start for manual testing on AthletiCLI. This list is not exhaustive.
 Developers are expected to conduct more extensive tests.

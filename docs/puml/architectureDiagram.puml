@@ -12,14 +12,14 @@ actor User
 'participant Parser
 'participant Data
 'participant Storage
-'participant Command
+'participant Commands
 frame "AthletiCLI App"{
 rectangle AthletiCLI
 rectangle Ui
 rectangle Parser
 rectangle Data
 rectangle Storage
-rectangle Command
+rectangle Commands
 'end rectangle
 
 }
@@ -29,9 +29,9 @@ rectangle Command
 User -d-> Ui
 Ui -r-> AthletiCLI
 AthletiCLI -d-> Parser
-AthletiCLI -d-> Command
+AthletiCLI -d-> Commands
 AthletiCLI -d-> Data
-Command -u-> Data
+Commands -u-> Data
 Parser -r-> Data
 Data -d-> Storage
 

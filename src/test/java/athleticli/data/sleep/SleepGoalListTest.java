@@ -1,6 +1,7 @@
 package athleticli.data.sleep;
 
 import athleticli.data.Goal.TimeSpan;
+import athleticli.exceptions.AthletiException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,6 +16,16 @@ public class SleepGoalListTest {
     @BeforeEach
     void setup() {
         sleepGoalList = new SleepGoalList();
+    }
+
+    @Test
+    void parse_sleepDurationGoalDaily_parsed() throws AthletiException {
+        String arguments = "type/duration period/daily target/50000";
+        SleepGoal expected = new SleepGoal(SleepGoal.GoalType.DURATION, TimeSpan.DAILY, 50000);
+        SleepGoal actual = sleepGoalList.parse(arguments);
+        assertEquals(expected.getGoalType(), actual.getGoalType());
+        assertEquals(expected.getTimeSpan(), actual.getTimeSpan());
+        assertEquals(expected.getTargetValue(), actual.getTargetValue());
     }
     
     @Test

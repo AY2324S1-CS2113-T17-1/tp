@@ -22,7 +22,7 @@ public class SleepGoalTest {
     private TimeSpan period = TimeSpan.WEEKLY;
 
     @BeforeEach
-    void setUp() {
+    void setup() {
         data = new Data();
     }
 
