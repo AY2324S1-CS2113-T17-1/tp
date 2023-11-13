@@ -157,13 +157,13 @@ This following sequence diagram show how the 'set-diet-goal' command works:
 
 ![](images/DietGoalsSequenceDiagram.svg)
 
-**Step 1:** The input from the user ("set-diet-goal WEEKLY fats/1") runs through AthletiCLI to the Parser Class.
+**Step 1:** The input from the user ("set-diet-goal WEEKLY fat/1") runs through AthletiCLI to the Parser Class.
 
 **Step 2:** The Parser Class will identify the request as setting up a diet goal and pass in the parameters
-"WEEKLY fats/1".
+"WEEKLY fat/1".
 
 **Step 3:** A temporary dietGoalList is created to store newly created diet goals. In this case, a weekly healthy goal 
-for fats with a target value of 1mg.
+for fat with a target value of 1mg.
 
 **Step 4:** The inputs are verified against our lists of approved diet goals.
 
@@ -520,7 +520,7 @@ Developers are expected to conduct more extensive tests.
      * `set-diet-goal DAILY calories/500` creates a daily healthy calories goal with a target value of 500
    * Test case 2:
      * There are no diet goals constructed.
-     * `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly healthy nutrient goals: calories and fats.
+     * `set-diet-goal WEEKLY calories/500 fat/600` Creates 2 weekly healthy nutrient goals: calories and fat.
    * Test case 3:
      * There is a daily healthy calories goal present.
      * `set-diet-goal DAILY calories/500` will result in an error since the goal is already present.

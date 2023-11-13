@@ -101,7 +101,7 @@ public abstract class DietGoal extends Goal {
             dietRecords = diets.find(date);
             for (Diet diet : dietRecords) {
                 switch (nutrient) {
-                case Parameter.NUTRIENTS_FATS:
+                case Parameter.NUTRIENTS_FAT:
                     currentValue += diet.getFat();
                     break;
                 case Parameter.NUTRIENTS_CALORIES:

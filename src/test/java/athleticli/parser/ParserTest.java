@@ -820,7 +820,7 @@ class ParserTest {
 
     @Test
     void getValueForMarker_invalidInput_returnEmptyString() {
-        String invalidInput = "2 calorie/1 proteins/2 carbs/3 fats/4 date/2023-10-06";
+        String invalidInput = "2 calorie/1 proteins/2 carbs/3 fat/4 date/2023-10-06";
         String caloriesActual = getValueForMarker(invalidInput, Parameter.CALORIES_SEPARATOR);
         String proteinActual = getValueForMarker(invalidInput, Parameter.PROTEIN_SEPARATOR);
         String carbActual = getValueForMarker(invalidInput, Parameter.CARB_SEPARATOR);
