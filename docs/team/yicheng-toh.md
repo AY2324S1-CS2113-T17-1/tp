@@ -1,8 +1,7 @@
 ---
 layout: page
-title: Yi Cheng's Portfolio
+title: Toh Yi Cheng - Project Portfolio Page
 ---
-# Toh Yi Cheng - Project Portfolio Page
 
 # Project: AthletiCLI
 
@@ -21,6 +20,7 @@ sleep metrics, and more. The user interacts with it using a CLI. It is written i
 ### Feature implemented
 
 #### New feature: Users can add and delete diet goals
+
 For motivated users on AthletiCLI, they can create diet goals to keep track of their nutrient intake. 
 The nutrients supported currently are Calories, Fat, Carb and Protein. Consuming more nutrient than the 
 target value indicates that they have achieved their diet goal for that specific nutrient.
@@ -28,6 +28,7 @@ target value indicates that they have achieved their diet goal for that specific
 If they would like to remove their existing goals, they can remvoe it with the delete function
 
 #### New feature: Users can see all diet goals
+
 This provides a convenient way for users to see all the diet goals that they have created and their current progress.
 
 #### New feature: Editing diet goals
@@ -57,15 +58,12 @@ However, this may not be the case for all nutrients.
 For example, for athletes who want to gain muscles, they would increase their intake of protein. At the same time, 
 they would need to reduce their weight by cutting on fat consumption.
 In this case, the diet goal only encourage them to consume more fat.
-Therefore 'unhealthy' diet goal is created. It marks a diet goal as not achieved if the value consumed is greater
+Therefore, 'unhealthy' diet goal is created. It marks a diet goal as not achieved if the value consumed is greater
 than the target value. 
 
 The creation of such goal can be accomplished by indicating an optional flag `unhealthy`.
 
 **Example of set diet goal command:** `set-diet-goal DAILY unhealthy calories/500`
-
-
-
 
 
 ### Contributions to the UG: 
@@ -97,7 +95,7 @@ The creation of such goal can be accomplished by indicating an optional flag `un
 This is only implemented due to  [skylee03 (Ming-Tian)](./skylee03.html)'s outstanding effort in convincing the team.
 * Examples of PR reviewed: 
   * [PR for editing activities](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/59#discussion_r1362968136)
-* Created issues labels: `type.Optimization`, `UG`, `DG` for issues to facilitate effective classification.
+* Created issues labels: `type.Optimization`, `UG`, `DG` to facilitate effective classification.
  
 ### Contributions beyond the project team
 
