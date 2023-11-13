@@ -40,7 +40,8 @@ View my code contributions on [RepoSense](https://nus-cs2113-ay2324s1.github.io/
       tracking components like sleep were based on this implementation. It involved some analysis of the existing code 
       to efficiently reuse existing parser functions.
   * **Implemented goal tracking mechanism and find feature for activities**
-    * Purpose: empowers users to set and monitor goal for different periods, sports and metrics. It is essential for the user to plan their training and to push themselves to improve. 
+    * Purpose: empowers users to set and monitor goals for different periods, sports and metrics. It is essential 
+      for the user to plan their training and to push themselves to improve. 
       This also comes with the ability to find activities by date.
     * Highlights: The implementation was adopted for other goal tracking mechanism like sleep and diet.
 
@@ -64,12 +65,12 @@ View my code contributions on [RepoSense](https://nus-cs2113-ay2324s1.github.io/
 * User Guide:
   * Added documentation for the features `add-activity`, `add-run`, `add-swim`, `add-cycle`, `delete-activity`,
     `list-activity`, `edit-activity`, `edit-run`, `edit-cycle`, `edit-swim`, `set-activity-goal`: [Activity 
-    Management](../UserGuide.html#activity-management)
+    Management](../UserGuide.html#activity-management-1)
   * Improved overall visual appearance of the document: [#253](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/253)
 * Developer Guide:
   * Explained all implementation details in DG related to Activity Management, including `add-activity` and 
     `set-activity-goal` features, find by timespan, goal tracking mechanism, detailed parsing process, modular 
-    implementation approach and justification: [Activity Management](../DeveloperGuide.html#activity-management)
+    implementation approach and justification: [Activity Management](../DeveloperGuide.html#activity-management-1)
   * Created UML diagrams: [Activity Inheritance](../images/ActivityInheritance.svg), 
   [Activity Goal Evaluation](../images/ActivityGoalEvaluation.svg), 
   [Activity Object Diagram](../images/ActivityObjectDiagram.svg), [Activity Parsing](../images/ActivityParsing.svg),
