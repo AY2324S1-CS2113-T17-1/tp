@@ -124,19 +124,20 @@ By following these general steps, AthletiCLI ensures a streamlined process for m
 This following sequence diagram show how the 'set-diet-goal' command works:
 
 <p  align="center" width="100%">
-  <img width="80%" src="images/setDietGoalUmlSequenceDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
+  <img width="100%" src="images/DietGoalsSequenceDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
 </p>
 
-**Step 1:** The input from the user ("set-diet-goal fats/1") runs through AthletiCLI to the Parser Class.
+**Step 1:** The input from the user ("set-diet-goal WEEKLY fats/1") runs through AthletiCLI to the Parser Class.
 
 **Step 2:** The Parser Class will identify the request as setting up a diet goal and pass in the parameters
-"fats/1".
+"WEEKLY fats/1".
 
-**Step 3:** A temporary dietGoalList is created to store newly created diet goals.
+**Step 3:** A temporary dietGoalList is created to store newly created diet goals. In this case, a weekly healthy goal 
+for fats with a target value of 1mg.
 
 **Step 4:** The inputs are verified against our lists of approved diet goals.
 
-**Step 5:** For each of the diet goals that are valid, a dietGoal object will be created and stored in the 
+**Step 5:** For each of the diet goals that are valid, a DietGoal object will be created and stored in the 
 temporary dietGoalList.
 
 **Step 6:** The Parser then creates for an instance of SetDietGoalCommand and returns the instance to 
