@@ -28,7 +28,11 @@ Diet Management:
  delete-diet INDEX
  list-diet
  find-diet DATE
- 
+ set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]
+ edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]
+ delete-diet-goal INDEX
+ list-diet-goal
+
 Sleep Management:
  add-sleep start/START end/END
  list-sleep

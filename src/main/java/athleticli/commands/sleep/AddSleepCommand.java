@@ -5,6 +5,7 @@ import athleticli.commands.Command;
 import athleticli.data.Data;
 import athleticli.data.sleep.Sleep;
 import athleticli.data.sleep.SleepList;
+import athleticli.exceptions.AthletiException;
 import athleticli.ui.Message;
 
 /**
@@ -34,8 +35,16 @@ public class AddSleepCommand extends Command {
      * @return The message which will be shown to the user.
      */
     @Override
-    public String[] execute(Data data) {
+    public String[] execute(Data data) throws AthletiException {
         SleepList sleeps = data.getSleeps();
+
+        for (Sleep s : sleeps) {
+            if (sleep.getStartDateTime().isBefore(s.getEndDateTime()) 
+                && sleep.getEndDateTime().isAfter(s.getStartDateTime())) {
+                throw new AthletiException(Message.ERRORMESSAGE_SLEEP_OVERLAP);
+            }
+        }
+
         sleeps.add(this.sleep);
         sleeps.sort();
         int size = sleeps.size();
