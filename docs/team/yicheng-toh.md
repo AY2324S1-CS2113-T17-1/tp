@@ -85,7 +85,7 @@ Which UML diagrams did you add/updated?
 * Kept track of deadlines for v1.0 and v2.0.
 * Assisted in sorting and assigning of post PE dry run issues.
 * Suggested the use of interface for find function and abstract class for goals. 
-This is only implemented due to  [skylee03 (Ming-Tian)](./skylee03.md)'s outstanding effort in convincing the team.
+This is only implemented due to  [skylee03 (Ming-Tian)](./skylee03.html)'s outstanding effort in convincing the team.
 * Examples of PR reviewed: 
   * [PR for editing activities](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/59#discussion_r1362968136)
 * Created issues labels: `type.Optimization`, `UG`, `DG` for issues to facilitate effective classification.
