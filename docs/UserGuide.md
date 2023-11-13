@@ -215,7 +215,7 @@ your daily, weekly, monthly, or yearly progress.
 
 ---
 
-### ✍️ Editing Activity Goals:
+### ⚙️ Editing Activity Goals:
 
 `edit-activity-goal`
 
@@ -319,7 +319,7 @@ You can record your diet by specifying calorie, protein, carbohydrate, and fat i
 
 ---
 
-### ✍️ Editing Diets:
+### ⚙️ Editing Diets:
 
 `edit-diet`
 
@@ -540,7 +540,7 @@ ____________________________________________________________
 
 ---
 
-### ✍️ Editing Diet Goals:
+### ⚙️️ Editing Diet Goals:
 
 `edit-diet-goal`
 
@@ -679,7 +679,7 @@ Assuming that there are 5 sleep records in the list:
 
 ---
 
-### ✍️ Editing Sleep:
+### ⚙️️ Editing Sleep:
 
 `edit-sleep`  
 
