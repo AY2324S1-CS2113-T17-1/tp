@@ -340,9 +340,20 @@ activity list with the five tracked activities from the data and calls the total
 
 ---
 
-The following class diagram shows how sleep and sleep-related classes are constructed in AthletiCLI:
+The following class diagram demonstrates the relationship between the data components Sleep, SleepList, as well as the Findable interface and the StorableList abstract class.
+
 
 ![](images/SleepAndSleepListClassDiagram.svg)
+
+The design decision for why we have decided to implement a findable interface and a storable list abstract class is because we want to have a more modular design. 
+
+The findable interface allows us to implement the find function in the sleep list class and the storable list abstract class allows us to implement the save function in the sleep list class. This allows us to reuse the find and save function in other classes that require the same functionality. 
+
+
+[Implemented] Sleep Duration and Date calculation
+
+
+
 
 ---
 

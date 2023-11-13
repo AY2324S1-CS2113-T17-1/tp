@@ -1,4 +1,5 @@
 @startuml
+'https://plantuml.com/class-diagram
 skinparam classAttributeIconSize 0
 hide circle
 
@@ -9,10 +10,8 @@ interface Findable<T> {
 
 abstract class StorableList<T> {
     - path: String
-    
     + save(): void
     + load(): void
-
     + {abstract} parse(s: String): T
     + {abstract} unparse(t: T): String
 }
@@ -40,16 +39,13 @@ class Sleep {
 }
 
 class SleepList {
-    + find(date: LocalDate): ArrayList<Sleep>
     + sort(): void
     + filterByTimespan(timeSpan: Goal.TimeSpan): ArrayList<Sleep>
-    + getTotalSleepDuration(sleepClass: Class<?>, timeSpan: Goal.TimeSpan): int
-    + parse(s: String): Sleep
-    + unparse(sleep: Sleep): String
+    + getTotalSleepDuration(timeSpan: Goal.TimeSpan): int
 }
 
-SleepList "1" --> "1" StorableList: extends
-SleepList "*" ..>  Sleep: : contains
-SleepList ..> Findable : implements
+SleepList --|> StorableList: extends
+SleepList "1" o-l- "*" Sleep :contains >
+SleepList ..|>  Findable : implements
 
 @enduml
