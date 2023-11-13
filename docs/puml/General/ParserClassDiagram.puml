@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+hide circle
+
+class Parser {
+  parseCommand(rawUserInput: String): Command
+  parseDateTime(datetime: String): LocalDateTime
+  parseDate(date: String): LocalDate
+}
+
+class SleepParser {}
+class ActivityParser {}
+class DietParser {}
+
+abstract class Command {
+  {abstract} execute(data: Data): String[]
+}
+
+class Parameter {}
+class Message {}
+class AthletiException {}
+
+Parser ..> Command : returns
+Parser --> AthletiException : throws
+Parser ..> SleepParser : uses
+Parser ..> ActivityParser : uses
+Parser ..> DietParser : uses
+Parser ..> Parameter : uses
+Parser ..> Message : uses
+
+@enduml

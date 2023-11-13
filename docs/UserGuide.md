@@ -219,7 +219,7 @@ You can edit your set goals by specifying the sport, target, and period.
 
 **Syntax**
 
-* `edit-activity-goal sport/SPORT target/TARGET period/PERIOD target/TARGET`
+* `edit-activity-goal sport/SPORT type/TYPE period/PERIOD target/TARGET`
 
 **Parameters**
 
@@ -262,7 +262,7 @@ You can delete your set goals by specifying the sport, target, and period.
 
 **Syntax**
 
-* `delete-activity-goal sport/SPORT target/TARGET period/PERIOD`
+* `delete-activity-goal sport/SPORT type/TYPE period/PERIOD`
 
 **Parameters**
 
