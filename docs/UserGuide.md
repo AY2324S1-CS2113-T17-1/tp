@@ -555,7 +555,7 @@ No repetition is allowed. The diet goal needs to be present before any edits is 
   DAILY goals account for what you eat for the day.
   WEEKLY goals account for what you eat for the week.
 * unhealthy: This determines if you are trying to get more of this nutrient or less of it. 
-This flag is used to change goals that are set as unhealthy previously.
+This flag is used to change target values of goals that are set as unhealthy previously.
 * CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer.
 * PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
