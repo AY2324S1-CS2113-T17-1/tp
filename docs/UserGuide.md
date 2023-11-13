@@ -410,6 +410,8 @@ You can create a new daily or weekly diet goal to track your nutrients intake wi
 
 You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
+Do note that you can only set up to the value 999999 and the maximum accumulated value from diets is 1000000. is 1000000.
+
 
 **Syntax:**
 
@@ -548,6 +550,8 @@ You can edit the target value of your diet goals in AtheltiCLI, redefining the t
 
 This command takes in at least 2 arguments. You are able to edit multiple diet goals target value of the same time frame at once. 
 No repetition is allowed. The diet goal needs to be present before any edits is allowed.
+
+Do note that you can only set up to the value 999999 and the maximum accumulated value from diets is 1000000.
 
 **Syntax:**
 

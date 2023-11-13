@@ -287,7 +287,7 @@ public class DietParser {
      * @throws AthletiException
      */
     public static void checkEmptyDietArguments(String calories, String protein, String carb, String fat,
-                                               String datetime) throws AthletiException {
+            String datetime) throws AthletiException {
         if (calories.isEmpty()) {
             throw new AthletiException(Message.MESSAGE_CALORIES_EMPTY);
         }
