@@ -127,7 +127,7 @@ inputs include:
 
 **Step 2 - Command Identification:** The `Parser` class identifies the type of diet operation and calls the
 appropriate `DietParser` method to parse the necessary parameters (if any). For example, the `add-diet` command will
-call the `DietParser.parseDiet` method, which will return a `Diet` object.
+call the `DietParser#parseDiet()` method, which will return a `Diet` object.
 
 **Step 3 - Command Creation**: An instance of the corresponding command class is created (e.g., `AddDietCommand`,
 `EditDietCommand`, etc.) using the returned object (if any) from the `DietParser` and returned to AthletiCLI.
@@ -157,13 +157,13 @@ This following sequence diagram show how the 'set-diet-goal' command works:
 
 ![](images/DietGoalsSequenceDiagram.svg)
 
-**Step 1:** The input from the user ("set-diet-goal WEEKLY fats/1") runs through AthletiCLI to the Parser Class.
+**Step 1:** The input from the user ("set-diet-goal WEEKLY fat/1") runs through AthletiCLI to the Parser Class.
 
 **Step 2:** The Parser Class will identify the request as setting up a diet goal and pass in the parameters
-"WEEKLY fats/1".
+"WEEKLY fat/1".
 
 **Step 3:** A temporary dietGoalList is created to store newly created diet goals. In this case, a weekly healthy goal 
-for fats with a target value of 1mg.
+for fat with a target value of 1mg.
 
 **Step 4:** The inputs are verified against our lists of approved diet goals.
 
@@ -299,6 +299,18 @@ Assume that the user has set a goal to run 10km per week and has already tracked
 within the last 7 days as well as three older sport activities. The object diagram below shows the state of the 
 scenario with the eligible activities for the goal highlighted in green.
 
+The `edit-activity-goal` and `delete-activity-goal` operations function similarly. They use the arguments `sport`, 
+`type`, and `period` to identify the specific goal to be edited or deleted. If there is no existing goal that 
+matches the specified criteria, an error message is displayed to the user.
+
+Similar to `set-activity-goal`, the operations `edit-activity-goal` and `delete-activity-goal` utilize 
+`ActivityGoal` objects to represent the goals being edited or deleted. During the execution of these commands, the 
+system quickly verifies whether the goal exists in the `ActivityGoalList`. If the goal is found, it is then edited 
+or deleted as requested.
+
+Finally, the `list-activity-goal` operation is designed similarly to the `list-activity` operation. It involves 
+retrieving the `ActivityGoalList` from the database and displaying the goals to the user.
+
 ![](images/ActivityObjectDiagram.svg)
 
 The following describes how the goal evaluation works after being invoked by the user, e.g., with a `list-activity-goal` command:
@@ -392,7 +404,7 @@ By providing a comprehensive view of various performance-related factors over ti
 
 ## Non-Functional Requirements
 
-1. AthletiCLI should work on Windows, MacOS and Linux that has java 11 installed.
+1. AthletiCLI should work on Windows, macOS and Linux that has Java 11 installed.
 2. AthletiCLI should be able to store data locally.
 3. AthletiCLI should be able to work offline.
 4. AthletiCLI should be easy to use.
@@ -572,7 +584,7 @@ Developers are expected to conduct more extensive tests.
     - Test case 2:
         * Find diets on a date with no entries.
         * Command: `find-diet 2023-11-01`
-        * Expected Outcome: Message indicating no diets found on 1st November 2023.
+        * Expected Outcome: No diets are displayed.
 
 #### Diet Goals
 
@@ -583,7 +595,7 @@ Developers are expected to conduct more extensive tests.
      * `set-diet-goal DAILY calories/500` creates a daily healthy calories goal with a target value of 500
    * Test case 2:
      * There are no diet goals constructed.
-     * `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly healthy nutrient goals: calories and fats.
+     * `set-diet-goal WEEKLY calories/500 fat/600` Creates 2 weekly healthy nutrient goals: calories and fat.
    * Test case 3:
      * There is a daily healthy calories goal present.
      * `set-diet-goal DAILY calories/500` will result in an error since the goal is already present.
@@ -617,12 +629,39 @@ Developers are expected to conduct more extensive tests.
      * Weekly healthy calories goal is present with a target value of 20.
      * `edit-diet-goal WEEKLY calories/5000` will update the target value of weekly healthy calories goal to 5000.
    * Similar to setting diet goals, the weekly goal values should always be greater than the daily goal values.
+
 ### Sleep Management
 
 #### Sleep Records
 
 #### Sleep Goals
 
-### Exiting Program
+### Miscellaneous
 
-### Data Storage
+1. Finding Records
+    * Test case:
+      * Command: `find-diet 2023-12-31`
+      * Expected Outcome: All records on 31st December 2023 are displayed.
+
+1. Saving Files
+   * Test case:
+       * Command: `save`
+       * Expected Outcome: Data are safely saved into the files.
+
+1. Exiting AthletiCLI:
+   * Test case 1:
+     * Immediately after detecting a format error in the saved files.
+     * Command: `bye`
+     * Expected Outcome: AthletiCLI is exited without rewriting the files.
+   * Test case 2:
+     * During normal execution.
+     * Command: `bye` 
+     * Expected Outcome: AthletiCLI is exited and the files are safely saved.
+
+1. Viewing Help Messages:
+   * Test case 1:
+     * Command: `help`
+     * Expected Outcome: A list containing the syntax of all commands is shown.
+   * Test case 2:
+     * Command: `help add-diet`
+     * Expected Outcome: The syntax of the `add-diet` command is shown.
