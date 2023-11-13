@@ -26,8 +26,9 @@ sleep metrics, and more. The user interacts with it using a CLI. It is written i
 
 #### Contributions to the UG: 
 
-* Contributed to Activities section of AthlethiCLI for UG draft
-* Contributed to Diet Goals section of AthlethiCLI for UG
+* Contributed to Activities section of AthlethiCLI for UG draft.
+* Contributed to Diet Goals section of AthlethiCLI for UG which includes `set-diet-goal`, 
+`edit-diet-goal`, `list-diet-goal`, `delete-diet-goal`.
 
 #### Contributions to the DG: 
 ...
