@@ -2,7 +2,6 @@ package athleticli.data.sleep;
 
 import athleticli.data.Goal.TimeSpan;
 import athleticli.exceptions.AthletiException;
-import athleticli.parser.SleepParser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
