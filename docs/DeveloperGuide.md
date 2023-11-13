@@ -406,10 +406,6 @@ and provide feedback to the users.
 
 ## Instructions for manual testing
 
-{::comment}
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-{:/comment}
-
 **Note**: This section serves to provide a quick start for manual testing on AthletiCLI. This list is not exhaustive.
 Developers are expected to conduct more extensive tests.
 
@@ -613,12 +609,103 @@ Developers are expected to conduct more extensive tests.
      * Weekly healthy calories goal is present with a target value of 20.
      * `edit-diet-goal WEEKLY calories/5000` will update the target value of weekly healthy calories goal to 5000.
    * Similar to setting diet goals, the weekly goal values should always be greater than the daily goal values.
+
 ### Sleep Management
 
 #### Sleep Records
+1. Adding Sleep
+    - Test case 1:
+        * Add a sleep record.
+        * Command: `add-sleep start/2021-09-01 06:00 end/2021-09-01 07:00`
+        * Expected Outcome: Sleep record is successfully added with start time of 2021-09-01 06:00 and end time of 
+        2021-09-01 07:00.
+    - Test case 2:
+        * Attempt to add a sleep record with a future start time.
+        * Command: `add-sleep start/3024-01-01 08:00 end/3024-01-01 09:00`
+        * Expected Outcome: Error indicating the start time cannot be in the future.
+    - Test case 3:
+        * Attempt to add a sleep record with a start time later than the end time.
+        * Command: `add-sleep start/2021-09-01 08:00 end/2021-09-01 07:00`
+        * Expected Outcome: Error indicating the start time cannot be later than the end time.
+
+2. Editing Sleep
+    - Test case 1:
+        * Edit a specific sleep record.
+        * Command: `edit-sleep 2 start/2021-09-01 09:00 end/2021-09-01 10:00`
+        * Expected Outcome: The 2nd sleep record is updated with the new values.
+    - Test case 2:
+        * Edit a sleep record with only one parameter.
+        * Command: `edit-sleep 3 end/2021-09-01 11:00`
+        * Expected Outcome: Error indicating the start time is not specified.
+    - Test case 3:
+        * Edit a sleep record with a invalid index.
+        * Command: `edit-sleep -1011 start/2021-09-01 09:00 end/2021-09-01 10:00`
+        * Expected Outcome: Error indicating the index is invalid.
+
+3. Deleting Sleep
+   
+    **Assuming there are 4 sleep records in the sleep list**
+    - Test case 1:
+        * Delete a specific sleep record.
+        * Command: `delete-sleep 2`
+        * Expected Outcome: The 2nd sleep record is successfully deleted.
+    - Test case 2:
+        * Attempt to delete a non-existent sleep record.
+        * Command: `delete-sleep 5`
+        * Expected Outcome: Error indicating the sleep record does not exist.
+4. Listing Sleep
+    - Test case 1:
+        * List all sleep records.
+        * Command: `list-sleep`
+        * Expected Outcome: All existing sleep records are displayed.
+
 
 #### Sleep Goals
+1. Setting sleep goals
+
+    - Test case 1:
+        * Set a daily sleep duration goal.
+        * Command: `set-sleep-goal type/duration period/daily target/90`
+        * Expected Outcome: Daily sleep duration goal of 90 minutes is set successfully.
+    - Test case 2:
+        * Set a weekly sleep duration goal.
+        * Command: `set-sleep-goal type/duration period/weekly target/600`
+        * Expected Outcome: Weekly sleep duration goal of 600 minutes is set successfully.
+    - Test case 3:
+        * Attempt to set a duplicate daily sleep duration goal.
+        
+        **Assuming there is a daily sleep duration goal**
+
+        * Command: `set-sleep-goal type/duration period/daily target/90`
+        * Expected Outcome: Error indicating the daily sleep duration goal already exists.
+
+2. Editing sleep goals
+    - Test case 1:
+        * Edit an existing daily sleep duration goal.
+        * Command: `edit-sleep-goal type/duration period/daily target/120`
+        * Expected Outcome: Daily sleep duration goal is updated to 120 minutes.
+    - Test case 2:
+        * Edit a non-existent weekly sleep duration goal.
+        * Command: `edit-sleep-goal type/duration period/weekly target/1000`
+        * Expected Outcome: Error indicating no existing weekly sleep duration goal.
+
+3. Listing sleep goals
+    - Test case 1:
+        * List all set sleep goals.
+        * Command: `list-sleep-goal`
+        * Expected Outcome: All set sleep goals along with their details are listed.
+
 
 ### Exiting Program
+1. Exiting the program
+    - Test case 1:
+        * Exit the program.
+        * Command: `bye`
+        * Expected Outcome: The program is exited successfully.
 
 ### Data Storage
+1. Saving data
+    - Test case 1:
+        * Save data to a file.
+        * Command: `save`
+        * Expected Outcome: Data is saved to the respective files.
