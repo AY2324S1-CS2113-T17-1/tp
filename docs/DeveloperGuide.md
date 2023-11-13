@@ -342,7 +342,7 @@ retrieving the `ActivityGoalList` from the database and displaying the goals to 
 
 5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
 
-In particular to demonstrate all parser classes, the following sequence diagram shows how the 'edit-sleep' command works:
+In particular to demonstrate all parser classes, the following sequence diagram shows how the `edit-sleep` command works:
 
 ![](images/EditSleepObjectSequenceDiagram.svg)
 
@@ -753,17 +753,27 @@ Developers are expected to conduct more extensive tests.
         * Command: `list-sleep-goal`
         * Expected Outcome: All set sleep goals along with their details are listed.
 
+### Miscellaneous
 
-### Exiting Program
-1. Exiting the program
-    - Test case 1:
-        * Exit the program.
-        * Command: `bye`
-        * Expected Outcome: The program is exited successfully.
+1. Viewing Help Messages:
+   * Test case 1:
+     * Command: `help`
+     * Expected Outcome: A list containing the syntax of all commands is shown.
+   * Test case 2:
+     * Command: `help add-diet`
+     * Expected Outcome: The syntax of the `add-diet` command is shown.
 
-### Data Storage
-1. Saving data
-    - Test case 1:
-        * Save data to a file.
-        * Command: `save`
-        * Expected Outcome: Data is saved to the respective files.
+2. Exiting AthletiCLI:
+   * Test case 1:
+     * Immediately after detecting a format error in the saved files.
+     * Command: `bye`
+     * Expected Outcome: AthletiCLI is exited without rewriting the files.
+   * Test case 2:
+     * During normal execution.
+     * Command: `bye` 
+     * Expected Outcome: AthletiCLI is exited and the files are safely saved.
+
+3. Saving Files
+   * Test case:
+       * Command: `save`
+       * Expected Outcome: Data are safely saved into the files.
