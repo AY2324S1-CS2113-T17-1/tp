@@ -4,14 +4,14 @@ skinparam classAttributeIconSize 0
 hide circle
 
 
-interface Findable<T> {
+interface Findable<<interface>> {
     + find(date: LocalDate): ArrayList<T>
 }
 
 abstract class StorableList<T> {
     - path: String
-    + save(): void
-    + load(): void
+    + save()
+    + load()
     + {abstract} parse(s: String): T
     + {abstract} unparse(t: T): String
 }
@@ -39,7 +39,7 @@ class Sleep {
 }
 
 class SleepList {
-    + sort(): void
+    + sort()
     + filterByTimespan(timeSpan: Goal.TimeSpan): ArrayList<Sleep>
     + getTotalSleepDuration(timeSpan: Goal.TimeSpan): int
 }
@@ -47,5 +47,4 @@ class SleepList {
 SleepList --|> StorableList: extends
 SleepList "1" o-l- "*" Sleep :contains >
 SleepList ..|>  Findable : implements
-
 @enduml
