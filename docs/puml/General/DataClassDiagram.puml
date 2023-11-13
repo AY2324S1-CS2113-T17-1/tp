@@ -3,49 +3,72 @@
 skinparam classAttributeIconSize 0
 hide circle
 
-
-class StorableList{
-    load()
-    save()
-    {abstract} parse(s:String)
-    {abstract} unparse(t:T)
-
-}
-
-class ActivityList{}
-class ActivityGoalLIst{}
-class DietList{}
-class DietGoalList{}
-class SleepList{}
-class SleepGoalList{
+abstract class "StorableList"{
+    - path: String
+    + StorableList(path: String): StorableList
+    + load()
+    + save()
+    +  parse(s:String)
+    +  unparse(t:T)
 
 }
-interface Findable{
-    find(date: LocalDate): ArrayList<T>
+
+interface "<<interface>>\nFindable" {
+    + find(date: LocalDate): ArrayList<T>
 }
 class Data{
-    getInstance(): Data
-    load()
-    save()
+    + getInstance():Data
+    + load(): void
+    + save(): void
+    + clear(): void
+}
+class ActivityList{
+    + find(date: LocalDate): ArrayList<T>
+    + parse(s:String)
+    + unparse(t:T)
+}
+class DietList{
++ find(date: LocalDate): ArrayList<T>
+    + parse(s:String)
+    + unparse(t:T)
+}
+class SleepList{
++ find(date: LocalDate): ArrayList<T>
+    + parse(s:String)
+    + unparse(t:T)
 }
 
-Findable <|.. ActivityList
-Findable <|.. DietList
-Findable <|.. SleepList
+class ActivityGoalList{
+    + parse(s:String)
+    + unparse(t:T)
+}
+class DietGoalList{
+    + parse(s:String)
+    + unparse(t:T)
+}
+class SleepGoalList{
+    + parse(s:String)
+    + unparse(t:T)
+}
 
-StorableList <|-- ActivityList
-StorableList <|-- DietList
-StorableList <|-- SleepList
-StorableList <|-- ActivityGoalLIst
-StorableList <|-- DietGoalList
-StorableList <|-- SleepGoalList
 
-Data --u- ActivityList
-Data --u- DietList
-Data --u- SleepList
-Data --u- ActivityGoalLIst
-Data --u- DietGoalList
-Data --u- SleepGoalList
+"<<interface>>\nFindable" <|.. ActivityList
+"<<interface>>\nFindable" <|.. DietList
+"<<interface>>\nFindable" <|.. SleepList
+
+"StorableList" <|-- ActivityList
+"StorableList" <|-- DietList
+"StorableList" <|-- SleepList
+"StorableList" <|-- ActivityGoalList
+"StorableList" <|-- DietGoalList
+"StorableList" <|-- SleepGoalList
+
+Data "1" --u- "1" ActivityList : contains >
+Data "1" --u- "1   " DietList : contains >
+Data "1" --u- "1" SleepList : contains >
+Data "1" --u- "1" ActivityGoalList : contains >
+Data "1 " --u- "1" DietGoalList : contains >
+Data "1" --u- "1" SleepGoalList : contains >
 
 
 
