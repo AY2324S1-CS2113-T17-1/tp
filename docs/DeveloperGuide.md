@@ -221,6 +221,7 @@ Below is a class diagram illustrating the relationships between the data compone
 > development cycles with added parameters and activity types. The 'ActivityList' aggregates these instances.
 
 Usage Scenario and Process Flow:
+
 The process of adding an activity involves several steps, each handled by different components.
 Given below is an example usage scenario and how the add mechanism behaves.
 
