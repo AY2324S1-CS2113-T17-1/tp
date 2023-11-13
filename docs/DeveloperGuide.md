@@ -383,6 +383,11 @@ By providing a comprehensive view of various performance-related factors over ti
 | v2.0    | meticulous user                 | find my diets by date                                             | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
 | v2.0    | motivated user                  | keep track of my diet goals for a period of time                  | I can monitor my diet progress on a weekly basis and increase or reduce if needed.     |                                         |
 | v2.0    | goal-oriented user              | delete a specific activity goal                                   | remove goals that are no longer relevant or achievable for me.                         |                                         |
+| v2.0    | sleep deprived user             | calculate sleep duration                                         | keep track of my sleep habits and identify areas for improvement                       |
+| v2.0    | sleep deprived user             | find how much I slept on a specific date                          | easily retrieve my sleep records for a specific day and monitor my sleep habits.       |
+| v2.1     | user with bad sleep habits      | set sleep goals                                                   | work towards a specific sleep target.                                                  |
+| v2.1     | user with bad sleep habits      | edit my sleep goals                                               | modify my sleep targets to align with my current sleep habits.                         |
+| v2.1     | user with bad sleep habits      | list all my sleep goals                                           | have a clear overview of my set targets and track my progress easily.                  |
 
 ---
 
