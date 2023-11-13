@@ -8,8 +8,8 @@ abstract class "StorableList"{
     + StorableList(path: String): StorableList
     + load()
     + save()
-    +  parse(s:String)
-    +  unparse(t:T)
+    + {abstract} parse(s:String)
+    + {abstract} unparse(t:T)
 
 }
 

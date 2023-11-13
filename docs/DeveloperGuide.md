@@ -165,10 +165,10 @@ This following sequence diagram show how the 'set-diet-goal' command works:
 **Step 3:** A temporary dietGoalList is created to store newly created diet goals. In this case, a weekly healthy goal 
 for fat with a target value of 1mg.
 
-**Step 4:** The inputs are verified against our lists of approved diet goals.
+**Step 4:** The inputs are validated against our lists of approved diet goals.
 
-**Step 5:** For each of the diet goals that are valid, a DietGoal object will be created and stored in the 
-temporary dietGoalList.
+**Step 5:** For each of the diet goals that are valid, if it is a healthy goal, a HealthyDietGoal object will be created and stored in the 
+temporary dietGoalList, else an UnhealthyDietGoal will be created instead.
 
 **Step 6:** The Parser then creates for an instance of SetDietGoalCommand and returns the instance to 
 AthletiCLI.
@@ -181,11 +181,12 @@ AthletiCLI to be passed to UI(not shown) for display.
 
 #### [Proposed] Future Implementation of DietGoalList Class
 
-The current implementation of DietGoalList is an ArrayList.
-It helps to store diet goals, however it is not efficient in searching for a particular dietGoal.
+The current implementation of DietGoalList is an ArrayList. This is because the number of nutrients currently is 4. O(n^2)
+operations can be treated as O(1). Furthermore, DietGoalListClass gets to inherits from superclass like its other goals' counterpart.
+However, it is not efficient in searching for a particular dietGoal especially when the number of goals and time span for goals increases.
 At any instance of time, there could only be the existence of one dietGoal.
 Verifying if there is an existence of a diet goal using an ArrayList takes O(n) time, where n is the number of dietGoals.
-The proposed change will be to change the underlying data structure to a hashmap for amortised O(1) time complexity
+The proposed change will be to change the underlying data structure to a hashmap in the future for amortised O(1) time complexity
 for checking the presence of a dietGoal.
 
 ### Activity Management in AthletiCLI

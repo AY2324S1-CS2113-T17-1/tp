@@ -76,9 +76,18 @@ The creation of such goal can be accomplished by indicating an optional flag `un
 * Contributed to the FAQ section of UG.
 
 ### Contributions to the DG: 
-...
-Which sections did you contribute to the DG? 
-Which UML diagrams did you add/updated?
+
+#### Sections contributed: 
+* Setting up of diet goals
+
+#### Added UML diagrams:
+
+![](../images/MainClassDiagram.svg)
+
+![](../images/DataClassDiagram.svg)
+
+![](../images/DietGoalsSequenceDiagram.svg)
+
 ...
 ### Contributions to team-based tasks
 
