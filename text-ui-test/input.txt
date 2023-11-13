@@ -54,13 +54,13 @@ add-diet-goal
 list-diet-goal
 set-diet-goal
 set-diet-goal fat
-set-diet-goal fats
-set-diet-goal fats/fats
-set-diet-goal fats/1
-set-diet-goal fats/1 calories/1 protein/1
-set-diet-goal weekly fats/-1 calories/-1 protein/-1
-set-diet-goal fats/1 calories/1 protein/1
-set-diet-goal daily fats/1 calories/1 protein/1
+set-diet-goal fat
+set-diet-goal fat/fat
+set-diet-goal fat/1
+set-diet-goal fat/1 calories/1 protein/1
+set-diet-goal weekly fat/-1 calories/-1 protein/-1
+set-diet-goal fat/1 calories/1 protein/1
+set-diet-goal daily fat/1 calories/1 protein/1
 set-diet-goal weekly unhealthy carb/1
 add-diet calories/150000 protein/500000 carb/05000 fat/2000 datetime/2023-11-04 10:00
 list-diet-goal
@@ -70,10 +70,10 @@ delete-diet-goal -1
 delete-diet-goal
 delete-diet-goal never gonna let you down
 edit-diet-goal carb
-edit-diet-goal fats
-edit-diet-goal fats/fats
-edit-diet-goal daily fats/100
-edit-diet-goal fats/100
+edit-diet-goal fat
+edit-diet-goal fat/fat
+edit-diet-goal daily fat/100
+edit-diet-goal fat/100
 edit-diet-goal carb/100
 set-diet-goal weekly carb/1
 delete-diet-goal 1

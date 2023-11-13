@@ -13,8 +13,8 @@ participant "data:DietGoalList" as dataDietGoalList #yellow
 
 'autonumber
 AthletiCLI++
-AthletiCLI -> Parser++ : ParseCommand("set-diet-goal WEEKLY fats/1")
-Parser -> Parser++ : ParseDietGoalSetEdit("WEEKLY fats/1")
+AthletiCLI -> Parser++ : ParseCommand("set-diet-goal WEEKLY fat/1")
+Parser -> Parser++ : ParseDietGoalSetEdit("WEEKLY fat/1")
 create tempDietGoalList
 Parser -> tempDietGoalList++ : dietGoalList()
 tempDietGoalList --> Parser-- : temp:DietGoalList

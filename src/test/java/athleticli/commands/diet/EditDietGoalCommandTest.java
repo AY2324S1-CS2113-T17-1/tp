@@ -23,11 +23,11 @@ class EditDietGoalCommandTest {
     private ArrayList<DietGoal> filledInvalidGoalTypeDietGoals;
     private ArrayList<DietGoal> filledInconsistentTargetValueWithTimeSpanDietGoals;
     private DietGoal dietGoalCarbWeekly;
-    private DietGoal dietGoalFatsWeekly;
-    private DietGoal newDietGoalFatsWeekly;
-    private DietGoal dietGoalFatsDaily;
-    private DietGoal unhealthyDietGoalFatsDaily;
-    private DietGoal newDietGoalFatsWeeklySmall;
+    private DietGoal dietGoalFatWeekly;
+    private DietGoal newDietGoalFatWeekly;
+    private DietGoal dietGoalFatDaily;
+    private DietGoal unhealthyDietGoalFatDaily;
+    private DietGoal newDietGoalFatWeeklySmall;
     private Data data;
 
     @BeforeEach
@@ -35,26 +35,26 @@ class EditDietGoalCommandTest {
         data = new Data();
 
         dietGoalCarbWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "carb", 10000);
-        dietGoalFatsWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
-        dietGoalFatsDaily = new HealthyDietGoal(Goal.TimeSpan.DAILY, "fats", 100);
-        newDietGoalFatsWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fats", 100);
-        newDietGoalFatsWeeklySmall = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fats", 1);
-        unhealthyDietGoalFatsDaily = new UnhealthyDietGoal(Goal.TimeSpan.WEEKLY,
-                Parameter.NUTRIENTS_FATS, 10000);
+        dietGoalFatWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fat", 10000);
+        dietGoalFatDaily = new HealthyDietGoal(Goal.TimeSpan.DAILY, "fat", 100);
+        newDietGoalFatWeekly = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fat", 100);
+        newDietGoalFatWeeklySmall = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fat", 1);
+        unhealthyDietGoalFatDaily = new UnhealthyDietGoal(Goal.TimeSpan.WEEKLY,
+                Parameter.NUTRIENTS_FAT, 10000);
 
         emptyInputDietGoals = new ArrayList<>();
         filledInputDietGoals = new ArrayList<>();
         filledValidUpdatedDietGoals = new ArrayList<>();
         filledInvalidGoalTypeDietGoals = new ArrayList<>();
 
-        filledInputDietGoals.add(dietGoalFatsWeekly);
+        filledInputDietGoals.add(dietGoalFatWeekly);
         filledInputDietGoals.add(dietGoalCarbWeekly);
 
-        filledValidUpdatedDietGoals.add(newDietGoalFatsWeekly);
-        filledInvalidGoalTypeDietGoals.add(unhealthyDietGoalFatsDaily);
+        filledValidUpdatedDietGoals.add(newDietGoalFatWeekly);
+        filledInvalidGoalTypeDietGoals.add(unhealthyDietGoalFatDaily);
 
         filledInconsistentTargetValueWithTimeSpanDietGoals = new ArrayList<>();
-        filledInconsistentTargetValueWithTimeSpanDietGoals.add(newDietGoalFatsWeeklySmall);
+        filledInconsistentTargetValueWithTimeSpanDietGoals.add(newDietGoalFatWeeklySmall);
 
     }
 
@@ -82,7 +82,7 @@ class EditDietGoalCommandTest {
     }
     @Test
     void execute_inconsistentDietGoal_expectError() throws AthletiException {
-        filledInputDietGoals.add(dietGoalFatsDaily);
+        filledInputDietGoals.add(dietGoalFatDaily);
         SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
         EditDietGoalCommand editDietGoalCommand =
                 new EditDietGoalCommand(filledInconsistentTargetValueWithTimeSpanDietGoals);
@@ -95,7 +95,7 @@ class EditDietGoalCommandTest {
         SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
         EditDietGoalCommand editDietGoalCommand = new EditDietGoalCommand(filledValidUpdatedDietGoals);
         String[] expectedString = {"These are your goal(s):\n", "\t1. [HEALTHY]  "
-                + "WEEKLY fats intake progress: (0/100)\n\n" + "\t2. [HEALTHY]  "
+                + "WEEKLY fat intake progress: (0/100)\n\n" + "\t2. [HEALTHY]  "
                 + "WEEKLY carb intake progress: (0/10000)\n", "Now you have 2 diet goal(s)."};
         setDietGoalCommand.execute(data);
         assertArrayEquals(expectedString, editDietGoalCommand.execute(data));

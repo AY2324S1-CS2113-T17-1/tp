@@ -17,17 +17,17 @@ import static org.junit.jupiter.api.Assertions.fail;
 class DeleteDietGoalCommandTest {
 
     private Data data;
-    private DietGoal dietGoalFats;
+    private DietGoal dietGoalFat;
     private ArrayList<DietGoal> filledInputDietGoals;
 
     @BeforeEach
     void setUp() {
         data = new Data();
 
-        dietGoalFats = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
+        dietGoalFat = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fat", 10000);
 
         filledInputDietGoals = new ArrayList<>();
-        filledInputDietGoals.add(dietGoalFats);
+        filledInputDietGoals.add(dietGoalFat);
     }
 
     @Test
@@ -38,7 +38,7 @@ class DeleteDietGoalCommandTest {
             System.out.println(data.getDietGoals());
             DeleteDietGoalCommand deleteDietGoalCommand = new DeleteDietGoalCommand(1);
             String[] expectedString = new String[]{"The following goal has been deleted:\n", "[HEALTHY]  "
-                    + "WEEKLY fats intake progress: (0/10000)\n",};
+                    + "WEEKLY fat intake progress: (0/10000)\n",};
             assertArrayEquals(expectedString, deleteDietGoalCommand.execute(data));
         } catch (AthletiException e) {
             fail(e);
