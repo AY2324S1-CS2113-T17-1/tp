@@ -874,17 +874,17 @@ If you forget a command, you can always use the `help` command to see their synt
 
 ### Diet Management
 
-| **Command**               | **Syntax**                                                                                       | **Parameters**                                       | **Examples**                                           |
-|---------------------------|--------------------------------------------------------------------------------------------------|------------------------------------------------------|--------------------------------------------------------|
-| `add-diet`                | `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`                 | CALORIES, PROTEIN, CARB, FAT, DATETIME               | `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
-| `edit-diet`               | `edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]` | INDEX, [CALORIES], [PROTEIN], [CARB], [FAT], [DATETIME] | `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
-| `delete-diet`             | `delete-diet INDEX`                                                                              | INDEX                                                | `delete-diet 1`                                         |
-| `list-diet`               | `list-diet`                                                                                      | None                                                 | `list-diet`                                             |
-| `find-diet`               | `find-diet DATE`                                                                             | DATE                                                 | `find-diet 2021-09-01`                             |
-| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT]`     | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARB], [FAT]   | `set-diet-goal WEEKLY calories/500 fat/600` |
-| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT]`   | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARB], [FAT]   | `edit-diet-goal WEEKLY calories/500 fat/600` |
-| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                         | INDEX                                                | `delete-diet-goal 1`                                    |
-| `list-diet-goal`          | `list-diet-goal`                                                                                 | None                                                 | `list-diet-goal`                                        |
+| **Command**               | **Syntax**                                                                                               | **Parameters**                                                  | **Examples**                                           |
+|---------------------------|----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------|--------------------------------------------------------|
+| `add-diet`                | `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`                         | CALORIES, PROTEIN, CARB, FAT, DATETIME                          | `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
+| `edit-diet`               | `edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]`        | INDEX, [CALORIES], [PROTEIN], [CARB], [FAT], [DATETIME]         | `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
+| `delete-diet`             | `delete-diet INDEX`                                                                                      | INDEX                                                           | `delete-diet 1`                                         |
+| `list-diet`               | `list-diet`                                                                                              | None                                                            | `list-diet`                                             |
+| `find-diet`               | `find-diet DATE`                                                                                         | DATE                                                            | `find-diet 2021-09-01`                             |
+| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT]`   | DAILY/WEEKLY, [unhealthy], [CALORIES], [PROTEIN], [CARB], [FAT] | `set-diet-goal WEEKLY calories/500 fat/600` |
+| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT]` | DAILY/WEEKLY, [unhealthy], [CALORIES], [PROTEIN], [CARB], [FAT] | `edit-diet-goal WEEKLY calories/500 fat/600` |
+| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                                 | INDEX                                                           | `delete-diet-goal 1`                                    |
+| `list-diet-goal`          | `list-diet-goal`                                                                                         | None                                                            | `list-diet-goal`                                        |
 
 
 ### Sleep Management
