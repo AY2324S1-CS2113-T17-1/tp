@@ -410,6 +410,16 @@ public class ActivityParserTest {
         assertEquals(actual, expected);
     }
 
+    @Test
+    void checkMissingActivityArgument_missingDistance_messageDistanceMissing() {
+        String expected = "Please specify the activity distance using \"distance/\"!";
+        try {
+            ActivityParser.checkMissingActivityArgument(-1, "distance/");
+        } catch (AthletiException e) {
+            assertEquals(expected, e.getMessage());
+        }
+    }
+
     //@@author  nihalzp
     @Test
     void parseDeleteActivityGoal_validInput_activityGoalParsed() throws AthletiException {

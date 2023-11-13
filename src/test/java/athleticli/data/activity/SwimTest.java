@@ -81,4 +81,15 @@ public class SwimTest {
         String actual = swim.toDetailedString();
         assertEquals(expected, actual);
     }
+
+    /**
+     * Tests the unparsing of the swim object.
+     */
+    @Test
+    void unparse() {
+        String actual = swim.unparse();
+        String expected = "[Swim]: Afternoon Swim duration/00:35:00 distance/1000 datetime/2023-08-29T09:45 "
+                + "style/BUTTERFLY";
+        assertEquals(expected, actual);
+    }
 }

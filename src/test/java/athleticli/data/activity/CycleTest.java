@@ -51,6 +51,7 @@ public class CycleTest {
         assertEquals(expected, actual, 0.005);
     }
 
+
     /**
      * Tests the String representation of the Cycle object.
      */
@@ -84,6 +85,27 @@ public class CycleTest {
     public void generateSpeedStringOutput() {
         String actual = cycle.generateSpeedStringOutput();
         String expected = "18.25 km/h";
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Tests the generation of the elevation gain String output.
+     */
+    @Test
+    void generateElevationGainStringOutput() {
+        String actual = cycle.generateElevationGainStringOutput();
+        String expected = "Elevation Gain: 101 m";
+        assertEquals(expected, actual);
+    }
+
+    /**
+     * Tests the unparsing of the Cycle object.
+     */
+    @Test
+    void unparse() {
+        String actual = cycle.unparse();
+        String expected = "[Cycle]: Cycling in the afternoon duration/02:13:00 distance/40460 "
+                + "datetime/2023-10-07T14:00 elevation/101";
         assertEquals(expected, actual);
     }
 

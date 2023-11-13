@@ -85,4 +85,14 @@ public class RunTest {
         String actual = run.toDetailedString();
         assertEquals(expected, actual);
     }
+
+    /**
+     * Tests the unparsing of the Run object.
+     */
+    @Test
+    void unparse() {
+        String actual = run.unparse();
+        String expected = "[Run]: Night Run duration/01:24:00 distance/18120 datetime/2023-10-10T23:21 elevation/60";
+        assertEquals(expected, actual);
+    }
 }
