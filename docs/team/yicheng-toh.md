@@ -86,7 +86,6 @@ The creation of such goal can be accomplished by indicating an optional flag `un
 
 ![](../images/DietGoalsSequenceDiagram.svg)
 
-...
 ### Contributions to team-based tasks
 
 * Kept track of deadlines for v1.0 and v2.0.
