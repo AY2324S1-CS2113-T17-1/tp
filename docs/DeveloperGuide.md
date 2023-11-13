@@ -273,16 +273,16 @@ These are the key components and their roles in the architecture of the goal tra
 Given below is an example usage scenario and how the goal setting and tracking mechanism behaves at 
 each step.
 
-1. **Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
+**Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
    Parser by the running AthletiCLI instance.
-2. **Step 2 - Goal Parsing:** The `ActivityParser` parses the raw input to obtain the sports, target and timespan of the 
+**Step 2 - Goal Parsing:** The `ActivityParser` parses the raw input to obtain the sports, target and timespan of the 
    goal. 
    Given that all these parameters are provided correctly and no exception is thrown, a new activity goal object is 
    created.
-3. **Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
+**Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
    added activity goal attached to it. The command implements the `SetActivityGoalCommand#execute()` operation and is 
    passed to the AthletiCLI instance.
-4. **Step 4 - Goal Addition:** The AthletiCLI instance executes the `SetActivityGoalCommand` object. The command will 
+**Step 4 - Goal Addition:** The AthletiCLI instance executes the `SetActivityGoalCommand` object. The command will 
    access the data and retrieve the currently stored list of activity goals stored inside it. The new `ActivityGoal` 
    object is added to the list.
 
@@ -301,7 +301,7 @@ scenario with the eligible activities for the goal highlighted in green.
 
 The following describes how the goal evaluation works after being invoked by the user, e.g., with a `list-activity-goal` command:
 
-5. **Step 5 - Goal Assessment:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
+**Step 5 - Goal Assessment:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
 activity list with the five tracked activities from the data and calls the total distance calculation function. It 
    filters the activity list according to the specified timespan and sports of the goal. The current value obtained by this, 
    10km in the example, is returned to the `ActivityGoal` object. This output is compared to the target value of the 
