@@ -135,6 +135,7 @@ detailed information about your activities including evaluations like pace (runn
   <img width="60%" src="images/listActivityDetailedShowcase.png" alt="Detailed list returned by `list-activity -d`"/>
 </p>
 
+---
 
 ### ✍️ Editing Activities:
 
