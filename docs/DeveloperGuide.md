@@ -83,7 +83,7 @@ The class diagram shows how the `Data` component is constructed with multiple cl
 The class diagram shows how the `Parser` component is constructed with multiple classes.
 
 <p  align="center" width="100%">
-  <img width="80%" src="images/ParserClassDiagram.png" alt="`parser` Class Diagram"/>
+  <img width="100%" src="images/ParserClassDiagram.png" alt="`parser` Class Diagram"/>
 
 **How the architecture components interact with each other**
 
