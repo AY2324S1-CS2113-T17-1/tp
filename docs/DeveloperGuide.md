@@ -229,9 +229,9 @@ This diagram illustrates the activity parsing process in more detail:
 The `ActivityChanges` object plays a key role in the parsing process. It is used for storing the 
 different attributes of the activity that are to be added. Later, the `ActivityParser` 
 will use the `ActivityChanges` to create the `Activity` object. 
-> This way of transferring data between the parser and the activity is more flexible which is suitable for future 
-extensions of the activity types and allows for a more modular design. This design and most of the methods can be reused 
-for the `edit-activity` mechanism, which works in the same way with slight modifications due to optional parameters.
+> This way of transferring data between the parser and the activity is more flexible which is suitable for future
+> extensions of the activity types and allows for a more modular design. This design and most of the methods can be reused
+> for the `edit-activity` mechanism, which works in the same way with slight modifications due to optional parameters.
 
 <p align="center" >
   <img width="100%" src="images/ActivityParsing.svg" alt="Activity Parsing Process"/>
@@ -426,9 +426,46 @@ Developers are expected to conduct more extensive tests.
 
 #### Activity Goals
 
+1. Setting Activity Goals
+    - Test case 1:
+        * Set a weekly running distance goal.
+        * Command: `set-activity-goal sport/running type/distance period/weekly target/15000`
+        * Expected Outcome: Weekly running goal of 15km is set successfully.
+    - Test case 2:
+        * Set a monthly swimming duration goal.
+        * Command: `set-activity-goal sport/swimming type/duration period/monthly target/300`
+        * Expected Outcome: Monthly swimming duration goal of 300 minutes is set successfully.
+
+2. Editing Activity Goals
+    - Test case 1:
+        * Edit an existing weekly cycling distance goal.
+        * Command: `edit-activity-goal sport/cycling type/distance period/weekly target/20000`
+        * Expected Outcome: Weekly cycling distance goal is updated to 20km.
+    - Test case 2:
+        * Edit a non-existent yearly running duration goal.
+        * Command: `edit-activity-goal sport/running type/duration period/yearly target/1000`
+        * Expected Outcome: Error indicating no existing yearly running duration goal.
+
+3. Listing Activity Goals
+    - Test case 1:
+        * List all set activity goals.
+        * Command: `list-activity-goal`
+        * Expected Outcome: All set activity goals along with their details are listed.
+
+4. Deleting Activity Goals
+    - Test case 1:
+        * Delete an existing monthly swimming duration goal.
+        * Command: `delete-activity-goal sport/swimming type/duration period/monthly`
+        * Expected Outcome: Monthly swimming duration goal is deleted successfully.
+    - Test case 2:
+        * Attempt to delete a non-existent daily general activity goal.
+        * Command: `delete-activity-goal sport/general type/distance period/daily`
+        * Expected Outcome: Error indicating no such daily general activity goal exists.
+
 ### Diet Management
 
 #### Diet Records
+
 1. Adding Diets
     - Test case 1:
         * Add a complete diet entry.
