@@ -567,7 +567,7 @@ This flag is used to change target values of goals that are set as unhealthy pre
 
 * CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer up to the value 999999.
 * PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
-* CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
+* CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
 * FAT: Your target value for fat intake, in terms of milligrams. The target value must be a positive integer up to the value 999999.
 
 
