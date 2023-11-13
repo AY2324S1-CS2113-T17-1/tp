@@ -45,6 +45,7 @@ The absence of a "Goal Delete" feature for Sleep and Activity in the current ver
 - [Setting Activity Goals](#-setting-activity-goals)
 - [Editing Activity Goals](#-editing-activity-goals)
 - [Listing Activity Goals](#-listing-activity-goals)
+- [Deleting Activity Goals](#-deleting-activity-goals)
 
 ### ➕ Adding Activities:
 
@@ -65,10 +66,11 @@ full activity insights.
 
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
-* DISTANCE: The distance of the activity in meters. It must be a non-negative number smaller than 1000000.
+* DISTANCE: The distance of the activity in meters. It must be a non-negative number smaller than 1000001.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm,
   must be valid, and cannot be in the future.
-* ELEVATION: The elevation gain of a run or cycle in meters. It must be a positive number smaller than 10000.
+* ELEVATION: The elevation gain of a run or cycle in meters. It must be a number with an absolute value smaller than 
+10001.
 * STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
 
 **Examples:**
@@ -114,7 +116,7 @@ detailed information about your activities including evaluations like pace (runn
 
 * `list-activity [-d]`
 
-**Parameters:**
+**Flags:**
 
 * `-d`: Shows a detailed list of the activities.
 
@@ -135,8 +137,9 @@ detailed information about your activities including evaluations like pace (runn
   <img width="60%" src="images/listActivityDetailedShowcase.png" alt="Detailed list returned by `list-activity -d`"/>
 </p>
 
+---
 
-### ✍️ Editing Activities:
+### ⚙️ Editing Activities:
 
 `edit-activity` `edit-run` `edit-swim` `edit-cycle`
 
@@ -212,7 +215,7 @@ your daily, weekly, monthly, or yearly progress.
 
 ---
 
-### ✍️ Editing Activity Goals:
+### ⚙️ Editing Activity Goals:
 
 `edit-activity-goal`
 
@@ -316,7 +319,7 @@ You can record your diet by specifying calorie, protein, carbohydrate, and fat i
 
 ---
 
-### ✍️ Editing Diets:
+### ⚙️ Editing Diets:
 
 `edit-diet`
 
@@ -410,7 +413,7 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
 **Syntax:**
 
-* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`
+* `set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
 
 **Parameters:**
 
@@ -424,11 +427,11 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 * CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer.
 * PROTEIN: Your target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
-* FATS: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
+* FAT: Your target value for fat intake, in terms of milligrams. The target value must be a positive integer.
 
 You can create one or multiple nutrient goals at once with this command.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
 
 **Note: A diet goal of the same nutrient cannot be healthy and unhealthy at the same time!**
 
@@ -439,8 +442,8 @@ You can create one or multiple nutrient goals at once with this command.
 
 **Examples:**
 
-* `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly nutrient goals if they have not been created: 
-calories with a target value of 500 calories and fats of 600 mg.
+* `set-diet-goal WEEKLY calories/500 fat/600` Creates 2 weekly nutrient goals if they have not been created: 
+calories with a target value of 500 calories and fat of 600 mg.
 
 * `set-diet-goal DAILY calories/500` Creates a daily calories goal of target value of 500 calories if goal is not created.
 
@@ -450,13 +453,13 @@ calories with a target value of 500 calories and fats of 600 mg.
 **Example of Usage:**
 
 ```
-  > set-diet-goal WEEKLY calories/500 fats/600
+  > set-diet-goal WEEKLY calories/500 fat/600
   _____________________________________________________________
   These are your goal(s):
   
       1. [HEALTHY]  WEEKLY calories intake progress: (0/500)
   
-      2. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+      2. [HEALTHY]  WEEKLY fat intake progress: (0/600)
   
   Now you have 2 diet goal(s).
   _____________________________________________________________
@@ -492,7 +495,7 @@ ____________________________________________________________
 
  	1. [HEALTHY]  WEEKLY calories intake progress: (0/500)
 
-	2. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+	2. [HEALTHY]  WEEKLY fat intake progress: (0/600)
 
  Now you have 2 diet goal(s).
 ____________________________________________________________
@@ -529,7 +532,7 @@ You can list all your diet goals in AtheltiCLI.
 ____________________________________________________________
  These are your goal(s):
 
- 	1. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+ 	1. [HEALTHY]  WEEKLY fat intake progress: (0/600)
 
  Now you have 1 diet goal(s).
 ____________________________________________________________
@@ -537,7 +540,7 @@ ____________________________________________________________
 
 ---
 
-### ✍️ Editing Diet Goals:
+### ⚙️️ Editing Diet Goals:
 
 `edit-diet-goal`
 
@@ -548,7 +551,7 @@ No repetition is allowed. The diet goal needs to be present before any edits is 
 
 **Syntax:**
 
-* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`
+* `edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`
 
 **Parameters:**
 
@@ -560,9 +563,9 @@ This flag is used to change target values of goals that are set as unhealthy pre
 * CALORIES: Your target value for calories intake, in terms of cal. The target value must be a positive integer.
 * PROTEIN: The target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARBS: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
-* FATS: Your target value for fats intake, in terms of milligrams. The target value must be a positive integer.
+* :FAT Your target value for fat intake, in terms of milligrams. The target value must be a positive integer.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
+**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FAT) must be present!**
 
 **Note: The target value for a weekly goal must be greater than the target value of a daily goal of the same nutrient!**
 
@@ -570,7 +573,7 @@ You can edit one or multiple nutrient goals with this command.
 
 **Examples:**
 
-* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fats/100` 
+* `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fat/100` 
 Edits multiple nutrients goals if all of them exists and the corresponding new target value is valid.
 * `edit-diet-goal WEEKLY calories/5000` 
 Edits a single calories goal target value to 5000 calories if the goal exists and new target value is valid.
@@ -581,16 +584,16 @@ Edits a single calories goal target value to 5000 calories if the goal exists an
 ____________________________________________________________
  These are your goal(s):
 
- 	1. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+ 	1. [HEALTHY]  WEEKLY fat intake progress: (0/600)
 
  Now you have 1 diet goal(s).
 ____________________________________________________________
 
-> edit-diet-goal WEEKLY fats/50
+> edit-diet-goal WEEKLY fat/50
 ____________________________________________________________
  These are your goal(s):
 
- 	1. [HEALTHY]  WEEKLY fats intake progress: (0/50)
+ 	1. [HEALTHY]  WEEKLY fat intake progress: (0/50)
 
  Now you have 1 diet goal(s).
 ____________________________________________________________
@@ -676,7 +679,7 @@ Assuming that there are 5 sleep records in the list:
 
 ---
 
-### ✍️ Editing Sleep:
+### ⚙️️ Editing Sleep:
 
 `edit-sleep`  
 
@@ -871,17 +874,17 @@ If you forget a command, you can always use the `help` command to see their synt
 
 ### Diet Management
 
-| **Command**               | **Syntax**                                                                                        | **Parameters**                                         | **Examples**                                             |
-|---------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------|----------------------------------------------------------|
+| **Command**               | **Syntax**                                                                                        | **Parameters**                                         | **Examples**                                           |
+|---------------------------|---------------------------------------------------------------------------------------------------|--------------------------------------------------------|--------------------------------------------------------|
 | `add-diet`                | `add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME`                  | CALORIES, PROTEIN, CARB, FAT, DATETIME                 | `add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
 | `edit-diet`               | `edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]` | INDEX, [CALORIES], [PROTEIN], [CARB], [FAT], [DATETIME] | `edit-diet 1 calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00` |
-| `delete-diet`             | `delete-diet INDEX`                                                                               | INDEX                                                  | `delete-diet 1`                                           |
-| `list-diet`               | `list-diet`                                                                                       | None                                                   | `list-diet`                                               |
-| `find-diet`               | `find-diet DATE`                                                                             | DATE                                                   | `find-diet 2021-09-01`                               |
-| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`     | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fats/600` |
-| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]`   | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fats/600` |
-| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                          | INDEX                                                  | `delete-diet-goal 1`                                      |
-| `list-diet-goal`          | `list-diet-goal`                                                                                  | None                                                   | `list-diet-goal`                                          |
+| `delete-diet`             | `delete-diet INDEX`                                                                               | INDEX                                                  | `delete-diet 1`                                         |
+| `list-diet`               | `list-diet`                                                                                       | None                                                   | `list-diet`                                             |
+| `find-diet`               | `find-diet DATE`                                                                             | DATE                                                   | `find-diet 2021-09-01`                             |
+| `set-diet-goal`           | `set-diet-goal <DAILY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`     | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `set-diet-goal WEEKLY calories/500 fat/600` |
+| `edit-diet-goal`          | `edit-diet-goal <DAILIY/WEEKLY> [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]`   | DAILY/WEEKLY, [CALORIES], [PROTEIN], [CARBS], [FAT]    | `edit-diet-goal WEEKLY calories/500 fat/600` |
+| `delete-diet-goal`        | `delete-diet-goal INDEX`                                                                          | INDEX                                                  | `delete-diet-goal 1`                                    |
+| `list-diet-goal`          | `list-diet-goal`                                                                                  | None                                                   | `list-diet-goal`                                        |
 
 
 ### Sleep Management

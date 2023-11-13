@@ -125,7 +125,7 @@ public class Message {
     public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_POSITIVE_INT = "The target value for nutrients " +
             "must be a positive integer!";
     public static final String MESSAGE_DIET_GOAL_INVALID_NUTRIENT = "Key word to nutrients goals has " +
-            "to be one of the following: \"calories\", \"protein\", \"carb\", \"fats\"!";
+            "to be one of the following: \"calories\", \"protein\", \"carb\", \"fat\"!";
     public static final String MESSAGE_DIET_GOAL_ALREADY_EXISTED = "Diet goal for %s has already existed. " +
             "Please edit the goal instead!";
     public static final String MESSAGE_DIET_GOAL_NOT_EXISTED = "Diet goal for %s and time period %s is not present. " +
@@ -141,8 +141,8 @@ public class Message {
             "Please enter a value from 1 to %d.";
     public static final String MESSAGE_DIET_GOAL_INSUFFICIENT_INPUT = "Please input the following keywords " +
             "to create or edit your diet goals:\n <DAILY/WEEKLY> [unhealthy] followed by \"calories\", \"protein\", " +
-            "\"carb\", \"fats\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100\n"
-            + "\te.g. WEEKLY unhealthy fats/100";
+            "\"carb\", \"fat\" and then followed by the target value.\n" + "\te.g. WEEKLY calories/100\n"
+            + "\te.g. WEEKLY unhealthy fat/100";
     public static final String MESSAGE_DIET_GOAL_TARGET_VALUE_NOT_SCALING_WITH_TIME_SPAN =
             "Please ensure your weekly diet goal target value is greater than your daily diet goal target value!";
     public static final String MESSAGE_DIET_GOAL_REPEATED_NUTRIENT = "Please ensure that there are " +
@@ -273,9 +273,9 @@ public class Message {
     public static final String HELP_FIND_DIET = CommandName.COMMAND_DIET_FIND
             + " DATE";
     public static final String HELP_SET_DIET_GOAL = CommandName.COMMAND_DIET_GOAL_SET
-            + " <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]";
+            + " <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]";
     public static final String HELP_EDIT_DIET_GOAL = CommandName.COMMAND_DIET_GOAL_EDIT
-            + " <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]";
+            + " <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]";
     public static final String HELP_LIST_DIET_GOAL = CommandName.COMMAND_DIET_GOAL_LIST;
     public static final String HELP_DELETE_DIET_GOAL = CommandName.COMMAND_DIET_GOAL_DELETE
             + " INDEX";

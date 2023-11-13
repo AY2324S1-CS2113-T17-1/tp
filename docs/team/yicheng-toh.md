@@ -22,7 +22,7 @@ sleep metrics, and more. The user interacts with it using a CLI. It is written i
 
 #### New feature: Users can add and delete diet goals
 For motivated users on AthletiCLI, they can create diet goals to keep track of their nutrient intake. 
-The nutrients supported currently are Calories, Fats, Carb and Protein. Consuming more nutrient than the 
+The nutrients supported currently are Calories, Fat, Carb and Protein. Consuming more nutrient than the 
 target value indicates that they have achieved their diet goal for that specific nutrient.
 
 If they would like to remove their existing goals, they can remvoe it with the delete function
@@ -55,8 +55,8 @@ target value for the nutrients, the diet goals is marked as achieved.
 
 However, this may not be the case for all nutrients. 
 For example, for athletes who want to gain muscles, they would increase their intake of protein. At the same time, 
-they would need to reduce their weight by cutting on fats.
-In this case, the diet goal only encourage them to consume more fats.
+they would need to reduce their weight by cutting on fat consumption.
+In this case, the diet goal only encourage them to consume more fat.
 Therefore 'unhealthy' diet goal is created. It marks a diet goal as not achieved if the value consumed is greater
 than the target value. 
 

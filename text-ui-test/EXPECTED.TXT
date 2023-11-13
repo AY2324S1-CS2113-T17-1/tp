@@ -28,8 +28,8 @@ Diet Management:
  delete-diet INDEX
  list-diet
  find-diet DATE
- set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]
- edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fats/FATS]
+ set-diet-goal <DAILY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]
+ edit-diet-goal <DAILIY/WEEKLY> [unhealthy] [calories/CALORIES] [protein/PROTEIN] [carb/CARBS] [fat/FAT]
  delete-diet-goal INDEX
  list-diet-goal
  
@@ -133,6 +133,42 @@ ____________________________________________________________
  Ok, I've updated this activity:
  [Cycle] Evening Ride | Distance: 12.00 km | Speed: 12.00 km/h | Time: 1h 0m | September 1, 2021 at 6:00 AM
  You have tracked a total of 2 activities. Keep pushing!
+____________________________________________________________
+
+> ____________________________________________________________
+ OOPS!!! I'm sorry, but I don't know what that means :-(
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've added this activity goal:
+ weekly running distance: 0 / 10000
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've added this activity goal:
+ monthly swimming duration: 0 / 120
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've edited this activity goal:
+ weekly running distance: 0 / 20000
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've edited this activity goal:
+ monthly swimming duration: 0 / 60
+____________________________________________________________
+
+> ____________________________________________________________
+ These are your activity goals:
+ 1. monthly general distance: 10000 / 10000
+ 2. weekly running distance: 0 / 20000
+ 3. monthly swimming duration: 0 / 60
+____________________________________________________________
+
+> ____________________________________________________________
+ Alright, I've deleted this activity goal:
+ weekly running distance: 0 / 20000
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -336,37 +372,37 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -384,7 +420,7 @@ ____________________________________________________________
 > ____________________________________________________________
  These are your goal(s):
 
- 	1. [HEALTHY]  DAILY fats intake progress: (0/1)
+ 	1. [HEALTHY]  DAILY fat intake progress: (0/1)
 
 	2. [HEALTHY]  DAILY calories intake progress: (0/1)
 
@@ -396,7 +432,7 @@ ____________________________________________________________
 > ____________________________________________________________
  These are your goal(s):
 
- 	1. [HEALTHY]  DAILY fats intake progress: (0/1)
+ 	1. [HEALTHY]  DAILY fat intake progress: (0/1)
 
 	2. [HEALTHY]  DAILY calories intake progress: (0/1)
 
@@ -416,7 +452,7 @@ ____________________________________________________________
 > ____________________________________________________________
  These are your goal(s):
 
- 	1. [HEALTHY]  DAILY fats intake progress: (0/1)
+ 	1. [HEALTHY]  DAILY fat intake progress: (0/1)
 
 	2. [HEALTHY]  DAILY calories intake progress: (0/1)
 
@@ -452,29 +488,29 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
  These are your goal(s):
 
- 	1. [HEALTHY]  DAILY fats intake progress: (0/100)
+ 	1. [HEALTHY]  DAILY fat intake progress: (0/100)
 
 	2. [HEALTHY]  DAILY calories intake progress: (0/1)
 
@@ -485,16 +521,16 @@ ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
  OOPS!!! Please input the following keywords to create or edit your diet goals:
- <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fats" and then followed by the target value.
+ <DAILY/WEEKLY> [unhealthy] followed by "calories", "protein", "carb", "fat" and then followed by the target value.
 	e.g. WEEKLY calories/100
-	e.g. WEEKLY unhealthy fats/100
+	e.g. WEEKLY unhealthy fat/100
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -504,7 +540,7 @@ ____________________________________________________________
 > ____________________________________________________________
  The following goal has been deleted:
 
- [HEALTHY]  DAILY fats intake progress: (0/100)
+ [HEALTHY]  DAILY fat intake progress: (0/100)
 
 ____________________________________________________________
 
@@ -543,57 +579,9 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- Usage: add-diet calories/CALORIES protein/PROTEIN carb/CARB fat/FAT datetime/DATETIME
-____________________________________________________________
-
-> ____________________________________________________________
  Well done! I've added this diet:
  Calories: 500 cal | Protein: 20 mg | Carb: 50 mg | Fat: 10 mg | September 1, 2021 at 6:00 AM
  Now you have tracked your first diet. This is just the beginning!
-____________________________________________________________
-
-> ____________________________________________________________
- Well done! I've added this diet:
- Calories: 150 cal | Protein: 50 mg | Carb: 5 mg | Fat: 2 mg | January 4, 2023 at 10:00 AM
- Now you have tracked a total of 2 diets. Keep grinding!
-____________________________________________________________
-
-> ____________________________________________________________
- Well done! I've added this diet:
- Calories: 1000 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
- Now you have tracked a total of 3 diets. Keep grinding!
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The calories burned must be a non-negative integer!
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The protein intake must be a non-negative integer!
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The carbohydrate intake must be a non-negative integer!
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The fat intake must be a non-negative integer!
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The datetime must be valid and in the format "yyyy-MM-dd HH:mm"!
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The datetime must be valid and in the format "yyyy-MM-dd HH:mm"!
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The datetime must be valid and in the format "yyyy-MM-dd HH:mm"!
-____________________________________________________________
-
-> ____________________________________________________________
- Usage: edit-diet INDEX [calories/CALORIES] [protein/PROTEIN] [carb/CARB] [fat/FAT] [datetime/DATETIME]
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -602,15 +590,9 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- Usage: list-diet
-____________________________________________________________
-
-> ____________________________________________________________
  Here are the diets in your list:
  	1. Calories: 1000 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
-	2. Calories: 150 cal | Protein: 50 mg | Carb: 5 mg | Fat: 2 mg | January 4, 2023 at 10:00 AM
-	3. Calories: 1000 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
- Now you have tracked a total of 3 diets. Keep grinding!
+ Now you have tracked a total of 1 diets. Keep grinding!
 ____________________________________________________________
 
 > ____________________________________________________________
@@ -619,48 +601,11 @@ ____________________________________________________________
 ____________________________________________________________
 
 > ____________________________________________________________
- OOPS!!! No change requested. Specify the appropriate parameters to edit the diet.
-____________________________________________________________
-
-> ____________________________________________________________
- Usage: delete-diet INDEX
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The diet index must be a positive integer!
-____________________________________________________________
-
-> ____________________________________________________________
- Noted. I've removed this diet:
- Calories: 150 cal | Protein: 50 mg | Carb: 5 mg | Fat: 2 mg | January 4, 2023 at 10:00 AM
- Now you have tracked a total of 2 diets. Keep grinding!
-____________________________________________________________
-
-> ____________________________________________________________
  OOPS!!! The diet index is invalid! Please enter a valid diet index!
 ____________________________________________________________
 
 > ____________________________________________________________
- Here are the diets in your list:
- 	1. Calories: 5 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
-	2. Calories: 1000 cal | Protein: 100 mg | Carb: 200 mg | Fat: 500 mg | November 4, 2020 at 10:00 PM
- Now you have tracked a total of 2 diets. Keep grinding!
-____________________________________________________________
-
-> ____________________________________________________________
- Usage: find-diet DATE
-____________________________________________________________
-
-> ____________________________________________________________
  I've found these diets:
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The date must be valid and in the format "yyyy-MM-dd"!
-____________________________________________________________
-
-> ____________________________________________________________
- OOPS!!! The date must be valid and in the format "yyyy-MM-dd"!
 ____________________________________________________________
 
 > ____________________________________________________________
