@@ -66,10 +66,11 @@ full activity insights.
 
 * CAPTION: A short description of the activity.
 * DURATION: The duration of the activity in ISO Time Format: HH:mm:ss.
-* DISTANCE: The distance of the activity in meters. It must be a non-negative number smaller than 1000000.
+* DISTANCE: The distance of the activity in meters. It must be a non-negative number smaller than 1000001.
 * DATETIME: The date and time of the start of the activity. It must follow the ISO Date Time Format yyyy-MM-dd HH:mm,
   must be valid, and cannot be in the future.
-* ELEVATION: The elevation gain of a run or cycle in meters. It must be a positive number smaller than 10000.
+* ELEVATION: The elevation gain of a run or cycle in meters. It must be a number with an absolute value smaller than 
+10001.
 * STYLE: The style of the swim. It must be one of the following: freestyle, backstroke, breaststroke, butterfly.
 
 **Examples:**
