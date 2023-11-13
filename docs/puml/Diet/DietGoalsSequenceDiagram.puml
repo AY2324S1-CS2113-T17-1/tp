@@ -4,7 +4,8 @@ skinparam Style strictuml
 skinparam SequenceMessageAlignment center
 participant ":AthletiCLI" as AthletiCLI #lightblue
 participant ":Parser" as Parser #lightgreen
-participant ":DietGoal" as dietGoal #lightyellow
+participant ":HealthyDietGoal" as healthyDietGoal #lightyellow
+participant ":UnhealthyDietGoal" as unhealthyDietGoal #lightyellow
 participant ":SetDietGoalCommand" as SetDietGoalCommand #lightpink
 participant "temp:DietGoalList" as tempDietGoalList #yellow
 participant "data:Data" as dataData
@@ -20,9 +21,15 @@ Parser -> tempDietGoalList++ : dietGoalList()
 tempDietGoalList --> Parser-- : temp:DietGoalList
 
     loop number of valid new diet goals
-    create dietGoal
-    Parser -> dietGoal++ : DietGoal()
-    dietGoal --> Parser-- : :DietGoal
+        alt is healthy goal
+            create healthyDietGoal
+            Parser -> healthyDietGoal++ : HealthyDietGoal()
+            healthyDietGoal --> Parser-- : :HealthyDietGoal
+        else is unhealthy goal
+        create unhealthyDietGoal
+        Parser -> unhealthyDietGoal++ : UnhealthyDietGoal()
+        unhealthyDietGoal --> Parser-- : :DietGoal
+        end
     end
 
 Parser --> Parser-- : temp:DietGoalList
@@ -34,7 +41,7 @@ AthletiCLI -> SetDietGoalCommand++ : execute()
 SetDietGoalCommand -> dataData++ : getDietGoals()
 dataData --> SetDietGoalCommand-- : data:DietGoalList
 
-    loop number of valid new diet goals
+    loop number of valid new healthy and unhealthy goals
     SetDietGoalCommand -> dataDietGoalList++ : add()
 
    dataDietGoalList --

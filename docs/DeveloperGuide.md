@@ -165,10 +165,10 @@ This following sequence diagram show how the 'set-diet-goal' command works:
 **Step 3:** A temporary dietGoalList is created to store newly created diet goals. In this case, a weekly healthy goal 
 for fats with a target value of 1mg.
 
-**Step 4:** The inputs are verified against our lists of approved diet goals.
+**Step 4:** The inputs are validated against our lists of approved diet goals.
 
-**Step 5:** For each of the diet goals that are valid, a DietGoal object will be created and stored in the 
-temporary dietGoalList.
+**Step 5:** For each of the diet goals that are valid, if it is a healthy goal, a HealthyDietGoal object will be created and stored in the 
+temporary dietGoalList, else an UnhealthyDietGoal will be created instead.
 
 **Step 6:** The Parser then creates for an instance of SetDietGoalCommand and returns the instance to 
 AthletiCLI.
