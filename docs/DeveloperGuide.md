@@ -367,6 +367,7 @@ Initially, the design of the sleep duration used integer to store the seconds of
 For instance, when printing the sleep duration string, we have to convert the seconds into hours, minutes and seconds. This results in a lot of code duplication and is not very modular.
 
 **[Solution]**
+
 Therefore we have decided to change the design of the sleep duration to use the Duration class from the Java library. This allows us to use the built-in functions to calculate the sleep duration and convert the sleep duration into a string. This results in a more modular design and reduces code duplication.
 
 #### [Implemented] Sleep Goals
