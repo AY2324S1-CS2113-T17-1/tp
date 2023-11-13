@@ -295,6 +295,18 @@ Assume that the user has set a goal to run 10km per week and has already tracked
 within the last 7 days as well as three older sport activities. The object diagram below shows the state of the 
 scenario with the eligible activities for the goal highlighted in green.
 
+The `edit-activity-goal` and `delete-activity-goal` operations function similarly. They use the arguments `sport`, 
+`type`, and `period` to identify the specific goal to be edited or deleted. If there is no existing goal that 
+matches the specified criteria, an error message is displayed to the user.
+
+Similar to `set-activity-goal`, the operations `edit-activity-goal` and `delete-activity-goal` utilize 
+`ActivityGoal` objects to represent the goals being edited or deleted. During the execution of these commands, the 
+system quickly verifies whether the goal exists in the `ActivityGoalList`. If the goal is found, it is then edited 
+or deleted as requested.
+
+Finally, the `list-activity-goal` operation is designed similarly to the `list-activity` operation. It involves 
+retrieving the `ActivityGoalList` from the database and displaying the goals to the user.
+
 ![](images/ActivityObjectDiagram.svg)
 
 The following describes how the goal evaluation works after being invoked by the user, e.g., with a `list-activity-goal` command:
