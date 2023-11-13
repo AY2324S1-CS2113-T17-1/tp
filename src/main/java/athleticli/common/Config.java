@@ -1,6 +1,7 @@
 package athleticli.common;
 
 import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
 
 import static java.util.Locale.ENGLISH;
 
@@ -11,8 +12,11 @@ public class Config {
     public static final DateTimeFormatter DATE_TIME_PRETTY_FORMATTER =
             DateTimeFormatter.ofPattern("MMMM d, " + "yyyy 'at' h:mm a", ENGLISH);
     public static final DateTimeFormatter DATE_TIME_FORMATTER =
-            DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm", ENGLISH);
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd", ENGLISH);
+            DateTimeFormatter.ofPattern("uuuu-MM-dd HH:mm").withResolverStyle(ResolverStyle.STRICT)
+                    .withLocale(ENGLISH);
+    public static final DateTimeFormatter DATE_FORMATTER =
+            DateTimeFormatter.ofPattern("uuuu-MM-dd").withResolverStyle(ResolverStyle.STRICT)
+                    .withLocale(ENGLISH);
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern("HH:mm:ss", ENGLISH);
     public static final String PATH_ACTIVITY = "./data/activity.txt";
     public static final String PATH_ACTIVITY_GOAL = "./data/activity_goal.txt";
