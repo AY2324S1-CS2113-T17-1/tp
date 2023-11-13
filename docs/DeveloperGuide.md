@@ -427,6 +427,65 @@ Developers are expected to conduct more extensive tests.
 
 #### Activity Records
 
+1. Adding different activities:
+    - Test case 1:
+        * Add a general activity.
+        * Command: `add-activity Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00`
+        * Expected Outcome: A general activity with duration of 1 hour, distance of 10km, and datetime of 2021-09-01 is 
+          added successfully and a short summary of the activity is displayed to the user.
+    - Test case 2:
+        * Add a run.
+        * Command: `add-run Berlin Marathon duration/03:33:17 distance/42125 datetime/2023-08-10 07:00 elevation/10`
+        * Expected Outcome: A run with duration of 3 hours 33 minutes 17 seconds, distance of 42.125km, datetime of 
+          2023-08-10, and elevation of 10m is added successfully and a short summary of the activity is displayed to 
+          the user.
+    - Test case 3:
+        * Try to add a swim without specifying swimming style.
+        * Command: `add-swim Evening Swim duration/00:30:00 distance/1000 datetime/2021-09-01 06:00`
+        * Expected Outcome: Error message indicating the swimming style is not specified is displayed.
+2. Deleting an activity:
+    - Test case 1:
+        * Delete the first activity in a non-empty activity list.
+        * Command: `delete-activity 1`
+        * Expected Outcome: The first activity is deleted successfully. The activity is displayed to the user and 
+          the activity list is updated.
+    - Test case 2:
+        * Delete an activity at an invalid index.
+        * Command: `delete-activity 0`
+        * Expected Outcome: Error message indicating the index is invalid is displayed.
+3. List all activities:
+    - Test case 1:
+        * List all activities in a non-empty activity list.
+        * Command: `list-activity`
+        * Expected Outcome: All activities in the activity list are displayed to the user sorted by datetime.
+    - Test case 2:
+        * List all activities in a non-empty activity list with the detailed flag.
+        * Command: `list-activity -d`
+        * Expected Outcome: All activities in the activity list are displayed to the user with detailed information 
+          like elevation for runs and cycles.
+    - Test case 2:
+        * List all activities in an empty activity list.
+        * Command: `list-activity`
+        * Expected Outcome: Message indicating the activity list is empty is displayed.
+4. Find activities of a specific date:
+   - Test case 1:
+        * Find activities of a specific date with multiple entries on that date.
+        * Command: `find-activity 2021-09-01`
+        * Expected Outcome: All activities on 1st September 2021 are displayed to the user.
+   - Test case 2:
+        * Find activities of a specific date with no entries on that date.
+        * Command: `find-activity 2021-09-02`
+        * Expected Outcome: No activities are displayed
+5. Edit an activity:
+   - Test case 1:
+        * Edit the caption of the first activity in the activity list, which is of type run.
+        * Command: `edit-run 1 caption/Sunday=Runday`
+        * Expected Outcome: The caption of the first activity is updated to "Sunday=Runday".
+   - Test case 2:
+        * Try to use the edit-swim command to edit a run.
+        * Command: `edit-swim 1 caption/Sunday=Runday`
+        * Expected Outcome: Error message indicating the activity type is not a swim is displayed.
+
 #### Activity Goals
 
 1. Setting Activity Goals
