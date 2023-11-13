@@ -30,7 +30,6 @@ to import the project into IDEA.
    * Run athlethicli.AthletiCLI and try a few commands.
    * Run the tests using `./gradlew check` ensure they all pass.
 
-[//]: # (What is the exact command to run the main?)
 
 
 
