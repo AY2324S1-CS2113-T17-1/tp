@@ -388,7 +388,7 @@ By providing a comprehensive view of various performance-related factors over ti
 
 ## Non-Functional Requirements
 
-1. AthletiCLI should work on Windows, MacOS and Linux that has java 11 installed.
+1. AthletiCLI should work on Windows, macOS and Linux that has Java 11 installed.
 2. AthletiCLI should be able to store data locally.
 3. AthletiCLI should be able to work offline.
 4. AthletiCLI should be easy to use.
@@ -613,12 +613,39 @@ Developers are expected to conduct more extensive tests.
      * Weekly healthy calories goal is present with a target value of 20.
      * `edit-diet-goal WEEKLY calories/5000` will update the target value of weekly healthy calories goal to 5000.
    * Similar to setting diet goals, the weekly goal values should always be greater than the daily goal values.
+
 ### Sleep Management
 
 #### Sleep Records
 
 #### Sleep Goals
 
-### Exiting Program
+### Miscellaneous
 
-### Data Storage
+1. Finding Records
+    * Test case:
+      * Command: `find-diet 2023-12-31`
+      * Expected Outcome: All records on 31st December 2023 are displayed.
+
+1. Saving Files
+   * Test case:
+       * Command: `save`
+       * Expected Outcome: Data are safely saved into the files.
+
+1. Exiting AthletiCLI:
+   * Test case 1:
+     * Immediately after detecting a format error in the saved files.
+     * Command: `bye`
+     * Expected Outcome: AthletiCLI is exited without rewriting the files.
+   * Test case 2:
+     * During normal execution.
+     * Command: `bye` 
+     * Expected Outcome: AthletiCLI is exited and the files are safely saved.
+
+1. Viewing Help Messages:
+   * Test case 1:
+     * Command: `help`
+     * Expected Outcome: A list containing the syntax of all commands is shown.
+   * Test case 2:
+     * Command: `help add-diet`
+     * Expected Outcome: The syntax of the `add-diet` command is shown.
