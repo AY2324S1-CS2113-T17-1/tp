@@ -14,7 +14,7 @@ import athleticli.parser.Parameter;
 public abstract class DietGoal extends Goal {
     protected String nutrient;
     protected int targetValue;
-    protected final String TYPE;
+    protected final String type;
     protected final String achievedSymbol;
     protected final String unachievedSymbol;
     private final String dietGoalStringRepresentation;
@@ -30,7 +30,7 @@ public abstract class DietGoal extends Goal {
         super(timespan);
         this.nutrient = nutrient;
         this.targetValue = targetValue;
-        TYPE = "";
+        type = "";
         achievedSymbol = "[Achieved]";
         unachievedSymbol = "";
         dietGoalStringRepresentation = "%s %s %s intake progress: (%d/%d)\n";
@@ -88,7 +88,7 @@ public abstract class DietGoal extends Goal {
      * @return the type of diet goal.
      */
     public String getType() {
-        return TYPE;
+        return type;
     }
 
     private int updateCurrentValue(Data data) {
