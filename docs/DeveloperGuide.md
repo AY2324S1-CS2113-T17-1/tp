@@ -127,7 +127,7 @@ inputs include:
 
 **Step 2 - Command Identification:** The `Parser` class identifies the type of diet operation and calls the
 appropriate `DietParser` method to parse the necessary parameters (if any). For example, the `add-diet` command will
-call the `DietParser.parseDiet` method, which will return a `Diet` object.
+call the `DietParser#parseDiet()` method, which will return a `Diet` object.
 
 **Step 3 - Command Creation**: An instance of the corresponding command class is created (e.g., `AddDietCommand`,
 `EditDietCommand`, etc.) using the returned object (if any) from the `DietParser` and returned to AthletiCLI.
