@@ -116,7 +116,7 @@ detailed information about your activities including evaluations like pace (runn
 
 * `list-activity [-d]`
 
-**Parameters:**
+**Flags:**
 
 * `-d`: Shows a detailed list of the activities.
 
