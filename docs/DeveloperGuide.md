@@ -337,23 +337,46 @@ activity list with the five tracked activities from the data and calls the total
 
 5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
 
+In particular to demonstrate all parser classes, the following sequence diagram shows how the 'edit-sleep' command works:
 
----
+![](images/EditSleepObjectSequenceDiagram.svg)
+
+The sleep parser was originally designed with little modularity, with each sleep instruction having to be parsed individually. This resulted in a lot of code duplication and was not very modular. This also resulted in having to reimplement much of the input checking logic for each sleep instruction, and many different error messages that was difficult to maintain. 
+
+Therefore a refactoring was done such that we only have a sleep object parser, sleep index parser and sleep goal parser that interacts with the sleep parser. This allows us to reuse the input checking logic and error messages. This also allows us to have a more modular design and reduce code duplication.
+
+
+#### [Implemented] Sleep Structure
 
 The following class diagram demonstrates the relationship between the data components Sleep, SleepList, as well as the Findable interface and the StorableList abstract class.
 
-
 ![](images/SleepAndSleepListClassDiagram.svg)
 
-The design decision for why we have decided to implement a findable interface and a storable list abstract class is because we want to have a more modular design. 
+The design decision for why we have decided to implement a findable interface and a storable list abstract class is to have a more modular design. Therefore allowing for easier extension of the code in the future when implementing other data classes as well, such as extending to hydration and other possible data classes.
 
-The findable interface allows us to implement the find function in the sleep list class and the storable list abstract class allows us to implement the save function in the sleep list class. This allows us to reuse the find and save function in other classes that require the same functionality. 
+#### [Implemented] Sleep Duration and Date calculation
 
+Initially sleep entries do not have an associated date, this makes it much more difficult to find the sleep entries for a specific date. Therefore we have decided to add a date field to the sleep entries. 
 
-[Implemented] Sleep Duration and Date calculation
+However, there are complications surrounding calculation of sleep date. Many people often sleep past midnight, and this results in the sleep date being the next day instead of the current day. Therefore we have decided that for sleeps starting before 06:00 on the next day, the sleep date will be the previous day. This allows us to have a more accurate representation of the sleep date.
 
+**[Challenge]**
 
+Initially, the design of the sleep duration used integer to store the seconds of the sleep duration. However, this design results in much difficulty when it comes to the calculation of the sleep duration. 
 
+For instance, when printing the sleep duration string, we have to convert the seconds into hours, minutes and seconds. This results in a lot of code duplication and is not very modular.
+
+**[Solution]**
+Therefore we have decided to change the design of the sleep duration to use the Duration class from the Java library. This allows us to use the built-in functions to calculate the sleep duration and convert the sleep duration into a string. This results in a more modular design and reduces code duplication.
+
+#### [Implemented] Sleep Goals
+
+The sleep goals feature allows users to set and track periodic goals for their sleep duration.
+
+The implementation of sleep goals is similar to the implementation of activity goals. Therefore the implementation of sleep goals is not described in detail here.
+
+**[Future Implementation]**
+For Sleep Goals originally there were plans to incorporate a sleep quality goal where an optimum sleep start time and end time would be set. However, due to issues surrounding modular design, and how we will have to extend our common Goal interface and abstract classes to include more methods, we have decided to not implement this feature. It will be implemented in a future version of AthletiCLI.
 
 ---
 

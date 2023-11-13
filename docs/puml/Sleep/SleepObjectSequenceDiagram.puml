@@ -1,0 +1,46 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+!define LOGIC_COLOR #3333C4
+
+participant ":AthletiCLI" as AthletiCLI #orange
+participant "Parser" as Parser <<class>> #lightblue
+participant "SleepParser" as SleepParser <<class>> #lightblue
+participant "s:Sleep" as Sleep #yellow
+participant "sleepDuration:Duration" as duration #gold
+participant "c:EditSleepCommand" as EditSleepCommand #lightgreen
+participant "data:Data" as Data #lightgrey
+participant "sleeps:SleepList" as sleeps #lightgrey
+
+
+AthletiCLI++
+AthletiCLI->Parser++: parseCommand(input)
+
+Parser -> SleepParser++: parseSleep(arguments)
+Parser -> SleepParser++: parseSleepIndex(arguments)
+deactivate SleepParser
+
+SleepParser -> Sleep++: Sleep()
+
+Sleep --> duration++: calculateSleepDuration()
+duration --> Sleep--: SleepDuration
+Sleep --> SleepParser--: s
+SleepParser --> Parser--: s
+
+Parser -> EditSleepCommand++: EditSleepCommand(index, s)
+EditSleepCommand --> Parser--: c
+Parser --> AthletiCLI--: c
+
+AthletiCLI -> EditSleepCommand++: execute(s, data)
+EditSleepCommand -> Data++: getSleeps()
+
+
+Data --> EditSleepCommand--: sleeps
+EditSleepCommand -> sleeps++: setSleep(index, s)
+sleeps --> EditSleepCommand--
+EditSleepCommand --> AthletiCLI--: message
+
+destroy EditSleepCommand
+@enduml

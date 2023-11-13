@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="592px" preserveAspectRatio="none" style="width:1177px;height:592px;background:#FFFFFF;" version="1.1" viewBox="0 0 1177 592" width="1177px" zoomAndPan="magnify"><defs/><g><rect fill="#FFFFFF" height="513.9688" style="stroke:#181818;stroke-width:1.0;" width="10" x="42" y="62.9766"/><rect fill="#FFFFFF" height="323.1055" style="stroke:#181818;stroke-width:1.0;" width="10" x="210" y="84.2871"/><rect fill="#FFFFFF" height="205.8633" style="stroke:#181818;stroke-width:1.0;" width="10" x="421" y="113.5977"/><rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="426" y="142.9082"/><rect fill="#FFFFFF" height="87.9316" style="stroke:#181818;stroke-width:1.0;" width="10" x="509" y="202.2188"/><rect fill="#FFFFFF" height="29.3105" style="stroke:#181818;stroke-width:1.0;" width="10" x="690" y="231.5293"/><rect fill="#FFFFFF" height="29.3105" style="stroke:#181818;stroke-width:1.0;" width="10" x="866.5" y="348.7715"/><rect fill="#FFFFFF" height="131.2422" style="stroke:#181818;stroke-width:1.0;" width="10" x="866.5" y="436.7031"/><rect fill="#FFFFFF" height="29.3105" style="stroke:#181818;stroke-width:1.0;" width="10" x="995.5" y="466.0137"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1105.5" y="524.6348"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="47" x2="47" y1="52.9766" y2="585.9453"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="214.5" x2="214.5" y1="52.9766" y2="585.9453"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="426" x2="426" y1="52.9766" y2="585.9453"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="514" x2="514" y1="52.9766" y2="585.9453"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="695" x2="695" y1="52.9766" y2="585.9453"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="871" x2="871" y1="52.9766" y2="585.9453"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1000" x2="1000" y1="52.9766" y2="585.9453"/><line style="stroke:#181818;stroke-width:0.5;stroke-dasharray:5.0,5.0;" x1="1110" x2="1110" y1="52.9766" y2="585.9453"/><rect fill="#FFA500" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="84" x="5" y="21.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="70" x="12" y="42.0234">:AthletiCLI</text><rect fill="#ADD8E6" height="46.9766" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="61" x="184.5" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="47" x="191.5" y="25.5352">«class»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="43" x="193.5" y="42.0234">Parser</text><rect fill="#ADD8E6" height="46.9766" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="94" x="379" y="5"/><text fill="#000000" font-family="sans-serif" font-size="14" font-style="italic" lengthAdjust="spacing" textLength="47" x="402.5" y="25.5352">«class»</text><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="80" x="386" y="42.0234">SleepParser</text><rect fill="#FFFF00" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="62" x="483" y="21.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="48" x="490" y="42.0234">s:Sleep</text><rect fill="#FFD700" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="174" x="608" y="21.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="160" x="615" y="42.0234">sleepDuration:Duration</text><rect fill="#90EE90" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="159" x="792" y="21.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="145" x="799" y="42.0234">c:EditSleepCommand</text><rect fill="#D3D3D3" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="79" x="961" y="21.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="65" x="968" y="42.0234">data:Data</text><rect fill="#D3D3D3" height="30.4883" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="121" x="1050" y="21.4883"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="107" x="1057" y="42.0234">sleeps:SleepList</text><rect fill="#FFFFFF" height="513.9688" style="stroke:#181818;stroke-width:1.0;" width="10" x="42" y="62.9766"/><rect fill="#FFFFFF" height="323.1055" style="stroke:#181818;stroke-width:1.0;" width="10" x="210" y="84.2871"/><rect fill="#FFFFFF" height="205.8633" style="stroke:#181818;stroke-width:1.0;" width="10" x="421" y="113.5977"/><rect fill="#FFFFFF" height="30" style="stroke:#181818;stroke-width:1.0;" width="10" x="426" y="142.9082"/><rect fill="#FFFFFF" height="87.9316" style="stroke:#181818;stroke-width:1.0;" width="10" x="509" y="202.2188"/><rect fill="#FFFFFF" height="29.3105" style="stroke:#181818;stroke-width:1.0;" width="10" x="690" y="231.5293"/><rect fill="#FFFFFF" height="29.3105" style="stroke:#181818;stroke-width:1.0;" width="10" x="866.5" y="348.7715"/><rect fill="#FFFFFF" height="131.2422" style="stroke:#181818;stroke-width:1.0;" width="10" x="866.5" y="436.7031"/><rect fill="#FFFFFF" height="29.3105" style="stroke:#181818;stroke-width:1.0;" width="10" x="995.5" y="466.0137"/><rect fill="#FFFFFF" height="14" style="stroke:#181818;stroke-width:1.0;" width="10" x="1105.5" y="524.6348"/><polygon fill="#181818" points="198,80.2871,208,84.2871,198,88.2871" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="52" x2="204" y1="84.2871" y2="84.2871"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="139" x="61.5" y="79.5449">parseCommand(input)</text><polygon fill="#181818" points="409,109.5977,419,113.5977,409,117.5977" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="220" x2="415" y1="113.5977" y2="113.5977"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="142" x="249.5" y="108.8555">parseSleep(arguments)</text><polygon fill="#181818" points="414,138.9082,424,142.9082,414,146.9082" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="220" x2="420" y1="142.9082" y2="142.9082"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="177" x="234.5" y="138.166">parseSleepIndex(arguments)</text><polygon fill="#181818" points="497,198.2188,507,202.2188,497,206.2188" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="431" x2="503" y1="202.2188" y2="202.2188"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="41" x="449.5" y="197.4766">Sleep()</text><polygon fill="#181818" points="678,227.5293,688,231.5293,678,235.5293" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="519" x2="684" y1="231.5293" y2="231.5293"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="152" x="528.5" y="226.7871">calculateSleepDuration()</text><polygon fill="#181818" points="530,256.8398,520,260.8398,530,264.8398" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="524" x2="694" y1="260.8398" y2="260.8398"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="88" x="563" y="256.0977">SleepDuration</text><polygon fill="#181818" points="442,286.1504,432,290.1504,442,294.1504" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="436" x2="513" y1="290.1504" y2="290.1504"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="469" y="285.4082">s</text><polygon fill="#181818" points="231,315.4609,221,319.4609,231,323.4609" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="225" x2="425" y1="319.4609" y2="319.4609"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="319.5" y="314.7188">s</text><polygon fill="#181818" points="854.5,344.7715,864.5,348.7715,854.5,352.7715" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="220" x2="860.5" y1="348.7715" y2="348.7715"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="179" x="453.75" y="344.0293">EditSleepCommand(index, s)</text><polygon fill="#181818" points="231,374.082,221,378.082,231,382.082" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="225" x2="870.5" y1="378.082" y2="378.082"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="542.25" y="373.3398">c</text><polygon fill="#181818" points="63,403.3926,53,407.3926,63,411.3926" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="57" x2="214" y1="407.3926" y2="407.3926"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="130" y="402.6504">c</text><polygon fill="#181818" points="854.5,432.7031,864.5,436.7031,854.5,440.7031" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="52" x2="860.5" y1="436.7031" y2="436.7031"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="99" x="409.75" y="431.9609">execute(s, data)</text><polygon fill="#181818" points="983.5,462.0137,993.5,466.0137,983.5,470.0137" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="876.5" x2="989.5" y1="466.0137" y2="466.0137"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="68" x="902" y="461.2715">getSleeps()</text><polygon fill="#181818" points="887.5,491.3242,877.5,495.3242,887.5,499.3242" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="881.5" x2="999.5" y1="495.3242" y2="495.3242"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="40" x="918.5" y="490.582">sleeps</text><polygon fill="#181818" points="1093.5,520.6348,1103.5,524.6348,1093.5,528.6348" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;" x1="876.5" x2="1099.5" y1="524.6348" y2="524.6348"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="110" x="936" y="519.8926">setSleep(index, s)</text><polygon fill="#181818" points="887.5,534.6348,877.5,538.6348,887.5,542.6348" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="881.5" x2="1109.5" y1="538.6348" y2="538.6348"/><polygon fill="#181818" points="63,563.9453,53,567.9453,63,571.9453" style="stroke:#181818;stroke-width:1.0;"/><line style="stroke:#181818;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="57" x2="870.5" y1="567.9453" y2="567.9453"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="55" x="434.25" y="563.2031">message</text><line style="stroke:#A80036;stroke-width:2.0;" x1="862.5" x2="880.5" y1="558.9453" y2="576.9453"/><line style="stroke:#A80036;stroke-width:2.0;" x1="862.5" x2="880.5" y1="576.9453" y2="558.9453"/><!--MD5=[66400b4e65fb369948d17635bee522e3]
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+!define LOGIC_COLOR #3333C4
+
+participant ":AthletiCLI" as AthletiCLI #orange
+participant "Parser" as Parser <<class>> #lightblue
+participant "SleepParser" as SleepParser <<class>> #lightblue
+participant "s:Sleep" as Sleep #yellow
+participant "sleepDuration:Duration" as duration #gold
+participant "c:EditSleepCommand" as EditSleepCommand #lightgreen
+participant "data:Data" as Data #lightgrey
+participant "sleeps:SleepList" as sleeps #lightgrey
+
+
+AthletiCLI++
+AthletiCLI->Parser++: parseCommand(input)
+
+Parser -> SleepParser++: parseSleep(arguments)
+Parser -> SleepParser++: parseSleepIndex(arguments)
+deactivate SleepParser
+
+SleepParser -> Sleep++: Sleep()
+
+Sleep - -> duration++: calculateSleepDuration()
+duration - -> Sleep- -: SleepDuration
+Sleep - -> SleepParser- -: s
+SleepParser - -> Parser- -: s
+
+Parser -> EditSleepCommand++: EditSleepCommand(index, s)
+EditSleepCommand - -> Parser- -: c
+Parser - -> AthletiCLI- -: c
+
+AthletiCLI -> EditSleepCommand++: execute(s, data)
+EditSleepCommand -> Data++: getSleeps()
+
+
+Data - -> EditSleepCommand- -: sleeps
+EditSleepCommand -> sleeps++: setSleep(index, s)
+sleeps - -> EditSleepCommand- -
+EditSleepCommand - -> AthletiCLI- -: message
+
+destroy EditSleepCommand
+@enduml
+
+@startuml
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+
+participant ":AthletiCLI" as AthletiCLI #orange
+participant "Parser" as Parser <<class>> #lightblue
+participant "SleepParser" as SleepParser <<class>> #lightblue
+participant "s:Sleep" as Sleep #yellow
+participant "sleepDuration:Duration" as duration #gold
+participant "c:EditSleepCommand" as EditSleepCommand #lightgreen
+participant "data:Data" as Data #lightgrey
+participant "sleeps:SleepList" as sleeps #lightgrey
+
+
+AthletiCLI++
+AthletiCLI->Parser++: parseCommand(input)
+
+Parser -> SleepParser++: parseSleep(arguments)
+Parser -> SleepParser++: parseSleepIndex(arguments)
+deactivate SleepParser
+
+SleepParser -> Sleep++: Sleep()
+
+Sleep - -> duration++: calculateSleepDuration()
+duration - -> Sleep- -: SleepDuration
+Sleep - -> SleepParser- -: s
+SleepParser - -> Parser- -: s
+
+Parser -> EditSleepCommand++: EditSleepCommand(index, s)
+EditSleepCommand - -> Parser- -: c
+Parser - -> AthletiCLI- -: c
+
+AthletiCLI -> EditSleepCommand++: execute(s, data)
+EditSleepCommand -> Data++: getSleeps()
+
+
+Data - -> EditSleepCommand- -: sleeps
+EditSleepCommand -> sleeps++: setSleep(index, s)
+sleeps - -> EditSleepCommand- -
+EditSleepCommand - -> AthletiCLI- -: message
+
+destroy EditSleepCommand
+@enduml
+
+PlantUML version 1.2022.7(Tue Aug 23 01:01:30 SGT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: SG
+--></g></svg>
