@@ -45,6 +45,7 @@ The absence of a "Goal Delete" feature for Sleep and Activity in the current ver
 - [Setting Activity Goals](#-setting-activity-goals)
 - [Editing Activity Goals](#-editing-activity-goals)
 - [Listing Activity Goals](#-listing-activity-goals)
+- [Deleting Activity Goals](#-deleting-activity-goals)
 
 ### ➕ Adding Activities:
 
