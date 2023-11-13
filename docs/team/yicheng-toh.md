@@ -80,20 +80,25 @@ The creation of such goal can be accomplished by indicating an optional flag `un
 
 #### Added UML diagrams:
 
+Class Diagram for AthletiCLI main class:
 ![](../images/MainClassDiagram.svg)
 
+Class Diagram for data class:
 ![](../images/DataClassDiagram.svg)
 
+Sequence diagram for creating a diet goal:
 ![](../images/DietGoalsSequenceDiagram.svg)
 
 ### Contributions to team-based tasks
 
+* Setup approval system for team's GitHub page so that PR gets reviewed before merging.
 * Kept track of deadlines for v1.0 and v2.0.
 * Assisted in sorting and assigning of post PE dry run issues.
 * Suggested the use of interface for find function and abstract class for goals. 
 This is only implemented due to  [skylee03 (Ming-Tian)](./skylee03.html)'s outstanding effort in convincing the team.
 * Examples of PR reviewed: 
   * [PR for editing activities](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/59#discussion_r1362968136)
+  * [PR for assertions and logging](https://github.com/AY2324S1-CS2113-T17-1/tp/pull/44#discussion_r1361460286)
 * Created issues labels: `type.Optimization`, `UG`, `DG` to facilitate effective classification.
  
 ### Contributions beyond the project team
