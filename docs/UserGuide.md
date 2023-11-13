@@ -570,9 +570,9 @@ You can edit one or multiple nutrient goals with this command.
 **Examples:**
 
 * `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fats/100` 
-Edits multiple nutrients goals if all of them exists and new target value is valid.
+Edits multiple nutrients goals if all of them exists and the corresponding new target value is valid.
 * `edit-diet-goal WEEKLY calories/5000` 
-Edits a single calories goal if the goal exists and new target value is valid.
+Edits a single calories goal target value to 5000 calories if the goal exists and new target value is valid.
 
 **Example of Usage:**
 
