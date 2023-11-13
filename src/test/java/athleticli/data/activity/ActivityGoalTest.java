@@ -14,6 +14,9 @@ import static athleticli.data.activity.ActivityGoal.Sport;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests the ActivityGoal class.
+ */
 class ActivityGoalTest {
 
     private ActivityList activityList;
@@ -25,11 +28,17 @@ class ActivityGoalTest {
     private final String caption = "Sunday = Runday";
     private final int distance = 3000;
 
+    /**
+     * Initializes the data instance before each test.
+     */
     @BeforeEach
     void setUp() {
         data = new Data();
     }
 
+    /**
+     * Tests whether a fully achieved goal is recognized as achieved.
+     */
     @Test
     void isAchieved_activityDistanceGoal_true() {
         int targetValue = 8000;
@@ -50,7 +59,9 @@ class ActivityGoalTest {
         assertEquals(expected, actual);
     }
 
-
+    /**
+     * Tests whether a goal is recognized as not achieved when the target value is not reached.
+     */
     @Test
     void isAchieved_runGoalWithNoTrackedRun_false() {
         int targetValue = 8000;
@@ -71,6 +82,9 @@ class ActivityGoalTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests whether a goal is detected as not achieved when the target value is reached outside the specified period.
+     */
     @Test
     void isAchieved_goalAchievedOutsidePeriod_false() {
         int targetValue = 120;
@@ -93,7 +107,9 @@ class ActivityGoalTest {
         assertEquals(expected, actual);
     }
 
-
+    /**
+     * Tests the getActivityClass method.
+     */
     @Test
     void getActivityClass() {
         GoalType goalType = GoalType.DURATION;

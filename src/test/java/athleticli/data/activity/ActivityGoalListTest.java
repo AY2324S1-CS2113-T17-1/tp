@@ -9,14 +9,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests the ActivityGoalList class.
+ */
 class ActivityGoalListTest {
     private ActivityGoalList activityGoalList;
 
+    /**
+     * Creates a new ActivityGoalList before each test.
+     */
     @BeforeEach
     void setUp() {
         activityGoalList = new ActivityGoalList();
     }
 
+    /**
+     * Tests the unparsing of an running distance goal.
+     */
     @Test
     void unparse_runningDistanceGoal_unparsed() {
         String expected = "sport/RUNNING type/DISTANCE period/WEEKLY target/10000";
@@ -26,6 +35,9 @@ class ActivityGoalListTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the unparsing of a swimming duration goal.
+     */
     @Test
     void unparse_swimmingDurationGoal_unparsed() {
         String expected = "sport/SWIMMING type/DURATION period/MONTHLY target/120";
@@ -35,6 +47,9 @@ class ActivityGoalListTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the unparsing of a cycling distance goal.
+     */
     @Test
     void parse_runningDistanceGoal_parsed() throws AthletiException {
         ActivityGoal expected = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
@@ -47,6 +62,11 @@ class ActivityGoalListTest {
         assertEquals(expected.getTimeSpan(), actual.getTimeSpan());
     }
 
+    /**
+     * Tests the parsing of a swimming duration goal.
+     *
+     * @throws AthletiException If the goal is not parsed correctly.
+     */
     @Test
     void parse_swimmingDurationGoal_parsed() throws AthletiException {
         ActivityGoal expected = new ActivityGoal(TimeSpan.MONTHLY, ActivityGoal.GoalType.DURATION,
@@ -59,6 +79,9 @@ class ActivityGoalListTest {
         assertEquals(expected.getTimeSpan(), actual.getTimeSpan());
     }
 
+    /**
+     * Tests the find duplicate method when there is no duplicate. It should return false.
+     */
     @Test
     void findDuplicate_noDuplicate_false() {
         ActivityGoal goal = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
@@ -69,6 +92,9 @@ class ActivityGoalListTest {
         assertFalse(actual);
     }
 
+    /**
+     * Tests the find duplicate method when there is a duplicate. It should return true.
+     */
     @Test
     void findDuplicate_duplicate_true() {
         ActivityGoal goal = new ActivityGoal(TimeSpan.WEEKLY, ActivityGoal.GoalType.DISTANCE,
