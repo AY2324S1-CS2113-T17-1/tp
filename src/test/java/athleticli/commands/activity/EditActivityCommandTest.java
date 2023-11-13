@@ -14,6 +14,9 @@ import java.time.LocalTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Tests the EditActivityCommand class.
+ */
 class EditActivityCommandTest {
     private static final String CAPTION = "Night Run";
     private static final String UPDATED_CAPTION = "Morning Run";
@@ -28,6 +31,9 @@ class EditActivityCommandTest {
     private Run updatedRun;
     private ActivityChanges activityChanges;
 
+    /**
+     * Sets up the required scenario for each test.
+     */
     @BeforeEach
     void setUp() {
         Activity activity = new Activity(CAPTION, DURATION, DISTANCE, DATE);
@@ -44,6 +50,10 @@ class EditActivityCommandTest {
         updatedRun = new Run(CAPTION, DURATION, DISTANCE, DATE, 60);
     }
 
+    /**
+     * Test the edit command for a valid index and checks if the activity is edited successfully.
+     * @throws AthletiException If the index is invalid.
+     */
     @Test
     void execute_validIndex_activityEdited() throws AthletiException {
         EditActivityCommand editActivityCommand = new EditActivityCommand(2, activityChanges, Run.class);
@@ -61,6 +71,9 @@ class EditActivityCommandTest {
         assertEquals(updatedRun.getStartDateTime(), data.getActivities().get(1).getStartDateTime());
     }
 
+    /**
+     * Test the edit command for an invalid index. An exception should be thrown.
+     */
     @Test
     void execute_invalidIndex_exceptionThrown() {
         EditActivityCommand editActivityCommand = new EditActivityCommand(3, activityChanges, Run.class);

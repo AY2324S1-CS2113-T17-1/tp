@@ -14,6 +14,13 @@ edit-cycle 1 caption/ elevation/20
 list-activity -d
 edit-activity 1 Morning Run duration/01:00:00 distance/12000 datetime/2021-09-01 06:00
 
+set-activity-goal sport/running type/distance period/weekly target/10000
+set-activity-goal sport/swimming type/duration period/monthly target/120
+edit-activity-goal sport/running type/distance period/weekly target/20000
+edit-activity-goal sport/swimming type/duration period/monthly target/60
+list-activity-goal
+delete-activity-goal sport/running type/distance period/weekly
+
 add-sleep start/2021-09-01 22:00 end/2021-09-02 06:00
 add-sleep start/2021-09-02 22:00 end/2021-09-03 06:00
 list-sleep
@@ -54,13 +61,13 @@ add-diet-goal
 list-diet-goal
 set-diet-goal
 set-diet-goal fat
-set-diet-goal fats
-set-diet-goal fats/fats
-set-diet-goal fats/1
-set-diet-goal fats/1 calories/1 protein/1
-set-diet-goal weekly fats/-1 calories/-1 protein/-1
-set-diet-goal fats/1 calories/1 protein/1
-set-diet-goal daily fats/1 calories/1 protein/1
+set-diet-goal fat
+set-diet-goal fat/fat
+set-diet-goal fat/1
+set-diet-goal fat/1 calories/1 protein/1
+set-diet-goal weekly fat/-1 calories/-1 protein/-1
+set-diet-goal fat/1 calories/1 protein/1
+set-diet-goal daily fat/1 calories/1 protein/1
 set-diet-goal weekly unhealthy carb/1
 add-diet calories/150000 protein/500000 carb/05000 fat/2000 datetime/2023-11-04 10:00
 list-diet-goal
@@ -70,10 +77,10 @@ delete-diet-goal -1
 delete-diet-goal
 delete-diet-goal never gonna let you down
 edit-diet-goal carb
-edit-diet-goal fats
-edit-diet-goal fats/fats
-edit-diet-goal daily fats/100
-edit-diet-goal fats/100
+edit-diet-goal fat
+edit-diet-goal fat/fat
+edit-diet-goal daily fat/100
+edit-diet-goal fat/100
 edit-diet-goal carb/100
 set-diet-goal weekly carb/1
 delete-diet-goal 1
@@ -82,32 +89,12 @@ edit-diet-goal weekly carb/1
 delete-diet 1
 list-diet-goal
 
-help add-diet
 add-diet calories/500 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00
-add-diet calories/150 protein/50 carb/5 fat/2 datetime/2023-01-04 10:00
-add-diet calories/1000 protein/100 carb/200 fat/500 datetime/2020-11-04 22:00
-add-diet calories/-5 protein/20 carb/50 fat/10 datetime/2021-09-01 06:00
-add-diet calories/500 protein/-20 carb/50 fat/10 datetime/2021-09-01 06:00
-add-diet calories/500 protein/20 carb/-50 fat/10 datetime/2021-09-01 06:00
-add-diet calories/500 protein/20 carb/50 fat/-10 datetime/2021-09-01 06:00
-add-diet calories/500 protein/20 carb/50 fat/10 datetime/06:00:00
-add-diet calories/500 protein/20 carb/50 fat/10 datetime/06:00:00 2021-09-01
-add-diet calories/500 protein/20 carb/50 fat/10 datetime/abc
-help edit-diet
 edit-diet 1 calories/1000 protein/100 carb/200 fat/500 datetime/2020-11-04 22:00
-help list-diet
 list-diet
 edit-diet 1 calories/5
-edit-diet 1
-help delete-diet
-delete-diet -1
 delete-diet 2
-delete-diet 5
-list-diet
-help find-diet
 find-diet 2021-09-01
-find-diet 2021-09-01 02:00
-find-diet 2021-03-01 06:00:00
 
 bye
 

@@ -127,7 +127,7 @@ inputs include:
 
 **Step 2 - Command Identification:** The `Parser` class identifies the type of diet operation and calls the
 appropriate `DietParser` method to parse the necessary parameters (if any). For example, the `add-diet` command will
-call the `DietParser.parseDiet` method, which will return a `Diet` object.
+call the `DietParser#parseDiet()` method, which will return a `Diet` object.
 
 **Step 3 - Command Creation**: An instance of the corresponding command class is created (e.g., `AddDietCommand`,
 `EditDietCommand`, etc.) using the returned object (if any) from the `DietParser` and returned to AthletiCLI.
@@ -157,13 +157,13 @@ This following sequence diagram show how the 'set-diet-goal' command works:
 
 ![](images/DietGoalsSequenceDiagram.svg)
 
-**Step 1:** The input from the user ("set-diet-goal WEEKLY fats/1") runs through AthletiCLI to the Parser Class.
+**Step 1:** The input from the user ("set-diet-goal WEEKLY fat/1") runs through AthletiCLI to the Parser Class.
 
 **Step 2:** The Parser Class will identify the request as setting up a diet goal and pass in the parameters
-"WEEKLY fats/1".
+"WEEKLY fat/1".
 
 **Step 3:** A temporary dietGoalList is created to store newly created diet goals. In this case, a weekly healthy goal 
-for fats with a target value of 1mg.
+for fat with a target value of 1mg.
 
 **Step 4:** The inputs are validated against our lists of approved diet goals.
 
@@ -274,16 +274,16 @@ These are the key components and their roles in the architecture of the goal tra
 Given below is an example usage scenario and how the goal setting and tracking mechanism behaves at 
 each step.
 
-1. **Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
+**Step 1 - Input Capture:** The user issues a `set-activity-goal ...` which is captured and passed to the 
    Parser by the running AthletiCLI instance.
-2. **Step 2 - Goal Parsing:** The `ActivityParser` parses the raw input to obtain the sports, target and timespan of the 
+**Step 2 - Goal Parsing:** The `ActivityParser` parses the raw input to obtain the sports, target and timespan of the 
    goal. 
    Given that all these parameters are provided correctly and no exception is thrown, a new activity goal object is 
    created.
-3. **Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
+**Step 3 - Command Parsing:** In addition the parser will create a `SetActivityGoalCommand` object with the newly 
    added activity goal attached to it. The command implements the `SetActivityGoalCommand#execute()` operation and is 
    passed to the AthletiCLI instance.
-4. **Step 4 - Goal Addition:** The AthletiCLI instance executes the `SetActivityGoalCommand` object. The command will 
+**Step 4 - Goal Addition:** The AthletiCLI instance executes the `SetActivityGoalCommand` object. The command will 
    access the data and retrieve the currently stored list of activity goals stored inside it. The new `ActivityGoal` 
    object is added to the list.
 
@@ -295,11 +295,23 @@ Assume that the user has set a goal to run 10km per week and has already tracked
 within the last 7 days as well as three older sport activities. The object diagram below shows the state of the 
 scenario with the eligible activities for the goal highlighted in green.
 
+The `edit-activity-goal` and `delete-activity-goal` operations function similarly. They use the arguments `sport`, 
+`type`, and `period` to identify the specific goal to be edited or deleted. If there is no existing goal that 
+matches the specified criteria, an error message is displayed to the user.
+
+Similar to `set-activity-goal`, the operations `edit-activity-goal` and `delete-activity-goal` utilize 
+`ActivityGoal` objects to represent the goals being edited or deleted. During the execution of these commands, the 
+system quickly verifies whether the goal exists in the `ActivityGoalList`. If the goal is found, it is then edited 
+or deleted as requested.
+
+Finally, the `list-activity-goal` operation is designed similarly to the `list-activity` operation. It involves 
+retrieving the `ActivityGoalList` from the database and displaying the goals to the user.
+
 ![](images/ActivityObjectDiagram.svg)
 
 The following describes how the goal evaluation works after being invoked by the user, e.g., with a `list-activity-goal` command:
 
-5. **Step 5 - Goal Assessment:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
+**Step 5 - Goal Assessment:** The evaluation of the goal is operated by the `ActivityGoal` object. It retrieves the 
 activity list with the five tracked activities from the data and calls the total distance calculation function. It 
    filters the activity list according to the specified timespan and sports of the goal. The current value obtained by this, 
    10km in the example, is returned to the `ActivityGoal` object. This output is compared to the target value of the 
@@ -388,7 +400,7 @@ By providing a comprehensive view of various performance-related factors over ti
 
 ## Non-Functional Requirements
 
-1. AthletiCLI should work on Windows, MacOS and Linux that has java 11 installed.
+1. AthletiCLI should work on Windows, macOS and Linux that has Java 11 installed.
 2. AthletiCLI should be able to store data locally.
 3. AthletiCLI should be able to work offline.
 4. AthletiCLI should be easy to use.
@@ -422,6 +434,65 @@ Developers are expected to conduct more extensive tests.
 ### Activity Management
 
 #### Activity Records
+
+1. Adding different activities:
+    - Test case 1:
+        * Add a general activity.
+        * Command: `add-activity Morning Run duration/01:00:00 distance/10000 datetime/2021-09-01 06:00`
+        * Expected Outcome: A general activity with duration of 1 hour, distance of 10km, and datetime of 2021-09-01 is 
+          added successfully and a short summary of the activity is displayed to the user.
+    - Test case 2:
+        * Add a run.
+        * Command: `add-run Berlin Marathon duration/03:33:17 distance/42125 datetime/2023-08-10 07:00 elevation/10`
+        * Expected Outcome: A run with duration of 3 hours 33 minutes 17 seconds, distance of 42.125km, datetime of 
+          2023-08-10, and elevation of 10m is added successfully and a short summary of the activity is displayed to 
+          the user.
+    - Test case 3:
+        * Try to add a swim without specifying swimming style.
+        * Command: `add-swim Evening Swim duration/00:30:00 distance/1000 datetime/2021-09-01 06:00`
+        * Expected Outcome: Error message indicating the swimming style is not specified is displayed.
+2. Deleting an activity:
+    - Test case 1:
+        * Delete the first activity in a non-empty activity list.
+        * Command: `delete-activity 1`
+        * Expected Outcome: The first activity is deleted successfully. The activity is displayed to the user and 
+          the activity list is updated.
+    - Test case 2:
+        * Delete an activity at an invalid index.
+        * Command: `delete-activity 0`
+        * Expected Outcome: Error message indicating the index is invalid is displayed.
+3. List all activities:
+    - Test case 1:
+        * List all activities in a non-empty activity list.
+        * Command: `list-activity`
+        * Expected Outcome: All activities in the activity list are displayed to the user sorted by datetime.
+    - Test case 2:
+        * List all activities in a non-empty activity list with the detailed flag.
+        * Command: `list-activity -d`
+        * Expected Outcome: All activities in the activity list are displayed to the user with detailed information 
+          like elevation for runs and cycles.
+    - Test case 2:
+        * List all activities in an empty activity list.
+        * Command: `list-activity`
+        * Expected Outcome: Message indicating the activity list is empty is displayed.
+4. Find activities of a specific date:
+   - Test case 1:
+        * Find activities of a specific date with multiple entries on that date.
+        * Command: `find-activity 2021-09-01`
+        * Expected Outcome: All activities on 1st September 2021 are displayed to the user.
+   - Test case 2:
+        * Find activities of a specific date with no entries on that date.
+        * Command: `find-activity 2021-09-02`
+        * Expected Outcome: No activities are displayed
+5. Edit an activity:
+   - Test case 1:
+        * Edit the caption of the first activity in the activity list, which is of type run.
+        * Command: `edit-run 1 caption/Sunday=Runday`
+        * Expected Outcome: The caption of the first activity is updated to "Sunday=Runday".
+   - Test case 2:
+        * Try to use the edit-swim command to edit a run.
+        * Command: `edit-swim 1 caption/Sunday=Runday`
+        * Expected Outcome: Error message indicating the activity type is not a swim is displayed.
 
 #### Activity Goals
 
@@ -520,7 +591,7 @@ Developers are expected to conduct more extensive tests.
      * `set-diet-goal DAILY calories/500` creates a daily healthy calories goal with a target value of 500
    * Test case 2:
      * There are no diet goals constructed.
-     * `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly healthy nutrient goals: calories and fats.
+     * `set-diet-goal WEEKLY calories/500 fat/600` Creates 2 weekly healthy nutrient goals: calories and fat.
    * Test case 3:
      * There is a daily healthy calories goal present.
      * `set-diet-goal DAILY calories/500` will result in an error since the goal is already present.
@@ -554,12 +625,39 @@ Developers are expected to conduct more extensive tests.
      * Weekly healthy calories goal is present with a target value of 20.
      * `edit-diet-goal WEEKLY calories/5000` will update the target value of weekly healthy calories goal to 5000.
    * Similar to setting diet goals, the weekly goal values should always be greater than the daily goal values.
+
 ### Sleep Management
 
 #### Sleep Records
 
 #### Sleep Goals
 
-### Exiting Program
+### Miscellaneous
 
-### Data Storage
+1. Finding Records
+    * Test case:
+      * Command: `find-diet 2023-12-31`
+      * Expected Outcome: All records on 31st December 2023 are displayed.
+
+1. Saving Files
+   * Test case:
+       * Command: `save`
+       * Expected Outcome: Data are safely saved into the files.
+
+1. Exiting AthletiCLI:
+   * Test case 1:
+     * Immediately after detecting a format error in the saved files.
+     * Command: `bye`
+     * Expected Outcome: AthletiCLI is exited without rewriting the files.
+   * Test case 2:
+     * During normal execution.
+     * Command: `bye` 
+     * Expected Outcome: AthletiCLI is exited and the files are safely saved.
+
+1. Viewing Help Messages:
+   * Test case 1:
+     * Command: `help`
+     * Expected Outcome: A list containing the syntax of all commands is shown.
+   * Test case 2:
+     * Command: `help add-diet`
+     * Expected Outcome: The syntax of the `add-diet` command is shown.

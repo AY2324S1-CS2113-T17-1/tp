@@ -11,7 +11,7 @@ class NutrientVerifierTest {
 
     @Test
     void verify_inputApprovedNutrients_expectTrue() {
-        assertTrue(NutrientVerifier.verify("fats"));
+        assertTrue(NutrientVerifier.verify("fat"));
     }
     @Test
     void verify_inputUnapprovedNutrients_expectFalse() {

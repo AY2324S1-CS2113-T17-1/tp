@@ -174,4 +174,5 @@ public class Swim extends Activity {
         super.setMovingTime(movingTime);
         this.averageLapTime = this.calculateAverageLapTime();
     }
+
 }

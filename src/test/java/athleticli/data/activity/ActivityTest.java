@@ -9,6 +9,9 @@ import java.time.LocalTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Tests the Activity class.
+ */
 public class ActivityTest {
 
     private static final String CAPTION = "Sunday = Runday";
@@ -17,11 +20,17 @@ public class ActivityTest {
     private static final LocalDateTime DATE = LocalDateTime.of(2023, 10, 10, 23, 21);
     private Activity activity;
 
+    /**
+     * Sets up the Activity object for testing.
+     */
     @BeforeEach
     public void setUp() {
         activity = new Activity(CAPTION, DURATION, DISTANCE, DATE);
     }
 
+    /**
+     * Tests the constructor and getters.
+     */
     @Test
     public void testConstructorAndGetters() {
         assertEquals(CAPTION, activity.getCaption());
@@ -30,6 +39,9 @@ public class ActivityTest {
         assertEquals(DATE, activity.getStartDateTime());
     }
 
+    /**
+     * Tests the String representation of the Activity object.
+     */
     @Test
     public void testToString() {
         String expected = "[Activity] Sunday = Runday | Distance: 18.12 km | Time: 1h 24m | " +
@@ -37,9 +49,13 @@ public class ActivityTest {
         assertEquals(expected, activity.toString());
     }
 
+    /**
+     * Tests the detailed String representation of the Activity object.
+     * Disabled due to gradle issues.
+     */
     @Test
     @Disabled
-    public void testToDetailedString() {
+    public void toDetailedString() {
         String expected = "[Activity - Sunday = Runday - October 10, 2023 at 11:21 PM]\n" +
                 "\tDistance: 18.12 km                     Time: 01:24:00\n" +
                 "\tCalories: 0 kcal                       ...";
@@ -47,6 +63,9 @@ public class ActivityTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the generation of the distance String output.
+     */
     @Test
     public void generateDistanceStringOutput() {
         String actual = activity.generateDistanceStringOutput();
@@ -54,6 +73,9 @@ public class ActivityTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the generation of the moving time String output.
+     */
     @Test
     public void generateMovingTimeStringOutput() {
         String actual = activity.generateMovingTimeStringOutput();
@@ -61,6 +83,9 @@ public class ActivityTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the generation of the start date and time String output.
+     */
     @Test
     public void generateStartDateTimeStringOutput() {
         String actual = activity.generateStartDateTimeStringOutput();
@@ -68,6 +93,9 @@ public class ActivityTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the formatting of two columns.
+     */
     @Test
     public void formatTwoColumns() {
         String actual = activity.formatTwoColumns("Distance: 18.12 km", "Time: 1h 24m", 30);
@@ -75,6 +103,10 @@ public class ActivityTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the generation of the short representation of the moving time String output when hours are not zero.
+     * If hours are not zero, the hours should be included in the output and the seconds should be omitted.
+     */
     @Test
     void generateShortMovingTimeStringOutput_hoursNotZero() {
         String expected = "Time: 1h 24m";
@@ -82,6 +114,10 @@ public class ActivityTest {
         assertEquals(expected, actual);
     }
 
+    /**
+     * Tests the generation of the short representation of the moving time String output when hours are zero.
+     * If hours are zero, the hours should be omitted from the output and the seconds should be included.
+     */
     @Test
     void generateShortMovingTimeStringOutput_hoursZero() {
         activity = new Activity(CAPTION, LocalTime.of(0, 24, 20), DISTANCE, DATE);

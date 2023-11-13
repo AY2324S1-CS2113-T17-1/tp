@@ -15,17 +15,17 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 class ListDietGoalCommandTest {
 
     private ArrayList<DietGoal> filledInputDietGoals;
-    private DietGoal dietGoalFats;
+    private DietGoal dietGoalFat;
     private Data data;
 
     @BeforeEach
     void setUp() {
         data = new Data();
 
-        dietGoalFats = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fats", 10000);
+        dietGoalFat = new HealthyDietGoal(Goal.TimeSpan.WEEKLY, "fat", 10000);
 
         filledInputDietGoals = new ArrayList<>();
-        filledInputDietGoals.add(dietGoalFats);
+        filledInputDietGoals.add(dietGoalFat);
     }
 
     @Test
@@ -39,7 +39,7 @@ class ListDietGoalCommandTest {
     void execute_filledInputList_returnDietGoalPresentMessage() {
         try {
             String[] expectedString = {"These are your goal(s):\n", "\t1. [HEALTHY]  WEEKLY "
-                    + "fats intake progress: (0/10000)\n", "Now you have 1 diet goal(s)."};
+                    + "fat intake progress: (0/10000)\n", "Now you have 1 diet goal(s)."};
             ListDietGoalCommand listDietGoalCommand = new ListDietGoalCommand();
             SetDietGoalCommand setDietGoalCommand = new SetDietGoalCommand(filledInputDietGoals);
             setDietGoalCommand.execute(data);

@@ -12,6 +12,9 @@ import java.time.LocalTime;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+/**
+ * Tests the DeleteActivityCommand class.
+ */
 class DeleteActivityCommandTest {
 
     private static final String CAPTION = "Night Run";
@@ -23,6 +26,9 @@ class DeleteActivityCommandTest {
     private DeleteActivityCommand deleteActivityCommand;
     private Data data;
 
+    /**
+     * Sets up the required objects for each test.
+     */
     @BeforeEach
     void setUp() {
         run = new Run(CAPTION, DURATION, DISTANCE, DATE, ELEVATION);
@@ -31,6 +37,12 @@ class DeleteActivityCommandTest {
         addActivityCommand.execute(data);
     }
 
+    /**
+     * Tests the delete command when the index is valid. The activity should be deleted and the correct output should
+     * be returned.
+     *
+     * @throws AthletiException if the index is invalid.
+     */
     @Test
     void execute_validIndex_activityDeleted() throws AthletiException {
         String[] expected = {"Gotcha, I've deleted this activity:", run.toString(), "You have tracked a total of 0 " +
@@ -42,6 +54,9 @@ class DeleteActivityCommandTest {
         }
     }
 
+    /**
+     * Tests the delete command when the index is invalid. An exception should be thrown.
+     */
     @Test
     void execute_invalidIndex_exceptionThrown() {
         deleteActivityCommand = new DeleteActivityCommand(0);
