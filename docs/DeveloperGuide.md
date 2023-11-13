@@ -78,6 +78,13 @@ The class diagram shows how the `Data` component is constructed with multiple cl
   <img width="80%" src="images/DataClassDiagram.svg" alt="'set-diet-goal' Sequence Diagram"/>
 </p>
 
+### Parser Component
+
+The class diagram shows how the `Parser` component is constructed with multiple classes.
+
+<p  align="center" width="100%">
+  <img width="80%" src="images/ParserClassDiagram.png" alt="`parser` Class Diagram"/>
+
 **How the architecture components interact with each other**
 
 The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `help add-diet`.
