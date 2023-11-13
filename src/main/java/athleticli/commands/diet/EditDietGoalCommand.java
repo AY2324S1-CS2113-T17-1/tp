@@ -57,7 +57,7 @@ public class EditDietGoalCommand extends Command {
                 if (!isSameDietGoalNutrient) {
                     continue;
                 }
-                if (!isSameTimeSpan){
+                if (!isSameTimeSpan) {
                     continue;
                 }
                 //update new target value to the current goal
