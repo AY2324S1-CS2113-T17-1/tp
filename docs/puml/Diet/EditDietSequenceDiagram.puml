@@ -1,0 +1,42 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+skinparam Style strictuml
+skinparam SequenceMessageAlignment center
+
+!define LOGIC_COLOR #3333C4
+
+participant ":AthletiCLI" as AthletiCLI LOGIC_COLOR
+participant "Parser" as Parser <<class>> #lightblue
+participant "DietParser" as DietParser <<class>> #lightblue
+participant "c:EditDietCommand" as EditDietCommand #lightgreen
+participant "data:Data" as Data #lightgrey
+participant "diets:DietList" as DietList #lightgrey
+participant "oldDiet:Diet" as oldDiet #yellow
+
+AthletiCLI++
+AthletiCLI -> Parser++: parseCommand(userInput)
+Parser -> DietParser++: parseDietEdit(arguments)
+DietParser --> Parser: dietMap
+DietParser--
+Parser -> EditDietCommand++: new EditDietCommand(index, dietMap)
+EditDietCommand --> Parser--: c
+Parser --> AthletiCLI--: c
+
+AthletiCLI -> EditDietCommand++: execute(data)
+EditDietCommand -> Data++: getDiets()
+Data --> EditDietCommand--: diets
+EditDietCommand -> DietList++: get(index - 1)
+DietList --> EditDietCommand--: oldDiet
+
+loop for each key in dietMap
+    EditDietCommand -> oldDiet++ : set[key](value)
+    oldDiet --> EditDietCommand--
+end
+
+
+EditDietCommand -> DietList++: set(index - 1, oldDiet)
+DietList --> EditDietCommand--
+EditDietCommand --> AthletiCLI--: message
+
+destroy EditDietCommand
+@enduml
