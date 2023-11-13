@@ -47,6 +47,9 @@ public class HelpCommand extends Command {
         Message.HELP_DELETE_SLEEP,
         Message.HELP_EDIT_SLEEP,
         Message.HELP_FIND_SLEEP,
+        Message.HELP_SET_SLEEP_GOAL,
+        Message.HELP_EDIT_SLEEP_GOAL,
+        Message.HELP_LIST_SLEEP_GOAL,
         /* Misc */
         "\nMisc:",
         Message.HELP_FIND,
@@ -89,6 +92,9 @@ public class HelpCommand extends Command {
             entry(CommandName.COMMAND_SLEEP_DELETE, Message.HELP_DELETE_SLEEP),
             entry(CommandName.COMMAND_SLEEP_EDIT, Message.HELP_EDIT_SLEEP),
             entry(CommandName.COMMAND_SLEEP_FIND, Message.HELP_FIND_SLEEP),
+            entry(CommandName.COMMAND_SLEEP_GOAL_SET, Message.HELP_SET_SLEEP_GOAL),
+            entry(CommandName.COMMAND_SLEEP_GOAL_EDIT, Message.HELP_EDIT_SLEEP_GOAL),
+            entry(CommandName.COMMAND_SLEEP_GOAL_LIST, Message.HELP_LIST_SLEEP_GOAL),
             /* Misc */
             entry(CommandName.COMMAND_FIND, Message.HELP_FIND),
             entry(CommandName.COMMAND_SAVE, Message.HELP_SAVE),

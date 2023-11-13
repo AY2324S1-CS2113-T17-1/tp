@@ -288,6 +288,13 @@ public class Message {
             + " INDEX start/START end/END";
     public static final String HELP_FIND_SLEEP = CommandName.COMMAND_SLEEP_FIND
             + " DATE";
+    
+    public static final String HELP_SET_SLEEP_GOAL = CommandName.COMMAND_SLEEP_GOAL_SET
+            + " type/TYPE period/PERIOD target/TARGET";
+    public static final String HELP_EDIT_SLEEP_GOAL = CommandName.COMMAND_SLEEP_GOAL_EDIT
+            + " type/TYPE period/PERIOD target/TARGET";
+    public static final String HELP_LIST_SLEEP_GOAL = CommandName.COMMAND_SLEEP_GOAL_LIST;
+
     public static final String HELP_SAVE = CommandName.COMMAND_SAVE;
     public static final String HELP_BYE = CommandName.COMMAND_BYE;
     public static final String HELP_HELP = CommandName.COMMAND_HELP
