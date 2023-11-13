@@ -419,6 +419,7 @@ You can set multiple nutrients goals at once with the `set-diet-goal` command.
 * unhealthy: This determines if you are trying to get more of this nutrient or less of it.
     If this flag is placed, it means that you are trying to reduce the intake. Hence, exceeding the target value means
     that you have not achieved your goal. If this flag is absent, it means that you are trying to increase the intake.
+    It is considered achieved if you exceed the target value indicated.
 * CALORIES: Your target value for calories intake, in terms of calories. The target value must be a positive integer.
 * PROTEIN: Your target for protein intake, in terms of milligrams. The target value must be a positive integer.
 * CARB: Your target value for carbohydrate intake, in terms of milligrams. The target value must be a positive integer.
@@ -428,7 +429,7 @@ You can create one or multiple nutrient goals at once with this command.
 
 **Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
-**Note: A diet goal cannot be healthy and unhealthy at the same time!**
+**Note: A diet goal of the same nutrient cannot be healthy and unhealthy at the same time!**
 
 **Note: No repetitions are allowed for the diet goal of the same nutrient and the same time span.**
 
@@ -437,9 +438,13 @@ You can create one or multiple nutrient goals at once with this command.
 
 **Examples:**
 
-* `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly nutrient goals if they have not been created: calories and fats.
+* `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly nutrient goals if they have not been created: 
+calories with a target value of 500 calories and fats of 600 mg.
 
-* `set-diet-goal DAILY calories/500` Creates a daily calories goal if goal is not created.
+* `set-diet-goal DAILY calories/500` Creates a daily calories goal of target value of 500 calories if goal is not created.
+
+** `set-diet-goal DAILY unhealthy calories/500` Creates an unhealthy daily calories goal of target value of 
+500 calories if goal is not created.
 
 **Example of Usage:**
 
