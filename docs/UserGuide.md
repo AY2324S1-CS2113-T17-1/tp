@@ -406,7 +406,6 @@ You can create a new daily or weekly diet goal to track your nutrients intake wi
 
 You can set multiple nutrients goals at once with the `set-diet-goal` command.
 
-**Note: At least one of the nutrients (CALORIES,PROTEIN,CARB,FATS) must be present!**
 
 **Syntax:**
 
@@ -438,9 +437,24 @@ You can create one or multiple nutrient goals at once with this command.
 
 **Examples:**
 
-* `set-diet-goal WEEKLY calories/500 fats/600` Creates multiple 2 nutrient goals if they have not been created: calories and fats.
+* `set-diet-goal WEEKLY calories/500 fats/600` Creates 2 weekly nutrient goals if they have not been created: calories and fats.
 
-* `set-diet-goal DAILY calories/500` Creates a single calories goal if goal is not created.
+* `set-diet-goal DAILY calories/500` Creates a daily calories goal if goal is not created.
+
+**Example of Usage:**
+
+```
+  > set-diet-goal WEEKLY calories/500 fats/600
+  _____________________________________________________________
+  These are your goal(s):
+  
+      1. [HEALTHY]  WEEKLY calories intake progress: (0/500)
+  
+      2. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+  
+  Now you have 2 diet goal(s).
+  _____________________________________________________________
+```
 
 ---
 
@@ -464,6 +478,28 @@ it is bounded by the number of diet goals available.
 
 * `delete-diet-goal 1` Deletes a diet goal that is located on the first index of the list if it exists.
 
+**Example of Usage:**
+
+```
+____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  WEEKLY calories intake progress: (0/500)
+
+	2. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+
+ Now you have 2 diet goal(s).
+____________________________________________________________
+
+> delete-diet-goal 1
+____________________________________________________________
+ The following goal has been deleted:
+
+ [HEALTHY]  WEEKLY calories intake progress: (0/500)
+
+____________________________________________________________
+```
+
 ---
 
 ### 📅 Listing Diet Goals:
@@ -479,6 +515,19 @@ You can list all your diet goals in AtheltiCLI.
 **Examples:**
 
 * `list-diet-goal`
+
+**Example of Usage:**
+
+```
+> list-diet-goal
+____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+
+ Now you have 1 diet goal(s).
+____________________________________________________________
+```
 
 ---
 
@@ -516,9 +565,30 @@ You can edit one or multiple nutrient goals with this command.
 **Examples:**
 
 * `edit-diet-goal DAILY calories/5000 protein/200 carb/500 fats/100` 
-Edits multiple nutrients goals if all of them exists.
+Edits multiple nutrients goals if all of them exists and new target value is valid.
 * `edit-diet-goal WEEKLY calories/5000` 
-Edits a single calories goal if the goal exists.
+Edits a single calories goal if the goal exists and new target value is valid.
+
+**Example of Usage:**
+
+```
+____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  WEEKLY fats intake progress: (0/600)
+
+ Now you have 1 diet goal(s).
+____________________________________________________________
+
+> edit-diet-goal WEEKLY fats/50
+____________________________________________________________
+ These are your goal(s):
+
+ 	1. [HEALTHY]  WEEKLY fats intake progress: (0/50)
+
+ Now you have 1 diet goal(s).
+____________________________________________________________
+```
 
 ---
 
