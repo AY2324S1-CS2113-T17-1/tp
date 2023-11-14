@@ -1,60 +1,50 @@
 @startuml
+'https://plantuml.com/class-diagram
+skinparam classAttributeIconSize 0
+hide circle
 
-package athleticli.data {
 
-    interface Findable<T> {
-        + find(date: LocalDate): ArrayList<T>
-    }
-
-    class StorableList<T> {
-        - path: String
-        
-        + StorableList(path: String)
-        + save(): void
-        + load(): void
-        + abstract parse(s: String): T
-        + abstract unparse(t: T): String
-    }
+interface Findable<<interface>> {
+    + find(date: LocalDate): ArrayList<T>
 }
 
-package athleticli.data.sleep {
-
-    class Sleep {
-        - static DATE_TIME_FORMATTER: DateTimeFormatter
-        - static DATE_FORMATTER: DateTimeFormatter
-        - startDateTime: LocalDateTime
-        - toDateTime: LocalDateTime
-        - sleepingDuration: LocalTime
-        - sleepDate: LocalDate
-
-        + Sleep(startDateTime: LocalDateTime, toDateTime: LocalDateTime)
-        + getStartDateTime(): LocalDateTime
-        + getToDateTime(): LocalDateTime
-        + getSleepDate(): LocalDate
-        + getSleepingTime(): LocalTime
-        + toString(): String
-        + toDetailedString(): String
-        - calculateSleepingDuration(): LocalTime
-        - calculateSleepDate(): LocalDate
-        - generateSleepingDurationStringOutput(): String
-        - generateStartDateTimeStringOutput(): String
-        - generateToDateTimeStringOutput(): String
-        - generateSleepDateStringOutput(): String
-    }
-
-    class SleepList {
-        + SleepList()
-        + find(date: LocalDate): ArrayList<Sleep>
-        + sort(): void
-        + filterByTimespan(timeSpan: Goal.TimeSpan): ArrayList<Sleep>
-        + getTotalSleepDuration(sleepClass: Class<?>, timeSpan: Goal.TimeSpan): int
-        + parse(s: String): Sleep
-        + unparse(sleep: Sleep): String
-    }
-
-    SleepList --|> StorableList
-    SleepList ..> Sleep: "*"
-    SleepList ..|> Findable
+abstract class StorableList<T> {
+    - path: String
+    + save()
+    + load()
+    + {abstract} parse(s: String): T
+    + {abstract} unparse(t: T): String
 }
 
+
+class Sleep {
+    - startDateTime: LocalDateTime
+    - endDateTime: LocalDateTime
+    - sleepingDuration: Duration
+    - sleepDate: LocalDate
+
+    + Sleep(startDateTime: LocalDateTime, toDateTime: LocalDateTime)
+    + getStartDateTime(): LocalDateTime
+    + getEndDateTime(): LocalDateTime
+    + getSleepDate(): LocalDate
+    + getSleepingTime(): LocalTime
+    + toString(): String
+
+    - calculateSleepingDuration(): Duration
+    - calculateSleepDate(): LocalDate
+    - generateSleepingDurationStringOutput(): String
+    - generateStartDateTimeStringOutput(): String
+    - generateEndDateTimeStringOutput(): String
+    - generateSleepDateStringOutput(): String
+}
+
+class SleepList {
+    + sort()
+    + filterByTimespan(timeSpan: Goal.TimeSpan): ArrayList<Sleep>
+    + getTotalSleepDuration(timeSpan: Goal.TimeSpan): int
+}
+
+SleepList --|> StorableList: extends
+SleepList "1" o-l- "*" Sleep :contains >
+SleepList ..|>  Findable : implements
 @enduml

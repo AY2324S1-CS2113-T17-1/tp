@@ -342,12 +342,47 @@ retrieving the `ActivityGoalList` from the database and displaying the goals to 
 
 5. **Result Display**: A message is returned post-execution and passed through AthletiCLI to the UI for display to the user.
 
+In particular to demonstrate all parser classes, the following sequence diagram shows how the `edit-sleep` command works:
 
----
+![](images/EditSleepObjectSequenceDiagram.svg)
 
-The following class diagram shows how sleep and sleep-related classes are constructed in AthletiCLI:
+The sleep parser was originally designed with little modularity, with each sleep instruction having to be parsed individually. This resulted in a lot of code duplication and was not very modular. This also resulted in having to reimplement much of the input checking logic for each sleep instruction, and many different error messages that was difficult to maintain. 
+
+Therefore a refactoring was done such that we only have a sleep object parser, sleep index parser and sleep goal parser that interacts with the sleep parser. This allows us to reuse the input checking logic and error messages. This also allows us to have a more modular design and reduce code duplication.
+
+
+#### [Implemented] Sleep Structure
+
+The following class diagram demonstrates the relationship between the data components Sleep, SleepList, as well as the Findable interface and the StorableList abstract class.
 
 ![](images/SleepAndSleepListClassDiagram.svg)
+
+The design decision for why we have decided to implement a findable interface and a storable list abstract class is to have a more modular design. Therefore allowing for easier extension of the code in the future when implementing other data classes as well, such as extending to hydration and other possible data classes.
+
+#### [Implemented] Sleep Duration and Date calculation
+
+Initially sleep entries do not have an associated date, this makes it much more difficult to find the sleep entries for a specific date. Therefore we have decided to add a date field to the sleep entries. 
+
+However, there are complications surrounding calculation of sleep date. Many people often sleep past midnight, and this results in the sleep date being the next day instead of the current day. Therefore we have decided that for sleeps starting before 06:00 on the next day, the sleep date will be the previous day. This allows us to have a more accurate representation of the sleep date.
+
+**[Challenge]**
+
+Initially, the design of the sleep duration used integer to store the seconds of the sleep duration. However, this design results in much difficulty when it comes to the calculation of the sleep duration. 
+
+For instance, when printing the sleep duration string, we have to convert the seconds into hours, minutes and seconds. This results in a lot of code duplication and is not very modular.
+
+**[Solution]**
+
+Therefore we have decided to change the design of the sleep duration to use the Duration class from the Java library. This allows us to use the built-in functions to calculate the sleep duration and convert the sleep duration into a string. This results in a more modular design and reduces code duplication.
+
+#### [Implemented] Sleep Goals
+
+The sleep goals feature allows users to set and track periodic goals for their sleep duration.
+
+The implementation of sleep goals is similar to the implementation of activity goals. Therefore the implementation of sleep goals is not described in detail here.
+
+**[Future Implementation]**
+For Sleep Goals originally there were plans to incorporate a sleep quality goal where an optimum sleep start time and end time would be set. However, due to issues surrounding modular design, and how we will have to extend our common Goal interface and abstract classes to include more methods, we have decided to not implement this feature. It will be implemented in a future version of AthletiCLI.
 
 ---
 
@@ -400,6 +435,11 @@ By providing a comprehensive view of various performance-related factors over ti
 | v2.0    | meticulous user                 | find my diets by date                                             | easily retrieve my dietary records for a specific day and monitor my eating habits.    |
 | v2.0    | motivated user                  | keep track of my diet goals for a period of time                  | I can monitor my diet progress on a weekly basis and increase or reduce if needed.     |                                         |
 | v2.0    | goal-oriented user              | delete a specific activity goal                                   | remove goals that are no longer relevant or achievable for me.                         |                                         |
+| v2.0    | sleep deprived user             | calculate sleep duration                                         | keep track of my sleep habits and identify areas for improvement                       |
+| v2.0    | sleep deprived user             | find how much I slept on a specific date                          | easily retrieve my sleep records for a specific day and monitor my sleep habits.       |
+| v2.1     | user with bad sleep habits      | set sleep goals                                                   | work towards a specific sleep target.                                                  |
+| v2.1     | user with bad sleep habits      | edit my sleep goals                                               | modify my sleep targets to align with my current sleep habits.                         |
+| v2.1     | user with bad sleep habits      | list all my sleep goals                                           | have a clear overview of my set targets and track my progress easily.                  |
 
 ---
 
@@ -422,10 +462,6 @@ and provide feedback to the users.
 ---
 
 ## Instructions for manual testing
-
-{::comment}
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
-{:/comment}
 
 **Note**: This section serves to provide a quick start for manual testing on AthletiCLI. This list is not exhaustive.
 Developers are expected to conduct more extensive tests.
@@ -631,25 +667,105 @@ Developers are expected to conduct more extensive tests.
      * `edit-diet-goal WEEKLY calories/5000` will update the target value of weekly healthy calories goal to 5000.
    * Similar to setting diet goals, the weekly goal values should always be greater than the daily goal values.
 
+
 ### Sleep Management
 
 #### Sleep Records
+1. Adding Sleep
+    - Test case 1:
+        * Add a sleep record.
+        * Command: `add-sleep start/2021-09-01 06:00 end/2021-09-01 07:00`
+        * Expected Outcome: Sleep record is successfully added with start time of 2021-09-01 06:00 and end time of 
+        2021-09-01 07:00.
+    - Test case 2:
+        * Attempt to add a sleep record with a future start time.
+        * Command: `add-sleep start/3024-01-01 08:00 end/3024-01-01 09:00`
+        * Expected Outcome: Error indicating the start time cannot be in the future.
+    - Test case 3:
+        * Attempt to add a sleep record with a start time later than the end time.
+        * Command: `add-sleep start/2021-09-01 08:00 end/2021-09-01 07:00`
+        * Expected Outcome: Error indicating the start time cannot be later than the end time.
+
+2. Editing Sleep
+    - Test case 1:
+        * Edit a specific sleep record.
+        * Command: `edit-sleep 2 start/2021-09-01 09:00 end/2021-09-01 10:00`
+        * Expected Outcome: The 2nd sleep record is updated with the new values.
+    - Test case 2:
+        * Edit a sleep record with only one parameter.
+        * Command: `edit-sleep 3 end/2021-09-01 11:00`
+        * Expected Outcome: Error indicating the start time is not specified.
+    - Test case 3:
+        * Edit a sleep record with a invalid index.
+        * Command: `edit-sleep -1011 start/2021-09-01 09:00 end/2021-09-01 10:00`
+        * Expected Outcome: Error indicating the index is invalid.
+
+3. Deleting Sleep
+   
+    **Assuming there are 4 sleep records in the sleep list**
+    - Test case 1:
+        * Delete a specific sleep record.
+        * Command: `delete-sleep 2`
+        * Expected Outcome: The 2nd sleep record is successfully deleted.
+    - Test case 2:
+        * Attempt to delete a non-existent sleep record.
+        * Command: `delete-sleep 5`
+        * Expected Outcome: Error indicating the sleep record does not exist.
+4. Listing Sleep
+    - Test case 1:
+        * List all sleep records.
+        * Command: `list-sleep`
+        * Expected Outcome: All existing sleep records are displayed.
+
 
 #### Sleep Goals
+1. Setting sleep goals
+
+    - Test case 1:
+        * Set a daily sleep duration goal.
+        * Command: `set-sleep-goal type/duration period/daily target/90`
+        * Expected Outcome: Daily sleep duration goal of 90 minutes is set successfully.
+    - Test case 2:
+        * Set a weekly sleep duration goal.
+        * Command: `set-sleep-goal type/duration period/weekly target/600`
+        * Expected Outcome: Weekly sleep duration goal of 600 minutes is set successfully.
+    - Test case 3:
+        * Attempt to set a duplicate daily sleep duration goal.
+        
+        **Assuming there is a daily sleep duration goal**
+
+        * Command: `set-sleep-goal type/duration period/daily target/90`
+        * Expected Outcome: Error indicating the daily sleep duration goal already exists.
+
+2. Editing sleep goals
+    - Test case 1:
+        * Edit an existing daily sleep duration goal.
+        * Command: `edit-sleep-goal type/duration period/daily target/120`
+        * Expected Outcome: Daily sleep duration goal is updated to 120 minutes.
+    - Test case 2:
+        * Edit a non-existent weekly sleep duration goal.
+        * Command: `edit-sleep-goal type/duration period/weekly target/1000`
+        * Expected Outcome: Error indicating no existing weekly sleep duration goal.
+
+3. Listing sleep goals
+    - Test case 1:
+        * List all set sleep goals.
+        * Command: `list-sleep-goal`
+        * Expected Outcome: All set sleep goals along with their details are listed.
 
 ### Miscellaneous
 
-1. Finding Records
-    * Test case:
-      * Command: `find-diet 2023-12-31`
-      * Expected Outcome: All records on 31st December 2023 are displayed.
+1.  Finding Records
+   * Test case:
+       * Command: `find-diet 2023-12-31`
+       * Expected Outcome: All records on 31st December 2023 are displayed.
 
-1. Saving Files
+2. Saving Files
    * Test case:
        * Command: `save`
        * Expected Outcome: Data are safely saved into the files.
 
-1. Exiting AthletiCLI:
+3. Exiting AthletiCLI:
    * Test case 1:
      * Immediately after detecting a format error in the saved files.
      * Command: `bye`
@@ -659,7 +775,7 @@ Developers are expected to conduct more extensive tests.
      * Command: `bye` 
      * Expected Outcome: AthletiCLI is exited and the files are safely saved.
 
-1. Viewing Help Messages:
+4. Viewing Help Messages:
    * Test case 1:
      * Command: `help`
      * Expected Outcome: A list containing the syntax of all commands is shown.
