@@ -646,13 +646,13 @@ Developers are expected to conduct more extensive tests.
      is greater than the value of weekly diet goal.
 2. Listing diet goals
    * Test case 1:
-     * 'list-diet-goal' lists all the diet goals that are created and present in the diet goal records.
+     * `list-diet-goal` lists all the diet goals that are created and present in the diet goal records.
 3. Deleting diet goals
    * Test case 1:
      * There is one diet goal present in the diet goal records.
      * `delete-diet-goal 1` removes the goal from the diet goal records.
    * Test case 2:
-     * 'delete-diet-goal' without any index to delete the goal or non-positive integers provided 
+     * `delete-diet-goal` without any index to delete the goal or non-positive integers provided 
      or the value is greater than the number of diet goals present in the diet goal records, error will be thrown.
 4. Editing diet goals
    * This is similar to setting diet goal, but the goal is required to be in the diet goals record first.
