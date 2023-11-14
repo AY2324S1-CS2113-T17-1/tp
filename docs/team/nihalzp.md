@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Nihal Parash Project Portfolio Page
+title: Nihal Parash's Project Portfolio Page
 ---
 
 # Project: AthletiCLI
