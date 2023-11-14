@@ -1,4 +1,7 @@
-# Nihal Parash Project Portfolio Page
+---
+layout: page
+title: Nihal Parash's Project Portfolio Page
+---
 
 # Project: AthletiCLI
 
