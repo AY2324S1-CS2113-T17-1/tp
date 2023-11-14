@@ -24,9 +24,9 @@ Given below are my contributions to the project.
 * **Common Parsing Functions**: Enhanced and refactored widely used `getValueForMarker`, `parseDateTime` and 
   `parseDate` functions to make them more robust and reusable.
 * **Enhancements:**
-  - Enhanced the `add-diet` feature, enabling the addition of various fields such as `calories`, `fat`, `carbs`, 
-    `protein`, `datetime` in a flexible order.
-  - Refined the `edit-diet` feature, allowing users to modify necessary fields without altering the remaining data.
+  - Enhanced the `add-diet` feature, enabling the input of various data fields such as `calories`, `fat`, `carb`, 
+    `protein`, `datetime` in any order.
+  - Refined the `edit-diet` feature, allowing users to modify necessary data fields without altering the remaining data.
 
 ### Project Management
 
