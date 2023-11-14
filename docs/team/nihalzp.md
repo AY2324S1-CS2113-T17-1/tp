@@ -45,7 +45,7 @@ Given below are my contributions to the project.
   * Outlined the implementation idea for editing, deleting, and listing activity goals.
   * Created UML diagrams: 
     - `Parser` class diagram
-    - `edit-diet` command sequence diagram.
+    - `edit-diet` command sequence diagram
   * Provided test instructions for diet record management and activity goal management.
 
 #### Community
