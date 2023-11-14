@@ -2,34 +2,55 @@
 
 # Project: AthletiCLI
 
+## Overview
+
+**AthletiCLI** is your all-in-one solution to track, analyse, and optimize your athletic performance. Designed for the
+committed athlete, this command-line interface (CLI) tool not only keeps tabs on your physical activities but also
+covers dietary habits, sleep metrics, and more.
+
 ## Summary of Contributions
 
 Given below are my contributions to the project.
 
-### New Feature: Added the ability track and manage diets
-
-* What it does: Allows the user to add diets to the application with a variety of parameters. Apart from the calories,
-  protein, carbohydrate, and fat intake, the user can also add the date and time of the meal. Additionally, user can 
-  edit, delete, list, and find diets.
-* Justification: This feature is the core of the diet management as it allows the user to track their dietary habits. 
-  It is also the basis for other features like the diet goal tracking.
-* Highlights: The edit diet command allows the user to edit any parameter of a diet. It does not require the user to 
-  enter all the parameters. The user can enter only the parameters that they want to edit. The implementation included
-  regex to smartly parse the user input irrespective of the order of the parameters.
-
 ### Code Contributed
 
-[RepoSense Link](https://nus-cs2113-ay2324s1.github.io/tp-dashboard/?search=nihalzp&breakdown=true)
+[RepoSense Link](https://nus-cs2113-ay2324s1.github.io/tp-dashboard/?search=nihalzp&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code&since=2023-09-22&tabOpen=true&tabType=authorship&tabAuthor=nihalzp&tabRepo=AY2324S1-CS2113-T17-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+
+### Features:
+
+* **Diet Record Management**: Designed and implemented the adding, deleting, editing, listing, and finding of diet
+  records.
+* **Activity Goal Management**: Designed and implemented the deleting, editing, and listing activity goals.
+* **Common Parsing Functions**: Enhanced and refactored widely used `getValueForMarker`, `parseDateTime` and 
+  `parseDate` functions to make 
+  them more robust and reusable.
+* **Enhancements:**
+  - Enhanced `add-diet` command to support adding of different fields like `calories`, `fat`, `carbs`, `protein`, 
+    `datetime` in any order.
+  - Improved `edit-diet` to allow user to only specify the fields they want to edit, while keeping the rest of the 
+    fields unchanged.
 
 ### Project Management
 
+* Implemented features across versions 1.0, 2.0, and 2.1 incrementally, aligning with development plans.
+* Utilized forking and branching for parallel development and seamless feature integration.
+* Managed bugs effectively using issue tracking, improving project accuracy and reliability.
+* Organized issue tracking by updating labels and assigning tasks, enhancing team efficiency.
+
 ### Documentation
+* **User Guide:**
+  * Added documentation for the features `add-diet`, `edit-diet`, `delete-diet`, `list-diet`, `find-diet`, 
+    `edit-activity-goal`, `delete-activity-goal`, `list-activity-goal`.
+  * Updated the `Command Summary`, `User Stories`, `FAQ` sections regularly.
+* **Developer Guide:**
+  * Explained the implementation structure and overview of adding, editing, deleting, listing and finding diets.
+  * Described the implementation of editing, deleting, and listing activity goals.
+  * Created UML diagrams: 
+    - `Parser` class diagram
+    - `edit-diet` command sequence diagram.
+  * Provided test instructions for diet record management and activity goal management.
 
-* User Guide:
-    * Added documentation for the features `add-diet`, `delete-diet`, `edit-diet`, `list-diet`, `find-diet`
-    * ...
-* Developer Guide:
-    * ...
-
-### Community
-    * ...
+#### Community
+* Reviewed 24 PRs. [PRs I commented on](https://github.com/AY2324S1-CS2113-T17-1/tp/pulls?q=commenter%3Anihalzp+is%3Apr+-author%3Anihalzp)
+* Issues reported for other teams:
+  * [PE Dry Run](https://github.com/AY2324S1-CS2113-W12-4/tp/issues?q=%5BPE-D%5D%5BTester+E%5D+)
