@@ -212,7 +212,7 @@ public class Message {
     public static final String ERRORMESSAGE_PARSER_SLEEP_NO_INDEX =
             "Please specify the index of the sleep record";
     public static final String ERRORMESSAGE_PARSER_SLEEP_INVALID_INDEX =
-            "Please specify the index of the sleep record as a positive integer.";
+            "Please specify the index of the sleep record as a positive integer not more than 999999.";
 
     public static final String ERRORMESSAGE_PARSER_SLEEP_GOAL_MISSING_PARAMETERS =
             "Please specify the type, period and target value of your sleep goal.";

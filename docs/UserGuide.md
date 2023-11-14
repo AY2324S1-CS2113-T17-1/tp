@@ -24,17 +24,15 @@ activities but also covers dietary habits, sleep metrics, and more.*
 * Parameters need to be specified in the given order unless specified otherwise.
 * Parameters enclosed in square brackets [] are optional.
 
-**Notes about lack of Goal Delete for Sleep and Activity**
+**Notes about lack of Goal Delete for Sleep**
 
-The absence of a "Goal Delete" feature for Sleep and Activity in the current version of AthletiCLI, while present for Diet, can be concisely justified as follows:
+The absence of a "Goal Delete" feature for Sleep in the current version of AthletiCLI, while present for Diet and Activity, can be concisely justified as follows:
 
-1. **Diversity of Diet Goals:** The Diet section likely encompasses a wider range of goals compared to Sleep and Activity. With such variability, users might frequently need to delete diet goals, making a delete function more essential in this section.
+1. **Diversity of Diet and Acitivity Goals:** The Diet and Activity features  encompasses a wider range of goals compared to Sleep. With such variability, users might frequently need to delete diet goals, making a delete function more essential.
 
-2. **Stability of Sleep and Activity Goals:** Goals related to sleep and activity are generally more consistent and less variable over time. This stability reduces the immediate need for a delete feature, as users are less likely to remove these goals frequently.
+2. **Stability of Sleep and Activity Goals:** There are only 4 settable goals for sleep. This stability reduces the immediate need for a delete feature, as users are less likely to remove these goals frequently.
 
-3. **Focused Development Resources:** Given limited development resources and time, the team prioritized implementing the delete feature for the Diet section, where it was deemed most necessary due to the larger volume and variability of goals.
-
-4. **Planned for Future Implementation:** The absence of this feature in the current version for Sleep and Activity does not indicate it will never be implemented. It is planned for a future update, aligning with a phased development approach.
+3. **Planned for Future Implementation:** The absence of this feature in the current version for Sleep does not indicate it will never be implemented. It is planned for a future update, aligning with a phased development approach.
 
 ## 🏃 Activity Management
 
@@ -902,7 +900,7 @@ If you forget a command, you can always use the `help` command to see their synt
 | `list-sleep`              | `list-sleep`                                                                        | None                                                   | `list-sleep`                                             |
 | `delete-sleep`            | `delete-sleep INDEX`                                                                | INDEX                                                  | `delete-sleep 1`                                         |
 | `edit-sleep`              | `edit-sleep INDEX start/START end/END`                                               | INDEX, START, END                                      | `edit-sleep 1 2023-01-20 02:00 2023-01-20 08:00`         |
-| `find-sleep`              | `find-sleep date/DATE`                                                              | DATE                                                   | `find-sleep date/2021-09-01`                             |
+| `find-sleep`              | `find-sleep DATE`                                                              | DATE                                                   | `find-sleep 2021-09-01`                             |
 | `set-sleep-goal`          | `set-sleep-goal type/TYPE period/PERIOD target/TARGET`                               | TYPE, PERIOD, TARGET                                   | `set-sleep-goal type/duration period/daily target/420`    |
 | `edit-sleep-goal`         | `edit-sleep-goal type/TYPE period/PERIOD target/TARGET`                              | TYPE, PERIOD, TARGET                                   | `edit-sleep-goal type/duration period/daily target/360`   |
 | `list-sleep-goal`         | `list-sleep-goal`                                                                   | None                                                   | `list-sleep-goal`                                        |
