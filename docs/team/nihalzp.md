@@ -20,15 +20,13 @@ Given below are my contributions to the project.
 
 * **Diet Record Management**: Designed and implemented the adding, deleting, editing, listing, and finding of diet
   records.
-* **Activity Goal Management**: Designed and implemented the deleting, editing, and listing activity goals.
+* **Activity Goal Management**: Designed and implemented the deleting, editing, and listing of activity goals.
 * **Common Parsing Functions**: Enhanced and refactored widely used `getValueForMarker`, `parseDateTime` and 
-  `parseDate` functions to make 
-  them more robust and reusable.
+  `parseDate` functions to make them more robust and reusable.
 * **Enhancements:**
-  - Enhanced `add-diet` command to support adding of different fields like `calories`, `fat`, `carbs`, `protein`, 
-    `datetime` in any order.
-  - Improved `edit-diet` to allow user to only specify the fields they want to edit, while keeping the rest of the 
-    fields unchanged.
+  - Enhanced the `add-diet` feature, enabling the addition of various fields such as `calories`, `fat`, `carbs`, 
+    `protein`, `datetime` in a flexible order.
+  - Refined the `edit-diet` feature, allowing users to modify necessary fields without altering the remaining data.
 
 ### Project Management
 
@@ -41,10 +39,10 @@ Given below are my contributions to the project.
 * **User Guide:**
   * Added documentation for the features `add-diet`, `edit-diet`, `delete-diet`, `list-diet`, `find-diet`, 
     `edit-activity-goal`, `delete-activity-goal`, `list-activity-goal`.
-  * Updated the `Command Summary`, `User Stories`, `FAQ` sections regularly.
+  * Updated the `Command Summary`, `User Stories` sections regularly.
 * **Developer Guide:**
-  * Explained the implementation structure and overview of adding, editing, deleting, listing and finding diets.
-  * Described the implementation of editing, deleting, and listing activity goals.
+  * Explained the implementation structure of adding, editing, deleting, listing and finding diets.
+  * Outlined the implementation idea for editing, deleting, and listing activity goals.
   * Created UML diagrams: 
     - `Parser` class diagram
     - `edit-diet` command sequence diagram.
