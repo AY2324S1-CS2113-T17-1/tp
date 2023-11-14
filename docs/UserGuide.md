@@ -30,7 +30,7 @@ The absence of a "Goal Delete" feature for Sleep in the current version of Athle
 
 1. **Diversity of Diet and Acitivity Goals:** The Diet and Activity features  encompasses a wider range of goals compared to Sleep. With such variability, users might frequently need to delete diet goals, making a delete function more essential.
 
-2. **Stability of Sleep and Activity Goals:** There are only 4 settable goals for sleep. This stability reduces the immediate need for a delete feature, as users are less likely to remove these goals frequently.
+2. **Stability of Sleep Goals:** There are only 4 settable goals for sleep. This stability reduces the immediate need for a delete feature, as users are less likely to remove these goals frequently.
 
 3. **Planned for Future Implementation:** The absence of this feature in the current version for Sleep does not indicate it will never be implemented. It is planned for a future update, aligning with a phased development approach.
 
